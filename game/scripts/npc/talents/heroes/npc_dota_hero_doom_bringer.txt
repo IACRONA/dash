@@ -1,0 +1,103 @@
+"npc_dota_hero_doom_bringer"
+{
+	"doom_devour_custom"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "9"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"devour_bonus_gold"
+		{
+			"value" "67"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"cast_bonus_exp" "30"
+				"cast_bonus_gold" "20"
+			}
+		}
+		"bonus_creep_level"
+		{
+			"value"			"1"
+
+			"min_rarity"	"rare"
+			"max_count"		"2"
+		}
+	}
+	"doom_bringer_scorched_earth"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"damage_per_second"
+		{
+			"value" "16"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"bonus_movement_speed_pct" "4"
+			}
+		}
+	}
+	"doom_bringer_infernal_blade"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"burn_damage"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"burn_damage_pct"
+				{
+					"value" "0.4"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"12.5"
+					"multiplicative_base_value"		"6.5"
+				}
+			}
+		}
+		"burn_duration"
+		{
+			"value" "1.0"
+			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+	}
+	"doom_bringer_doom"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"damage"
+		{
+			"value" "28"
+			"operator" "OP_ADD"
+			"facets"
+			{
+				"3" "12"
+			}
+		}
+	}
+}

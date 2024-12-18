@@ -1,0 +1,257 @@
+.MainHud {
+  width: 100%;
+  height: 100%;
+}
+
+#ShopWindow {
+  vertical-align: center;
+  horizontal-align: center;
+  margin-right: 200px;
+  padding: 100px;
+  transition-property: opacity, pre-transform-scale2d;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out;
+}
+
+#ShopWindow:not(.IsActive) {
+  opacity: 0;
+  pre-transform-scale2d: 0.9;
+}
+
+#ShopWindowBody {
+  background-image: url("s2r://panorama/images/hud/reborn/bg_shop_guide_psd.vtex");
+  background-position: bottom;
+  background-size: cover;
+  border-brush: gradient(linear, 0% 0%, 0% 100%, from(#8671455d), to(#57411e69));
+  box-shadow: 0px 16px 80px -4px rgba(0, 0, 0, 0.4);
+  flow-children: down;
+
+  width: 600px;
+  min-height: 250px;
+  padding: 10px;
+  padding-top: 60px;
+}
+.books-row {
+  flow-children: right;
+  horizontal-align: center;
+}
+
+#Books2 {
+}
+#ShopWindowAvatar {
+  width: 110px;
+  height: 110px;
+  transform: translateY(-55px) translateX(-55px);
+  border-radius: 50%;
+  z-index: 1;
+  border: 10px solid white;
+  border-brush: gradient(linear, 0% 0%, 0% 100%, from(#434f5e5e), to(#17191f86));
+  box-shadow: 0px 16px 80px -4px rgba(0, 0, 0, 0.4);
+}
+
+#ShopWindowUnit {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.ShopText {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: titleFont;
+}
+
+#ShopItemPanel {
+  width: 100%;
+  flow-children: down;
+}
+
+#ShopItemPanelLabel {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+#ShopItem {
+  flow-children: down;
+}
+
+#ShopItemBody {
+  flow-children: down;
+  width: 100%;
+}
+
+#ShopItem.Book4 {
+  horizontal-align: right;
+}
+
+#ShopItem.Book5 {
+  horizontal-align: center;
+}
+
+#ShopItem.BuyBoth #ShopItemBody {
+  flow-children: down;
+  horizontal-align: center;
+}
+
+#ShopItemPreview {
+  width: 160px;
+  height: 120px;
+  margin-right: 5px;
+  margin-bottom: 8px;
+}
+
+#ShopItemImage {
+  width: 100%;
+  height: 100%;
+  opacity: 0.01;
+}
+
+#ShopItemPreviewImage {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+#ShopItemCurrency {
+  flow-children: right;
+  horizontal-align: center;
+}
+
+#ShopItem:not(.BuyBoth) #ShopItemCurrency {
+  width: 100%;
+}
+
+#ShopItemCost {
+  flow-children: right;
+  horizontal-align: center;
+  overflow: noclip;
+  z-index: 4;
+}
+
+#ShopItemLabel {
+  text-align: center;
+  font-size: 18px;
+  vertical-align: bottom;
+  margin-right: 5px;
+}
+
+#ShopItemIcon {
+  width: 25px;
+  height: 25px;
+  vertical-align: bottom;
+  margin-right: 4px;
+}
+
+.ShopItemResource {
+  flow-children: down;
+  margin-bottom: 8px;
+  width: 100%;
+  visibility: collapse;
+}
+
+.ShopItemBuy {
+  horizontal-align: center;
+  vertical-align: center;
+
+  width: 100px;
+  height: 28px;
+
+  background-color: gradient(linear, 0% 0%, 0% 100%, from(#373d45), to(#4d5860));
+  border-style: solid;
+  border-width: 1px;
+
+  border-top-color: #555555;
+  border-left-color: #494949;
+  border-bottom-color: #333333;
+  border-right-color: #404040;
+
+  transition-property: background-color;
+  transition-duration: 0.05s;
+  transition-timing-function: linear;
+}
+
+.ShopItemBuy Label {
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-align: center;
+  horizontal-align: center;
+  vertical-align: middle;
+  text-shadow: 2px 2px 0px 1 #000000;
+
+  transition-property: color;
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
+
+  font-size: 16px;
+  font-family: defaultFont;
+}
+
+.ShopItemBuy:hover {
+  background-color: gradient(linear, 0% 0%, 0% 100%, from(#4c5561), to(#6c7d88));
+  border-top-color: #aaaaaa77;
+  border-left-color: #aaaaaa33;
+  border-bottom-color: #333333;
+  border-right-color: #404040;
+}
+
+.ShopItemBuy:active {
+  background-color: gradient(linear, 0% 0%, 0% 100%, from(#393939), to(#555555));
+  border-top-color: #222222;
+  border-left-color: #303030;
+  border-bottom-color: #666666;
+  border-right-color: #444444;
+  sound: "ui_generic_button_click";
+}
+
+#ShopItem.CanBuyForFlags #ShopItemFlags {
+  visibility: visible;
+}
+
+#ShopItem.CanBuyForGold #ShopItemGold {
+  visibility: visible;
+}
+
+#ShopItem.CanBuyForHeads #ShopItemHeads {
+  visibility: visible;
+}
+
+#ShopItem.BuyBoth #ShopItemGold,
+#ShopItem.BuyBoth #ShopItemFlags,
+#ShopItem.BuyBoth #ShopItemHeads {
+  width: fit-children;
+  flow-children: right;
+}
+
+#ShopItem.BuyBoth .ShopItemBuy {
+  visibility: collapse;
+}
+
+#ShopItemBuyForBoth {
+  visibility: collapse;
+  horizontal-align: center;
+}
+
+#ShopItem.BuyBoth #ShopItemBuyForBoth {
+  visibility: visible;
+}
+
+#ShopWindowCross {
+  width: 40px;
+  height: 40px;
+  transform: translateY(-15px) translateX(15px);
+  horizontal-align: right;
+  z-index: 1;
+}
+
+#ShopWindowCross:hover {
+  pre-transform-scale2d: 1.2;
+}
+
+#ShopWindowCross Image {
+  width: 100%;
+  height: 100%;
+}

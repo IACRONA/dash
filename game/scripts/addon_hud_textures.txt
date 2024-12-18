@@ -1,0 +1,53 @@
+""{
+	"TextureData"{
+		"warsong_flag"
+		{
+			"file"	"materials/minimap/warsong_flag.vmat"
+			"x"		"0"
+			"y"		"0"
+			"width"		"540"
+			"height"	"540"
+		}
+		"warsong_flag_dire"
+		{
+			"file"	"materials/minimap/warsong_flag_dire.vmat"
+			"x"		"0"
+			"y"		"0"
+			"width"		"256"
+			"height"	"256"
+		}
+		
+		"warsong_flag_radiant"
+		{
+			"file"	"materials/minimap/warsong_flag_radiant.vmat"
+			"x"		"0"
+			"y"		"0"
+			"width"		"256"
+			"height"	"256"
+		}
+		"warsong_portal_green"
+		{
+			"file"	"materials/minimap/portal_green.vmat"
+			"x"		"0"
+			"y"		"0"
+			"width"		"32"
+			"height"	"32"
+		}
+		"warsong_portal_blue"
+		{
+			"file"	"materials/minimap/portal_blue.vmat"
+			"x"		"0"
+			"y"		"0"
+			"width"		"32"
+			"height"	"32"
+		}
+		"warsong_portal_purple"
+		{
+			"file"	"materials/minimap/portal_purple.vmat"
+			"x"		"0"
+			"y"		"0"
+			"width"		"32"
+			"height"	"32"
+		}
+	}
+}

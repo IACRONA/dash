@@ -1,0 +1,800 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	Flag.Stolen.Good = {
+		type = "dota_update_vo_switch"
+		volume = 1.000000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/announcer/flag_stolen_good1.vsnd",
+			"sounds/announcer/flag_stolen_good2.vsnd",
+		]
+	}
+	Flag.Stolen.Bad = {
+		type = "dota_update_vo_switch"
+		volume = 1.000000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/announcer/flag_stolen_bad1.vsnd",
+			"sounds/announcer/flag_stolen_bad2.vsnd",
+			"sounds/announcer/flag_stolen_bad3.vsnd",
+			"sounds/announcer/flag_stolen_bad4.vsnd",
+		]
+	}
+    Flag.NewAbility = {
+		type = "dota_update_vo_switch"
+		volume = 3.000000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/announcer/ws_new_ability.vsnd",
+		]
+	}
+    Flag.KillSelect = {
+		type = "dota_update_vo_switch"
+		volume = 1.000000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/announcer/kill_accept.vsnd",
+		]
+	}
+    Flag.KillDeciline = {
+		type = "dota_update_vo_switch"
+		volume = 1.000000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/announcer/kill_decline.vsnd",
+		]
+	}
+	Flag.Deliver.Good = {
+		type = "dota_update_vo_switch"
+		volume = 1.000000
+		pitch = 1.000000
+		vsnd_duration = 7.0
+		limiter_on = 0
+		vsnd_files = [
+			"sounds/announcer/flag_deliver_good1",
+			"sounds/announcer/flag_deliver_good2",
+			"sounds/announcer/flag_deliver_good3",
+		]
+	}
+	Flag.Deliver.Bad = {
+		type = "dota_update_vo_switch"
+		volume = 1.000000
+		pitch = 1.000000
+		vsnd_duration = 7.0
+		limiter_on = 0
+		vsnd_files = [
+			"sounds/announcer/flag_deliver_bad1",
+			"sounds/misc/soundboard/ti9_crowd_groan.vsnd",
+		]
+	}
+	Flag.Return.Good = {
+		type = "dota_update_vo_switch"
+		volume = 1.000000
+		pitch = 1.000000
+		vsnd_duration = 7.0
+		limiter_on = 0
+		vsnd_files = [
+			"sounds/announcer/flag_return_good1.vsnd",
+			"sounds/announcer/flag_return_good2.vsnd",
+		]
+	}
+	Flag.Return.Bad = {
+		type = "dota_update_vo_switch"
+		volume = 0.8
+		pitch = 1.000000
+		vsnd_duration = 7.0
+		limiter_on = 0
+		vsnd_files = [
+			"sounds/announcer/flag_return_bad1.vsnd",
+		]
+	}
+	Flag.Drop.Self = {
+		type = "dota_update_vo_switch"
+		volume = 2.5
+		pitch = 1.000000
+		vsnd_duration = 7.0
+		limiter_on = 0
+		vsnd_files = [
+			"sounds/announcer/flag_drop_self1.vsnd",
+		]
+	}
+	Flag.Drop.Good = {
+		type = "dota_update_vo_switch"
+		volume = 1.000000
+		pitch = 1.000000
+		vsnd_duration = 7.0
+		limiter_on = 0
+		vsnd_files = [
+			"",
+		]
+	}
+	Flag.Drop.Bad = {
+		type = "dota_update_vo_switch"
+		volume = 2.000000
+		pitch = 1.000000
+		vsnd_duration = 7.0
+		limiter_on = 0
+		vsnd_files = [
+			"sounds/announcer/flag_drop_bad1.vsnd",
+		]
+	}
+	"BucketSoldier.Scream.Attack" = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.25
+		soundlevel = 84.0
+		mixgroup = "Weapons"
+		block_duration = 0.5
+		block_distance = 600.0
+		vsnd_files = "sounds/weapons/hero/vengeful_spirit/wave_of_terror.vsnd"
+	}
+	"BucketSoldier.Fear" = 
+	{
+		type = "dota_update_default"
+		volume = 1.0
+		pitch = 1.0
+		soundlevel = 84.0
+		mixgroup = "Weapons"
+		block_duration = 0.5
+		block_distance = 600.0
+		vsnd_files = 
+		[
+			"sounds/addons/conquest/scream_hallow01.vsnd",
+			"sounds/addons/conquest/scream_hallow02.vsnd",
+			"sounds/addons/conquest/scream_hallow03.vsnd",
+			"sounds/addons/conquest/scream_hallow04.vsnd",
+		]
+	}
+	"Creature.StartCast" = 
+	{
+		type = "dota_update_default"
+		volume = 0.0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 0.7
+		soundlevel = 81.0
+		mixgroup = "Weapons"
+		spread_radius = 600.0
+		vsnd_files = "sounds/weapons/hero/witch_doctor/voodoo_restoration.vsnd"
+	}
+
+    titan_fight = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/titan_fight.vsnd",
+        ]
+        volume = "2.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+
+    titan_killing = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/titan_killing.vsnd",
+        ]
+        volume = "2.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+
+    titan_lose = 
+    {
+		type = "dota_update_vo_switch"
+		volume = 2.000000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/titan_lose.vsnd",
+		]
+    }
+
+    Flag.MvpBackground = 
+    {
+		type = "dota_src1_3d"
+		volume = 1.500000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/mvp_bg.vsnd",
+		]
+	}
+    
+    Flag.MvpSpawn = 
+    {
+		type = "dota_src1_3d"
+		volume = 2.000000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/mvp_spawn.vsnd",
+		]
+	}
+
+    Flag.RollChoose = 
+    {
+		type = "dota_src1_3d"
+		volume = 2.000000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/roll_choose.vsnd",
+		]
+	}
+
+    fate_defender = 
+    {
+		type = "dota_src1_3d"
+		volume = 2.000000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/spells/fate_defender.vsnd",
+		]
+	}
+    fate_immortal = 
+    {
+		type = "dota_src1_3d"
+		volume = 2.000000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/spells/fate_immortal.vsnd",
+		]
+	}
+    fate_murder = 
+    {
+		type = "dota_src1_3d"
+		volume = 2.000000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/spells/fate_murder.vsnd",
+		]
+	}
+    fate_one_punchman = 
+    {
+		type = "dota_src1_3d"
+		volume = 2.000000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/spells/fate_one_punchman.vsnd",
+		]
+	}
+    fate_himaron = 
+    {
+		type = "dota_src1_3d"
+		volume = 2.000000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/spells/fate_himaron.vsnd",
+		]
+	}
+    fate_chos = 
+    {
+        type = "dota_src1_3d"
+        volume = 2.000000
+        pitch = 1.000000
+        vsnd_files = [
+            "sounds/fate_chos.vsnd",
+        ]
+    }
+    sphere_choice = 
+    {
+        type = "dota_src1_3d"
+        volume = 2.000000
+        pitch = 1.000000
+        vsnd_files = [
+        "sounds/sphere_choice.vsnd",
+        ]
+    }
+    demon_buff = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/demon_buff.vsnd",
+        ]
+        volume = "2.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+    demon_cast = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/demon_cast.vsnd",
+        ]
+        volume = "2.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+    fate_one_punchman_cast = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/fate_one_punchman.vsnd",
+        ]
+        volume = "2.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+    fate_immortal_cast = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/fate_immortal.vsnd",
+        ]
+        volume = "2.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+    buy_book = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/buy_book.vsnd",
+        ]
+        volume = "2.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	} 
+	ice_barier_cast = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/ice_barier_cast.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	ice_spike_cast_1 = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/ice_spike_cast_1.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	ice_spike_cast_2 = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/ice_spike_cast_2.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	ice_spike_target = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/ice_spike_target.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	spawn_elemental = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/spawn_elemental.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	ice_barier_absorb = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/ice_barier_absorb.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	dazzle_dispel_cast = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/dazzle_dispel_cast.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	life_shield_cast = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/life_shield_cast.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	grace_cast = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/grace_cast.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	void_strike_cast = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/void_strike_cast.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	edolon_cast = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/edolon_cast.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	edolon_die = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/edolon_die.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	portal_cast = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/portal_cast.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	portal_teleport_cast = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/portal_teleport_cast.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	house_bolt_cast = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/house_bolt_cast.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	axe_struck_cast = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/axe_struck_cast.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	axe_charge_cast = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/axe_charge_cast.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	lina_fire_bomb = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/lina_fire_bomb.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	lina_fire_shield = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/lina_fire_shield.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	lina_pyrablast = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/lina_pyrablast.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	lina_pyrablast_hit = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/lina_pyrablast_hit.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+	lina_pyramanican = 
+	{
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/lina_pyramanican.vsnd",
+        ]
+        volume = "1.350000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+	}
+    lina_pyrablast_fast_cast = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/lina_pyrablast_fast_cast.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+    lina_pyrablast_fast_hit = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/lina_pyrablast_fast_hit.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+    give_book = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/give_book.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+     
+    boss_killed = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/boss_killed.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+     
+       
+}

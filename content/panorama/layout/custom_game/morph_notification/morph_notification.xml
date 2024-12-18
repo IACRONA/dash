@@ -1,0 +1,18 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/morph_notification/morph_notification.vcss_c" />
+	</styles>
+	 <scripts>
+		<include src="s2r://panorama/layout/custom_game/morph_notification/morph_notification.vjs_c" />
+	</scripts>
+	<Panel class="Main" hittest="false">
+        <Label class="MorphNotificationSpawn" html="true" id="MorphNotificationSpawn" text="#morph_notif" />
+        <Panel class="MorphTimerPanel" id="MorphTimerPanel">
+            <Panel class="MorphIcon" />
+            <Label class="MorphTimer" id="MorphTimer" text="00:00" />
+        </Panel>
+        <Label class="MorphNotificationOut" html="true" id="MorphNotificationOut" text="#morphling_out" />
+        <Label class="MorphNotificationKilled" html="true" id="MorphNotificationKilled" text="" />
+	</Panel>
+</root>

@@ -1,0 +1,16 @@
+<root>
+    <styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/select_kill.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/select_kill.js" />
+	</scripts>
+	<Panel hittest="false" class="DefaultMain">
+        <Panel class="SelectKillMain" id="SelectKillMain">
+            <Label class="HeaderText" text="#SelectKillsHeader"/>
+            <Panel class="SelectKillButton" id="SelectKillButton"/>
+            <Panel class="DeclineKillButton" id="DeclineKillButton"/>
+        </Panel>
+	</Panel>
+</root>

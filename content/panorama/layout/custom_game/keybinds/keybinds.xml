@@ -1,0 +1,32 @@
+<root>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/keybinds/keybinds.vjs_c" />
+	</scripts>
+    <styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/keybinds/keybinds.vcss_c"/>
+	</styles>
+	<Panel hittest="false" class="SettingsHud">
+		<Panel id="SettingsTop" class="SettingsTop">
+			<Button id="SettingsOpen" class="TopBarIcon" onactivate="OnSettingsOpen()">
+				<Image id="SettingsIcon" src="file://{resources}/images/custom_game/keybind_icon.png" />
+ 				<Label class="SettingsLabel" text="#keybind_button" />
+			</Button>
+		</Panel> 
+		<Panel id="SettingsRoot" class="closing">
+			<Button id="SettingsClose" onactivate="OnSettingsClose()"/>
+			<Panel id="SettingsContent">
+				<Panel id="SettingsKeybinds" >
+					<Label class="SettingsSectionTitle" text="#custom_keybindings" />
+					<Panel id="SettingsKeybindsList" />
+				</Panel>
+			</Panel>
+            <Panel class="SaveBinds" id="SaveBinds" onactivate="SaveKeyBinds();">
+                <Label class="SaveBindLabel" text="#save_keybinds" />
+            </Panel>
+            <Panel class="ResetBinds" id="ResetBinds" onactivate="ResetBinds();">
+                <Label class="SaveBindLabel" text="#reset_keybinds" />
+            </Panel>
+ 		</Panel>
+	</Panel>
+</root>

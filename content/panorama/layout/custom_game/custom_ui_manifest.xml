@@ -1,0 +1,30 @@
+<root> 
+	<scripts>
+        <include src="file://{resources}/scripts/custom_game/custom_ui_manifest.js" />
+	</scripts>
+	<Panel>
+	    <CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml" />
+		<CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/custom_ui_hud.xml" />
+		<CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/keybinds/keybinds.xml" />
+		<CustomUIElement type="EndScreen"           layoutfile="file://{resources}/layout/custom_game/multiteam_end_screen.xml" />
+        <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/select_kill.xml" />
+        <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/morph_notification/morph_notification.xml" />
+        <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/select_spell/select_spell.xml" />
+        <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/books_shop/books_shop.xml" />
+        <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/currency_counter/currency_counter.xml" />
+        <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/game_hints/game_hints.xml" />
+        <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/notification/notification.xml" />
+        <CustomUIElement type="PregameStrategy" layoutfile="s2r://panorama/layout/custom_game/multiteam_hero_select_overlay.xml" />
+
+        <!-- <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/custom_loading_screen.xml" /> -->
+
+        <Image style="opacity:0;" src="file://{resources}/images/custom_game/warsong.png" />
+
+        <Image style="opacity:0;" src="file://{resources}/images/custom_game/fate_defender.png" />
+        <Image style="opacity:0;" src="file://{resources}/images/custom_game/fate_himaron.png" />
+        <Image style="opacity:0;" src="file://{resources}/images/custom_game/fate_immortal.png" />
+        <Image style="opacity:0;" src="file://{resources}/images/custom_game/fate_murder.png" />
+        <Image style="opacity:0;" src="file://{resources}/images/custom_game/fate_one_punchman.png" />
+        <Image style="opacity:0;" src="file://{resources}/images/custom_game/dash.png" />
+	</Panel>
+</root>

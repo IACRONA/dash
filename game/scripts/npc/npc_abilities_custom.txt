@@ -1,0 +1,397 @@
+#base "abilities/npc_boss_abilities.kv"
+#base "heroes/crystal_maiden_abilities.kv"
+#base "heroes/dazzle_abilities.kv"
+#base "heroes/enigma_abilities.kv"
+#base "heroes/axe_abilities.kv"
+#base "heroes/mirana_abilities.kv"
+#base "heroes/lina_abilities.kv"
+#base "heroes/cursed_knight_abilities.kv"
+
+"DOTAAbilities"
+{
+	"ability_use"
+    {
+		"BaseClass"			"ability_lua"
+		"ScriptFile"		"abilities/ability_use"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL | DOTA_UNIT_TARGET_TREE"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"MaxLevel"			"1"
+		"IsCastableWhileHidden"			"1"
+	}
+ 
+ 
+    "invul_unit"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"             "abilities/invul_unit" 
+        "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "Innate"                        "1"
+    } 
+    
+	"fountain_aura_movespeed"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/fountain_aura_movespeed"
+		"GetAbilityTextureName"			"filler_ability"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"IsOnCastBar"                   "0"
+		"MaxLevel"						"1"
+	}
+
+    "ui_custom_ability_jump"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/ui_custom_ability_jump"
+        "AbilityTextureName"            ""
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE"
+        "AbilityCooldown"               "0"
+        "MaxLevel"                      "1"
+        "IsOnCastBar"                   "0"
+    }
+
+    "ui_shop_books"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/ui_shop_books"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        "IsOnCastBar"                   "0" 
+        "AbilityValues" 
+        {
+            "radius"           "400"
+        }
+    }
+ 
+    "morphling_boss_wave"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/morphling_boss_wave"
+        "AbilityTextureName"            ""
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCooldown"               "6"
+        "MaxLevel"                      "1"
+        "IsOnCastBar"                   "0"
+
+        "AbilityValues"
+        {
+            "speed"					    "1250"
+			"width"					    "350"
+            "damage"                    "1500"
+        }
+    }
+
+    "morphling_boss_crystalnova"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/morphling_boss_crystalnova"
+        "AbilityTextureName"            ""
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCooldown"               "8"
+        "MaxLevel"                      "1"
+        "IsOnCastBar"                   "0"
+        "AbilityCastRange"				"700"
+
+        "AbilityValues"
+        {
+			"radius"
+			{
+				"value"										"425"
+				"affected_by_aoe_increase"	                "1"
+			}
+			"movespeed_slow"				                "-50"
+			"attackspeed_slow"				                "-75"
+			"duration"						                "5"
+			"nova_damage"                                   "650"
+        }
+    }
+
+    "morphling_boss_frostbite"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/morphling_boss_frostbite"
+        "AbilityTextureName"            ""
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCooldown"               "6"
+        "MaxLevel"                      "1"
+        "IsOnCastBar"                   "0"
+        "AbilityCastRange"				"700"
+
+        "AbilityValues"
+        {
+			"damage_per_second"         "100"
+			"duration"                  "3"
+			"tick_interval"				"0.20"
+        }
+    }
+
+    "morphling_boss_blast"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/morphling_boss_blast"
+        "AbilityTextureName"            ""
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCooldown"               "10"
+        "MaxLevel"                      "1"
+        "IsOnCastBar"                   "0"
+        
+        "AbilityValues"
+        {
+            "speed"					    "1250"
+			"radius"					"1000"
+            "damage"                    "1300"
+            "disarm_duration"           "3"
+        }
+    }
+
+    "morphling_boss_finger"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/morphling_boss_finger"
+        "AbilityTextureName"            ""
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCooldown"               "17"
+        "MaxLevel"                      "1"
+        "IsOnCastBar"                   "0"
+        
+        "AbilityValues"
+        {
+			"radius"					"500"
+            "damage"                    "2300"
+        }
+    }
+
+    "windranger_powershot_custom"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/heroes/windranger/windranger_powershot_custom"
+        "AbilityTextureName"            "windrunner_powershot"
+        "MaxLevel"                      "4"
+
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "HasShardUpgrade"               "1"
+
+        "AbilityCastRange"              "2600"
+        "AbilityCastPoint"              "0.0"
+        "AbilityChannelTime"            "1.0"
+
+        "AbilityCooldown"               "12 11 10 9"
+        "AbilityManaCost"               "90 100 110 120"
+
+        "AbilityValues"
+        {
+            "powershot_damage"      "150 250 350 450"
+            "damage_reduction"  
+            {
+                "value"              "15"
+                "special_bonus_unique_windranger_3"            "-15"
+            }
+            "arrow_width"           "125 125 125 125"
+            "arrow_range"           "2600"
+            "arrow_speed"           "3000.0 3000.0 3000.0 3000.0"
+            "tree_width"            "75 75 75 75"
+            "vision_radius"         "400"
+            "vision_duration"       "3.34 3.34 3.34 3.34"
+            "slow_move_speed" 
+            {
+                "value"              "20 25 30 35"
+                "special_bonus_unique_windranger_powershot_slow"            "+20"
+            }     
+            "slow_duration"       "4"
+        }
+    }
+
+    "sniper_take_aim"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "1"
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "0"
+        "AbilityCastPoint"              "0 0 0 0"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "20 18 16 14"
+
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "50"
+        
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "duration"
+            {
+                "value"                 "3"
+                "special_bonus_unique_sniper_4" "+1"
+            }
+
+            "slow"                      
+            {
+                "value"                             "65"                
+            }
+            "headshot_chance"           "100"
+            "active_attack_range_bonus"
+            {
+                "value"                 "200"               
+            }
+            "bonus_armor"       
+            {
+                "value"                                             "5 10 15 20"
+                "special_bonus_unique_sniper_take_aim_armor"        "+15"
+            }
+                
+            "does_root"
+            {
+                "value"     "0"         
+            }
+
+            "require_target"
+            {
+                "value"     "0"             
+            }
+
+            "no_reveal"
+            {
+                "special_bonus_facet_sniper_ghillie_suit"   "1"
+            }
+            "chance_grid"                   "7"
+            "projectile_speed"              "1200"
+            "grid_duration"                 "1.5"
+            "cooldown_grid"                 "7"
+        }
+        
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+    }
+    "sniper_aim_bonus"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/heroes/sniper/sniper_aim_bonus"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    }  
+
+    "nevermore_requiem_custom"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/heroes/shadow_fiend/nevermore_requiem_custom"
+        "AbilityTextureName"            "nevermore_requiem"
+        "MaxLevel"                      "3"
+        "HasScepterUpgrade"             "1"
+
+        // Ability General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_6"
+
+
+        // Ability Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1000"
+        "AbilityCastPoint"              "1.67"
+        "AbilityDuration"               "5.0"
+
+        "AbilityManaCost"               "150 175 200"
+
+        // Damage
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityDamage"                 "80 120 135"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "AbilityCooldown"               
+            {
+                "value"     "90 85 85"
+                "special_bonus_scepter" "-5"
+            }
+            "cast_time_tooltip" "1.67"
+            "cooldown_pull"                 "10"
+            "requiem_radius"    
+            {
+                "value"     "630"      
+                "affected_by_aoe_increase"  "1"
+            }
+            "requiem_reduction_ms"  "-20 -25 -30"
+            "requiem_reduction_mres"    "-5 -10 -15"
+
+            "requiem_reduction_tooltip" "-50"
+            "requiem_slow_duration" 
+            {
+                "value"     "0.6"
+                "special_bonus_unique_nevermore_6" "+0.2"
+            }
+            "requiem_slow_duration_max" 
+            {
+                "value"                 "2.15"
+                "special_bonus_unique_nevermore_6" "+0.45"
+            }                  
+            "requiem_soul_conversion"   "1"
+            "requiem_line_width_start"  "125"
+            "requiem_line_width_end"    "425"
+            "requiem_line_speed"    "700"
+            "soul_death_release"    "0.5"
+
+            "requiem_heal_pct_scepter"    
+            {
+                "value"      "100"
+                "RequiresScepter" "1"
+            }
+            "requiem_damage_pct_scepter"    
+            {
+                "value"      "60"
+                "RequiresScepter" "1"
+            }
+
+            "pull_drag_speed"            
+            {
+                "value"                 "285"
+            }   
+        }
+    }
+
+    "lion_frog_jump"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/heroes/lion/lion_frog_jump"
+        "AbilityTextureName"            "lion/lion_frog_jump"
+        "MaxLevel"                      "1"
+        
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+
+        "AbilityCastRange"              "900"
+
+        "AbilityCooldown"               "25"
+        "AbilityManaCost"               "100"
+        "IsGrantedByShard"          "1"
+
+        "AbilityValues"
+        {
+
+            "jump_distance"         "900"
+            "jump_speed"            "1300.0"
+            "model_scale"     "2"
+        }
+    }    
+}

@@ -1,0 +1,136 @@
+"DOTAUnits"
+{
+    "npc_water_elemental"
+	{										
+		"Model"						        "models/heroes/morphling/morphling.vmdl"
+		"BaseClass"					        "npc_dota_creature"
+		"SoundSet"					        "Hero_Morphling"
+		"Level"						        "1"
+		"ModelScale" 				        "1"
+        "CanBeDominated"                    "1"
+
+		"Ability1"					        "water_elemental_frozen"
+
+
+		"ArmorPhysical"				        "10"
+		"MagicalResistance"                 "25"
+
+		"AttackCapabilities"		        "DOTA_UNIT_CAP_RANGED_ATTACK"
+
+		"AttackDamageMin"			        "70"
+		"AttackDamageMax"			        "100"	
+
+		"AttackRate"		                "1.7"
+		"AttackAnimationPoint"		        "0.560000"
+		"AttackAcquisitionRange"		    "800"
+		"AttackRange"		                "950"
+		"BaseAttackSpeed"			        "160"
+
+		"RingRadius"				        "70"
+		"HealthBarOffset"			        "280"
+
+		"MovementCapabilities"		        "DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				        "340"
+		"MovementTurnRate"			        "0.9"
+
+        "ProjectileModel"		            "particles/units/heroes/hero_morphling/morphling_base_attack.vpcf"
+		"ProjectileSpeed"		            "1500"
+
+		"StatusHealth"				        "1500"
+		"StatusHealthRegen"			        "0"
+
+		"StatusMana"				        "500"
+		"StatusManaRegen"			        "0" 
+
+		"VisionDaytimeRange"		        "800"
+		"VisionNighttimeRange"		        "800"
+
+		"TeamName"					        "DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			        "DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			        "DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		        "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	}
+	"npc_dota_eidolon_custom"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creep"	// Class of entity of link to.
+		"Model"						"models/items/enigma/eidolon/tentacular_conqueror_tentacular_conqueror_eidolons/tentacular_conqueror_tentacular_conqueror_eidolons.vmdl"	// Model.
+		"SoundSet"					"Creep_Good_Range"					// Name of sound set.
+		"ModelScale"				"1.2"
+		"Level"						"1"
+		"IsSummoned"				"1"
+		"SelectionGroup"			"Eidolons"
+		"UnitLabel"			"eidolons"
+		"wearable"				"8638"
+		"precache"
+		{
+			"particle"			"particles/econ/events/anniversary_10th/anniversary_10th_hat_ambient_npc_dota_hero_enigma_eidolon.vpcf"
+		}
+		"party_hat_effect"			"particles/econ/events/anniversary_10th/anniversary_10th_hat_ambient_npc_dota_hero_enigma_eidolon.vpcf"
+		
+		// Abilities
+		//----------------------------------------------------------------
+		
+		"Ability1"					""			// Ability 1.
+		"Ability2"					""			// Ability 2.
+		"Ability3"					""			// Ability 3.
+		"Ability4"					""			// Ability 4.
+		"Ability5"					""			// Ability 5.
+		"Ability6"					""			// Ability 6 - Extra.
+		"Ability7"					""			// Ability 7 - Extra.
+		"Ability8"					""			// Ability 8 - Extra.
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"3"			// Physical protection.
+		"MagicalResistance"				"5"		// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"80"		// Damage range min.
+		"AttackDamageMax"			"100"		// Damage range max.
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1.5"			// Speed of attack.
+		"AttackAnimationPoint"		"0.2"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"850"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/units/heroes/hero_enigma/enigma_base_attack_eidolon.vpcf" // Particle system model for projectile.
+		"ProjectileSpeed"			"900"		// Speed of projectile.
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"10"		// Experience earn.
+		"BountyGoldMin"				"14"		// Gold earned min.
+		"BountyGoldMax"				"20"		// Gold earned max.
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
+		"HealthBarOffset"			"230"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"400"		// Speed
+		"MovementTurnRate"			"0.9"		// Turning rate.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"659"		// Base health.
+		"StatusHealthRegen"			"4"		// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"			// Team name.
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1200"		// Range of vision during day light.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+	}	
+}

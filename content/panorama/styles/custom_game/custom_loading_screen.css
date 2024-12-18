@@ -1,0 +1,482 @@
+.LoadingScreen {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+}
+
+@keyframes 'animm' {
+    0% {
+        transform: translateX(0px) translateY(0px);
+        pre-transform-scale2d: 1.0;
+    }
+
+    40% {
+        transform: translateX(40px) translateY(10px);
+        pre-transform-scale2d: 1.15;
+    }
+
+    60% {
+        transform: translateX(-40px) translateY(-10px);
+        pre-transform-scale2d: 1.15;
+    }
+
+    100% {
+        transform: translateX(0px) translateY(0px);
+        pre-transform-scale2d: 1.0;
+    }
+
+}
+
+#ls_bgd {
+    width: 1920px;
+    height: 1080px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url('file://{images}/loading_screen/loading_screen_bgd.png');
+    /* animation-name: animm; */
+    /* animation-duration: 60s; */
+    /* animation-timing-function: ease-in-out; */
+    /* animation-iteration-count: infinite; */
+    /* pre-transform-scale2d: 1.0; */
+}
+
+
+/* Slider */
+.slider-contaner {
+    width: 1100px;
+    height: 420px;
+
+    horizontal-align: center;
+    vertical-align: bottom;
+    z-index: 1;
+}
+.SocialIcons {
+    width: 750px;
+    height: 60px;
+    z-index: 2;
+    horizontal-align: center;
+}
+.Discord, .Donate {
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    img-shadow: 0px 0px 5px 3.0 #000;
+}
+.Discord { 
+    background-image: url("file://{resources}/images/loading_screen/discord.png");
+    background-size: 170% 105%;
+    background-position: center;
+    /* background-size: 100% 70%; */
+}
+.Donate {
+    horizontal-align: right;
+    background-image: url("file://{images}/loading_screen/donate.png");
+    background-size: 100%;
+    /* background-size: 70% 70%; */
+}
+/* Hints */
+#hint_container {
+    width: 700px;
+    height: 80px;
+    horizontal-align: center;
+    flow-children: down;
+}
+#hint_title, #hint_content {
+    width: 100%;
+    text-align: center;
+}
+#hint_title {
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 22px;
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 0px 0px 6px 4.0 #000;
+}
+.content-container {
+    width: 100%;
+    height: 40px;
+    padding: 0 35px;
+    background-color: #d3d3d3e6;
+}
+#hint_content {
+    font-size: 15px;
+    color: #000000;
+    vertical-align: center;
+}
+
+#slider {
+    margin-top: 70px;
+    width: 700px;
+    height: 345px;
+    opacity: 0;
+    horizontal-align: center;
+    flow-children: down;
+}
+.movie-container {
+    width: 700px;
+    height: 330px;
+    background-color: #d3d3d3e6;
+    border: 1px solid #d3d3d3e6;
+}
+#slider Movie {
+    width: 100%;
+    min-height: 320px;
+    max-height: 360px;  /* border: 1px solid rgb(255, 0, 0); */
+    opacity: 1;
+}
+#slider_dots {
+    width: 100%;
+    height: 20px;
+}
+
+#dots {
+    margin-top: 3px;
+    vertical-align: center;
+    horizontal-align: center;
+    flow-children: right;
+}
+
+#dots Panel {
+    width: 20px;
+    height: 6px;
+    margin: 0 4px;
+    background-color: rgb(110, 110, 110);
+    transition-duration: 0.15s;
+    transition-property: background-color;
+}
+
+#hidd {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(4, 2, 2, 0);
+    transition-property: background-color;
+    transition-duration: .1s;
+}
+
+.slide-arrow {
+    margin: 0px 20px 0 20px;
+    vertical-align: center;
+    width: 220px;
+    height: 100%;
+}
+.slide-arrow > Button {
+    width: 100%;
+    height: 340px;
+    vertical-align: center;
+    horizontal-align: center;
+    /* img-shadow: 1px 0px 10px 5.0 #000; */
+    background-image: url("file://{images}/loading_screen/arrow.png");
+    background-size: 90% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotateY(180deg);
+
+    /* saturation: 1; */
+    /* contrast: 0.85; */
+    /* brightness: 0.45; */
+    /* wash-color: #ACBFDD; */
+    
+    transition-property: background-image;
+    transition-duration: 0.2s;
+}
+.slide-arrow > Button:hover {
+    transition-duration: 0.1s;
+    background-image: url("file://{images}/loading_screen/arrow-hover.png");
+}
+.slide-arrow > Button:active {
+    brightness: 1.8;
+}
+/* #left_arrow { background-image: url("file://{images}/loading_screen/left_arrow_bgd.png"); } */
+#right_arrow { horizontal-align: right; transform: rotateY(180deg);}
+
+#Timer {
+    width: 600px;
+    height: 300px;
+    vertical-align: top;
+    horizontal-align: center;
+    opacity: 0;
+    /* flow-children: down; */
+}
+.headerContent {
+    horizontal-align: center;
+    width: 400px;
+    height: 200px;
+    flow-children: down;
+}
+#dial {
+    margin-top: 10px;
+    horizontal-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: aliceblue;
+    letter-spacing: 1px;
+    text-shadow: 0px 0px 8px 4.0 #000;
+}
+.playerLoadCounter {
+    margin-top: 5px;
+    height: 40px;
+    flow-children: right;
+    horizontal-align: center;
+    
+}
+.playerLoadCounter > Label {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 0px 0px 4px 3.0 #000;
+    color: #fff;
+}
+#listHeader {
+    margin-left: 8px;
+    color: #e5ff00;
+}
+.logo {
+    width: 600px;
+    height: 300px;
+    horizontal-align: center;
+    background-image: url("file://{images}/loading_screen/logo-duo.png");
+    background-image: url("file://{images}/loading_screen/logo-warsong.png");
+    background-image: none;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center 0;
+}
+
+
+/* Players */
+#PlayerLists {
+    margin: 60px 30px 0 30px;
+    width: 100%;
+    opacity: 0;
+}
+
+#mainList {
+    width: 100%;
+    min-height: 200px;
+    padding: 5px;
+    flow-children: right-wrap;
+}
+
+
+/* Player snippet */
+.playerPanel {
+    width: 50%;
+    height: 42px;
+    margin: 4px 0;
+
+    horizontal-align: left;
+    flow-children: right;
+}
+/* Progress-Connect */
+.playerConnectProgress {
+    margin: 5px 0;
+    padding: 3px 3px;
+    width: 220px;
+    height: 100%;
+    background-image: url("file://{images}/loading_screen/load-bar-mask.png");
+    background-size: 100%;
+    transform: rotateY(180deg);
+}
+.Right.playerPanel { flow-children: left; horizontal-align: right;}
+.Right DOTAUserName { horizontal-align: right; }
+.Right .playerConnectProgress { transform: rotateY(0deg); }
+#stateConnect {
+    margin: 8px 7px;
+    width: 0%;
+    height: 100%;
+    horizontal-align: right;
+    vertical-align: center;
+    transition-property: width;
+    transition-duration: 3s;
+    transition-timing-function: ease-in-out;
+    z-index: 1;
+
+}
+.playerConnected #stateConnect { background-color: #6bb95b; width: 100%; }
+.playerConnectedFailed #stateConnect { background-color: #af1e1e; width: 100%; }
+.loadLine {
+    width: 100%;
+    height: 100%;
+    margin: 8px 7px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Nick-Name */
+.playerContent {
+    margin: 0 5px;
+    width: 300px;
+    height: 100%;
+}
+.localPlayer {}
+
+#pp_content {
+    width: 100%;
+    height: 100%;
+    padding: 3px 0px 3px 3px;
+    /* background-color: gradient(linear, 0% 0%, 400% 0%, from(transparent), to(#acacac)); */
+    flow-children: right;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+}
+/* 
+.playerConnected > #pp_content {
+    background-color: gradient(linear, 0% 0%, 400% 0%, from(transparent), to(#6bb95b));
+}
+
+.playerConnectedFailed > #pp_content {
+    background-color: gradient(linear, 0% 0%, 400% 0%, from(transparent), to(#af1e1e));
+} */
+
+#pp_content DOTAAvatarImage {
+    width: 54px;
+    height: 54px;
+    vertical-align: center;
+    margin: 0 5px 0 5px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+#pp_content DOTAUserName {
+    vertical-align: center;
+    text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 2px 2;
+}
+#pp_content DOTAUserName > Label {
+    font-size: 24px;
+    text-shadow: 0px 0px 4px 2.0 #000;
+}
+
+/* .reqq {
+    width: 100%;
+    height: 30px;
+    background-color: #fff;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+}
+
+.reqq:hover {
+    background-color: rgb(6, 178, 0);
+} */
+
+#ChooseKillsPanel {
+    width: 990px;
+    min-height: 70px;
+    padding: 10px;
+    horizontal-align: center;
+    vertical-align: bottom;
+    margin-bottom: 360px;
+    flow-children: down;
+    opacity: 0;
+}
+
+#ChooseKillsPanelLabel {
+    width: 100%;
+    height: 50px;
+    background-image: url("file://{images}/loading_screen/lists_header.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#ChooseKillsPanelList {
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    background-image: url("file://{images}/loading_screen/loading_list_bgd.png");
+    flow-children: right;
+}
+
+.ChooseKill {
+    width: 300px;
+    height: 100%;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-top-color: #555555;
+    border-left-color: #494949;
+    border-bottom-color: #333333;
+    border-right-color: #404040;
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#373d45), to(#4d5860));
+    border-style: solid;
+    border-width: 1px;
+}
+
+.ChooseKill:hover {
+    brightness: 1.2;
+}
+
+.ChooseKill:active {
+    brightness: 0.8;
+}
+
+.ChooseKillLabel {
+    align: center center;
+    font-size: 28px;
+    font-family: Reaver;
+    color: white;
+    text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 2px 2;
+}
+
+.selected {
+    wash-color: #44ff006d;
+}
+
+
+
+#ChooseDraftPanel {
+    width: 390px;
+    min-height: 70px;
+    padding: 10px;
+    horizontal-align: left;
+    vertical-align: bottom;
+    margin-bottom: 470px;
+    flow-children: down;
+    opacity: 1;
+}
+
+#ChooseDraftPanelLabel 
+{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 22px;
+    color: white;
+    font-weight: bold;
+    text-shadow: #a30303 0px 0px 3px 4;
+}
+
+#ChooseDraftPanelList 
+{
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
+    flow-children: right;
+    border: 1px solid black;
+}
+
+.ChooseDraft {
+    width: 150px;
+    height: 100%;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-top-color: #555555;
+    border-left-color: #494949;
+    border-bottom-color: #333333;
+    border-right-color: #404040;
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#373d45), to(#4d5860));
+    border-style: solid;
+    border-width: 1px;
+}
+
+.ChooseDraft:hover {
+    brightness: 1.2;
+}
+
+.ChooseDraft:active {
+    brightness: 0.8;
+}

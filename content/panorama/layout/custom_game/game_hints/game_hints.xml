@@ -1,0 +1,12 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/game_hints/game_hints.vcss_c" />
+	</styles>
+	 <scripts>
+		<include src="s2r://panorama/layout/custom_game/game_hints/game_hints.vjs_c" />
+	</scripts>
+	<Panel style="width:100%;height:100%;" hittest="false">
+        <Panel class="HintsContainer" id="HintsContainer"/>
+	</Panel>
+</root>

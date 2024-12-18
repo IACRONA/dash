@@ -1,0 +1,23 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/notification/notification.vcss_c" />
+	</styles>
+	 <scripts>
+		<include src="s2r://panorama/layout/custom_game/notification/notification.vjs_c" />
+	</scripts>
+    <snippets>
+        <snippet name="BossHead">
+            <Panel class="BossHead">
+                <Image class="BossIcon" src="file://{resources}/images/custom_game/head_counter.png" />
+                <Panel class="BossBody">
+                    <Label class="BossTitle" text="Голова <font color='#FF0000'>босса</font> получена"  html="true"/>
+                    <Label class="BossDescription" text="Вы можете купить за голову <font color='#ffc0cb'>улучшения</font>" html="true"/>
+                </Panel>
+            </Panel>
+        </snippet>
+    </snippets>
+	<Panel class="Main" hittest="false">
+ 
+ 	</Panel>
+</root>

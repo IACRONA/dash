@@ -1,0 +1,317 @@
+"DOTAAbilities"
+{
+	"lina_fiery_soul_custom"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/lina/lina_fiery_soul_custom"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"lina_fiery_soul"
+		"AbilityValues"
+		{
+			"duration"				"8"
+			"bonus_crit"			
+			{
+				"value"				"2.5"
+				"special_bonus_unique_lina_fiery_soul_crit"	"+1"
+			}
+			"bonus_attack_speed"			"8 16 24 32"
+			"bonus_move_speed_pct"			"1.5 2 2.5 3"
+			"max_stack"				"7"
+		}
+
+	}
+	"lina_pyrablast"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/lina/lina_pyrablast"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"AbilityTextureName"            "lina/lina_pyrablast"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"                      "4"
+
+		"AbilityCastRange"				"900 1000 1100"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50 100"
+
+		"AbilityValues"
+		{
+			"channel_time"						"4"
+			"damage"	
+			{
+				"value"											"280 350 395 480"
+				"special_bonus_unique_lina_pyrablast"			"+100"
+			}	 	
+			"buff_duration"							"12"
+			"projectile_speed"					"1000"
+			"crit_2x"					"10"
+			"crit_3x"					"5"
+		}
+	}
+
+	"lina_fire_bomb"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/lina/lina_fire_bomb"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"            "lina/lina_fire_bomb"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASE"
+		"MaxLevel"                      "4"
+
+		"AbilityCastRange"				"800 900 1000 1100"
+		"AbilityCooldown"				"4"
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 100 100 100"
+
+		"AbilityValues"
+		{
+			"damage"	
+			{
+				"value"		"35 55 65 100"
+				"special_bonus_unique_lina_fire_bomb_damage"	"+35"
+				"CalculateSpellDamageTooltip"	"1"
+			}				 
+			"damage_explode"		
+			{
+				"value"		"180 220 350 420"
+				"CalculateSpellDamageTooltip"	"1"
+			}			 
+			"duration"					"12"
+			"radius"					"750"
+			"crit_2x"					"8"
+		}
+	}
+
+	"lina_fire_shield"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/lina/lina_fire_shield"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"            "lina/lina_fire_shield"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASE"
+		"MaxLevel"                      "1"
+		"IsGrantedByShard"				"1"
+		"AbilityCooldown"				"13"
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"35"
+
+		"AbilityValues"
+		{
+			"damage"					"80"
+			"duration"					"10"
+			"shield"				
+			{
+				"value"				"540"
+				"special_bonus_unique_lina_fire_shield_shield"	"+50"
+			}
+			"knoback_distance"			"700"
+			"knoback_duration"			"0.25"
+			"radius"					"350"
+			"duration_debuff"			"2"
+			"slow_move_speed_pct"		"-60"
+		}
+	}
+
+	"lina_flame_cloak_custom"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/lina/lina_flame_cloak_custom"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"						"1"
+		"AbilityTextureName"			"lina_flame_cloak"
+
+ 		"HasScepterUpgrade"				"1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"22"
+ 
+		"AbilityValues"
+		{
+			"health_threshold"				"20"
+			"move_speed"					"550"
+			"duration"						"10"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+
+	"lina_dragon_slave"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Lina.DragonSlave"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1075"
+		"AbilityCastPoint"				"0.35"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		
+		"AbilityDuration"				"0.6875 0.6875 0.6875 0.6875"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 110 120 130"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+
+			"dragon_slave_damage"
+			{
+				"value"							"85 165 245 325"
+				"LinkedSpecialBonus"			"lina_slow_burn"
+				"LinkedSpecialBonusField"		"impact_damage_pct"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"dragon_slave_burn_damage_tooltip"
+			{
+				"value"							"0"
+				"special_bonus_facet_lina_dot"	"=85 =165 =245 =325"
+				"LinkedSpecialBonus"			"lina_slow_burn"
+				"LinkedSpecialBonusField"		"burn_percent_tooltip"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"dragon_slave_burn_duration_tooltip"
+			{
+				"value"							"0"
+				"LinkedSpecialBonus"			"lina_slow_burn"
+				"LinkedSpecialBonusField"		"burn_duration"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_ADD"
+			}
+			"dragon_slave_speed"		"1200"
+			"dragon_slave_width_initial"	
+			{
+				"value"		"275"
+				"affected_by_aoe_increase"	"1"
+			}
+			"dragon_slave_width_end"		
+			{
+				"value"			"200"
+				"affected_by_aoe_increase"	"1"
+			}
+			"dragon_slave_distance"			"1075"
+
+			"AbilityCooldown"				
+			{ 
+				"value"						"11 10 9 8"
+				"special_bonus_unique_lina_1"		"-3.5"
+			}
+			"crit_2x"					"8"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}
+	
+	//=================================================================================================================
+	// Ability: Lina Light Strike Array
+	//=================================================================================================================
+	"lina_light_strike_array"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Ability.LightStrikeArray"
+
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.45 0.45 0.45 0.45"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"13 11 9 7"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 115 130 145"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+				"light_strike_array_aoe"	
+				{
+					"value" "250"
+					"affected_by_aoe_increase"	"1"
+				}
+				"light_strike_array_delay_time"	"0.5"
+				"light_strike_array_stun_duration"	"1.3 1.6 1.9 2.2"
+				"light_strike_array_damage"	
+				{
+					"value"							"110 160 210 240"
+					"special_bonus_unique_lina_3"	"+150"
+					"LinkedSpecialBonus"			"lina_slow_burn"
+					"LinkedSpecialBonusField"		"impact_damage_pct"
+					"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				}
+				"light_strike_array_burn_damage_tooltip"
+				{
+					"value"							"0"
+					"special_bonus_unique_lina_3"	"+150"
+					"special_bonus_facet_lina_dot"	"=110 =160 =210 =260"
+					"LinkedSpecialBonus"			"lina_slow_burn"
+					"LinkedSpecialBonusField"		"burn_percent_tooltip"
+					"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				}
+				"light_strike_array_burn_duration_tooltip"
+				{
+					"value"							"0"
+					"LinkedSpecialBonus"			"lina_slow_burn"
+					"LinkedSpecialBonusField"		"burn_duration"
+					"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_ADD"
+				}
+				"crit_2x"					"7"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+
+	"special_bonus_unique_lina_pyrablast"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"special_bonus_unique_lina_fire_shield_shield"
+	{
+ 		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"special_bonus_unique_lina_fire_bomb_damage"
+	{
+ 		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"special_bonus_unique_lina_fiery_soul_crit"
+	{
+ 		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+}

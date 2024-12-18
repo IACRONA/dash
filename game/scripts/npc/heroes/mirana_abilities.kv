@@ -1,0 +1,159 @@
+"DOTAAbilities"
+{
+	"mirana_arrow"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Mirana.ArrowCast"
+        "HasScepterUpgrade"             "1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"3000"
+		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+
+		"AbilityDuration"				"3.11 3.11 3.11 3.11"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"100 210 340 420"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"90"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+				
+				"AbilityCooldown"
+				{
+					"value"						"19 18 17 16"				
+					"special_bonus_unique_mirana_3"		"-2"
+				}	
+				"arrow_speed"		"1800.0"
+				"arrow_width"		
+				{
+					"value"		"115"
+				}
+				"arrow_range"		"3000"
+				"arrow_max_stunrange"	"1500"
+				"arrow_min_stun"	"0.01"
+				"arrow_max_stun"	"2.6 3.4 4.2 5.0"
+				"arrow_bonus_damage"	"150 160 170 180"
+				"arrow_vision"
+				{
+					"value"						"400"
+					"affected_by_aoe_increase"	"1"
+				}
+				"scepter_radius"		
+				{
+					"value"	"500"
+					"RequiresScepter"		"1"
+					"affected_by_aoe_increase"	"1"
+				}
+				"scepter_starstorm_target_pct"		
+				{
+					"value"		"75"
+					"RequiresScepter"		"1"
+				}
+				"extra_arrows"
+				{
+					"value"				"0"
+					"special_bonus_unique_mirana_2"			"+2"
+				}
+				"extra_arrows_angle"
+				{
+					"value"				"0"
+					"special_bonus_unique_mirana_2"			"+25"
+				}
+				"chance_crit_2x"			"23"
+				"chance_crit_3x"			"17"
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+	"mirana_arrow_bonus"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/mirana/mirana_arrow_bonus"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+ 	}
+	"mirana_fire_arrow"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/heroes/mirana/mirana_fire_arrow"
+		"AbilityTextureName"			"mirana/fire_arrow"
+		"FightRecapLevel"				"7"
+		"MaxLevel"						"4"
+		"RequiredLevel"          "6"
+		"LevelsBetweenUpgrades"      "6"
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"3000 3000 3500 5000"
+		"AbilityCastPoint"				"0.5"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"25 20 15 14"
+		"AbilityManaCost"				"50"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"damage"
+			{
+				"value"						"440 550 620 640"
+				"special_bonus_unique_mirana_fire_arrow_damage"		"+50"
+			}
+			"arrow_speed"		"1600.0"
+			"arrow_width"		"115"
+		
+			"damage_fire" 
+			{
+				"value"						"20 30 40 50"
+				"special_bonus_unique_mirana_fire_arrow_damage_fire"		"+15"
+			}
+			"duration"			"7"
+			"arrow_vision"	"500"
+
+			"chance_crit_2x"			"18"
+			"chance_crit_3x"			"11"
+		}
+	}
+
+	"special_bonus_unique_mirana_fire_arrow_damage"
+	{
+ 		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"special_bonus_unique_mirana_fire_arrow_damage_fire"
+	{
+ 		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+}

@@ -1,0 +1,12 @@
+"CustomEvents"
+{
+	"update_flags_count"
+	{
+		"radiant"	"short"
+		"dire"		"short"
+	}
+	"Request_RemainingFlags"
+	{
+		
+	}
+}

@@ -1,0 +1,47 @@
+.Main {
+  width: 100%;
+  height: 100%;
+}
+
+.BossHead {
+  background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 8px;
+  width: 380px;
+  flow-children: right;
+  vertical-align: center;
+  horizontal-align: right;
+  transition-property: transform, opacity;
+  transition-duration: 0.4s;
+}
+
+.BossHead:not(.IsActive) {
+  transform: translate3d(380px, 0, 0px);
+  opacity: 0;
+}
+
+.BossIcon {
+  width: 90px;
+  height: 90px;
+}
+
+.BossTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #dedede;
+  text-shadow: 2px 2px 4px black;
+}
+
+.BossBody {
+  flow-children: down;
+  height: 100%;
+}
+
+.BossDescription {
+  font-size: 16px;
+  color: #dedede;
+  text-shadow: 2px 2px 4px black;
+  vertical-align: center;
+  margin-bottom: 25px;
+}

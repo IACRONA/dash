@@ -1,0 +1,45 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	HideInTools = false
+	IsPlayable = true
+	IsTemplate = false
+	maps = 
+	[
+		"dash",
+		"warsong",
+        "portal_duo",
+        "portal_trio",
+	]
+	CheckAFKPlayers = false
+	DefaultMap = "portal_trio"
+	Default_Keys = null
+	DisableIK = false
+	EnablePickRules = true
+	EventGame = false
+	hero_picker = null
+	HeroGuidesSupported = 1
+	ForceDefaultGuide = false
+	MinimalPrecache = true
+	MinPlayers = 1
+	MaxPlayers = 10
+	map_options = 
+	[
+		{
+			map = "portal_duo"
+			MaxPlayers = 12
+		},
+		{
+			map = "warsong"
+		},
+		{
+			map = "portal_trio"
+			MaxPlayers = 12
+		},		
+        {
+			map = "dash"
+            MaxPlayers = 10
+		},
+	]
+	PenaltiesEnabled = false
+	TeamCount = -1
+}

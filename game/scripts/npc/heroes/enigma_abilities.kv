@@ -1,0 +1,267 @@
+"DOTAAbilities"
+{
+	"enigma_house_bolt"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/enigma/enigma_house_bolt"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"AbilityTextureName"			"enigma/enigma_house_bolt"
+ 		"LevelsBetweenUpgrades"			"3"			
+ 
+		"AbilityChannelTime"              "1.1"
+		"AbilityManaCost"				"90 50 100 75"
+		"AbilityCooldown"               "10 14 10 5"
+		"AbilityCastRange"				"800 1000 1100 1200"
+ 
+ 		"AbilityValues"
+		{
+			"duration"	 				"12"
+			"damage"					
+			{
+				"value"					"110 180 220 310"
+				"special_bonus_unique_enigma_house_bolt_damage"		"+40"
+			}
+			"damage_tick"			
+			{
+				"value"					"10 25 40 60"    
+				"special_bonus_unique_enigma_house_bolt_damage_per_tick"		"+25"
+			}
+			"duration_fear"	 			"1.5"
+			"radius"					"500"
+			"projectile_speed" 			"1200"
+
+			"crit_2"					
+			{
+				"value"					"13"					      
+				"special_bonus_unique_enigma_house_bolt_crit_2x"		"+5"
+			}
+			"crit_3"					"13"					      
+			"crit_5"					"12"					      
+  		}
+	}
+
+	"enigma_void_strike"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/enigma/enigma_void_strike"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"enigma/enigma_void_strike"
+ 		"LevelsBetweenUpgrades"			"1"	
+
+		"AbilityChannelTime"            "1"
+		"AbilityManaCost"				"50 50 50 50"
+		"AbilityCooldown"               "15 15 15 11"
+		"AbilityCastRange"				"800 1000 1100 1250"
+ 
+ 		"AbilityValues"
+		{
+			"duration"	 				"1.7 2 2.5 2.6"
+			"damage"
+			{
+				"value"					"150 190 250 310"
+				"special_bonus_unique_enigma_void_strike_damage"		"+30"
+			}
+			"radius"
+			{
+				"value"					"300"    				      
+				"special_bonus_unique_enigma_void_strike_radius"		"+50"
+			}
+  		}
+	}
+
+	"enigma_eidalon"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/enigma/enigma_eidalon"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName"            "enigma/enigma_eidalon"
+		"MaxLevel"                      "1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+  		"AbilityCooldown"               "20"
+		"AbilityChannelTime"            "3"
+		"AbilityManaCost"				"10"
+
+		"HasShardUpgrade"				"1"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"min_damage"	 				"80" 
+			"max_damage"	 				"95" 
+  		}
+	}
+
+	"enigma_eidalon_eat"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/enigma/enigma_eidalon"
+		"AbilityTextureName"            "enigma/enigma_eidalon_eat"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET "
+ 		"MaxLevel"						"1"
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+   		"AbilityCooldown"               "17"
+		"AbilityManaCost"				"50"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"duration"					"7"
+			"reduce_damage"					"90"
+ 		}
+	}
+
+	"enigma_portal"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/enigma/enigma_portal"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"enigma/enigma_portal"
+		"MaxLevel"						"1"
+ 		"IsGrantedByScepter"			"1"
+		"AbilityCastPoint"            "0.5"
+		"AbilityManaCost"				"5"
+		"AbilityCooldown"               "25"
+		"AbilityCastRange"				"650"
+  		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+
+ 		"AbilityValues"
+		{
+			"distance"	 				"2200"				      
+			"vision_radius"	 				"300"				      
+			"duration"	 				"45"				      
+  		}
+	}
+
+	"enigma_portal_teleport"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/enigma/enigma_portal"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"	
+		"AbilityTextureName"			"enigma/enigma_portal"
+ 		"MaxLevel"						"1"
+ 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+	}
+
+ 	"enigma_black_hole_custom"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/heroes/enigma/enigma_black_hole_custom"
+		"AbilityTextureName"			"enigma_black_hole" 
+         
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityChannelAnimation"		"ACT_DOTA_CHANNEL_ABILITY_4"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		"AbilityCastRange"				"275"
+		"AbilityCastPoint"				"0.3"
+		"AbilityChannelTime"			"4.0"
+ 		"HasScepterUpgrade"			"1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"90 85 80"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"300 400 500"
+ 
+		"AbilityValues"
+		{
+			"damage"					
+			{
+				"value"				"100 150 200"
+				"special_bonus_unique_enigma_6"	"+50"
+			}
+			"radius"				
+			{
+				"value"					"420"
+				"affected_by_aoe_increase"	"1"
+			}
+
+			"pull_speed"				"30"
+				"tick_rate"				    "0.1"
+				"duration"				    "4.0"
+			"vision_radius"			"800"
+			"pull_rotate_speed"		"0.25"
+			"animation_rate"		"0.2"		
+			"scepter_pct_damage"
+			{
+				"value"					"4"
+				"RequiresScepter"		"1"
+			}	
+			"scepter_radius"	
+			{
+				"value"					"1200"
+				"RequiresScepter"			"1"
+				"affected_by_aoe_increase"	"1"
+			}
+			"scepter_drag_speed"			
+			{
+				"value"					"175"
+				"RequiresScepter"			"1"
+			}	
+			"scepter_pull_rotate_speed"	
+			{
+				"value"					"0.1"
+				"RequiresScepter"			"1"
+			}
+		}
+	}
+
+	"special_bonus_unique_enigma_void_strike_damage"
+	{
+ 		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"special_bonus_unique_enigma_void_strike_radius"
+	{
+ 		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"special_bonus_unique_enigma_house_bolt_crit_2x"
+	{
+ 		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+
+	"special_bonus_unique_enigma_house_bolt_damage"
+	{
+ 		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"special_bonus_unique_enigma_house_bolt_damage_per_tick"
+	{
+ 		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+}

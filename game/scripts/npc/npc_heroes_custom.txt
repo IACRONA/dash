@@ -1,0 +1,208 @@
+// Dota Heroes File
+// NOTE: This is not for creating new heroes, this is for taking a currently existing hero as a template and overriding
+// the specified key-value combinations.  Use override_hero <hero_to_override> for this.
+"DOTAHeroes"
+{
+	"npc_dota_hero_tinker"
+	{
+		"Ability6"		"tinker_rearm_custom"
+	}
+	"npc_dota_hero_crystal_maiden"
+	{
+		"DisableWearables" "1"
+
+		"Ability3"		"crystal_maiden_frozen_shield"
+		"Ability4"		"crystal_maiden_crystal_blink"
+		"Ability5"		""
+		"Ability6"		"crystal_maiden_ice_spike"
+
+		"StatusHealth"				        "600"
+		"MagicalResistance"                 "35"
+		"ArmorPhysical"		"11"
+		"StatusHealthRegen"      "14"
+		
+		"Facets"
+		{
+			"crystal_maiden_ice_elemental_facit"
+			{
+				"Icon"				"mana"
+				"Color"				"Blue"
+				"GradientID"		"2"
+				"Abilities"
+				{
+					"Ability1"
+					{
+						"AbilityName"	"crystal_maiden_ice_elemental"
+						"AbilityIndex"	"5"
+						"AutoLevelAbility"	"true"
+					}
+				}
+			}
+		}
+	}
+	"npc_dota_hero_dazzle"
+	{
+		"DisableWearables" "1"
+
+		"Ability2"      "dazzle_life_shield"
+		"Ability5"		"dazzle_dispell"
+		"Ability6" 		"dazzle_grace"
+	}
+
+	"npc_dota_hero_enigma"
+	{
+		"Ability1"		"enigma_void_strike"
+		"Ability2"      "enigma_house_bolt"
+		"Ability4"		"enigma_portal"
+		"Ability6"		"enigma_black_hole_custom"
+		
+		"Ability10"		"special_bonus_unique_enigma_void_strike_damage"
+		"Ability13"		"special_bonus_unique_enigma_house_bolt_damage"
+		"Ability15"		"special_bonus_unique_enigma_house_bolt_damage_per_tick"
+		"Ability16"		"special_bonus_unique_enigma_void_strike_radius"
+		"Ability17"		"special_bonus_unique_enigma_house_bolt_crit_2x"
+
+		"Facets"
+		{
+			"enigma_fragment"
+			{
+				"Icon"				"summons"
+				"Color"				"Purple"
+				"GradientID"		"0"
+				"Deprecated" "true"
+
+				"Abilities"
+				{
+					"Ability1"
+					{
+						"AbilityName"	"enigma_splitting_image"
+					}
+				}
+			}
+			"enigma_eidalon_facit"
+			{
+				"Icon"				"spinning"
+				"Color"				"Blue"
+				"GradientID"		"1"
+				"Abilities"
+				{
+					"Ability1"
+					{
+						"AbilityName"	"enigma_eidalon"
+						"AbilityIndex"	"4"
+						"AutoLevelAbility"	"true"
+					}
+				}
+			}
+		}
+	}
+
+	"npc_dota_hero_axe"
+	{
+		"DisableWearables" "1"
+
+		"Ability2"			"axe_charge"
+		"Ability4"			"axe_struck"
+		"Ability6"			"axe_culling_blade_rage"
+
+		"Ability11"		"special_bonus_unique_axe_struck_damage"
+		"Ability12"		"special_bonus_unique_axe_charge_damage_debuff"
+		"Ability17"		"special_bonus_unique_axe_charge_reflect_damage"
+
+		"Facets"
+		{
+			"axe_shelter_of_killer_facit"
+			{
+				"Icon"				"spinning"
+				"Color"				"Red"
+				"GradientID"		"3"
+				"Abilities"
+				{
+					"Ability1"
+					{
+						"AbilityName"	"axe_shelter_of_killer"
+						"AbilityIndex"	"4"
+						"AutoLevelAbility"	"true"
+					}
+				}
+			}
+		}
+	}
+
+	"npc_dota_hero_mirana"
+	{
+		"Ability4"			"mirana_fire_arrow"
+		"Ability8"			"mirana_arrow_bonus"
+
+ 
+		"Ability14"         "special_bonus_unique_mirana_fire_arrow_damage_fire"
+		"Ability12"         "special_bonus_unique_mirana_fire_arrow_damage"
+	}
+
+	"npc_dota_hero_lina"
+	{
+		"DisableWearables" "1"
+
+		"Ability3"				"lina_fiery_soul_custom"
+		"Ability4"				"lina_fire_shield"
+		"Ability5"				"lina_fire_bomb"
+		"Ability6"				"lina_pyrablast"
+		"Ability7"				"lina_flame_cloak_custom"
+
+		"Ability10"				"special_bonus_unique_lina_fire_shield_shield"
+		"Ability12"				"special_bonus_unique_lina_fire_bomb_damage"
+		"Ability14"				"special_bonus_unique_lina_fiery_soul_crit"
+		"Ability16"				"special_bonus_unique_lina_pyrablast"
+
+		"Facets"
+		{
+			"lina_supercharge"
+			{
+				"Icon"				"damage"
+				"Color"				"Yellow"
+				"GradientID"		"0"
+				"Deprecated" "true"
+			}
+		}
+ 	}
+
+ 	"npc_dota_hero_windrunner"
+ 	{
+ 		"Ability2"			"windranger_powershot_custom"
+ 	}
+
+ 	"npc_dota_hero_sniper"
+ 	{
+ 		"Ability8"			"sniper_aim_bonus"
+ 	}
+ 	
+ 	"npc_dota_hero_nevermore"
+ 	{
+ 		"Ability6"			"nevermore_requiem_custom"
+ 	}
+
+	"npc_dota_hero_lion"
+	{
+		"Ability5"		"lion_frog_jump"
+	}
+
+	"npc_dota_hero_skeleton_king"
+	{
+		"Ability1"		"skeleton_king_hellfire_blast"
+		"Ability2"		"cursed_knight_hand_of_dead"
+		"Ability3"		"skeleton_king_mortal_strike"
+		"Ability4"		"skeleton_king_vampiric_spirit"
+		"Ability5"		"generic_hidden"
+		"Ability6"		"skeleton_king_reincarnation"
+		"Ability10"		"special_bonus_unique_wraith_king_2"
+		"Ability11"		"special_bonus_unique_wraith_king_3"
+		"Ability12"		"special_bonus_unique_wraith_king_11"
+		"Ability13"		"special_bonus_hp_400"
+		"Ability14"		"special_bonus_cleave_40"
+		"Ability15"		"special_bonus_attack_speed_60"
+		"Ability16"		"special_bonus_unique_wraith_king_10"
+		"Ability17"		"special_bonus_unique_wraith_king_4"
+
+		"Facets"			""
+	}
+}

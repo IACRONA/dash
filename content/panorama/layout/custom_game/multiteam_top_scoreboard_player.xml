@@ -1,0 +1,22 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/multiteam_top_scoreboard.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/shared_scoreboard_styles.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/multiteam_top_scoreboard_player.vjs_c" />
+	</scripts>
+	<Panel hittest="false" class="ScoreboardPlayerWrapper">
+		<Panel hittest="false" class="ScoreboardPlayer">
+			<Button class="PlayerPortraitWrapper" onmouseactivate="PortraitClicked();">
+            	<Panel hittest="false" id="PlayerColorBar" />
+				<Image hittest="false" id="HeroIcon" />
+			</Button>
+            <Panel hittest="false" id="RespawnIndicator">
+			    <Label hittest="false" id="RespawnTimer" />
+		    </Panel>
+			<Image hittest="false" id="DisconnectionIndicator" src="s2r://panorama/images/custom_game/icon_disconnect_png.vtex" />
+		</Panel>
+	</Panel>
+</root>

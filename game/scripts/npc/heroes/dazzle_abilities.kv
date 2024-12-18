@@ -1,0 +1,92 @@
+"DOTAAbilities"
+{
+	"dazzle_dispell"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/dazzle/dazzle_dispell"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityCastAnimation"		    "ACT_DOTA_CAST_ABILITY_4"
+		"AbilityTextureName"			"dazzle/dazzle_dispell"
+		"LevelsBetweenUpgrades"			"1"	
+		"RequiredLevel"					"1"		
+
+ 		"AbilityCastPoint"				"0.2"
+		"AbilityManaCost"				"50 50 25 20"
+		"AbilityCooldown"               "20 15 10 5"
+		"AbilityCastRange"				"900"
+	}
+
+	"dazzle_life_shield"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/dazzle/dazzle_life_shield"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityCastAnimation"		"ACT_DOTA_SHALLOW_GRAVE"
+		"AbilityTextureName"			"dazzle/dazzle_life_shield"
+		"LevelsBetweenUpgrades"			"1"	
+		"RequiredLevel"					"1"
+
+ 		"AbilityCastPoint"				"0.25"
+		"AbilityManaCost"				"150 160 170 170"
+		"AbilityCooldown"               "20 20 20 12"
+		"AbilityCastRange"				"800 1000 1100 1200"
+
+		"AbilityValues"
+		{
+			"duration"                  "15"
+			"heal"                      "150 240 290 350"
+			"shield_health"             "350 450 850 1250"
+			"damage_return"             "15 18 20 35"
+			"heal_amp"                  "5"
+			"bonus_movespeed_pct"    		"50"
+			"duration_movespeed"			"3"
+		}
+	}
+
+	"dazzle_grace"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/dazzle/dazzle_grace"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityTextureName"			"dazzle/dazzle_grace"
+		"LevelsBetweenUpgrades"			"6"	
+		"RequiredLevel"					"7"
+
+ 		"AbilityCastPoint"				"0.25"
+		"AbilityManaCost"				"50 75"
+		"AbilityCooldown"               "12 10 10 8"
+		"AbilityCastRange"				"800 1000 1200 1350"
+		"HasScepterUpgrade"             "1"
+
+		"AbilityValues"
+		{
+			"times" 				"3"
+			"delay"                 "0.6"
+			"speed"                 "1250"
+			"heal"                      "180 220 280 340"
+			"buff_heal_pct"				"3"
+			"buff_duration"             "5"
+			"shield_duration"           "15"
+			"tick"                      "1"
+			"chance_heal"				"13"
+			"chance_shield"             "10 12 15 20"
+			"heal_pct_scepter" {
+				"value"                 "12"
+				"RequiredScepter"		"1"
+			}      
+		}
+	}
+}

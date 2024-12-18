@@ -1,0 +1,27 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/warsong_styles.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/custom_ui_hud.js" />
+	</scripts>
+	<Panel hittest="false" class="AllWindow">
+		<Panel hittest="false" class="UI_TOP_TeamScoresPanel">
+			<Panel class="FlagsPanel">
+				<Panel hittest="false" class="Team_ScoreRadiant">
+                    <MoviePanel class="FlagVideo" src="file://{resources}/videos/blue_flag.webm" repeat="true" autoplay="onload" />
+					<Label class="FlagCounterRadiant" text="{s:radiant_flags_remaining}" />
+				</Panel>
+                <Panel class="TimePanel">
+                    <MoviePanel class="TimeVideo" src="file://{resources}/videos/red_ball.webm" repeat="true" autoplay="onload" />
+                    <Label class="TimeCounter" id="TimeCounter" text="00:00" />
+                </Panel>
+				<Panel hittest="false" class="Team_ScoreDire">
+					<Label class="FlagCounterDire" text="{s:dire_flags_remaining}" />
+                    <MoviePanel class="FlagVideo" src="file://{resources}/videos/red_flag.webm" repeat="true" autoplay="onload" />
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

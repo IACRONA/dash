@@ -1,0 +1,82 @@
+"npc_dota_hero_dazzle"
+{
+	"dazzle_poison_touch"
+	{
+		"damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+		"start_radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"end_radius" "35"
+			}
+		}
+	}
+	"dazzle_shallow_grave"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"heal_amplify"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+		}
+	}
+	"dazzle_shadow_wave"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"tooltip_max_targets_inc_dazzle"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"max_targets" "1"
+				"bounce_radius" "30"
+				"damage_radius" "30"
+			}
+		}
+		"damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+	}
+	"dazzle_bad_juju"
+	{
+		"mana_cost_increase_pct"
+		{
+			"value" "-10"
+			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+	}
+	"dazzle_innate_weave"
+	{
+		"armor_change"
+		{
+			"value" "0.2"
+			"operator" "OP_ADD"
+		}
+		"duration"
+		{
+			"value" "1.5"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+	}
+}

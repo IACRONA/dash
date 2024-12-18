@@ -1,0 +1,508 @@
+.Main {
+  width: 100%;
+  height: 100%;
+}
+
+.SpellSelectedMain {
+  flow-children: down;
+  opacity: 0;
+  vertical-align: center;
+  margin-bottom: 100px;
+  horizontal-align: right;
+
+  transform: translateX(0px);
+  transition-property: transform, opacity, position;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+}
+
+.FateSelectedMain {
+  flow-children: down;
+  opacity: 0;
+  vertical-align: center;
+  margin-bottom: 100px;
+  horizontal-align: right;
+
+  transform: translateX(0px);
+  transition-property: transform, opacity, position;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+}
+
+.SphereSelectedMain {
+  flow-children: down;
+  opacity: 0;
+  vertical-align: center;
+  margin-bottom: 100px;
+  horizontal-align: right;
+
+  transform: translateX(0px);
+  transition-property: transform, opacity, position;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+}
+
+.TalentsSelectedMain {
+  flow-children: down;
+  opacity: 0;
+  vertical-align: center;
+  margin-bottom: 100px;
+  horizontal-align: right;
+
+  transform: translateX(0px);
+  transition-property: transform, opacity, position;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+}
+
+.spell_block {
+  width: 390px;
+  height: 130px;
+  margin-bottom: 0px;
+  transition-property: brightness;
+  transition-duration: 0.3s;
+}
+
+.spell_block:hover {
+  brightness: 1.5;
+}
+
+.spell_block_bg {
+  width: 100%;
+  height: 100%;
+  background-image: url("file://{images}/custom_game/talents/rare_background.png");
+  background-size: 100%;
+}
+
+.spell_block_bg.IsUltimate {
+  background-image: url("file://{images}/custom_game/talents/red_background.png");
+}
+
+.sphere_block {
+  width: 390px;
+  height: 130px;
+  margin-bottom: 0px;
+  transition-property: brightness;
+  transition-duration: 0.3s;
+  tooltip-position: left;
+}
+
+.sphere_block:hover {
+  brightness: 1.5;
+}
+
+.sphere_block_bg {
+  width: 100%;
+  height: 100%;
+  background-image: url("file://{images}/custom_game/talents/reroll_background.png");
+  background-size: 100%;
+}
+
+.fate_block {
+  width: 390px;
+  height: 130px;
+  margin-bottom: 0px;
+  transition-property: brightness;
+  transition-duration: 0.3s;
+  tooltip-position: left;
+}
+
+.fate_block:hover {
+  brightness: 1.5;
+}
+
+.fate_block_bg {
+  width: 100%;
+  height: 100%;
+  background-image: url("file://{images}/custom_game/talents/red_background.png");
+  background-size: 100%;
+}
+
+.talent_block {
+  width: 390px;
+  height: 130px;
+  margin-bottom: 0px;
+  transition-property: brightness;
+  transition-duration: 0.3s;
+}
+
+.talent_block:hover {
+  brightness: 1.5;
+}
+
+.talent_block_bg {
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  background-position: center;
+  z-index: -1;
+}
+
+.talent_block_bg.IsCommon {
+  background-image: url("file://{images}/custom_game/talents/common_background.png");
+}
+
+.talent_block_bg.IsRare {
+  background-image: url("file://{images}/custom_game/talents/rare_background.png");
+}
+
+.talent_block_bg.IsEpic {
+  background-image: url("file://{images}/custom_game/talents/epic_background.png");
+}
+
+.spell_block_image {
+  width: 74px;
+  height: 74px;
+  margin-left: 25px;
+  margin-top: 26px;
+}
+
+.spell_block_text {
+  width: 190px;
+  height: 20px;
+  vertical-align: center;
+  z-index: 3;
+  margin-left: 115px;
+  color: white;
+  font-weight: semi-bold;
+  text-transform: uppercase;
+  font-size: 20px;
+  text-shadow: 0px 0px 2px 3 #000000;
+  font-family: titleFont;
+}
+
+.spell_block.IsSpell .spell_block_text {
+  horizontal-align: center;
+}
+
+.spell_block.IsSpell {
+  font-family: Radiance;
+}
+
+.spell_block_text.IsSphere {
+  width: 100%;
+  padding-right: 20px;
+  text-align: center;
+  height: fit-children;
+  text-transform: none;
+}
+
+.spell_block_text.IsSphere {
+  font-size: 16px;
+}
+
+.reroll_block {
+  horizontal-align: right;
+  vertical-align: bottom;
+  transition-property: brightness;
+  transition-duration: 0.3s;
+  width: 170px;
+  padding-left: 8px;
+  padding-right: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-size: 100%;
+  background-position: center;
+  background-image: url("file://{images}/custom_game/talents/reroll_background.png");
+}
+
+.reroll_block.IsSpell {
+  background-image: url("file://{images}/custom_game/talents/rare_background.png");
+}
+
+.reroll_block.IsSpell .reroll_block_text,
+.reroll_block.IsUltimate .reroll_block_text {
+  horizontal-align: center;
+  margin-left: 0px;
+}
+
+.reroll_block.IsUltimate {
+  background-image: url("file://{images}/custom_game/talents/red_background.png");
+}
+
+.reroll_block:hover {
+  brightness: 1.5;
+}
+
+.reroll_block_text {
+  font-weight: semi-bold;
+  font-size: 17px;
+  horizontal-align: center;
+  margin-left: 0px;
+  text-shadow: 0px 0px 4px 2 #000000;
+  text-align: center;
+  vertical-align: center;
+  color: white;
+}
+
+.reroll_block_image {
+  width: 32px;
+  height: 32px;
+  background-image: url("file://{images}/custom_game/dice.png");
+  background-size: 100%;
+  margin-left: 5px;
+  vertical-align: center;
+  horizontal-align: right;
+}
+
+.spell_fate_levels {
+  horizontal-align: left;
+  margin-left: 280px;
+  margin-top: 90px;
+  width: 100%;
+  flow-children: right;
+}
+
+.spell_fate_level {
+  width: 25px;
+  height: 32px;
+  background-image: url("file://{images}/custom_game/fate_level.png");
+  background-size: 100%;
+}
+
+.spell_fate_level_active {
+  width: 25px;
+  height: 32px;
+  background-image: url("file://{images}/custom_game/fate_active.png");
+  background-size: 100%;
+}
+
+.spell_block_icon {
+  width: 74px;
+  height: 74px;
+  margin-left: 25px;
+  margin-top: 26px;
+}
+
+.talent_block_icon {
+  margin-left: 20px;
+  margin-top: 30px;
+  width: 65px;
+  z-index: 2;
+}
+
+.talent_block_icon DOTAAbilityImage {
+  z-index: 2;
+}
+
+.Choose_Your_Fate,
+.Choose_Your_Spell,
+.Choose_Your_Sphere {
+  font-weight: semi-bold;
+  color: white;
+  font-size: 22px;
+  text-shadow: 0px 0px 4px 4 #000000;
+  text-align: center;
+  vertical-align: center;
+  horizontal-align: center;
+}
+
+.Choose_Your_Fate {
+  background-size: 100%;
+  background-position: center;
+  background-image: url("file://{images}/custom_game/talents/red_background.png");
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  width: 220px;
+}
+
+.Choose_Your_Spell {
+  background-size: 100%;
+  background-position: center;
+  background-image: url("file://{images}/custom_game/talents/rare_background.png");
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  width: 220px;
+}
+
+.Choose_Your_Spell.IsUltimate {
+  background-image: url("file://{images}/custom_game/talents/red_background.png");
+}
+
+.Choose_Your_Sphere {
+  background-size: 100%;
+  background-position: center;
+  background-image: url("file://{images}/custom_game/talents/reroll_background.png");
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  width: 220px;
+}
+
+.talent_title {
+  width: 190px;
+  height: 20px;
+  margin-top: 32px;
+  z-index: 3;
+  margin-left: 100px;
+  color: white;
+  font-weight: semi-bold;
+  text-transform: uppercase;
+  font-size: 21px;
+  text-shadow: 0px 0px 2px 3 #000000;
+  font-family: titleFont;
+}
+
+.talent_description {
+  width: 100%;
+  margin-top: 55px;
+  z-index: 3;
+  margin-left: 100px;
+  padding-right: 15px;
+  color: white;
+  font-size: 16px;
+  text-shadow: 0px 0px 2px 3 #000000;
+  font-family: titleFont;
+}
+.talent_levels {
+  width: 100%;
+  margin-top: 103px;
+  z-index: 3;
+  margin-left: 100px;
+  padding-right: 15px;
+  color: white;
+  font-size: 14px;
+  text-shadow: 0px 0px 2px 3 #000000;
+}
+
+#TitleBlock {
+  flow-children: right;
+  background-size: 100%;
+  background-position: center;
+  background-image: url("file://{images}/custom_game/talents/title_background.png");
+  width: 220px;
+}
+
+#TalentActions.IsCommon #TitleBlock {
+  background-image: url("file://{images}/custom_game/talents/common_background.png");
+}
+
+#TalentActions.IsRare #TitleBlock {
+  background-image: url("file://{images}/custom_game/talents/rare_background.png");
+}
+
+#TalentActions.IsEpic #TitleBlock {
+  background-image: url("file://{images}/custom_game/talents/epic_background.png");
+}
+
+.Choose_Your_Talent {
+  font-weight: semi-bold;
+  color: white;
+  font-size: 23px;
+  text-shadow: 0px 0px 4px 4 #000000;
+  vertical-align: center;
+  horizontal-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 12px;
+}
+
+#ImageBookTalent {
+  width: 60px;
+  height: 60px;
+  vertical-align: center;
+  horizontal-align: right;
+}
+
+.reroll_talent_block {
+  horizontal-align: right;
+  vertical-align: bottom;
+  transition-property: brightness;
+  transition-duration: 0.3s;
+  width: 170px;
+  padding-left: 8px;
+  padding-right: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-size: 100%;
+  background-position: center;
+  background-image: url("file://{images}/custom_game/talents/reroll_background.png");
+}
+
+.reroll_talent_block:hover {
+  brightness: 1.5;
+}
+
+#TalentActions.IsCommon .reroll_talent_block {
+  background-image: url("file://{images}/custom_game/talents/common_background.png");
+}
+
+#TalentActions.IsRare .reroll_talent_block {
+  background-image: url("file://{images}/custom_game/talents/rare_background.png");
+}
+
+#TalentActions.IsEpic .reroll_talent_block {
+  background-image: url("file://{images}/custom_game/talents/epic_background.png");
+}
+
+#TalentActions,
+#SpellActions {
+  flow-children: right;
+}
+
+#SpellActions {
+  width: 100%;
+}
+
+#SpellReroll {
+  horizontal-align: right;
+  vertical-align: bottom;
+  transition-property: brightness;
+  transition-duration: 0.3s;
+  height: 40px;
+  width: 100%;
+  background-size: 100%;
+  background-position: center;
+  background-image: url("file://{images}/custom_game/talents/red_background.png");
+}
+
+.reroll_talent_block_text {
+  font-weight: semi-bold;
+  font-size: 17px;
+  text-shadow: 0px 0px 4px 2 #000000;
+  text-align: center;
+  vertical-align: center;
+  horizontal-align: center;
+  color: white;
+}
+
+.reroll_talent_block_image {
+  width: 32px;
+  height: 32px;
+  background-image: url("file://{images}/custom_game/dice.png");
+  background-size: 100%;
+  margin-left: 5px;
+  vertical-align: center;
+  horizontal-align: right;
+}
+
+.fate_block_text {
+  width: 190px;
+  height: 20px;
+  z-index: 3;
+  margin-left: 115px;
+  margin-top: 26px;
+  color: white;
+  font-weight: semi-bold;
+  text-transform: uppercase;
+  font-size: 20px;
+  text-shadow: 0px 0px 2px 3 #000000;
+  font-family: titleFont;
+}
+
+.fate_block_description {
+  padding-right: 12px;
+  z-index: 3;
+  margin-left: 115px;
+  margin-top: 48px;
+  line-height: 18px;
+  color: white;
+  font-size: 16px;
+  text-shadow: 0px 0px 2px 3 #000000;
+  font-family: titleFont;
+}

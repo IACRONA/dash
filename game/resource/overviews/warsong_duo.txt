@@ -1,0 +1,8 @@
+warsong_duo
+{
+	material materials/overviews/warsong_duo.vmat
+	pos_x -4112
+	pos_y 4109
+	scale 8.000
+}
+

@@ -1,0 +1,261 @@
+.SettingsHud {
+  width: 100%;
+  height: 100%;
+}
+
+.SettingsTop {
+  flow-children: right;
+  vertical-align: center;
+}
+
+#SettingsOpen {
+  flow-children: none;
+  opacity: 1;
+}
+
+#SettingsIcon {
+  horizontal-align: center;
+  width: 84px;
+  height: 84px;
+}
+
+.SettingsLabel {
+  margin-top: 84px;
+  color: white;
+  horizontal-align: center;
+  text-transform: uppercase;
+  font-weight: semi-bold;
+  font-size: 16px;
+}
+
+.TopBarIcon {
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  wash-color: #cdf;
+  margin-top: -1px;
+  transition-property: wash-color;
+  transition-duration: 0.2s;
+  tooltip-position: bottom;
+  margin-left: 15px;
+}
+
+.TopBarIcon:hover {
+  opacity: 1;
+  wash-color: white;
+}
+
+.TopBarIcon:active {
+  opacity: 1;
+  wash-color: white;
+}
+
+#SettingsRoot {
+  width: fit-children;
+  height: fit-children;
+  min-width: 350px;
+  min-height: 150px;
+  align: left center;
+  margin-bottom: 280px;
+  background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+  box-shadow: #00ff00 4px 4px 8px 0px;
+  box-shadow: #00000099 0px 0px 8px 0px;
+  border: 2px solid #32383677;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  flow-children: none;
+  transition-property: transform, opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  transform: translateX(0px);
+  opacity: 0;
+}
+
+#SettingsRoot.open {
+  transform: translateX(0px);
+  opacity: 1;
+}
+
+#SettingsRoot.closing {
+  visibility: visible;
+  transform: translateX(-330px);
+  opacity: 0;
+}
+
+#SettingsClose {
+  vertical-align: top;
+  width: 32px;
+  height: 32px;
+  horizontal-align: right;
+  background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin-right: -25px;
+  margin-top: 6px;
+  opacity: 0.5;
+  wash-color: #cdf;
+  transition-property: opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+#SettingsClose:hover {
+  opacity: 1;
+}
+
+.SettingsSectionTitle {
+  font-family: defaultFont;
+  letter-spacing: 2px;
+  font-size: 20px;
+  font-weight: thin;
+  color: #939da0;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+#SettingsContent {
+  min-width: 250px;
+  width: fit-children;
+  height: fit-children;
+  flow-children: down;
+}
+
+#SettingsKeybinds {
+  width: 100%;
+  flow-children: down;
+  height: fit-children;
+}
+
+#SettingsKeybindsList {
+  width: 100%;
+  height: fit-children;
+  flow-children: right-wrap;
+}
+
+.CustomKeybindContainer {
+  flow-children: down;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.CustomKeybinder {
+  width: 70px;
+  height: 70px;
+  margin: 12px;
+  margin-top: 13px;
+  border: 2px solid #414a45;
+  background-color: #2b2f30;
+  color: #7d8688;
+  transition-property: background-color, border, color;
+  transition-duration: 0.16s;
+  transition-timing-function: ease-in-out;
+  horizontal-align: center;
+}
+
+.HoverEffect:hover {
+  background-color: #414a45;
+  border-color: #5b6a62;
+  color: white;
+}
+
+.CustomKeybindTitle {
+  text-align: center;
+  width: 100%;
+  margin-top: -5px;
+  height: fit-children;
+  text-overflow: clip;
+  font-size: 14px;
+}
+
+.bind_name {
+  color: white;
+  font-weight: semi-bold;
+  align: center center;
+  font-size: 18px;
+}
+
+.ActiveBind {
+  background-color: #323836;
+  border: 2px solid #5c99ff;
+  padding-left: 0px;
+  box-shadow: #5c99ff22 0px 0px 8px 0px;
+
+  animation-name: BackgroundPulse;
+  animation-duration: 1.35s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes 'BackgroundPulse' {
+  0% {
+    background-color: #1350a9;
+  }
+  50% {
+    background-color: #021088;
+  }
+  100% {
+    background-color: #1350a9;
+  }
+}
+
+.CustomKeybindEntry {
+  opacity: 0;
+}
+
+.SaveBinds {
+  width: 200px;
+  height: 30px;
+  horizontal-align: center;
+  margin-top: 290px;
+
+  background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x.png");
+  box-shadow: 0px 2px 8px 4 rgba(0, 0, 0, 0.3);
+  background-size: cover;
+  background-color: rgb(78, 78, 78);
+  border-radius: 10px;
+
+  transition-property: brightness;
+  transition-duration: 0.4s;
+
+  border: 1px solid black;
+}
+
+.SaveBindLabel {
+  text-transform: uppercase;
+  horizontal-align: center;
+  color: white;
+  font-weight: semi-bold;
+  font-size: 16px;
+  text-shadow: 0px 0px 4px 4 #000000;
+  text-align: center;
+  vertical-align: center;
+  letter-spacing: 1px;
+}
+
+.SaveBinds:hover {
+  brightness: 2;
+}
+
+.ResetBinds {
+  width: 200px;
+  height: 30px;
+  horizontal-align: center;
+  margin-top: 330px;
+
+  background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x.png");
+  box-shadow: 0px 2px 8px 4 rgba(0, 0, 0, 0.3);
+  background-size: cover;
+  background-color: rgb(78, 78, 78);
+  border-radius: 10px;
+
+  transition-property: brightness;
+  transition-duration: 0.4s;
+
+  border: 1px solid black;
+}
+
+.ResetBinds:hover {
+  brightness: 2;
+}

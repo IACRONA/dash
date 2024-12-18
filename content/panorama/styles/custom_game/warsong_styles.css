@@ -1,0 +1,78 @@
+.AllWindow 
+{
+    width: 100%;
+    height: 100%;
+}
+
+.UI_TOP_TeamScoresPanel 
+{
+    vertical-align: top;
+    horizontal-align: center;
+    margin-top: 50px;
+}
+
+.FlagsPanel 
+{
+    flow-children: right;
+}
+
+.TimeCounter 
+{
+    horizontal-align: center;
+    font-size: 18px;
+    color: white;
+    text-shadow: 0px 0px 4px 8 #000000;
+    vertical-align: center;
+    font-family: Reaver;
+    font-weight: semi-bold;
+}
+
+.TimeVideo
+{
+    width: 100px;
+    height: 100px;
+    opacity-mask: url("file://{images}/custom_game/sphere_opacity.png");
+}
+
+.FlagCounterRadiant
+{
+    font-family: Reaver;
+    font-weight: semi-bold;
+    color: white;
+    text-shadow: 0px 0px 4px 3 #000;
+    font-size: 24px;
+    vertical-align: center;
+    margin-bottom: 15px;
+}
+
+.FlagCounterDire
+{
+    font-family: Reaver;
+    font-weight: semi-bold;
+    color: white;
+    text-shadow: 0px 0px 4px 3 #000;
+    font-size: 24px;
+    vertical-align: center;
+    margin-bottom: 15px;
+}
+
+.Team_ScoreRadiant
+{
+    vertical-align: center;
+    flow-children: left;
+    transform: translateX( 30px );
+}
+
+.Team_ScoreDire
+{
+    vertical-align: center;
+    flow-children: left;
+    transform: translateX( -30px );
+}
+
+.FlagVideo
+{
+    width: 100px;
+    height: 90px;
+    transform: translateY( -5px );
+}

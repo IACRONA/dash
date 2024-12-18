@@ -1,0 +1,17 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "ui.vfx"
+
+	//---- Color ----
+	Texture "materials/minimap/warsong_flag_dire.png"
+
+
+	VariableState
+	{
+		"Color"
+		{
+		}
+	}
+}

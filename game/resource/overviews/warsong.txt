@@ -1,0 +1,8 @@
+warsong
+{
+	material materials/overviews/warsong.vmat
+	pos_x -7936
+	pos_y 6400
+	scale 14.750
+}
+

@@ -1,0 +1,64 @@
+.DefaultMain
+{
+    width: 100%;
+    height: 100%;
+}
+
+.SelectKillMain
+{
+    width: 600px;
+    height: 300px;
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #8dc0f211 ), color-stop( 0.004, #0e1318cc), to( #0e1318dd ) );
+    align: center center;
+    box-shadow: #00000033 0px 0px 12px 2px;
+    border: 2px solid black;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    opacity: 0;
+}
+
+.SelectKillButton
+{
+    width: 180px;
+    height: 180px;
+    background-image: url("file://{images}/custom_game/kill_select.png");
+	background-size: 100%;
+    align: center center;
+    margin-right: 300px;
+    brightness: 0.6;
+    transition-property: brightness;
+    transition-duration: 0.3s;
+}
+
+.DeclineKillButton
+{
+    width: 180px;
+    height: 180px;
+    background-image: url("file://{images}/custom_game/kill_decline.png");
+	background-size: 100%;
+    align: center center;
+    margin-left: 300px;
+    brightness: 0.6;
+    transition-property: brightness;
+    transition-duration: 0.3s;
+}
+
+.SelectKillButton:hover
+{
+    brightness: 1;
+}
+
+.DeclineKillButton:hover
+{
+    brightness: 1;
+}
+
+.HeaderText
+{
+    horizontal-align: center;
+    text-transform: uppercase;
+    font-weight: semi-bold;
+    font-size: 22px;
+    color: white;
+    margin-top: 10px;
+}

@@ -1,0 +1,99 @@
+<root>
+
+	<styles>
+		<include src="file://{resources}/styles/custom_game/custom_loading_screen.css" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+	</styles>
+
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/config.js" />
+		<include src="file://{resources}/scripts/custom_game/custom_loading_screen.js" />
+	</scripts>
+
+	<snippets> 
+		<snippet name="playerPanel">
+			<Panel class="playerPanel">
+				<Panel class="playerConnectProgress">
+					<Panel id="stateConnect" />
+					<Panel class="loadLine" />
+				</Panel>
+				<Panel class="playerContent">
+					<Panel id="pp_content">
+						<!-- <DOTAAvatarImage id="avatar" steamid="local" /> --> 
+						<DOTAUserName id="name" steamid="local" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</snippet>
+	</snippets>
+
+	<Panel class="LoadingScreen">
+		<Panel id="ls_bgd" />
+ 
+		<Panel class="slider-contaner">
+			<Panel class="SocialIcons">
+				<Button class="Discord" onactivate="ExternalBrowserGoToURL(&apos;https://t.me/dashdota&apos;);"></Button>
+				<Button class="Donate" onactivate="ExternalBrowserGoToURL(&apos;https://gqmzr.tb.ru/dotadash&apos;);"></Button>
+			</Panel>
+			<Panel id="hint_container">
+				<Label id="hint_title" text="" />
+				<Panel class="content-container">
+					<Label id="hint_content" text="" />
+				</Panel>
+			</Panel>
+			<Panel id="slider">
+				<Panel class="movie-container">
+					<Movie id="hint_cinema" src="#" hittest="false" repeat="true" autoplay="onload" controls="none" />
+					<Panel id="hidd" />
+				</Panel>
+
+				<Panel id="slider_dots">
+					<Panel id="dots"></Panel>
+				</Panel>
+			</Panel>
+
+			<Panel id="left_arrow" class="slide-arrow">
+				<Button class="left_arrow" onactivate="ChangeSlide(-1)"></Button>
+			</Panel>
+			<Panel id="right_arrow" class="slide-arrow">
+				<Button class="right_arrow" onactivate="ChangeSlide(1)"></Button>
+			</Panel>
+		</Panel>
+
+		<Panel id="Timer">
+			<Panel class="logo" id="logo" />
+			<Panel class="headerContent">
+				<Label id="dial" text="" />
+				<Panel class="playerLoadCounter">
+					<Label text="Загрузка игроков:" />
+					<Label id="listHeader" text="0 из 10" />
+				</Panel>
+			</Panel>
+		</Panel>
+
+		<!-- <Panel id="ChooseDraftPanel">
+			<Label id="ChooseDraftPanelLabel" text="Disable Ability Draft ?" />
+			<Panel id="ChooseDraftPanelList">
+				<Panel class="ChooseDraft" id="draft_off" onactivate="AbilityDraftClick('draft_off', '1');">
+					<Label class="ChooseKillLabel" text="Yes" />
+				</Panel>
+				<Panel class="ChooseDraft" id="draft_on" onactivate="AbilityDraftClick('draft_on', '0');">
+					<Label class="ChooseKillLabel" text="No" />
+				</Panel>
+			</Panel>
+		</Panel> -->
+
+		<Panel id="ChooseKillsPanel">
+			<Label id="ChooseKillsPanelLabel" text="Kills to win" />
+			<Panel id="ChooseKillsPanelList">
+				
+			</Panel>
+		</Panel>
+
+		<Panel id="PlayerLists">
+			<Panel id="mainList">
+			</Panel>
+		</Panel>
+
+	</Panel>
+</root>

@@ -1,0 +1,176 @@
+"DOTAUnits"
+{
+	"npc_boss_kunkka"
+	{
+		"vscripts"					        "ai/ai_boss"
+		"UseNeutralCreepBehavior"			"0"
+		"Model"		"models/heroes/kunkka/kunkka.vmdl"
+		"SoundSet"		"Hero_Kunkka"
+		"BaseClass"					        "npc_dota_creature"
+		"Level"						        "100"
+		"ModelScale" 				        "2"
+        "MinimapIcon"                       "minimap_heroicon_npc_dota_hero_kunkka"
+        "MinimapIconSize"                   "400"
+        "IsAncient"					        "1"
+        "CanBeDominated"                    "0"
+        "ConsideredHero"			        "1"
+		"precache"{
+			"particle_folder" "particles/units/heroes/hero_kunkka""soundfile" "soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
+		}
+		"Ability1"					        "kunkka_boss_torrent"
+		"Ability2"					        "kunkka_boss_tidebringer"
+		"Ability3"					        "kunkka_boss_x_marks_the_spot"
+		"Ability4"					        "kunkka_boss_ghostship"
+		"Ability5"					        "ability_boss"
+        "Ability7"                          "kunkka_boss_return"
+
+		"ArmorPhysical"				"4"
+		"MagicalResistance"         "30"
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackDamageMin"			"182"
+		"AttackDamageMax"			"190"
+		"AttackRate"				"1.2"
+		"AttackAnimationPoint"		"0.4"
+		"AttackAcquisitionRange"	"800"
+		"AttackRange"				"90"
+	     
+
+		// Bounds
+		//----------------------------------------------------------------
+		"RingRadius"				"40"
+		"HealthBarOffset"			        "480"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"1000"
+		"BountyGoldMin"				"0"	
+		"BountyGoldMax"				"0"	
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"420"	
+		
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"6800"
+		"StatusHealthRegen"			"25"
+		"StatusMana"				"0"	
+		"StatusManaRegen"			"0.0"		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"500"
+		"VisionNighttimeRange"		"500"
+
+
+		"TeamName"					        "DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			        "DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			        "DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		        "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1" {"ItemDef" "28561"}//("Sea Spirit Weapon")
+				"Wearable2" {"ItemDef" "28560"}//neck("Sea Spirit Neck")
+				"Wearable3" {"ItemDef" "28559"}//legs("Sea Spirit Legs")
+				"Wearable4" {"ItemDef" "28558"}//gloves("Sea Spirit Gloves")
+				"Wearable5" {"ItemDef" "28557"}//belt("Sea Spirit Belt")
+				"Wearable6" {"ItemDef" "28556"}//back("Sea Spirit Back")
+				"Wearable7" {"ItemDef" "28555"}//shoulder("Sea Spirit Shoulder")
+				"Wearable8" {"ItemDef" "28554"}//head("Sea Spirit Head")
+			}
+		}
+	}		
+	"npc_boss_tidehunter"
+	{
+		"vscripts"					        "ai/ai_boss"
+		"UseNeutralCreepBehavior"			"0"
+		"Model"		"models/heroes/tidehunter/tidehunter.vmdl"
+		"SoundSet"		"Hero_Tidehunter"
+		"BaseClass"					        "npc_dota_creature"
+		"Level"						        "100"
+		"ModelScale" 				        "2"
+        "MinimapIcon"                       "minimap_heroicon_npc_dota_hero_tidehunter"
+        "MinimapIconSize"                   "400"
+        "IsAncient"					        "1"
+        "CanBeDominated"                    "0"
+        "ConsideredHero"			        "1"
+		"precache"{
+			"particle_folder" "particles/units/heroes/hero_tidehunter""soundfile" "soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+		}
+		"Ability1"					        "tidehunter_boss_gush"
+		"Ability2"					        "tidehunter_boss_kraken_shell"
+		"Ability3"					        "tidehunter_boss_anchor_smash"
+		"Ability4"					        "tidehunter_boss_ravage"
+		"Ability5"					        "ability_boss"
+
+		"ArmorPhysical"				"4"
+		"MagicalResistance"         "30"
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackDamageMin"			"182"
+		"AttackDamageMax"			"190"
+		"AttackRate"				"1.2"
+		"AttackAnimationPoint"		"0.4"
+		"AttackAcquisitionRange"	"800"
+		"AttackRange"				"90"
+	     
+
+		// Bounds
+		//----------------------------------------------------------------
+		"RingRadius"				"40"
+		"HealthBarOffset"			        "480"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"1000"
+		"BountyGoldMin"				"0"	
+		"BountyGoldMax"				"0"	
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"385"	
+		
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"6800"
+		"StatusHealthRegen"			"25"
+		"StatusMana"				"0"	
+		"StatusManaRegen"			"0.0"		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"500"
+		"VisionNighttimeRange"		"500"
+
+
+		"TeamName"					        "DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			        "DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			        "DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		        "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1" {"ItemDef" "14143"}//back("Horror from the Deep Back")
+				"Wearable2" {"ItemDef" "14142"}//belt("Horror from the Deep Belt")
+				"Wearable3" {"ItemDef" "14141"}//head("Horror from the Deep Head")
+				"Wearable4" {"ItemDef" "14140"}//offhand_weapon("Horror from the Deep Off-Hand")
+				"Wearable5" {"ItemDef" "14139"}//arms("Horror from the Deep Arms")
+				"Wearable6" {"ItemDef" "14138"}//("Horror from the Deep Weapon")
+			}
+		}
+	}										
+}

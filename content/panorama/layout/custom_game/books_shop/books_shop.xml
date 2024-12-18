@@ -1,0 +1,67 @@
+<root>
+    <scripts>
+        <include src="file://{resources}/layout/custom_game/books_shop/books_shop.js" />
+    </scripts>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.css" />
+        <include src="file://{resources}/layout/custom_game/books_shop/books_shop.css" />
+    </styles>
+    <snippets>
+        <snippet name="ShopWindow">
+            <Panel>
+                <Panel id="ShopWindowAvatar">
+                    <DOTAScenePanel id="ShopWindowUnit" particleonly="false" />
+                </Panel>
+                <Button id="ShopWindowCross">
+                    <Image src="file://{resources}/images/custom_game/cross.png" />
+                </Button>
+                <Panel id="ShopWindowBody">
+                    <Panel id="Books1" class="books-row">
+
+                    </Panel>
+                    <Panel id="Books2" class="books-row">
+
+                    </Panel>
+                </Panel>     
+            </Panel>
+        </snippet>
+        <snippet name="ShopItem">
+            <Panel>
+                 <Panel id="ShopItemBody">
+                    <Panel id="ShopItemCurrency">
+                        <Panel id="ShopItemGold" class="ShopItemResource">
+                            <Panel id="ShopItemCost">
+                                <Image id="ShopItemIcon" src="s2r://panorama/images/hud/icon_gold_psd.vtex" />
+                                <Label id="ShopItemLabel" class="ShopText" text="{s:gold}" /> 
+                            </Panel>
+                            <TextButton id="ShopItemBuyForGold" class="ShopItemBuy" text="#hud_books_shop_buy"/>
+                        </Panel>
+                        <Panel id="ShopItemFlags" class="ShopItemResource">
+                            <Panel id="ShopItemCost">
+                                <Image id="ShopItemIcon" src="file://{resources}/images/custom_game/flag_counter.png" />
+                                <Label id="ShopItemLabel" class="ShopText" text="{s:flags}" /> 
+                            </Panel>
+                            <TextButton id="ShopItemBuyForFlags" class="ShopItemBuy" text="#hud_books_shop_buy"/>
+                        </Panel>
+                        <Panel id="ShopItemHeads" class="ShopItemResource">
+                            <Panel id="ShopItemCost">
+                                <Image id="ShopItemIcon" src="file://{resources}/images/custom_game/head_counter.png" />
+                                <Label id="ShopItemLabel" class="ShopText" text="{s:heads}" /> 
+                            </Panel>
+                            <TextButton id="ShopItemBuyForHeads" class="ShopItemBuy" text="#hud_books_shop_buy"/>
+                        </Panel>
+                    </Panel>
+                    <TextButton id="ShopItemBuyForBoth" class="ShopItemBuy" text="#hud_books_shop_buy"/>
+                 </Panel>
+                <Panel id="ShopItemPreview">
+                    <DOTAItemImage id="ShopItemImage"   />
+                    <Panel id="ShopItemPreviewImage" hittest="false" /> 
+                </Panel>
+            </Panel>
+        </snippet>
+    </snippets>
+    <Panel hittest="false" class="MainHud">
+    </Panel>
+     
+</root>
+    

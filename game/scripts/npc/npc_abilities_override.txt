@@ -1,0 +1,1319 @@
+"DOTAAbilities"
+{
+	"nevermore_necromastery"
+	{
+		"AbilityValues"
+		{
+			"souls_per_sec"							"15"
+		}
+	}
+
+	"pudge_flesh_heap"
+	{
+		"AbilityValues"
+		{
+			"flesh_heap_strength_buff_amount"
+			{
+				"value"								"0.55 0.7 0.85 1"
+				"special_bonus_unique_pudge_1"		"x1.5"
+			}
+		}
+	}
+
+	"muerta_ofrenda"
+	{
+		"AbilityValues"
+		{
+			"pierce_the_veil_duration_pct"				"0"
+			"attackspeed_bonus"							"15 25 35 45"
+			"effect_radius"								"400 450 500 550"
+		}
+	}
+
+
+	"item_black_king_bar"
+	{
+ 		"AbilityCooldown"				"45"
+	}
+
+	"ringmaster_wheel"
+	{
+		"AbilityCooldown"				"60"
+	}
+	"slark_essence_shift"
+	{
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"agi_gain"							"1.5"
+				"LinkedSpecialBonus"				"special_bonus_unique_slark_5"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"stat_loss"							"1"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"duration"							"20 30 30 30"
+				"LinkedSpecialBonus"				"special_bonus_unique_slark_4"
+			}
+		}
+	}
+
+	"axe_culling_blade"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"beastmaster_primal_roar"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{ 
+				"value"									"80  70 60"
+				"special_bonus_unique_beastmaster_7"	"-30"
+			}
+		}
+	}
+
+	"brewmaster_primal_split"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"60"
+        }
+    }
+
+	"centaur_stampede"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"								"80  70 60"
+				"special_bonus_unique_centaur_5"	"-25"
+			}
+		}
+	}
+
+	"chaos_knight_phantasm"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"chen_hand_of_god"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"clinkz_death_pact"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"crystal_maiden_freezing_field"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"						"80  70 60"
+		}
+	}
+
+	"antimage_mana_void"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"								"80  70 60"
+				"special_bonus_unique_antimage_2"	"-40"
+			}
+		}
+	}
+
+	"bane_fiends_grip"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"								"80  70 60"
+				"special_bonus_scepter"				"-20"
+			}
+		}
+	}
+
+	"batrider_flaming_lasso"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"								"80  70 60"
+				"special_bonus_unique_batrider_6"	"-10"
+			}
+		}
+	}
+
+	"bloodseeker_rupture"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"dark_seer_wall_of_replica"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"dark_willow_terrorize"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"dawnbreaker_solar_guardian"
+	{
+        "AbilityValues"
+		{
+		    "AbilityValues"
+		{
+                "AbilityCooldown" 							"80  70 60"
+                }
+        }
+	}
+
+	"death_prophet_exorcism"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"disruptor_static_storm"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"doom_bringer_doom"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"								"80  70 60"
+				"special_bonus_unique_doom_10"		"-15"
+			}
+		}
+	}
+
+	"dragon_knight_elder_dragon_form"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"earth_spirit_magnetize"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"earthshaker_echo_slam"
+	{
+        "AbilityValues"
+        {
+            "AbilityCooldown"
+            {
+                "value"										"80  70 60"
+                "special_bonus_unique_earthshaker_echo_cd"	"-45%"
+            }
+        }
+	}
+
+	"elder_titan_earth_splitter"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+ 
+
+	"faceless_void_chronosphere"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"grimstroke_soul_chain"
+	{
+		"AbilityCooldown" 							"60 60 50"
+	}
+
+	"gyrocopter_call_down"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"wisp_relocate"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"jakiro_macropyre"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"juggernaut_omni_slash"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"keeper_of_the_light_spirit_form"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"kunkka_ghostship"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"				
+			{
+				"value"												"80  70 60"
+				"special_bonus_unique_kunkka_ghostship_cooldown"	"-15"
+			}
+		}
+	}
+
+	"lich_chain_frost"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 65"
+        }
+    }
+
+	"life_stealer_infest"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"								"80  70 60"
+				"special_bonus_scepter"				"-20"
+			}
+		}
+	}
+
+	"lina_laguna_blade"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"								"80  70 60"
+				"special_bonus_unique_lina_6"		"-25"
+			}
+		}
+	}
+
+	"lion_finger_of_death"
+	{
+		"AbilityCooldown" 							"60 60 55"
+	}
+
+	"lone_druid_true_form"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"luna_eclipse"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"								"80  70 60"
+				"special_bonus_unique_luna_6"		"-15.0"
+			}
+		}
+	}
+
+	"lycan_shapeshift"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"45"
+        }
+    }
+
+	"magnataur_reverse_polarity"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"marci_unleash"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"mars_arena_of_blood"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"medusa_stone_gaze"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"						"80  70 60"
+		}
+	}
+
+	"mirana_invis"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"monkey_king_wukongs_command"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"morphling_replicate"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"naga_siren_song_of_the_siren"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"60  55 50"
+        }
+    }
+
+	"furion_wrath_of_nature"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80  70 60"
+        }
+    }
+
+	"necrolyte_reapers_scythe"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"night_stalker_darkness"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"nyx_assassin_vendetta"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"omniknight_guardian_angel"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"oracle_false_promise"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"								"80 70 60"
+				"special_bonus_unique_oracle_6"		"-15"
+			}
+		}
+	}
+
+	"obsidian_destroyer_sanity_eclipse"
+	{
+		"AbilityCooldown" 							"120"
+	}
+
+	"pangolier_gyroshell"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"phoenix_supernova"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"puck_dream_coil"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"queenofpain_sonic_wave"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{	
+				"value"									"80 70 60"
+				"special_bonus_unique_queen_of_pain_3"	"-10"
+			}
+		}
+	}
+
+	"razor_eye_of_the_storm"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"sandking_epicenter"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"nevermore_requiem"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"				
+			{
+				"value"								"80 70 60"
+				"special_bonus_scepter"				"-30"
+			}
+		}
+	}
+
+	"shadow_shaman_mass_serpent_ward"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"silencer_global_silence"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"slark_shadow_dance"
+	{
+		"AbilityCooldown" 							"80 60 55"
+	}
+
+	"snapfire_mortimer_kisses"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 60 55"
+        }
+    }
+
+	"spectre_haunt"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 60 55"
+        }
+    }
+
+	"spirit_breaker_nether_strike"
+	{
+		"AbilityCooldown" 							"60 60 50"
+	}
+
+	"sven_gods_strength"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"60"
+        }
+    }
+
+	"sven_gods_strength"
+	{
+		"AbilityCooldown" 							"80 70 60"
+	}
+
+	"tidehunter_ravage"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"treant_overgrowth"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"troll_warlord_battle_trance"
+	{
+		"AbilityValues"
+		{
+			"AbilityCooldown"
+			{
+				"value"									"80 70 60"
+				"special_bonus_unique_troll_warlord_7"	"-5"
+			}
+		}
+	}
+
+	"abyssal_underlord_dark_portal"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"undying_flesh_golem"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"undying_flesh_golem"
+	{
+		"AbilityCooldown" 							"80 70 60"
+	}
+
+	"venomancer_poison_nova"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"visage_summon_familiars"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"warlock_rain_of_chaos"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"weaver_time_lapse"
+	{
+		"AbilityCooldown" 							"80 70 60"
+	}
+
+	"windrunner_focusfire"
+	{
+		"AbilityCooldown" 							"80 70 60"
+	}
+
+	"winter_wyvern_winters_curse"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"skeleton_king_reincarnation"
+	{
+        "AbilityValues"
+		{
+            "AbilityCooldown"
+			{
+				"value"							"80 70 60"
+				"special_bonus_scepter"			"-5"
+			}
+        }
+	}
+
+	"zuus_thundergods_wrath"
+	{
+		"AbilityValues"
+		{
+            "AbilityCooldown" 							"80 70 60"
+        }
+    }
+
+	"legion_commander_duel"
+	{
+		"AbilityValues"
+		{
+			"duration"				"4.0 4.75 5.5"
+			"duration_scepter"		
+			{
+				"value"			"6 7 8"
+				"RequiresScepter"	"1"
+			}
+			"reward_damage"			
+			{
+				"value"			"5 10 15"
+				"LinkedSpecialBonus"	"special_bonus_unique_legion_commander"
+			}
+			"victory_range"			"600"
+			"scepter_damage_reduction_pct"			
+			{
+				"value"				"50"
+				"RequiresScepter"						"1"
+			}
+			"AbilityCooldown"	
+			{
+				"value"					"80 70 60"
+				"special_bonus_scepter"			"-20"
+			}
+		}
+	}
+
+	"tinker_rearm_custom"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/tinker_rearm_custom"
+		"AbilityTextureName"			"tinker_rearm"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilitySound"					"Hero_Tinker.Rearm"
+		"LinkedAbility"					"tinker_keen_teleport"
+		"AbilityDraftPreAbility"		"tinker_keen_teleport"
+
+		"HasShardUpgrade"	"1"
+		"AbilityDraftUltShardAbility"		"tinker_warp_grenade"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"		
+		"AbilityChannelTime"				"3.25 2.25 1.25"		
+		"AbilityCastAnimation"		"ACT_DOTA_CAST4_STATUE"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8 7 6"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"130 185 240"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+		}
+	}
+
+	"invoker_cold_snap_custom"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/invoker"
+		"AbilityTextureName"			"invoker_cold_snap"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"MaxLevel"						"3"
+		"HotKeyOverride"				"Y"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastAnimation"			"ACT_INVALID"
+		"AbilityManaCost"				"100"
+		"AbilityCooldown"				"20"
+
+		"AbilityValues"
+		{
+			"duration"
+			{
+				"value"					"3.0 4.5 6.0"
+			}
+			"freeze_duration"			"0.4"
+			"freeze_cooldown"
+			{
+				"value"					"0.83 0.74 0.65"
+			}
+			"freeze_damage"
+			{
+				"value"					"8 32 56"	
+			}
+			"damage_trigger"			"10.0"
+		}
+	}
+
+	"invoker_ghost_walk_custom"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/invoker"
+		"AbilityTextureName"			"invoker_ghost_walk"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"MaxLevel"						"3"
+		"HotKeyOverride"				"V"
+		"AbilityManaCost"				"175"
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastAnimation"			"ACT_INVALID"
+		"AbilityCooldown"				"35"
+
+		"AbilityValues"
+		{
+			"duration"				"60"
+			"area_of_effect"		"450"
+			"enemy_slow"
+			{
+				"value"					"-20 -35 -50"
+				
+			}
+			"self_slow"
+			{
+				"value"					"-15 0 15"
+			}		
+			"aura_fade_time"			"2.0"
+			"incoming_damage"			"-15"
+		}
+	}
+
+	"invoker_tornado_custom"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/invoker"
+		"AbilityTextureName"			"invoker_tornado"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"MaxLevel"						"3"
+		"HotKeyOverride"				"X"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastRange"				"2000"
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastAnimation"			"ACT_INVALID"
+		"AbilityManaCost"				"150"
+		"AbilityCooldown"				"30"
+
+		"AbilityValues"
+		{
+			"travel_distance"
+			{
+				"value"					"800 1400 2600"
+			}
+			"travel_speed"			"1000"
+			"area_of_effect"		"200"
+			"vision_distance"		"200"
+			"end_vision_duration"	"1.75"
+			"lift_duration"
+			{
+				"value"				"0.85 1.6 2.35"
+			}
+			"base_damage"			
+			{
+				"value"							"70"			
+				"CalculateSpellDamageTooltip"	"1"
+			}
+			"quas_damage"
+			{
+				"value"				"0 0 0 0 0 0 0"
+			}
+			"wex_damage"
+			{
+				"value"				"45 180 315"
+			}
+		}
+	}
+
+	"invoker_emp_custom"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/invoker"
+		"AbilityTextureName"			"invoker_emp"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"3"
+		"HotKeyOverride"				"C"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastRange"				"950"
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastAnimation"			"ACT_INVALID"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"125"
+
+		"AbilityValues"
+		{
+			"delay"						"2.9"
+			"area_of_effect"		"675"
+			"mana_burned"
+			{
+				"value"			"100 325 550"
+			}
+			"damage_per_mana_pct"					"60"
+		}
+	}
+
+	"invoker_alacrity_custom"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/invoker"
+		"AbilityTextureName"			"invoker_alacrity"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"MaxLevel"						"3"
+		"HotKeyOverride"				"Z"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastAnimation"			"ACT_INVALID"
+		"AbilityCooldown"				"17"
+		"AbilityManaCost"				"100"
+
+		"AbilityValues"
+		{
+			"bonus_attack_speed"
+			{
+				"value"					"10 46 82"
+			}
+			"bonus_damage"
+			{
+				"value"					"10 46 82"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"duration"					"9"
+		}
+	}
+
+	"invoker_chaos_meteor_custom"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/invoker"
+		"AbilityTextureName"			"invoker_chaos_meteor"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"MaxLevel"						"3"
+		"HotKeyOverride"				"D"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastAnimation"			"ACT_INVALID"
+		"AbilityManaCost"				"200"
+		"AbilityCooldown"				"30"
+
+		"AbilityValues"
+		{
+			"land_time"					"1.3"
+			"area_of_effect"			"275"
+			"travel_distance"
+			{
+				"value"					"465 930 1410"
+			}
+			"travel_speed"				"300"
+			"damage_interval"
+			{
+				"value"					"0.5"
+				"CalculateSpellDamageTooltip"	"0"
+				"DamageTypeTooltip"		"DAMAGE_TYPE_NONE"
+			}
+			"vision_distance"			"500"
+			"end_vision_duration"		"3.0"
+			"main_damage"
+			{
+				"value"					"52 109 166"
+			}
+			"burn_duration"				"3.0"
+			"burn_dps"
+			{
+				"value"					"10 22 34"
+				"CalculateSpellDamageTooltip"	"1"
+				"DamageTypeTooltip"		"DAMAGE_TYPE_MAGICAL"
+			}
+		}
+	}
+	
+	"invoker_sun_strike_custom"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/invoker"
+		"AbilityTextureName"			"invoker_sun_strike"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"MaxLevel"						"3"
+		"HotKeyOverride"				"T"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastAnimation"			"ACT_INVALID"
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"175"
+		
+		"AbilityValues"
+		{
+			"delay"						"1.7"
+			"area_of_effect"			"175"
+			"damage"
+			{
+				"value"					"120 300 480"
+			}
+			"vision_distance"			"400"
+			"vision_duration"			"4.0"
+		}
+	}
+
+	"invoker_forge_spirit_custom"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/invoker"
+		"AbilityTextureName"			"invoker_forge_spirit"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"3"
+		"HotKeyOverride"				"F"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"75"
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastAnimation"			"ACT_INVALID"
+
+		"AbilityValues"
+		{
+			"spirit_damage"			
+			{
+				"value"			"22 52 82"
+			}
+			"spirit_mana"			
+			{	
+				"value"			"100 250 400"
+			}
+			"spirit_armor"
+			{
+				"value"			"0 1 2 3 4 5 6"
+			}
+			"spirit_attack_range"	
+			{
+				"value"			"300 495 690"
+			}
+			"spirit_hp"				
+			{	"value"			"300 600 900"
+			}
+			"spirit_duration"
+			{
+				"value"			"20 50 80"
+			}
+			"spirit_count"
+			{
+				"value"			"1"
+				"special_bonus_unique_invoker_1"	"+4"
+			}
+			"spirit_attack_speed"
+			{
+				"special_bonus_unique_invoker_11" "+50"
+			}
+			"extra_spirit_count_quas"	"0 1 1"
+			"extra_spirit_count_exort"	"0 1 1"
+
+			"debuff_duration"			"5"
+			"armor_per_attack"
+			{
+				"value"			"-0.8 -1.1 -1.4"
+			}
+			"max_armor_stacks"			"20"
+		}	
+	}
+
+	"invoker_ice_wall_custom"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/invoker"
+		"AbilityTextureName"			"invoker_ice_wall"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"MaxLevel"						"3"
+		"HotKeyOverride"				"G"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"125"
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastAnimation"			"ACT_INVALID"
+
+		"AbilityValues"
+		{
+			"duration"
+			{
+				"value"				"3.0 7.5 12.0"
+			}
+			"slow"
+			{
+				"value"				"-20 -80 -140"
+			}
+			"slow_duration"			"2.0"
+			"damage_per_second"
+			{
+				"value"				"6 24 42"
+			}
+			"wall_place_distance"	"200"
+			"num_wall_elements"		"15"
+			"wall_element_spacing"	"80"
+			"wall_element_radius"	"105"
+		}
+	}
+
+	"invoker_deafening_blast_custom"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/invoker"
+		"AbilityTextureName"			"invoker_deafening_blast"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"MaxLevel"						"3"
+		"HotKeyOverride"				"B"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastAnimation"			"ACT_INVALID"
+		"AbilityCooldown"				"40"
+		"AbilityManaCost"				"300"
+		"AbilityModifierSupportValue"	"0.5"	
+
+		"AbilityValues"
+		{
+			"travel_distance"			"1000"
+			"travel_speed"				"1100"
+			"radius_start"				"175"
+			"radius_end"				"225"
+			"end_vision_duration"		"1.75"
+			"damage"
+			{
+				"value"					"60 180 300"
+			}
+			"knockback_duration"
+			{
+				"value"					"0.2 0.8 1.4"
+			}
+			"knockback_distance"
+			{
+				"value"					"34 137 226"
+			}
+			"disarm_duration"
+			{
+				"value"					"1.3 1.9 2.5"
+			}
+		}
+	}
+
+	"bucket_soldier_fear"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creatures/bucket_soldier_fear"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "AbilityTextureName"            "dark_willow_terrorize"
+        "IsOnCastBar"                   "0"
+
+        "AbilityCooldown"               "6"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "debuff_duration"       "2.0"
+            }
+			"02"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"cooldown_reduction_per_buff_level"		"0"
+			}
+        }
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+    }
+
+	"diretide_bucket_soldier_scream"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/creatures/diretide_bucket_soldier_scream"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "AbilityTextureName"            "vengefulspirit_wave_of_terror"
+        "IsOnCastBar"                   "0"
+
+        "AbilityCooldown"               "7"
+
+		"AbilityCastRange"				"1400"
+		"AbilityCastPoint"				"0.75"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "0"
+
+		"AbilityCastAnimation"      	"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate"			"1.0"						// Animation speed multiplier
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+			"attack_speed"          "1400"
+			"attack_width_initial"  "100"
+			"attack_width_end"      "150"
+			"attack_distance"       "1800"
+			"attack_damage"         "200"
+			"damage_per_buff_level"	"80"
+			"debuff_duration"		"2"
+			"cooldown_reduction_per_buff_level"		"0"			
+			"cooldown_random_reduction_percent"		"50"
+        }
+    }
+
+	"storm_spirit_ball_lightning"
+	{
+ 
+		"AbilityValues"
+		{
+				"ball_lightning_travel_cost_percent"	"2"		
+		}
+	}
+
+	"item_rapier" 	"REMOVE"
+	"item_dagon" 	"REMOVE"
+	"item_dagon_2" 	"REMOVE"
+	"item_dagon_3" 	"REMOVE"
+	"item_dagon_4" 	"REMOVE"
+	"item_dagon_5" 	"REMOVE"
+	"item_recipe_dagon" 	"REMOVE"
+	"item_recipe_dagon_2" 	"REMOVE"
+	"item_recipe_dagon_3" 	"REMOVE"
+	"item_recipe_dagon_4" 	"REMOVE"
+	"item_recipe_dagon_5" 	"REMOVE"
+	"item_recipe_travel_boots" 	""
+	"item_recipe_travel_boots_2" 	"REMOVE"
+	"item_travel_boots" 	""
+	"item_travel_boots_2" 	"REMOVE"
+}

@@ -1,0 +1,530 @@
+"DOTAAbilities"
+{
+	"ability_boss"
+	{
+		"BaseClass"			"ability_lua"
+		"ScriptFile"		"abilities/ability_boss"
+		"AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"          "1"
+		
+		"AbilityValues"
+		{
+			"minutes"         "1"
+			"stats"           "20"
+			"respawn_time"    "180"
+			"death_times"    "4"
+			"radius_reward"    "800"
+		}
+	}
+	//=================================================================================================================
+	// Kunkka: Torrent
+	//=================================================================================================================
+	"kunkka_boss_torrent"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                     "kunkka_torrent"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"MaxLevel"                     "1"	
+		"AbilitySound"					"Ability.Torrent"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1300"
+		"AbilityCastPoint"				"0.4"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.5"	// applies 2 modifiers
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"radius"
+			{
+				"value"					"225"
+				"affected_by_aoe_increase"	"1"
+			}
+			"movespeed_bonus"			"-40"
+			"slow_duration"				"4"
+			"stun_duration"
+			{
+				"value"								"1.4"
+				"special_bonus_unique_kunkka_7"		"+20%"
+			}
+			"delay"						"1.6 1.6 1.6 1.6"
+			"torrent_damage"
+			{
+				"value"			"320"
+				"special_bonus_unique_kunkka_7"		"+20%"
+			}
+			"percent_instant"			"0"
+			"damage_tick_interval"				"0.2"
+			"AbilityCooldown"			
+			{
+				"value"						"10"
+				"special_bonus_unique_kunkka_torrent_cooldown"			"-4"
+			}	
+		}		
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}
+
+
+	//=================================================================================================================
+	// Kunkka: Tidebringer
+	//=================================================================================================================
+	"kunkka_boss_tidebringer"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"  "kunkka_tidebringer"
+		"MaxLevel"    "1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK | DOTA_ABILITY_BEHAVIOR_BREAK_DISABLES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilitySound"					"Hero_Kunkka.Tidebringer.Attack"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0 0.0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{		
+			"cleave_starting_width"			
+			{
+				"value"			"150"
+				"affected_by_aoe_increase"	"1"
+			}
+			"cleave_ending_width"			
+			{	
+				"value"		"650"
+				"affected_by_aoe_increase"	"1"
+			}
+			"cleave_distance"			
+			{
+				"value"			"1100"
+				"affected_by_aoe_increase"	"1"
+			}
+			"damage_bonus"				
+			{
+				"value"			"120"
+				"special_bonus_unique_kunkka_2"		"+60"
+			}
+			"cleave_damage"				
+			{
+				"value"								"150"
+				"special_bonus_unique_kunkka_4"		"+100"
+			}
+			"movespeed_slow"
+			{
+				"value"					"0"
+				"special_bonus_unique_kunkka_tidebringer_slow"		"-60"	
+			}
+			"movespeed_slow_duration"
+			{
+				"value"					"0"
+				"special_bonus_unique_kunkka_tidebringer_slow"		"+1"	
+			}
+			"AbilityCooldown"				
+			{
+				"value"					"4"
+			}
+			"cooldown_reduction_per_hero_hit"
+			{
+				"value"												"0.0"
+				"special_bonus_facet_kunkka_high_tide"		"+0.8"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+
+	//=================================================================================================================
+	// Kunkka: X Marks the Spot
+	//=================================================================================================================
+	"kunkka_boss_x_marks_the_spot"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                       "kunkka_x_marks_the_spot"
+		"MaxLevel"                    "1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Ability.XMarksTheSpot.Target"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+				"duration"					"3.0"
+				"allied_duration"	"6.0"
+				"fow_range"				"400"
+				"fow_duration"				"5.94"
+				"ally_ms"	
+				{
+					"value"		"0"
+					"special_bonus_unique_kunkka_6"	"+25"
+				}
+				"ally_armor"			"0"
+				"rum_allies_radius"
+				{
+					"value"						"0"
+					"special_bonus_facet_kunkka_grog"	"+400"
+					"affected_by_aoe_increase"	"1"
+				}
+				"buff_duration"					// rum buff, must be named buff_duration
+				{
+					"value"						"0"
+					"special_bonus_facet_kunkka_grog"	"+3"
+				}
+				"movespeed_bonus"				"15"
+				"ghostship_absorb"
+				{
+					"value"						"35"
+					"special_bonus_unique_kunkka_rum"	"+15"
+				}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+
+	"kunkka_boss_return"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass" "kunkka_return"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilitySound"					"Ability.XMarksTheSpot.Return"
+		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_3"
+		"AbilityCastGestureSlot"		"DEFAULT"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+	}
+
+	//=================================================================================================================
+	// Kunkka: Ghostship
+	//=================================================================================================================
+	"kunkka_boss_ghostship"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                     "kunkka_ghostship"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"				"2"
+		"AbilitySound"					"Ability.Ghostship"
+		"AbilityDraftUltShardAbility"		"kunkka_tidal_wave"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_GHOST_SHIP"
+		"AbilityCastGestureSlot"		"DEFAULT"
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"600"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"tooltip_delay"				"3.1"
+			"ghostship_distance"		"2000"
+			"ghostship_width"			
+			{
+				"value"				"450"
+				"affected_by_aoe_increase"	"1"
+			}
+			"movespeed_bonus"			"15"	// If changing this, update value in x marks for variant 1
+			"buff_duration"				"10"
+			"stun_duration"				"1.2"
+			"ghostship_speed"			"650"
+			"ghostship_absorb"
+			{
+				"value"								"35"	// If changing this, update value in x marks for variant 1
+				"special_bonus_unique_kunkka_rum"	"+15"
+			}
+			"AbilityCooldown"				
+			{
+				"value"					"20"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Tidehunter: Gush
+	//=================================================================================================================
+	"tidehunter_boss_gush"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass" "tidehunter_gush"
+		"MaxLevel"     "1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"				"1"
+		"HasScepterUpgrade"			"1"
+		"AbilitySound"					"Ability.GushCast"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+		"AbilityDuration"				"4.5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+				"gush_damage"		
+				{
+					"value"		"300"
+				"special_bonus_unique_tidehunter_2" "+100"
+				}
+				"projectile_speed"	"2500"
+				"movement_speed"	
+				{
+					"value"	"-40"
+					"special_bonus_unique_tidehunter_5" "-15"
+				}
+				"negative_armor"		
+				{
+					"value"		"10"
+				"special_bonus_unique_tidehunter" "+4"
+				}
+				"speed_scepter"		
+				{
+					"value"		"1500"
+					"RequiresScepter"		"1"
+				}
+				"aoe_scepter"
+				{
+					"value"		"260"
+					"affected_by_aoe_increase"	"1"
+				"RequiresScepter"		"1"
+				}
+				"cooldown_scepter"		
+				{
+					"value"			"7"
+					"RequiresScepter"		"1"
+				}
+				"cast_range_scepter"		
+				{
+					"value"	"2200"
+					"RequiresScepter"		"1"
+				}	
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}
+	
+	//=================================================================================================================
+	// Tidehunter: Kraken Shell
+	//=================================================================================================================
+	"tidehunter_boss_kraken_shell"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass" "tidehunter_kraken_shell"
+		"MaxLevel" "1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilitySound"					"Hero_Tidehunter.KrakenShell"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"damage_reduction"
+			{
+				"value"				"70"
+			}
+			"bonus_reduction_per_kill"
+			{
+				"value"	"0"
+				"special_bonus_facet_tidehunter_kraken_swell"  "1 2 3 4"				
+			}				
+			
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+	
+	//=================================================================================================================
+	// Tidehunter: Anchor Smash
+	//=================================================================================================================
+	"tidehunter_boss_anchor_smash"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass" "tidehunter_anchor_smash"
+		"MaxLevel" "1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Tidehunter.AnchorSmash"
+
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.4"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"4"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"attack_damage"			
+			{
+				"value"										"180"
+				"special_bonus_unique_tidehunter_9"			"+40"
+				"CalculateSpellDamageTooltip"				"0"
+			}
+			"damage_reduction"		
+			{
+				"value"										"-60"
+				"special_bonus_unique_tidehunter_3"			"-30"
+				"CalculateSpellDamageTooltip"				"0"
+				"DamageTypeTooltip"							"DAMAGE_TYPE_NONE"
+			}
+			"reduction_duration"							"6.0"
+			"radius"										
+			{
+				"value" "375"
+				"affected_by_aoe_increase"	"1"
+			}
+			"targets_buildings"
+			{
+				"value"										"0"
+				"special_bonus_unique_tidehunter_10"			"+1"
+			}
+			
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+	
+	//=================================================================================================================
+	// Tidehunter: Ravage
+	//=================================================================================================================
+	"tidehunter_boss_ravage"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass" "tidehunter_ravage"
+		"MaxLevel" "1"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"FightRecapLevel"				"2"
+		"AbilitySound"					"Ability.Ravage"
+
+		"AbilityDraftUltShardAbility" "tidehunter_dead_in_the_water"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.3 0.3 0.3"
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"40"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"450"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"radius"			
+			{
+				"value"		"1250"
+				"affected_by_aoe_increase"	"1"
+			}
+			"speed"				"725"
+			"duration"			
+			{
+				"value"					"2.4"
+				"special_bonus_unique_tidehunter_7"	"+0.8"
+			}
+		}
+	}
+}
