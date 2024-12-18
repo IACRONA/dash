@@ -35,7 +35,7 @@ if GetMapName() == "warsong" then
     CONDITION_FLAG_COUNT_WIN = 7
 
     FLAG_RETURN_RADIUS = 245
-    FLAG_RETURN_DURATION = 3
+    FLAG_RETURN_DURATION = 4
     FLAG_AUTO_RETURN_DURATION = 45
 
     GOOD_FLAG_SCALE = 0.9
@@ -68,7 +68,7 @@ if GetMapName() == "warsong" then
     }
 
     -- Магический и физический резист
-    RESISTANCE_TIME_ACTIVATED = 15 -- Время когда он начинается (мин.)
+    RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
     MAGICAL_RESISTANCE_PERCENTAGE = 10
     PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
@@ -139,7 +139,7 @@ if GetMapName() == "warsong" then
     PERCENT_OF_LEVEL_MINUTE = 170
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 180
+    NEW_SPHERES = 240
     MAX_SPHERE_LEVEL = 4
     COUNT_SPHERE_CHOICE = 3
     MAX_SPHERE_COUNT = 14
@@ -411,7 +411,7 @@ if GetMapName() == "portal_duo" then
     }
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 180
+    NEW_SPHERES = 240
     MAX_SPHERE_LEVEL = 4
     COUNT_SPHERE_CHOICE = 3
     MAX_SPHERE_COUNT = 14
@@ -547,7 +547,7 @@ if GetMapName() == "portal_trio" then
     }
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 180
+    NEW_SPHERES = 240
     MAX_SPHERE_LEVEL = 4
     COUNT_SPHERE_CHOICE = 3
     MAX_SPHERE_COUNT = 14
