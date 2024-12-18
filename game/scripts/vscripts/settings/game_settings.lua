@@ -74,11 +74,11 @@ if GetMapName() == "warsong" then
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 540
-    NEW_ULTIMATE_COOLDOWN = 300
+    NEW_ULTIMATE_COOLDOWN = 225
     REROLL_ABILITIES_MAX_COUNT = 1
 
     -- Настройка шаров
-    NEW_PASSIVE_SPELLS_COOLDOWN = 325 -- 420s / 7m
+    NEW_PASSIVE_SPELLS_COOLDOWN = 300 -- 420s / 7m
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
     
     -- One Punchman
@@ -136,7 +136,7 @@ if GetMapName() == "warsong" then
     HIMARON_SWORD_COOLDOWN = 23
 
     -- Процент получения
-    PERCENT_OF_LEVEL_MINUTE = 150
+    PERCENT_OF_LEVEL_MINUTE = 170
 
     REROLL_SPHERES = 1
     NEW_SPHERES = 180
@@ -156,7 +156,7 @@ if GetMapName() == "dash" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 300
+    GRANT_GOLD = 350
 
     CONDITION_FLAG_COUNT_WIN = 7
 
@@ -262,7 +262,7 @@ if GetMapName() == "dash" then
     HIMARON_SWORD_COOLDOWN = 14
 
     -- Время за сколько в сумме будет 30 лвл  в минутах
-    PERCENT_OF_LEVEL_MINUTE = 110
+    PERCENT_OF_LEVEL_MINUTE = 140
 
     -- Время возрождения для dash
     -- уровень, время респавна
@@ -291,9 +291,9 @@ if GetMapName() == "portal_duo" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 400
+    GRANT_GOLD = 500
 
-    CONDITION_FLAG_COUNT_WIN = 80 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
+    CONDITION_FLAG_COUNT_WIN = 50 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
     FLAG_RETURN_RADIUS = 238
     FLAG_RETURN_DURATION = 4
@@ -397,7 +397,7 @@ if GetMapName() == "portal_duo" then
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Время за сколько в сумме будет 30 лвл  в минутах
-    PERCENT_OF_LEVEL_MINUTE = 150
+    PERCENT_OF_LEVEL_MINUTE = 180
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
@@ -427,9 +427,9 @@ if GetMapName() == "portal_trio" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 350
+    GRANT_GOLD = 500
 
-    CONDITION_FLAG_COUNT_WIN = 80 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
+    CONDITION_FLAG_COUNT_WIN = 57 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
     FLAG_RETURN_RADIUS = 238
     FLAG_RETURN_DURATION = 4
@@ -465,17 +465,17 @@ if GetMapName() == "portal_trio" then
     }
 
     -- Магический и физический резист
-    RESISTANCE_TIME_ACTIVATED = 15 -- Время когда он начинается (мин.)
-    MAGICAL_RESISTANCE_PERCENTAGE = 15
-    PHYSICAL_RESISTANCE_PERCENTAGE = 15
+    RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
+    MAGICAL_RESISTANCE_PERCENTAGE = 10
+    PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 540
-    NEW_ULTIMATE_COOLDOWN = 300
+    NEW_ULTIMATE_COOLDOWN = 225
     REROLL_ABILITIES_MAX_COUNT = 1
 
     -- Настройка шаров
-    NEW_PASSIVE_SPELLS_COOLDOWN = 325 --420 -- 420s / 7m
+    NEW_PASSIVE_SPELLS_COOLDOWN = 300 --420 -- 420s / 7m
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
 
     -- One Punchman
@@ -533,7 +533,7 @@ if GetMapName() == "portal_trio" then
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Процент уровня
-    PERCENT_OF_LEVEL_MINUTE = 150
+    PERCENT_OF_LEVEL_MINUTE = 180
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
@@ -564,12 +564,12 @@ START_GAME_FREEZE_TIME = 12
 
 -- Защитники флагов
 UPGRADE_TIME_CHECK = 1 -- каждые 1 минут
-UPGRADE_DAMAGE = 24
+UPGRADE_DAMAGE = 35
 UPGRADE_HEALTH = 280
 UPGRADE_ARMOR = 1
 
 -- Время игры в секундах
-GAME_TIME_CLOCK = 1500
+GAME_TIME_CLOCK = 1200
 
 -- Не отображать выбор скиллов этому герою
 HEROES_SELECT_SPELL_DISABLED = 
