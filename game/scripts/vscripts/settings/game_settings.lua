@@ -325,13 +325,13 @@ if GetMapName() == "portal_duo" then
         TIER_2 = 350, -- 3:30
         TIER_3 = 550, -- 9:00
         TIER_4 = 720, -- 12:00
-        TIER_5 = 1000, -- 15:00
+        TIER_5 = 950, -- 15:00
     }
 
     -- Магический и физический резист
-    RESISTANCE_TIME_ACTIVATED = 16 -- Время когда он начинается (мин.)
-    MAGICAL_RESISTANCE_PERCENTAGE = 15
-    PHYSICAL_RESISTANCE_PERCENTAGE = 15
+    RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
+    MAGICAL_RESISTANCE_PERCENTAGE = 10
+    PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 540

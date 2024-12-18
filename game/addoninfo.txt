@@ -33,7 +33,7 @@
 		},
 		{
 			map = "portal_trio"
-			MaxPlayers = 12
+			MaxPlayers = 9
 		},		
         {
 			map = "dash"
