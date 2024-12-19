@@ -11,7 +11,7 @@
         "portal_trio",
 	]
 	CheckAFKPlayers = false
-	DefaultMap = "portal_trio"
+	DefaultMap = "warsong"
 	Default_Keys = null
 	DisableIK = false
 	EnablePickRules = true
