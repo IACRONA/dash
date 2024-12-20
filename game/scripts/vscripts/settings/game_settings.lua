@@ -63,8 +63,8 @@ if GetMapName() == "warsong" then
         TIER_1 = 150, -- 0:00
         TIER_2 = 250, -- 3:30
         TIER_3 = 450, -- 9:00
-        TIER_4 = 750, -- 12:00
-        TIER_5 = 950, -- 15:00
+        TIER_4 = 700, -- 12:00
+        TIER_5 = 820, -- 15:00
     }
 
     -- Магический и физический резист
@@ -73,7 +73,7 @@ if GetMapName() == "warsong" then
     PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
     -- Время до новых способностей
-    NEW_ABILITY_COOLDOWN = 540
+    NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 225
     REROLL_ABILITIES_MAX_COUNT = 1
 
@@ -144,8 +144,6 @@ if GetMapName() == "warsong" then
     COUNT_SPHERE_CHOICE = 3
     MAX_SPHERE_COUNT = 14
 
-    
-
 end
 
 -- Настройки DASH
@@ -189,8 +187,8 @@ if GetMapName() == "dash" then
         TIER_1 = 200, -- 0:00
         TIER_2 = 350, -- 3:30
         TIER_3 = 650, -- 9:00
-        TIER_4 = 950, -- 12:00
-        TIER_5 = 1200, -- 15:00
+        TIER_4 = 750, -- 12:00
+        TIER_5 = 950, -- 15:00
     }
 
     -- Магический и физический резист
@@ -199,7 +197,7 @@ if GetMapName() == "dash" then
     PHYSICAL_RESISTANCE_PERCENTAGE = 7
 
     -- Время до новых способностей
-    NEW_ABILITY_COOLDOWN = 540
+    NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 300
     REROLL_ABILITIES_MAX_COUNT = 1
 
@@ -291,13 +289,9 @@ if GetMapName() == "portal_duo" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 500
+    GRANT_GOLD = 750
 
-    CONDITION_FLAG_COUNT_WIN = 50 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
-
-    FLAG_RETURN_RADIUS = 238
-    FLAG_RETURN_DURATION = 4
-    FLAG_AUTO_RETURN_DURATION = 45
+    CONDITION_FLAG_COUNT_WIN = 57 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
     BAN_TIME = 12 -- Время на бан
 
@@ -323,9 +317,9 @@ if GetMapName() == "portal_duo" then
     {
         TIER_1 = 150, -- 0:00
         TIER_2 = 350, -- 3:30
-        TIER_3 = 550, -- 9:00
+        TIER_3 = 500, -- 9:00
         TIER_4 = 720, -- 12:00
-        TIER_5 = 950, -- 15:00
+        TIER_5 = 820, -- 15:00
     }
 
     -- Магический и физический резист
@@ -334,7 +328,7 @@ if GetMapName() == "portal_duo" then
     PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
     -- Время до новых способностей
-    NEW_ABILITY_COOLDOWN = 540
+    NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 300
     REROLL_ABILITIES_MAX_COUNT = 1
 
@@ -364,7 +358,7 @@ if GetMapName() == "portal_duo" then
     DEFENDER_BUFF_CHANCE = {12,20,25}
     DEFENDER_SETTINGS_MAGICAL_RESISTANCE = 45
     DEFENDER_SETTINGS_ARMOR = 55
-    DEFENDER_SETTINGS_INCREASE_hEAL = 160
+    DEFENDER_SETTINGS_INCREASE_hEAL = 150
     DEFENDER_SETTINGS_DURATION_BONUS = {11,13,15}
     DEFENDER_SETTINGS_COOLDOWN = 27
     DEFENDER_SETTINGS_SHIELD_CHANCE = {15,18,23}
@@ -427,9 +421,9 @@ if GetMapName() == "portal_trio" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 500
+    GRANT_GOLD = 650
 
-    CONDITION_FLAG_COUNT_WIN = 57 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
+    CONDITION_FLAG_COUNT_WIN = 50 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
     FLAG_RETURN_RADIUS = 238
     FLAG_RETURN_DURATION = 4
@@ -459,9 +453,9 @@ if GetMapName() == "portal_trio" then
     {
         TIER_1 = 150, -- 0:00
         TIER_2 = 350, -- 3:30
-        TIER_3 = 550, -- 9:00
+        TIER_3 = 500, -- 9:00
         TIER_4 = 720, -- 12:00
-        TIER_5 = 980, -- 15:00
+        TIER_5 = 820, -- 15:00
     }
 
     -- Магический и физический резист
@@ -470,7 +464,7 @@ if GetMapName() == "portal_trio" then
     PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
     -- Время до новых способностей
-    NEW_ABILITY_COOLDOWN = 540
+    NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 225
     REROLL_ABILITIES_MAX_COUNT = 1
 

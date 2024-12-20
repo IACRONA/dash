@@ -3,9 +3,9 @@ SPAWN_MORPHLING_STUN_DELAY = 5 -- СКОЛЬКО СТОИТ МОРФ
 SPAWN_MORPHLING_STUN_DELAY_HERO = 4 -- СКОЛЬКО СТОИТ ГЕРОЙ
 
 -- Время спавна босса морфа (через сколько секунд после начала игры)
-SPAWN_MORPHLING_TIME_TOOLTIP = RandomInt(600, 660) -- Случайное время спавна ОТ СТАРТА ИГРЫ (от 300 до 400 секунд) ЭТО ПЕРВЫЙ СПАВН
+SPAWN_MORPHLING_TIME_TOOLTIP = RandomInt(380, 410) -- Случайное время спавна ОТ СТАРТА ИГРЫ (от 300 до 400 секунд) ЭТО ПЕРВЫЙ СПАВН
 -- Повторное время спавна босса морфа
-SPAWN_MORPHLING_TIME_TOOLTIP_DOUBLE = RandomInt(1135, 1200) -- Случайное время спавна ОТ СТАРТА ИГРЫ (от 600 до 800 секунд) ЭТО ВТОРОЙ СПАВН
+SPAWN_MORPHLING_TIME_TOOLTIP_DOUBLE = RandomInt(700, 960) -- Случайное время спавна ОТ СТАРТА ИГРЫ (от 600 до 800 секунд) ЭТО ВТОРОЙ СПАВН
 
 SPAWN_MORPHLING_TIME = GAME_TIME_CLOCK - SPAWN_MORPHLING_TIME_TOOLTIP -- Не трогать
 SPAWN_MORPHLING_TIME_DOUBLE = GAME_TIME_CLOCK - SPAWN_MORPHLING_TIME_TOOLTIP_DOUBLE -- Не трогать
@@ -14,10 +14,10 @@ SPAWN_MORPHLING_TIME_DOUBLE = GAME_TIME_CLOCK - SPAWN_MORPHLING_TIME_TOOLTIP_DOU
 MORPHLING_LIFE_TIME = 60
 
 -- Статы морфлинга
-BASE_MORPH_MAX_HEALTH = 18000
+BASE_MORPH_MAX_HEALTH = 16000
 BASE_MORPH_MAX_MANA = 12310
-BASE_MORPH_MIN_DAMAGE = 850
-BASE_MORPH_MAX_DAMAGE = 1450
+BASE_MORPH_MIN_DAMAGE = 650
+BASE_MORPH_MAX_DAMAGE = 1250
 BASE_MORPH_MAGICAL_RESISTANCE = 25
 BASE_MORPH_PHYSICAL_ARMOR = 35
 BASE_MORPH_MOVESPEED = 400
