@@ -285,7 +285,7 @@ end
 if GetMapName() == "portal_duo" then
     RESPAWN_TIME = 6
 
-    START_GOLD = 750
+    START_GOLD = 850
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
@@ -417,13 +417,13 @@ end
 if GetMapName() == "portal_trio" then
     RESPAWN_TIME = 6
 
-    START_GOLD = 650
+    START_GOLD = 850
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 650
+    GRANT_GOLD = 850
 
-    CONDITION_FLAG_COUNT_WIN = 50 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
+    CONDITION_FLAG_COUNT_WIN = 57 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
     FLAG_RETURN_RADIUS = 238
     FLAG_RETURN_DURATION = 4
