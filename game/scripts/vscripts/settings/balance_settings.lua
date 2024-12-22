@@ -73,7 +73,7 @@ if GetMapName() == "portal_duo" then
     --Уменьшение урона по первой команде [1] - это какой тир нужен
     FIRST_MODIFIER_CURSED_LEADER = {
         [1] = {
-            incoming = 38,
+            incoming = 32,
             outgoing = -30,
         },
         [2] = {
