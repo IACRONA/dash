@@ -78,6 +78,8 @@ local EXCEPTION_ABILITIES = {
 	'item_book_of_shadows',
     'item_ogre_seal_totem',
     'naga_siren_song_of_the_siren',
+	"riki_tricks_of_the_trade",
+	"dawnbreaker_celestial_hammer",
 }
 
 local FlagReturnCountdown = class{
