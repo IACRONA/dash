@@ -50,7 +50,7 @@
 		}
 		"quill_base_damage"
 		{
-			"value" "5"
+			"value" "9"
 			"operator" "OP_ADD"
 		}
 	}
@@ -58,7 +58,7 @@
 	{
 		"side_damage_reduction"
 		{
-			"value" "2.5"
+			"value" "3.2"
 			"operator" "OP_MULTIPLY"
 
 			"multiplicative_target"			"100"
@@ -66,7 +66,7 @@
 		}
 		"back_damage_reduction"
 		{
-			"value" "2.5"
+			"value" "3.5"
 			"operator" "OP_MULTIPLY"
 
 			"multiplicative_target"			"100"
