@@ -169,8 +169,7 @@ function CAddonWarsong:DifferenceFlags()
 			hero.balanceModifier.outgoingDamage = 0
 		end
 	end)
-	DeepPrintTable(self.teamBalanceTier)
- end
+end
 
  
 function CAddonWarsong:PlaySoundForTeam(sSound, nTeam)
