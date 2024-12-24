@@ -19,8 +19,8 @@ function dazzle_life_shield:OnSpellStart()
 		index = index - 1
 		if modifier:IsDebuff() then 
 			local ability = modifier:GetAbility()
-			if ability:IsItem() then 
-				index = 0
+			if ability ~= nil and ability:IsItem() then 
+				index = 0 
 				modifier:Destroy()
 			end
 			local abilityInTable = self.netTable[ability:GetName()]
@@ -29,7 +29,7 @@ function dazzle_life_shield:OnSpellStart()
 				index = 0
 				modifier:Destroy()
 			end
-		end
+		end 
 	end
 	target:AddNewModifier(caster, self, "modifier_dazzle_life_shield", {duration = self:GetSpecialValueFor("duration")})
 	target:AddNewModifier(caster, self, "modifier_dazzle_life_shield_movespeed", {duration = self:GetSpecialValueFor("duration_movespeed")})

@@ -34,21 +34,25 @@ function dazzle_grace:OnProjectileHit_ExtraData(target, _, extraData)
 		return 
 	end
 	local caster = self:GetCaster()
+	if target:GetTeam() == caster:GetTeam() then
+		local heal = caster:HasScepter() and target:GetMaxHealth() * (self:GetSpecialValueFor("heal_pct_scepter")/100) or self:GetSpecialValueFor("heal")
+		target:Heal(heal, self)
+    	SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, target, heal, nil)
+		if RollPercentage(self:GetSpecialValueFor("chance_heal")) then 
+			target:AddNewModifier(caster, self, "modifier_dazzle_grace", {duration=self:GetSpecialValueFor("buff_duration")})
+		end
+		if RollPercentage(self:GetSpecialValueFor("chance_shield")) then 
+			local ability = caster:FindAbilityByName("dazzle_life_shield")
+			if ability then 
+				target:AddNewModifier(caster, ability, "modifier_dazzle_life_shield", {duration=self:GetSpecialValueFor("shield_duration"), isLightVersion=true})
+			end
+		end
+	else
+		local dmg = self:GetSpecialValueFor("heal")
+		ApplyDamage({victim = target, attacker = caster, damage = dmg, damage_type= DAMAGE_TYPE_MAGICAL})
+	end
 
-	local heal = caster:HasScepter() and target:GetMaxHealth() * (self:GetSpecialValueFor("heal_pct_scepter")/100) or self:GetSpecialValueFor("heal")
-	target:Heal(heal, self)
-    SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, target, heal, nil)
-
-    if RollPercentage(self:GetSpecialValueFor("chance_heal")) then 
-    	target:AddNewModifier(caster, self, "modifier_dazzle_grace", {duration=self:GetSpecialValueFor("buff_duration")})
-    end
-
-    if RollPercentage(self:GetSpecialValueFor("chance_shield")) then 
-    	local ability = caster:FindAbilityByName("dazzle_life_shield")
-    	if ability then 
-    		target:AddNewModifier(caster, ability, "modifier_dazzle_life_shield", {duration=self:GetSpecialValueFor("shield_duration"), isLightVersion=true})
-    	end
-    end
+    
 end
 
 modifier_dazzle_grace = class({

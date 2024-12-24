@@ -152,6 +152,9 @@
         // Кнопка у замены способностей
         "swap_abilities"        "Roll"
 
+
+        // dash: при нажатии на центральную башню 
+        "error_topa_and_bota_towers_are_live"  "Сначала сломайте боковые линии"
         // Название при выборе судеб
         "Choose_Your_Fate"                                                            "Выберите Судьбу"
         "Choose_Your_Spell"                                                           "Выберите Скил"
@@ -621,11 +624,14 @@
 
         //Crystal Maiden
         "DOTA_Tooltip_ability_crystal_maiden_frozen_shield"                          "Ice barier"
-        "DOTA_Tooltip_ability_crystal_maiden_frozen_shield_Description"                    "Герой создаёт ледяной щит который помогает ему одолевать врагов. После поглощения урона, щит взрывается примораживая врагов на место на %frozen_duration% секунды и наносит %aoe_damage% чистого урона.При на несении урона по герою, враги получают эффект замедления скорости атаки на %reduce_attack_speed_pct%% и замедления передвижения на %slow_move_speed_pct%% на %slow_duration% секунды и %chance_frozen%%%% шанс примёрзнуть."
+        "DOTA_Tooltip_ability_crystal_maiden_frozen_shield_Description"                    "Герой создаёт ледяной щит который помогает ему одолевать врагов. После поглощения урона, щит взрывается примораживая врагов на место на %frozen_duration% секунды и наносит %aoe_damage% чистого урона.При на несении урона по герою, враги получают эффект замедления скорости атаки на %reduce_attack_speed_pct%% и замедления передвижения на %slow_move_speed_pct%% на %slow_duration% секунды и %chance_frozen%%% шанс примёрзнуть."
         "DOTA_Tooltip_ability_crystal_maiden_frozen_shield_shield_health"                    "ЗДОРОВЬЕ ЩИТА:"
         "DOTA_Tooltip_ability_crystal_maiden_frozen_shield_radius"                    "РАДИУС:"
         "DOTA_Tooltip_ability_crystal_maiden_frozen_shield_aoe_damage"                 "УРОН ПРИ ВЗРЫВЕ:"
         "DOTA_Tooltip_ability_crystal_maiden_frozen_shield_frozen_duration"                 "ДЛИТЕЛЬНОСТЬ ЗАМОРОЗКИ:"
+        "DOTA_Tooltip_ability_special_bonus_unique_crystal_maiden_crystal_maiden_frozen_shield_shield_health"      "+{s:bonus_shield_health} к щиту от Ice barier"
+        "DOTA_Tooltip_ability_crystal_maiden_frozen_shield_chance_frozen"                "%ШАНС ПРИМЕРЗНУТЬ:"
+
 
         "DOTA_Tooltip_ability_crystal_maiden_ice_spike"                         "Ice spike"
         "DOTA_Tooltip_ability_crystal_maiden_ice_spike_Description"                         "Герой кастует ледяной шип, который замедляет врагов. Уронам по замороженным целям становиться чистым."
@@ -635,8 +641,10 @@
         "DOTA_Tooltip_ability_crystal_maiden_ice_spike_duration"                         "ДЛИТЕЛЬНОСТЬ:"
         "DOTA_Tooltip_ability_crystal_maiden_ice_spike_slow_pct"                         "%ЗАМЕДЛЕНИЕ ПЕРЕДВИЖЕНИЯ:"
         "DOTA_Tooltip_ability_crystal_maiden_ice_spike_chance_crit"                         "%ШАНС X2 УРОНА:"
+        
         "DOTA_Tooltip_ability_crystal_maiden_ice_spike_scepter_description"                         "После попадания осколки разлетаются в героев рядом на расстоянии %radius% нанеся на %shard_damage_reduce%%%  меньше урона. "
-
+        "DOTA_Tooltip_ability_special_bonus_unique_crystal_maiden_crystal_maiden_ice_spike_damage_frozen" "+{s:bonus_damage} к магическому урону и +{s:bonus_damage_frozen} чистому урону от Ice spike"
+        
         "DOTA_Tooltip_ability_crystal_maiden_crystal_blink"                         "Crystal Blink"
         "DOTA_Tooltip_ability_crystal_maiden_crystal_blink_Description"                         "Герой телепортируется в указанную точку. После блинка героя получает уменьшенный урон от всех способностей на %spell_damage_reduce%%%  на %duration% секунды."
         "DOTA_Tooltip_ability_crystal_maiden_crystal_blink_duration"                         "ДЛИТЕЛЬНОСТЬ:"
@@ -673,10 +681,11 @@
         //Dazzle
         "DOTA_Tooltip_ability_dazzle_dispell"                          "Dispel"
         "DOTA_Tooltip_ability_dazzle_dispell_Description"                    "Снимает один отрицательный эффект."
+        "DOTA_Tooltip_ability_dazzle_dispell_AbilityCastRange"  "ДАЛЬНОСТЬ ПРИМЕНЕНИЯ:"
+        "DOTA_Tooltip_ability_special_bonus_unique_dazzle_dazzle_dispell_abilitycooldown"  "-1 сек. перезарядки Dispel"
 
         "DOTA_Tooltip_ability_dazzle_life_shield"                          "Shield of Life"
-        "DOTA_Tooltip_ability_dazzle_life_shield_Description"                    "Щит Жизни восстанваливает потерянные жизни и снимает один 
-        магический отрцицательный эффект, так же поглащённый урон частично возвращает обратно атакующиму."
+        "DOTA_Tooltip_ability_dazzle_life_shield_Description"                    "Щит Жизни восстанваливает потерянные жизни и снимает один магический отрцицательный эффект, так же поглащённый урон частично возвращает обратно атакующиму."
         "DOTA_Tooltip_ability_dazzle_life_shield_duration"                         "ДЛИТЕЛЬНОСТЬ:"
         "DOTA_Tooltip_ability_dazzle_life_shield_heal"                         "ЛЕЧЕНИЕ:"
         "DOTA_Tooltip_ability_dazzle_life_shield_shield_health"                         "ЗДОРОВЬЕ БАРЬЕРА:"
@@ -687,20 +696,25 @@
 
         "DOTA_Tooltip_ability_dazzle_grace"                          "Grace"
         "DOTA_Tooltip_ability_dazzle_grace_Description"                    "Герой выпускает три святящихся  шара наполенные энергией жизни, с шансом наложить на героя ослабленное заклинание 'Щита жизни', но его сила будет уменьшина на 50%, так же с шансом в %chance_heal%%% наложить эффект 'Божий свет', которое лечит союзного героя в течении %buff_duration% секунд."
-        "DOTA_Tooltip_ability_dazzle_grace_heal"                          "ЛЕЧЕНИЕ:"
+        "DOTA_Tooltip_ability_dazzle_grace_heal"                          "ЛЕЧЕНИЕ/УРОН:"
         "DOTA_Tooltip_ability_dazzle_grace_chance_shield"                          "%ШАНС НАЛОЖИТЬ ЩИТ:"
         "DOTA_Tooltip_ability_dazzle_grace_chance_heal"                          "%ШАНС НАЛОЖИТЬ БОЖИЙ СВЕТ:"
         "DOTA_Tooltip_ability_dazzle_grace_buff_heal_pct"                          "%ЛЕЧЕНИЕ БОЖИЙ СВЕТ:"
+        
         "DOTA_Tooltip_ability_dazzle_grace_scepter_description"                         "Лечение теперь происходит в процентном соотношении. Лечит %heal_pct_scepter%%% от макс. здоровья."
-     
+        
+        "DOTA_Tooltip_ability_special_bonus_unique_dazzle_grace_chance_shield"  "+{s:bonus_chance_shield}% к шансу наложить щит от Grace"
+
         "DOTA_Tooltip_modifier_dazzle_grace"                                     "Grace"
         "DOTA_Tooltip_modifier_dazzle_grace_Description"                         "Вы благословлены"
-
+        
         "DOTA_Tooltip_modifier_dazzle_life_shield"                                     "Shield of Life"
         "DOTA_Tooltip_modifier_dazzle_life_shield_Description"                         "Вы защищены самой жизнью"
 
         "DOTA_Tooltip_modifier_dazzle_life_shield_movespeed"                                     "Shield of Life"
         "DOTA_Tooltip_modifier_dazzle_life_shield_movespeed_Description"                         "Скорость передвижения увелична на %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%"
+        "DOTA_Tooltip_ability_special_bonus_unique_dazzle_life_shield_health"                    "+{s:bonus_shield_health} к поглощению Shield of Life"
+        
 
         //enigma
         "dota_enigma_error_distance"                                                            "Вы слишком далеко от портала"

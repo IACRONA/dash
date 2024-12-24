@@ -15,7 +15,8 @@
 		"Ability4"		"crystal_maiden_crystal_blink"
 		"Ability5"		""
 		"Ability6"		"crystal_maiden_ice_spike"
-
+		"Ability14"     "special_bonus_unique_crystal_maiden_crystal_maiden_frozen_shield_shield_health"
+		"Ability17"  	"special_bonus_unique_crystal_maiden_crystal_maiden_ice_spike_damage_frozen"
 		"StatusHealth"				        "600"
 		"MagicalResistance"                 "35"
 		"ArmorPhysical"		"11"
@@ -38,6 +39,10 @@
 					}
 				}
 			}
+			"crystal_maiden_cold_comfort"
+			{
+				"Deprecated"              "true"
+			}
 		}
 	}
 	"npc_dota_hero_dazzle"
@@ -47,10 +52,13 @@
 		"Ability2"      "dazzle_life_shield"
 		"Ability5"		"dazzle_dispell"
 		"Ability6" 		"dazzle_grace"
+		"Ability13"  "special_bonus_unique_dazzle_life_shield_health"
+		"Ability16"  "special_bonus_unique_dazzle_dispell_abilitycooldown"
+		"Ability17"  "special_bonus_unique_dazzle_grace_chance_shield"
 	}
 
 	"npc_dota_hero_enigma"
-	{
+	{ 
 		"Ability1"		"enigma_void_strike"
 		"Ability2"      "enigma_house_bolt"
 		"Ability4"		"enigma_portal"

@@ -1,6 +1,6 @@
 TIMERS_VERSION = "1.01"
 
---[[
+--[[ 
 
   -- A timer running every second that starts immediately on the next frame, respects pauses
   Timers:CreateTimer(function()

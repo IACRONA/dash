@@ -3,7 +3,9 @@ dazzle_dispell = class({})
 function dazzle_dispell:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_dawnbreaker/dawnbreaker_luminosity.vpcf", context)
 end
-
+function dazzle_dispell:GetCastRange()
+	return self:GetSpecialValueFor("CastRange")
+end
 function dazzle_dispell:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()

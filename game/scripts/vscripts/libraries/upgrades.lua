@@ -97,7 +97,7 @@ function Upgrades:QueueSelection(hero, rarity)
 	Upgrades.queued_selection[player_id] = Upgrades.queued_selection[player_id] or {}
 
 	table.insert(Upgrades.queued_selection[player_id], {
-		rarity = rarity,
+		rarity = rarity, 
 		is_lucky_trinket_proc = Upgrades.lucky_trinket_proc[player_id]
 	})
 

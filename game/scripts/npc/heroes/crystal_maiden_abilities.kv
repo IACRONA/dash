@@ -37,7 +37,12 @@
 				"affected_by_aoe_increase"	"1"
 			}
 			"aoe_damage" "150"
-			"shield_health" 	"140 280 500 550"
+			"shield_health" 	
+			{
+				"value" "140 280 500 550" 
+				"special_bonus_unique_crystal_maiden_crystal_maiden_frozen_shield_shield_health" "+200"
+			}
+			"bonus_shield_health" "200"
  		}
 	}	
 
@@ -71,19 +76,29 @@
 		"AbilityValues"
 		{
 			"duration"	 				"1.3"
-			"damage"                    "320 400 640 860"
-			"damage_frozen" {
+			"damage"                    
+			{
+				"value" "320 400 640 860"
+				"special_bonus_unique_crystal_maiden_crystal_maiden_ice_spike_damage_frozen" "+100"
+			}
+			"bonus_damage" "100"
+			"damage_frozen" 
+			{
 				"value"                 "350 440 520 640"
+				"special_bonus_unique_crystal_maiden_crystal_maiden_ice_spike_damage_frozen" "+150"
 				"DamageTypeTooltip"		"DAMAGE_TYPE_PURE"
-			}             
+			}    
+			"bonus_damage_frozen" "150"         
 			"slow_pct"                  "-20 -30 -40 -45"
 			"projectile_speed"              "1200"
 			"chance_crit"              "13"
-			"radius" {
+			"radius" 
+			{
 				"value"                 "300"
 				"RequiredScepter"		"1"
 			}      
-			"shard_damage_reduce" {
+			"shard_damage_reduce" 
+			{
 				"value"                 "50"
 				"RequiredScepter"		"1"
 			}       

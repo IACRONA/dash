@@ -208,8 +208,8 @@ function CAddonWarsong:InitGameMode()
 	ListenToGameEvent("npc_spawned", Dynamic_Wrap(CAddonWarsong, "OnNPCSpawned"), self)
 	ListenToGameEvent("dota_team_kill_credit", Dynamic_Wrap( self, 'OnTeamKillCredit' ), self )
     ListenToGameEvent("entity_killed", Dynamic_Wrap( self, 'OnEntityKilled' ), self )
-	ListenToGameEvent( "dota_buyback", Dynamic_Wrap( self, 'OnBuyback' ), self )
- 	 
+	ListenToGameEvent("dota_buyback", Dynamic_Wrap( self, 'OnBuyback' ), self )
+	ListenToGameEvent("dota_hud_error_message", Dynamic_Wrap( self, 'OnErrorMessage' ), self )
 
 	GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(self, "ModifyGoldFilter"), self)
 
@@ -602,6 +602,7 @@ end
 
 
 function CAddonWarsong:GiveBooks()
+	print("Механика книг работает!")
 	self.bookTicks = {
 		common = {},
 		rare = {},
@@ -624,7 +625,7 @@ function CAddonWarsong:GiveBooks()
 			if self.bookTicks.common[playerId] == nil then
 				initPlayerBooks(playerId)
 				return
-			end
+			end 
 
 			self.bookTicks.common[playerId].tick = self.bookTicks.common[playerId].tick + 1
 			self.bookTicks.rare[playerId].tick = self.bookTicks.rare[playerId].tick + 1
@@ -651,26 +652,25 @@ function CAddonWarsong:GiveBooks()
 						end
 					end
 				end
-				if place == "last" then
+				if place == "last" then 
 					replaceBookTime(LAST_BOOK_COOLDOWN)
 				elseif place == "prelast" then
 					replaceBookTime(PRE_LAST_BOOK_COOLDOWN)
 				end
 			end
-
+			print(self.bookTicks.common[playerId].tick .. "/".. commonTime ..  " Тиков для обычной книги")
 			if self.bookTicks.common[playerId].count < BOOK_COMMON_LIMIT and  self.bookTicks.common[playerId].tick >= commonTime then
 				self.bookTicks.common[playerId].tick = 0
 				self.bookTicks.common[playerId].count = self.bookTicks.common[playerId].count + 1
-				
+				print("Талант обычный для игрока " .. playerId .. " с героем:  ".. hero:GetUnitName())
 				Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
-
 				EmitSoundClient("sphere_choice", player)
 			end
 
 			if GameRules:GetDOTATime(false, false) >= BOOK_RARE_START and self.bookTicks.rare[playerId].count < BOOK_RARE_LIMIT and self.bookTicks.rare[playerId].tick >= rareTime then
 				self.bookTicks.rare[playerId].tick = 0
 				self.bookTicks.rare[playerId].count = self.bookTicks.rare[playerId].count + 1
-
+				print("Талант редкий для игрока " .. playerId .. " с героем:  ".. hero:GetUnitName())
 				Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
 				EmitSoundClient("sphere_choice", player)
 			end
@@ -678,7 +678,7 @@ function CAddonWarsong:GiveBooks()
 			if self.bookTicks.epic[playerId].count < BOOK_EPIC_LIMIT and self.bookTicks.epic[playerId].tick >= epicTime then
 				self.bookTicks.epic[playerId].tick = 0
 				self.bookTicks.epic[playerId].count = self.bookTicks.epic[playerId].count + 1
-
+				print("Талант эпический для игрока " .. playerId .. " с героем:  ".. hero:GetUnitName())
 				Upgrades:QueueSelection(hero, UPGRADE_RARITY_EPIC)
 				EmitSoundClient("sphere_choice", player)
 			end
@@ -776,5 +776,8 @@ function CAddonWarsong:OnNPCSpawned(event)
 			Upgrades:ApplySummonUpgrades(hUnit, hUnit:GetUnitName(), owner)
 		end
 	end
-
+	if hUnit:IsCreep() and GetMapName() == "dash" and GameRules:GetDOTATime(false, false) >= CREEP_AMP_TIME then
+		hUnit:AddNewModifier(hUnit, nil, "modifier_dash_creep_amp", {CREEP_AMP = CREEP_AMP})
+	end
 end
+

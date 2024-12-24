@@ -60,6 +60,7 @@
   font-size: 22px;
   font-weight: bold;
   font-family: titleFont;
+  margin-bottom:10px;
 }
 
 #ShopItemPanel {
@@ -128,6 +129,7 @@
   horizontal-align: center;
   overflow: noclip;
   z-index: 4;
+
 }
 
 #ShopItemLabel {
@@ -138,8 +140,8 @@
 }
 
 #ShopItemIcon {
-  width: 25px;
-  height: 25px;
+  width: 50px;
+  height: 50px;
   vertical-align: bottom;
   margin-right: 4px;
 }
@@ -147,8 +149,9 @@
 .ShopItemResource {
   flow-children: down;
   margin-bottom: 8px;
-  width: 100%;
+  width: 200%;
   visibility: collapse;
+  margin-left:20px;
 }
 
 .ShopItemBuy {

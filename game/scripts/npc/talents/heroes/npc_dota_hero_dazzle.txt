@@ -1,33 +1,33 @@
 "npc_dota_hero_dazzle"
 {
-	"dazzle_poison_touch"
-	{
-		"damage"
-		{
-			"value" "20"
-			"operator" "OP_ADD"
-		}
-		"start_radius"
-		{
-			"value" "35"
-			"operator" "OP_ADD"
-			"max_count" "10"
-			"linked_special_values"
-			{
-				"end_radius" "35"
-			}
-		}
-	}
-	"dazzle_shallow_grave"
+	"dazzle_life_shield"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 		}
-		"heal_amplify"
+		"shield_health"
 		{
-			"value" "5"
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+		"damage_return"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+		}
+		"heal_amp"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+		} 
+	}
+	"dazzle_dispell"
+	{
+		"AbilityCastRange"
+		{
+			"value" "20"
 			"operator" "OP_ADD"
 		}
 	}
@@ -56,13 +56,22 @@
 			"operator" "OP_ADD"
 		}
 	}
-	"dazzle_bad_juju"
+	"dazzle_grace"
 	{
-		"mana_cost_increase_pct"
+		"cooldown_and_manacost"
 		{
-			"value" "-10"
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+		}
+		"chance_shield"
+		{
+			"value" "2"
 			"operator" "OP_ADD"
-			"max_count" "4"
+		}
+		"heal"
+		{
+			"value" "25"
+			"operator" "OP_MULTIPLY"
 		}
 	}
 	"dazzle_innate_weave"

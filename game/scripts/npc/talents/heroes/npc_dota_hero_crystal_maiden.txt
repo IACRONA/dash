@@ -15,7 +15,7 @@
 		}
 		"nova_damage"
 		{
-			"value" "60"
+			"value" "60" 
 			"operator" "OP_ADD"
 		}
 	}
@@ -51,40 +51,45 @@
 			}
 		}
 	}
-	"crystal_maiden_brilliance_aura"
+	"crystal_maiden_frozen_shield"
 	{
-		"base_mana_regen"
+		"chance_frozen"
 		{
 			"value" "2"
 			"operator" "OP_ADD"
-			"linked_special_values"
-			{
-				"proximity_mana_regen_tooltip" "6"
-			}
+		}
+		"aoe_damage"
+		{
+			"value" "100"
+			"operator" "OP_ADD"
+		}
+		"shield_health"
+		{
+			"value" "100"
+			"operator" "OP_ADD"
 		}
 	}
-	"crystal_maiden_freezing_field"
+	"crystal_maiden_ice_spike"
 	{
-		"cooldown_and_manacost"
+		"damage_frozen"
 		{
-			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"value" "25"
+			"operator" "OP_ADD"
 		}
 		"damage"
 		{
-			"value" "45"
+			"value" "50"
 			"operator" "OP_ADD"
 		}
-		"movespeed_slow"
+		"chance_crit"
 		{
-			"value" "-6"
+			"value" "1"
 			"operator" "OP_ADD"
-			"max_count" "10"
-			"linked_special_values"
-			{
-				"attack_slow" "-20"
-				"shard_self_movement_speed_slow_pct" "7.5"
-			}
+		}
+		"slow_pct"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
 		}
 	}
 }

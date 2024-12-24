@@ -65,6 +65,17 @@ return function(t, hAddon)
 			end
 		end
 	end
-
+	-- if t.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET  then
+	-- 	print("3")
+	-- 	if GetMapName() == "dash" then
+	-- 		print("3")
+	-- 		local target = EntIndexToHScript(t.entindex_target)
+	-- 		local player = PlayerResource:GetPlayer(hMainUnit:GetPlayerOwnerID())
+	-- 		if target:IsBuilding() and target:GetUnitName() == "tower_dire_3_1" or target:GetUnitName() == "radiant_mid_4_1"  then
+	-- 			print("3")
+	-- 			CustomGameEventManager:Send_ServerToPlayer(player, "custom_error_message", {message="#error_topa_and_bota_towers_are_live"})
+	-- 		end
+	-- 	end
+	-- end
 	return true
 end

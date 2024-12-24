@@ -53,7 +53,7 @@
                     </Panel>
                     <TextButton id="ShopItemBuyForBoth" class="ShopItemBuy" text="#hud_books_shop_buy"/>
                  </Panel>
-                <Panel id="ShopItemPreview">
+                <Panel id="ShopItemPreview"> 
                     <DOTAItemImage id="ShopItemImage"   />
                     <Panel id="ShopItemPreviewImage" hittest="false" /> 
                 </Panel>

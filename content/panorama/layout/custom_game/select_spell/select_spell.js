@@ -32,7 +32,7 @@ function spell_select_open_panel(params) {
       if (!queue.spell) {
         queue.spell = true;
       }
-    } else {
+    } else { 
       queue.spell = true;
       $("#SpellSelectedMain").style.opacity = "1";
     }

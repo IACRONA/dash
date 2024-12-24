@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 item_coral = class({})
 LinkLuaModifier( "modifier_item_coral_consumed", "modifiers/items/modifier_item_coral_consumed", LUA_MODIFIER_MOTION_NONE )
 
@@ -13,7 +14,7 @@ function item_coral:OnSpellStart()
 		local hCharges = self:GetCurrentCharges()
  
 		local particleImpact = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/red_zuus_arc_lightning_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster)
-		ParticleManager:SetParticleControlEnt(``
+		ParticleManager:SetParticleControlEnt(
 			particleImpact,
 			1,
 			hCaster,

@@ -243,8 +243,7 @@ function DoWithAllPlayers(func)
 	for i=0, PlayerResource:GetPlayerCount() - 1 do 
 	  local player = PlayerResource:GetPlayer(i)
 	  local hero = PlayerResource:GetSelectedHeroEntity(i) 
-  
-	  func(player, hero, i)
+	  if  PlayerResource:IsValidPlayer(i) then func(player, hero, i) end
 	end 
   end
 

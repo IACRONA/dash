@@ -191,6 +191,9 @@ if GetMapName() == "dash" then
         TIER_5 = 950, -- 15:00
     }
 
+    CREEP_AMP_TIME = 30 -- время когда крипы усиляются  ( 300 сек = 5 мин)
+    CREEP_AMP = 0.25 -- 25 процентов амплифая крипов
+
     -- Магический и физический резист
     RESISTANCE_TIME_ACTIVATED = 20 -- Время когда он начинается (мин.)
     MAGICAL_RESISTANCE_PERCENTAGE = 7
@@ -317,7 +320,7 @@ if GetMapName() == "portal_duo" then
     {
         TIER_1 = 150, -- 0:00
         TIER_2 = 350, -- 3:30
-        TIER_3 = 500, -- 9:00
+        TIER_3 = 500, -- 9:00   
         TIER_4 = 720, -- 12:00
         TIER_5 = 820, -- 15:00
     }

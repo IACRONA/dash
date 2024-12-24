@@ -1,7 +1,7 @@
 "DOTAAbilities"
 {
 	"dazzle_dispell"
-	{
+	{ 
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"             		"ability_lua"
@@ -17,7 +17,16 @@
  		"AbilityCastPoint"				"0.2"
 		"AbilityManaCost"				"50 50 25 20"
 		"AbilityCooldown"               "20 15 10 5"
-		"AbilityCastRange"				"900"
+		"AbilityValues" 
+		{ 
+			"AbilityCastRange"				"900"
+			"AbilityCooldown"
+			{
+				"value" "20 15 10 5"
+				"special_bonus_unique_dazzle_dispell_abilitycooldown" "-1"
+			}
+			"bonus_cooldown_reduction" "1"
+		}
 	}
 
 	"dazzle_life_shield"
@@ -29,7 +38,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"AbilityCastAnimation"		"ACT_DOTA_SHALLOW_GRAVE"
+		"AbilityCastAnimation"		    "ACT_DOTA_SHALLOW_GRAVE"
 		"AbilityTextureName"			"dazzle/dazzle_life_shield"
 		"LevelsBetweenUpgrades"			"1"	
 		"RequiredLevel"					"1"
@@ -43,11 +52,16 @@
 		{
 			"duration"                  "15"
 			"heal"                      "150 240 290 350"
-			"shield_health"             "350 450 850 1250"
+			"shield_health"
+			{
+				"value" "350 450 850 1250"
+				"special_bonus_unique_dazzle_life_shield_health"  "+150"
+			}
 			"damage_return"             "15 18 20 35"
 			"heal_amp"                  "5"
 			"bonus_movespeed_pct"    		"50"
 			"duration_movespeed"			"3"
+			"bonus_shield_health" "150"
 		}
 	}
 
@@ -58,7 +72,7 @@
 		"BaseClass"             		"ability_lua"
 		"ScriptFile"					"abilities/heroes/dazzle/dazzle_grace"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 		"AbilityTextureName"			"dazzle/dazzle_grace"
@@ -81,8 +95,13 @@
 			"buff_duration"             "5"
 			"shield_duration"           "15"
 			"tick"                      "1"
-			"chance_heal"				"13"
-			"chance_shield"             "10 12 15 20"
+			"chance_heal"				"13" 
+			"chance_shield"         
+			{
+				"value"   "10 12 15 20"
+				"special_bonus_unique_dazzle_grace_chance_shield"  "+15"
+			}
+			"bonus_chance_shield" "15"
 			"heal_pct_scepter" {
 				"value"                 "12"
 				"RequiredScepter"		"1"
