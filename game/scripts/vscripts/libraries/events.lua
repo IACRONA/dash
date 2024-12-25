@@ -34,7 +34,42 @@ function CAddonWarsong:OnEntityKilled( params )
     if killedUnit:GetUnitName() == "npc_dota_badguys_fort" or killedUnit:GetUnitName() == "npc_dota_goodguys_fort" then
         CAddonWarsong:SortedMvpPlayers()
     end
+	if killedUnit:IsBuilding() then
+		local mid_destroy_dire = true
+    	local mid_destroy_radiant = true
+		for _, tower_list in pairs({tower_to_kills_for_radiant, tower_to_kills_for_dire}) do
+			for k, v in pairs(tower_list) do
+				if killedUnit:GetUnitName() == k then
+					tower_list[k] = v - 1
+				end
+			end 
+		end
+		for k, v in pairs(tower_to_kills_for_radiant) do
+			if v ~= 0 then
+				mid_destroy_dire = false
+				break
+			end
+		end
+		for k, v in pairs(tower_to_kills_for_dire) do
+			if v ~= 0 then
+				mid_destroy_radiant = false
+				break
+			end
+		end
+		if mid_destroy_dire or mid_destroy_radiant then
+			local all_buildings = Entities:FindAllInSphere(Vector(0, 0, 0), 99999999999)
+			for _, tower in pairs(all_buildings) do
+				local tower_name = tower.GetUnitName and tower:GetUnitName()
+				if mid_destroy_dire and tower_name == "npc_dota_badguys_tower4" then
+					tower:RemoveModifierByName("modifier_for_middle_towers_for_unvulbure")
+				elseif mid_destroy_radiant and tower_name == "npc_dota_goodguys_tower4" then
+					tower:RemoveModifierByName("modifier_for_middle_towers_for_unvulbure")
+				end
+			end
+		end
+	end
 end
+
 
 function CAddonWarsong:ChangeKills()
 	if GetMapName() == "warsong" then return end

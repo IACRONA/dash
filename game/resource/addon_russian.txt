@@ -153,8 +153,8 @@
         "swap_abilities"        "Roll"
 
 
-        // dash: при нажатии на центральную башню 
-        "error_topa_and_bota_towers_are_live"  "Сначала сломайте боковые линии"
+        // dash: при нажатии на центральную башню ошибка сломайте тавера боковые
+        "error_topa_and_bota_towers_are_live"                                         "Сначала сломайте боковые линии"
         // Название при выборе судеб
         "Choose_Your_Fate"                                                            "Выберите Судьбу"
         "Choose_Your_Spell"                                                           "Выберите Скил"

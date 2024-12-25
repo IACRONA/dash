@@ -17,6 +17,7 @@ LinkLuaModifier('modifier_warsong_fate_murder', 'modifiers/modifier_warsong_fate
 LinkLuaModifier('modifier_warsong_fate_one_punchman', 'modifiers/modifier_warsong_fate_one_punchman', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_warsong_fate_himaron', 'modifiers/modifier_warsong_fate_himaron', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_teleport_scroll_fast', 'modifiers/modifier_teleport_scroll_fast', LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier('modifier_for_middle_towers_for_unvulbure', 'modifiers/modifier_for_middle_towers_for_unvulbure', LUA_MODIFIER_MOTION_NONE)
 
 LinkLuaModifier('modifier_dash_creep_amp', 'modifiers/modifier_dash_creep_amp', LUA_MODIFIER_MOTION_NONE)
 

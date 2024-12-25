@@ -280,8 +280,21 @@ if GetMapName() == "dash" then
     MAX_SPHERE_LEVEL = 3
     COUNT_SPHERE_CHOICE = 2
     MAX_SPHERE_COUNT = 10
+    -- таверы которые нужно снести чтобы можно было сломать центральную башню для радиант 
+    tower_to_kills_for_radiant = {
+        ["npc_dota_badguys_tower2_bot"] = 2,
+        ["npc_dota_badguys_tower2_top"] = 2,
+        ["npc_dota_badguys_tower3_top"] = 1,
+        ["npc_dota_badguys_tower3_bot"] = 1, 
+    }
+    -- таверы которые нужно снести чтобы можно было сломать центральную башню для даер 
+    tower_to_kills_for_dire = {
+        ["npc_dota_goodguys_tower2_top"] = 2,
+        ["npc_dota_goodguys_tower2_bot"] = 2,
+        ["npc_dota_goodguys_tower3_bot"] = 1,
+        ["npc_dota_goodguys_tower3_top"] = 1
+    }
 
- 
 end
 
 -- Настройки PORTAL DUO

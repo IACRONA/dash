@@ -209,7 +209,6 @@ function CAddonWarsong:InitGameMode()
 	ListenToGameEvent("dota_team_kill_credit", Dynamic_Wrap( self, 'OnTeamKillCredit' ), self )
     ListenToGameEvent("entity_killed", Dynamic_Wrap( self, 'OnEntityKilled' ), self )
 	ListenToGameEvent("dota_buyback", Dynamic_Wrap( self, 'OnBuyback' ), self )
-	ListenToGameEvent("dota_hud_error_message", Dynamic_Wrap( self, 'OnErrorMessage' ), self )
 
 	GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(self, "ModifyGoldFilter"), self)
 
@@ -304,7 +303,7 @@ function CAddonWarsong:OnGameRulesStateChange()
                 if DOTAGameManager:GetHeroNameByID( i ) ~= nil then
                     GameRules:AddHeroToPlayerAvailability(iPlayerID, i )
                 end
-            end
+            end 	
         end
         self.banned_heroes_same = {}
         Timers:CreateTimer(0.1, function()
@@ -525,6 +524,7 @@ function CAddonWarsong:OnGameRulesStateChange()
 			end)
 
 			if GetMapName() == "dash" then
+				self:GiveTowersModifiersUNVUIL()
 				Timers:CreateTimer(1, function()
 					local goldTeam = {
 						[DOTA_TEAM_GOODGUYS] = 0,
@@ -585,7 +585,7 @@ function CAddonWarsong:OnGameRulesStateChange()
 							hero.balanceModifier.outgoingDamage = 0
 						end
 					end)
-
+					
 					return 2
 				end)
 			end
@@ -602,7 +602,6 @@ end
 
 
 function CAddonWarsong:GiveBooks()
-	print("Механика книг работает!")
 	self.bookTicks = {
 		common = {},
 		rare = {},
@@ -658,11 +657,10 @@ function CAddonWarsong:GiveBooks()
 					replaceBookTime(PRE_LAST_BOOK_COOLDOWN)
 				end
 			end
-			print(self.bookTicks.common[playerId].tick .. "/".. commonTime ..  " Тиков для обычной книги")
 			if self.bookTicks.common[playerId].count < BOOK_COMMON_LIMIT and  self.bookTicks.common[playerId].tick >= commonTime then
 				self.bookTicks.common[playerId].tick = 0
 				self.bookTicks.common[playerId].count = self.bookTicks.common[playerId].count + 1
-				print("Талант обычный для игрока " .. playerId .. " с героем:  ".. hero:GetUnitName())
+
 				Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
 				EmitSoundClient("sphere_choice", player)
 			end
@@ -670,7 +668,6 @@ function CAddonWarsong:GiveBooks()
 			if GameRules:GetDOTATime(false, false) >= BOOK_RARE_START and self.bookTicks.rare[playerId].count < BOOK_RARE_LIMIT and self.bookTicks.rare[playerId].tick >= rareTime then
 				self.bookTicks.rare[playerId].tick = 0
 				self.bookTicks.rare[playerId].count = self.bookTicks.rare[playerId].count + 1
-				print("Талант редкий для игрока " .. playerId .. " с героем:  ".. hero:GetUnitName())
 				Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
 				EmitSoundClient("sphere_choice", player)
 			end
@@ -678,7 +675,6 @@ function CAddonWarsong:GiveBooks()
 			if self.bookTicks.epic[playerId].count < BOOK_EPIC_LIMIT and self.bookTicks.epic[playerId].tick >= epicTime then
 				self.bookTicks.epic[playerId].tick = 0
 				self.bookTicks.epic[playerId].count = self.bookTicks.epic[playerId].count + 1
-				print("Талант эпический для игрока " .. playerId .. " с героем:  ".. hero:GetUnitName())
 				Upgrades:QueueSelection(hero, UPGRADE_RARITY_EPIC)
 				EmitSoundClient("sphere_choice", player)
 			end
@@ -780,4 +776,13 @@ function CAddonWarsong:OnNPCSpawned(event)
 		hUnit:AddNewModifier(hUnit, nil, "modifier_dash_creep_amp", {CREEP_AMP = CREEP_AMP})
 	end
 end
-
+-- выдаем неуязвимость центральным башням 
+function CAddonWarsong:GiveTowersModifiersUNVUIL()
+    local all_buildings = Entities:FindAllInSphere(Vector(0,0,0), 99999999999)
+    for _, tower in pairs(all_buildings) do
+        local tower_name = tower.GetUnitName and tower:GetUnitName()
+        if  tower_name == "npc_dota_goodguys_tower4" or tower_name == "npc_dota_badguys_tower4" then
+            tower:AddNewModifier(tower, nil, "modifier_for_middle_towers_for_unvulbure", {})
+        end
+    end
+end
