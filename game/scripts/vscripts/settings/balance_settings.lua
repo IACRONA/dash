@@ -100,10 +100,10 @@ if GetMapName() == "portal_duo" then
     --Убийства лидера последееий и иногда предпоследний командой кулдаун
     KILL_LEADER_REWARD_TIME = 240
 
-    BOOK_COMMON_COOLDOWN = 90
-    BOOK_RARE_START = 600
-    BOOK_RARE_COOLDOWN = 100
-    BOOK_EPIC_COOLDOWN = 400
+    BOOK_COMMON_COOLDOWN = 70
+    BOOK_RARE_START = 480
+    BOOK_RARE_COOLDOWN = 80
+    BOOK_EPIC_COOLDOWN = 333
     BOOK_COMMON_LIMIT = 30
     BOOK_RARE_LIMIT = 25
     BOOK_EPIC_LIMIT = 8
@@ -316,6 +316,6 @@ if GetMapName() == "dash" then
     BOOK_EPIC_COOLDOWN = 600 -- BOOK_EPIC_COOLDOWN = 600
     BOOK_COMMON_LIMIT = 30
     BOOK_RARE_LIMIT = 15
-    BOOK_EPIC_LIMIT = 5
+    BOOK_EPIC_LIMIT = 7
 
 end
