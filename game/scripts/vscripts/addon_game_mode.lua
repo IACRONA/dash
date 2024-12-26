@@ -209,7 +209,8 @@ function CAddonWarsong:InitGameMode()
 	ListenToGameEvent("dota_team_kill_credit", Dynamic_Wrap( self, 'OnTeamKillCredit' ), self )
     ListenToGameEvent("entity_killed", Dynamic_Wrap( self, 'OnEntityKilled' ), self )
 	ListenToGameEvent("dota_buyback", Dynamic_Wrap( self, 'OnBuyback' ), self )
-
+	ListenToGameEvent("player_disconnect", Dynamic_Wrap( self, 'OnPlayerDisconnect' ), self )
+	ListenToGameEvent("player_connect_full", Dynamic_Wrap( self, 'OnPlayerConnect' ), self )
 	GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(self, "ModifyGoldFilter"), self)
 
     CustomGameEventManager:RegisterListener('select_kills_event', function(_, event)
@@ -419,16 +420,14 @@ function CAddonWarsong:OnGameRulesStateChange()
 		})
 		if GetMapName() == "portal_duo" then
 			local teams = {DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS, DOTA_TEAM_CUSTOM_1, DOTA_TEAM_CUSTOM_2, DOTA_TEAM_CUSTOM_3, DOTA_TEAM_CUSTOM_4}
-
 			for _,team in ipairs(teams) do
-				local sentry = CreateUnitByName("npc_dummy_unit", Entities:FindByName(nil, "point_sentry"):GetAbsOrigin(), true, nil, nil, team)
+				local sentry = CreateUnitByName("npc_dota_target_dummy", Entities:FindByName(nil, "point_sentry"):GetAbsOrigin(), true, nil, nil, team)
 				sentry:AddNewModifier(sentry, nil, "modifier_true_sight_portal_aura", {})
 			end
 		elseif GetMapName() == "portal_trio" then
 			local teams = {DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS, DOTA_TEAM_CUSTOM_1, DOTA_TEAM_CUSTOM_2}
-
 			for _,team in ipairs(teams) do
-				local sentry = CreateUnitByName("npc_dummy_unit", Entities:FindByName(nil, "point_sentry"):GetAbsOrigin(), true, nil, nil, team)
+				local sentry = CreateUnitByName("npc_dota_target_dummy", Entities:FindByName(nil, "point_sentry"):GetAbsOrigin(), true, nil, nil, team)
 				sentry:AddNewModifier(sentry, nil, "modifier_true_sight_portal_aura", {})
 			end
         end
@@ -607,17 +606,16 @@ function CAddonWarsong:GiveBooks()
 		rare = {},
 		epic = {},
 	}
-	
+	self.bookReserve = {}
 	local initPlayerBooks = function(playerId)
-		self.bookTicks.common[playerId] = {tick = 0, count = 0}
-		self.bookTicks.rare[playerId] = {tick = 0, count = 0}
-		self.bookTicks.epic[playerId] = {tick = 0, count = 0}
-	end
+        self.bookTicks.common[playerId] = {tick = 0, count = 0}
+        self.bookTicks.rare[playerId] = {tick = 0, count = 0}
+        self.bookTicks.epic[playerId] = {tick = 0, count = 0}
+        self.bookReserve[playerId] = {common = 0, rare = 0, epic = 0} -- Инициализация резерва
+    end
 	DoWithAllPlayers(function(player, hero, playerId)
-		initPlayerBooks(playerId)
-	end)
-
- 
+        initPlayerBooks(playerId)
+    end)
 	Timers:CreateTimer(1, function()
 		DoWithAllPlayers(function(player, hero, playerId)
 			if not hero then return end
@@ -657,27 +655,39 @@ function CAddonWarsong:GiveBooks()
 					replaceBookTime(PRE_LAST_BOOK_COOLDOWN)
 				end
 			end
-			if self.bookTicks.common[playerId].count < BOOK_COMMON_LIMIT and  self.bookTicks.common[playerId].tick >= commonTime then
-				self.bookTicks.common[playerId].tick = 0
-				self.bookTicks.common[playerId].count = self.bookTicks.common[playerId].count + 1
 
-				Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
-				EmitSoundClient("sphere_choice", player)
-			end
+			if self.bookTicks.common[playerId].count < BOOK_COMMON_LIMIT and self.bookTicks.common[playerId].tick >= commonTime then
+                self.bookTicks.common[playerId].tick = 0
+                if self.bookTicks.common[playerId].disconnected then
+                    self.bookReserve[playerId].common = self.bookReserve[playerId].common + 1
+                else
+                    self.bookTicks.common[playerId].count = self.bookTicks.common[playerId].count + 1
+                    Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
+                    EmitSoundClient("sphere_choice", player)
+                end
+            end
 
 			if GameRules:GetDOTATime(false, false) >= BOOK_RARE_START and self.bookTicks.rare[playerId].count < BOOK_RARE_LIMIT and self.bookTicks.rare[playerId].tick >= rareTime then
-				self.bookTicks.rare[playerId].tick = 0
-				self.bookTicks.rare[playerId].count = self.bookTicks.rare[playerId].count + 1
-				Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
-				EmitSoundClient("sphere_choice", player)
-			end
+                self.bookTicks.rare[playerId].tick = 0
+                if self.bookTicks.rare[playerId].disconnected then
+                    self.bookReserve[playerId].rare = self.bookReserve[playerId].rare + 1
+                else
+                    self.bookTicks.rare[playerId].count = self.bookTicks.rare[playerId].count + 1
+                    Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
+                    EmitSoundClient("sphere_choice", player)
+                end
+            end
 
 			if self.bookTicks.epic[playerId].count < BOOK_EPIC_LIMIT and self.bookTicks.epic[playerId].tick >= epicTime then
-				self.bookTicks.epic[playerId].tick = 0
-				self.bookTicks.epic[playerId].count = self.bookTicks.epic[playerId].count + 1
-				Upgrades:QueueSelection(hero, UPGRADE_RARITY_EPIC)
-				EmitSoundClient("sphere_choice", player)
-			end
+                self.bookTicks.epic[playerId].tick = 0
+                if self.bookTicks.epic[playerId].disconnected then
+                    self.bookReserve[playerId].epic = self.bookReserve[playerId].epic + 1
+                else
+                    self.bookTicks.epic[playerId].count = self.bookTicks.epic[playerId].count + 1
+                    Upgrades:QueueSelection(hero, UPGRADE_RARITY_EPIC)
+                    EmitSoundClient("sphere_choice", player)
+                end
+            end
 		end)
  
 		return 1
@@ -785,4 +795,36 @@ function CAddonWarsong:GiveTowersModifiersUNVUIL()
             tower:AddNewModifier(tower, nil, "modifier_for_middle_towers_for_unvulbure", {})
         end
     end
+end
+function CAddonWarsong:OnPlayerDisconnect(event) 
+	local playerId = event.PlayerID
+    if self.bookTicks.common[playerId] then
+        self.bookTicks.common[playerId].disconnected = true
+        self.bookTicks.rare[playerId].disconnected = true
+        self.bookTicks.epic[playerId].disconnected = true
+    end
+end
+function CAddonWarsong:OnPlayerConnect(event) 
+	Timers:CreateTimer(1.5, function() 
+		local playerId = event.PlayerID
+		if self.bookTicks and self.bookTicks.common[playerId] then
+			self.bookTicks.common[playerId].disconnected = false
+			self.bookTicks.rare[playerId].disconnected = false
+			self.bookTicks.epic[playerId].disconnected = false
+			 -- Выдаем книги из резерва
+			local hero = PlayerResource:GetSelectedHeroEntity(playerId)
+			if hero and self.bookReserve[playerId] then
+				 for i = 1, self.bookReserve[playerId].common do
+					Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
+				 end
+				 for i = 1, self.bookReserve[playerId].rare do
+					Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
+				 end
+				 for i = 1, self.bookReserve[playerId].epic do
+					Upgrades:QueueSelection(hero, UPGRADE_RARITY_EPIC)
+				 end
+				 self.bookReserve[playerId] = {common = 0, rare = 0, epic = 0} -- Очищаем резерв
+			end
+		end
+	end)
 end

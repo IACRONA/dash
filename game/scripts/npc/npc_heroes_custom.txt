@@ -48,7 +48,6 @@
 	"npc_dota_hero_dazzle"
 	{
 		"DisableWearables" "1"
-
 		"Ability2"      "dazzle_life_shield"
 		"Ability5"		"dazzle_dispell"
 		"Ability6" 		"dazzle_grace"

@@ -16,7 +16,7 @@ function CAddonWarsong:GivePlayersFate()
             CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(i), 'open_fates_choose_players', {})
         end
     end
-end
+end 
 
 function CAddonWarsong:SelectPlayerFate(player_id, fate_name)
     local hero = PlayerResource:GetSelectedHeroEntity(player_id)

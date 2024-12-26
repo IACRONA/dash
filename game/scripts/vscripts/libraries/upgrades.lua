@@ -5,24 +5,18 @@ require('libraries/summons_list')
  
 function Upgrades:Init()
 	self.upgrades_kv = {}
- 
 	self.summon_list = {}
 	self.abilities_requires_level_reset = {}
 	self.abilities_requires_level_reset["medusa_split_shot"] = true
 	self.abilities_requires_level_reset["medusa_mana_shield"] = true
 	self.abilities_requires_level_reset["lone_druid_spirit_link"] = true
-
 	-- save sent selection choices and queued selections
 	Upgrades.pending_selection = {}
 	Upgrades.queued_selection = {}
 	Upgrades.favorites_upgrades = {}
 	Upgrades.PlayersRerollTalents = {}
- 
-
 	Upgrades.disabled_upgrades_per_player = {}
-
 	Upgrades.lucky_trinket_proc  = {}
- 
     CustomGameEventManager:RegisterListener('player_talent_selected', function(_, event)
         Upgrades:UpgradeSelected(event)
 	end)
