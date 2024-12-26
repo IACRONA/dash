@@ -421,13 +421,13 @@ function CAddonWarsong:OnGameRulesStateChange()
 		if GetMapName() == "portal_duo" then
 			local teams = {DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS, DOTA_TEAM_CUSTOM_1, DOTA_TEAM_CUSTOM_2, DOTA_TEAM_CUSTOM_3, DOTA_TEAM_CUSTOM_4}
 			for _,team in ipairs(teams) do
-				local sentry = CreateUnitByName("npc_dota_target_dummy", Entities:FindByName(nil, "point_sentry"):GetAbsOrigin(), true, nil, nil, team)
+				local sentry = CreateUnitByName("npc_dummy_unit", Entities:FindByName(nil, "point_sentry"):GetAbsOrigin(), true, nil, nil, team)
 				sentry:AddNewModifier(sentry, nil, "modifier_true_sight_portal_aura", {})
 			end
 		elseif GetMapName() == "portal_trio" then
 			local teams = {DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS, DOTA_TEAM_CUSTOM_1, DOTA_TEAM_CUSTOM_2}
 			for _,team in ipairs(teams) do
-				local sentry = CreateUnitByName("npc_dota_target_dummy", Entities:FindByName(nil, "point_sentry"):GetAbsOrigin(), true, nil, nil, team)
+				local sentry = CreateUnitByName("npc_dummy_unit", Entities:FindByName(nil, "point_sentry"):GetAbsOrigin(), true, nil, nil, team)
 				sentry:AddNewModifier(sentry, nil, "modifier_true_sight_portal_aura", {})
 			end
         end
