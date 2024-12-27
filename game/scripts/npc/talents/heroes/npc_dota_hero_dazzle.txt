@@ -9,7 +9,7 @@
 		}
 		"shield_health"
 		{
-			"value" "50"
+			"value" "100"
 			"operator" "OP_ADD"
 		}
 		"damage_return"
