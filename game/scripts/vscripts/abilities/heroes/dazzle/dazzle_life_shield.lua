@@ -19,12 +19,12 @@ function dazzle_life_shield:OnSpellStart()
 		index = index - 1
 		if modifier:IsDebuff() then 
 			local ability = modifier:GetAbility()
-			if ability ~= nil and ability:IsItem() then 
+			if ability == nil then return end
+			if ability:IsItem() then 
 				index = 0 
 				modifier:Destroy()
 			end
 			local abilityInTable = self.netTable[ability:GetName()]
-
 			if (abilityInTable and abilityInTable.dispell ~= "SPELL_DISPELLABLE_NO") then 
 				index = 0
 				modifier:Destroy()
@@ -63,9 +63,8 @@ function modifier_dazzle_life_shield:OnCreated(data)
 	if not IsServer() then return end
 	local shieldHealth = ability:GetSpecialValueFor("shield_health")
 	if data.isLightVersion then shieldHealth = shieldHealth/2 end
-    self.pfx = ParticleManager:CreateParticle("particles/items_fx/immunity_sphere_buff.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+    self.pfx = ParticleManager:CreateParticle("particles/immunity_sphere_buff.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 	ParticleManager:SetParticleControlEnt(self.pfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
-
 	self:SetStackCount(shieldHealth)
 end
 

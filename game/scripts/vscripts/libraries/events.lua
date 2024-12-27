@@ -91,7 +91,7 @@ function CAddonWarsong:UpdateLeaderPortalDuo()
 			if entity:IsAlive() == true then
 				local existingParticle = entity:Attribute_GetIntValue( "particleID", -1 )
        			if existingParticle == -1 then
-       				local particleLeader = ParticleManager:CreateParticle( "particles/overhead_particle/leader_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, entity )
+       				local particleLeader = ParticleManager:CreateParticle("particles/overhead_particle/leader_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, entity )
 					ParticleManager:SetParticleControlEnt( particleLeader, PATTACH_OVERHEAD_FOLLOW, entity, PATTACH_OVERHEAD_FOLLOW, "follow_overhead", entity:GetAbsOrigin(), true )
 					entity:Attribute_SetIntValue( "particleID", particleLeader )
 				end

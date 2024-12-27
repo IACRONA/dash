@@ -227,7 +227,7 @@ function CAddonWarsong:InitGameMode()
     CustomGameEventManager:RegisterListener('player_fate_selected', function(_, event)
         self:SelectPlayerFate(event.PlayerID, event.fate_name)
 	end)
-
+ 
     CustomGameEventManager:RegisterListener('player_sphere_selected', function(_, event)
         self:SelectPlayerSphere(event.PlayerID, event.sphere_name)
 	end)
@@ -735,6 +735,8 @@ function CAddonWarsong:OnNPCSpawned(event)
 						item:SetCurrentCharges(29)
 					end
 				end)
+				-- local particleLeader = ParticleManager:CreateParticle("particles/overhead_particle/leader_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, hUnit )
+				-- ParticleManager:SetParticleControlEnt( particleLeader, PATTACH_OVERHEAD_FOLLOW, hUnit, PATTACH_OVERHEAD_FOLLOW, "follow_overhead", hUnit:GetAbsOrigin(), true )
 				if GetMapName() ~= "dota" then
 					for i=1,HERO_STARTING_LEVEL-1 do
 						hUnit:HeroLevelUp(false)

@@ -16,7 +16,7 @@
 						"operator" "OP_MULTIPLY"
 					}
 				}
-				"nevermore_shadowraze3"
+				"nevermore_shadowraze3" 
 				{
 					"cooldown_and_manacost"
 					{
@@ -110,7 +110,7 @@
 			"max_count" "10"
 		}
 	}
-	"nevermore_requiem"
+	"nevermore_requiem_custom"
 	{
 		"cooldown_and_manacost"
 		{

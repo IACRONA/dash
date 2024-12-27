@@ -328,7 +328,7 @@
             "cooldown_pull"                 "10"
             "requiem_radius"    
             {
-                "value"     "630"      
+                "value"     "630"       
                 "affected_by_aoe_increase"  "1"
             }
             "requiem_reduction_ms"  "-20 -25 -30"

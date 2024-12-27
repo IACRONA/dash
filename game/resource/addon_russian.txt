@@ -682,7 +682,7 @@
         "DOTA_Tooltip_ability_dazzle_dispell"                          "Dispel"
         "DOTA_Tooltip_ability_dazzle_dispell_Description"                    "Снимает один отрицательный эффект."
         "DOTA_Tooltip_ability_dazzle_dispell_AbilityCastRange"  "ДАЛЬНОСТЬ ПРИМЕНЕНИЯ:"
-        "DOTA_Tooltip_ability_special_bonus_unique_dazzle_dazzle_dispell_abilitycooldown"  "-1 сек. перезарядки Dispel"
+        "DOTA_Tooltip_ability_special_bonus_unique_dazzle_dispell_abilitycooldown"  "-1 сек. перезарядки Dispel"
 
         "DOTA_Tooltip_ability_dazzle_life_shield"                          "Shield of Life"
         "DOTA_Tooltip_ability_dazzle_life_shield_Description"                    "Щит Жизни восстанваливает потерянные жизни и снимает один магический отрцицательный эффект, так же поглащённый урон частично возвращает обратно атакующиму."
@@ -714,7 +714,7 @@
         "DOTA_Tooltip_modifier_dazzle_life_shield_movespeed"                                     "Shield of Life"
         "DOTA_Tooltip_modifier_dazzle_life_shield_movespeed_Description"                         "Скорость передвижения увелична на %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%"
         "DOTA_Tooltip_ability_special_bonus_unique_dazzle_life_shield_health"                    "+{s:bonus_shield_health} к поглощению Shield of Life"
-        
+         
 
         //enigma
         "dota_enigma_error_distance"                                                            "Вы слишком далеко от портала"
