@@ -1,0 +1,57 @@
+
+"DOTAAbilities"
+{
+    "chen_soul_persuasion"
+    {
+        "BaseClass"                     "ability_lua"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "MaxLevel"                      "4"
+        "AbilityTextureName"            "chen_holy_persuasion"
+        "ScriptFile"                    "abilities/heroes/chen/chen_soul_persuasion"
+        "AbilityCastPoint"              "0.1"
+        "HasShardUpgrade"               "1"
+        "HasScepterUpgrade"             "1"
+        "AbilityCooldown"               "3"
+        "AbilityManaCost"               "170"
+        "AbilityValues"
+        {
+            "souls_per_second"
+            {
+                "value"                                     "0.75 1.5 2.25 3"
+                "special_bonus_shard"                       "+3"
+            }
+            "souls_per_kill"        "20"
+            "souls_summon_little"   "5"
+            "souls_summon_middle"   "10"
+            "souls_summon_big"      "20"
+            "souls_summon_ancient"  "40"
+            "souls_limit"
+            {
+                "value"                 "5 10 20 20"
+                "special_bonus_shard"   "+20"
+            }
+            "creeps_max_summoned"   "4"
+            "summon_count"
+            {
+                "value"                         "1"
+            }
+            "movement_speed_bonus"
+            {
+                "value"                                                     "5 10 20 30"
+                "special_bonus_unique_chen_soul_persuasion_movement_speed"  "+25"
+            }
+            "damage_bonus"
+            {
+                "value"                             "2 7 11 15"
+                "special_bonus_unique_chen_5"       "+12"
+            }
+            "summon_mana_cost"      "42.5 85 170 170"
+            "health_min"
+            {
+                "value"                         "400"
+                "special_bonus_unique_chen_4"   "+1200"
+            }
+            "bonus_health_per_level" "50"
+        }
+    }
+}

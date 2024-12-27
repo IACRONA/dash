@@ -68,6 +68,7 @@ local particles =
     "particles/econ/items/lina/lina_head_headflame/lina_headflame.vpcf",
     "particles/econ/items/lina/lina_head_headflame/lina_flame_hand_dual_headflame.vpcf",
     "particles/djalal/custom_timer.vpcf",
+    "particles/econ/items/pets/pet_frondillo/pet_spawn_frondillo.vpcf",
 }
 
 local sounds = 

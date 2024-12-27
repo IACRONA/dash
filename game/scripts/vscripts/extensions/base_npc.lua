@@ -11,3 +11,7 @@ function CDOTA_BaseNPC:GetClones()
 
 	return clones
 end
+
+function CDOTA_BaseNPC:HasShard()
+    return self:HasModifier("modifier_item_aghanims_shard")
+end

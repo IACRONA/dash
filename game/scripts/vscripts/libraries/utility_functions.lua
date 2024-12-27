@@ -250,3 +250,35 @@ function DoWithAllPlayers(func)
 function EmitSoundClient(sound, player)
 	CustomGameEventManager:Send_ServerToPlayer(player, "sound_on_client", {sound = sound})
 end
+function ipairs_rev(tbl)
+    local i = #tbl + 1
+    return function()
+        i = i - 1
+        if i > 0 then
+            return i, tbl[i]
+        end
+    end
+end
+function GetRandomPathablePositionWithin(vPos, nRadius, nMinRadius )
+    if IsServer() then
+        local nMaxAttempts = 10
+        local nAttempts = 0
+        local vTryPos
+
+        if nMinRadius == nil then
+            nMinRadius = nRadius
+        end
+
+        repeat
+            vTryPos = vPos + RandomVector( RandomFloat( nMinRadius, nRadius ) )
+
+            nAttempts = nAttempts + 1
+            if nAttempts >= nMaxAttempts then
+                break
+            end
+        until ( GridNav:CanFindPath( vPos, vTryPos ) )
+
+        return vTryPos
+    end
+end
+

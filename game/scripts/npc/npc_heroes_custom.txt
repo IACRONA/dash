@@ -55,7 +55,11 @@
 		"Ability16"  "special_bonus_unique_dazzle_dispell_abilitycooldown"
 		"Ability17"  "special_bonus_unique_dazzle_grace_chance_shield"
 	}
-
+	"npc_dota_hero_chen"
+	{
+		"Ability2" "chen_soul_persuasion"
+		
+	}
 	"npc_dota_hero_enigma"
 	{ 
 		"Ability1"		"enigma_void_strike"

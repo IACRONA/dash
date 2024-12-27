@@ -27,7 +27,7 @@ function modifier_warsong_fate_immortal:DeclareFunctions()
         MODIFIER_EVENT_ON_DEATH,
         MODIFIER_PROPERTY_REINCARNATION
     }
-end
+end 
 
 function modifier_warsong_fate_immortal:OnTakeDamage(params)
     if not IsServer() then return end
