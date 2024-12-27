@@ -150,11 +150,11 @@ end
 if GetMapName() == "dash" then
     RESPAWN_TIME = 10
 
-    START_GOLD = 700
+    START_GOLD = 600
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 350
+    GRANT_GOLD = 300
 
     CONDITION_FLAG_COUNT_WIN = 7
 
@@ -188,16 +188,16 @@ if GetMapName() == "dash" then
         TIER_2 = 350, -- 3:30
         TIER_3 = 650, -- 9:00 
         TIER_4 = 750, -- 12:00
-        TIER_5 = 950, -- 15:00
+        TIER_5 = 1000, -- 15:00
     }
 
     CREEP_AMP_TIME = 300 -- время когда крипы усиляются  ( 300 сек = 5 мин)
-    CREEP_AMP = 0.25 -- 25 процентов амплифая крипов
+    CREEP_AMP = 1 -- 25 процентов амплифая крипов
 
     -- Магический и физический резист
-    RESISTANCE_TIME_ACTIVATED = 20 -- Время когда он начинается (мин.)
-    MAGICAL_RESISTANCE_PERCENTAGE = 7
-    PHYSICAL_RESISTANCE_PERCENTAGE = 7
+    RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
+    MAGICAL_RESISTANCE_PERCENTAGE = 10
+    PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
@@ -263,7 +263,7 @@ if GetMapName() == "dash" then
     HIMARON_SWORD_COOLDOWN = 14
 
     -- Время за сколько в сумме будет 30 лвл  в минутах
-    PERCENT_OF_LEVEL_MINUTE = 140
+    PERCENT_OF_LEVEL_MINUTE = 90
 
     -- Время возрождения для dash
     -- уровень, время респавна
