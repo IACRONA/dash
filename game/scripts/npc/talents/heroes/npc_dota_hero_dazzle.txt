@@ -60,7 +60,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "5"
 			"operator" "OP_MULTIPLY"
 		}
 		"chance_shield"
@@ -70,7 +70,7 @@
 		}
 		"heal"
 		{
-			"value" "25"
+			"value" "50"
 			"operator" "OP_MULTIPLY"
 		}
 	}
