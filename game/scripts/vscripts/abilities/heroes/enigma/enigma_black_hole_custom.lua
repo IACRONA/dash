@@ -270,7 +270,7 @@ end
 modifier_enigma_black_hole_custom_scepter_thinker = {}
 
 function modifier_enigma_black_hole_custom_scepter_thinker:IsHidden()
-	return false
+	return true
 end
 
 function modifier_enigma_black_hole_custom_scepter_thinker:IsPurgable()

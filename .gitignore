@@ -6,3 +6,5 @@
 *.cfg
 
 node_modules
+link.bat
+util_git.bat
