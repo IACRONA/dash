@@ -17,6 +17,10 @@
 								from = ""
 								to = "models/overhead_model/overhead_model_mat.vmat"
 							},
+							{
+								from = "material_0.vmat"
+								to = "models/overhead_model/overhead_model_mat.vmat"
+							},
 						]
 						use_global_default = false
 						global_default_material = ""
@@ -29,6 +33,13 @@
 				[
 					{
 						_class = "RenderMeshFile"
+						children = 
+						[
+							{
+								_class = "KeepOnlySpecifiedBones"
+								bone_names = [  ]
+							},
+						]
 						filename = "models/overhead_model/overhead_emblem.fbx"
 						import_scale = 0.75
 						import_filter = 

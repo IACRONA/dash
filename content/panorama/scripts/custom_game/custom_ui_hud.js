@@ -2,7 +2,7 @@
 
 var hContext = $.GetContextPanel();
 hContext.SetDialogVariable("radiant_flags_remaining", "7");
-hContext.SetDialogVariable("dire_flags_remaining", "7");
+hContext.SetDialogVariable("dire_flags_remaining", "7"); 
 
 (function () {
   GameEvents.Subscribe("update_flags_count", function (event) {
@@ -22,7 +22,6 @@ hContext.SetDialogVariable("dire_flags_remaining", "7");
       }
     }
   });
-
   if (
     Game.GetMapInfo().map_display_name == "warsong_duo" ||
     Game.GetMapInfo().map_display_name == "portal_duo" ||

@@ -27,13 +27,16 @@ function HidePickScreen() {
     if (map == "dash") {
       map = "dash";
     }
+    if (map == "portal_trio") {
+      map = "portal_trio_strat"
+    }
     StrategyMinimap.style.backgroundImage = 'url("file://{images}/custom_game/' + map + '.png")';
     StrategyMinimap.style.backgroundSize = "100% 100%";
   }
   if (!Game.GameStateIsAfter(2)) {
     if (hidden == false) {
       hidden = true;
-      PreGame.style.opacity = "0";
+      PreGame.style.opacity = "0"; 
     }
     $.Schedule(0.1, HidePickScreen);
   } else {
