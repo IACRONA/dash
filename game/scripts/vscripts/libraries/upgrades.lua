@@ -32,55 +32,7 @@ function Upgrades:GetPendingUpgradesCount(player_id)
 	return #Upgrades.queued_selection[player_id]
 end
 
-
-function Upgrades:SendPendingFavorites(event)
-	local player_id = event.PlayerID
-	if not IsValidPlayerID(player_id) then return end
-
-	if not Upgrades.favorites_upgrades[player_id] then return end
-
-	local player = PlayerResource:GetPlayer(player_id)
-	if not IsValidEntity(player) then return end
-
-	CustomGameEventManager:Send_ServerToPlayer(player, "Upgrades:set_client_favorites", Upgrades.favorites_upgrades[player_id])
-end
-
-function Upgrades:SendDebugUpgrades(player_id)
-	if not player_id or not IsInToolsMode() or GetMapName() ~= "ot3_demo" then return end
-
-	local player = PlayerResource:GetPlayer(player_id)
-	if not IsValidEntity(player) then return end
-
-	local all_upgrades = {}
-	for hero_name,_ in pairs(LoadKeyValues("scripts/npc/npc_heroes.txt")) do
-		if string.find(hero_name, "npc_dota_hero_") then
-			all_upgrades[hero_name] = LoadKeyValues("scripts/upgrades/heroes/" .. hero_name .. ".txt")
-		end
-	end
-
-	CustomGameEventManager:Send_ServerToPlayer(player, "Upgrades:send_debug_localization_check", all_upgrades)
-end
-
- 
-
-function Upgrades:AddToolsUpgrade(event)
-	if IsInToolsMode() or GetMapName() == "ot3_demo" then
-		local hero = PlayerResource:GetSelectedHeroEntity(event.target_player_id)
-		if not hero or not hero:IsRealHero() then return end
-		Upgrades:AddAbilityUpgrade(hero, event.ability_name, event.ability_special_name, event.value)
-	end
-end
-
-
-function Upgrades:AddToolsGenericUpgrade(event)
-	if IsInToolsMode() or GetMapName() == "ot3_demo" then
-		local hero = PlayerResource:GetSelectedHeroEntity(event.target_player_id)
-		if not hero or not hero:IsRealHero() then return end
-
-		Upgrades:AddGenericUpgrade(hero, event.generic_upgrade_name, event.value)
-	end
-end
-
+  
 
 function Upgrades:QueueSelection(hero, rarity)
 	if not IsValidEntity(hero) then return end
@@ -183,6 +135,20 @@ function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_tri
 			favorites_upgrades = Upgrades.favorites_upgrades[player_id] or {}
 		})
 	end)
+
+	Timers:CreateTimer(60, function()
+		local hero = PlayerResource:GetSelectedHeroEntity(player_id)
+		local random = choices[RandomInt(1, #choices)]
+		local event = {
+			PlayerID = player_id,
+			upgrade_name = random.upgrade_name,
+			ability_name = random.ability_name
+		}
+		GameRules:SendCustomMessage(hero:GetName().. " получил автоматом бонус для".. random.ability_name.. " к ".. random.upgrade_name, 0, 0)
+
+		Upgrades:UpgradeSelected(event)
+	end)
+
 end
 
 
@@ -258,29 +224,7 @@ function Upgrades:RollUpgradesOfType(upgrade_type, player_id, rarity, previous_c
 
 	return upgrades
 end
-
-
-function Upgrades:SendPendingSelection(event)
-	local player_id = event.PlayerID
-	if not player_id then return end
-	if not Upgrades.pending_selection[player_id] then return end
-
-	local player = PlayerResource:GetPlayer(player_id)
-	if not IsValidEntity(player) then return end
-
-	local pending_selection = Upgrades.pending_selection[player_id]
-
-	CustomGameEventManager:Send_ServerToPlayer(player, "Upgrades:show_upgrades", {
-		upgrades = {
-			upgrade_rarity = pending_selection.upgrade_rarity,
-			choices = pending_selection.choices,
-			selection_id = pending_selection.selection_id,
-			is_lucky_trinket_proc = pending_selection.is_lucky_trinket_proc,
-		},
-		upgrades_count = Upgrades:GetPendingUpgradesCount(player_id),
-		favorites_upgrades = Upgrades.favorites_upgrades[player_id] or {}
-	})
-end
+ 
 
 
 function Upgrades:UpgradeSelected(event)
@@ -768,27 +712,7 @@ function Upgrades:ApplySummonUpgrades(summon, summon_name, owner)
 		end
 	end
 end
-
-
-function Upgrades:OnNpcSpawned(event)
-	if not event.owner_player_id then return end
-
-	local hero = GameLoop.hero_by_player_id[event.owner_player_id]
-
-	if event.unit ~= hero then return end
-
-	-- reapply all generic modifiers to hero on respawn, ensuring they exist and have proper counts
-	for upgrade_name, upgrade_data in pairs(hero.upgrades.generic or {}) do
-		if upgrade_data and upgrade_data.count ~= nil then
-			-- Upgrades:SetGenericUpgrade(clone, upgrade_name, upgrade_data.count)
-			Upgrades:AddGenericUpgradeModifier(hero, upgrade_name, upgrade_data.count)
-		end
-	end
-
-	-- do this to clones as well
-	Upgrades:ProcessClones(hero)
-end
-
+ 
 
 function Upgrades:OnModifierAdded(event)
 	local modifier = event.modifier

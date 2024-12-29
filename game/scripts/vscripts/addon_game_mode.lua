@@ -390,7 +390,19 @@ function CAddonWarsong:OnGameRulesStateChange()
 			self:RespawnFlagForTeam(DOTA_TEAM_BADGUYS, nil, nil, true)
 		end
 	elseif nNewState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then 
-		-- PlayerResource:SetCustomTeamAssignment(0, DOTA_TEAM_BADGUYS)
+		-- PlayerResource:SetCustomTeamAssignment(0, DOTA_TEAM_CUSTOM_1)
+		-- function addBot(team)
+		-- 	local used_hero_name = "npc_dota_hero_luna"
+		-- 	local maxPlayers = 5
+		-- 	local teamCount = maxPlayers - PlayerResource:GetPlayerCountForTeam(team)
+		
+		-- 	while teamCount > 0 do
+		-- 		Tutorial:AddBot(used_hero_name, "", "", team == DOTA_TEAM_GOODGUYS)
+		-- 		teamCount = maxPlayers - PlayerResource:GetPlayerCountForTeam(team)
+		-- 	end
+		-- end
+		-- addBot(DOTA_TEAM_BADGUYS)
+		-- addBot(DOTA_TEAM_GOODGUYS)
 		if GetMapName() == "warsong" or GetMapName() == "dash" then
 			if PlayerResource:GetPlayerCount() ~= 10 then  
 				local team = 2
