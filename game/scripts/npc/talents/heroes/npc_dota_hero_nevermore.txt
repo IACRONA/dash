@@ -118,20 +118,16 @@
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
-		"requiem_radius"
-		{
-			"value" "50"
-			"operator" "OP_ADD"
-			"max_count" "8"
-			"linked_special_values"
-			{
-				"requiem_line_speed" "35"
-			}
-		}
+		// "requiem_radius"
+		// { 
+		// 	"value" "50"
+		// 	"operator" "OP_ADD"
+		// 	"max_count" "8"
+		// }
 		"damage"
 		{
 			"value" "24"
-			"operator" "OP_ADD"
+			"operator" "OP_ADD" 
 		}
 	}
 }

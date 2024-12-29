@@ -965,6 +965,7 @@
     "DOTA_Tooltip_ability_nevermore_requiem_custom_requiem_slow_duration_max"              "МАКС. ДЛИТЕЛЬНОСТЬ СТРАХА:"
     "DOTA_Tooltip_ability_nevermore_requiem_custom_abilitycooldown"                        "ПЕРЕЗАРЯДКА:"
     "DOTA_Tooltip_ability_nevermore_requiem_custom_pull_drag_speed"                         "СКОРОСТЬ ПРИТЯГИВАНИЯ:"
+    "DOTA_Tooltip_ability_nevermore_requiem_custom_damage"                         "УРОН: "
     "DOTA_Tooltip_ability_nevermore_requiem_custom_Lore"                                   "Заточённые души тех, кто пал в былых сражениях, обретают свободу, дабы мстительно преследовать своих бывших союзников."
     "DOTA_Tooltip_ability_nevermore_requiem_custom_Note0"                                  "За каждую душу создаётся одна волна."
     "DOTA_Tooltip_ability_nevermore_requiem_custom_Note1"                                  "Способность не накладывает страх и замедление, если сработала при смерти."

@@ -142,7 +142,7 @@ end
 -- Helper
 function nevermore_requiem_custom:Explode( lines, isDead )
 	-- get references
-	self.damage =  self:GetAbilityDamage()
+	self.damage =   self:GetSpecialValueFor("damage")
 	self.duration = self:GetSpecialValueFor("requiem_slow_duration")
 
 	-- get projectile
