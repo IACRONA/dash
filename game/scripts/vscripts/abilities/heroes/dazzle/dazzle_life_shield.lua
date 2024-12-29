@@ -8,26 +8,23 @@ function dazzle_life_shield:OnSpellStart()
 	local target = self:GetCursorTarget()
 	local heal = self:GetSpecialValueFor("heal")
 	local modifiers = target:FindAllModifiers() 
-	local index = #modifiers
-
-	if not self.netTable then 
-		self.netTable = CustomNetTables:GetTableValue("abilities_damage", "abilities") 
+	if not self.netTable then
+		self.netTable = CustomNetTables:GetTableValue("abilities_damage", "abilities") or {}
 	end
 
-	while index ~= 0 do 
-		local modifier = modifiers[index]
-		index = index - 1
+	for _, modifier in pairs(modifiers) do
 		if modifier:IsDebuff() then 
 			local ability = modifier:GetAbility()
-			if ability == nil then return end
-			if ability:IsItem() then 
-				index = 0 
+			if ability == nil then break end
+			if ability and ability:IsItem() then
 				modifier:Destroy()
+				break
 			end
-			local abilityInTable = self.netTable[ability:GetName()]
-			if (abilityInTable and abilityInTable.dispell ~= "SPELL_DISPELLABLE_NO") then 
-				index = 0
+			local abilityName = ability and ability:GetName()
+			local abilityInTable = self.netTable[abilityName]
+			if abilityInTable and abilityInTable.dispell ~= "SPELL_DISPELLABLE_NO" then
 				modifier:Destroy()
+				break
 			end
 		end 
 	end

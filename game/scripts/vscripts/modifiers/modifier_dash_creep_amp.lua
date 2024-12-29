@@ -16,6 +16,7 @@ function modifier_dash_creep_amp:AddCustomTransmitterData()
         CREEP_AMP = self.CREEP_AMP
     }
 end
+
 function modifier_dash_creep_amp:HandleCustomTransmitterData(data)
     self.creep_dmg = data.creep_dmg
     self.CREEP_AMP = data.CREEP_AMP

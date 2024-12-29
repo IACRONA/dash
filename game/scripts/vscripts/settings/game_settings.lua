@@ -192,8 +192,8 @@ if GetMapName() == "dash" then
     }
 
     CREEP_AMP_TIME = 300 -- время когда крипы усиляются  ( 300 сек = 5 мин)
-    CREEP_AMP = 1 -- 25 процентов амплифая крипов
-
+    CREEP_AMP = 0.25 -- 25 процентов амплифая крипов
+    
     -- Магический и физический резист
     RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
     MAGICAL_RESISTANCE_PERCENTAGE = 10
