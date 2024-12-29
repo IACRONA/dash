@@ -65,7 +65,7 @@ function modifier_warsong_fate_immortal:OnDeath(params)
         ParticleManager:ReleaseParticleIndex(particle_explosion_fx)
     end
     if reincarnate then
-        self:ReincarnationStart( params )
+        self:ReincarnationStart( params ) 
     end
 end
 

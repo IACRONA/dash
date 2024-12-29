@@ -856,7 +856,7 @@
     "DOTA_Tooltip_Ability_special_bonus_unique_mirana_fire_arrow_damage_fire"						"+{s:bonus_damage_fire} урона от огня Fire arrow"
 
     //lina
-
+    
     "DOTA_Tooltip_ability_lina_pyrablast"                                "Pyrablast"
     "DOTA_Tooltip_ability_lina_pyrablast_Description"                    "Лина создаёт из недр магмы большой огненный шар сжигающий противников на своем пути, если какая нибудь из способностей лины нанесёт критический урон, то магия будет мгновенной."
     "DOTA_Tooltip_ability_lina_pyrablast_channel_time"                    "ВРЕМЯ ПРОИЗНЕСЕНИЯ:"
@@ -2442,7 +2442,7 @@
     "select_upgrades"    "Выбрать Улучшение"
     "upgrade_count" "Уровень: <font color='#ffd900'>{d:current_count}</font>/<font color='#ffffff'>{s:u_max_count}</font>"
     "upgrade_description_inc"    "увеличено на"
-    "upgrade_description_dec"    "уменьшено на"
+    "upgrade_description_dec"    "уменьшено на" 
     "linked_abilities"    "Также влияет на:"
     "game_duration_increased_note"    "%s1 проголосовал за увеличение лимита убийств на %s2 и продление лимита времени на 30 секунд."
     "game_duration_decreased_abandon_note"    "%s1 покинул игру. Лимит убийств был уменьшен на %s2."
