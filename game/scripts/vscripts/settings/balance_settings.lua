@@ -302,7 +302,7 @@ if GetMapName() == "dash" then
         },
     }
   
-    BOOK_COMMON_COOLDOWN = 10
+    BOOK_COMMON_COOLDOWN = 140
     BOOK_RARE_START = 600
     BOOK_RARE_COOLDOWN = 220
     BOOK_EPIC_COOLDOWN = 1000
