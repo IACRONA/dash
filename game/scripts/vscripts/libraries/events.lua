@@ -7,7 +7,7 @@ function CAddonWarsong:OnEntityKilled( params )
 	end
 	if killedUnit:IsRealHero() then
         if killedUnit:IsReincarnating() == true then
-            if self:GetParent():HasModifier("modifier_warsong_fate_immortal") then
+            if killedUnit:HasModifier("modifier_warsong_fate_immortal") then
                 return killedUnit:SetTimeUntilRespawn( 1 )
             end
             return killedUnit:SetTimeUntilRespawn( 5 )
