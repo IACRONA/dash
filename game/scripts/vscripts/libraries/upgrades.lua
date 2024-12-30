@@ -105,6 +105,7 @@ function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_tri
 		count_per_selection
 	)
 
+
 	new_previous_choices[upgrade_type] = rolled_upgrades
 	table.extend(choices, rolled_upgrades)
  
@@ -136,8 +137,8 @@ function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_tri
 		})
 	end)
 
-	Timers:CreateTimer(60, function()
-		-- if not Upgrades.pending_selection[player_id] then return end
+ 
+	Timers:CreateTimer(5, function()
 		local hero = PlayerResource:GetSelectedHeroEntity(player_id)
 		local random = choices[RandomInt(1, #choices)]
 		local event = {
@@ -145,9 +146,23 @@ function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_tri
 			upgrade_name = random.upgrade_name,
 			ability_name = random.ability_name
 		}
-		GameRules:SendCustomMessage(hero:GetName().. " получил автоматом бонус для".. random.ability_name.. " к ".. random.upgrade_name, 0, 0)
+		local upgrades_count = Upgrades:GetPendingUpgradesCount(player_id)
 
-		Upgrades:UpgradeSelected(event)
+		GameRules:SendCustomMessage(hero:GetName().. " очередь из ".. upgrades_count.., 0, 0)
+
+		if upgrades_count >= 4 then 
+			local queue = Upgrades.queued_selection[player_id]
+			for i=1, upgrades_count do 
+				local choices = queue[i]
+				local random = choices[RandomInt(1, #choices)]
+				local event = {
+					PlayerID = player_id,
+					upgrade_name = random.upgrade_name,
+					ability_name = random.ability_name
+				}
+				Upgrades:UpgradeSelected(event)
+			end
+		end
 	end)
 
 end
