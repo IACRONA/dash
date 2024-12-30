@@ -22,7 +22,7 @@ function HidePickScreen() {
     }
     let map = Game.GetMapInfo().map_display_name;
     if (map == "portal_duo") {
-      map = "warsong_portalduo";
+      map = "portal_duo";
     }
     if (map == "dash") {
       map = "dash";
