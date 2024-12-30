@@ -12,13 +12,13 @@ if (mapName === "dash"|| mapName === "portal_trio" || mapName === "portal_duo" )
   flag.style.visibility = "collapse";
 }
 function UpdateFlags(playerId, data) { 
-  if (playerId !== `${Game.GetLocalPlayerID()}`) return;
+  if (playerId !== Game.GetLocalPlayerID()) return;
   const currency = data.counter;
   flag.SetPanelEvent("onmouseover", function () {
     $.DispatchEvent("UIShowTextTooltip", flag, `${currency}`);
   });
 }
-
+ 
 const currencyFromTable = CustomNetTables.GetTableValue("custom_currency", `${Game.GetLocalPlayerID()}`);
 const currency = currencyFromTable ? currencyFromTable.counter : 0;
 

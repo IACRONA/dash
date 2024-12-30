@@ -21,7 +21,7 @@ function dazzle_dispell:OnSpellStart()
 			local ability = modifier:GetAbility()
 			if ability == nil then break end
 			if ability and ability:IsItem() then
-				modifier:Destroy()
+				modifier:Destroy() 
 				break
 			end
 			local abilityName = ability and ability:GetName()
