@@ -28,5 +28,6 @@
         <Image style="opacity:0;" src="file://{resources}/images/custom_game/dash.png" />
         <Image style="opacity:0;" src="file://{resources}/images/custom_game/portal_trio_strat.png" />
         <Image style="opacity:0;" src="file://{resources}/images/custom_game/portal_trio.png" />
+        <Image style="opacity:0;" src="file://{resources}/images/custom_game/portal_duo.png" />
 	</Panel>
 </root>

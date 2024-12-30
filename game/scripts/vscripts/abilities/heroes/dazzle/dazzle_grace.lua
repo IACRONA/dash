@@ -14,7 +14,7 @@ function dazzle_grace:OnSpellStart()
   	local currentTimes = 0
   	EmitSoundOn("grace_cast", caster)
 
-  	Timers:CreateTimer(0, function()
+  	Timers:CreateTimer(function()
   		if currentTimes >= 3 then return end
 		ProjectileManager:CreateTrackingProjectile({
 			EffectName = "particles/econ/items/wisp/calavera/io_calavera_attack.vpcf",

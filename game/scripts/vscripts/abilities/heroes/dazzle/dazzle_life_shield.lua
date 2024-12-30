@@ -2,7 +2,10 @@ LinkLuaModifier('modifier_dazzle_life_shield', 'abilities/heroes/dazzle/dazzle_l
 LinkLuaModifier('modifier_dazzle_life_shield_movespeed', 'abilities/heroes/dazzle/dazzle_life_shield', LUA_MODIFIER_MOTION_NONE)
 
 dazzle_life_shield = class({})
- 
+local modifierExceptions = {
+	modifier_truesight = true,
+	modifier_true_sight_portal_debuff = true,
+}
 function dazzle_life_shield:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
@@ -13,7 +16,7 @@ function dazzle_life_shield:OnSpellStart()
 	end
 
 	for _, modifier in pairs(modifiers) do
-		if modifier:IsDebuff() then 
+		if modifier:IsDebuff() and not modifierExceptions[modifier:GetName()] then 
 			local ability = modifier:GetAbility()
 			if ability == nil then break end
 			if ability and ability:IsItem() then
