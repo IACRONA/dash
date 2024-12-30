@@ -66,11 +66,11 @@ function Upgrades:QueueSelection(hero, rarity)
 	if upgrades_count >= 4 then 
 		GameRules:SendCustomMessage("<font color='#ff0000'>" .. hero:GetName().. " выбирается рандомно бонусы</font>", 0, 0)
 
-		for i=1, 120 do 
+		for i=1, 150 do 
 			local rolled_upgrades = Upgrades:RollUpgradesOfType(
 				UPGRADE_TYPE.ABILITY,
 				player_id,
-				UPGRADE_RARITY_RARE,
+				UPGRADE_RARITY_EPIC,
 				{},
 				3
 			)
@@ -87,7 +87,7 @@ function Upgrades:QueueSelection(hero, rarity)
 				hero,
 				random.ability_name,
 				random.upgrade_name,
-				UPGRADE_RARITY_RARE
+				UPGRADE_RARITY_EPIC
 			)
 		end
 	end
