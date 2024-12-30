@@ -786,7 +786,7 @@
         [
             "sounds/boss_killed.vsnd",
         ]
-        volume = "1.000000"
+        volume = "2.000000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"

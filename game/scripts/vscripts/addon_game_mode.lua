@@ -393,7 +393,7 @@ function CAddonWarsong:OnGameRulesStateChange()
 		-- PlayerResource:SetCustomTeamAssignment(0, DOTA_TEAM_CUSTOM_1)
 		-- function addBot(team)
 		-- 	local used_hero_name = "npc_dota_hero_luna"
-		-- 	local maxPlayers = 5
+		-- 	local maxPlayers = 4
 		-- 	local teamCount = maxPlayers - PlayerResource:GetPlayerCountForTeam(team)
 		
 		-- 	while teamCount > 0 do
@@ -677,6 +677,8 @@ function CAddonWarsong:GiveBooks()
                     Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
                     EmitSoundClient("sphere_choice", player)
                 end
+			elseif self.bookTicks.common[playerId].count >= BOOK_COMMON_LIMIT then
+				-- print("Лимит на книги RARE")
             end
 
 			if GameRules:GetDOTATime(false, false) >= BOOK_RARE_START and self.bookTicks.rare[playerId].count < BOOK_RARE_LIMIT and self.bookTicks.rare[playerId].tick >= rareTime then

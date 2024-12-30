@@ -1,7 +1,7 @@
 const flag = $("#FlagsCounter");
 const mapName = Game.GetMapInfo().map_display_name;
 
-if (mapName === "dash") {
+if (mapName === "dash"|| mapName === "portal_trio" || mapName === "portal_duo" ) {
   // const Image = $("#FlagsCounterIcon");
   // const parent = Image.GetParent();
 
@@ -11,7 +11,7 @@ if (mapName === "dash") {
   // });
   flag.style.visibility = "collapse";
 }
-function UpdateFlags(playerId, data) {
+function UpdateFlags(playerId, data) { 
   if (playerId !== `${Game.GetLocalPlayerID()}`) return;
   const currency = data.counter;
   flag.SetPanelEvent("onmouseover", function () {

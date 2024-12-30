@@ -8,3 +8,4 @@
 node_modules
 link.bat
 util_git.bat
+game/main.py

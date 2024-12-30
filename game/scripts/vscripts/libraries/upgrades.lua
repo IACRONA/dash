@@ -25,7 +25,7 @@ function Upgrades:Init()
 	end)
 end
 
-
+ 
 function Upgrades:GetPendingUpgradesCount(player_id)
 	if not Upgrades.queued_selection or not Upgrades.queued_selection[player_id] then return 0 end
 
@@ -46,7 +46,7 @@ function Upgrades:QueueSelection(hero, rarity)
 		rarity = rarity, 
 		is_lucky_trinket_proc = Upgrades.lucky_trinket_proc[player_id]
 	})
-
+	-- print("QueueSelection LVL 1")
 	if not Upgrades.pending_selection[player_id] then
 		Upgrades:ShowSelection(hero, rarity, player_id)
 	else
@@ -121,7 +121,7 @@ function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_tri
 	local player = PlayerResource:GetPlayer(player_id)
 	if not IsValidEntity(player) then return end
 
-	Timers:CreateTimer(0, function()
+	Timers:CreateTimer(function()
 		CustomGameEventManager:Send_ServerToPlayer(player, "open_talents_choose_players", {
 			upgrades = {
 				upgrade_rarity = rarity,
@@ -137,6 +137,7 @@ function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_tri
 	end)
 
 	Timers:CreateTimer(60, function()
+		-- if not Upgrades.pending_selection[player_id] then return end
 		local hero = PlayerResource:GetSelectedHeroEntity(player_id)
 		local random = choices[RandomInt(1, #choices)]
 		local event = {
