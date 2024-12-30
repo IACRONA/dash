@@ -14,7 +14,7 @@
 		}
 		"damage_return"
 		{
-			"value" "3"
+			"value" "5"
 			"operator" "OP_ADD"
 		}
 		"heal_amp"
@@ -70,8 +70,8 @@
 		}
 		"heal"
 		{
-			"value" "50"
-			"operator" "OP_MULTIPLY"
+			"value" "70"
+			"operator" "OP_ADD"
 		}
 	}
 	"dazzle_innate_weave"
