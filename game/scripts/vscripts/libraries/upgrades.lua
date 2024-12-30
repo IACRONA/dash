@@ -57,6 +57,40 @@ function Upgrades:QueueSelection(hero, rarity)
 			})
 		end
 	end
+
+	local hero = PlayerResource:GetSelectedHeroEntity(player_id)
+	local upgrades_count = Upgrades:GetPendingUpgradesCount(player_id)
+
+	GameRules:SendCustomMessage(hero:GetName().. " очередь из ".. upgrades_count, 0, 0)
+
+	if upgrades_count >= 4 then 
+		GameRules:SendCustomMessage("<font color='#ff0000'>" .. hero:GetName().. " выбирается рандомно бонусы</font>", 0, 0)
+
+		for i=1, 120 do 
+			local rolled_upgrades = Upgrades:RollUpgradesOfType(
+				UPGRADE_TYPE.ABILITY,
+				player_id,
+				UPGRADE_RARITY_RARE,
+				{},
+				3
+			)
+		
+			local random = rolled_upgrades[RandomInt(1, #rolled_upgrades)]
+			local event = {
+				PlayerID = player_id,
+				upgrade_name = random.upgrade_name,
+				ability_name = random.ability_name
+			}
+			GameRules:SendCustomMessage("<font color='#ff0000'>".. hero:GetName().. random.upgrade_name.. random.ability_name.. "выбирается рандомно бонусы</font>", 0, 0)
+
+			Upgrades:AddAbilityUpgrade(
+				hero,
+				random.ability_name,
+				random.upgrade_name,
+				UPGRADE_RARITY_RARE
+			)
+		end
+	end
 end
 
 
@@ -136,35 +170,6 @@ function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_tri
 			favorites_upgrades = Upgrades.favorites_upgrades[player_id] or {}
 		})
 	end)
-
- 
-	Timers:CreateTimer(5, function()
-		local hero = PlayerResource:GetSelectedHeroEntity(player_id)
-		local random = choices[RandomInt(1, #choices)]
-		local event = {
-			PlayerID = player_id,
-			upgrade_name = random.upgrade_name,
-			ability_name = random.ability_name
-		}
-		local upgrades_count = Upgrades:GetPendingUpgradesCount(player_id)
-
-		GameRules:SendCustomMessage(hero:GetName().. " очередь из ".. upgrades_count.., 0, 0)
-
-		if upgrades_count >= 4 then 
-			local queue = Upgrades.queued_selection[player_id]
-			for i=1, upgrades_count do 
-				local choices = queue[i]
-				local random = choices[RandomInt(1, #choices)]
-				local event = {
-					PlayerID = player_id,
-					upgrade_name = random.upgrade_name,
-					ability_name = random.ability_name
-				}
-				Upgrades:UpgradeSelected(event)
-			end
-		end
-	end)
-
 end
 
 
