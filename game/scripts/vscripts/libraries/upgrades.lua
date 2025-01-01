@@ -47,50 +47,51 @@ function Upgrades:QueueSelection(hero, rarity)
 		is_lucky_trinket_proc = Upgrades.lucky_trinket_proc[player_id]
 	})
 	-- print("QueueSelection LVL 1")
-	if not Upgrades.pending_selection[player_id] then
+	-- if not Upgrades.pending_selection[player_id] then
 		Upgrades:ShowSelection(hero, rarity, player_id)
-	else
-		local player = PlayerResource:GetPlayer(player_id)
-		if IsValidEntity(player) then
-			CustomGameEventManager:Send_ServerToPlayer(player, "Upgrades:update_pending_count", {
-				upgrades_count = #Upgrades.queued_selection[player_id];
-			})
-		end
-	end
+	-- else
+	-- 	local player = PlayerResource:GetPlayer(player_id)
+	-- 	if IsValidEntity(player) then
+	-- 		CustomGameEventManager:Send_ServerToPlayer(player, "Upgrades:update_pending_count", {
+	-- 			upgrades_count = #Upgrades.queued_selection[player_id];
+	-- 		})
+	-- 	end
+	-- end
 
-	local hero = PlayerResource:GetSelectedHeroEntity(player_id)
-	local upgrades_count = Upgrades:GetPendingUpgradesCount(player_id)
+	-- local hero = PlayerResource:GetSelectedHeroEntity(player_id)
+	-- local upgrades_count = Upgrades:GetPendingUpgradesCount(player_id)
 
-	GameRules:SendCustomMessage(hero:GetName().. " очередь из ".. upgrades_count, 0, 0)
+	-- if upgrades_count >= 2 then 
+	-- 	GameRules:SendCustomMessage(hero:GetName().. " очередь из ".. upgrades_count, 0, 0)
+	-- end
+	
+	-- if upgrades_count >= 5 then 
+	-- 	GameRules:SendCustomMessage("<font color='#ff0000'>" .. hero:GetName().. " выбирается рандомно бонусы</font>", 0, 0)
 
-	if upgrades_count >= 4 then 
-		GameRules:SendCustomMessage("<font color='#ff0000'>" .. hero:GetName().. " выбирается рандомно бонусы</font>", 0, 0)
-
-		for i=1, 150 do 
-			local rolled_upgrades = Upgrades:RollUpgradesOfType(
-				UPGRADE_TYPE.ABILITY,
-				player_id,
-				UPGRADE_RARITY_EPIC,
-				{},
-				3
-			)
+	-- 	for i=1, 150 do 
+	-- 		local rolled_upgrades = Upgrades:RollUpgradesOfType(
+	-- 			UPGRADE_TYPE.ABILITY,
+	-- 			player_id,
+	-- 			UPGRADE_RARITY_EPIC,
+	-- 			{},
+	-- 			3
+	-- 		)
 		
-			local random = rolled_upgrades[RandomInt(1, #rolled_upgrades)]
-			local event = {
-				PlayerID = player_id,
-				upgrade_name = random.upgrade_name,
-				ability_name = random.ability_name
-			}
-			GameRules:SendCustomMessage("<font color='#ff0000'>".. hero:GetName().. random.upgrade_name.. random.ability_name.. "выбирается рандомно бонусы</font>", 0, 0)
+	-- 		local random = rolled_upgrades[RandomInt(1, #rolled_upgrades)]
+	-- 		local event = {
+	-- 			PlayerID = player_id,
+	-- 			upgrade_name = random.upgrade_name,
+	-- 			ability_name = random.ability_name
+	-- 		}
 
-			Upgrades:AddAbilityUpgrade(
-				hero,
-				random.ability_name,
-				random.upgrade_name,
-				UPGRADE_RARITY_EPIC
-			)
-		end
-	end
+	-- 		Upgrades:AddAbilityUpgrade(
+	-- 			hero,
+	-- 			random.ability_name,
+	-- 			random.upgrade_name,
+	-- 			UPGRADE_RARITY_EPIC
+	-- 		)
+	-- 	end
+	-- end
 end
 
 

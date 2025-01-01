@@ -130,8 +130,8 @@ if GetMapName() == "warsong" then
     HIMARON_SETTINGS_COOLDOWN = 50
     HIMARON_SETTINGS_DURATION = 15
     DEMON_SETTINGS_CHANCE = {15,18,30}
-    DEMON_SETTINGS_MIN_DAMAGE = {550,750,990}
-    DEMON_SETTINGS_MAX_DAMAGE = {640,930,1400}
+    DEMON_SETTINGS_MIN_DAMAGE = {550,850,1200}
+    DEMON_SETTINGS_MAX_DAMAGE = {640,930,1800}
     DEMON_SETTINGS_INCREASE_DAMAGE_SELF = 20
     HIMARON_SWORD_COOLDOWN = 23
 
@@ -401,7 +401,7 @@ if GetMapName() == "portal_duo" then
     HIMARON_SETTINGS_COOLDOWN = 27
     HIMARON_SETTINGS_DURATION = 12
     DEMON_SETTINGS_CHANCE = {15,22,35}
-    DEMON_SETTINGS_MIN_DAMAGE = {550,750,1200}
+    DEMON_SETTINGS_MIN_DAMAGE = {550,850,1200}
     DEMON_SETTINGS_MAX_DAMAGE = {640,930,1800}
     DEMON_SETTINGS_INCREASE_DAMAGE_SELF = 20
     HIMARON_SWORD_COOLDOWN = 15
@@ -437,7 +437,7 @@ if GetMapName() == "portal_trio" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 850
+    GRANT_GOLD = 900
 
     CONDITION_FLAG_COUNT_WIN = 50 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
@@ -537,13 +537,13 @@ if GetMapName() == "portal_trio" then
     HIMARON_SETTINGS_COOLDOWN = 27
     HIMARON_SETTINGS_DURATION = 12
     DEMON_SETTINGS_CHANCE = {15,22,35}
-    DEMON_SETTINGS_MIN_DAMAGE = {550,750,1200}
+    DEMON_SETTINGS_MIN_DAMAGE = {550,850,1200}
     DEMON_SETTINGS_MAX_DAMAGE = {640,930,1800}
     DEMON_SETTINGS_INCREASE_DAMAGE_SELF = 20
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Процент уровня
-    PERCENT_OF_LEVEL_MINUTE = 180
+    PERCENT_OF_LEVEL_MINUTE = 190
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
@@ -573,8 +573,8 @@ FOUNTAIN_DELAY_MODIFIER = 1.3
 START_GAME_FREEZE_TIME = 12
 
 -- Защитники флагов
-UPGRADE_TIME_CHECK = 1 -- каждые 1 минут
-UPGRADE_DAMAGE = 35
+UPGRADE_TIME_CHECK = 1.1 -- каждые 1 минут
+UPGRADE_DAMAGE = 55
 UPGRADE_HEALTH = 280
 UPGRADE_ARMOR = 1
 
@@ -608,8 +608,8 @@ JUMP_DISTANCE = 230 -- ДИСТАНЦИЯ ПРЫЖКА
 -- ДЛЯ ЧЕНА ( 2 СКИЛЛ, ЛВЛ ЕГО КРИПОВ)
 creep_ability_level_from_time = {
     {0, 1},       -- С 0 секунды крипы имеют уровень 1
-    {300, 2},     -- С 5 минуты (300 секунд) крипы имеют уровень 2
-    {600, 3},     -- С 10 минуты крипы имеют уровень 3
-    {900, 4},     -- С 15 минуты крипы имеют уровень 4
-    {1200, 5},    -- С 20 минуты крипы имеют уровень 5
+    {200, 2},     -- С 5 минуты (300 секунд) крипы имеют уровень 2
+    {500, 3},     -- С 10 минуты крипы имеют уровень 3
+    {700, 4},     -- С 15 минуты крипы имеют уровень 4
+    {840, 5},    -- С 20 минуты крипы имеют уровень 5
 }
