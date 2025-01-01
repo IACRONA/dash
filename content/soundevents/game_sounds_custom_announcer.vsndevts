@@ -795,6 +795,53 @@
         event_type = "1.000000"
         vsnd_duration = 1.368000
     }
-     
+    hand_of_death = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/cursed_knight_hand_of_death.vsnd",
+        ]
+        volume = "2.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+    curse_of_blood = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/curse_of_blood.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+    deadman_field = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/deadman_field.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
        
 }

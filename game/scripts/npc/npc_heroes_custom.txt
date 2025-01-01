@@ -197,23 +197,76 @@
 		"Ability5"		"lion_frog_jump"
 	}
 
+	// "npc_dota_hero_skeleton_king"
+	// {
+	// 	"Ability1"		"skeleton_king_hellfire_blast"
+	// 	"Ability2"		"cursed_knight_hand_of_dead"
+	// 	"Ability3"		"skeleton_king_mortal_strike"
+	// 	"Ability4"		"skeleton_king_vampiric_spirit"
+	// 	"Ability5"		"generic_hidden"
+	// 	"Ability6"		"skeleton_king_reincarnation"
+	// 	"Ability10"		"special_bonus_unique_wraith_king_2"
+	// 	"Ability11"		"special_bonus_unique_wraith_king_3"
+	// 	"Ability12"		"special_bonus_unique_wraith_king_11"
+	// 	"Ability13"		"special_bonus_hp_400"
+	// 	"Ability14"		"special_bonus_cleave_40"
+	// 	"Ability15"		"special_bonus_attack_speed_60"
+	// 	"Ability16"		"special_bonus_unique_wraith_king_10"
+	// 	"Ability17"		"special_bonus_unique_wraith_king_4"
+
+	// 	"Facets"			""
+	// }
 	"npc_dota_hero_skeleton_king"
 	{
-		"Ability1"		"skeleton_king_hellfire_blast"
-		"Ability2"		"cursed_knight_hand_of_dead"
-		"Ability3"		"skeleton_king_mortal_strike"
-		"Ability4"		"skeleton_king_vampiric_spirit"
-		"Ability5"		"generic_hidden"
-		"Ability6"		"skeleton_king_reincarnation"
-		"Ability10"		"special_bonus_unique_wraith_king_2"
-		"Ability11"		"special_bonus_unique_wraith_king_3"
-		"Ability12"		"special_bonus_unique_wraith_king_11"
-		"Ability13"		"special_bonus_hp_400"
-		"Ability14"		"special_bonus_cleave_40"
-		"Ability15"		"special_bonus_attack_speed_60"
-		"Ability16"		"special_bonus_unique_wraith_king_10"
-		"Ability17"		"special_bonus_unique_wraith_king_4"
+		"DisableWearables" "1"
+		"Facets"
+        {
+            "skeleton_king_facet_bone_guard" 
+            {
+				"Deprecated"              "true"
+            }
 
-		"Facets"			""
+            "skeleton_king_facet_cursed_blade"
+            {
+				"Deprecated"              "true"
+            }
+			"cursed_knight_facet_cursed_boost"
+			{
+				"Icon"              "damage"
+                "Color"             "Yellow"
+                "GradientID"        "0"
+			}
+			"cursed_knight_facet_eternal_cold_shield"
+			{
+				"Icon"              "armor"
+                "Color"             "gray"
+                "GradientID"        "0"
+				"Abilities"
+				{
+					"Ability1"
+					{
+						"AbilityName"	"cursed_knightice_eternal_cold_shield"
+						"AbilityIndex"	"6"
+						"AutoLevelAbility"	"true"
+					}
+				}
+			}
+        }
+		"Ability1" "cursed_knight_cursed_blast"
+		"Ability2" "cursed_knight_hand_of_death"
+		"Ability3" "cursed_knight_curse_of_blood"
+		"Ability4" "cursed_knight_curse_of_cold"
+		"Ability5" "cursed_knight_summon_deadman"
+		"Ability6" "cursed_knight_belial_pack"
+		"Ability7" "cursed_knight_deadman_field"
+		"Ability8" ""
+		"Ability9" ""
+		"Ability10" ""
+		"Ability11" ""
+		"Ability12" ""
+		"Ability13" ""
+		"Ability14" ""
+		"Ability15" ""
+		"Ability16" ""
 	}
 }

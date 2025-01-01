@@ -70,6 +70,13 @@ local particles =
     "particles/djalal/custom_timer.vpcf",
     "particles/econ/items/pets/pet_frondillo/pet_spawn_frondillo.vpcf",
     "particles/immunity_sphere_buff.vpcf",
+    "particles/units/heroes/hero_zuus/red_zuus_arc_lightning.vpcf",
+    "particles/units/heroes/hero_cursed_k/cursed_shield_green.vpcf",
+    "particles/items2_fx/ward_spawn_generic.vpcf",
+    "particles/units/heroes/hero_broodmother/broodmother_spiderlings_spawn.vpcf",
+    "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast.vpcf",
+    "particles/ancient_apparition_cold_feet_frozen.vpcf",
+    "particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf"
 }
 
 local sounds = 
@@ -80,6 +87,7 @@ local sounds =
     "soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts",
     "soundevents/game_sounds_custom_announcer.vsndevts",
     "soundevents/voscripts/game_sounds_vo_warlock_golem.vsndevts",
+    
 }
 
 local function PrecacheEverythingFromTable( context, kvtable)

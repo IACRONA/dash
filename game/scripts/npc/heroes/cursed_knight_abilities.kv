@@ -1,25 +1,254 @@
 "DOTAAbilities"
 {
-    "cursed_knight_hand_of_dead"
+	//////////////////
+	// ПРОКЛЯТЫЙ ВЗРЫВ ( ПАССИВНЫЙ БЛАСТ ВК )
+	//////////////////
+	"cursed_knight_cursed_blast"
+	{
+		"BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/heroes/cursed_knight/cursed_knight_cursed_blast"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE "
+		"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"            "skeleton_king_hellfire_blast"
+		"SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityCooldown"                "4 3 2 1"
+		"AbilityValues"
+		{
+			"radius" "800" // РАДИУС ПОИСКА ЦЕЛЕЙ
+			"chance_blast" "12" // ШАНС БЛАСТА
+			"damage" "100 120 140 220" // УРОН БЛАСТА
+			"blast_speed"               "1200" // СКОРОСТЬ ПОЛЕТА ПАРТИКЛА
+            "blast_stun_duration"               // ДЛИТЕЛЬНОСТЬ СТАНА
+            {
+                "value"                 "1.0 1.2 1.4 1.6"
+            }
+			"blast_slow"                "-20"                // ЗАМЕДЛЕНИЕ ( ЕСЛИ НЕ НУЖНО, ПРОСТО НА НОЛЬ ПОСТАВЬ)
+			"blast_dot_duration" "2" //            ДЛИТЕЛЬНОСТЬ ЗАМЕДЛЕНИЯ ( ЕСЛИ НЕ НУЖНО, ПРОСТО НА НОЛЬ ПОСТАВЬ)
+		}
+		"AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+	}
+	//////////////
+	// РУКА СМЕРТИ
+	//////////////
+    "cursed_knight_hand_of_death"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/heroes/cursed_knight/cursed_knight_hand_of_death"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityTextureName"            "cursed_knight/hand_of_death"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+		"AbilityCooldown"               "35"
+        "AbilityCastRange"              "800 900 1000 1200"
+		"AbilityManaCost"               "75"
+		"AbilityCastAnimation" "0.2"
+        "AbilityValues"
+        {
+            "hook_speed"                "1600"  // СКОРОСТЬ РУКИ
+        }
+    }
+	//////////////////
+	// ПРОКЛЯТИЕ КРОВИ
+	//////////////////
+	"cursed_knight_curse_of_blood"
 	{
 		"BaseClass"             		"ability_lua"
-		"ScriptFile"					"abilities/heroes/cursed_knight/cursed_knight_hand_of_dead"
+		"ScriptFile"					"abilities/heroes/cursed_knight/cursed_knight_curse_of_blood"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
-		"AbilityTextureName"			"enigma/enigma_house_bolt"
-  
- 		"AbilityManaCost"				"90 50 100 75"
-		"AbilityCooldown"               "10 14 10 5"
-		"AbilityCastRange"				"800 1000 1100 1200"
- 
- 		"AbilityValues"
+		"AbilityTextureName"			"cursed_knight/curse_of_blood"
+		"SpellDispellableType"          "SPELL_DISPELLABLE_YES" 
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityCastAnimation" "0.2"
+		"AbilityCooldown"               "3"
+		"AbilityCastRange"  "800 900 1000 1200"
+		"AbilityValues"
 		{
-			"hook_speed"				"1600.0"
-			"hook_width"				"100"
-			"hook_distance"			"1300"
-  				      
-  		}
+			"pure_damage"              // ПЕРВОНАЧАЛЬНЫЙ УРОН ВРАГУ
+			{
+				"value" "100 170 220 280"
+				"DamageTypeTooltip"                                 "DAMAGE_TYPE_PURE"
+			}
+			"mag_periodic_damage" "20 30 40 50" // ПЕРИОДЧНЫЙ УРОН ВРАГУ
+			"damage_krit_after" "2"   // В ДВА РАЗА БОЛЬШЕ ПЕРИОДЧНОГО УРОНА ПО ВРАГУ ПОСЛЕ 4 ЭФФЕКТОВ 
+			"duration_before" "8"	// ДЛИТЕЛЬНОСТЬ ПЕРВОГО ЭФФЕКТА
+			"value_of_hits" "4"		// КОЛИЧЕСТВО УДАРОВ ДЛЯ ЭФФЕКТА ВЗРЫВА
+
+			"silence_duration" "2"	// длительность безмолвия
+			"damage_mag_periodic_ally"  // ПЕРИОДЧНЫЙ УРОН СОЮЗНИКАМ ВРАГА
+			{
+				"value" "100 130 150 180"
+			}
+			"curse_duration_ally" "6"	// длительность вторичного эффекта
+			"curse_cooldown" "15 14 13 12" // ПЕРЕЗАРЯДКА ЭФФЕКТА ВЗРЫВА
+			"radius_curse"  // РАДИУС ЭФФЕКТА ВЗРЫВА
+			{
+				"value" "600"
+				"affected_by_aoe_increase"  "1" 
+			}
+		}
 	}
+	////////////////////
+	// ПРОКЛЯТИЕ ХОЛОДА
+	////////////////////
+	"cursed_knight_curse_of_cold"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/cursed_knight/cursed_knight_curse_of_cold"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"          "SPELL_DISPELLABLE_YES" 
+		"AbilityTextureName"			"cursed_knight/curse_of_cold"
+		"AbilityCooldown"               "18 14 13 10"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityCastAnimation" "0.2"
+		"AbilityCastRange"  "800 900 1000 1200"
+		"AbilityManaCost"    "10"
+		"AbilityValues"
+		{
+			"duration" "5" // ДЛИТЕЛЬНОСТЬ ПРОКЛЯТИЯ
+			"movement_slow_per_second" "10" // ЗАМЕДЛЕНИЕ ЗА КОЛИЧЕСТВА ОСТАВШИХСЯ СЕКУНД ( В НАЧАЛЕ 5 сек = 5 * 10 = 50)
+			"perid_damage" "30 40 50 70"	// ПЕРИОДЧЕСКИЙ УРОН ПО ВРАГУ
+		}
+	}
+	//////////////////////////////
+	// УЛЬТИМЕЙТ: БАРЬЕР МЕРТВЕЦА
+	//////////////////////////////
+	"cursed_knight_deadman_field"
+	{
+		"AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/cursed_knight/cursed_knight_deadman_field"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellDispellableType"          "SPELL_DISPELLABLE_NO" 
+		"AbilityTextureName"			"cursed_knight/deadman_field"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityCastAnimation" "0.2"
+		"AbilityManaCost"  "100"
+		"AbilityCooldown"  "80 70 60"
+		
+		"AbilityValues"
+		{
+			"damage_per_sec_in_field" "100 150 210" // УРОН ПО ВРАГУ ВНУТРИ ПОЛЯ
+			"slow_movement_in_field" "35"           // ЗАМЕДЛЕНИЯ ВРАГА ВНУТРИ ПОЛЯ ( В ПРОЦЕНТАХ )
+			"field_duration" "10 12 13"				// ДЛИТЕЛЬНОСТЬ ПОЛЯ
+			"radius"                                // РАДИУС ПОЛЯ
+			{
+				"value"     "300"
+                "affected_by_aoe_increase"  "1" 
+			}
+			"damage_resist_in_field" "90"			// СОПРОТИВЛЕНИЕ ЛЮБОМУ ТИПУ УРОНА ( В ПРОЦЕНТАХ )
+		}
+	}
+	//////////////////////////////////
+	// SCEPTER ABILITY: СВОР БЕЛИАЛА
+	//////////////////////////////////
+	"cursed_knight_belial_pack"
+	{
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_SKIP_FOR_KEYBINDS  "
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/cursed_knight/cursed_knight_belial_pack"
+		"AbilityTextureName"			"cursed_knight/belial_pack"
+		"SpellDispellableType"          "SPELL_DISPELLABLE_NO" 
+		"IsGrantedByScepter"              "1"
+        "MaxLevel"                      "1"
+		"AbilityValues"
+		{
+			"amp_damage" "25"       //	УСИЛЕНИЕ УРОНА ( В ПРОЦЕНТАХ )
+		}
+	}
+	//////////////////////////////////
+	// SHARD ABILITY: ПРИЗЫВ МЕРТВЕЦА 
+	//////////////////////////////////
+	"cursed_knight_summon_deadman"
+	{
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/cursed_knight/cursed_knight_summon_deadman"
+		"AbilityTextureName"			"cursed_knight/summon_deadman"
+		"SpellDispellableType"          "SPELL_DISPELLABLE_NO" 
+		"IsGrantedByShard"              "1"
+        "MaxLevel"                      "1"
+		"AbilityCastAnimation" "0.2"
+		"AbilityCooldown"          "10"
+		"AbilityManaCost"           "0"
+
+		"AbilityValues"
+		{
+			"damage_skeleton" "60"       // УРОН МЕРТВЕЦА ( здесь нет смысла менять, это только для визуала ) 
+			"health_skeleton" "2200" // ЗДОРОВЬЯ МЕРТВЕЦА ( здесь нет смысла менять, это только для визуала )
+		}
+	}
+	/////////////////////////////////////////////////////
+	// ПЕРВАЯ СПОСОБНОСТЬ СКЕЛЕТА: ПЛЕСЕНЬ 
+	/////////////////////////////////////////////////////
+	"cursed_big_skeleton_mould"
+	{
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/cursed_knight/skeleton/cursed_big_skeleton_mould"
+		"SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityTextureName"			"cursed_knight/big_skeleton_mould"
+		"AbilityCastAnimation" "0.2"
+		"AbilityCooldown" "15"
+		"AbilityManaCost" "0"
+		"AbilityCastRange"   "850"
+		"AbilityValues"
+		{
+			"height" "475" // ВЫСОТА ПРЫЖКА ( брал половину как у шейкера, у него 900 )
+			"leap_duration" "1" // длительность прыжка ( Как у шейкера )
+			"stun_duration" "1.2" // ДЛИТЕЛЬНОСТЬ СТАНА
+		}
+	}
+	/////////////////////////////////////////////////////
+	// ВТОРАЯ СПОСОБНОСТЬ СКЕЛЕТА: Смерть ради жизни 
+	/////////////////////////////////////////////////////
+	"cursed_big_skeleton_dead_for_life"
+	{
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"             		"ability_lua"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityTextureName"			"cursed_knight/dead_for_life"
+		"ScriptFile"					"abilities/heroes/cursed_knight/skeleton/cursed_big_skeleton_dead_for_life"
+		"AbilityCastAnimation" "0.2"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityCooldown" "40"
+		"AbilityManaCost" "0"
+
+		"AbilityValues"
+		{
+			"damage" "700" // УРОН ВРАГАМ 
+			"heal_pct" "40" // ХИЛ ВЛАДЕЛЬЦА И ЗАБИРАЕТ У СЕБЯ СТОЛЬКО ХП ( В ПРОЦЕНТАХ )
+			"radius"   "300" // РАДИУС ВЗРЫВА
+		}
+	}
+
+
+
+
+	/////////////////////////////////////////////////////
+	// СПОСОБНОСТЬ ОТ АСПЕКТА: ВЕЧНЫЙ ХОЛОД  ( ЗАЩИТА ОТ ФИЗ УРОНА 15 %)
+	/////////////////////////////////////////////////////
+	"cursed_knightice_eternal_cold_shield"
+	{
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/heroes/cursed_knight/cursed_knightice_eternal_cold_shield"
+		"SpellDispellableType"          "SPELL_DISPELLABLE_NO" 
+		"MaxLevel"                      "1"
+		"AbilityValues"
+		{
+			"ptc" "15"               // защита от физ урона ( В ПРОЦЕНТАХ )
+		}
+	}
+	
 }

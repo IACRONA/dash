@@ -1,0 +1,15 @@
+LinkLuaModifier('cursed_knightice_eternal_cold_shield_modifier', 'abilities/heroes/cursed_knight/cursed_knightice_eternal_cold_shield', LUA_MODIFIER_MOTION_NONE)
+
+cursed_knightice_eternal_cold_shield = cursed_knightice_eternal_cold_shield or {}
+
+function cursed_knightice_eternal_cold_shield:GetIntrinsicModifierName() 
+    return "cursed_knightice_eternal_cold_shield_modifier"
+end
+
+
+cursed_knightice_eternal_cold_shield_modifier = cursed_knightice_eternal_cold_shield_modifier or {}
+function cursed_knightice_eternal_cold_shield_modifier:IsHidden() return true end
+function cursed_knightice_eternal_cold_shield_modifier:IsPurgable() return false end
+
+function cursed_knightice_eternal_cold_shield_modifier:DeclareFunctions() return  {MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE } end
+function cursed_knightice_eternal_cold_shield_modifier:GetModifierIncomingPhysicalDamage_Percentage() return self:GetAbility():GetSpecialValueFor("ptc") end

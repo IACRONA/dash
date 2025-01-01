@@ -69,7 +69,7 @@ return function(t, hAddon)
 		if GetMapName() == "dash" then
 			local target = EntIndexToHScript(t.entindex_target)
 			local player = PlayerResource:GetPlayer(hMainUnit:GetPlayerOwnerID())
-			 if target and target:IsBuilding() and target:HasModifier("modifier_for_middle_towers_for_unvulbure")   then  
+			 if target and target.IsBuilding and target:IsBuilding() and target:HasModifier("modifier_for_middle_towers_for_unvulbure")   then  
 				CustomGameEventManager:Send_ServerToPlayer(player, "CreateIngameErrorMessage", {message="#error_topa_and_bota_towers_are_live"})
 				return false
 			end

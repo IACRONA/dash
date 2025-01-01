@@ -1704,6 +1704,126 @@
     "DOTA_Tooltip_Ability_treant_generating_tree_charge_cooldown"    "ВОССТАНОВЛЕНИЕ ЗАРЯДА:"
     "DOTA_Tooltip_Ability_treant_generating_tree_tree_duration"    "ВРЕМЯ ЖИЗНИ ДЕРЕВА:"
 
+    ////////////////
+    // Cursed Knight
+    ////////////////
+
+    "npc_dota_hero_skeleton_king" "Cursed Knight"
+    // АСПЕКТЫ1
+    // 1
+    "DOTA_Tooltip_facet_cursed_knight_facet_cursed_boost"                               "Проклятый"
+    "DOTA_Tooltip_facet_cursed_knight_facet_cursed_boost_Description"                               "Проклятия наносят на 3% больше урона."
+    // 2
+    "DOTA_Tooltip_facet_cursed_knight_facet_eternal_cold_shield"                               "Вечный холод"
+    "DOTA_Tooltip_facet_cursed_knight_facet_eternal_cold_shield_Description"                               "Герой получает на 15% меньше физ урона."
+
+    // ПРОКЛЯТЫЙ ВЗРЫВ
+    "DOTA_Tooltip_Ability_cursed_knight_cursed_blast" "ПРОКЛЯТЫЙ ВЗРЫВ"
+    "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_Description" "Герой может случайно опалить цель призрачным огнём в бою с шансом, оглушая и замедляя её, и нанося ей урон."
+    "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_chance_blast" "ШАНС ОГЛУШЕНИЯ: "
+    "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_damage" "УРОН ОГЛУШЕНИЯ: "
+    "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_blast_stun_duration" "ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ: "
+    "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_blast_slow" "%ЗАМЕДЛЕНИЕ ВРАГА: "
+    "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_Lore" "Остарион призывает своих проклятых предков, уничтожая противников."
+    
+    // модификаторы к "ПРОКЛЯТЫЙ ВЗРЫВ"
+    "DOTA_Tooltip_modifier_cursed_knight_cursed_blast_slow" "Вы замедлены"
+
+
+    // Рука смерти
+    "DOTA_Tooltip_Ability_cursed_knight_hand_of_death" "Рука смерти"
+    "DOTA_Tooltip_Ability_cursed_knight_hand_of_death_Description" "Призрачная рука, порождённая тёмной магией, хватает душу врага и безжалостно притягивает его к своему хозяину."
+    "DOTA_Tooltip_Ability_cursed_knight_hand_of_death_hook_speed" "СКОРОСТЬ РУКИ: "
+    "DOTA_Tooltip_Ability_cursed_knight_hand_of_death_Lore" "Рука смерти"
+    // модификаторы к "Рука смерти"
+    "DOTA_Tooltip_modifier_cursed_knight_hand_of_death"  "ПРИТЯГИВАНИЕ РУКИ СМЕРТИ"
+    "DOTA_Tooltip_modifier_cursed_knight_hand_of_death_description"  "Вы притягиваетесь к Проклятому."
+
+    // Проклятите крови
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood" "Проклятие крови"
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_Description" "Обрушивает проклятие на врага, нанося чистый и периодический урон, накапливая эффекты с каждым ударом. После %value_of_hits%  эффектов, герой вызывает мощный взрыв, усиливая урон, накладывая безмолвие на ближайших врагов и исцеляя себя за счет нанесенного проклятием урона."
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_pure_damage" "ПЕРВИЧНЫЙ УРОН: "
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_mag_periodic_damage" "ПЕРИОДИЧНЫЙ УРОН ВРАГУ: "
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_duration_before" "ДЛИТЕЛЬНОСТЬ ПЕРВИЧНОГО ЭФФЕКТА: "
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_silence_duration" "ДЛИТЕЛЬНОСТЬ БЕЗМОЛВИЯ: "
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_radius_curse" "РАДИУС ВЗРЫВА: "
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_curse_duration_ally" "ДЛИТЕЛЬНОСТЬ ПРОКЛЯТИЯ НА СОЮЗНИКАХ ВРАГА: "
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_curse_cooldown" "ПЕРЕЗАРЯДКА ПРОКЛЯТИЯ: "
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_damage_mag_periodic_ally" "ПЕРИОДИЧНЫЙ УРОН СОЮЗНИКАМ ВРАГА: "
+    
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_Lore" "Проклятие крови"
+    // Модификаторы к "Проклятие крови"
+
+    "DOTA_Tooltip_modifier_cursed_knight_curse_of_blood" "Вы прокляты"
+    "DOTA_Tooltip_modifier_cursed_knight_curse_of_blood_description" "Каждую секунду вы получаете урон. Каждый удар Проклятого Рыцаря накладывает вам 1 заряд"
+
+    "DOTA_Tooltip_modifier_cursed_knight_curse_of_blood_cooldown" "Перезарядка проклятого взрыва"
+
+    "DOTA_Tooltip_modifier_cursed_knight_curse_of_blood_ally_curse" "Вы прокляты"
+    "DOTA_Tooltip_modifier_cursed_knight_curse_of_blood_ally_curse_description" "Каждую секунду вы получаете урон"
+
+    // Проклятие холода 
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_cold" "Проклятие холода"
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_cold_Description" "Из глубин вечного ледника поднимается древняя магия, окутывая врагов морозным ужасом. Каждая снежинка, каждая ледяная игла обрушивается на жертву с неумолимой яростью зимы, замедляя ее до отчаяния и разрывая плоть морозной болью."
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_cold_duration" "ДЛИТЕЛЬНОСТЬ ЭФФЕКТА: "
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_cold_movement_slow_per_second" "%ЗАМЕДЛЕНИЕ ЗА СЕКУНДУ ОСТАВШЕГОСЯ ВРЕМЕНИ: "
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_cold_perid_damage" "УРОН:"
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_cold_Lore" "Проклятие холода"
+
+    // Модификаторы к "Проклятие холода"
+    
+    "DOTA_Tooltip_modifier_cursed_knight_curse_of_cold" "Вы прокляты"
+    "DOTA_Tooltip_modifier_cursed_knight_curse_of_cold_description" "Вы замедлены и каждую секунду вы получаете урон. С каждой секундой скорость возвращается."
+
+
+    // Барьер Мертвеца
+    "DOTA_Tooltip_Ability_cursed_knight_deadman_field" "Барьер мертвеца"
+    "DOTA_Tooltip_Ability_cursed_knight_deadman_field_Description" "Герой создает купол из разлагающейся плоти мертвецов, который отражает весь магический урон обратно к врагам. Все враги внутри барьера получают магический урона в секунду и замедляются. Находясь внутри барьера, герой получает %damage_resist_in_field%%% сопротивления ко всем видам урона."
+    "DOTA_Tooltip_Ability_cursed_knight_deadman_field_damage_per_sec_in_field" "УРОН ПО ВРАГАМ В КУПОЛЕ: "
+    "DOTA_Tooltip_Ability_cursed_knight_deadman_field_slow_movement_in_field" "%ЗАМЕДЛЕНИЕ ВРАГОВ В КУПОЛЕ: "
+    "DOTA_Tooltip_Ability_cursed_knight_deadman_field_field_duration" "ДЛИТЕЛЬНОСТЬ КУПОЛА: "
+    "DOTA_Tooltip_Ability_cursed_knight_deadman_field_radius" "РАДИУС КУПОЛА: "
+
+    "DOTA_Tooltip_Ability_cursed_knight_deadman_field_Lore" "Призрачные вопли умерших возведут барьер, защищая своих избранных от любого зла"
+    // Модификаторы к "Барьер Мертвеца"
+    "DOTA_Tooltip_cursed_knight_deadman_field_modifier_enemy" "Проклятие плоти"
+    "DOTA_Tooltip_cursed_knight_deadman_field_modifier_enemy_description" "Вы замедлены на 35%% и получаете магический урон каждую секунду, находясь внутри барьера."
+    "DOTA_Tooltip_cursed_knight_deadman_field_modifier_cursed" "Мертвенная защита"
+    "DOTA_Tooltip_cursed_knight_deadman_field_modifier_cursed_description" "Вы получаете 90%% сопротивления любому типу урона, находясь внутри барьера."
+
+    // SHARD ABILITY  "ПРИЗЫВ мертвеца"
+    "npc_dota_cursed_big_skeleton"           "Мертвец"
+
+    "DOTA_Tooltip_Ability_cursed_knight_summon_deadman"                             "ПРИЗЫВ МЕРТВЕЦА"
+    "DOTA_Tooltip_Ability_cursed_knight_summon_deadman_Description"                 "Призывает одного большого скелета, который преследует владельца способности, и помогает ему убивать врагов."
+    "DOTA_Tooltip_Ability_cursed_knight_summon_deadman_health_skeleton"             "ЗДОРОВЬЕ МЕРТВЕЦА: "
+    //////////////////////////////////////////////////////////////////////////////
+    // ПЕРВАЯ СПОСОБНОСТЬ МЕРТВЕЦА: ПЛЕСЕНЬ ( cursed_big_skeleton_mould )
+    //////////////////////////////////////////////////////////////////////////////
+    "DOTA_Tooltip_Ability_cursed_big_skeleton_mould"                             "ПЛЕСЕНЬ"
+    "DOTA_Tooltip_Ability_cursed_big_skeleton_mould_Description"                 "Скелет совершает стремительный прыжок на врага. Его гнилые кости с силой ударяются о цель, оглушая её."
+    "DOTA_Tooltip_Ability_cursed_big_skeleton_mould_stun_duration" "ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ: "
+    "DOTA_Tooltip_Ability_cursed_big_skeleton_mould_Lore" "Проклятие древних некромантов даровало скелету неестественную ловкость. Каждый его прыжок — это воплощение ненависти, накопленной в могильной тьме."
+    ///////////////////////////////////////////////////////////////////////////////////////
+    // ВТОРАЯ СПОСОБНОСТЬ МЕРТВЕЦА: СМЕРТЬ РАДИ ЖИЗНИ ( cursed_big_skeleton_dead_for_life )
+    ////////////////////////////////////////////////////////////////////////////////////////
+    "DOTA_Tooltip_Ability_cursed_big_skeleton_dead_for_life"                             "СМЕРТЬ РАДИ ЖИЗНИ"
+    "DOTA_Tooltip_Ability_cursed_big_skeleton_dead_for_life_Description"                 "Скелет взрывает своё тело, нанося магический урон всем врагам в радиусе. Энергия его разрушения восстанавливает владельцу здоровье, жертвуя собой ради хозяина."
+    "DOTA_Tooltip_Ability_cursed_big_skeleton_dead_for_life_damage" "УРОН ВЗРЫВА: "
+    "DOTA_Tooltip_Ability_cursed_big_skeleton_dead_for_life_heal_pct" "%ХИЛ ВЛАДЕЛЬЦА СПОСОБНОСТИ ОТ ТЕК. ЗДОРОВЬЯ СКЕЛЕТА: "
+    "DOTA_Tooltip_Ability_cursed_big_skeleton_dead_for_life_radius" "РАДИУС ВЗРЫВА: "
+    "DOTA_Tooltip_Ability_cursed_big_skeleton_dead_for_life_Lore" "Созданный из праха и магии, этот скелет верен своему создателю до последнего осколка костей. Его существование — инструмент, предназначенный для того, чтобы поддерживать жизнь своего повелителя любой ценой."
+
+
+    // SCEPTER ABILITY "СВОР БЕЛИАЛА"
+    "DOTA_Tooltip_Ability_cursed_knight_belial_pack"                             "СВОР БЕЛИАЛА"
+    "DOTA_Tooltip_Ability_cursed_knight_belial_pack_Description"                 "Если ваш враг проклят всеми тремя вашими проклятиями, то по нему усиливается урон." // на %amp_damage%%%
+    "DOTA_Tooltip_Ability_cursed_knight_belial_pack_amp_damage"             "%УСИЛЕНИЕ УРОНА: "
+    
+
+
+
+
 
     "heros_i-l"    "Герои I-L"
     "heros_e-h"    "Герои E-H"

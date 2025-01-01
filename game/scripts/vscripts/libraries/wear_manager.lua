@@ -79,5 +79,16 @@ function CAddonWarsong:WearHero(hero)
 		hero:SetMaterialGroup("1")
 		WearParticle(hero, particles)
 		Wearing(hero, items)
+	elseif heroName == "npc_dota_hero_skeleton_king" then
+		local items = {
+			"models/items/wraith_king/destruction_lord_weapon/destruction_lord_weapon.vmdl",
+			"models/items/lich/frostivus2018_lich_frozenworlds_head/frostivus2018_lich_frozenworlds_head.vmdl",
+			"models/items/wraith_king/destruction_lord_back/destruction_lord_back.vmdl",
+			"models/items/wraith_king/destruction_lord_shoulder/destruction_lord_shoulder.vmdl",
+			"models/items/wraith_king/destruction_lord_arms/destruction_lord_arms.vmdl",
+			"models/items/wraith_king/destruction_lord_armor/destruction_lord_armor.vmdl",
+		}
+
+		Wearing(hero, items) 
 	end
 end
