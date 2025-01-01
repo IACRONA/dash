@@ -252,9 +252,9 @@
 				}
 			}
         }
-		"Ability1" "cursed_knight_cursed_blast"
-		"Ability2" "cursed_knight_hand_of_death"
-		"Ability3" "cursed_knight_curse_of_blood"
+		"Ability1" "cursed_knight_hand_of_death"
+		"Ability2" "cursed_knight_curse_of_blood"
+		"Ability3" "cursed_knight_cursed_blast"
 		"Ability4" "cursed_knight_curse_of_cold"
 		"Ability5" "cursed_knight_summon_deadman"
 		"Ability6" "cursed_knight_belial_pack"

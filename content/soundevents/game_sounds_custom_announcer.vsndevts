@@ -834,7 +834,7 @@
         [
             "sounds/spells/deadman_field.vsnd",
         ]
-        volume = "1.000000"
+        volume = "1.300000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"

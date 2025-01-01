@@ -14,7 +14,7 @@ function cursed_knight_hand_of_death:OnSpellStart()
 			Ability = self,
 			Source = caster,
 			Target = target,
-			iMoveSpeed = hook_speed,
+			iMoveSpeed = hook_speed*2.7,
 		})
 		self.bRetracting = false
 		EmitSoundOn( "hand_of_death", self:GetCaster() )
@@ -34,44 +34,8 @@ function cursed_knight_hand_of_death:OnProjectileHit( hTarget, vLocation )
         -- EmitSoundOn( "Hero_Pudge.AttackHookImpact", hTarget )
 		if not hTarget then return end
         hTarget:AddNewModifier( self:GetCaster(), self, "modifier_cursed_knight_hand_of_death", nil )
-        self.hVictim = hTarget
-        bTargetPulled = true
-
-            
-		local vHookPos = hTarget:GetOrigin()
-		local flPad = self:GetCaster():GetPaddedCollisionRadius() + hTarget:GetPaddedCollisionRadius()
-
-		--Missing: Setting target facing angle
-		local vVelocity = self.vStartPosition - vHookPos
-		vVelocity.z = 0.0
-
-		local flDistance = vVelocity:Length2D() - flPad
-		vVelocity = vVelocity:Normalized() * hook_speed
-
-		local info = {
-			Ability = self,
-			vSpawnOrigin = vHookPos,
-			vVelocity = vVelocity,
-			fDistance = flDistance,
-			Source = self:GetCaster(),
-		}
-
-		ProjectileManager:CreateLinearProjectile( info )
-		self.vProjectileLocation = vHookPos
-
-		-- if hTarget ~= nil and ( not hTarget:IsInvisible() ) and bTargetPulled then
-		-- 	ParticleManager:SetParticleControlEnt( self.nChainParticleFXIndex, 1, hTarget, PATTACH_POINT_FOLLOW, "attach_hitloc", hTarget:GetOrigin() + self.vHookOffset, true )
-		-- 	ParticleManager:SetParticleControl( self.nChainParticleFXIndex, 4, Vector( 0, 0, 0 ) )
-		-- 	ParticleManager:SetParticleControl( self.nChainParticleFXIndex, 5, Vector( 1, 0, 0 ) )
-		-- else
-		-- 	ParticleManager:SetParticleControlEnt( self.nChainParticleFXIndex, 1, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_weapon_chain_rt", self:GetCaster():GetOrigin() + self.vHookOffset, true);
-		-- end
-
-		-- EmitSoundOn( "Hero_Pudge.AttackHookRetract", hTarget )
- 
 		self.bRetracting = true
 	else
- 
 		if self.hVictim ~= nil then
 			local vFinalHookPos = vLocation
 			self.hVictim:InterruptMotionControllers( true )
@@ -85,8 +49,6 @@ function cursed_knight_hand_of_death:OnProjectileHit( hTarget, vLocation )
 		end
 
 		self.hVictim = nil
-		-- ParticleManager:DestroyParticle( self.nChainParticleFXIndex, true )
-		-- EmitSoundOn( "Hero_Pudge.AttackHookRetractStop", self:GetCaster() )
 	end
 
 	return true
@@ -135,7 +97,6 @@ function modifier_cursed_knight_hand_of_death:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
 	}
-
 	return funcs
 end
 
@@ -154,14 +115,11 @@ function modifier_cursed_knight_hand_of_death:CheckState()
 				local state = {
 				[MODIFIER_STATE_STUNNED] = true,
 				}
-
 				return state
 			end
 		end
 	end
-
 	local state = {}
-
 	return state
 end
 
@@ -195,9 +153,6 @@ end
 function modifier_cursed_knight_hand_of_death:OnHorizontalMotionInterrupted()
 	if IsServer() then
 		if self:GetAbility().hVictim ~= nil and self:GetAbility().vHookOffset ~= nil then
-
-			print(self:GetCaster():GetAbsOrigin())
-			ParticleManager:SetParticleControlEnt( self:GetAbility().nChainParticleFXIndex, 1, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_weapon_chain_rt", self:GetCaster():GetAbsOrigin() + self:GetAbility().vHookOffset, true )
 			self:Destroy()
 		end
 	end

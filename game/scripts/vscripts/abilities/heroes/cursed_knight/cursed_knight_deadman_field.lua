@@ -136,7 +136,8 @@ function cursed_knight_deadman_field_modifier_cursed:OnTakeDamage(keys)
     if keys.unit == parent and keys.damage_type == DAMAGE_TYPE_MAGICAL  then
         local attacker = keys.attacker
         if attacker and attacker ~= parent  and not attacker:HasModifier("cursed_knight_deadman_field_modifier_enemy") then
-            local reflect_damage = keys.damage
+            local reflect_damage = keys.damage/0.1
+            -- print(reflect_damage)
             ApplyDamage({
                 victim = attacker,
                 attacker = caster,

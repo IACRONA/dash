@@ -95,8 +95,6 @@ function cursed_knight_cursed_blast:OnProjectileHit(hTarget, vLocation)
         ability = ability
     })
 
-    -- Apply stun
-    hTarget:AddNewModifier(caster, ability, "modifier_stunned", { duration = stun_duration })
 
     -- Apply slow
     hTarget:AddNewModifier(caster, ability, "modifier_cursed_knight_cursed_blast_slow", { duration = slow_duration })

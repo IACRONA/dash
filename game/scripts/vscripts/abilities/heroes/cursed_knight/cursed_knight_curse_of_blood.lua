@@ -99,6 +99,7 @@ modifier_cursed_knight_curse_of_blood_ally_curse = modifier_cursed_knight_curse_
 function modifier_cursed_knight_curse_of_blood_ally_curse:RemoveOnDeath() return true end
 function modifier_cursed_knight_curse_of_blood_ally_curse:IsHidden() return false end
 function modifier_cursed_knight_curse_of_blood_ally_curse:IsPurgable() return true end
+function modifier_cursed_knight_curse_of_blood_ally_curse:GetTexture() return "cursed_knight/curse_of_blood_curse2" end
 function modifier_cursed_knight_curse_of_blood_ally_curse:OnCreated(kkd)
     self:StartIntervalThink(1)
 end
