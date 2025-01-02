@@ -73,12 +73,12 @@
 	{
 		"damage_frozen"
 		{
-			"value" "25"
+			"value" "50"
 			"operator" "OP_ADD"
 		}
 		"damage"
 		{
-			"value" "50"
+			"value" "100"
 			"operator" "OP_ADD"
 		}
 		"chance_crit"
