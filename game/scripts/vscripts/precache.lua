@@ -76,7 +76,8 @@ local particles =
     "particles/units/heroes/hero_broodmother/broodmother_spiderlings_spawn.vpcf",
     "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast.vpcf",
     "particles/ancient_apparition_cold_feet_frozen.vpcf",
-    "particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf"
+    "particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf",
+    "particles/units/heroes/hero_venomancer/venomancer_noxious_plague_projectile_trail_fluid.vpcf"
 }
 
 local sounds = 

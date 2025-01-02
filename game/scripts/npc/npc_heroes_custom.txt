@@ -58,7 +58,6 @@
 	"npc_dota_hero_chen"
 	{
 		"Ability2" "chen_soul_persuasion"
-		
 	}
 	"npc_dota_hero_enigma"
 	{ 
@@ -144,8 +143,6 @@
 	{
 		"Ability4"			"mirana_fire_arrow"
 		"Ability8"			"mirana_arrow_bonus"
-
- 
 		"Ability14"         "special_bonus_unique_mirana_fire_arrow_damage_fire"
 		"Ability12"         "special_bonus_unique_mirana_fire_arrow_damage"
 	}

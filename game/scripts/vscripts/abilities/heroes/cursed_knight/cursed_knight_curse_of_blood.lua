@@ -94,16 +94,12 @@ function modifier_cursed_knight_curse_of_blood:MagicEmployed()
 	    ParticleManager:ReleaseParticleIndex( effect_cast )
     end
 end
-
 modifier_cursed_knight_curse_of_blood_ally_curse = modifier_cursed_knight_curse_of_blood_ally_curse or {}
 function modifier_cursed_knight_curse_of_blood_ally_curse:RemoveOnDeath() return true end
 function modifier_cursed_knight_curse_of_blood_ally_curse:IsHidden() return false end
 function modifier_cursed_knight_curse_of_blood_ally_curse:IsPurgable() return true end
 function modifier_cursed_knight_curse_of_blood_ally_curse:GetTexture() return "cursed_knight/curse_of_blood_curse2" end
-function modifier_cursed_knight_curse_of_blood_ally_curse:OnCreated(kkd)
-    self:StartIntervalThink(1)
-end
-
+function modifier_cursed_knight_curse_of_blood_ally_curse:OnCreated(kkd) self:StartIntervalThink(1) end
 function modifier_cursed_knight_curse_of_blood_ally_curse:OnIntervalThink(sss)
     if not IsServer() then return end
     local parent = self:GetParent()
@@ -117,8 +113,13 @@ function modifier_cursed_knight_curse_of_blood_ally_curse:OnIntervalThink(sss)
     if FacetID == 3 then damage_mag_periodic_ally = damage_mag_periodic_ally*1.03 end
     ApplyDamage({victim = parent, attacker = caster,damage = damage_mag_periodic_ally, damage_type = DAMAGE_TYPE_MAGICAL , damage_flags = DOTA_DAMAGE_FLAG_NONE, ability = ability})
 end
+function modifier_cursed_knight_curse_of_blood_ally_curse:GetEffectName()
+	return "particles/units/heroes/hero_venomancer/venomancer_noxious_plague_projectile_trail_fluid.vpcf"
+end
 
-
+function modifier_cursed_knight_curse_of_blood_ally_curse:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW 
+end
 modifier_cursed_knight_curse_of_blood_cooldown = modifier_cursed_knight_curse_of_blood_cooldown or {}
 function modifier_cursed_knight_curse_of_blood_cooldown:IsHidden() return false end
 function modifier_cursed_knight_curse_of_blood_cooldown:IsPurgable() return false end

@@ -118,34 +118,79 @@ function cursed_knight_deadman_field_modifier_enemy:GetModifierMoveSpeedBonus_Pe
     return -self.slow_percentage
 end
 cursed_knight_deadman_field_modifier_cursed = cursed_knight_deadman_field_modifier_cursed or {}
+
 function cursed_knight_deadman_field_modifier_cursed:IsHidden() return false end
 function cursed_knight_deadman_field_modifier_cursed:IsPurgable() return false end
 
 function cursed_knight_deadman_field_modifier_cursed:DeclareFunctions()
-    return { MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,MODIFIER_EVENT_ON_TAKEDAMAGE }
+    return {
+        MODIFIER_PROPERTY_REFLECT_SPELL,
+        MODIFIER_EVENT_ON_TAKEDAMAGE,
+        MODIFIER_PROPERTY_ABSORB_SPELL
+    }
+end
+local exception_spell = {
+    ["rubick_spell_steal"] = true,
+    ["legion_commander_duel"] = true,
+    ["phantom_assassin_phantom_strike"] = true,
+    ["riki_blink_strike"] = true,
+    ["imba_rubick_spellsteal"] = true,
+    ["morphling_replicate"]	= true
+}
+function cursed_knight_deadman_field_modifier_cursed:GetAbsorbSpell(keys)
+	return 1
 end
 
-function cursed_knight_deadman_field_modifier_cursed:GetModifierIncomingDamage_Percentage()
-    return -90 -- Снижение урона на 90%
-end
-function cursed_knight_deadman_field_modifier_cursed:OnTakeDamage(keys)
+function cursed_knight_deadman_field_modifier_cursed:GetReflectSpell(keys)
     if not IsServer() then return end
+
     local parent = self:GetParent()
     local ability = self:GetAbility()
-    local caster = ability:GetCaster()
-    if keys.unit == parent and keys.damage_type == DAMAGE_TYPE_MAGICAL  then
-        local attacker = keys.attacker
-        if attacker and attacker ~= parent  and not attacker:HasModifier("cursed_knight_deadman_field_modifier_enemy") then
-            local reflect_damage = keys.damage/0.1
-            -- print(reflect_damage)
-            ApplyDamage({
-                victim = attacker,
-                attacker = caster,
-                damage = reflect_damage,
-                damage_type = DAMAGE_TYPE_MAGICAL,
-                ability = ability,
-            })
-            EmitSoundOn("Hero_Antimage.Counterspell.Target", attacker)
-        end
+    local original_ability = keys.ability
+    if original_ability:GetCaster():GetTeamNumber() == parent:GetTeamNumber() then
+		return
+	end
+    local attacker = original_ability:GetCaster()
+    if not original_ability or attacker == parent then return end
+    if self:IsUnitInDome(attacker) then return end
+
+    if attacker:TriggerSpellAbsorb(original_ability) then return end
+
+    local ability_name = original_ability:GetAbilityName()
+    if exception_spell[ability_name] then return end
+
+    EmitSoundOn("Hero_Antimage.Counterspell.Target", attacker)
+    local new_ability = parent:AddAbility(ability_name)
+    if new_ability then
+        new_ability:SetLevel(original_ability:GetLevel())
+        new_ability:SetStolen(true)
+        new_ability:SetHidden(true)
+        parent:SetCursorCastTarget(attacker)
+        new_ability:OnSpellStart()
+        Timers:CreateTimer(0.2, function()
+            if new_ability:GetIntrinsicModifierName() then parent:FindModifierByName(new_ability:GetIntrinsicModifierName()):Destroy() end
+            parent:RemoveAbility(ability_name)
+        end)
     end
+    return false
+end
+
+function cursed_knight_deadman_field_modifier_cursed:OnTakeDamage(keys)
+    if not IsServer() then return end
+
+    local parent = self:GetParent()
+    local ability = self:GetAbility()
+
+    if keys.unit ~= parent then return end
+
+    local attacker = keys.attacker
+
+    if not self:IsUnitInDome(attacker) then
+        local reduced_damage = keys.damage * ability:GetSpecialValueFor("damage_resist_in_field")/100 
+        parent:SetHealth(parent:GetHealth() + reduced_damage)
+    end
+end
+
+function cursed_knight_deadman_field_modifier_cursed:IsUnitInDome(unit)
+    return unit:HasModifier("cursed_knight_deadman_field_modifier_cursed") or unit:HasModifier("cursed_knight_deadman_field_modifier_enemy")
 end
