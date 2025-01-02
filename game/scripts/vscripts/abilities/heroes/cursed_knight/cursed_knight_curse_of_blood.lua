@@ -1,12 +1,13 @@
 LinkLuaModifier('modifier_cursed_knight_curse_of_blood', 'abilities/heroes/cursed_knight/cursed_knight_curse_of_blood', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_cursed_knight_curse_of_blood_cooldown', 'abilities/heroes/cursed_knight/cursed_knight_curse_of_blood', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_cursed_knight_curse_of_blood_ally_curse', 'abilities/heroes/cursed_knight/cursed_knight_curse_of_blood', LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier('modifier_cursed_knight_curse_of_blood_generic', 'abilities/heroes/cursed_knight/cursed_knight_curse_of_blood', LUA_MODIFIER_MOTION_NONE)
 
 
 cursed_knight_curse_of_blood = cursed_knight_curse_of_blood or {}
-
-
-
+function cursed_knight_curse_of_blood:GetIntrinsicModifierName()
+    return "modifier_cursed_knight_curse_of_blood_generic"
+end
 function cursed_knight_curse_of_blood:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
@@ -22,9 +23,47 @@ function cursed_knight_curse_of_blood:OnSpellStart()
     end
 end
 
+modifier_cursed_knight_curse_of_blood_generic = modifier_cursed_knight_curse_of_blood_generic or {}
+function modifier_cursed_knight_curse_of_blood_generic:IsHidden() return true end
+function modifier_cursed_knight_curse_of_blood_generic:IsPurgable() return false end
+function modifier_cursed_knight_curse_of_blood_generic:DeclareFunctions()
+    return { MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,MODIFIER_EVENT_ON_ATTACK_LANDED  }
+end
+function modifier_cursed_knight_curse_of_blood_generic:GetModifierPreAttack_CriticalStrike(keys)
+	if IsServer() then
+        self.mortal_critical_strike = false
+		local attacker = keys.attacker
+		local target = keys.target
+		if attacker == self:GetParent() then
+            if target:HasModifier("modifier_cursed_knight_curse_of_blood_ally_curse") or target:HasModifier("modifier_cursed_knight_curse_of_blood") then  
+                self.mortal_critical_strike = true
+                Timers:CreateTimer(self:GetParent():GetAttackSpeed(true), function()                    
+					self.mortal_critical_strike = false
+				end)  
+                return self:GetAbility():GetSpecialValueFor("damage_krit_after")* self:GetAbility():GetCaster():GetAttackDamage()
+            end
+		end
+	end
+    return 0
+end
 
-
-
+function modifier_cursed_knight_curse_of_blood_generic:OnAttackLanded(keys)
+	if IsServer() then
+		local attacker = keys.attacker
+		local target = keys.target
+		local damage = keys.damage
+		-- Only apply on attacks of the caster
+		if attacker == self.caster then            
+			-- If this attack was not a crit, do nothing
+			if not self.mortal_critical_strike then
+				return nil
+			end
+            EmitSoundOn("Hero_SkeletonKing.CriticalStrike", attacker)
+			-- Remove crit mark
+			self.mortal_critical_strike = false
+		end
+	end
+end
 
 modifier_cursed_knight_curse_of_blood = modifier_cursed_knight_curse_of_blood or {}
 
@@ -94,6 +133,7 @@ function modifier_cursed_knight_curse_of_blood:MagicEmployed()
 	    ParticleManager:ReleaseParticleIndex( effect_cast )
     end
 end
+
 modifier_cursed_knight_curse_of_blood_ally_curse = modifier_cursed_knight_curse_of_blood_ally_curse or {}
 function modifier_cursed_knight_curse_of_blood_ally_curse:RemoveOnDeath() return true end
 function modifier_cursed_knight_curse_of_blood_ally_curse:IsHidden() return false end
