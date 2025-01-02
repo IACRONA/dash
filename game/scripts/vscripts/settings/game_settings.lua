@@ -32,7 +32,7 @@ if GetMapName() == "warsong" then
     GRANT_LEVELS = 0
     GRANT_GOLD = 550
 
-    CONDITION_FLAG_COUNT_WIN = 7
+    CONDITION_FLAG_COUNT_WIN = 8
 
     FLAG_RETURN_RADIUS = 245
     FLAG_RETURN_DURATION = 4
@@ -305,7 +305,7 @@ if GetMapName() == "portal_duo" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 750
+    GRANT_GOLD = 950
 
     CONDITION_FLAG_COUNT_WIN = 57 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
@@ -433,11 +433,11 @@ end
 if GetMapName() == "portal_trio" then
     RESPAWN_TIME = 6
 
-    START_GOLD = 650
+    START_GOLD = 700
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 900
+    GRANT_GOLD = 950
 
     CONDITION_FLAG_COUNT_WIN = 50 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
@@ -445,7 +445,7 @@ if GetMapName() == "portal_trio" then
     FLAG_RETURN_DURATION = 4
     FLAG_AUTO_RETURN_DURATION = 45
 
-    BAN_TIME = 12 -- Время на бан
+    BAN_TIME = 10 -- Время на бан
 
     GOOD_FLAG_SCALE = 0.9
     BAD_FLAG_SCALE = 0.9
@@ -471,7 +471,7 @@ if GetMapName() == "portal_trio" then
         TIER_2 = 350, -- 3:30
         TIER_3 = 500, -- 9:00
         TIER_4 = 720, -- 12:00
-        TIER_5 = 820, -- 15:00
+        TIER_5 = 800, -- 15:00
     }
 
     -- Магический и физический резист
@@ -553,7 +553,7 @@ if GetMapName() == "portal_trio" then
         {8, 8},
         {15, 9},
         {28, 10},
-        {30, 12},
+        {30, 10},
     }
 
     REROLL_SPHERES = 1

@@ -1719,7 +1719,7 @@
 
     // ПРОКЛЯТЫЙ ВЗРЫВ
     "DOTA_Tooltip_Ability_cursed_knight_cursed_blast" "ПРОКЛЯТЫЙ ВЗРЫВ"
-    "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_Description" "Герой может случайно опалить цель призрачным огнём в бою с шансом, оглушая и замедляя её, и нанося ей урон."
+    "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_Description" "Герой может случайно опалить цель призрачным огнём в бою с шансом, высосав из неё энергию жизни."
     "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_chance_blast" "ШАНС ОГЛУШЕНИЯ: "
     "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_damage" "УРОН ОГЛУШЕНИЯ: "
     "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_blast_stun_duration" "ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ: "

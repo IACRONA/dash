@@ -5,7 +5,7 @@ BOOKS_SHOP = {
 		rarity = UPGRADE_RARITY_COMMON,
 		resources = {
 			warsong = {
-				gold = 1000,
+				gold = 3000,
 			},
 			dash = {
 				gold = 2500,
@@ -23,7 +23,7 @@ BOOKS_SHOP = {
 		rarity = UPGRADE_RARITY_RARE,
 		resources = {
 			warsong = {
-				gold = 3500,
+				gold = 5500,
 				flags = 0,
 
 			},
@@ -46,7 +46,7 @@ BOOKS_SHOP = {
 		resources = {
 			warsong = {
 				gold = 12000,
-				flags = 1,
+				flags = 2,
 				purchaseType = "both",							
 			},
 			dash = {

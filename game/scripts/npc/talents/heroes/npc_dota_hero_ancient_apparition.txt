@@ -53,7 +53,7 @@
 		}
 		"damage"
 		{
-			"value" "12"
+			"value" "15"
 			"operator" "OP_ADD"
 		}
 	}
@@ -73,7 +73,7 @@
 		}
 		"damage"
 		{
-			"value" "50"
+			"value" "100"
 			"operator" "OP_ADD"
 		}
 	}
