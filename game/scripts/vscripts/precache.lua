@@ -77,7 +77,8 @@ local particles =
     "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast.vpcf",
     "particles/ancient_apparition_cold_feet_frozen.vpcf",
     "particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf",
-    "particles/venomancer_noxious_plague_slow.vpcf"
+    "particles/venomancer_noxious_plague_slow.vpcf",
+    "particles/venomancer_noxious_contagion_buff.vpcf"
 }
 
 local sounds = 

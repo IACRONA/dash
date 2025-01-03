@@ -151,7 +151,7 @@ function modifier_cursed_knight_curse_of_blood_ally_curse:OnIntervalThink(sss)
     ApplyDamage({victim = parent, attacker = caster,damage = damage_mag_periodic_ally, damage_type = DAMAGE_TYPE_MAGICAL , damage_flags = DOTA_DAMAGE_FLAG_NONE, ability = ability})
 end
 function modifier_cursed_knight_curse_of_blood_ally_curse:GetEffectName()
-	return "particles/venomancer_noxious_plague_slow.vpcf"
+	return "particles/venomancer_noxious_contagion_buff.vpcf"
 end
 
 function modifier_cursed_knight_curse_of_blood_ally_curse:GetEffectAttachType()

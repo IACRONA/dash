@@ -426,6 +426,83 @@ function CAddonWarsong:GetWinPlayers()
         end
     end
 end
+-- function CAddonWarsong:BuyBook(data)
+--     local book = BOOKS_SHOP[tonumber(data.itemIndex)]
+--     local hero = PlayerResource:GetSelectedHeroEntity(data.playerId)
+
+--     if not book or not hero then return end
+--     local player = PlayerResource:GetPlayer(data.playerId)
+
+--     local type = data.type
+--     local mapName = GetMapName()
+--     local resources = book.resources[mapName]
+--     if not resources then return end
+
+--     local function SuccessBuyBook()
+--         EmitSoundOnEntityForPlayer("buy_book", hero, data.playerId)
+--         Upgrades:QueueSelection(hero, book.rarity)
+
+--         local bookName = ""
+--         if book.rarity == "common" then
+--             bookName = "Обычную"
+--         elseif book.rarity == "legendary" then
+--             bookName = "Легендарную"
+--         elseif book.rarity == "epic" then
+--             bookName = "Эпическую"
+--         end
+
+--         if mapName == "warsong" then
+--             -- Уведомление для всей команды
+--             local message = hero:GetUnitName() .. " Обменял Флаги на " .. bookName .. " книгу улучшений"
+--             for i = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
+--                 if PlayerResource:IsValidPlayer(i) and PlayerResource:GetTeam(i) == hero:GetTeam() then
+--                     CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(i), "team_chat_message", {message = message})
+--                 end
+--             end
+--         elseif mapName == "portal_duo" or mapName == "portal_trio" then
+--             -- Уведомление только для покупателя
+--             local message = hero:GetUnitName() .. " Купил " .. bookName .. " книгу улучшений"
+--             CustomGameEventManager:Send_ServerToPlayer(player, "personal_chat_message", {message = message})
+--         end
+--     end
+
+--     if type == "gold" then
+--         local cost = resources.gold
+
+--         if hero:GetGold() >= cost then
+--             hero:SpendGold(cost, DOTA_ModifyGold_PurchaseItem)
+--             SuccessBuyBook()
+--         else
+--             CustomGameEventManager:Send_ServerToPlayer(player, "CreateIngameErrorMessage", {message = "#dota_hud_error_not_enough_gold"})
+--         end
+--     elseif type == "flags" or type == "heads" then
+--         local cost = resources[type]
+
+--         if self:GetCurrencyPlayer(player) >= cost then
+--             self:SpendCurrencyPlayer(player, cost)
+--             SuccessBuyBook()
+--         else
+--             CustomGameEventManager:Send_ServerToPlayer(player, "CreateIngameErrorMessage", {message = "#error_not_enough_" .. type})
+--         end
+--     elseif type == "both" then
+--         local costGold = resources.gold
+
+--         if hero:GetGold() >= costGold then
+--             local typeCurrency = resources.flags and "flags" or "heads"
+--             local costFlags = resources.flags or resources.heads
+
+--             if self:GetCurrencyPlayer(player) >= (costFlags or 0) then
+--                 hero:SpendGold(costGold, DOTA_ModifyGold_PurchaseItem)
+--                 self:SpendCurrencyPlayer(player, costFlags)
+--                 SuccessBuyBook()
+--             else
+--                 CustomGameEventManager:Send_ServerToPlayer(player, "CreateIngameErrorMessage", {message = "#error_not_enough_" .. typeCurrency})
+--             end
+--         else
+--             CustomGameEventManager:Send_ServerToPlayer(player, "CreateIngameErrorMessage", {message = "#dota_hud_error_not_enough_gold"})
+--         end
+--     end
+-- end
 
 function CAddonWarsong:BuyBook(data)
 	local book = BOOKS_SHOP[tonumber(data.itemIndex)]
