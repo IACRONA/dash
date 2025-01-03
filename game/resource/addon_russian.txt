@@ -1720,15 +1720,13 @@
     // ПРОКЛЯТЫЙ ВЗРЫВ
     "DOTA_Tooltip_Ability_cursed_knight_cursed_blast" "ПРОКЛЯТЫЙ ВЗРЫВ"
     "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_Description" "Герой может случайно опалить цель призрачным огнём в бою с шансом, высосав из неё энергию жизни."
-    "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_chance_blast" "ШАНС ОГЛУШЕНИЯ: "
-    "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_damage" "УРОН ОГЛУШЕНИЯ: "
-    "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_blast_stun_duration" "ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ: "
+    "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_chance_blast" "%ШАНС ОПАЛЕНИЯ: "
+    "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_damage" "УРОН ОПАЛЕНИЯ: "
     "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_blast_slow" "%ЗАМЕДЛЕНИЕ ВРАГА: "
     "DOTA_Tooltip_Ability_cursed_knight_cursed_blast_Lore" "Остарион призывает своих проклятых предков, уничтожая противников."
     
     // модификаторы к "ПРОКЛЯТЫЙ ВЗРЫВ"
     "DOTA_Tooltip_modifier_cursed_knight_cursed_blast_slow" "Вы замедлены"
-
 
     // Рука смерти
     "DOTA_Tooltip_Ability_cursed_knight_hand_of_death" "Рука смерти"
@@ -1819,11 +1817,25 @@
     "DOTA_Tooltip_Ability_cursed_knight_belial_pack"                             "СВОР БЕЛИАЛА"
     "DOTA_Tooltip_Ability_cursed_knight_belial_pack_Description"                 "Если ваш враг проклят всеми тремя вашими проклятиями, то по нему усиливается урон." // на %amp_damage%%%
     "DOTA_Tooltip_Ability_cursed_knight_belial_pack_amp_damage"             "%УСИЛЕНИЕ УРОНА: "
-    
-
-
-
-
+    ///////////////////////////////////
+    // ТАЛАНТЫ ДЛЯ ГЕРОЯ CURSED KNIGHT
+    ///////////////////////////////////
+    // ПРАВЫЙ ТАЛАНТ НА 10 УРОВНЕ:
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_perid_damage"  "+10 к периодическому урону от ПРОКЛЯТИЕ КРОВИ"
+    // ЛЕВЫЙ ТАЛАНТ НА 10 УРОВНЕ:
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_hand_of_death_cooldown"  "-5 сек. перезарядки РУКА СМЕРТИ"
+    // ПРАВЫЙ ТАЛАНТ НА 15 УРОВНЕ:
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_cold_amp_slow_pct"  "+10% к замедлению от ПРОКЛЯТИЯ ХОЛОДА"
+    // ЛЕВЫЙ ТАЛАНТ НА 15 УРОВНЕ:
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_pure_damage"  "+50 к первичному урону от ПРОКЛЯТИЯ КРОВИ"
+    // ПРАВЫЙ ТАЛАНТ НА 20 УРОВНЕ:
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_cursed_blast_chance_blast"  "+3% ВЫПАДЕНИЯ ПРОКЛЯТОГО ВЗРЫВА"
+    // ЛЕВЫЙ ТАЛАНТ НА 20 УРОВНЕ:
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_perid_damage_count2"  "+40 к периодическому урону от ПРОКЛЯТИЕ КРОВИ"
+    // ПРАВЫЙ ТАЛАНТ НА 25 УРОВНЕ:
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_deadman_field_amp_damage_in_field"  "+100 к урону, когда герой находится внутри БАРЬЕР МЕРТВЕЦА"
+    // ЛЕВЫЙ ТАЛАНТ НА 25 УРОВНЕ:
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_deadman_field_amp_reflect_spell_damage"  "+150% к урону от отраженный заклинаний под дейтсивем БАРЬЕР МЕРТВЕЦА"
 
     "heros_i-l"    "Герои I-L"
     "heros_e-h"    "Герои E-H"

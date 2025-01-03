@@ -17,7 +17,11 @@
 		"AbilityValues"
 		{
 			"radius" "800" // РАДИУС ПОИСКА ЦЕЛЕЙ
-			"chance_blast" "12" // ШАНС БЛАСТА
+			"chance_blast"  // ШАНС БЛАСТА ( В ПРОЦЕНТАХ )
+			{
+				"value" "12"
+				"special_bonus_unique_skeleton_king_cursed_blast_chance_blast" "+3"
+			}
 			"damage" "100 120 140 220" // УРОН БЛАСТА
 			"blast_speed"               "1200" // СКОРОСТЬ ПОЛЕТА ПАРТИКЛА
             "blast_stun_duration"               // ДЛИТЕЛЬНОСТЬ СТАНА
@@ -41,13 +45,18 @@
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityTextureName"            "cursed_knight/hand_of_death"
         "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
-		"AbilityCooldown"               "35"
         "AbilityCastRange"              "800 900 1000 1200"
 		"AbilityManaCost"               "75"
 		"AbilityCastAnimation" "0.2"
         "AbilityValues"
         {
             "hook_speed"                "1600"  // СКОРОСТЬ РУКИ
+			"AbilityCooldown"
+			{
+				"value" "35"
+				"special_bonus_unique_skeleton_king_hand_of_death_cooldown" "-5"
+			}
+			"bonus_cd" "5" // visual cd
         }
     }
 	//////////////////
@@ -71,9 +80,15 @@
 			"pure_damage"              // ПЕРВОНАЧАЛЬНЫЙ УРОН ВРАГУ
 			{
 				"value" "100 170 220 280"
+				"special_bonus_unique_skeleton_king_curse_of_blood_amp_pure_damage" "+50"
 				"DamageTypeTooltip"                                 "DAMAGE_TYPE_PURE"
 			}
-			"mag_periodic_damage" "20 30 40 50" // ПЕРИОДЧНЫЙ УРОН ВРАГУ
+			"mag_periodic_damage" // ПЕРИОДЧНЫЙ УРОН ВРАГУ
+			{
+				"value"		"20 30 40 50" 
+				"special_bonus_unique_skeleton_king_curse_of_blood_amp_perid_damage" "+10"
+				"special_bonus_unique_skeleton_king_curse_of_blood_amp_perid_damage_count2" "+40"
+			}
 			"damage_krit_after" "2"   // В ДВА РАЗА БОЛЬШЕ ПЕРИОДЧНОГО УРОНА ПО ВРАГУ ПОСЛЕ 4 ЭФФЕКТОВ 
 			"duration_before" "8"	// ДЛИТЕЛЬНОСТЬ ПЕРВОГО ЭФФЕКТА
 			"value_of_hits" "4"		// КОЛИЧЕСТВО УДАРОВ ДЛЯ ЭФФЕКТА ВЗРЫВА
@@ -82,6 +97,8 @@
 			"damage_mag_periodic_ally"  // ПЕРИОДЧНЫЙ УРОН СОЮЗНИКАМ ВРАГА
 			{
 				"value" "100 130 150 180"
+				"special_bonus_unique_skeleton_king_curse_of_blood_amp_perid_damage" "+10"
+				"special_bonus_unique_skeleton_king_curse_of_blood_amp_perid_damage_count2" "+40"
 			}
 			"curse_duration_ally" "6"	// длительность вторичного эффекта
 			"curse_cooldown" "15 14 13 12" // ПЕРЕЗАРЯДКА ЭФФЕКТА ВЗРЫВА
@@ -112,7 +129,11 @@
 		"AbilityValues"
 		{
 			"duration" "6" // ДЛИТЕЛЬНОСТЬ ПРОКЛЯТИЯ
-			"movement_slow_per_second" "10" // ЗАМЕДЛЕНИЕ ЗА КОЛИЧЕСТВА ОСТАВШИХСЯ СЕКУНД ( В НАЧАЛЕ 5 сек = 5 * 10 = 50)
+			"movement_slow_per_second" // ЗАМЕДЛЕНИЕ ЗА КОЛИЧЕСТВА ОСТАВШИХСЯ СЕКУНД ( В НАЧАЛЕ 5 сек = 5 * 10 = 50)
+			{
+				"value" "10" 
+				"special_bonus_unique_skeleton_king_curse_of_cold_amp_slow_pct" "+10"
+			}
 			"perid_damage" "30 40 50 70"	// ПЕРИОДЧЕСКИЙ УРОН ПО ВРАГУ
 		}
 	}
@@ -142,6 +163,16 @@
 			{
 				"value"     "300"
                 "affected_by_aoe_increase"  "1" 
+			}
+			"bonus_damage_in_field"  // талант на 25( бонус к урону 100 )
+			{
+				"value" "0"
+				"special_bonus_unique_skeleton_king_deadman_field_amp_damage_in_field" "+100"
+			}
+			"reflect_spell_damage" // отражженый урон от заклинаний ( В ПРОЦЕНТАХ )
+			{
+				"value" "100"
+				"special_bonus_unique_skeleton_king_deadman_field_amp_reflect_spell_damage" "+50"
 			}
 			"damage_resist_in_field" "90"			// СОПРОТИВЛЕНИЕ ЛЮБОМУ ТИПУ УРОНА ( В ПРОЦЕНТАХ )
 		}
@@ -250,5 +281,8 @@
 			"ptc" "15"               // защита от физ урона ( В ПРОЦЕНТАХ )
 		}
 	}
+	////////////
+	// ТАЛАНТЫ
+	////////////
 	
 }

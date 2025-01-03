@@ -52,14 +52,11 @@ function modifier_cursed_knight_curse_of_blood_generic:OnAttackLanded(keys)
 		local attacker = keys.attacker
 		local target = keys.target
 		local damage = keys.damage
-		-- Only apply on attacks of the caster
 		if attacker == self.caster then            
-			-- If this attack was not a crit, do nothing
 			if not self.mortal_critical_strike then
 				return nil
 			end
             EmitSoundOn("Hero_SkeletonKing.CriticalStrike", attacker)
-			-- Remove crit mark
 			self.mortal_critical_strike = false
 		end
 	end
@@ -154,7 +151,7 @@ function modifier_cursed_knight_curse_of_blood_ally_curse:OnIntervalThink(sss)
     ApplyDamage({victim = parent, attacker = caster,damage = damage_mag_periodic_ally, damage_type = DAMAGE_TYPE_MAGICAL , damage_flags = DOTA_DAMAGE_FLAG_NONE, ability = ability})
 end
 function modifier_cursed_knight_curse_of_blood_ally_curse:GetEffectName()
-	return "particles/units/heroes/hero_venomancer/venomancer_noxious_plague_projectile_trail_fluid.vpcf"
+	return "particles/venomancer_noxious_plague_slow.vpcf"
 end
 
 function modifier_cursed_knight_curse_of_blood_ally_curse:GetEffectAttachType()
