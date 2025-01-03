@@ -494,8 +494,6 @@ function CAddonWarsong:OnGameRulesStateChange()
 		end)
 
 		self:GiveBooks()
-		
- 
 		if GetMapName() ~= "dota" then
 			Timers:CreateTimer(GRANT_INTERVAL / 2, function()
 				for i = 0, DOTA_MAX_TEAM_PLAYERS - 1 do

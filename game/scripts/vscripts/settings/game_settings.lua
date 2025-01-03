@@ -74,8 +74,9 @@ if GetMapName() == "warsong" then
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
-    NEW_ULTIMATE_COOLDOWN = 225
-    REROLL_ABILITIES_MAX_COUNT = 1
+    NEW_ULTIMATE_COOLDOWN = 300
+    REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
+    REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка шаров
     NEW_PASSIVE_SPELLS_COOLDOWN = 300 -- 420s / 7m
@@ -202,7 +203,8 @@ if GetMapName() == "dash" then
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 300
-    REROLL_ABILITIES_MAX_COUNT = 1
+    REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
+    REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка шаров
     NEW_PASSIVE_SPELLS_COOLDOWN = 540 -- 420s / 7m
@@ -346,7 +348,8 @@ if GetMapName() == "portal_duo" then
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 300
-    REROLL_ABILITIES_MAX_COUNT = 1
+    REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
+    REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка шаров
     NEW_PASSIVE_SPELLS_COOLDOWN = 325 --420 -- 420s / 7m
@@ -481,8 +484,9 @@ if GetMapName() == "portal_trio" then
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
-    NEW_ULTIMATE_COOLDOWN = 225
-    REROLL_ABILITIES_MAX_COUNT = 1
+    NEW_ULTIMATE_COOLDOWN = 300
+    REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
+    REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка шаров
     NEW_PASSIVE_SPELLS_COOLDOWN = 300 --420 -- 420s / 7m
@@ -561,7 +565,7 @@ if GetMapName() == "portal_trio" then
     MAX_SPHERE_LEVEL = 4
     COUNT_SPHERE_CHOICE = 2
     MAX_SPHERE_COUNT = 14
-
+    
 end
 
 -- Фонтан эффект скорости

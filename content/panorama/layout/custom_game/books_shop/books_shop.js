@@ -59,6 +59,7 @@ function ShowShopPanel() {
           playerId: Players.GetLocalPlayer(),
           type: "both",
           itemIndex: index,
+          playerName : Players.GetPlayerName( Players.GetLocalPlayer() )
         });
       });
       return;
@@ -74,6 +75,7 @@ function ShowShopPanel() {
           playerId: Players.GetLocalPlayer(),
           type: "gold",
           itemIndex: index,
+          playerName : Players.GetPlayerName( Players.GetLocalPlayer() )
         });
       });
     }
@@ -88,6 +90,7 @@ function ShowShopPanel() {
           playerId: Players.GetLocalPlayer(),
           type: "flags",
           itemIndex: index,
+          playerName : Players.GetPlayerName( Players.GetLocalPlayer() )
         });
       });
     }
@@ -103,6 +106,7 @@ function ShowShopPanel() {
           playerId: Players.GetLocalPlayer(),
           type: "heads",
           itemIndex: index,
+          playerName : Players.GetPlayerName( Players.GetLocalPlayer() )
         });
       });
     }

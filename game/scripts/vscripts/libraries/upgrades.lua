@@ -1,8 +1,7 @@
 Upgrades = Upgrades or {}
-REROLL_TALENTS = 3
 require('libraries/shared')
 require('libraries/summons_list')
- 
+BOOK_REROLL_COUNT  = BOOK_REROLL_COUNT  or 3
 function Upgrades:Init()
 	self.upgrades_kv = {}
 	self.summon_list = {}
@@ -122,7 +121,7 @@ end
 function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_trinket_proc)
 	local pending_selection = Upgrades.pending_selection[player_id]
     if self.PlayersRerollTalents[player_id] == nil then 
-         self.PlayersRerollTalents[player_id] = REROLL_TALENTS
+         self.PlayersRerollTalents[player_id] = BOOK_REROLL_COUNT
     end
 	local previous_choices = (is_reroll and pending_selection) and pending_selection.previous_choices or {}
 

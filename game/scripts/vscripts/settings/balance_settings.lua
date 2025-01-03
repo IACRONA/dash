@@ -100,6 +100,7 @@ if GetMapName() == "portal_duo" then
     --Убийства лидера последееий и иногда предпоследний командой кулдаун
     KILL_LEADER_REWARD_TIME = 240
 
+    BOOK_REROLL_COUNT  = 3
     BOOK_COMMON_COOLDOWN = 70
     BOOK_RARE_START = 480
     BOOK_RARE_COOLDOWN = 80
@@ -215,6 +216,7 @@ if GetMapName() == "portal_trio" then
     --Убийства лидера последееий и иногда предпоследний командой кулдаун
     KILL_LEADER_REWARD_TIME = 240
 
+    BOOK_REROLL_COUNT  = 3
     BOOK_COMMON_COOLDOWN = 70
     BOOK_RARE_START = 480
     BOOK_RARE_COOLDOWN = 80
@@ -266,7 +268,7 @@ if GetMapName() == "warsong" then
     SERIAL_KILL_TIMER = {
         tripple = {rare = 120},
     }
-    
+    BOOK_REROLL_COUNT  = 3
     BOOK_COMMON_COOLDOWN = 90
     BOOK_RARE_START = 600
     BOOK_RARE_COOLDOWN = 280
@@ -301,7 +303,7 @@ if GetMapName() == "dash" then
             incoming = -10,
         },
     }
-  
+    BOOK_REROLL_COUNT  = 3
     BOOK_COMMON_COOLDOWN = 140
     BOOK_RARE_START = 600
     BOOK_RARE_COOLDOWN = 220
