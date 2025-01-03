@@ -1,118 +1,86 @@
 "npc_dota_hero_skeleton_king"
 {
-	"skeleton_king_hellfire_blast"
+	"cursed_knight_hand_of_death"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
-			"operator" "OP_MULTIPLY"
-			"max_count" "5"
-			"linked_special_values"
-			{
-				"blast_speed" "100"
-			}
-		}
-		"blast_dot_duration"
-		{
-			"value" "1"
+			"value" "2"
 			"operator" "OP_ADD"
-			"max_count" "3"
 		}
-		"blast_dot_damage"
-		{
-			"value" "25"
+		"AbilityCastRange"
+		{ 
+			"value" "50"
 			"operator" "OP_ADD"
-			"talents"
-			{
-				"special_bonus_unique_wraith_king_3"	"x1.2"
-			}
-		}
-		"damage"
-		{
-			"value" "100"
-			"operator" "OP_ADD"
-			"talents"
-			{
-				"special_bonus_unique_wraith_king_3"	"x1.2"
-			}
 		}
 	}
-	"skeleton_king_bone_guard"
+	"cursed_knight_curse_of_blood"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "5"
 			"operator" "OP_MULTIPLY"
-			"RequiresFacetID" "1"
 		}
-		"skeleton_health"
+		"mag_periodic_damage"
 		{
-			"value" "75"
+			"value" "40"
 			"operator" "OP_ADD"
-			"RequiresFacetID" "1"
-		}
-		"skeleton_damage_tooltip"
-		{
-			"value"	"12"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "1"
-		}
-	}
-	"skeleton_king_spectral_blade"
-	{
-		"curse_cooldown"
-		{
-			"value" "-1.2"
-			"operator" "OP_MULTIPLY"
-			"RequiresFacetID" "2"
-
-			"multiplicative_target"			"0"
-			"multiplicative_base_value"		"12"
 			"linked_special_values"
 			{
-				"curse_cooldown_creep"
+				"damage_mag_periodic_ally"
 				{
-					"value" "-0.6"
-					"operator" "OP_MULTIPLY"
-
-					"multiplicative_target"			"0"
-					"multiplicative_base_value"		"6"
+					"value" "40"
+					"operator" "OP_ADD"
 				}
 			}
 		}
-		"cursed_damage_pct"
-		{
-			"value" "10"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "2"
-		}
-		"cursed_damage"
+		"pure_damage"
 		{
 			"value"	"50"
 			"operator" "OP_ADD"
-			"RequiresFacetID" "2"
 		}
 	}
-	"skeleton_king_mortal_strike"
+	"cursed_knight_curse_of_cold"
 	{
 		"cooldown_and_manacost"
 		{
 			"value" "10"
 			"operator" "OP_MULTIPLY"
 		}
-		"crit_mult"
+		"movement_slow_per_second"
 		{
-			"value" "25"
+			"value" "12"
 			"operator" "OP_ADD"
 		}
-	}
-	"skeleton_king_reincarnation"
-	{
-		"slow_radius"
+		"AbilityCastRange"
 		{
 			"value" "50"
 			"operator" "OP_ADD"
-			"max_count" "8"
+		}
+		"perid_damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+	}
+	"cursed_knight_deadman_field"
+	{
+		"bonus_damage_in_field"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+		}
+		"reflect_spell_damage"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+		}
+	}
+	"cursed_knight_belial_pack"
+	{
+		"amp_damage"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
 		}
 	}
 }

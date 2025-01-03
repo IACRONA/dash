@@ -1732,6 +1732,7 @@
     "DOTA_Tooltip_Ability_cursed_knight_hand_of_death" "Рука смерти"
     "DOTA_Tooltip_Ability_cursed_knight_hand_of_death_Description" "Призрачная рука, порождённая тёмной магией, хватает душу врага и безжалостно притягивает его к своему хозяину."
     "DOTA_Tooltip_Ability_cursed_knight_hand_of_death_hook_speed" "СКОРОСТЬ РУКИ: "
+    "DOTA_Tooltip_Ability_cursed_knight_hand_of_death_AbilityCastRange" "Дальность применения:"
     "DOTA_Tooltip_Ability_cursed_knight_hand_of_death_Lore" "Рука смерти"
     // модификаторы к "Рука смерти"
     "DOTA_Tooltip_modifier_cursed_knight_hand_of_death"  "ПРИТЯГИВАНИЕ РУКИ СМЕРТИ"
@@ -1766,13 +1767,13 @@
     "DOTA_Tooltip_Ability_cursed_knight_curse_of_cold_duration" "ДЛИТЕЛЬНОСТЬ ЭФФЕКТА: "
     "DOTA_Tooltip_Ability_cursed_knight_curse_of_cold_movement_slow_per_second" "%ЗАМЕДЛЕНИЕ ЗА СЕКУНДУ ОСТАВШЕГОСЯ ВРЕМЕНИ: "
     "DOTA_Tooltip_Ability_cursed_knight_curse_of_cold_perid_damage" "УРОН:"
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_cold_AbilityCastRange" "Дальность применения:"
     "DOTA_Tooltip_Ability_cursed_knight_curse_of_cold_Lore" "Проклятие холода"
-
     // Модификаторы к "Проклятие холода"
     
     "DOTA_Tooltip_modifier_cursed_knight_curse_of_cold" "Вы прокляты"
     "DOTA_Tooltip_modifier_cursed_knight_curse_of_cold_description" "Вы замедлены и каждую секунду вы получаете урон. С каждой секундой скорость возвращается."
-
+    
 
     // Барьер Мертвеца
     "DOTA_Tooltip_Ability_cursed_knight_deadman_field" "Барьер мертвеца"
@@ -1781,7 +1782,8 @@
     "DOTA_Tooltip_Ability_cursed_knight_deadman_field_slow_movement_in_field" "%ЗАМЕДЛЕНИЕ ВРАГОВ В КУПОЛЕ: "
     "DOTA_Tooltip_Ability_cursed_knight_deadman_field_field_duration" "ДЛИТЕЛЬНОСТЬ КУПОЛА: "
     "DOTA_Tooltip_Ability_cursed_knight_deadman_field_radius" "РАДИУС КУПОЛА: "
-
+    "DOTA_Tooltip_Ability_cursed_knight_deadman_field_reflect_spell_damage" "%УРОН С ОТРАЖЕННЫХ ЗАКЛИНАНИЙ: "
+    "DOTA_Tooltip_Ability_cursed_knight_deadman_field_bonus_damage_in_field" "ДОПОЛНИТЕЛЬНЫЙ УРОН В КУПОЛЕ: "
     "DOTA_Tooltip_Ability_cursed_knight_deadman_field_Lore" "Призрачные вопли умерших возведут барьер, защищая своих избранных от любого зла"
     // Модификаторы к "Барьер Мертвеца"
     "DOTA_Tooltip_cursed_knight_deadman_field_modifier_enemy" "Проклятие плоти"
