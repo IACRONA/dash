@@ -11,7 +11,7 @@
   transition-property: opacity, pre-transform-scale2d;
   transition-duration: 0.25s;
   transition-timing-function: ease-in-out;
-}
+} 
 
 #ShopWindow:not(.IsActive) {
   opacity: 0;
@@ -139,13 +139,17 @@
   margin-right: 5px;
 }
 
-#ShopItemIcon {
+.ShopItemIcon {
   width: 50px;
   height: 50px;
   vertical-align: bottom;
-  margin-right: 4px;
 }
-
+#ShopItemIconHeads{
+  width: 40px;
+  height: 40px;
+  vertical-align: bottom;
+  margin-top:5px;
+}
 .ShopItemResource {
   flow-children: down;
   margin-bottom: 8px;

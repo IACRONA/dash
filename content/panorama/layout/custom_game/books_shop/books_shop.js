@@ -42,7 +42,7 @@ function ShowShopPanel() {
     if (purchaseType === "both") {
       item.AddClass("BuyBoth");
       item.AddClass("CanBuyForGold");
-      item.SetDialogVariable("gold", `${gold}`);
+      item.SetDialogVariable("gold", `${gold}`); 
       if (flags) {
         item.AddClass("CanBuyForFlags");
         item.SetDialogVariable("flags", `${flags}`);

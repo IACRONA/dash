@@ -31,21 +31,21 @@
                     <Panel id="ShopItemCurrency">
                         <Panel id="ShopItemGold" class="ShopItemResource">
                             <Panel id="ShopItemCost">
-                                <Image id="ShopItemIcon" src="s2r://panorama/images/hud/icon_gold_psd.vtex" />
+                                <Image id="ShopItemIcon" class="ShopItemIcon" src="s2r://panorama/images/hud/icon_gold_psd.vtex" />
                                 <Label id="ShopItemLabel" class="ShopText" text="{s:gold}" /> 
                             </Panel>
                             <TextButton id="ShopItemBuyForGold" class="ShopItemBuy" text="#hud_books_shop_buy"/>
                         </Panel>
                         <Panel id="ShopItemFlags" class="ShopItemResource">
                             <Panel id="ShopItemCost">
-                                <Image id="ShopItemIcon" src="file://{resources}/images/custom_game/flag_counter.png" />
+                                <Image id="ShopItemIcon" class="ShopItemIcon" src="file://{resources}/images/custom_game/flag_counter.png" />
                                 <Label id="ShopItemLabel" class="ShopText" text="{s:flags}" /> 
                             </Panel>
                             <TextButton id="ShopItemBuyForFlags" class="ShopItemBuy" text="#hud_books_shop_buy"/>
                         </Panel>
                         <Panel id="ShopItemHeads" class="ShopItemResource">
                             <Panel id="ShopItemCost">
-                                <Image id="ShopItemIcon" src="file://{resources}/images/custom_game/head_counter.png" />
+                                <Image id="ShopItemIconHeads" class="ShopItemIcon" src="file://{resources}/images/custom_game/head_counter.png" />
                                 <Label id="ShopItemLabel" class="ShopText" text="{s:heads}" /> 
                             </Panel>
                             <TextButton id="ShopItemBuyForHeads" class="ShopItemBuy" text="#hud_books_shop_buy"/>
