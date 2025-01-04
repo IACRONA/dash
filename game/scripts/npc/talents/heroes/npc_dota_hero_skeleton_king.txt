@@ -69,6 +69,11 @@
 			"value" "30"
 			"operator" "OP_ADD"
 		}
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+		}		
 		"reflect_spell_damage"
 		{
 			"value" "10"
