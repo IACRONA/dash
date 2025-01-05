@@ -5,42 +5,57 @@ LinkLuaModifier('modifier_cursed_knight_curse_of_blood_generic', 'abilities/hero
 
 
 cursed_knight_curse_of_blood = cursed_knight_curse_of_blood or {}
+function cursed_knight_curse_of_blood:GetCastRange(vLocation, hTarget)
+    return self:GetCaster():Script_GetAttackRange()
+end
 function cursed_knight_curse_of_blood:GetIntrinsicModifierName()
     return "modifier_cursed_knight_curse_of_blood_generic"
 end
 function cursed_knight_curse_of_blood:OnSpellStart()
     local caster = self:GetCaster()
-    local target = self:GetCursorTarget()
-    local ability = self
-    local duration = ability:GetSpecialValueFor("duration_before")
-    local pure_dmg = ability:GetSpecialValueFor("pure_damage")
-    local FacetID = caster:GetHeroFacetID()
-    if FacetID == 3 then pure_dmg = pure_dmg*1.03 end
-    if not target:TriggerSpellAbsorb( self ) then 
-        ApplyDamage({victim = target, attacker = caster,damage = pure_dmg, damage_type = DAMAGE_TYPE_PURE , damage_flags = DOTA_DAMAGE_FLAG_NONE,self})
-        EmitSoundOn("curse_of_blood", self:GetCaster() )
-        target:AddNewModifier(caster, ability, "modifier_cursed_knight_curse_of_blood", {duration = duration})
+    local target = self:GetCursorTarget() 
+    local modifier_generic = self:GetCaster():FindModifierByName("modifier_cursed_knight_curse_of_blood_generic")
+    if modifier_generic then
+        modifier_generic.target = target
+        modifier_generic.crit = true
+        Timers:CreateTimer(caster:GetAttackSpeed(true), function()
+            modifier_generic.crit = false
+        end)
     end
+    -- Выполнение атаки
+    if not target:TriggerSpellAbsorb(self) then 
+        caster:MoveToTargetToAttack(target)
+    end
+    self:EndCooldown()
 end
 
 modifier_cursed_knight_curse_of_blood_generic = modifier_cursed_knight_curse_of_blood_generic or {}
 function modifier_cursed_knight_curse_of_blood_generic:IsHidden() return true end
 function modifier_cursed_knight_curse_of_blood_generic:IsPurgable() return false end
 function modifier_cursed_knight_curse_of_blood_generic:DeclareFunctions()
-    return { MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,MODIFIER_EVENT_ON_ATTACK_LANDED  }
+    return { 
+        MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
+        MODIFIER_EVENT_ON_ATTACK_LANDED, 
+        -- MODIFIER_EVENT_ON_ATTACK_RECORD
+    }
 end
+
 function modifier_cursed_knight_curse_of_blood_generic:GetModifierPreAttack_CriticalStrike(keys)
 	if IsServer() then
-        self.mortal_critical_strike = false
+        local crit = self.crit
 		local attacker = keys.attacker
 		local target = keys.target
 		if attacker == self:GetParent() then
-            if target:HasModifier("modifier_cursed_knight_curse_of_blood_ally_curse") or target:HasModifier("modifier_cursed_knight_curse_of_blood") then  
-                self.mortal_critical_strike = true
-                Timers:CreateTimer(self:GetParent():GetAttackSpeed(true), function()                    
-					self.mortal_critical_strike = false
+            local ability = self:GetAbility()
+            local damage_krit_after = ability:GetSpecialValueFor("damage_krit_after")
+            if not crit or self.target ~= target then
+				return
+			end
+            if crit then  
+                Timers:CreateTimer(attacker:GetAttackSpeed(true), function()                    
+					self.crit = false
 				end)  
-                return self:GetAbility():GetSpecialValueFor("damage_krit_after")* self:GetAbility():GetCaster():GetAttackDamage()
+                return damage_krit_after*attacker:GetAttackDamage()
             end
 		end
 	end
@@ -52,12 +67,20 @@ function modifier_cursed_knight_curse_of_blood_generic:OnAttackLanded(keys)
 		local attacker = keys.attacker
 		local target = keys.target
 		local damage = keys.damage
-		if attacker == self.caster then            
-			if not self.mortal_critical_strike then
-				return nil
+        local ability = self:GetAbility()
+        local duration = ability:GetSpecialValueFor("duration_before")
+        local dmg = ability:GetSpecialValueFor("pure_damage")
+		if attacker == ability:GetCaster() then      
+			if not self.crit or self.target ~= target then
+                self.target = nil
+				return
 			end
             EmitSoundOn("Hero_SkeletonKing.CriticalStrike", attacker)
-			self.mortal_critical_strike = false
+            EmitSoundOn("curse_of_blood", attacker)
+            ApplyDamage({victim = target, attacker = attacker,damage = dmg, damage_type = DAMAGE_TYPE_PURE , damage_flags = DOTA_DAMAGE_FLAG_NONE, ability})
+            target:AddNewModifier(attacker, ability, "modifier_cursed_knight_curse_of_blood", {duration = duration})
+			self.crit = false
+            ability:StartCooldown(ability:GetCooldown(ability:GetLevel()))
 		end
 	end
 end
@@ -70,8 +93,29 @@ function modifier_cursed_knight_curse_of_blood:IsPurgable() return true end
 function modifier_cursed_knight_curse_of_blood:OnCreated(kkd)
     self:SetStackCount(1)
     self:StartIntervalThink(1)
+end 
+function modifier_cursed_knight_curse_of_blood:GetEffectName()
+	return "particles/shadow_demon_demonic_purge.vpcf"
 end
 
+function modifier_cursed_knight_curse_of_blood:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW 
+end
+function modifier_cursed_knight_curse_of_blood:OnRefresh(kkd)
+    if not IsServer() then return end
+    local ability = self:GetAbility()
+    local caster = ability:GetCaster()
+    local value_stack = ability:GetSpecialValueFor("value_of_hits")
+    local curse_cooldown = ability:GetSpecialValueFor("curse_cooldown")
+    local IsCooldown = caster:HasModifier("modifier_cursed_knight_curse_of_blood_cooldown")
+    if self:GetStackCount() ~= value_stack then 
+        self:IncrementStackCount()
+    end
+    if self:GetStackCount() == value_stack and not IsCooldown then 
+        self:MagicEmployed()
+        caster:AddNewModifier(caster, ability, "modifier_cursed_knight_curse_of_blood_cooldown", {duration = curse_cooldown})
+    end
+end
 function modifier_cursed_knight_curse_of_blood:OnIntervalThink(sss)
     if not IsServer() then return end
     local parent = self:GetParent()
@@ -89,31 +133,9 @@ function modifier_cursed_knight_curse_of_blood:OnIntervalThink(sss)
     ApplyDamage({victim = parent, attacker = ability:GetCaster(),damage = dmg, damage_type = DAMAGE_TYPE_MAGICAL , damage_flags = DOTA_DAMAGE_FLAG_NONE, ability})
 end
 
-function modifier_cursed_knight_curse_of_blood:DeclareFunctions()
-    return {MODIFIER_EVENT_ON_ATTACK_LANDED }
 
-end
-function modifier_cursed_knight_curse_of_blood:OnAttackLanded(event)
-    if not IsServer() then return end
-    local target = event.target
-    local parent = self:GetParent()
-    if target ~= parent then return end
-    local ability = self:GetAbility()
-    local caster = ability:GetCaster()
-    local attacker = event.attacker
-    if caster ~= attacker then return end
-    local curse_cooldown = ability:GetSpecialValueFor("curse_cooldown")
-    local IsCooldown = caster:HasModifier("modifier_cursed_knight_curse_of_blood_cooldown")
-    local value_stack = ability:GetSpecialValueFor("value_of_hits")
-    if self:GetStackCount() ~= value_stack then 
-        self:IncrementStackCount()
-    end
-    if self:GetStackCount() == value_stack and not IsCooldown then 
-        self:MagicEmployed()
-        caster:AddNewModifier(caster, ability, "modifier_cursed_knight_curse_of_blood_cooldown", {duration = curse_cooldown})
-    end
-end
 function modifier_cursed_knight_curse_of_blood:MagicEmployed()
+    if not IsServer() then return end
     local parent = self:GetParent()
     local ability = self:GetAbility()
     local caster = ability:GetCaster()
@@ -151,7 +173,7 @@ function modifier_cursed_knight_curse_of_blood_ally_curse:OnIntervalThink(sss)
     ApplyDamage({victim = parent, attacker = caster,damage = damage_mag_periodic_ally, damage_type = DAMAGE_TYPE_MAGICAL , damage_flags = DOTA_DAMAGE_FLAG_NONE, ability = ability})
 end
 function modifier_cursed_knight_curse_of_blood_ally_curse:GetEffectName()
-	return "particles/venomancer_noxious_contagion_buff.vpcf"
+	return "particles/shadow_demon_demonic_purge.vpcf"
 end
 
 function modifier_cursed_knight_curse_of_blood_ally_curse:GetEffectAttachType()

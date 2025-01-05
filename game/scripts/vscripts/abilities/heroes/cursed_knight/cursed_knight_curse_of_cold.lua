@@ -14,9 +14,12 @@ function cursed_knight_curse_of_cold:OnSpellStart()
     if not target:TriggerSpellAbsorb( self ) then 
         if FacetID == 3 then perid_damage = perid_damage*1.03 end
         target:AddNewModifier(caster, ability, "modifier_cursed_knight_curse_of_cold", {duration = duration})
+    else 
+        self:EndCooldown()
+        self:RefundManaCost()
     end
+    EmitSoundOn("curse_of_cold", caster )
 end
-
 
 
 modifier_cursed_knight_curse_of_cold = modifier_cursed_knight_curse_of_cold or {}
@@ -41,7 +44,7 @@ function modifier_cursed_knight_curse_of_cold:GetModifierMoveSpeedBonus_Percenta
     return -slow_pct_per_sec*idur
 end
 function modifier_cursed_knight_curse_of_cold:GetEffectName()
-	return "particles/ancient_apparition_cold_feet_frozen.vpcf"
+	return "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
 end
 
 function modifier_cursed_knight_curse_of_cold:GetEffectAttachType()

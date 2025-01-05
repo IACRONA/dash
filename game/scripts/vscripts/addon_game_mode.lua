@@ -211,7 +211,9 @@ function CAddonWarsong:InitGameMode()
 	ListenToGameEvent("dota_buyback", Dynamic_Wrap( self, 'OnBuyback' ), self )
 	ListenToGameEvent("player_disconnect", Dynamic_Wrap( self, 'OnPlayerDisconnect' ), self )
 	ListenToGameEvent("player_connect_full", Dynamic_Wrap( self, 'OnPlayerConnect' ), self )
-	GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(self, "ModifyGoldFilter"), self)
+	if IsInToolsMode() then
+		ListenToGameEvent("player_chat", Dynamic_Wrap( self, 'OnPlayerChat' ), self )
+	end
 
     CustomGameEventManager:RegisterListener('select_kills_event', function(_, event)
         self.nWinConditionGoal = self.nWinConditionGoal + HOW_MUCH_KILLS_ADD
