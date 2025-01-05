@@ -278,10 +278,10 @@ function Upgrades:UpgradeSelected(event)
 
 	Upgrades.pending_selection[player_id] = nil
 
-	table.remove(Upgrades.queued_selection[player_id], 1)
-
-	if #Upgrades.queued_selection[player_id] > 0 then
-		local selection_data = Upgrades.queued_selection[player_id][1]
+	table.remove(Upgrades.queued_selection[player_id], #Upgrades.queued_selection[player_id])
+	local length = #Upgrades.queued_selection[player_id]
+	if length > 0 then
+		local selection_data = Upgrades.queued_selection[player_id][length]
 		Upgrades:ShowSelection(hero, selection_data.rarity, player_id, false, selection_data.is_lucky_trinket_proc or false)
 	end
 end
