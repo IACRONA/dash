@@ -18,6 +18,9 @@ function cursed_knight_hand_of_death:OnSpellStart()
 		})
 		self.bRetracting = false
 		EmitSoundOn( "hand_of_death", self:GetCaster() )
+	else 
+        self:EndCooldown()
+        self:RefundManaCost()
 	end
 end
  

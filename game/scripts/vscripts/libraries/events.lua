@@ -599,3 +599,15 @@ function CAddonWarsong:SpendCurrencyPlayer(nPlayer, value)
 
 	CustomNetTables:SetTableValue("custom_currency", playerId, {counter = math.max(currentCurrency - value, 0)})
 end
+
+
+function CAddonWarsong:OnPlayerChat(event)
+	if IsClient() then return end
+	local playerId = event.playerid
+ 	local command = string.lower(event.text)
+	local player = PlayerResource:GetPlayer(playerId)
+	if command == "!test" then
+		print("БЫло")
+		Say(player,"Команда получена!", true)
+	end
+end

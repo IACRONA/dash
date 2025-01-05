@@ -15,3 +15,6 @@ end
 function CDOTA_BaseNPC:HasShard()
     return self:HasModifier("modifier_item_aghanims_shard")
 end
+function CDOTA_BaseNPC:GetAttackRange()
+	return self:Script_GetAttackRange()
+end

@@ -78,7 +78,9 @@ local particles =
     "particles/ancient_apparition_cold_feet_frozen.vpcf",
     "particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf",
     "particles/venomancer_noxious_plague_slow.vpcf",
-    "particles/venomancer_noxious_contagion_buff.vpcf"
+    "particles/venomancer_noxious_contagion_buff.vpcf",
+    "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf",
+    "particles/shadow_demon_demonic_purge.vpcf"
 }
 
 local sounds = 
