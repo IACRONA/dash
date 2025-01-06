@@ -8,17 +8,15 @@ function cursed_knight_curse_of_cold:OnSpellStart()
     local target = self:GetCursorTarget()
     local ability = self
     local duration = ability:GetSpecialValueFor("duration")
-    local perid_damage = ability:GetSpecialValueFor("perid_damage")
     local slow_movement = ability:GetSpecialValueFor("movement_slow_per_second")
     local FacetID = caster:GetHeroFacetID()
     if not target:TriggerSpellAbsorb( self ) then 
-        if FacetID == 3 then perid_damage = perid_damage*1.03 end
+        EmitSoundOn("hero_Crystal.frostbite", target )
         target:AddNewModifier(caster, ability, "modifier_cursed_knight_curse_of_cold", {duration = duration})
     else 
         self:EndCooldown()
         self:RefundManaCost()
     end
-    EmitSoundOn("curse_of_cold", caster )
 end
 
 

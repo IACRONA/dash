@@ -1739,7 +1739,7 @@
     "DOTA_Tooltip_modifier_cursed_knight_hand_of_death_description"  "Вы притягиваетесь к Проклятому."
 
     // Проклятите крови
-    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood" "Проклятие крови"
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood" "Проклятие плети"
     "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_Description" "Обрушивает проклятие на врага, нанося чистый и периодический урон, накапливая эффекты с каждым ударом. После %value_of_hits%  эффектов, герой вызывает мощный взрыв, усиливая урон, накладывая безмолвие на ближайших врагов и исцеляя себя за счет нанесенного проклятием урона."
     "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_pure_damage" "ПЕРВИЧНЫЙ УРОН: "
     "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_mag_periodic_damage" "ПЕРИОДИЧНЫЙ УРОН ВРАГУ: "
@@ -1750,8 +1750,8 @@
     "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_curse_cooldown" "ПЕРЕЗАРЯДКА ПРОКЛЯТИЯ: "
     "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_damage_mag_periodic_ally" "ПЕРИОДИЧНЫЙ УРОН СОЮЗНИКАМ ВРАГА: "
     
-    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_Lore" "Проклятие крови"
-    // Модификаторы к "Проклятие крови"
+    "DOTA_Tooltip_Ability_cursed_knight_curse_of_blood_Lore" "Проклятие плети"
+    // Модификаторы к "Проклятие плети"
 
     "DOTA_Tooltip_modifier_cursed_knight_curse_of_blood" "Вы прокляты"
     "DOTA_Tooltip_modifier_cursed_knight_curse_of_blood_description" "Каждую секунду вы получаете урон. Каждый удар Проклятого Рыцаря накладывает вам 1 заряд"
@@ -1823,17 +1823,17 @@
     // ТАЛАНТЫ ДЛЯ ГЕРОЯ CURSED KNIGHT
     ///////////////////////////////////
     // ПРАВЫЙ ТАЛАНТ НА 10 УРОВНЕ:
-    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_perid_damage"  "+10 к периодическому урону от ПРОКЛЯТИЕ КРОВИ"
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_perid_damage"  "+10 к периодическому урону от ПРОКЛЯТИЯ ПЛЕТИ"
     // ЛЕВЫЙ ТАЛАНТ НА 10 УРОВНЕ:
     "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_hand_of_death_cooldown"  "-5 сек. перезарядки РУКА СМЕРТИ"
     // ПРАВЫЙ ТАЛАНТ НА 15 УРОВНЕ:
     "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_cold_amp_slow_pct"  "+10% к замедлению от ПРОКЛЯТИЯ ХОЛОДА"
     // ЛЕВЫЙ ТАЛАНТ НА 15 УРОВНЕ:
-    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_pure_damage"  "+50 к первичному урону от ПРОКЛЯТИЯ КРОВИ"
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_pure_damage"  "+50 к первичному урону от ПРОКЛЯТИЯ ПЛЕТИ"
     // ПРАВЫЙ ТАЛАНТ НА 20 УРОВНЕ:
     "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_cursed_blast_chance_blast"  "+3% ВЫПАДЕНИЯ ПРОКЛЯТОГО ВЗРЫВА"
     // ЛЕВЫЙ ТАЛАНТ НА 20 УРОВНЕ:
-    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_perid_damage_count2"  "+40 к периодическому урону от ПРОКЛЯТИЕ КРОВИ"
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_perid_damage_count2"  "+40 к периодическому урону от ПРОКЛЯТИЯ ПЛЕТИ"
     // ПРАВЫЙ ТАЛАНТ НА 25 УРОВНЕ:
     "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_deadman_field_amp_damage_in_field"  "+100 к урону, когда герой находится внутри БАРЬЕР МЕРТВЕЦА"
     // ЛЕВЫЙ ТАЛАНТ НА 25 УРОВНЕ:
