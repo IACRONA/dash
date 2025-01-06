@@ -4,7 +4,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "2"
+			"value" "4"
 			"operator" "OP_ADD"
 		}
 		"AbilityCastRange"
@@ -76,7 +76,7 @@
 		}		
 		"reflect_spell_damage"
 		{
-			"value" "10"
+			"value" "20"
 			"operator" "OP_ADD"
 		}
 	}
