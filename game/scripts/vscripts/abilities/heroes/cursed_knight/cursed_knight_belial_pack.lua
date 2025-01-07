@@ -10,6 +10,9 @@ end
 cursed_knight_belial_pack_modifier = cursed_knight_belial_pack_modifier or {}
 function cursed_knight_belial_pack_modifier:IsHidden() return true end
 function cursed_knight_belial_pack_modifier:IsPurgable() return false end
+function cursed_knight_belial_pack_modifier:OnCreated()
+    self.cd = 0
+end
 function cursed_knight_belial_pack_modifier:DeclareFunctions() return {MODIFIER_EVENT_ON_TAKEDAMAGE} end
 function cursed_knight_belial_pack_modifier:OnTakeDamage(keys)
     if not IsServer() then return end
@@ -18,16 +21,21 @@ function cursed_knight_belial_pack_modifier:OnTakeDamage(keys)
     local attacker = keys.attacker
     local pct = ability:GetSpecialValueFor("amp_damage")/100
     local unit = keys.unit
+    if self.cd > 0 then return end
     if attacker == parent then 
         if unit:HasModifier("modifier_cursed_knight_curse_of_blood") and unit:HasModifier("modifier_cursed_knight_curse_of_blood_ally_curse") and unit:HasModifier("modifier_cursed_knight_curse_of_cold") then
             local reflect_damage = keys.damage*pct
+            self.cd = 2
+            Timers:CreateTimer(3, function()
+                self.cd = 0
+            end)
             ApplyDamage({
-                victim = attacker,
+                victim = unit,
                 attacker = parent,
                 damage = reflect_damage,
                 damage_type = DAMAGE_TYPE_MAGICAL,
                 ability = ability,
-            })
+            })    
         end
     end
 end

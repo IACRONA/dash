@@ -19,12 +19,12 @@ function cursed_knight_curse_of_blood:OnSpellStart()
         if target:HasModifier("modifier_cursed_knight_curse_of_blood") and target:FindModifierByName("modifier_cursed_knight_curse_of_blood"):GetStackCount() >= 3 and not caster:HasModifier("modifier_cursed_knight_curse_of_blood_cooldown") then
             modifier_generic.target = target
             modifier_generic.crit = true
-            Timers:CreateTimer(caster:GetAttackSpeed(true), function()
+            Timers:CreateTimer(caster:GetAttackSpeed(true)*0.9, function()
                 modifier_generic.crit = false
             end)
         end
         modifier_generic.IsAbilityModifier = true
-        Timers:CreateTimer(caster:GetAttackSpeed(true), function()
+        Timers:CreateTimer(caster:GetAttackSpeed(true)*0.9, function()
             modifier_generic.IsAbilityModifier = false
         end)
     end

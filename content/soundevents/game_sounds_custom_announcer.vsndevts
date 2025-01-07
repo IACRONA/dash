@@ -795,22 +795,6 @@
         event_type = "1.000000"
         vsnd_duration = 1.368000
     }
-    hand_of_death = 
-    {
-        type = "dota_src1_3d"
-        vsnd_files = 
-        [
-            "sounds/spells/cursed_knight_hand_of_death.vsnd",
-        ]
-        volume = "2.000000"
-        pitch_rand_min = "0"
-        pitch_rand_max = "0"
-        pitch = "1.000000"
-        soundlevel = "100.000000"
-        distance_max = "1600.000000"
-        event_type = "1.000000"
-        vsnd_duration = 1.368000
-    }
     curse_of_blood = 
     {
         type = "dota_src1_3d"
@@ -843,5 +827,83 @@
         event_type = "1.000000"
         vsnd_duration = 1.368000
     }
-       
+    summon_deadman = {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/summon_deadman.vsnd",
+        ]
+        volume = "1.300000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+    hand_of_dead_1 =
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/hand_of_dead_1.vsnd",
+        ]
+        volume = "1.300000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }  
+    hand_of_dead_2 =
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/hand_of_dead_2.vsnd",
+        ]
+        volume = "1.300000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }  
+    hand_of_dead_3 =
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/hand_of_dead_3.vsnd",
+        ]
+        volume = "1.300000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+    cursed_knight_pick_hero = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/cursed_knight_pick_hero.vsnd",
+        ]
+        volume = "1.300000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
 }

@@ -18,6 +18,7 @@ function cursed_knight_summon_deadman:OnSpellStart()
 	ParticleManager:SetParticleControl(nfx, 0, skeleton:GetOrigin())
 	ParticleManager:ReleaseParticleIndex(nfx)
     EmitSoundOn( "n_creep_Skeleton.Spawn", caster )
+    EmitSoundOn( "summon_deadman", caster )
     skeleton:StartGesture( ACT_DOTA_SPAWN )
 end
 

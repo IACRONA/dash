@@ -781,6 +781,9 @@ function CAddonWarsong:OnNPCSpawned(event)
 					if GetMapName() ~= "dash" then 
 						hUnit:AddNewModifier(hUnit, nil, "modifier_freeze_time_start", {duration = START_GAME_FREEZE_TIME})
 					end
+					if hUnit:GetUnitName() == "npc_dota_hero_skeleton_king" then
+						EmitSoundOn( "cursed_knight_pick_hero", hUnit )
+					end
 				end
 			end
 		end)

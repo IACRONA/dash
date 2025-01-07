@@ -17,7 +17,8 @@ function cursed_knight_hand_of_death:OnSpellStart()
 			iMoveSpeed = hook_speed*2.7,
 		})
 		self.bRetracting = false
-		EmitSoundOn( "hand_of_death", self:GetCaster() )
+		Randomint = RandomInt(1, 3)
+		EmitSoundOn( "hand_of_dead_" .. Randomint, self:GetCaster() )
 	else 
         self:EndCooldown()
         self:RefundManaCost()
