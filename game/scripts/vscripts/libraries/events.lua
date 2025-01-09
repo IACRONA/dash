@@ -606,8 +606,24 @@ function CAddonWarsong:OnPlayerChat(event)
 	local playerId = event.playerid
  	local command = string.lower(event.text)
 	local player = PlayerResource:GetPlayer(playerId)
-	if command == "!test" then
-		print("БЫло")
-		Say(player,"Команда получена!", true)
-	end
+end
+
+function CAddonWarsong:OnPlayerItemAdded(event)
+	local itemName = event.itemname
+	DoWithAllPlayers(function(player, hero, playerId) 
+		if not hero then return end
+		if hero:GetUnitName() == "npc_dota_hero_skeleton_king" then
+			if itemName == "item_ultimate_scepter" then
+				if not hero.IsAghanim then
+					EmitSoundOn("cursed_knight_get_aghanim", hero)
+					hero.IsAghanim = true
+				else
+					local rnd = RandomInt(1, 100)
+					if rnd <= 20 then
+						EmitSoundOn("cursed_knight_get_aghanim", hero)
+					end
+				end
+			end
+		end
+	end)
 end

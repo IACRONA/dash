@@ -211,6 +211,7 @@ function CAddonWarsong:InitGameMode()
 	ListenToGameEvent("dota_buyback", Dynamic_Wrap( self, 'OnBuyback' ), self )
 	ListenToGameEvent("player_disconnect", Dynamic_Wrap( self, 'OnPlayerDisconnect' ), self )
 	ListenToGameEvent("player_connect_full", Dynamic_Wrap( self, 'OnPlayerConnect' ), self )
+	ListenToGameEvent("dota_inventory_item_added", Dynamic_Wrap( self, 'OnPlayerItemAdded' ), self ) 
 	if IsInToolsMode() then
 		ListenToGameEvent("player_chat", Dynamic_Wrap( self, 'OnPlayerChat' ), self )
 	end

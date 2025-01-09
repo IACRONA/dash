@@ -1795,8 +1795,11 @@
     "npc_dota_cursed_big_skeleton"           "Мертвец"
 
     "DOTA_Tooltip_Ability_cursed_knight_summon_deadman"                             "ПРИЗЫВ МЕРТВЕЦА"
-    "DOTA_Tooltip_Ability_cursed_knight_summon_deadman_Description"                 "Призывает одного большого скелета, который преследует владельца способности, и помогает ему убивать врагов."
+    "DOTA_Tooltip_Ability_cursed_knight_summon_deadman_Description"                 "С шансом 30%% в бою призывает Мертвеца, который преследует владельца способности, и помогает ему убивать врагов."
     "DOTA_Tooltip_Ability_cursed_knight_summon_deadman_health_skeleton"             "ЗДОРОВЬЕ МЕРТВЕЦА: "
+    // Модификаторы к "ПРИЗЫВ МЕРТВЕЦА"
+    "DOTA_Tooltip_cursed_knight_summon_deadman_generic_modifier2" "Призыв Мертвеца"
+    "DOTA_Tooltip_cursed_knight_summon_deadman_generic_modifier2_description" "С шансом 30%% в бою призывает Мертвеца, который преследует владельца способности, и помогает ему убивать врагов."
     //////////////////////////////////////////////////////////////////////////////
     // ПЕРВАЯ СПОСОБНОСТЬ МЕРТВЕЦА: ПЛЕСЕНЬ ( cursed_big_skeleton_mould )
     //////////////////////////////////////////////////////////////////////////////
@@ -1819,6 +1822,10 @@
     "DOTA_Tooltip_Ability_cursed_knight_belial_pack"                             "СВОР БЕЛИАЛА"
     "DOTA_Tooltip_Ability_cursed_knight_belial_pack_Description"                 "Если ваш враг проклят всеми тремя вашими проклятиями, то по нему усиливается урон." // на %amp_damage%%%
     "DOTA_Tooltip_Ability_cursed_knight_belial_pack_amp_damage"             "%УСИЛЕНИЕ УРОНА: "
+    // Модификаторы к "СВОР БЕЛИАЛА"
+    "DOTA_Tooltip_cursed_knight_belial_pack_modifier" "Свор Бельяла"
+    "DOTA_Tooltip_cursed_knight_belial_pack_modifier_description" "Если ваш враг проклят всеми тремя вашими проклятиями, то по нему усиливается урон."
+
     ///////////////////////////////////
     // ТАЛАНТЫ ДЛЯ ГЕРОЯ CURSED KNIGHT
     ///////////////////////////////////
