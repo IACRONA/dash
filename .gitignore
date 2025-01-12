@@ -1,11 +1,11 @@
-*.vxml_c
-*.vjs_c
-*.vcss_c
+ 
 *.bin
 *.blend
 *.cfg
-*.vmat_c
-*.vsndevts_c
+*.*_c
+!*.vmat_c
+
+
 
 node_modules
 link.bat
