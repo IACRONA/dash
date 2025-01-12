@@ -51,8 +51,8 @@ if GetMapName() == "warsong" then
 
     DAY_NIGHT_CYCL = false -- Включение / выключение смены для и ночи
 
-    FOUNTAIN_MAX_HEALTH_REGEN_PCT = 80
-    FOUNTAIN_MAX_MANA_REGEN_PCT = 60
+    FOUNTAIN_MAX_HEALTH_REGEN_PCT = 30
+    FOUNTAIN_MAX_MANA_REGEN_PCT = 22
 
     PORTAL_COOLDOWN = 0.6
 
@@ -176,8 +176,8 @@ if GetMapName() == "dash" then
 
     DAY_NIGHT_CYCL = false -- Включение / выключение смены для и ночи
 
-    FOUNTAIN_MAX_HEALTH_REGEN_PCT = 50
-    FOUNTAIN_MAX_MANA_REGEN_PCT = 50
+    FOUNTAIN_MAX_HEALTH_REGEN_PCT = 16
+    FOUNTAIN_MAX_MANA_REGEN_PCT = 15
 
     PORTAL_COOLDOWN = 0.6
 
@@ -322,8 +322,8 @@ if GetMapName() == "portal_duo" then
     MAX_SPEED = 750
     FLAG_CARRIER_MAX_SPEED = 400
 
-    FOUNTAIN_MAX_HEALTH_REGEN_PCT = 90
-    FOUNTAIN_MAX_MANA_REGEN_PCT = 60
+    FOUNTAIN_MAX_HEALTH_REGEN_PCT = 30
+    FOUNTAIN_MAX_MANA_REGEN_PCT = 25
 
     DAY_NIGHT_CYCL = false -- Включение / выключение смены для и ночи
 
@@ -459,8 +459,8 @@ if GetMapName() == "portal_trio" then
     MAX_SPEED = 750
     FLAG_CARRIER_MAX_SPEED = 400
 
-    FOUNTAIN_MAX_HEALTH_REGEN_PCT = 50
-    FOUNTAIN_MAX_MANA_REGEN_PCT = 50
+    FOUNTAIN_MAX_HEALTH_REGEN_PCT = 30
+    FOUNTAIN_MAX_MANA_REGEN_PCT = 22
 
     DAY_NIGHT_CYCL = false -- Включение / выключение смены для и ночи
 
@@ -571,7 +571,7 @@ end
 -- Фонтан эффект скорости
 FOUNTAIN_AURA_RADIUS = 1500
 FOUNTAIN_BONUS_MOVESPEED = 250
-FOUNTAIN_DELAY_MODIFIER = 1.3
+FOUNTAIN_DELAY_MODIFIER = 1.5
 
 -- Задержка до начала игры
 START_GAME_FREEZE_TIME = 12
