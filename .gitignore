@@ -4,6 +4,8 @@
 *.bin
 *.blend
 *.cfg
+*.vmat_c
+*.vsndevts_c
 
 node_modules
 link.bat
