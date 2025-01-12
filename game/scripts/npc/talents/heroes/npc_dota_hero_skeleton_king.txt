@@ -71,7 +71,7 @@
 		}
 		"cooldown_and_manacost"
 		{
-			"value" "7"
+			"value" "7.5"
 			"operator" "OP_MULTIPLY"
 		}		
 		"reflect_spell_damage"
