@@ -50,3 +50,7 @@ LinkLuaModifier('modifier_sphere_shield_all', 'modifiers/spheres/modifier_sphere
 LinkLuaModifier('modifier_balance', 'modifiers/modifier_balance', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_cursed_leader', 'modifiers/modifier_cursed_leader', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_head_boss', 'modifiers/modifier_head_boss', LUA_MODIFIER_MOTION_NONE)
+
+
+LinkLuaModifier('modifier_donate_aura_aghanim', 'modifiers/donate/modifier_donate_aura', LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier('modifier_donate_aura_autumn', 'modifiers/donate/modifier_donate_aura', LUA_MODIFIER_MOTION_NONE)

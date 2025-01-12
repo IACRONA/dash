@@ -148,7 +148,7 @@ function CAddonWarsong:GameTimeClock()
 			table.insert( sortedTeams, { teamID = team, teamScore = kills } )
 		end
 		table.sort( sortedTeams, function(a,b) return ( a.teamScore > b.teamScore ) end )
-		GameRules:SetGameWinner( sortedTeams[1].teamID )
+		CAddonWarsong:SetWinner( sortedTeams[1].teamID )
         self:SortedMvpPlayers()
     end
 end
@@ -422,7 +422,7 @@ function CAddonWarsong:GetWinPlayers()
     for team, score in pairs(self.nCapturedFlagsCount) do
         if score >= self.nWinConditionGoal then
             self:SortedMvpPlayers()
-            GameRules:SetGameWinner(team)
+            CAddonWarsong:SetWinner(team)
         end
     end
 end

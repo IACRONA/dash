@@ -1,6 +1,13 @@
 "DOTAAbilities"
 {
- 
+  	"item_test"
+	{
+		"BaseClass"						"item_lua"											
+		"ScriptFile"					"items/item_test"
+		"AbilityTextureName"			"item_fusion_rune" 
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+
 	"item_flag_radiant"
 	{
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"

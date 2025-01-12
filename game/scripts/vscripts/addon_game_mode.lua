@@ -10,6 +10,10 @@ require('libraries/table')
 require('libraries/utility_functions')
 require('extensions/base_npc')
 require('extensions/table')
+require ("libraries/player_info")
+require ("server/http")
+require ("server/server_manager")
+require('donate/donate_manager')
 require('libraries/neutrals_items')
 require('libraries/portals_system')
 require('libraries/add_new_abilities')
@@ -405,6 +409,7 @@ function CAddonWarsong:OnGameRulesStateChange()
 		-- end
 		-- addBot(DOTA_TEAM_BADGUYS)
 		-- addBot(DOTA_TEAM_GOODGUYS)
+		ServerManager:Init()
 		if GetMapName() == "warsong" or GetMapName() == "dash" then
 			if PlayerResource:GetPlayerCount() ~= 10 then  
 				local team = 2
@@ -781,6 +786,7 @@ function CAddonWarsong:OnNPCSpawned(event)
 					if GetMapName() ~= "dash" then 
 						hUnit:AddNewModifier(hUnit, nil, "modifier_freeze_time_start", {duration = START_GAME_FREEZE_TIME})
 					end
+					DonateManager:InitHero(hUnit)
 				end
 			end
 		end)
@@ -812,14 +818,18 @@ function CAddonWarsong:GiveTowersModifiersUNVUIL()
         end
     end
 end
+
 function CAddonWarsong:OnPlayerDisconnect(event) 
 	local playerId = event.PlayerID
-    if self.bookTicks.common[playerId] then
+
+	if self.bookTicks.common[playerId] then
         self.bookTicks.common[playerId].disconnected = true
         self.bookTicks.rare[playerId].disconnected = true
         self.bookTicks.epic[playerId].disconnected = true
     end
+	ServerManager:SendServerPlayerRoll(playerId)
 end
+
 function CAddonWarsong:OnPlayerConnect(event) 
 	Timers:CreateTimer(1.5, function() 
 		local playerId = event.PlayerID
@@ -842,5 +852,11 @@ function CAddonWarsong:OnPlayerConnect(event)
 				 self.bookReserve[playerId] = {common = 0, rare = 0, epic = 0} -- Очищаем резерв
 			end
 		end
+	end)
+end
+
+function CAddonWarsong:SetWinner(teamWinner) 
+	ServerManager:OnEndGame(function()
+		GameRules:SetGameWinner(teamWinner)
 	end)
 end

@@ -4,6 +4,7 @@
 		<include src="s2r://panorama/layout/custom_game/select_spell/select_spell.vcss_c" />
 	</styles>
 	 <scripts>
+		<include src="s2r://panorama/scripts/custom_game/player_info.vjs_c" />
 		<include src="s2r://panorama/layout/custom_game/select_spell/select_spell.vjs_c" />
 	</scripts>
 	<Panel class="Main" hittest="false">

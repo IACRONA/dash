@@ -282,3 +282,4 @@ function GetRandomPathablePositionWithin(vPos, nRadius, nMinRadius )
     end
 end
 
+ 

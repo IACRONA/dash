@@ -39,16 +39,8 @@ function CAddonWarsong:HeroAddNewAbility(entity, is_ultimate, player_id, is_rero
         entity = PlayerResource:GetSelectedHeroEntity(player_id)
         is_ultimate = is_ultimate == 1
     end
-    if not is_reroll then
-        if self.PlayersRerollAbilities[entity:GetPlayerOwnerID()] == nil then
-            self.PlayersRerollAbilities[entity:GetPlayerOwnerID()] = {ulti = REROLL_ABILITIES_MAX_COUNT_ULTI, not_ulti = REROLL_ABILITIES_MAX_COUNT_NOT_ULTI}
-        end
-    else 
-        if is_ultimate then 
-            self.PlayersRerollAbilities[entity:GetPlayerOwnerID()].ulti = self.PlayersRerollAbilities[entity:GetPlayerOwnerID()].ulti - 1 
-        else
-            self.PlayersRerollAbilities[entity:GetPlayerOwnerID()].not_ulti = self.PlayersRerollAbilities[entity:GetPlayerOwnerID()].not_ulti - 1
-        end
+    if is_reroll then
+        PlayerInfo:UpdateRollTable(player_id, -1, 1)
     end
 
     if CAddonWarsong.player_abilities_info[entity:GetPlayerOwnerID()] == nil then
@@ -56,7 +48,7 @@ function CAddonWarsong:HeroAddNewAbility(entity, is_ultimate, player_id, is_rero
     end
 
     local abilities_list = RANDOM_ABILITIES_LIST_WG
-    local reroll_count = 0
+
     if is_ultimate then
         if self.PlayersUltimateAbilities[entity:GetPlayerOwnerID()] ~= nil then
             self:RemoveModifierFromAbility(self.PlayersUltimateAbilities[entity:GetPlayerOwnerID()])
@@ -65,7 +57,6 @@ function CAddonWarsong:HeroAddNewAbility(entity, is_ultimate, player_id, is_rero
             CAddonWarsong.player_abilities_info[entity:GetPlayerOwnerID()].ultimate = nil
         end
         abilities_list = RANDOM_ULTIMATES_WG
-        reroll_count = self.PlayersRerollAbilities[entity:GetPlayerOwnerID()].ulti
     else
         if self.PlayersDefaultAbilities[entity:GetPlayerOwnerID()] ~= nil then
             self:RemoveModifierFromAbility(self.PlayersDefaultAbilities[entity:GetPlayerOwnerID()])
@@ -73,11 +64,10 @@ function CAddonWarsong:HeroAddNewAbility(entity, is_ultimate, player_id, is_rero
             self.PlayersDefaultAbilities[entity:GetPlayerOwnerID()] = nil
             CAddonWarsong.player_abilities_info[entity:GetPlayerOwnerID()].basic = nil
         end
-        reroll_count = self.PlayersRerollAbilities[entity:GetPlayerOwnerID()].not_ulti
     end
     CustomNetTables:SetTableValue("abilities_list", tostring(entity:GetPlayerOwnerID()), CAddonWarsong.player_abilities_info[entity:GetPlayerOwnerID()])
     local random_abilities = self:GetNewAbilityPlayer(entity, abilities_list)
-    CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(entity:GetPlayerOwnerID()), "spell_select_open_panel", {spell_list = random_abilities, is_ultimate = is_ultimate, is_reroll = not (not is_reroll), reroll_count = reroll_count})
+    CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(entity:GetPlayerOwnerID()), "spell_select_open_panel", {spell_list = random_abilities, is_ultimate = is_ultimate, is_reroll = not (not is_reroll)})
 end
 
 function CAddonWarsong:SelectAbilityToHero(player_id, ability_name, is_ultimate)
