@@ -176,7 +176,7 @@ if GetMapName() == "dash" then
 
     DAY_NIGHT_CYCL = false -- Включение / выключение смены для и ночи
 
-    FOUNTAIN_MAX_HEALTH_REGEN_PCT = 16
+    FOUNTAIN_MAX_HEALTH_REGEN_PCT = 20
     FOUNTAIN_MAX_MANA_REGEN_PCT = 15
 
     PORTAL_COOLDOWN = 0.6
@@ -489,7 +489,7 @@ if GetMapName() == "portal_trio" then
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка шаров
-    NEW_PASSIVE_SPELLS_COOLDOWN = 300 --420 -- 420s / 7m
+    NEW_PASSIVE_SPELLS_COOLDOWN = 40 --420 -- 420s / 7m
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
 
     -- One Punchman
