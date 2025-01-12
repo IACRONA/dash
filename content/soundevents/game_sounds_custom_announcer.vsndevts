@@ -802,7 +802,7 @@
         [
             "sounds/spells/curse_of_blood.vsnd",
         ]
-        volume = "0.800000"
+        volume = "0.700000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -833,7 +833,7 @@
         [
             "sounds/spells/summon_deadman.vsnd",
         ]
-        volume = "1.100000"
+        volume = "1.000000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -849,7 +849,7 @@
         [
             "sounds/spells/hand_of_dead_1.vsnd",
         ]
-        volume = "1.100000"
+        volume = "1.000000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -865,7 +865,7 @@
         [
             "sounds/spells/hand_of_dead_2.vsnd",
         ]
-        volume = "1.100000"
+        volume = "1.000000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -881,7 +881,7 @@
         [
             "sounds/spells/hand_of_dead_3.vsnd",
         ]
-        volume = "1.100000"
+        volume = "1.000000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -897,7 +897,7 @@
         [
             "sounds/spells/cursed_knight_pick_hero.vsnd",
         ]
-        volume = "1.100000"
+        volume = "1.000000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -913,7 +913,7 @@
         [
             "sounds/spells/cursed_knight_get_aghanim.vsnd",
         ]
-        volume = "1.100000"
+        volume = "1.000000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -922,4 +922,85 @@
         event_type = "1.000000"
         vsnd_duration = 1.368000
     }
+    cursed_knight_dead = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/cursed_knight_dead.vsnd",
+        ]
+        volume = "1.000000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+    cursed_knight_random1 = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/cursed_knight_random1.vsnd",
+        ]
+        volume = "0.800000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+    cursed_knight_random2 = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/cursed_knight_random2.vsnd",
+        ]
+        volume = "0.800000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+    cursed_knight_random3 = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/cursed_knight_random3.vsnd",
+        ]
+        volume = "0.800000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+    cursed_knight_random4 = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/spells/cursed_knight_random4.vsnd",
+        ]
+        volume = "0.800000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+
 }

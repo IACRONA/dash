@@ -29,6 +29,9 @@ function CAddonWarsong:OnEntityKilled( params )
             else
                 killedUnit:SetTimeUntilRespawn( RESPAWN_TIME / multiple_decrease_respawn )
             end
+			if killedUnit:GetUnitName() == "npc_dota_hero_skeleton_king" then
+				EmitSoundOn("cursed_knight_dead", killedUnit)
+			end
         end
 	end
     if killedUnit:GetUnitName() == "npc_dota_badguys_fort" or killedUnit:GetUnitName() == "npc_dota_goodguys_fort" then

@@ -215,6 +215,7 @@
 	// }
 	"npc_dota_hero_skeleton_king"
 	{
+		"SoundSet" ""
 		"DisableWearables" "1"
 		"Facets"
         {

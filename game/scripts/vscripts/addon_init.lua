@@ -18,7 +18,7 @@ LinkLuaModifier('modifier_warsong_fate_one_punchman', 'modifiers/modifier_warson
 LinkLuaModifier('modifier_warsong_fate_himaron', 'modifiers/modifier_warsong_fate_himaron', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_teleport_scroll_fast', 'modifiers/modifier_teleport_scroll_fast', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_for_middle_towers_for_unvulbure', 'modifiers/modifier_for_middle_towers_for_unvulbure', LUA_MODIFIER_MOTION_NONE)
-
+LinkLuaModifier('modifier_skeleton_king_sound_set', 'modifiers/modifier_skeleton_king_sound_set', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_dash_creep_amp', 'modifiers/modifier_dash_creep_amp', LUA_MODIFIER_MOTION_NONE)
 
 LinkLuaModifier('modifier_flower_book', 'modifiers/books/modifier_flower_book', LUA_MODIFIER_MOTION_NONE)

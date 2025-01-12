@@ -750,6 +750,9 @@ function CAddonWarsong:OnNPCSpawned(event)
 						item:SetCurrentCharges(29)
 					end
 				end)
+				if hUnit:GetUnitName() == "npc_dota_hero_skeleton_king" then
+					hUnit:AddNewModifier(hUnit, nil, "modifier_skeleton_king_sound_set", {})
+				end
 				-- local particleLeader = ParticleManager:CreateParticle("particles/overhead_particle/leader_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, hUnit )
 				-- ParticleManager:SetParticleControlEnt( particleLeader, PATTACH_OVERHEAD_FOLLOW, hUnit, PATTACH_OVERHEAD_FOLLOW, "follow_overhead", hUnit:GetAbsOrigin(), true )
 				if GetMapName() ~= "dota" then
@@ -781,9 +784,6 @@ function CAddonWarsong:OnNPCSpawned(event)
 
 					if GetMapName() ~= "dash" then 
 						hUnit:AddNewModifier(hUnit, nil, "modifier_freeze_time_start", {duration = START_GAME_FREEZE_TIME})
-					end
-					if hUnit:GetUnitName() == "npc_dota_hero_skeleton_king" then
-						EmitSoundOn( "cursed_knight_pick_hero", hUnit )
 					end
 				end
 			end

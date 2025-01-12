@@ -209,8 +209,11 @@ function cursed_knight_deadman_field_modifier_cursed:OnTakeDamage(keys)
     local target = keys.unit
     local _oriability = keys.inflictor
     if target == parent then 
-        if not self:IsUnitInDome(attacker) then
-            local reduced_damage = _oridamage * ability:GetSpecialValueFor("damage_resist_in_field") / 100 
+        if keys.damage_type == DAMAGE_TYPE_MAGICAL then
+            local reduced_damage = _oridamage * ability:GetSpecialValueFor("damage_resist_magic_in_field") / 100 
+            parent:SetHealth(parent:GetHealth() + reduced_damage)
+        elseif keys.damage_type == DAMAGE_TYPE_PHYSICAL then
+            local reduced_damage = _oridamage * ability:GetSpecialValueFor("damage_resist_physical_in_field") / 100 
             parent:SetHealth(parent:GetHealth() + reduced_damage)
         end
     elseif attacker == parent then
