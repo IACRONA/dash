@@ -9,7 +9,9 @@ LinkLuaModifier( "cursed_knight_deadman_field_modifier_enemy", "abilities/heroes
 
 cursed_knight_deadman_field = cursed_knight_deadman_field or {}
 function cursed_knight_deadman_field:OnUpgrade()
-    self:SetAbilityIndex(4)
+    if self:GetAbilityIndex() ~= 4 then
+        self:SetAbilityIndex(4)
+    end
 end
 function cursed_knight_deadman_field:GetAOERadius() return self:GetSpecialValueFor("radius") end
 function cursed_knight_deadman_field:OnSpellStart()
@@ -17,14 +19,13 @@ function cursed_knight_deadman_field:OnSpellStart()
     local duration = self:GetSpecialValueFor("field_duration")
     local point = caster:GetOrigin()
     local team_id = caster:GetTeamNumber()
-
     local thinker = CreateModifierThinker(caster, self, "cursed_knight_deadman_field_thinker", {["duration"] = duration}, point, team_id, false)
     EmitSoundOn("deadman_field", caster)
 end
 cursed_knight_deadman_field_thinker = cursed_knight_deadman_field_thinker or {}
 function cursed_knight_deadman_field_thinker:OnCreated(event)
     local thinker = self:GetParent()
-    local ability = self:GetAbility()
+    local ability = self:GetAbility() 
     self.radius = ability:GetSpecialValueFor("radius")
     self.particle = ParticleManager:CreateParticle("particles/units/heroes/hero_cursed_k/cursed_shield_green.vpcf", PATTACH_ABSORIGIN, thinker)
     ParticleManager:SetParticleControl(self.particle, 1, Vector(self.radius, self.radius, self.radius))

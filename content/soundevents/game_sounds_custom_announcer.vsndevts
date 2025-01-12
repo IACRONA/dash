@@ -802,7 +802,7 @@
         [
             "sounds/spells/curse_of_blood.vsnd",
         ]
-        volume = "1.000000"
+        volume = "0.800000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -833,7 +833,7 @@
         [
             "sounds/spells/summon_deadman.vsnd",
         ]
-        volume = "1.300000"
+        volume = "1.100000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -849,7 +849,7 @@
         [
             "sounds/spells/hand_of_dead_1.vsnd",
         ]
-        volume = "1.300000"
+        volume = "1.100000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -865,7 +865,7 @@
         [
             "sounds/spells/hand_of_dead_2.vsnd",
         ]
-        volume = "1.300000"
+        volume = "1.100000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -881,7 +881,7 @@
         [
             "sounds/spells/hand_of_dead_3.vsnd",
         ]
-        volume = "1.300000"
+        volume = "1.100000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -897,7 +897,7 @@
         [
             "sounds/spells/cursed_knight_pick_hero.vsnd",
         ]
-        volume = "1.300000"
+        volume = "1.100000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -913,7 +913,7 @@
         [
             "sounds/spells/cursed_knight_get_aghanim.vsnd",
         ]
-        volume = "1.300000"
+        volume = "1.100000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"

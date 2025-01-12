@@ -15,8 +15,6 @@ function cursed_knight_belial_pack_modifier:OnCreated()
     local ability = self:GetAbility()
     self.pct = ability:GetSpecialValueFor("amp_damage")/100
     self.cd = 0
-    if not IsServer() then return end
-    self:GetParent():RemoveAbility(ability:GetAbilityName())
 end
 function cursed_knight_belial_pack_modifier:DeclareFunctions() return {MODIFIER_EVENT_ON_TAKEDAMAGE} end
 function cursed_knight_belial_pack_modifier:OnTakeDamage(keys)
