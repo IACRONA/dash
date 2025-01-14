@@ -45,7 +45,7 @@ if GetMapName() == "warsong" then
     BONUS_SPEED = 20
     FLAG_BONUS_SPEED = 5
     MAX_SPEED = 550
-    FLAG_CARRIER_MAX_SPEED = 380
+    FLAG_CARRIER_MAX_SPEED = 390
 
     BAN_TIME = 12 -- Время на бан
 
@@ -137,7 +137,7 @@ if GetMapName() == "warsong" then
     HIMARON_SWORD_COOLDOWN = 23
 
     -- Процент получения
-    PERCENT_OF_LEVEL_MINUTE = 170
+    PERCENT_OF_LEVEL_MINUTE = 210
 
     REROLL_SPHERES = 1
     NEW_SPHERES = 240
@@ -303,11 +303,11 @@ end
 if GetMapName() == "portal_duo" then
     RESPAWN_TIME = 6
 
-    START_GOLD = 850
+    START_GOLD = 750
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 950
+    GRANT_GOLD = 1000
 
     CONDITION_FLAG_COUNT_WIN = 57 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
@@ -440,7 +440,7 @@ if GetMapName() == "portal_trio" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 950
+    GRANT_GOLD = 1000
 
     CONDITION_FLAG_COUNT_WIN = 50 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 

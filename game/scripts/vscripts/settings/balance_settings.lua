@@ -73,16 +73,16 @@ if GetMapName() == "portal_duo" then
     --Уменьшение урона по первой команде [1] - это какой тир нужен
     FIRST_MODIFIER_CURSED_LEADER = {
         [1] = {
-            incoming = 32,
-            outgoing = -30,
+            incoming = 12,
+            outgoing = -10,
         },
         [2] = {
-            incoming = 28,
-            outgoing = -25,
+            incoming = 10,
+            outgoing = -10,
         },
         [3] = {
-            incoming = 18,
-            outgoing = -13,
+            incoming = 8,
+            outgoing = -5,
         },
     }
 
@@ -182,23 +182,23 @@ if GetMapName() == "portal_trio" then
     --Уменьшение урона по предпоследней команде [1] - это какой тир нужен
     PRE_LAST_MODIFIER_BALANCE = {
         [1] = {
-            incoming = -10,
+            incoming = -5,
         },
     }
     
     --Уменьшение урона по первой команде [1] - это какой тир нужен
     FIRST_MODIFIER_CURSED_LEADER = {
         [1] = {
-            incoming = 38,
-            outgoing = -30,
+            incoming = 12,
+            outgoing = -12,
         },
         [2] = {
-            incoming = 28,
-            outgoing = -25,
+            incoming = 12,
+            outgoing = -12,
         },
         [3] = {
-            incoming = 18,
-            outgoing = -13,
+            incoming = 12,
+            outgoing = -12,
         },
     }
 
@@ -253,7 +253,7 @@ if GetMapName() == "warsong" then
             outgoing = 15,
         },
         [2] = {
-            incoming = -30,
+            incoming = -12,
         },
  
     }
@@ -269,10 +269,10 @@ if GetMapName() == "warsong" then
         tripple = {rare = 120},
     }
     BOOK_REROLL_COUNT  = 3
-    BOOK_COMMON_COOLDOWN = 90
-    BOOK_RARE_START = 600
-    BOOK_RARE_COOLDOWN = 280
-    BOOK_EPIC_COOLDOWN = 800
+    BOOK_COMMON_COOLDOWN = 70
+    BOOK_RARE_START = 480
+    BOOK_RARE_COOLDOWN = 80
+    BOOK_EPIC_COOLDOWN = 333
     BOOK_COMMON_LIMIT = 30
     BOOK_RARE_LIMIT = 25
     BOOK_EPIC_LIMIT = 8
@@ -307,7 +307,7 @@ if GetMapName() == "dash" then
     BOOK_COMMON_COOLDOWN = 140
     BOOK_RARE_START = 600
     BOOK_RARE_COOLDOWN = 220
-    BOOK_EPIC_COOLDOWN = 1000
+    BOOK_EPIC_COOLDOWN = 600
     BOOK_COMMON_LIMIT = 30
     BOOK_RARE_LIMIT = 15
     BOOK_EPIC_LIMIT = 7
