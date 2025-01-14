@@ -58,10 +58,15 @@ class PlayerController {
     if (typeof newTable != "object") return res.status(403).json({ error: "Не корректный тип" });
 
     for (const key in newTable) {
+      const item = newTable[key];
       if (key === item_name) {
-        newTable[key].isActive = true;
-      } else if (newTable[key].isActive) {
-        delete newTable[key].isActive;
+        if (item.isActive) {
+          delete item.isActive;
+        } else {
+          item.isActive = !item.isActive;
+        }
+      } else if (item.isActive) {
+        delete item.isActive;
       }
     }
 

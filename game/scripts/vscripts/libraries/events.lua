@@ -1,3 +1,5 @@
+DEFAULT_LEADER_PARTICLE = "particles/overhead_particle/leader_overhead.vpcf"
+
 function CAddonWarsong:OnEntityKilled( params )
 	local killedUnit = EntIndexToHScript( params.entindex_killed )
 	local killedTeam = killedUnit:GetTeam()
@@ -78,6 +80,14 @@ function CAddonWarsong:ChangeKills()
 	self.nWinConditionGoal = final_kills_count
 end
 
+function CAddonWarsong:AddLeaderParticle(entity)
+	local titul = DonateManager:GetCurrentTitulParticle(entity) or DEFAULT_LEADER_PARTICLE
+	entity.donate.titul = titul
+	local particleLeader = ParticleManager:CreateParticle(titul, PATTACH_OVERHEAD_FOLLOW, entity )
+	ParticleManager:SetParticleControlEnt( particleLeader, PATTACH_OVERHEAD_FOLLOW, entity, PATTACH_OVERHEAD_FOLLOW, "follow_overhead", entity:GetAbsOrigin(), true )
+	entity:Attribute_SetIntValue( "particleID", particleLeader )
+end
+
 function CAddonWarsong:UpdateLeaderPortalDuo()
     local sortedTeams = {}
     for team, kills in pairs( self.nCapturedFlagsCount ) do
@@ -91,10 +101,8 @@ function CAddonWarsong:UpdateLeaderPortalDuo()
 			if entity:IsAlive() == true then
 				local existingParticle = entity:Attribute_GetIntValue( "particleID", -1 )
        			if existingParticle == -1 then
-       				local particleLeader = ParticleManager:CreateParticle("particles/overhead_particle/leader_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, entity )
-					ParticleManager:SetParticleControlEnt( particleLeader, PATTACH_OVERHEAD_FOLLOW, entity, PATTACH_OVERHEAD_FOLLOW, "follow_overhead", entity:GetAbsOrigin(), true )
-					entity:Attribute_SetIntValue( "particleID", particleLeader )
-				end
+					self:AddLeaderParticle(entity)
+ 				end
 			else
 				local particleLeader = entity:Attribute_GetIntValue( "particleID", -1 )
 				if particleLeader ~= -1 then

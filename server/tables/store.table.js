@@ -14,7 +14,14 @@ const STORE = {
     },
   },
   pet: {},
-  titul: {},
+  titul: {
+    item_titul_armor: {
+      price: 150,
+    },
+    item_titul_five: {
+      price: 150,
+    },
+  },
   teleportation_effect: {},
 };
 

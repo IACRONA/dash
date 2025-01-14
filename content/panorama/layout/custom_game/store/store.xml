@@ -23,7 +23,6 @@
 					<TextButton id="ShopItemBuyButton" text="BUY"/>         
 				</Panel>
 				<TextButton id="ShopItemActivate" text="ACTIVATE"/>
-				<Label id="ShopItemActive" text="ACTIVE" />         
              </Panel>
         </snippet>         
 	</snippets>

@@ -256,11 +256,7 @@
 }
 
 .ShopItem.IsActive #ShopItemActivate {
-  visibility: collapse;
-}
-
-.ShopItem:not(.IsActive) #ShopItemActive {
-  visibility: collapse;
+  background-color: gray;
 }
 
 #ShopItemActivate {
