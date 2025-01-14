@@ -26,8 +26,8 @@ local EXCEPTION_MODIFIERS = {
 	'modifier_black_king_bar_immune',
 	'modifier_spectre_spectral_dagger_path_phased',
 	'modifier_item_spider_legs_active',
-	'modifier_broodmother_spin_web_web',
-	'modifier_broodmother_spin_web_invisible_applier',
+	-- 'modifier_broodmother_spin_web_web',
+	-- 'modifier_broodmother_spin_web_invisible_applier',
 	'modifier_slark_pounce',
 	'modifier_slark_shadow_dance',
 	'modifier_oracle_false_promise',
@@ -235,11 +235,19 @@ local function CanCarryFlag(nTeam, hUnit)
 	if nTeam == hUnit:GetTeam() then
 		return false
 	end
+	if hUnit:GetUnitName() == "npc_dota_hero_broodmother" then
+		if hUnit:HasModifier("modifier_broodmother_spin_web_web") or 
+		   hUnit:HasModifier("modifier_broodmother_spin_web_invisible_applier") then
+			return false
+		end
+	end
+	
 	for _, sMod in pairs(EXCEPTION_MODIFIERS) do
 		if hUnit:HasModifier(sMod) then
 			return false
 		end
 	end
+	
 	if not hUnit:IsRealHero() then
 		return false
 	end

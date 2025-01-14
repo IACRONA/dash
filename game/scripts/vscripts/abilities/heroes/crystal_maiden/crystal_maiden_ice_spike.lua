@@ -39,7 +39,9 @@ function crystal_maiden_ice_spike:OnProjectileHit_ExtraData(target, _,data)
 	local damage = targetIsFrozen and self:GetSpecialValueFor("damage_frozen") or self:GetSpecialValueFor("damage")
 	local hasCrit = RollPercentage(self:GetSpecialValueFor("chance_crit")) and 2 or 1
 	local isShard = data.isShard == 1
-
+	if self.target:TriggerSpellAbsorb(self) or self.target:TriggerSpellReflect(self) then 
+		return 
+	end
 	ApplyDamage({
 		victim = target,
 		attacker = caster,

@@ -5,12 +5,14 @@ function modifier_skeleton_king_sound_set:IsHidden()
 end
 
 function modifier_skeleton_king_sound_set:OnCreated()
+    if IsClient() then return end
     self.cd = 15
 	self:StartIntervalThink(1)
     EmitSoundOn( "cursed_knight_pick_hero", self:GetParent() )
 end
  
 function modifier_skeleton_king_sound_set:OnIntervalThink()
+    if IsClient() then return end
     if self.cd <= 0 then
 		local randInt = RandomInt(1, 4)
 		EmitSoundOn("cursed_knight_random" .. randInt, self:GetParent())
@@ -23,6 +25,7 @@ function modifier_skeleton_king_sound_set:DeclareFunctions()
 end
 
 function modifier_skeleton_king_sound_set:OnDeath(keys)
+    if IsClient() then return end
     local unit = keys.unit
     if unit:GetUnitName() == "npc_dota_hero_skeleton_king" then
         StopSoundOn("cursed_knight_random1", unit)

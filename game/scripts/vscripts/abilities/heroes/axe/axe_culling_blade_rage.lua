@@ -12,6 +12,7 @@ function axe_culling_blade_rage:OnSpellStart()
 	local duration = self:GetSpecialValueFor("speed_duration")
 
 	local success = false
+	if target:TriggerSpellAbsorb(self) or target:TriggerSpellReflect(self) then return end
 	if target:GetHealth()<=damage and target:IsHero() then success = true end
 
 	self:PlayEffects( target, success )

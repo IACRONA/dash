@@ -4,7 +4,9 @@ water_elemental_frozen = class({})
 
 function water_elemental_frozen:OnSpellStart()
 	local target = self:GetCursorTarget()
-
+	if target:TriggerSpellAbsorb(self) or target:TriggerSpellReflect(self) then 
+		return 
+	end
 	EmitSoundOn("hero_Crystal.frostbite", target)
 	target:AddNewModifier(self:GetCaster(), self, "modifier_water_elemental_frozen", {duration = self:GetSpecialValueFor("duration")})
 end

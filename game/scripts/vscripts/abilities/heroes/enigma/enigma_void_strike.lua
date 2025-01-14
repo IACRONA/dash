@@ -12,6 +12,9 @@ function enigma_void_strike:OnSpellStart()
 	local caster = self:GetCaster()
 
 	self.target = self:GetCursorTarget()
+	if self.target:TriggerSpellAbsorb(self) or self.target:TriggerSpellReflect(self) then 
+		return 
+	end
 	self.soundName = "void_strike_cast"
 	EmitSoundOn(self.soundName, caster)
 	self.animationTimer = Timers:CreateTimer(self:GetChannelTime()-0.3, function()

@@ -13,7 +13,9 @@ function dazzle_grace:OnSpellStart()
  	local times = self:GetSpecialValueFor("times")
   	local currentTimes = 0
   	EmitSoundOn("grace_cast", caster)
-
+	if target:GetTeam() ~= caster:GetTeam() then 
+		if target:TriggerSpellAbsorb(self) or target:TriggerSpellReflect(self) then return end
+	end
   	Timers:CreateTimer(function()
   		if currentTimes >= 3 then return end
 		ProjectileManager:CreateTrackingProjectile({

@@ -113,25 +113,28 @@
   text-transform: uppercase;
   margin-top: 10px;
   margin-bottom: 5px;
+  horizontal-align: center;
 }
 
 #SettingsContent {
-  min-width: 250px;
+  min-width: 300px;
   width: fit-children;
   height: fit-children;
   flow-children: down;
+  horizontal-align: center;
 }
 
 #SettingsKeybinds {
   width: 100%;
   flow-children: down;
   height: fit-children;
+  horizontal-align: center;
 }
 
 #SettingsKeybindsList {
   width: 100%;
   height: fit-children;
-  flow-children: right-wrap;
+  flow-children: right;
 }
 
 .CustomKeybindContainer {

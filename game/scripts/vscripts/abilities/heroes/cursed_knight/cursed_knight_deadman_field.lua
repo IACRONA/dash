@@ -8,18 +8,14 @@ LinkLuaModifier( "cursed_knight_deadman_field_modifier_enemy", "abilities/heroes
 
 
 cursed_knight_deadman_field = cursed_knight_deadman_field or {}
-function cursed_knight_deadman_field:OnUpgrade()
-    if self:GetAbilityIndex() ~= 4 then
-        self:SetAbilityIndex(4)
-    end
-end
 function cursed_knight_deadman_field:GetAOERadius() return self:GetSpecialValueFor("radius") end
 function cursed_knight_deadman_field:OnSpellStart()
     local caster = self:GetCaster()
     local duration = self:GetSpecialValueFor("field_duration")
     local point = caster:GetOrigin()
     local team_id = caster:GetTeamNumber()
-    local thinker = CreateModifierThinker(caster, self, "cursed_knight_deadman_field_thinker", {["duration"] = duration}, point, team_id, false)
+    
+    CreateModifierThinker(caster, self, "cursed_knight_deadman_field_thinker", {["duration"] = duration}, point, team_id, false)
     EmitSoundOn("deadman_field", caster)
 end
 cursed_knight_deadman_field_thinker = cursed_knight_deadman_field_thinker or {}
@@ -27,6 +23,7 @@ function cursed_knight_deadman_field_thinker:OnCreated(event)
     local thinker = self:GetParent()
     local ability = self:GetAbility() 
     self.radius = ability:GetSpecialValueFor("radius")
+    
     self.particle = ParticleManager:CreateParticle("particles/units/heroes/hero_cursed_k/cursed_shield_green.vpcf", PATTACH_ABSORIGIN, thinker)
     ParticleManager:SetParticleControl(self.particle, 1, Vector(self.radius, self.radius, self.radius))
 end
@@ -64,17 +61,17 @@ function cursed_knight_deadman_field_modifier:OnCreated()
     local parent = self:GetParent()
     local ability = self:GetAbility()
     local caster = ability:GetCaster()
+    
     if parent:GetTeam() ~= caster:GetTeam() then
         parent:AddNewModifier(caster, ability, "cursed_knight_deadman_field_modifier_enemy", {})
-    elseif parent == caster then
+    else
         parent:AddNewModifier(caster, ability, "cursed_knight_deadman_field_modifier_cursed", {})
     end
 end
 function cursed_knight_deadman_field_modifier:OnDestroy()
     if not IsServer() then return end
     local parent = self:GetParent()
-    
-    -- Удаляем модификаторы "enemy" и "cursed" при уничтожении основного модификатора
+
     if parent:HasModifier("cursed_knight_deadman_field_modifier_enemy") then
         parent:RemoveModifierByName("cursed_knight_deadman_field_modifier_enemy")
     end
@@ -192,7 +189,10 @@ function cursed_knight_deadman_field_modifier_cursed:GetReflectSpell(keys)
         parent:SetCursorCastTarget(attacker)
         new_ability:OnSpellStart()
         new_ability.reflect_spell_damage_percentage = reflect_spell_damage_percentage
-        Timers:CreateTimer(0.4, function()
+        if new_ability:GetBehavior() == DOTA_ABILITY_BEHAVIOR_CHANNELLED then
+            new_ability:OnChannelFinish(true)
+        end
+        Timers:CreateTimer(3, function()
             if new_ability:GetIntrinsicModifierName() then parent:FindModifierByName(new_ability:GetIntrinsicModifierName()):Destroy() end
             parent:RemoveAbility(ability_name)
         end)

@@ -31,7 +31,7 @@ end
 function axe_charge:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-
+	if target:TriggerSpellAbsorb(self) or target:TriggerSpellReflect(self) then return end
 	caster:EmitSound("axe_charge_cast")
 	caster:AddNewModifier(caster, self, "modifier_axe_charge", {target = target:entindex()})
 end

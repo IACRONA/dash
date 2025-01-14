@@ -94,7 +94,7 @@ const english_language_button =
 
 var init_settings = false
 var abilities_settings = {}
-var abilities_list = ["cast_ability_8", "cast_ability_7", "cast_jump"]
+var abilities_list = ["cast_ability_8", "cast_jump"]
 var saves_buttons_name = {}
 
 function GetGameKeybind(command) 

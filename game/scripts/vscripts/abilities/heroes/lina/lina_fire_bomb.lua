@@ -11,6 +11,10 @@ function lina_fire_bomb:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
+	if target:TriggerSpellAbsorb(self) or target:TriggerSpellReflect(self) then 
+		return 
+	end
+
 	target:AddNewModifier(caster, self, "modifier_lina_fire_bomb", {duration = self:GetSpecialValueFor("duration")})
 	target:EmitSound("lina_fire_bomb")
 end
@@ -27,7 +31,10 @@ function modifier_lina_fire_bomb:OnCreated()
 	local ability = self:GetAbility()
 	self.damage = ability:GetSpecialValueFor("damage")
 	self.crit2x = ability:GetSpecialValueFor("crit_2x")
- 
+	self.radius = ability:GetSpecialValueFor("radius")
+	self.damageExplode = ability:GetSpecialValueFor("damage_explode")
+	if IsClient() then return end
+	self.damageType = ability:GetAbilityDamageType()
 	self:StartIntervalThink(1)
 end
 
@@ -36,12 +43,11 @@ function modifier_lina_fire_bomb:DestroyOnExpire()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
 	local ability = self:GetAbility()
-	local radius = ability:GetSpecialValueFor("radius")
 
 	local enemies = FindUnitsInRadius(
 		caster:GetTeamNumber(),
 		parent:GetAbsOrigin(),
-		nil,  radius,
+		nil,  self.radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
 		0,
 		FIND_ANY_ORDER,
@@ -49,8 +55,8 @@ function modifier_lina_fire_bomb:DestroyOnExpire()
 	)
 	local damageTable = {
 		attacker = caster,
-		damage = ability:GetSpecialValueFor("damage_explode"),
-		damage_type = ability:GetAbilityDamageType(),
+		damage = self.damageExplode,
+		damage_type = self.damageType,
 		ability = ability
 	}
 
@@ -83,8 +89,7 @@ function modifier_lina_fire_bomb:OnIntervalThink()
 		victim = parent,
 		attacker = self:GetCaster(),
 		damage = damage,
-		damage_type = ability:GetAbilityDamageType(),
-		ability = ability
+		damage_type = self.damageType,
 	})
 end
 

@@ -10,7 +10,7 @@ function axe_struck:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	local speed = self:GetSpecialValueFor("projectile_speed")
-
+	if target:TriggerSpellAbsorb(self) or target:TriggerSpellReflect(self) then return end
  	ProjectileManager:CreateTrackingProjectile({
  		EffectName = "particles/acrona/axe_struck/axe_struck_projectile.vpcf",
  		Ability = self,

@@ -60,7 +60,6 @@ function lina_pyrablast:OnChannelFinish(interrupted)
 		self.animationTimer = nil
 	end 
 	if interrupted then return StopSoundOn(self.soundName, caster)  end
-
 	self:CastSpell(false)
 end
 
@@ -98,7 +97,7 @@ function lina_pyrablast:OnProjectileHit_ExtraData(target, _, data)
 	if crtiMultiple > 1 then 
 		self:ProcPyromanic()
 	end
-
+	if self.target:TriggerSpellAbsorb(self) or self.target:TriggerSpellReflect(self) then return end
 	ApplyDamage({
 		victim = target,
 		attacker = caster,
