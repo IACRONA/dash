@@ -268,10 +268,10 @@
 }
 
 .spell_block_icon {
-  width: 74px;
-  height: 74px;
-  margin-left: 25px;
-  margin-top: 26px;
+  width: 96px;
+  height: 96px;
+  margin-left: 15px;
+  margin-top: 25px;
 }
 
 .talent_block_icon {
@@ -493,13 +493,14 @@
   font-size: 20px;
   text-shadow: 0px 0px 2px 3 #000000;
   font-family: titleFont;
+  horizontal-align: center;
 }
 
 .fate_block_description {
   padding-right: 12px;
   z-index: 3;
   margin-left: 115px;
-  margin-top: 48px;
+  margin-top: 54px;
   line-height: 18px;
   color: white;
   font-size: 16px;
