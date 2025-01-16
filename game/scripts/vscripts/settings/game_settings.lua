@@ -47,7 +47,7 @@ if GetMapName() == "warsong" then
     MAX_SPEED = 550
     FLAG_CARRIER_MAX_SPEED = 390
 
-    BAN_TIME = 12 -- Время на бан
+    BAN_TIME = 3 -- Время на бан
 
     DAY_NIGHT_CYCL = false -- Включение / выключение смены для и ночи
 
@@ -172,7 +172,7 @@ if GetMapName() == "dash" then
     MAX_SPEED = 550
     FLAG_CARRIER_MAX_SPEED = 400
 
-    BAN_TIME = 10 -- Время на бан
+    BAN_TIME = 5 -- Время на бан
 
     DAY_NIGHT_CYCL = false -- Включение / выключение смены для и ночи
 
@@ -311,7 +311,7 @@ if GetMapName() == "portal_duo" then
 
     CONDITION_FLAG_COUNT_WIN = 57 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
-    BAN_TIME = 12 -- Время на бан
+    BAN_TIME = 3 -- Время на бан
 
     GOOD_FLAG_SCALE = 0.9
     BAD_FLAG_SCALE = 0.9
@@ -410,7 +410,7 @@ if GetMapName() == "portal_duo" then
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Время за сколько в сумме будет 30 лвл  в минутах
-    PERCENT_OF_LEVEL_MINUTE = 180
+    PERCENT_OF_LEVEL_MINUTE = 210
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
@@ -448,7 +448,7 @@ if GetMapName() == "portal_trio" then
     FLAG_RETURN_DURATION = 4
     FLAG_AUTO_RETURN_DURATION = 45
 
-    BAN_TIME = 10 -- Время на бан
+    BAN_TIME = 3 -- Время на бан
 
     GOOD_FLAG_SCALE = 0.9
     BAD_FLAG_SCALE = 0.9
@@ -489,7 +489,7 @@ if GetMapName() == "portal_trio" then
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка шаров
-    NEW_PASSIVE_SPELLS_COOLDOWN = 40 --420 -- 420s / 7m
+    NEW_PASSIVE_SPELLS_COOLDOWN = 325 --420 -- 420s / 7m
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
 
     -- One Punchman
@@ -547,7 +547,7 @@ if GetMapName() == "portal_trio" then
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Процент уровня
-    PERCENT_OF_LEVEL_MINUTE = 190
+    PERCENT_OF_LEVEL_MINUTE = 210
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
