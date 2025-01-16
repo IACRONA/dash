@@ -216,6 +216,11 @@
 	"npc_dota_hero_skeleton_king"
 	{
 		"SoundSet" ""
+		"PickSound"     ""
+        "BanSound"      ""
+		"HeroSelectSoundEffect"     ""
+		"GameSoundsFile"        ""
+        "VoiceFile"     ""
 		"DisableWearables" "1"
 		"Facets"
         {
