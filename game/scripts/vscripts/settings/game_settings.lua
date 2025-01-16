@@ -207,7 +207,7 @@ if GetMapName() == "dash" then
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка шаров
-    NEW_PASSIVE_SPELLS_COOLDOWN = 540 -- 420s / 7m
+    NEW_PASSIVE_SPELLS_COOLDOWN = 10 -- 420s / 7m
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
     
     -- One Punchman

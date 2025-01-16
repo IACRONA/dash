@@ -23,7 +23,7 @@ function modifier_item_grand_kaya_buff:OnCreated( kv )
     self.spell_lifesteal_amp = self:GetAbility():GetSpecialValueFor( "spell_lifesteal_amp" )
 
     if IsServer() then
-       --self:GetParent():CalculateStatBonus( false )
+       self:GetParent():CalculateStatBonus( false )
     end 
 end
 
@@ -56,13 +56,13 @@ end
 
 function modifier_item_grand_kaya_buff:OnTooltip( params )
     if self:GetParent().bBoss then return 25 end
-    return math.floor( self:GetParent():GetIntellect() * self.bonus_spell_amplify_percent )
+    return math.floor( self:GetParent():GetIntellect(false) * self.bonus_spell_amplify_percent )
 end
 --------------------------------------------------------------------------------
 
 function modifier_item_grand_kaya_buff:GetModifierSpellAmplify_Percentage( params )
     if self:GetParent().bBoss then return 25 end
-    return self.spell_amp + ( math.floor( self:GetParent():GetIntellect() * self.bonus_spell_amplify_percent )  )
+    return self.spell_amp + ( math.floor( self:GetParent():GetIntellect(false) * self.bonus_spell_amplify_percent )  )
 end
 
 function modifier_item_grand_kaya_buff:OnDestroy()
