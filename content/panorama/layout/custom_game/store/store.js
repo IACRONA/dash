@@ -22,6 +22,10 @@ let items = [];
       UpdateStore();
     });
   });
+
+  $("#StoreButtonBack").SetPanelEvent("onactivate", () => {
+    $("#StoreBody").RemoveClass("IsActive");
+  });
 })();
 
 const ShowStore = () => {
@@ -32,6 +36,8 @@ const ShowStore = () => {
 
 const UpdateStore = () => {
   const body = $("#StoreInside");
+  const storeMain = $("#StoreBody");
+  storeMain.AddClass("IsActive");
   const playerInfo = CustomNetTables.GetTableValue("player_info", `${Players.GetLocalPlayer()}`);
   items.forEach((panel) => panel.DeleteAsync(0));
   items = [];
@@ -46,6 +52,10 @@ const UpdateStore = () => {
     items.push(item);
 
     item.BLoadLayoutSnippet("ShopItem");
+    $.Msg(`file://{resources}/images/custom_game/store_items/${name}.png`);
+    $.CreatePanel("Image", item.FindChildTraverse("ShopItemImageContainer"), "ShopItemImage", {
+      src: `file://{resources}/images/custom_game/store_items/${name}.png`,
+    });
     item.SetHasClass("IsBought", !!playerInventory[name]);
     item.SetHasClass("IsActive", !!playerInventory[name]?.isActive);
 

@@ -18,8 +18,8 @@
 }
 
 #StoreContainer {
-  width: 1280px;
-  height: 644px;
+  width: 900px;
+  height: 900px;
   background-color: gradient(linear, 0% 0%, 0% 100%, from(#000000fd), to(#220247fb));
   horizontal-align: center;
   vertical-align: center;
@@ -35,8 +35,8 @@
 }
 
 #StoreInner {
-  flow-children: right;
-  padding: 10px;
+  background-image: url("file://{resources}/images/interface/store.jpg");
+  background-size: 100%;
   width: 100%;
   height: 100%;
 }
@@ -87,8 +87,13 @@
 }
 
 #StoreBody {
+  background-image: url("file://{resources}/images/interface/store_body.png");
   width: 100%;
-  flow-children: down;
+  height: 100%;
+}
+
+#StoreBody:not(.IsActive) {
+  visibility: collapse;
 }
 
 #StoreInside {
@@ -336,4 +341,9 @@
   width: 85px;
   height: 64px;
   align: center center;
+}
+
+#StoreButtonBack {
+  width: 215px;
+  height: 150px;
 }

@@ -13,7 +13,7 @@
 	<snippets>
         <snippet name="ShopItem">
             <Panel class="ShopItem">
- 				<DOTAItemImage id="ShopItemImage" itemname="" />
+				<Panel id="ShopItemImageContainer" />
                 <Label id="ShopItemTitle" text="{s:name}" />
 				<Panel id="ShopItemBuy">
 					<Panel id="ShopItemPrice">
@@ -38,6 +38,7 @@
 	 					<TextButton id="teleportation_effect" class="StoreButton SwitchButton" text="TELEPORTATION EFFECT"/>
 	 				</Panel>
 	 				<Panel id="StoreBody">
+						<Button id="StoreButtonBack"/>
 		 				 <Panel id="StoreHeader" >
 		 				 	<Panel id="StoreShards">
 				  				<Image id="StoreShardsImage" src="file://{resources}/images/custom_game/ui/shards.png" />
@@ -51,7 +52,7 @@
 	 			</Panel>
  			</Panel>
  			<Button id="StoreButton" onactivate="ShowStore()">
- 				<!-- <Image src="file://{resources}/images/custom_game" /> -->
+ 				<!-- <Image src="file://{resources}/images/custom_game/store_items/item_aura_autumn.png" /> -->
  			</Button>
  		</Panel>
 	</Panel>
