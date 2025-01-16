@@ -137,7 +137,7 @@ if GetMapName() == "warsong" then
     HIMARON_SWORD_COOLDOWN = 23
 
     -- Процент получения
-    PERCENT_OF_LEVEL_MINUTE = 210
+    PERCENT_OF_LEVEL_MINUTE = 190
 
     REROLL_SPHERES = 1
     NEW_SPHERES = 240
@@ -410,7 +410,7 @@ if GetMapName() == "portal_duo" then
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Время за сколько в сумме будет 30 лвл  в минутах
-    PERCENT_OF_LEVEL_MINUTE = 210
+    PERCENT_OF_LEVEL_MINUTE = 190
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
@@ -547,7 +547,7 @@ if GetMapName() == "portal_trio" then
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Процент уровня
-    PERCENT_OF_LEVEL_MINUTE = 210
+    PERCENT_OF_LEVEL_MINUTE = 190
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
