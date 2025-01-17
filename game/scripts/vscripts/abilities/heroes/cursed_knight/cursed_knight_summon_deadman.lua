@@ -16,26 +16,27 @@ function cursed_knight_summon_deadman_generic_modifier2:OnTakeDamage(keys)
     local attacker = keys.attacker
     local unit = keys.unit
     if attacker == parent then 
-        random = RandomInt(1, 100)
+        local random = RandomInt(1, 100)
         if random <= 30 then
             local caster = self:GetCaster()
             local unitname = "npc_dota_cursed_big_skeleton"
             local point = caster:GetOrigin() 
             local team = caster:GetTeam()
-            if skeleton then return end
-            skeleton = CreateUnitByName(unitname, point, true, caster, caster, team)
+            if self.skeleton and self.skeleton:IsAlive() then return end
+            self.skeleton = CreateUnitByName(unitname, point, true, caster, caster, team)
             local nfx = ParticleManager:CreateParticle("particles/items2_fx/ward_spawn_generic.vpcf", PATTACH_POINT, caster)
-            ParticleManager:SetParticleControl(nfx, 0, skeleton:GetOrigin())
+            ParticleManager:SetParticleControl(nfx, 0, self.skeleton:GetOrigin())
             ParticleManager:ReleaseParticleIndex(nfx)
             EmitSoundOn( "n_creep_Skeleton.Spawn", caster )
             EmitSoundOn( "summon_deadman", caster )
-            skeleton:StartGesture( ACT_DOTA_SPAWN )
-            skeleton:AddNewModifier(caster, self, "cursed_knight_summon_deadman_generic_modifier", {duration = -1})
-            skeleton.owner = caster
-            skeleton:SetControllableByPlayer(caster:GetPlayerOwnerID(), false) -- TODO: СДЕЛАТЬ ЧТОБЫ ХОДИТЬ НЕЛЬЗЯ БЫЛО, А ИСПОЛЬЗОВАТЬ АБИЛКИ МОЖНО
+            self.skeleton:StartGesture( ACT_DOTA_SPAWN )
+            self.skeleton:AddNewModifier(caster, self, "cursed_knight_summon_deadman_generic_modifier", {duration = -1})
+            self.skeleton.owner = caster
+            self.skeleton:SetControllableByPlayer(caster:GetPlayerOwnerID(), false) -- TODO: СДЕЛАТЬ ЧТОБЫ ХОДИТЬ НЕЛЬЗЯ БЫЛО, А ИСПОЛЬЗОВАТЬ АБИЛКИ МОЖНО
         end
     end
 end
+
 function cursed_knight_summon_deadman_generic_modifier2:OnCreated()
     if not IsServer() then return end
     self.ability = self:GetAbility()
