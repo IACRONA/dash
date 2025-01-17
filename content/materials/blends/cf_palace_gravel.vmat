@@ -1,0 +1,125 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "multiblend.vfx"
+
+	//---- Color Tint ----
+	F_TINT_MASK 1
+
+	//---- Normal Maps ----
+	F_NORMAL_MAP 1
+
+	//---- Specular ----
+	F_SPECULAR 1
+
+	//---- World Space UVs ----
+	F_WORLDSPACE_UVS 1
+
+	//---- Global ----
+	g_flSpecularBloom "0.000"
+	g_flSpecularIntensity "1.000"
+
+	//---- Layer 0 ----
+	g_flTexCoordRotate0 "0.000"
+	g_flTexCoordScale0 "6.000"
+	g_vColorTint0 "[0.713726 0.584314 0.450980 1.000000]"
+	g_vColorTintB0 "[1.000000 1.000000 1.000000 0.000000]"
+	g_vTexCoordOffset0 "[0.000 0.000]"
+	g_vTexCoordScroll0 "[0.000 0.000]"
+	TextureBloom0 "materials/default/default_bloom.tga"
+	TextureColor0 "materials/blends/stone001_color.png"
+	TextureNormal0 "materials/blends/stone001_normal.png"
+	TextureReflectance0 "materials/blends/stone001_spec.png"
+	TextureSelfIllumMask0 "materials/default/default_selfillum.tga"
+	TextureTintMask0 "[1.000000 1.000000 1.000000 0.000000]"
+
+	//---- Layer 1 ----
+	g_flTexCoordRotate1 "20.000"
+	g_flTexCoordScale1 "4.500"
+	g_vColorTint1 "[0.776471 0.701961 0.600000 1.000000]"
+	g_vColorTintB1 "[1.000000 1.000000 1.000000 0.000000]"
+	g_vTexCoordOffset1 "[0.000 0.000]"
+	g_vTexCoordScroll1 "[0.000 0.000]"
+	TextureBloom1 "materials/default/default_bloom.tga"
+	TextureColor1 "materials/blends/sand001_color.png"
+	TextureNormal1 "materials/blends/sand001_normal.png"
+	TextureReflectance1 "materials/blends/sand001_spec.png"
+	TextureRevealMask1 "materials/blends/sand001_a55e371d_blend.png"
+	TextureSelfIllumMask1 "materials/default/default_selfillum.tga"
+	TextureTintMask1 "[1.000000 1.000000 1.000000 0.000000]"
+
+	//---- Layer 2 ----
+	g_flTexCoordRotate2 "0.000"
+	g_flTexCoordScale2 "6.000"
+	g_vColorTint2 "[0.713726 0.584314 0.450980 1.000000]"
+	g_vColorTintB2 "[1.000000 1.000000 1.000000 0.000000]"
+	g_vTexCoordOffset2 "[0.000 0.000]"
+	g_vTexCoordScroll2 "[0.000 0.000]"
+	TextureBloom2 "materials/default/default_bloom.tga"
+	TextureColor2 "materials/blends/sand002_color.png"
+	TextureNormal2 "materials/blends/sand002_normal.png"
+	TextureReflectance2 "materials/blends/stone001_spec.png"
+	TextureRevealMask2 "materials/blends/sand001_a55e371d_blend.png"
+	TextureSelfIllumMask2 "materials/default/default_selfillum.tga"
+	TextureTintMask2 "[1.000000 1.000000 1.000000 0.000000]"
+
+	//---- Layer 3 ----
+	g_flTexCoordRotate3 "45.000"
+	g_flTexCoordScale3 "5.000"
+	g_vColorTint3 "[0.956863 0.913725 0.874510 1.000000]"
+	g_vColorTintB3 "[1.000000 1.000000 1.000000 1.000000]"
+	g_vTexCoordOffset3 "[0.000 0.000]"
+	g_vTexCoordScroll3 "[0.000 0.000]"
+	TextureBloom3 "materials/default/default_bloom.tga"
+	TextureColor3 "materials/blends/cf_palace_floor_square_dark_color.png"
+	TextureNormal3 "materials/blends/cf_palace_floor_square_normal.png"
+	TextureReflectance3 "materials/blends/cf_palace_floor_dirt_refl.png"
+	TextureRevealMask3 "materials/blends/cf_palace_gravel_1fc878bd_blend.png"
+	TextureSelfIllumMask3 "materials/default/default_selfillum.tga"
+	TextureTintMask3 "materials/default/default_mask.tga"
+
+	//---- Normal Map ----
+	g_flBumpStrength "1.000"
+
+	Attributes
+	{
+		dota.nav.walkable "1"
+		dota.tile_path.falloff "0.75"
+		dota.tile_path.opacity "1"
+		dota.tile_path.width "150"
+		dota.tile_path.layer1_opacity "1.75"
+		dota.tile_path.layer2_opacity "1.5"
+		dota.tile_path.layer3_opacity "1.75"
+		dota.tile_path.layer1_sharpness "0.5"
+		dota.tile_path.layer2_sharpness "0.5"
+		dota.tile_path.layer3_sharpness "0.7"
+	}
+
+
+	VariableState
+	{
+		"Global"
+		{
+		}
+		"Layer 0"
+		{
+			"Texture Coords" 0
+		}
+		"Layer 1"
+		{
+			"Texture Coords" 0
+		}
+		"Layer 2"
+		{
+			"Texture Coords" 0
+		}
+		"Layer 3"
+		{
+			"Texture Coords" 0
+		}
+		"Normal Map"
+		{
+		}
+	}
+}
