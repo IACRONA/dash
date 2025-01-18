@@ -303,7 +303,7 @@ end
 if GetMapName() == "portal_duo" then
     RESPAWN_TIME = 6
 
-    START_GOLD = 750
+    START_GOLD = 700
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
