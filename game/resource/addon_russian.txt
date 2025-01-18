@@ -1065,8 +1065,26 @@
 
     "DOTA_Tooltip_modifier_broodmother_spawn_spiderlings_lua"           "Spawn Spiderlings"
     "DOTA_Tooltip_modifier_broodmother_spawn_spiderlings_lua_Description"       "Призовет паучков при смерти."
+    
+    "DOTA_Tooltip_ability_broodmother_spin_web_custom"                    "Плетение Паутины"
+    "DOTA_Tooltip_ability_broodmother_spin_web_custom_Description"        "Broodmother плетет невидимую паутину, которая её и её паучков делает их невидимыми после короткой задержки. При ударе или использовании способностей владелец способности или ее паучки становятся видимыми."
+    "DOTA_Tooltip_ability_broodmother_spin_web_custom_Lore"              "Годы эволюции сделали Чёрную Паутину мастером в создании смертоносных ловушек."
+    "DOTA_Tooltip_ability_broodmother_spin_web_custom_Note1"             "Broodmother и её паучки теряют невидимость при атаке или использовании способностей."
+    "DOTA_Tooltip_ability_broodmother_spin_web_custom_radius"            "РАДИУС:"
+    // "DOTA_Tooltip_ability_broodmother_spin_web_custom_bonus_movespeed"   "БОНУС К СКОРОСТИ:"
+    "DOTA_Tooltip_ability_broodmother_spin_web_custom_invisible_delay"   "ЗАДЕРЖКА НЕВИДИМОСТИ:"
 
+    "DOTA_Tooltip_modifier_broodmother_spin_web_custom"                  "Паутина"
+    "DOTA_Tooltip_modifier_broodmother_spin_web_custom_Description"      "Возможность проходить сквозь существ и невидимость в паутине."
 
+    "DOTA_Tooltip_modifier_broodmother_spin_web_custom_invisible"        "Невидимость в Паутине"
+    "DOTA_Tooltip_modifier_broodmother_spin_web_custom_invisible_Description" "Невидимость в паутине. Пропадает при атаке или использовании способностей."
+
+    "DOTA_Tooltip_modifier_broodmother_spin_web_custom_aura_enemy"       "Паутина"
+    "DOTA_Tooltip_modifier_broodmother_spin_web_custom_aura_enemy_Description" "Уменьшенная регенерация здоровья на 20%."
+
+    "DOTA_Tooltip_ability_broodmother_spin_web_custom_destroy"           "Уничтожить Паутину"
+    "DOTA_Tooltip_ability_broodmother_spin_web_custom_destroy_Description" "Уничтожает эту паутину."
     // Centaur Warrunner (centaur)
 
     // Chen
@@ -1823,8 +1841,8 @@
     "DOTA_Tooltip_Ability_cursed_knight_belial_pack_Description"                 "Если ваш враг проклят всеми тремя вашими проклятиями, то по нему усиливается урон." // на %amp_damage%%%
     "DOTA_Tooltip_Ability_cursed_knight_belial_pack_amp_damage"             "%УСИЛЕНИЕ УРОНА: "
     // Модификаторы к "СВОР БЕЛИАЛА"
-    "DOTA_Tooltip_cursed_knight_belial_pack_modifier" "Свор Бельяла"
-    "DOTA_Tooltip_cursed_knight_belial_pack_modifier_description" "Если ваш враг проклят всеми тремя вашими проклятиями, то по нему усиливается урон."
+    "DOTA_Tooltip_cursed_knight_belial_pack_modifier_main" "Свор Бельяла"
+    "DOTA_Tooltip_cursed_knight_belial_pack_modifier_main_description" "Если ваш враг проклят всеми тремя вашими проклятиями, то по нему усиливается урон."
 
     ///////////////////////////////////
     // ТАЛАНТЫ ДЛЯ ГЕРОЯ CURSED KNIGHT

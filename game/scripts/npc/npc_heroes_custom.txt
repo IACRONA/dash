@@ -3,6 +3,10 @@
 // the specified key-value combinations.  Use override_hero <hero_to_override> for this.
 "DOTAHeroes"
 {
+	"npc_dota_hero_broodmother"
+	{
+		"Ability2"		"broodmother_spin_web_custom"
+	}
 	"npc_dota_hero_tinker"
 	{
 		"Ability6"		"tinker_rearm_custom"
@@ -219,8 +223,6 @@
 		"PickSound"     ""
         "BanSound"      ""
 		"HeroSelectSoundEffect"     ""
-		"GameSoundsFile"        ""
-        "VoiceFile"     ""
 		"DisableWearables" "1"
 		"Facets"
         {

@@ -88,7 +88,7 @@ function cursed_knight_deadman_field_modifier_enemy:IsPurgable() return false en
 
 function cursed_knight_deadman_field_modifier_enemy:OnCreated()
     if not IsServer() then return end
-
+    
     self.damage_per_second = self:GetAbility():GetSpecialValueFor("damage_per_sec_in_field")
     self.slow_percentage = self:GetAbility():GetSpecialValueFor("slow_movement_in_field") or 0
 
@@ -97,15 +97,13 @@ end
 
 function cursed_knight_deadman_field_modifier_enemy:OnIntervalThink()
     if not IsServer() then return end
-
-    local damage_table = {
+    ApplyDamage({
         victim = self:GetParent(),
         attacker = self:GetCaster(),
         damage = self.damage_per_second,
         damage_type = DAMAGE_TYPE_MAGICAL,
         ability = self:GetAbility(),
-    }
-    ApplyDamage(damage_table)
+    })
 end
 
 function cursed_knight_deadman_field_modifier_enemy:DeclareFunctions()
@@ -147,58 +145,113 @@ function cursed_knight_deadman_field_modifier_cursed:DeclareFunctions()
     }
 end
  
-function cursed_knight_deadman_field_modifier_cursed:GetAbsorbSpell(keys)
-    local caster = keys.ability:GetCaster()
-    if caster and self:IsUnitInDome(caster) then return 0 end
-    return 1
-end
-local exception_spell = {
+local EXCEPTION_SPELLS = {
     ["rubick_spell_steal"] = true,
     ["legion_commander_duel"] = true,
     ["phantom_assassin_phantom_strike"] = true,
     ["riki_blink_strike"] = true,
-    ["imba_rubick_spellsteal"] = true,
-    ["morphling_replicate"]	= true
+    ["morphling_replicate"]	= true,
 }
+
+local INSTANT_ABSORB_SPELLS = {
+    ["tusk_snowball"] = true,
+}
+
+function cursed_knight_deadman_field_modifier_cursed:GetAbsorbSpell(keys)
+    if not IsServer() then return end
+    
+    local ability = keys.ability
+    local caster = ability:GetCaster()
+    return 1
+end
+
 function cursed_knight_deadman_field_modifier_cursed:GetReflectSpell(keys)
     if not IsServer() then return end
-    self.reflected_damage_data = self.reflected_damage_data or {}
     local parent = self:GetParent()
     local ability = self:GetAbility()
     local original_ability = keys.ability
-    if original_ability:GetCaster():GetTeamNumber() == parent:GetTeamNumber() then
-        return
-    end
-
+    local is_absorb = false
+    
+    if not original_ability or not original_ability:GetCaster() then return end
+    if original_ability:GetCaster():GetTeamNumber() == parent:GetTeamNumber() then return end
+    
     local attacker = original_ability:GetCaster()
-    if not original_ability or attacker == parent then return end
-    if self:IsUnitInDome(attacker) then return end
-
-    if attacker:TriggerSpellAbsorb(original_ability) then return end
-
-    local ability_name = original_ability:GetAbilityName()
-    if exception_spell[ability_name] then return end
-    local reflect_spell_damage_percentage = self:GetAbility():GetSpecialValueFor("reflect_spell_damage") or 100
-
-    EmitSoundOn("Hero_Antimage.Counterspell.Target", attacker)
-    local new_ability = parent:AddAbility(ability_name)
-    if new_ability then
-        new_ability:SetLevel(original_ability:GetLevel())
-        new_ability:SetStolen(true)
-        new_ability:SetHidden(true)
-        parent:SetCursorCastTarget(attacker)
-        new_ability:OnSpellStart()
-        new_ability.reflect_spell_damage_percentage = reflect_spell_damage_percentage
-        if new_ability:GetBehavior() == DOTA_ABILITY_BEHAVIOR_CHANNELLED then
-            new_ability:OnChannelFinish(true)
-        end
-        Timers:CreateTimer(3, function()
-            if new_ability:GetIntrinsicModifierName() then parent:FindModifierByName(new_ability:GetIntrinsicModifierName()):Destroy() end
-            parent:RemoveAbility(ability_name)
-        end)
+    if attacker == parent then return end
+    
+    if INSTANT_ABSORB_SPELLS[original_ability:GetAbilityName()] then
+        is_absorb = true
     end
+    
+    if not is_absorb and self:IsUnitInDome(attacker) then return end
+    if attacker:TriggerSpellAbsorb(original_ability) then return end
+    
+    local ability_name = original_ability:GetAbilityName()
+    if EXCEPTION_SPELLS[ability_name] then return end
+    
+    local reflect_damage_pct = ability:GetSpecialValueFor("reflect_spell_damage") or 100
+    EmitSoundOn("Hero_Antimage.Counterspell.Target", attacker)
+    
+    -- Ищем существующую способность или создаем новую
+    local reflected_ability = parent:FindAbilityByName(ability_name)
+    if not reflected_ability then
+        reflected_ability = parent:AddAbility(ability_name)
+    end
+    
+    if reflected_ability then
+        self:SetupReflectedAbility(reflected_ability, original_ability, attacker, reflect_damage_pct)
+    end
+    
     return false
 end
+
+function cursed_knight_deadman_field_modifier_cursed:SetupReflectedAbility(reflected_ability, original_ability, target, reflect_damage_pct)
+    -- Активируем способность, если она была деактивирована
+    reflected_ability:SetActivated(true)
+    reflected_ability:SetLevel(original_ability:GetLevel())
+    reflected_ability:SetStolen(true)
+    reflected_ability:SetHidden(true)
+    
+    local parent = self:GetParent()
+    parent:SetCursorCastTarget(target)
+    
+    pcall(function()
+        reflected_ability:OnSpellStart()
+    end)
+    
+    reflected_ability.reflect_spell_damage_percentage = reflect_damage_pct
+    
+    if reflected_ability:GetBehavior() == DOTA_ABILITY_BEHAVIOR_CHANNELLED then
+        reflected_ability:OnChannelFinish(true)
+    end
+    
+    -- Деактивируем способность после использования
+    Timers:CreateTimer(0.1, function()
+        if reflected_ability and not reflected_ability:IsNull() then
+            reflected_ability:SetLevel(1)
+            reflected_ability:SetHidden(true)
+            reflected_ability:SetActivated(false)
+            
+            if reflected_ability:GetIntrinsicModifierName() then 
+                local modifier = parent:FindModifierByName(reflected_ability:GetIntrinsicModifierName())
+                if modifier then
+                    modifier:Destroy()
+                end
+            end
+        end
+    end)
+end
+
+function cursed_knight_deadman_field_modifier_cursed:IsUnitInDome(unit)
+    local dome_center = self:GetAbility():GetCaster():GetOrigin()
+    local unit_pos = unit:GetOrigin()
+    local radius = self:GetAbility():GetSpecialValueFor("radius")
+    
+    local distance = (dome_center - unit_pos):Length2D()
+    
+    return distance <= radius
+end
+
+
 
 function cursed_knight_deadman_field_modifier_cursed:OnTakeDamage(keys)
     if not IsServer() then return end
@@ -230,12 +283,4 @@ function cursed_knight_deadman_field_modifier_cursed:OnTakeDamage(keys)
             })
         end
     end
-end
-
-function cursed_knight_deadman_field_modifier_cursed:GetModifierPreAttack_BonusDamage()
-    return self.bonus_damage_in_field
-end
-
-function cursed_knight_deadman_field_modifier_cursed:IsUnitInDome(unit)
-    return unit:HasModifier("cursed_knight_deadman_field_modifier_cursed") or unit:HasModifier("cursed_knight_deadman_field_modifier_enemy")
 end

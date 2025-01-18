@@ -40,7 +40,7 @@ end
 function cursed_knight_summon_deadman_generic_modifier2:OnCreated()
     if not IsServer() then return end
     self.ability = self:GetAbility()
-    self:GetParent():RemoveAbility(self.ability:GetAbilityName())
+    self.ability:SetHidden(true)
 end
 function cursed_knight_summon_deadman_generic_modifier2:GetTexture() return "cursed_knight/summon_deadman" end
 
@@ -52,22 +52,23 @@ function cursed_knight_summon_deadman_generic_modifier:IsPurgable() return false
 function cursed_knight_summon_deadman_generic_modifier:OnCreated()
     if not IsServer() then return end
     self.parent = self:GetParent() 
-    self.caster = self:GetCaster() 
-    self.follow_distance = 300 -- Дистанция, на которой скелет будет следовать за создателем
-    self:StartIntervalThink(0.1)
+    self.caster = PlayerResource:GetSelectedHeroEntity(self.parent:GetPlayerOwnerID()) 
+    self.follow_distance = 200 -- Дистанция, на которой скелет будет следовать за создателем
+    self:StartIntervalThink(0.5)
 end
 function cursed_knight_summon_deadman_generic_modifier:OnIntervalThink()
     if not IsServer() then return end
 
     local distance = (self.parent:GetAbsOrigin() - self.caster:GetAbsOrigin()):Length2D()
     if distance > self.follow_distance then
-        self.parent:MoveToPosition(self.caster:GetAbsOrigin() + RandomVector(50))
+        self.parent:MoveToPosition(self.caster:GetAbsOrigin() + RandomVector(100))
     end
-
-    local target = self.caster:GetAttackTarget()
-    if target and target:IsAlive() then
-        if self.parent:GetAttackTarget() ~= target and target:GetTeam() ~= self.parent:GetTeam() then
-            self.parent:MoveToTargetToAttack(target)
+    if self.caster:IsAttacking() then
+        local target = self.caster:GetAttackTarget()
+        if target and target:IsAlive() then
+            if self.parent:GetAttackTarget() ~= target and target:GetTeam() ~= self.parent:GetTeam() then
+                self.parent:MoveToTargetToAttack(target)
+            end
         end
     end
 end

@@ -7,6 +7,7 @@
 #base "heroes/lina_abilities.kv"
 #base "heroes/cursed_knight_abilities.kv"
 #base "heroes/chen_abilities.kv"
+#base "heroes/broodmother_abilities.kv"
 "DOTAAbilities"
 {
 	"ability_use"

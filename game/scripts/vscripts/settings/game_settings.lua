@@ -191,18 +191,20 @@ if GetMapName() == "dash" then
         TIER_4 = 750, -- 12:00
         TIER_5 = 1000, -- 15:00
     }
-
-    CREEP_AMP_TIME = 300 -- время когда крипы усиляются  ( 300 сек = 5 мин)
-    CREEP_AMP = 0.25 -- 25 процентов амплифая крипов
+    
+    TIME_FOR_AMP_TOWERS_AND_CREEPS = 300  --- 5 мин | время когда крипы усиляются
+    HEALTH_AMP = 35 -- бафф на здоровье крипов | 35%
+    DAMAGE_AMP = 35 -- бафф на урон крипов | 35%
+    ARMOR_AMP = 35 -- бафф на броню крипов | 35%
     
     -- Магический и физический резист
-    RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
+    RESISTANCE_TIME_ACTIVATED = 300 -- Время когда он начинается (мин.)
     MAGICAL_RESISTANCE_PERCENTAGE = 10
     PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
-    NEW_ULTIMATE_COOLDOWN = 300
+    NEW_ULTIMATE_COOLDOWN = 300 -- 5 мин
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -347,7 +349,7 @@ if GetMapName() == "portal_duo" then
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
-    NEW_ULTIMATE_COOLDOWN = 300
+    NEW_ULTIMATE_COOLDOWN = 300 -- 5 мин
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 

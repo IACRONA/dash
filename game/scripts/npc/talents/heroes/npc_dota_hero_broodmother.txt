@@ -19,11 +19,21 @@
 			"operator" "OP_ADD"
 		}
 	}
-	"broodmother_spin_web"
+	"broodmother_spin_web_custom"
 	{
-		"bonus_movespeed"
+		// "bonus_movespeed"
+		// {
+		// 	"value" "7"
+		// 	"operator" "OP_ADD"
+		// }
+		"invisible_delay"
 		{
-			"value" "7"
+			"value" "0.05"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "50"
 			"operator" "OP_ADD"
 		}
 	}

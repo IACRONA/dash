@@ -495,7 +495,11 @@ function CAddonWarsong:OnGameRulesStateChange()
 			self:ChangeNewAbilities(true)
 			return NEW_ULTIMATE_COOLDOWN
 		end)
-
+		-- Timers:CreateTimer(TIME_FOR_AMP_TOWERS_AND_CREEPS, function()
+		-- 	if GetMapName() ~= "dash" then return end
+		-- 	self:AMP_TOWERS_AND_CREEPS()
+		-- 	return TIME_FOR_AMP_TOWERS_AND_CREEPS
+		-- end)
 		self:GiveBooks()
 		if GetMapName() ~= "dota" then
 			Timers:CreateTimer(GRANT_INTERVAL / 2, function()
@@ -802,8 +806,8 @@ function CAddonWarsong:OnNPCSpawned(event)
 			Upgrades:ApplySummonUpgrades(hUnit, hUnit:GetUnitName(), owner)
 		end
 	end
-	if hUnit:IsCreep() and GetMapName() == "dash" and GameRules:GetDOTATime(false, false) >= CREEP_AMP_TIME then
-		hUnit:AddNewModifier(hUnit, nil, "modifier_dash_creep_amp", {CREEP_AMP = CREEP_AMP})
+	if hUnit:IsCreep() and GetMapName() == "dash" and GameRules:GetDOTATime(false, false) then
+		hUnit:AddNewModifier(hUnit, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
 	end
 end
 -- выдаем неуязвимость центральным башням 
@@ -811,7 +815,7 @@ function CAddonWarsong:GiveTowersModifiersUNVUIL()
     local all_buildings = Entities:FindAllInSphere(Vector(0,0,0), 99999999999)
     for _, tower in pairs(all_buildings) do
         local tower_name = tower.GetUnitName and tower:GetUnitName()
-        if  tower_name == "npc_dota_goodguys_tower4" or tower_name == "npc_dota_badguys_tower4" then
+        if tower_name == "npc_dota_goodguys_tower4" or tower_name == "npc_dota_badguys_tower4" then
             tower:AddNewModifier(tower, nil, "modifier_for_middle_towers_for_unvulbure", {})
         end
     end
@@ -848,3 +852,18 @@ function CAddonWarsong:OnPlayerConnect(event)
 		end
 	end)
 end
+CAddonWarsong.amp_bonus_level = 0
+function CAddonWarsong:AMP_TOWERS_AND_CREEPS() 
+	self.amp_bonus_level = self.amp_bonus_level + 1
+	local all_towers = Entities:FindAllByClassname("npc_dota_tower")
+	for _, tower in pairs(all_towers) do
+		tower:AddNewModifier(tower, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
+	end
+	local all_fountains = Entities:FindAllInSphere(Vector(0,0,0), 99999999999)
+	for _, fountain in pairs(all_fountains) do
+		if fountain:GetName() == "dire_throne" or fountain:GetName() == "radiant_throne" then
+			fountain:AddNewModifier(fountain, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
+		end
+	end
+end
+

@@ -151,10 +151,11 @@
 }
 
 .spell_block_image {
-  width: 74px;
-  height: 74px;
-  margin-left: 25px;
-  margin-top: 26px;
+  width: 92px;
+  height: 92px;
+  margin-left: 35px;
+  margin-top: 17px;
+  vertical-align: center;
 }
 
 .spell_block_text {
