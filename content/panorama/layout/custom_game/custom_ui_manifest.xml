@@ -15,7 +15,7 @@
         <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/game_hints/game_hints.xml" />
         <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/notification/notification.xml" />
         <CustomUIElement type="PregameStrategy" layoutfile="s2r://panorama/layout/custom_game/multiteam_hero_select_overlay.xml" />
-
+        <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/high_five/high_five.xml" />
         <!-- <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/custom_loading_screen.xml" /> -->
 
         <Image style="opacity:0;" src="file://{resources}/images/custom_game/warsong.png" />

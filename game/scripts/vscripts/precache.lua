@@ -80,7 +80,9 @@ local particles =
     "particles/venomancer_noxious_plague_slow.vpcf",
     "particles/venomancer_noxious_contagion_buff.vpcf",
     "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf",
-    "particles/shadow_demon_demonic_purge.vpcf"
+    "particles/shadow_demon_demonic_purge.vpcf",
+    "particles/econ/events/plus/high_five/high_five_lvl1_overhead.vpcf",
+    "particles/econ/events/plus/high_five/high_five_lvl1_travel.vpcf",
 }
 
 local sounds = 

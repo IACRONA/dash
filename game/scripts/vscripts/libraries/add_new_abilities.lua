@@ -9,6 +9,7 @@ for hero_name, data in pairs(npc_heroes_list_kv) do
             local ability = data["Ability" ..ab]
             if ability ~= nil and ability ~= "" and ability ~= "generic_hidden" and not ability:find("special_bonus") then
                 CAddonWarsong.abilityHeroMap[ability] = hero_name
+                
             end
         end
     end
@@ -77,9 +78,19 @@ function CAddonWarsong:HeroAddNewAbility(entity, is_ultimate, player_id, is_rero
     end
     CustomNetTables:SetTableValue("abilities_list", tostring(entity:GetPlayerOwnerID()), CAddonWarsong.player_abilities_info[entity:GetPlayerOwnerID()])
     local random_abilities = self:GetNewAbilityPlayer(entity, abilities_list)
+    self:PrecacheHero(random_abilities)
     CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(entity:GetPlayerOwnerID()), "spell_select_open_panel", {spell_list = random_abilities, is_ultimate = is_ultimate, is_reroll = not (not is_reroll), reroll_count = reroll_count})
 end
-
+function CAddonWarsong:PrecacheHero(abilities)
+    for _, ability_name in pairs(abilities) do
+        local hero_name = CAddonWarsong.abilityHeroMap[ability_name]
+        if not self.precached[hero_name] then
+            PrecacheUnitByNameAsync("npc_precache_"..hero_name, function()
+                self.precached[hero_name] = true
+            end)
+        end
+    end 
+end
 function CAddonWarsong:SelectAbilityToHero(player_id, ability_name, is_ultimate)
     local entity = PlayerResource:GetSelectedHeroEntity(player_id)
     local random_ability = ability_name

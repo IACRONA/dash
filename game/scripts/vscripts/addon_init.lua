@@ -20,7 +20,7 @@ LinkLuaModifier('modifier_teleport_scroll_fast', 'modifiers/modifier_teleport_sc
 LinkLuaModifier('modifier_for_middle_towers_for_unvulbure', 'modifiers/modifier_for_middle_towers_for_unvulbure', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_skeleton_king_sound_set', 'modifiers/modifier_skeleton_king_sound_set', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_dash_amp', 'modifiers/modifier_dash_amp', LUA_MODIFIER_MOTION_NONE)
-
+LinkLuaModifier('modifier_high_five', 'libraries/high_five', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_flower_book', 'modifiers/books/modifier_flower_book', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_magical_book', 'modifiers/books/modifier_magical_book', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_mystery_book', 'modifiers/books/modifier_mystery_book', LUA_MODIFIER_MOTION_NONE)

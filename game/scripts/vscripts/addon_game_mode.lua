@@ -26,7 +26,6 @@ require('libraries/upgrades')
 require('settings/heroes_items_list')
 require('settings/morph_settings')
 require('settings/abilities_give_list')
-
 TEST_ACTIVATED = false
 
 require('settings/books_settings')
@@ -222,7 +221,9 @@ function CAddonWarsong:InitGameMode()
             kills = self.nWinConditionGoal
         })
 	end)
-
+	CustomGameEventManager:RegisterListener('high_five', function(_, event)
+		self:HighFive(event)
+	end)
     CustomGameEventManager:RegisterListener('ability_select_to_hero', function(_, event)
         self:SelectAbilityToHero(event.PlayerID, event.spell_name, event.is_ultimate)
 	end)
@@ -495,11 +496,11 @@ function CAddonWarsong:OnGameRulesStateChange()
 			self:ChangeNewAbilities(true)
 			return NEW_ULTIMATE_COOLDOWN
 		end)
-		-- Timers:CreateTimer(TIME_FOR_AMP_TOWERS_AND_CREEPS, function()
-		-- 	if GetMapName() ~= "dash" then return end
-		-- 	self:AMP_TOWERS_AND_CREEPS()
-		-- 	return TIME_FOR_AMP_TOWERS_AND_CREEPS
-		-- end)
+		Timers:CreateTimer(TIME_FOR_AMP_TOWERS_AND_CREEPS, function()
+			if GetMapName() ~= "dash" then return end
+			self:AMP_TOWERS_AND_CREEPS()
+			return TIME_FOR_AMP_TOWERS_AND_CREEPS
+		end)
 		self:GiveBooks()
 		if GetMapName() ~= "dota" then
 			Timers:CreateTimer(GRANT_INTERVAL / 2, function()
@@ -865,5 +866,20 @@ function CAddonWarsong:AMP_TOWERS_AND_CREEPS()
 			fountain:AddNewModifier(fountain, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
 		end
 	end
+end
+
+function CAddonWarsong:HighFive(params)
+    if params.PlayerID == nil then return end
+    local player = PlayerResource:GetPlayer(params.PlayerID)
+    local hero = PlayerResource:GetSelectedHeroEntity(params.PlayerID)
+    local selected_index = params.selected_index
+	local hero_selected = EntIndexToHScript(selected_index)
+	if hero_selected ~= hero then
+		hero_selected:AddNewModifier(hero_selected, nil, "modifier_high_five", {duration = 10})
+		return 
+	end
+    if hero then
+        hero:AddNewModifier(hero, nil, "modifier_high_five", {duration = 10})
+    end
 end
 
