@@ -807,9 +807,6 @@ function CAddonWarsong:OnNPCSpawned(event)
 			Upgrades:ApplySummonUpgrades(hUnit, hUnit:GetUnitName(), owner)
 		end
 	end
-	if hUnit:IsCreep() and GetMapName() == "dash" and GameRules:GetDOTATime(false, false) then
-		hUnit:AddNewModifier(hUnit, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
-	end
 end
 -- выдаем неуязвимость центральным башням 
 function CAddonWarsong:GiveTowersModifiersUNVUIL()
@@ -854,20 +851,46 @@ function CAddonWarsong:OnPlayerConnect(event)
 	end)
 end
 CAddonWarsong.amp_bonus_level = 0
+CAddonWarsong.AMP_Init = false
 function CAddonWarsong:AMP_TOWERS_AND_CREEPS() 
 	self.amp_bonus_level = self.amp_bonus_level + 1
+	if not self.AMP_Init then 
+		self:UpdateCreepsAMP()
+	end
+	self.AMP_Init = true
 	local all_towers = Entities:FindAllByClassname("npc_dota_tower")
 	for _, tower in pairs(all_towers) do
+		if tower:HasModifier("modifier_dash_amp") then
+			tower:RemoveModifierByName("modifier_dash_amp")
+		end
 		tower:AddNewModifier(tower, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
 	end
 	local all_fountains = Entities:FindAllInSphere(Vector(0,0,0), 99999999999)
 	for _, fountain in pairs(all_fountains) do
-		if fountain:GetName() == "dire_throne" or fountain:GetName() == "radiant_throne" then
+		if fountain:GetName() == "dota_badguys_fort" or fountain:GetName() == "dota_goodguys_fort" then
+			if fountain:HasModifier("modifier_dash_amp") then
+				fountain:RemoveModifierByName("modifier_dash_amp")
+			end
 			fountain:AddNewModifier(fountain, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
 		end
 	end
 end
-
+function CAddonWarsong:UpdateCreepsAMP()
+    Timers:CreateTimer(function()
+        local all_creeps = Entities:FindAllInSphere(Vector(0,0,0), 99999999999)
+        for _, creep in pairs(all_creeps) do
+            if creep.IsCreep and creep:IsCreep() then
+                -- Удаляем старый модификатор перед добавлением нового
+                if creep:HasModifier("modifier_dash_amp") then
+                    creep:RemoveModifierByName("modifier_dash_amp")
+                end
+                creep:AddNewModifier(creep, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
+            end
+        end
+        return 1
+    end)
+end
+-- Дай пять механика
 function CAddonWarsong:HighFive(params)
     if params.PlayerID == nil then return end
     local player = PlayerResource:GetPlayer(params.PlayerID)

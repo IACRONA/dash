@@ -1,5 +1,5 @@
 modifier_dash_amp = class({
-    IsHidden = function() return true end,
+    IsHidden = function() return false end,
     IsPurgable = function() return false end,
     IsPurgableException = function() return false end,
     RemoveOnDeath = function() return false end,
@@ -7,12 +7,14 @@ modifier_dash_amp = class({
 function modifier_dash_amp:OnCreated(kkd)
     if not IsServer() then return end
     local lvl = kkd.lvl
+    if lvl == nil  or lvl == 0 then return self:Destroy() end
     self.HEALTH_AMP = (HEALTH_AMP/100) * lvl
     self.ARMOR_AMP = (ARMOR_AMP/100) * lvl
     self.DAMAGE_AMP = (DAMAGE_AMP/100) * lvl
     self.creep_dmg = self:GetParent():GetAttackDamage()
     self.creep_armor = self:GetParent():GetPhysicalArmorValue(false)
     self:SetHasCustomTransmitterData(true)
+    self:SetStackCount(lvl)
 end
 function modifier_dash_amp:OnRefresh(kkd)
     if not IsServer() then return end
@@ -44,16 +46,17 @@ function modifier_dash_amp:DeclareFunctions()
 end
 
 function modifier_dash_amp:GetModifierExtraHealthBonus()
-    if self.HEALTH_AMP == nil then return end
+    if self.HEALTH_AMP == nil or self:GetParent():GetMaxHealth() == nil then return end
 	return self.HEALTH_AMP * self:GetParent():GetMaxHealth()
 end
 
 function modifier_dash_amp:GetModifierPreAttack_BonusDamage()
-    if self.HEALTH_AMP == nil then return end
+    if self.HEALTH_AMP == nil or self.creep_dmg == nil then return end
 	return self.HEALTH_AMP * self.creep_dmg
 end
 
-function modifier_dash_amp:GetModifierArmorBonus()
-    if self.ARMOR_AMP == nil then return end
+function modifier_dash_amp:GetModifierPhysicalArmorBonus()
+    if self.creep_armor == 0 then return self.ARMOR_AMP * 1 end
+    if self.ARMOR_AMP == nil or self.creep_armor == nil then return end
 	return self.ARMOR_AMP * self.creep_armor
 end

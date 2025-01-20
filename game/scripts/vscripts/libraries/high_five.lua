@@ -79,8 +79,6 @@ function modifier_high_five:OnIntervalThink()
     
     -- Отправляем сообщение в чат
     -- GameRules:SendCustomMessage("<font color='#00FF00'>" .. self:GetParent():GetUnitName() .. "</font> дал пять <font color='#00FF00'>" .. target:GetUnitName() .. "</font>!", 0, 0)
-    
-    -- Отмечаем, что "Дай пять" выполнено для обоих героев
     self.high_five_done = true
     local targetModifier = target:FindModifierByName("modifier_high_five")
     if targetModifier then
