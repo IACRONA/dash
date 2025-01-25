@@ -126,7 +126,7 @@ function modifier_broodmother_spin_web_custom:OnCreated()
                 self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_broodmother_spin_web_custom_invisible", {})
             end)
         else
-            self:Destroy()
+            self:Destroy() 
         end
     end
 end

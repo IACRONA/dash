@@ -28,6 +28,8 @@ local EXCEPTION_MODIFIERS = {
 	'modifier_item_spider_legs_active',
 	-- 'modifier_broodmother_spin_web_web',
 	-- 'modifier_broodmother_spin_web_invisible_applier',
+	'modifier_broodmother_spin_web_custom',
+	'modifier_broodmother_spin_web_custom_invisible',
 	'modifier_slark_pounce',
 	'modifier_slark_shadow_dance',
 	'modifier_oracle_false_promise',
