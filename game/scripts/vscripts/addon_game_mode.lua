@@ -496,11 +496,13 @@ function CAddonWarsong:OnGameRulesStateChange()
 			self:ChangeNewAbilities(true)
 			return NEW_ULTIMATE_COOLDOWN
 		end)
-		Timers:CreateTimer(TIME_FOR_AMP_TOWERS_AND_CREEPS, function()
-			if GetMapName() ~= "dash" then return end
-			self:AMP_TOWERS_AND_CREEPS()
-			return TIME_FOR_AMP_TOWERS_AND_CREEPS
-		end)
+		if GetMapName() == "dash" then
+			Timers:CreateTimer(TIME_FOR_AMP_TOWERS_AND_CREEPS, function()
+				if GetMapName() ~= "dash" then return end
+				self:AMP_TOWERS_AND_CREEPS()
+				return TIME_FOR_AMP_TOWERS_AND_CREEPS
+			end)
+		end
 		self:GiveBooks()
 		if GetMapName() ~= "dota" then
 			Timers:CreateTimer(GRANT_INTERVAL / 2, function()
