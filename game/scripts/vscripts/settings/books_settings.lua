@@ -45,7 +45,7 @@ BOOKS_SHOP = {
 		rarity = UPGRADE_RARITY_EPIC,
 		resources = {
 			warsong = {
-				gold = 12000,
+				gold = 5000,
 				flags = 2,
 				purchaseType = "both",							
 			},

@@ -143,7 +143,7 @@ if GetMapName() == "portal_trio" then
     
     LAST_BOOK_COOLDOWN = {
         [1] = {
-            common = 30,
+            common = 40,
             rare = 80,
             epic = 240,    
         },

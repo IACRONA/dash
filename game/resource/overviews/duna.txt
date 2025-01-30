@@ -1,0 +1,8 @@
+duna
+{
+	material materials/overviews/duna.vmat
+	pos_x -6336
+	pos_y 6336
+	scale 12.375
+}
+
