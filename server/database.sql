@@ -6,5 +6,6 @@ create TABLE player(
   aura TEXT,
   pet TEXT,
   titul TEXT,
-  teleportation_effect TEXT
+  teleportation_effect TEXT,
+  MUSIC TEXT
 );

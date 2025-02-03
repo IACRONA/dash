@@ -27,24 +27,25 @@
         </snippet>         
 	</snippets>
 	<Panel class="Main" hittest="false">
+		<Panel id="BackgroundBlur"/>
  		<Panel id="Store" hittest="false">
  			<Panel id="StoreContainer">
  				<Panel id="StoreInner">
-	 				<Panel id="StoreAside" >
-	 					<TextButton id="roll" class="StoreButton SwitchButton" text="ROLL"/>
-	 					<TextButton id="aura" class="StoreButton SwitchButton" text="AURA"/>
-	 					<TextButton id="pet" class="StoreButton SwitchButton" text="PET"/>
-	 					<TextButton id="titul" class="StoreButton SwitchButton" text="TITUL"/>
-	 					<TextButton id="teleportation_effect" class="StoreButton SwitchButton" text="TELEPORTATION EFFECT"/>
+	 				<Panel id="StoreMenu" >
+						<Panel id="StoreShards">
+							<Image id="StoreShardsImage" src="file://{resources}/images/interface/currency.png" />
+							<Label id="StoreShardsLabel" text="{s:currency}" />
+						</Panel>
+	 					<Button id="roll" class="StoreButton SwitchButton" />
+	 					<Button id="aura" class="StoreButton SwitchButton" />
+	 					<Button id="pet" class="StoreButton SwitchButton" />
+	 					<Button id="titul" class="StoreButton SwitchButton" />
+	 					<Button id="teleportation_effect" class="StoreButton SwitchButton" />
+	 					<Button id="music" class="StoreButton SwitchButton" />
 	 				</Panel>
 	 				<Panel id="StoreBody">
+						<Panel id="StoreHoverBackground"/>
 						<Button id="StoreButtonBack"/>
-		 				 <Panel id="StoreHeader" >
-		 				 	<Panel id="StoreShards">
-				  				<Image id="StoreShardsImage" src="file://{resources}/images/custom_game/ui/shards.png" />
-				  				<Label id="StoreShardsLabel" text="{s:currency}" />
-				  			</Panel>
-		 				 </Panel>
 		 			    <Panel id="StoreInside">
 
 		 			    </Panel>
@@ -52,7 +53,7 @@
 	 			</Panel>
  			</Panel>
  			<Button id="StoreButton" onactivate="ShowStore()">
- 				<!-- <Image src="file://{resources}/images/custom_game/store_items/item_aura_autumn.png" /> -->
+					<Image id="StoreButtonImage" src="file://{resources}/images/interface/store.png" />
  			</Button>
  		</Panel>
 	</Panel>

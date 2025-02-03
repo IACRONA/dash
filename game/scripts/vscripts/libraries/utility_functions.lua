@@ -169,6 +169,15 @@ function Use(hUnit, xTarget, nRadius, bQueue, fCallback)
 	})
 end
 
+function RotateVector2D(vector, angle, is_degree_rad)
+	angle = is_degree_rad and angle or math.rad(angle)
+	local sin_angle = math.sin(angle)
+	local cos_angle = math.cos(angle)
+	local rot_vector_x = ( vector.x * cos_angle ) - ( vector.y * sin_angle )
+	local rot_vector_y = ( vector.x * sin_angle ) + ( vector.y * cos_angle )
+	return Vector(rot_vector_x, rot_vector_y, vector.z)
+end
+
 function CreateMinimapIcon(sUnit, nTeam, vPos)
 	local hUnit = CreateUnitByName(sUnit, vPos, false, nil, nil, nTeam)
 	hUnit:AddNewModifier(hUnit, nil, 'modifier_warsong_minimap_icon', {})

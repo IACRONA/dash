@@ -10,6 +10,7 @@
 #TopBarScoreboard {
   horizontal-align: center;
   vertical-align: top;
+  z-index: -1;
 }
 
 .AspectRatio4x3 #TopBarScoreboard {

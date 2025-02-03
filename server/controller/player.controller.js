@@ -9,8 +9,8 @@ class PlayerController {
 
     if (!user) {
       const newUser = await db.query(
-        "INSERT INTO player (steam_id, currency, roll, aura, pet, titul, teleportation_effect) values ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-        [id, 0, 10, "{}", "{}", "{}", "{}"]
+        "INSERT INTO player (steam_id, currency, roll, aura, pet, titul, teleportation_effect, music) values ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+        [id, 0, 10, "{}", "{}", "{}", "{}", "{}"]
       );
 
       return res.json(newUser.rows[0]);
@@ -20,7 +20,7 @@ class PlayerController {
   }
 
   async updatePlayer(req, res) {
-    const { id, currency, roll, aura, pet, titul, teleportation_effect } = req.body;
+    const { id, currency, roll, aura, pet, titul, teleportation_effect, music } = req.body;
 
     const player = await db.query("SELECT * FROM player where steam_id = $1", [id]);
 
@@ -29,7 +29,7 @@ class PlayerController {
     const currentPlayer = player.rows[0];
 
     const updatedPlayer = await db.query(
-      "UPDATE player SET currency = $1, roll = $2, aura = $3, pet = $4, titul = $5, teleportation_effect = $6 WHERE steam_id = $7 RETURNING *",
+      "UPDATE player SET currency = $1, roll = $2, aura = $3, pet = $4, titul = $5, teleportation_effect = $6, music = $7 WHERE steam_id = $8 RETURNING *",
       [
         Math.max(currency !== undefined ? currency : currentPlayer.currency, 0),
         Math.max(roll !== undefined ? roll : currentPlayer.roll, 0),
@@ -37,6 +37,7 @@ class PlayerController {
         pet !== undefined ? pet : currentPlayer.pet,
         titul !== undefined ? titul : currentPlayer.titul,
         teleportation_effect !== undefined ? teleportation_effect : currentPlayer.teleportation_effect,
+        music !== undefined ? music : currentPlayer.music,
         id,
       ]
     );

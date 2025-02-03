@@ -1,4 +1,4 @@
-local BASE_URL = "http://localhost:8080/api"
+local BASE_URL = "https://109.172.7.191/api"
 -- local SERVER_KEY = GetDedicatedServerKeyV3("heroes_def")
 local MAX_REPEAT = 5
 

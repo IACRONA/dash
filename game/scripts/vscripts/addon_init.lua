@@ -54,3 +54,4 @@ LinkLuaModifier('modifier_head_boss', 'modifiers/modifier_head_boss', LUA_MODIFI
 
 LinkLuaModifier('modifier_donate_aura_aghanim', 'modifiers/donate/modifier_donate_aura', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_donate_aura_autumn', 'modifiers/donate/modifier_donate_aura', LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier('modifier_donate_pet', 'modifiers/donate/modifier_donate_pet', LUA_MODIFIER_MOTION_NONE)

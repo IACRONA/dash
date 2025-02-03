@@ -4,33 +4,63 @@ let activeButton = "";
 let items = [];
 
 (() => {
+  $.GetContextPanel().GetParent().style.zIndex = "2";
   const currency = CustomNetTables.GetTableValue("player_info", `${Players.GetLocalPlayer()}`)?.currency;
 
   store.SetDialogVariable("currency", currency);
 
   const buttons = store.FindChildrenWithClassTraverse("SwitchButton");
 
+  const storeMenu = $("#StoreMenu");
+  const storeBody = $("#StoreBody");
+  storeBody.SetPanelEvent("onactivate", () => {});
+  let randomBodyBackground = 0;
   buttons.forEach((button) => {
+    const type = button.id;
     button.SetPanelEvent("onactivate", () => {
       if (!storeInfo) return;
+      randomBodyBackground = Math.floor(Math.random() * 4) + 1;
+      storeBody.style.backgroundImage = `url("file://{resources}/images/interface/store/content/store_body_${randomBodyBackground}.png")`;
+
       buttons.forEach((element) => {
         element.RemoveClass("IsActive");
       });
       button.AddClass("IsActive");
 
-      activeButton = button.id;
+      activeButton = type;
       UpdateStore();
+    });
+
+    button.SetPanelEvent("onmouseover", () => {
+      storeMenu.style.backgroundImage = `url("file://{resources}/images/interface/store/hover/${type}.png")`;
+      storeMenu.style.backgroundSize = `100%`;
+    });
+
+    button.SetPanelEvent("onmouseout", () => {
+      storeMenu.style.backgroundImage = "url('')";
     });
   });
 
-  $("#StoreButtonBack").SetPanelEvent("onactivate", () => {
-    $("#StoreBody").RemoveClass("IsActive");
+  const buttonBack = $("#StoreButtonBack");
+
+  buttonBack.SetPanelEvent("onactivate", () => {
+    storeBody.RemoveClass("IsActive");
+  });
+
+  const storeHoverBackground = $("#StoreHoverBackground");
+  buttonBack.SetPanelEvent("onmouseover", () => {
+    storeHoverBackground.style.backgroundImage = `url("file://{resources}/images/interface/store/hover/store_body_${randomBodyBackground}.png")`;
+    storeHoverBackground.style.backgroundSize = "100%";
+  });
+
+  buttonBack.SetPanelEvent("onmouseout", () => {
+    storeHoverBackground.style.backgroundImage = "url('')";
   });
 })();
 
 const ShowStore = () => {
   const profile = $("#StoreContainer");
-
+  Game.EmitSound("ui_topmenu_activate");
   profile.ToggleClass("is-active");
 };
 
@@ -52,14 +82,14 @@ const UpdateStore = () => {
     items.push(item);
 
     item.BLoadLayoutSnippet("ShopItem");
-    $.Msg(`file://{resources}/images/custom_game/store_items/${name}.png`);
+
     $.CreatePanel("Image", item.FindChildTraverse("ShopItemImageContainer"), "ShopItemImage", {
       src: `file://{resources}/images/custom_game/store_items/${name}.png`,
     });
     item.SetHasClass("IsBought", !!playerInventory[name]);
     item.SetHasClass("IsActive", !!playerInventory[name]?.isActive);
 
-    item.SetDialogVariable("name", $.Localize(`#DOTA_Tooltip_ability_item_${name}`));
+    item.SetDialogVariable("name", $.Localize(`#DOTA_shop_${name}`));
     item.SetDialogVariable("price", info.price);
     const shopItem = item.FindChildTraverse("ShopItemImage");
 

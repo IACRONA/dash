@@ -1,9 +1,10 @@
 const TYPE_STORE = {
   roll: "roll",
   aura: "aura",
-  pets: "pets",
+  pet: "pet",
   titul: "titul",
   teleportation_effect: "teleportation_effect",
+  music: "music",
 };
 
 module.exports = TYPE_STORE;

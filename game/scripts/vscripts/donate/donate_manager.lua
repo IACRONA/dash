@@ -4,10 +4,15 @@ if DonateManager == nil then
 	DonateManager = class({})
 end
 
+function DonateManager:Init()
+    CustomNetTables:SetTableValue("server_info", "music", DONATE_ITEMS.music) 
+end
+ 
 function DonateManager:InitHero(hero)
     hero.donate = {
         aura = {},
         titul = "",
+        pet = {},
     }
 
     local playerId = hero:GetPlayerOwnerID()
@@ -15,6 +20,7 @@ function DonateManager:InitHero(hero)
     if not playerInfo then return end
  
     self:AddHeroAura(hero, playerInfo.aura)
+    self:AddHeroPet(hero, playerInfo.pet)
 end
 
 function DonateManager:CheckForChangeDonate(playerId)
@@ -25,6 +31,7 @@ function DonateManager:CheckForChangeDonate(playerId)
 
     self:AddHeroAura(hero, playerInfo.aura)
     self:TryChangeTitul(hero, playerInfo.titul)
+    self:AddHeroPet(hero, playerInfo.pet)
 end
 
 function DonateManager:AddHeroAura(hero, auraInfo)
@@ -101,3 +108,51 @@ function DonateManager:GetCurrentTitulParticle(hero)
 
     return nil
 end
+
+function DonateManager:GetCurrentTeleportationEffect(hero)
+    local playerInfo = CustomNetTables:GetTableValue("player_info", tostring(hero:GetPlayerOwnerID())) 
+
+    if not playerInfo then return nil end
+
+    for itemName, itemData in pairs(playerInfo.teleportation_effect) do
+        if itemData.isActive and DONATE_ITEMS.teleportation_effect[itemName] then
+            return DONATE_ITEMS.teleportation_effect[itemName].particle
+        end
+    end
+
+    return nil
+end
+
+function DonateManager:AddHeroPet(hero, petInfo)
+    local heroPet = hero.donate.pet
+
+    for itemName, itemData in pairs(petInfo) do
+        if itemData.isActive and DONATE_ITEMS.pet[itemName] then    
+            if heroPet.itemName == itemName then return end
+
+            local item = DONATE_ITEMS.pet[itemName]
+            local model = item.model
+
+            if not heroPet.unit then 
+                local pet = CreateUnitByName(
+                    "npc_cosmetic_pet",
+                    hero:GetAbsOrigin() + RandomVector(300), true,
+                    hero, hero, hero:GetTeam()
+                )
+                heroPet.unit = pet
+                heroPet.itemName = itemName
+
+                pet:SetForwardVector(hero:GetForwardVector())
+                local pet_modifier = pet:AddNewModifier(hero, nil, "modifier_donate_pet", {})
+            end
+            heroPet.unit:SetModel(model)
+            heroPet.unit:SetOriginalModel(model)
+       
+            return
+        end
+    end
+
+    if heroPet.unit then UTIL_Remove(heroPet.unit) end
+    hero.donate.pet = {}
+end
+

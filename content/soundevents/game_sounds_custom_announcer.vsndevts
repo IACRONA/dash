@@ -205,6 +205,57 @@
 		]
     }
 
+
+    EndMusic.Homelander = 
+    {
+		type = "dota_src1_3d"
+		volume = 1.500000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/homelander.vsnd",
+		]
+	}
+
+    EndMusic.ILoveEveryone = 
+    {
+		type = "dota_src1_3d"
+		volume = 1.500000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/I_love_everyone.vsnd",
+		]
+	}
+
+    EndMusic.Pudge = 
+    {
+		type = "dota_src1_3d"
+		volume = 1.500000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/pudge.vsnd",
+		]
+	}
+
+    EndMusic.MillionDollarBaby = 
+    {
+		type = "dota_src1_3d"
+		volume = 2.500000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/million_dollar_baby.vsnd",
+		]
+	}
+    EndMusic.ZombieApokalipsis = 
+    {
+		type = "dota_src1_3d"
+		volume = 1.500000
+		pitch = 1.000000
+		vsnd_files = [
+			"sounds/zombie_apokalipsis.vsnd",
+		]
+	}
+          
+
     Flag.MvpBackground = 
     {
 		type = "dota_src1_3d"
@@ -843,5 +894,5 @@
         event_type = "1.000000"
         vsnd_duration = 1.368000
     }
-       
+ 
 }
