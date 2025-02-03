@@ -1,0 +1,59 @@
+#PopupAccept {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(49, 49, 49, 0.808);
+  z-index: 3;
+}
+
+#PopupAcceptContainer {
+  horizontal-align: center;
+  vertical-align: center;
+  flow-children: down;
+}
+
+.PopupAcceptClose {
+  width: 250px;
+  height: 100px;
+  horizontal-align: center;
+  border-color: rgb(206, 23, 191);
+  border-width: 3px;
+  border-style: solid;
+  margin-top: 5px;
+  opacity: 1;
+  margin: 10px;
+}
+
+.PopupAcceptClose:active {
+  border-color: rgb(206, 23, 191);
+  opacity: 1.7;
+}
+
+.PopupAcceptClose:hover {
+  border-color: rgb(206, 23, 191);
+  opacity: 1.7;
+}
+
+.PopupAcceptClose Label {
+  width: 100%;
+  height: 100%;
+  color: rgb(255, 255, 255);
+  font-size: 55px;
+  text-align: center;
+  align: center center;
+  margin-top: 10px;
+}
+
+#PopupAcceptCloseLabel:hover {
+  color: rgb(206, 23, 191);
+  font-size: 55px;
+}
+
+#PopupAcceptLabel {
+  color: rgb(184, 40, 197);
+  font-size: 55px;
+}
+
+#PopupAcceptActions {
+  flow-children: right;
+  horizontal-align: center;
+}

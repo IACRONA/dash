@@ -65,6 +65,12 @@
     // Upgrades
     "cooldown_and_manacost_upgrade"    "%Перезарядки и Расхода маны"
 
+    // Магазин предметов 
+    "DOTA_shop_item_reroll"                                             "Reroll 1X"
+    "DOTA_shop_item_titul_armor"                                             "Титул Защиты"
+    "DOTA_shop_item_titul_five"                                             "Титул дай пять"
+    "DOTA_shop_item_aura_autumn"                                             "Аура осени"
+    "DOTA_shop_item_aura_aghanim"                                             "Аура аганима"
     // Кастомный Rearm
     "DOTA_Tooltip_ability_tinker_rearm_custom"												    "Rearm"
     "DOTA_Tooltip_ability_tinker_rearm_custom_abilitydraft_note"							    "Если у способности есть заряды, их число будет увеличиваться на 1 с каждым применением Rearm."

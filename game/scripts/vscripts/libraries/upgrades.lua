@@ -13,7 +13,6 @@ function Upgrades:Init()
 	Upgrades.pending_selection = {}
 	Upgrades.queued_selection = {}
 	Upgrades.favorites_upgrades = {}
-	Upgrades.PlayersRerollTalents = {}
 	Upgrades.disabled_upgrades_per_player = {}
 	Upgrades.lucky_trinket_proc  = {}
     CustomGameEventManager:RegisterListener('player_talent_selected', function(_, event)
@@ -109,10 +108,10 @@ function Upgrades:Reroll(event)
 
 	local pending = Upgrades.pending_selection[player_id]
 	if not pending then return end
-    local reroll = Upgrades.PlayersRerollTalents[player_id]
+    local reroll = PlayerInfo:GetRollPlayer(player_id)
 
     if reroll > 0 then 
-    	self.PlayersRerollTalents[player_id] = self.PlayersRerollTalents[player_id] - 1
+        PlayerInfo:UpdateRollTable(player_id, -1, 1)
 		Upgrades:ShowSelection(hero, pending.upgrade_rarity, player_id, true, pending.is_lucky_trinket_proc)
 	end
 end
@@ -120,9 +119,7 @@ end
 
 function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_trinket_proc)
 	local pending_selection = Upgrades.pending_selection[player_id]
-    if self.PlayersRerollTalents[player_id] == nil then 
-         self.PlayersRerollTalents[player_id] = BOOK_REROLL_COUNT
-    end
+ 
 	local previous_choices = (is_reroll and pending_selection) and pending_selection.previous_choices or {}
 
 	local choices = {}
@@ -162,7 +159,6 @@ function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_tri
 				upgrade_rarity = rarity,
 				choices = choices,
 				reroll = is_reroll,
-				reroll_count = self.PlayersRerollTalents[player_id],
 				selection_id = selection_id,
 				is_lucky_trinket_proc = is_lucky_trinket_proc,
 			},

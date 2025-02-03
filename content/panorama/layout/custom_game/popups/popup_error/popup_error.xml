@@ -1,0 +1,18 @@
+<root>
+    <scripts>
+        <include src="file://{resources}/layout/custom_game/popups/popup_error/popup_error.js" />
+    </scripts>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.css" />
+        <include src="file://{resources}/layout/custom_game/popups/popup_error/popup_error.css" />
+    </styles>
+    <Panel class="PopupError">
+        <Panel id="PopupErrorContainer">
+            <Label id="PopupErrorLabel" text="{s:error}"/>
+            <TextButton id="PopupErrorClose">
+                <Label id="PopupErrorCloseLabel" text="Принять" />
+            </TextButton>
+        </Panel>
+    </Panel>
+</root>
+      

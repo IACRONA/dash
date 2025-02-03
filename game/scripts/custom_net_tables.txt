@@ -12,5 +12,9 @@
         "abilities_damage",
         "abilities_radius",
         "ability_upgrades",
+        "rolls_player",
+        // Серверная инфа
+        "player_info",
+        "server_info",
 	]
 }

@@ -1,5 +1,28 @@
 let queue = {};
 
+CustomNetTables.SubscribeNetTableListener("rolls_player", (_, eventKey, eventValue) => OnUpdateRoll(eventKey, eventValue));
+
+const OnUpdateRoll = (playerId, data) => {
+  if (playerId !== `${Game.GetLocalPlayerID()}`) return;
+
+  const rerollPanels = $.GetContextPanel().FindChildrenWithClassTraverse("RerollBlock");
+  const rerollTexts = $.GetContextPanel().FindChildrenWithClassTraverse("RerollText");
+  const rerollCount = playerInfo.getRollPlayer();
+  rerollPanels.forEach((panel) => {
+    if (rerollCount > 0) {
+      if (!panel.BHasClass("IsActive")) panel.AddClass("IsActive");
+    } else {
+      if (panel.BHasClass("IsActive")) panel.RemoveClass("IsActive");
+    }
+  });
+  rerollTexts.forEach((panel) => {
+    panel.text = GetTextForRerollPanel(rerollCount);
+  });
+};
+
+const GetTextForRerollPanel = (reroll_count) => {
+  return $.Localize("#swap_abilities") + " x" + reroll_count;
+};
 GameEvents.Subscribe("spell_select_open_panel", spell_select_open_panel);
 
 function show_queue_panels() {
@@ -32,7 +55,7 @@ function spell_select_open_panel(params) {
       if (!queue.spell) {
         queue.spell = true;
       }
-    } else { 
+    } else {
       queue.spell = true;
       $("#SpellSelectedMain").style.opacity = "1";
     }
@@ -47,7 +70,7 @@ function spell_select_open_panel(params) {
   $.Schedule(0.1, function () {
     $("#SpellSelectedMain").SetHasClass("SpawnPanelSelected", false);
   });
-  CreateRerollPanel(params.reroll_count, params.is_ultimate);
+  CreateRerollPanel(params.is_ultimate);
   for (let i = 1; i <= Object.keys(params.spell_list).length; i++) {
     CreateSpellBlock(params.spell_list[i], params.is_ultimate);
   }
@@ -90,27 +113,31 @@ function CancelChooseAbilities() {
   show_queue_panels();
 }
 
-function CreateRerollPanel(reroll_count, is_ultimate) {
-  let reroll_block = $.CreatePanel("Panel", $("#SpellSelectedMain").FindChildTraverse("SpellActions"), "");
+function CreateRerollPanel(is_ultimate) {
+  const reroll_count = playerInfo.getRollPlayer();
+  let reroll_block = $.CreatePanel("Panel", $("#SpellSelectedMain").FindChildTraverse("SpellActions"), "", {
+    class: "RerollBlock",
+  });
+
+  if (reroll_count > 0) reroll_block.AddClass("IsActive");
   reroll_block.AddClass("reroll_block");
   reroll_block.AddClass(is_ultimate ? "IsUltimate" : "IsSpell");
 
-  let reroll_block_text = $.CreatePanel("Label", reroll_block, "");
+  let reroll_block_text = $.CreatePanel("Label", reroll_block, "", {
+    class: "RerollText",
+  });
   reroll_block_text.AddClass("reroll_block_text");
-  reroll_block_text.text = $.Localize("#swap_abilities") + " x" + reroll_count;
+  reroll_block_text.text = GetTextForRerollPanel(reroll_count);
 
   let reroll_block_image = $.CreatePanel("Panel", reroll_block, "");
   reroll_block_image.AddClass("reroll_block_image");
 
-  if (reroll_count > 0) {
-    reroll_block.SetPanelEvent("onactivate", function () {
-      GameEvents.SendCustomGameEventToServer("swap_abilities_to_select", { is_ultimate: is_ultimate });
-      $("#SpellSelectedMain").style.opacity = "0";
-      Game.EmitSound("Flag.RollChoose");
-    });
-  } else {
-    reroll_block.style.saturation = "0";
-  }
+  reroll_block.SetPanelEvent("onactivate", function () {
+    if (!reroll_block.BHasClass("IsActive")) return;
+    GameEvents.SendCustomGameEventToServer("swap_abilities_to_select", { is_ultimate: is_ultimate });
+    $("#SpellSelectedMain").style.opacity = "0";
+    Game.EmitSound("Flag.RollChoose");
+  });
 }
 
 GameEvents.Subscribe("open_fates_choose_players", open_fates_choose_players);
@@ -234,7 +261,7 @@ function open_sphere_choose_players(params) {
   Choose_Your_Fate.AddClass("Choose_Your_Sphere");
   Choose_Your_Fate.text = $.Localize("#Choose_Your_Sphere");
 
-  CreateSphereRerollPanel(params.reroll_count);
+  CreateSphereRerollPanel();
 
   for (let i = 1; i <= Object.keys(params.sphereList).length; i++) {
     CreateSphere(params.sphereList[i]);
@@ -321,26 +348,31 @@ function CancelChooseSphere() {
   show_queue_panels();
 }
 
-function CreateSphereRerollPanel(reroll_count) {
-  let reroll_block = $.CreatePanel("Panel", $("#SphereSelectedMain").FindChildTraverse("SpellActions"), "");
+function CreateSphereRerollPanel() {
+  const reroll_count = playerInfo.getRollPlayer();
+  let reroll_block = $.CreatePanel("Panel", $("#SphereSelectedMain").FindChildTraverse("SpellActions"), "", {
+    class: "RerollBlock",
+  });
+
+  if (reroll_count > 0) reroll_block.AddClass("IsActive");
+
   reroll_block.AddClass("reroll_block");
 
-  let reroll_block_text = $.CreatePanel("Label", reroll_block, "");
+  let reroll_block_text = $.CreatePanel("Label", reroll_block, "", {
+    class: "RerollText",
+  });
   reroll_block_text.AddClass("reroll_block_text");
-  reroll_block_text.text = $.Localize("#swap_abilities") + " x" + reroll_count;
+  reroll_block_text.text = GetTextForRerollPanel(reroll_count);
 
   let reroll_block_image = $.CreatePanel("Panel", reroll_block, "");
   reroll_block_image.AddClass("reroll_block_image");
 
-  if (reroll_count > 0) {
-    reroll_block.SetPanelEvent("onactivate", function () {
-      GameEvents.SendCustomGameEventToServer("reroll_spheres", { reroll: reroll_count });
-      $("#SpellSelectedMain").style.opacity = "0";
-      Game.EmitSound("Flag.RollChoose");
-    });
-  } else {
-    reroll_block.style.saturation = "0";
-  }
+  reroll_block.SetPanelEvent("onactivate", function () {
+    if (!reroll_block.BHasClass("IsActive")) return;
+    GameEvents.SendCustomGameEventToServer("reroll_spheres", { reroll: reroll_count });
+    $("#SpellSelectedMain").style.opacity = "0";
+    Game.EmitSound("Flag.RollChoose");
+  });
 }
 
 GameEvents.Subscribe("open_talents_choose_players", open_talents_choose_players);
@@ -381,7 +413,7 @@ function open_talents_choose_players(params) {
   // itemPreviewImage.style.backgroundRepeat = "no-repeat";
   // itemPreviewImage.style.backgroundPosition = "50% 60%";
 
-  CreateTalentRerollPanel(actions_block, params.upgrades.reroll_count);
+  CreateTalentRerollPanel(actions_block);
 
   for (let i = 1; i <= Object.keys(params.upgrades.choices).length; i++) {
     CreateTalent(params.upgrades, params.upgrades.choices[i]);
@@ -405,26 +437,31 @@ function open_talents_choose_players(params) {
   });
 }
 
-function CreateTalentRerollPanel(body, reroll_count) {
-  let reroll_block = $.CreatePanel("Panel", body, "");
+function CreateTalentRerollPanel(body) {
+  const reroll_count = playerInfo.getRollPlayer();
+  let reroll_block = $.CreatePanel("Panel", body, "", {
+    class: "RerollBlock",
+  });
+
+  if (reroll_count > 0) reroll_block.AddClass("IsActive");
+
   reroll_block.AddClass("reroll_talent_block");
 
-  let reroll_block_text = $.CreatePanel("Label", reroll_block, "");
+  let reroll_block_text = $.CreatePanel("Label", reroll_block, "", {
+    class: "RerollText",
+  });
   reroll_block_text.AddClass("reroll_talent_block_text");
-  reroll_block_text.text = $.Localize("#swap_abilities") + " x" + reroll_count;
+  reroll_block_text.text = GetTextForRerollPanel(reroll_count);
 
   let reroll_block_image = $.CreatePanel("Panel", reroll_block, "");
   reroll_block_image.AddClass("reroll_talent_block_image");
 
-  if (reroll_count > 0) {
-    reroll_block.SetPanelEvent("onactivate", function () {
-      GameEvents.SendCustomGameEventToServer("reroll_talents", {});
-      $("#TalentsSelectedMain").style.opacity = "0";
-      Game.EmitSound("Flag.RollChoose");
-    });
-  } else {
-    reroll_block.style.saturation = "0";
-  }
+  reroll_block.SetPanelEvent("onactivate", function () {
+    if (!reroll_block.BHasClass("IsActive")) return;
+    GameEvents.SendCustomGameEventToServer("reroll_talents", {});
+    $("#TalentsSelectedMain").style.opacity = "0";
+    Game.EmitSound("Flag.RollChoose");
+  });
 }
 
 const reverse_increment = ["cooldown_and_manacost"];

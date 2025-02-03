@@ -1,3 +1,5 @@
+DEFAULT_LEADER_PARTICLE = "particles/overhead_particle/leader_overhead.vpcf"
+
 function CAddonWarsong:OnEntityKilled( params )
 	local killedUnit = EntIndexToHScript( params.entindex_killed )
 	local killedTeam = killedUnit:GetTeam()
@@ -81,6 +83,14 @@ function CAddonWarsong:ChangeKills()
 	self.nWinConditionGoal = final_kills_count
 end
 
+function CAddonWarsong:AddLeaderParticle(entity)
+	local titul = DonateManager:GetCurrentTitulParticle(entity) or DEFAULT_LEADER_PARTICLE
+	entity.donate.titul = titul
+	local particleLeader = ParticleManager:CreateParticle(titul, PATTACH_OVERHEAD_FOLLOW, entity )
+	ParticleManager:SetParticleControlEnt( particleLeader, PATTACH_OVERHEAD_FOLLOW, entity, PATTACH_OVERHEAD_FOLLOW, "follow_overhead", entity:GetAbsOrigin(), true )
+	entity:Attribute_SetIntValue( "particleID", particleLeader )
+end
+
 function CAddonWarsong:UpdateLeaderPortalDuo()
     local sortedTeams = {}
     for team, kills in pairs( self.nCapturedFlagsCount ) do
@@ -94,10 +104,8 @@ function CAddonWarsong:UpdateLeaderPortalDuo()
 			if entity:IsAlive() == true then
 				local existingParticle = entity:Attribute_GetIntValue( "particleID", -1 )
        			if existingParticle == -1 then
-       				local particleLeader = ParticleManager:CreateParticle("particles/overhead_particle/leader_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, entity )
-					ParticleManager:SetParticleControlEnt( particleLeader, PATTACH_OVERHEAD_FOLLOW, entity, PATTACH_OVERHEAD_FOLLOW, "follow_overhead", entity:GetAbsOrigin(), true )
-					entity:Attribute_SetIntValue( "particleID", particleLeader )
-				end
+					self:AddLeaderParticle(entity)
+ 				end
 			else
 				local particleLeader = entity:Attribute_GetIntValue( "particleID", -1 )
 				if particleLeader ~= -1 then
@@ -151,7 +159,7 @@ function CAddonWarsong:GameTimeClock()
 			table.insert( sortedTeams, { teamID = team, teamScore = kills } )
 		end
 		table.sort( sortedTeams, function(a,b) return ( a.teamScore > b.teamScore ) end )
-		GameRules:SetGameWinner( sortedTeams[1].teamID )
+		CAddonWarsong:SetWinner( sortedTeams[1].teamID )
         self:SortedMvpPlayers()
     end
 end
@@ -425,7 +433,7 @@ function CAddonWarsong:GetWinPlayers()
     for team, score in pairs(self.nCapturedFlagsCount) do
         if score >= self.nWinConditionGoal then
             self:SortedMvpPlayers()
-            GameRules:SetGameWinner(team)
+            CAddonWarsong:SetWinner(team)
         end
     end
 end

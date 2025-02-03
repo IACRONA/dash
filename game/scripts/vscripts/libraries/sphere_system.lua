@@ -1,6 +1,5 @@
 CAddonWarsong.sphere_count_number = 0
 CAddonWarsong.player_selected_sphere = {}
-CAddonWarsong.PlayersRerollSpheres = {}
 local spheres = {
     "modifier_sphere_armor",
     "modifier_sphere_cooldown",
@@ -24,11 +23,8 @@ function CAddonWarsong:GivePlayersSphere()
                 CAddonWarsong.player_selected_sphere[i] = 0
             end
             local hero = PlayerResource:GetSelectedHeroEntity(i)
-
-            if self.PlayersRerollSpheres[i] == nil then 
-                 self.PlayersRerollSpheres[i] = REROLL_SPHERES
-            end
-            CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(i), 'open_sphere_choose_players', {sphereList = self:GetSphereList(hero), reroll_count = self.PlayersRerollSpheres[i]})
+ 
+            CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(i), 'open_sphere_choose_players', {sphereList = self:GetSphereList(hero)})
         end
     end
 end
@@ -48,7 +44,7 @@ function CAddonWarsong:SelectPlayerSphere(player_id, sphere_name)
     CAddonWarsong.player_selected_sphere[player_id] = CAddonWarsong.player_selected_sphere[player_id] + 1
 
     if CAddonWarsong.player_selected_sphere[player_id] < CAddonWarsong.sphere_count_number then
-        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(player_id), 'open_sphere_choose_players', {sphereList = self:GetSphereList(hero), reroll_count = self.PlayersRerollSpheres[player_id]})
+        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(player_id), 'open_sphere_choose_players', {sphereList = self:GetSphereList(hero)})
     end
 end
 
@@ -74,9 +70,9 @@ end
 
 function CAddonWarsong:RerollPlayerSphere(event)
     if PlayerResource:IsValidPlayer(event.PlayerID) and PlayerResource:GetSelectedHeroEntity(event.PlayerID) ~= nil then
-        self.PlayersRerollSpheres[event.PlayerID] = self.PlayersRerollSpheres[event.PlayerID] - 1 
+        PlayerInfo:UpdateRollTable(event.PlayerID, -1, 1)
 
-        local hero = PlayerResource:GetSelectedHeroEntity(event.PlayerID)
-        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(event.PlayerID), 'open_sphere_choose_players', {sphereList = self:GetSphereList(hero), reroll_count = self.PlayersRerollSpheres[event.PlayerID], isReroll = true})
+        local hero = PlayerResource:GetSelectedHeroEntity(event.PlayerID)   
+        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(event.PlayerID), 'open_sphere_choose_players', {sphereList = self:GetSphereList(hero), isReroll = true})
     end 
 end

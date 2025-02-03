@@ -1,0 +1,19 @@
+<root>
+    <scripts>
+        <include src="file://{resources}/layout/custom_game/popups/popup_accept/popup_accept.js" />
+    </scripts>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.css" />
+        <include src="file://{resources}/layout/custom_game/popups/popup_accept/popup_accept.css" />
+    </styles>
+    <Panel class="PopupAccept">
+        <Panel id="PopupAcceptContainer">
+            <Label id="PopupAcceptLabel" text="Вы действитепльно хотите купить?"/>
+                <Panel id="PopupAcceptActions">
+                    <TextButton id="PopupAcceptYes" class="PopupAcceptClose" text="Да" />
+                    <TextButton id="PopupAcceptNo" class="PopupAcceptClose" text="Нет" />
+                </Panel>
+        </Panel>
+    </Panel>
+</root>
+      

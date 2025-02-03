@@ -1,6 +1,15 @@
 "DOTAAbilities"
 {
- 
+
+	"item_tpscroll"					 "REMOVE_ITEM"
+  	"item_test"
+	{
+		"BaseClass"						"item_lua"											
+		"ScriptFile"					"items/item_test"
+		"AbilityTextureName"			"item_fusion_rune" 
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	}
+
 	"item_flag_radiant"
 	{
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
@@ -4399,4 +4408,53 @@
 			"bonus_all_stats"     	"10"
 		}
 	} 
+
+    "item_tp_scroll_custom"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/item_tp_scroll_custom"
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_BUILDING"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        "Model"                         "models/props_gameplay/tpscroll01.vmdl"
+
+        // Stats        
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "0"
+        "AbilityCooldown"               "60"
+        "AbilitySharedCooldown"         "teleport"
+        "AbilityChannelTime"            "3.0"
+        "AbilityCastPoint"              "0.0"
+
+
+        "AbilityTextureName"            "item_tpscroll"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "0"
+        "ItemCost"                      "100"
+        "ItemShopTags"                  "consumable;tutorial"
+        "ItemQuality"                   "consumable"
+        "ItemAliases"                   "tp;town portal scroll;teleport"
+        "ItemStackable"                 "1"
+        "ItemShareability"              "ITEM_FULLY_SHAREABLE"
+        "ItemPermanent"                 "0"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+        //"SideShop"                        "1"
+        "ItemPurchasable"               "0"
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "minimum_distance"          "70"
+            "maximum_distance"          "500"
+            "vision_radius"             "200"
+        }
+    }
 }

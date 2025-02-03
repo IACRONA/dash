@@ -83,6 +83,10 @@ local particles =
     "particles/shadow_demon_demonic_purge.vpcf",
     "particles/econ/events/plus/high_five/high_five_lvl1_overhead.vpcf",
     "particles/econ/events/plus/high_five/high_five_lvl1_travel.vpcf",
+    "particles/econ/events/compendium_2023/compendium_2023_teleport_lvl2.vpcf",
+    "particles/econ/events/compendium_2023/compendium_2023_teleport_lvl2_end.vpcf",
+    "particles/econ/events/compendium_2024/compendium_2024_teleport_lvl3.vpcf",
+    "particles/econ/events/compendium_2024/compendium_2024_teleport_lvl3_end.vpcf",
 }
 
 local sounds = 
@@ -94,6 +98,11 @@ local sounds =
     "soundevents/game_sounds_custom_announcer.vsndevts",
     "soundevents/voscripts/game_sounds_vo_warlock_golem.vsndevts",
     
+}
+
+local models = {
+    "models/courier/baby_rosh/babyroshan.vmdl",
+    "models/courier/baby_rosh/babyroshan_ti10_dire.vmdl",
 }
 
 local function PrecacheEverythingFromTable( context, kvtable)
@@ -132,6 +141,7 @@ end
 
 return function(context)
     PrecacheEverythingFromKV(context)
+    PrecacheEverythingFromTable( context, models )
     for _, p in pairs(particles) do
         PrecacheResource("particle", p, context)
     end

@@ -1,0 +1,359 @@
+.Main {
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+#BackgroundBlur {
+  width: 100%;
+  height: 100%;
+}
+
+#Store {
+  width: 100%;
+  height: 100%;
+}
+
+#StoreButton {
+  margin-left: 150px;
+  margin-top: 13px;
+  width: 28px;
+  height: 28px;
+}
+
+#StoreButtonImage {
+  width: 100%;
+  height: 100%;
+}
+
+#StoreContainer {
+  width: 900px;
+  height: 900px;
+  background-color: gradient(linear, 0% 0%, 0% 100%, from(#000000fd), to(#220247fb));
+  horizontal-align: center;
+  vertical-align: center;
+  border-radius: 8px;
+  transition-property: opacity, pre-transform-scale2d;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out;
+}
+
+#StoreContainer:not(.is-active) {
+  opacity: 0;
+  pre-transform-scale2d: 0.6;
+}
+
+#StoreInner {
+  background-image: url("file://{resources}/images/interface/store_background.png");
+  background-size: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+#StoreMenu {
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+}
+
+#StoreAvatar {
+  vertical-align: center;
+  background-color: gradient(linear, 100% 0%, 0% 0%, from(#7586a610), to(#7586a604));
+  flow-children: down;
+  width: 220px;
+  height: 100%;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-right: 10px;
+}
+
+#StoreLoader {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+#StoreImage {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+#StoreShardsLabel {
+  font-size: 22px;
+  color: dotaPlusLightGold;
+  font-size: 24px;
+  letter-spacing: 1px;
+  text-shadow: 0px 0px 4px dotaPlusGold;
+  font-weight: bold;
+  font-family: monospaceNumbersFont;
+  horizontal-align: center;
+  margin-bottom: 20px;
+}
+
+#StoreCreepsLabel {
+  font-family: titleFont;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  horizontal-align: center;
+}
+
+#StoreBody {
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+}
+
+#StoreBody:not(.IsActive) {
+  visibility: collapse;
+}
+
+#StoreInside {
+  flow-children: right-wrap;
+  padding: 10px;
+  overflow: scroll;
+  margin-top: 150px;
+}
+
+#StoreHoverBackground {
+  width: 100%;
+  height: 100%;
+}
+
+#StoreShards {
+  flow-children: right;
+  horizontal-align: right;
+  horizontal-align: left;
+  padding: 10px;
+}
+
+#StoreShardsImage {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+#TextDevelop {
+  font-family: titleFont;
+  font-weight: bold;
+  font-size: 30px;
+  color: white;
+  horizontal-align: center;
+  vertical-align: center;
+}
+
+#Case {
+  flow-children: down;
+  margin: 10px;
+  width: 200px;
+  height: 200px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(114, 8, 146);
+}
+
+#CaseTitle {
+  font-size: 24px;
+  color: white;
+  font-family: titleFont;
+  font-weight: bold;
+  align: center center;
+  text-align: center;
+  overflow: clip;
+  margin-top: 15px;
+}
+
+#CasePrice {
+  flow-children: right;
+  align: center bottom;
+  margin-bottom: 5px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(114, 8, 146);
+  opacity: 1;
+}
+
+#CasePrice:active {
+  border-color: rgb(146, 8, 135);
+  opacity: 1.8;
+}
+
+#CasePrice:hover {
+  opacity: 1.8;
+}
+
+#CasePrice Label {
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  padding: 3px 3px 3px 3px;
+}
+
+#CasePrice Image {
+  width: 25px;
+  height: 25px;
+}
+
+#CaseImageContainer {
+  width: 80px;
+  height: 80px;
+  background-size: contain;
+  align: center center;
+  margin-top: 10px;
+}
+
+#CaseImageContainer Image {
+  width: 100%;
+  height: 100%;
+  align: center center;
+}
+
+.ShopItem {
+  flow-children: down;
+  margin: 10px;
+  width: 150px;
+  height: 225px;
+  border-color: rgb(196, 41, 162);
+  border-width: 2px;
+  border-style: solid;
+}
+
+#ShopItemTitle {
+  font-size: 24px;
+  color: rgb(164, 60, 212);
+  font-family: titleFont;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  align: center center;
+  overflow: clip;
+}
+
+.ShopItem.IsBought #ShopItemBuy {
+  visibility: collapse;
+}
+
+#ShopItemBuy {
+  vertical-align: bottom;
+  flow-children: down;
+  width: 100%;
+}
+
+.ShopItem:not(.IsBought) #ShopItemActivate {
+  visibility: collapse;
+}
+
+.ShopItem.IsActive #ShopItemActivate {
+  background-color: gray;
+}
+
+#ShopItemActivate {
+  flow-children: down;
+  width: 100%;
+  visibility: visible;
+  margin-bottom: 5px;
+  background-color: rgb(11, 204, 159);
+  padding: 4px;
+  width: 80%;
+  horizontal-align: center;
+  opacity: 0.9;
+  border-radius: 3px;
+}
+
+#ShopItemActivate Label {
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  color: white;
+}
+
+#ShopItemActivate:hover {
+  opacity: 1.5;
+}
+
+#ShopItemActivate:active {
+  background-color: rgb(8, 156, 121);
+  opacity: 1.5;
+}
+
+#ShopItemPrice {
+  flow-children: right;
+  horizontal-align: center;
+  margin-bottom: 10px;
+}
+
+#ShopItemPrice Label {
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  align: center bottom;
+}
+
+#ShopItemPrice Image {
+  width: 25px;
+  height: 25px;
+  align: center bottom;
+}
+
+#ShopItemBuyButton {
+  background-color: rgb(159, 11, 204);
+  padding: 4px;
+  width: 80%;
+  align: center bottom;
+  margin-bottom: 5px;
+  opacity: 0.9;
+}
+
+#ShopItemBuyButton:active {
+  background-color: rgb(204, 11, 172);
+  opacity: 1.5;
+}
+
+#ShopItemBuyButton:hover {
+  opacity: 1.5;
+}
+
+#ShopItemBuyButton Label {
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  color: white;
+}
+
+#ShopItemImage {
+  margin-top: 5px;
+  width: 85px;
+  height: 64px;
+  align: center center;
+}
+
+#StoreButtonBack {
+  width: 215px;
+  height: 150px;
+}
+
+.StoreButton {
+  vertical-align: bottom;
+  horizontal-align: center;
+  width: 340px;
+  height: 100px;
+  margin-left: 105px;
+}
+
+#teleportation_effect {
+  margin-bottom: 110px;
+}
+
+#titul {
+  margin-bottom: 220px;
+}
+
+#pet {
+  margin-bottom: 330px;
+}
+
+#aura {
+  margin-bottom: 440px;
+}
+
+#roll {
+  margin-bottom: 540px;
+}

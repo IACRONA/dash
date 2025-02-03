@@ -10,6 +10,10 @@ require('libraries/table')
 require('libraries/utility_functions')
 require('extensions/base_npc')
 require('extensions/table')
+require ("libraries/player_info")
+require ("server/http")
+require ("server/server_manager")
+require('donate/donate_manager')
 require('libraries/neutrals_items')
 require('libraries/portals_system')
 require('libraries/add_new_abilities')
@@ -85,7 +89,9 @@ function CAddonWarsong:InitGameMode()
 	GameRules:SetStrategyTime(5)
 	GameRules:SetShowcaseTime(0)
 	GameRules:GetGameModeEntity():SetDaynightCycleDisabled(DAY_NIGHT_CYCL)
- 
+	GameRules:GetGameModeEntity():SetTPScrollSlotItemOverride("item_tp_scroll_custom")
+	GameRules:GetGameModeEntity():SetGiveFreeTPOnDeath(false)
+	 
     GameRules:GetGameModeEntity():SetPlayerHeroAvailabilityFiltered(true)
 
 	GameRules:GetGameModeEntity():SetCustomBuybackCooldownEnabled( true )
@@ -407,6 +413,7 @@ function CAddonWarsong:OnGameRulesStateChange()
 		-- end
 		-- addBot(DOTA_TEAM_BADGUYS)
 		-- addBot(DOTA_TEAM_GOODGUYS)
+		ServerManager:Init()
 		if GetMapName() == "warsong" or GetMapName() == "dash" then
 			if PlayerResource:GetPlayerCount() ~= 10 then  
 				local team = 2
@@ -427,6 +434,7 @@ function CAddonWarsong:OnGameRulesStateChange()
 			end
 		end
 	elseif nNewState == DOTA_GAMERULES_STATE_PRE_GAME then
+		DonateManager:Init()
 		CustomGameEventManager:Send_ServerToAllClients('update_flags_count', {
 			radiant = self.nWinConditionGoal,
 			dire = self.nWinConditionGoal
@@ -750,16 +758,13 @@ function CAddonWarsong:OnNPCSpawned(event)
 				if self.teamBalanceTier[hUnit:GetTeamNumber()] == nil then
 					self:InitTeamBalanceTier(hUnit:GetTeamNumber())
 				end
-				Timers:CreateTimer(0.1, function()
-					local item = hUnit:FindItemInInventory("item_tpscroll")
-		
-					if item then
-						item:SetCurrentCharges(29)
-					end
-				end)
+
+
+
 				if hUnit:GetUnitName() == "npc_dota_hero_skeleton_king" then
 					hUnit:AddNewModifier(hUnit, nil, "modifier_skeleton_king_sound_set", {})
 				end
+ 
 				-- local particleLeader = ParticleManager:CreateParticle("particles/overhead_particle/leader_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, hUnit )
 				-- ParticleManager:SetParticleControlEnt( particleLeader, PATTACH_OVERHEAD_FOLLOW, hUnit, PATTACH_OVERHEAD_FOLLOW, "follow_overhead", hUnit:GetAbsOrigin(), true )
 				if GetMapName() ~= "dota" then
@@ -789,9 +794,12 @@ function CAddonWarsong:OnNPCSpawned(event)
 						ui_custom_ability_jump:SetLevel(1)
 					end
 
+					hUnit:AddItemByName("item_tp_scroll_custom"):SetCurrentCharges(30)
+
 					if GetMapName() ~= "dash" then 
 						hUnit:AddNewModifier(hUnit, nil, "modifier_freeze_time_start", {duration = START_GAME_FREEZE_TIME})
 					end
+					DonateManager:InitHero(hUnit)
 				end
 			end
 		end)
@@ -820,14 +828,18 @@ function CAddonWarsong:GiveTowersModifiersUNVUIL()
         end
     end
 end
+
 function CAddonWarsong:OnPlayerDisconnect(event) 
 	local playerId = event.PlayerID
-    if self.bookTicks.common[playerId] then
+
+	if self.bookTicks.common[playerId] then
         self.bookTicks.common[playerId].disconnected = true
         self.bookTicks.rare[playerId].disconnected = true
         self.bookTicks.epic[playerId].disconnected = true
     end
+	ServerManager:SendServerPlayerRoll(playerId)
 end
+
 function CAddonWarsong:OnPlayerConnect(event) 
 	Timers:CreateTimer(1.5, function() 
 		local playerId = event.PlayerID
@@ -852,6 +864,7 @@ function CAddonWarsong:OnPlayerConnect(event)
 		end
 	end)
 end
+
 CAddonWarsong.amp_bonus_level = 0
 CAddonWarsong.AMP_Init = false
 function CAddonWarsong:AMP_TOWERS_AND_CREEPS() 
@@ -906,5 +919,13 @@ function CAddonWarsong:HighFive(params)
     if hero then
         hero:AddNewModifier(hero, nil, "modifier_high_five", {duration = 10})
     end
+end
+
+
+
+function CAddonWarsong:SetWinner(teamWinner) 
+	ServerManager:OnEndGame(function()
+		GameRules:SetGameWinner(teamWinner)
+	end)
 end
 

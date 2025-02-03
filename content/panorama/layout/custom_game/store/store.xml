@@ -1,0 +1,60 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/store/store.vcss_c" />
+	</styles>
+	 <scripts>
+		<include src="file://{resources}/layout/custom_game/popups/popup_error/popup_error.js" />
+		<include src="file://{resources}/layout/custom_game/popups/popup_accept/popup_accept.js" />
+		<include src="file://{resources}/layout/custom_game/ui/loader/loader.js" />
+
+		<include src="s2r://panorama/layout/custom_game/store/store.vjs_c" />
+	</scripts>
+	<snippets>
+        <snippet name="ShopItem">
+            <Panel class="ShopItem">
+				<Panel id="ShopItemImageContainer" />
+                <Label id="ShopItemTitle" text="{s:name}" />
+				<Panel id="ShopItemBuy">
+					<Panel id="ShopItemPrice">
+						<!-- <Image id="StoreShardsImage" src="file://{resources}/images/custom_game/ui/shards.png" /> -->
+						<Label id="ShopItemPriceLabel" text="{s:price}" />
+					</Panel>      
+					<TextButton id="ShopItemBuyButton" text="BUY"/>         
+				</Panel>
+				<TextButton id="ShopItemActivate" text="ACTIVATE"/>
+             </Panel>
+        </snippet>         
+	</snippets>
+	<Panel class="Main" hittest="false">
+		<Panel id="BackgroundBlur"/>
+ 		<Panel id="Store" hittest="false">
+ 			<Panel id="StoreContainer">
+ 				<Panel id="StoreInner">
+	 				<Panel id="StoreMenu" >
+						<Panel id="StoreShards">
+							<Image id="StoreShardsImage" src="file://{resources}/images/interface/currency.png" />
+							<Label id="StoreShardsLabel" text="{s:currency}" />
+						</Panel>
+	 					<Button id="roll" class="StoreButton SwitchButton" />
+	 					<Button id="aura" class="StoreButton SwitchButton" />
+	 					<Button id="pet" class="StoreButton SwitchButton" />
+	 					<Button id="titul" class="StoreButton SwitchButton" />
+	 					<Button id="teleportation_effect" class="StoreButton SwitchButton" />
+	 					<Button id="music" class="StoreButton SwitchButton" />
+	 				</Panel>
+	 				<Panel id="StoreBody">
+						<Panel id="StoreHoverBackground"/>
+						<Button id="StoreButtonBack"/>
+		 			    <Panel id="StoreInside">
+
+		 			    </Panel>
+	 				</Panel> 				
+	 			</Panel>
+ 			</Panel>
+ 			<Button id="StoreButton" onactivate="ShowStore()">
+					<Image id="StoreButtonImage" src="file://{resources}/images/interface/store.png" />
+ 			</Button>
+ 		</Panel>
+	</Panel>
+</root>
