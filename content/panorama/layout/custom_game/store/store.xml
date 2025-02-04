@@ -27,7 +27,6 @@
         </snippet>         
 	</snippets>
 	<Panel class="Main" hittest="false">
-		<Panel id="BackgroundBlur"/>
  		<Panel id="Store" hittest="false">
  			<Panel id="StoreContainer">
  				<Panel id="StoreInner">
