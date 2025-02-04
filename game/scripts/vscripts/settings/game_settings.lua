@@ -44,7 +44,7 @@ if GetMapName() == "warsong" then
 
     BONUS_SPEED = 20
     FLAG_BONUS_SPEED = 5
-    MAX_SPEED = 550
+    MAX_SPEED = 650
     FLAG_CARRIER_MAX_SPEED = 390
 
     BAN_TIME = 3 -- Время на бан
