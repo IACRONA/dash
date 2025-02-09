@@ -11,6 +11,10 @@
 	{
 		"Ability6"		"tinker_rearm_custom"
 	}
+	// "npc_dota_hero_juggernaut"
+	// {
+	// 	"Ability3" "kuyudzaki_slash"
+	// }
 	"npc_dota_hero_crystal_maiden"
 	{
 		"DisableWearables" "1"
@@ -275,4 +279,8 @@
 		"Ability16" "special_bonus_unique_skeleton_king_deadman_field_amp_damage_in_field"
 		"Ability17" "special_bonus_unique_skeleton_king_deadman_field_amp_reflect_spell_damage"
 	}
+	// "npc_dota_hero_earthshaker"
+	// {
+	// 	"Ability2" "earthshaker_totem_custom"
+	// }
 }

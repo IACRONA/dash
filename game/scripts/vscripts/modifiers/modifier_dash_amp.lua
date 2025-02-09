@@ -8,9 +8,12 @@ function modifier_dash_amp:OnCreated(kkd)
     if not IsServer() then return end
     local lvl = kkd.lvl
     if lvl == nil  or lvl == 0 then return self:Destroy() end
-    self.HEALTH_AMP = (HEALTH_AMP/100) * lvl
-    self.ARMOR_AMP = (ARMOR_AMP/100) * lvl
-    self.DAMAGE_AMP = (DAMAGE_AMP/100) * lvl
+    local ha = HEALTH_AMP or 0
+    local ar = ARMOR_AMP or 0
+    local da = DAMAGE_AMP or 0
+    self.HEALTH_AMP = (ha/100) * lvl
+    self.ARMOR_AMP = (ar/100) * lvl
+    self.DAMAGE_AMP = (da/100) * lvl
     self.creep_dmg = self:GetParent():GetAttackDamage()
     self.creep_armor = self:GetParent():GetPhysicalArmorValue(false)
     self:SetHasCustomTransmitterData(true)

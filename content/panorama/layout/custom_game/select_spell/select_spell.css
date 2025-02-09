@@ -114,7 +114,7 @@
 .fate_block_bg {
   width: 100%;
   height: 100%;
-  background-image: url("file://{images}/custom_game/talents/red_background.png");
+  background-image: url("file://{images}/custom_game/talents/red_background_fate.png");
   background-size: 100%;
 }
 
@@ -151,11 +151,13 @@
 }
 
 .spell_block_image {
-  width: 92px;
-  height: 92px;
-  margin-left: 35px;
-  margin-top: 17px;
+  width: 73px;
+  height: 73px;
+  margin-left: 13px;
+  margin-bottom: 4px;
   vertical-align: center;
+  horizontal-align: left;
+  border-top-left-radius: 14px;
 }
 
 .spell_block_text {
@@ -163,7 +165,7 @@
   height: 20px;
   vertical-align: center;
   z-index: 3;
-  margin-left: 115px;
+  margin-left: 95px;
   color: white;
   font-weight: semi-bold;
   text-transform: uppercase;
@@ -267,12 +269,19 @@
   background-image: url("file://{images}/custom_game/fate_active.png");
   background-size: 100%;
 }
-
-.spell_block_icon {
-  width: 96px;
-  height: 96px;
+.spell_block_icon_fate {
+  width: 92px;
+  height: 92px;
   margin-left: 15px;
-  margin-top: 25px;
+  margin-top: 27px;
+  border-top-left-radius: 20px;
+}
+.spell_block_icon {
+  width: 74px;
+  height: 74px;
+  margin-left: 15px;
+  margin-top: 27px;
+  border-top-left-radius: 20px;
 }
 
 .talent_block_icon {

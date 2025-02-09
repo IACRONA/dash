@@ -8,6 +8,9 @@
 #base "heroes/cursed_knight_abilities.kv"
 #base "heroes/chen_abilities.kv"
 #base "heroes/broodmother_abilities.kv"
+#base "heroes/earthshaker_abilities.kv"
+#base "heroes/juggernaut_abilities.kv"
+
 "DOTAAbilities"
 {
 	"ability_use"

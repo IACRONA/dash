@@ -65,12 +65,6 @@
     // Upgrades
     "cooldown_and_manacost_upgrade"    "%Перезарядки и Расхода маны"
 
-    // Магазин предметов 
-    "DOTA_shop_item_reroll"                                             "Reroll 1X"
-    "DOTA_shop_item_titul_armor"                                             "Титул Защиты"
-    "DOTA_shop_item_titul_five"                                             "Титул дай пять"
-    "DOTA_shop_item_aura_autumn"                                             "Аура осени"
-    "DOTA_shop_item_aura_aghanim"                                             "Аура аганима"
     // Кастомный Rearm
     "DOTA_Tooltip_ability_tinker_rearm_custom"												    "Rearm"
     "DOTA_Tooltip_ability_tinker_rearm_custom_abilitydraft_note"							    "Если у способности есть заряды, их число будет увеличиваться на 1 с каждым применением Rearm."
@@ -1352,6 +1346,13 @@
     // Earth Spirit
 
     // Earthshaker
+    "DOTA_Tooltip_ability_earthshaker_totem_custom" "Тотем Разрушения"
+    "DOTA_Tooltip_ability_earthshaker_totem_custom_Description" "Шейкер ударяет тотемом по земле и подбрасывает врагов в воздух. Тотем иногда создает искру земли что может создать усиленный урон (чистый)"
+    "DOTA_Tooltip_ability_earthshaker_totem_custom_magic_damage" "УРОН:"
+    "DOTA_Tooltip_ability_earthshaker_totem_custom_chance_iskr" "ШАНС НА ИСКРУ:"
+    "DOTA_Tooltip_ability_earthshaker_totem_custom_pure_damage" "УСИЛЕННЫЙ УРОН:"
+    "DOTA_Tooltip_ability_earthshaker_totem_custom_Lore" "Шейкер может призвать тотемы разрушения, которые могут наносить урон и оглушать врагов в радиусе."
+    
 
     // Elder Titan
     "DOTA_Tooltip_ability_elder_titan_echo_stomp_lua"                                       "Echo Stomp"
@@ -3188,6 +3189,25 @@
     "bp_timer_remaining_time_left"      " Время закончилось. Вы можете получить награды"
     "bp_redeem_all"                     "Получить награды"
 
+    "payment_sub_content_line_fortune"          "+{d:value} Удача"
+    "payment_sub_content_line_currency"         "+{d:value} Боевая Слава"
+    "payment_sub_content_line_exp"              "+{d:value} Опыт Боевого Пропуска"
+    "payment_sub_content_line_exp_boost"        "+{d:value}% Получение Опыта Боевого Пропуска"
+    "payment_sub_content_line_daily"            "+{d:value} Ежедневных заданий"
+    "payment_sub_content_line_supp_items"       "+Предметы для поддержавших"
+    "payment_sub_content_line_supp_items_2"     "+Эксклюзивные предметы"
+    "payment_sub_content_line_dev_chat"         "+Чат с разработчиками"
+
+    "payment_sub_content_line_fast_pick"        "• Выбор героя раньше других на 5сек."
+    "payment_sub_content_line_fastest_pick"     "• Выбор героя раньше других на 10сек."
+    "payment_sub_content_line_instant_delivery" "• Мгновенная доставка предметов"
+    "payment_sub_content_line_rerolls"          "• {d:value} бесплатных Рероллов в каждой игре (неиспользованные Рероллы не накапливаются)"
+    "payment_sub_content_line_common_ability_choice"        "• {d:value} доп. выбор для обычных Улучшений"
+    "payment_sub_content_line_ability_choice"               "• {d:value} доп. выбор для всех Улучшений"
+    "payment_sub_content_line_consumable_rerolls"           "• {d:value} Расходуемых Рероллов"
+    "payment_sub_content_line_legendary_lagresses"          "• {d:value} Легендарные Щедроты"
+    "payment_sub_content_line_breathtaking_benefactions"    "• {d:value} Завораживающая Милость"
+
     "payment_sub_price"                         "{s:price}/месяц"
     "sub_unlock"                            "Получить"
     "sub_extend"                            "Расширить"
@@ -3248,7 +3268,31 @@
     "MISC"              "Другое"
     "VOICE_LINE"        "Фразы для чата"
 
+    "default_item_description_TREASURES"        "Сундук с косметическими предметами"
+    "default_item_description_AURA"             "Декоративная аура для героя"
+    "default_item_description_PET"              "Преданный компаньон, следующий за вами в бой"
+    "default_item_description_KILL_EFFECT"      "Эффект, играющий при убийстве врагов"
+    "default_item_description_COSMETIC_SKILL"   "Косметический навый для развлечения"
+    "default_item_description_HIGH_FIVE"        "Дай пять друзьям! Или врагам! Или всем сразу!"
+    "default_item_description_SPRAY"            "Оставьте след на поле боя с этим спреем"
+    "default_item_description_HERO_EFFECT"      "Покрывает вашего героя специальным эффектом"
+    "default_item_description_MISC"             "Разное"
 
+    "default_item_description_bundle"       "Содержит несколько разных предметов"
+    "default_item_description_currency"     "Немного блестящих монет"
+
+    "gift_code_unwrap"                      "Код применен!"
+    "gift_code_redeem_header"               "Применить Код"
+    "gift_code_redeem"                      "Применить"
+
+    "gift_code_header_item"                 "Предмет"
+    "gift_code_header_gift_code"            "Код"
+    "gift_code_header_gift_code_hint"       "(Нажмите чтобы скопировать)"
+    "gift_code_header_status"               "Статус"
+    "gift_code_header_refresh"              "Обновить"
+
+    "gift_code_hint_how_to_buy"             "Как купить подарочный код"
+    "gift_code_hint_how_to_gift"            "Как отправить подарочный код"
 
     "gift_code_hint_how_to_buy_1"   "Выберите подписку или набор для подарка"
     "gift_code_hint_how_to_buy_2"   "На этапе подтверждения оплаты выберите <font color='#f5dfc6'>'Получить как Подарочный Код'</font>."

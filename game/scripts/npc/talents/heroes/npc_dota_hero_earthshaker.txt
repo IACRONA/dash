@@ -14,30 +14,23 @@
 			"operator" "OP_ADD"
 		}
 	}
-	"earthshaker_enchant_totem"
+	"earthshaker_totem_custom"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "5"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 		}
-		"totem_damage_percentage"
+		"magic_damage"
 		{
-			"value" "50"
+			"value" "25"
 			"operator" "OP_ADD"
 		}
-		"scepter_cleave_pct"
+		"pure_damage"
 		{
-			"value" "6"
+			"value" "20"
 			"operator" "OP_ADD"
-			"max_count" "10"
-			"linked_special_values"
-			{
-				"scepter_cleave_distance" "35"
-				"scepter_cleave_ending_width" "30"
-				"scepter_cleave_starting_width" "30"
-			}
 		}
 	}
 	"earthshaker_aftershock"

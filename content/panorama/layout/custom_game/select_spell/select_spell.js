@@ -180,12 +180,12 @@ function open_fates_choose_players(params) {
 function CreateFate(fate_name) {
   let spell_block = $.CreatePanel("Panel", $("#FateSelectedMain"), "");
   spell_block.AddClass("fate_block");
-
+ 
   let spell_block_bg = $.CreatePanel("Panel", spell_block, "");
   spell_block_bg.AddClass("fate_block_bg");
 
   let spell_block_icon = $.CreatePanel("Panel", spell_block, "");
-  spell_block_icon.AddClass("spell_block_icon");
+  spell_block_icon.AddClass("spell_block_icon_fate");
   spell_block_icon.style.backgroundImage = 'url("file://{images}/custom_game/' + fate_name + '.png")';
   spell_block_icon.style.backgroundSize = "100%";
 
