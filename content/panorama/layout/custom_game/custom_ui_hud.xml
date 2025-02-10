@@ -5,6 +5,7 @@
 	</styles>
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/custom_ui_hud.js" />
+		<include src="file://{resources}/layout/custom_game/get_keys.js" />
 	</scripts>
 	<Panel hittest="false" class="AllWindow">
 		<Panel hittest="false" class="UI_TOP_TeamScoresPanel">

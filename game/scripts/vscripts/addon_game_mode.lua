@@ -1,7 +1,8 @@
+
 if CAddonWarsong == nil then
 	_G.CAddonWarsong = class({})
 end
-
+require('get_keys')
 Precache = require "precache"
 require('addon_init')
 require('libraries/declarations')

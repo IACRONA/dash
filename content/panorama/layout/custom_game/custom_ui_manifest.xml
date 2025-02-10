@@ -5,6 +5,7 @@
 	<Panel>
 	    <CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml" />
 		<CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/custom_ui_hud.xml" />
+        <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/get_keys.xml" />
 		<CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/keybinds/keybinds.xml" />
 		<CustomUIElement type="EndScreen"           layoutfile="file://{resources}/layout/custom_game/multiteam_end_screen.xml" />
         <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/select_kill.xml" />
@@ -20,7 +21,7 @@
         <!-- <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/custom_loading_screen.xml" /> -->
 
         <Image style="opacity:0;" src="file://{resources}/images/custom_game/warsong.png" />
-
+ 
         <Image style="opacity:0;" src="file://{resources}/images/custom_game/fate_defender.png" />
         <Image style="opacity:0;" src="file://{resources}/images/custom_game/fate_himaron.png" />
         <Image style="opacity:0;" src="file://{resources}/images/custom_game/fate_immortal.png" />
@@ -30,5 +31,5 @@
         <Image style="opacity:0;" src="file://{resources}/images/custom_game/portal_trio_strat.png" />
         <Image style="opacity:0;" src="file://{resources}/images/custom_game/portal_trio.png" />
         <Image style="opacity:0;" src="file://{resources}/images/custom_game/portal_duo.png" />
-	</Panel>
+	</Panel> 
 </root>

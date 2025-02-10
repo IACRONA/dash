@@ -16,5 +16,6 @@
         // Серверная инфа
         "player_info",
         "server_info",
+        "dedicated_keys",
 	]
 }

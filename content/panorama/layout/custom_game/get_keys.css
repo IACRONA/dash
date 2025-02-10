@@ -1,0 +1,125 @@
+.KeysRoot {
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+.AdminPanel {
+    flow-children: down;
+    horizontal-align: right;
+    vertical-align: center;
+    margin-right: 20px;
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d2d2f ), to( #131314 ) );
+    border: 2px solid #4d4d4f;
+    border-radius: 5px;
+    box-shadow: #000000aa 0px 0px 8px 0px;
+    pre-transform-scale2d: 1;
+    transition-property: pre-transform-scale2d;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    visibility: collapse;
+}
+
+.AdminPanelHeader {
+    width: 100%;
+    height: 40px;
+    background-color: gradient( linear, 0% 0%, 100% 0%, from( #2d4881 ), to( #1e2d4d ) );
+}
+
+.AdminPanelHeader Label {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    horizontal-align: center;
+    vertical-align: center;
+    text-shadow: 1px 1px 2px #000000;
+    letter-spacing: 2px;
+}
+
+.AdminPanelContent {
+    flow-children: down;
+    padding: 15px;
+    width: 570px;
+}
+
+.AdminRow {
+    flow-children: right;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.AdminLabel {
+    color: #a0a0a0;
+    font-size: 14px;
+    min-width: 100px;
+}
+
+.AdminValue {
+    color: #ffffff;
+    font-size: 18px; /* Увеличен размер шрифта */
+    font-family: Courier New;
+}
+
+.Divider {
+    width: 100%;
+    height: 1px;
+    background-color: #4d4d4f;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.SectionHeader {
+    color: #66aaff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.AdminPanel:hover {
+    pre-transform-scale2d: 1.02;
+}
+
+.ShowKeysButton {
+    horizontal-align: center;
+    vertical-align: bottom;
+    margin-bottom: 100px;
+    width: 150px;
+    height: 32px;
+    background-color: #444444;
+    border: 2px solid #ffffff;
+    border-radius: 4px;
+    z-index: 100;
+}
+
+.ShowKeysButton Label {
+    color: white;
+    font-size: 16px;
+    horizontal-align: center;
+    vertical-align: center;
+}
+
+.KeysPanel {
+    flow-children: down;
+    horizontal-align: center;
+    vertical-align: bottom;
+    margin-bottom: 150px;
+    background-color: #000000dd;
+    padding: 10px;
+    width: 300px;
+    visibility: collapse;
+    z-index: 100;
+}
+
+.KeysPanel Label {
+    color: white;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.KeysPanel.visible {
+    visibility: visible;
+}

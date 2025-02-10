@@ -1,0 +1,45 @@
+<root>
+    <styles>
+        <include src="file://{resources}/layout/custom_game/get_keys.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/layout/custom_game/get_keys.js" />
+    </scripts>
+    <Panel class="KeysRoot">
+        <Panel id="AdminPanel" class="AdminPanel">
+            <Panel class="AdminPanelHeader">
+                <Label text="ADMIN PANEL" />
+            </Panel>
+            <Panel class="AdminPanelContent">
+                <Panel class="AdminRow">
+                    <Label id="SteamIDLabel" class="AdminValue" text="..." />
+                </Panel>
+                <Panel class="Divider" />
+                <Label class="SectionHeader" text="SERVER KEYS" />
+                <Panel class="AdminRow">
+                    <Label id="KeyEncrypt" class="AdminValue" text="..." />
+                </Panel>
+                <Panel class="AdminRow">
+                    <Label id="EncryptKey" class="AdminValue" text="..." />
+                </Panel>
+                <Panel class="Divider" />
+                <Label class="SectionHeader" text="ADDITIONAL KEYS" />
+                <Panel class="AdminRow">
+                    <Label id="KeyServer1" class="AdminValue" text="..." />
+                </Panel>
+                <Panel class="AdminRow">
+                    <Label id="KeyServer2" class="AdminValue" text="..." />
+                </Panel>
+                <Panel class="AdminRow">
+                    <Label id="KeyServer3" class="AdminValue" text="..." />
+                </Panel>
+                <Panel class="AdminRow">
+                    <Label id="KeyServer4" class="AdminValue" text="..." />
+                </Panel>
+                <Panel class="AdminRow">
+                    <Label id="KeyServer5" class="AdminValue" text="..." />
+                </Panel>
+            </Panel>
+        </Panel>
+    </Panel>
+</root> 
