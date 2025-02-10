@@ -8,7 +8,7 @@ local souls_modifier_name = "chen_soul_persuasion_passive"
 
 function chen_soul_persuasion:Spawn()
     if IsServer() then
-        self.summon_list = {}
+        self.summonList = {}
         self.martyrdom_cooldown_end = 0
     end
 end
@@ -23,7 +23,7 @@ function chen_soul_persuasion:OnItemEquipped(item)
     if not caster:HasScepter() then return end
 
     self:ValidateCurrentSummons()
-    for _, unit in pairs(self.summon_list or {}) do
+    for _, unit in pairs(self.summonList or {}) do
         if not unit:HasAbility("chen_martyrdom") then
             self:AddMartyrdom(unit)
         end
@@ -72,10 +72,10 @@ function chen_soul_persuasion:OnSpellStart()
     local summon_max = self:GetSpecialValueFor("creeps_max_summoned")
     self:ValidateCurrentSummons()
 
-    if not self.summon_list then self.summon_list = {} end
+    if not self.summonList then self.summonList = {} end
 
-    if #self.summon_list >= summon_max then
-        local unit = table.remove(self.summon_list, 1)
+    if #self.summonList >= summon_max then
+        local unit = table.remove(self.summonList, 1)
         unit:ForceKill(false)
     end
 
@@ -84,7 +84,7 @@ function chen_soul_persuasion:OnSpellStart()
     local modifier = parent:FindModifierByName(souls_modifier_name)
     modifier:SpendSouls(summon_souls)
 
-    local creep_count = math.min(self:GetSpecialValueFor("summon_count"), summon_max - #self.summon_list)
+    local creep_count = math.min(self:GetSpecialValueFor("summon_count"), summon_max - #self.summonList)
 
     for _ = 1, creep_count do
         self:CreateCreep(current_data.creeps)
@@ -93,10 +93,10 @@ end
 
 
 function chen_soul_persuasion:ValidateCurrentSummons()
-    for unit_index = #(self.summon_list or {}), 1, -1 do
-        local unit_handle = self.summon_list[unit_index]
+    for unit_index = #(self.summonList or {}), 1, -1 do
+        local unit_handle = self.summonList[unit_index]
         if not unit_handle or unit_handle:IsNull() or not unit_handle:IsAlive() then
-            table.remove(self.summon_list, unit_index)
+            table.remove(self.summonList, unit_index)
         end
     end
 end
@@ -114,7 +114,7 @@ function chen_soul_persuasion:CreateCreep(creeps_data)
 
     FindClearSpaceForUnit(unit, spawn_point, true)
 
-    table.insert(self.summon_list, unit)
+    table.insert(self.summonList, unit)
 
     local min_health = self:GetSpecialValueFor("health_min") + self:GetSpecialValueFor("bonus_health_per_level") * parent:GetLevel()
 

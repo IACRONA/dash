@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "6"
 		}
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -21,7 +21,7 @@
 		"damage"
 		{
 			"value" "70"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"puck_waning_rift"
@@ -29,24 +29,24 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "6"
 		}
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "60"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"max_distance"
 		{
 			"value" "60"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -55,7 +55,7 @@
 		"shard_attack_range_bonus"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -68,12 +68,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"coil_initial_damage"
 		{
 			"value" "70"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"coil_break_damage" "80"
@@ -82,7 +82,7 @@
 		"coil_radius"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "4"
 			"linked_special_values"
 			{

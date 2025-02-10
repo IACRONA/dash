@@ -5,7 +5,7 @@
 		"bonus_move_speed"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -16,7 +16,7 @@
 		"bonus_armor"
 		{
 			"value" "4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"maim_damage" "50"
@@ -25,7 +25,7 @@
 		"ensnare_chance"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -38,7 +38,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"troll_warlord_whirling_axes_melee"
@@ -46,7 +46,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -54,7 +54,7 @@
 		"axe_damage"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"troll_warlord_whirling_axes_melee"
@@ -66,7 +66,7 @@
 		"axe_spread"
 		{
 			"value" "4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -87,7 +87,7 @@
 		"attack_speed"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"troll_warlord_battle_trance"
@@ -95,23 +95,23 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"multiplicative_target"	"75"
 		}
 		"lifesteal"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"attack_speed"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"trance_duration"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 		}
 	}

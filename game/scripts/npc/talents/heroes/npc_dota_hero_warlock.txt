@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"search_aoe"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 
 			"linked_abilities"
@@ -26,7 +26,7 @@
 		"damage_share_percentage"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			
 			"linked_abilities"
 			{
@@ -43,7 +43,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_special_values"
 			{
 				"duration" "1"
@@ -52,7 +52,7 @@
 		"damage"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"warlock_upheaval"
@@ -60,18 +60,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"aoe"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"damage_per_second"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"max_damage" "33"
@@ -83,12 +83,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"golem_hp"
 		{
 			"value" "640"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"golem_hp_scepter" "520"
@@ -109,7 +109,7 @@
 		"golem_dmg"
 		{
 			"value" "46"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"golem_dmg_scepter" "34"

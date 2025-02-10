@@ -5,19 +5,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "45"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"leshrac_diabolic_edict"
@@ -25,19 +25,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "6"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"leshrac_lightning_storm"
@@ -45,7 +45,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 			"linked_abilities"
 			{
@@ -58,12 +58,12 @@
 		"damage"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -76,7 +76,7 @@
 		"jump_count"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 		}
 	}
@@ -85,13 +85,13 @@
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "6"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

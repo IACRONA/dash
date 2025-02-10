@@ -5,25 +5,25 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"delay"
 		{
 			"value" "-0.175"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "4"
 			"min_rarity" "rare"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"blast_damage"
 		{
 			"value" "65"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"pugna_decrepify"
@@ -31,18 +31,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"bonus_heal_amp_pct_allies"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bonus_spell_damage_pct"
 		{
 			"value" "-10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "6"
 		}
 	}
@@ -51,13 +51,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"mana_multiplier"
 		{
 			"value" "0.15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"pugna_life_drain"
@@ -65,12 +65,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"health_drain"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

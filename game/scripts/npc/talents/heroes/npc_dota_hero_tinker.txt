@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "15"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"multiplicative_target"	"92.19"
 		}
 		"laser_damage"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"tinker_march_of_the_machines"
@@ -19,19 +19,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "20"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"multiplicative_target"	"95.69"
 		}
 		"damage"
 		{
 			"value" "8"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"heal_per_second"
 				{
 					"value" "6"
-					"operator" "OP_ADD"
+					"operator" " ADD"
 					"RequiresFacetID" "1"
 				}
 			}
@@ -39,7 +39,7 @@
 		"splash_radius"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -48,7 +48,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "15"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"multiplicative_target"	"93.75"
 			"linked_abilities"
 			{
@@ -57,7 +57,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "15"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 						"multiplicative_target"	"91.67"
 					}
 				}
@@ -66,12 +66,12 @@
 		"damage_absorb"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"status_resistance"
 		{
 			"value" "5"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"multiplicative_target"			"100"
 			"multiplicative_base_value"		"40"
@@ -79,14 +79,14 @@
 		"barrier_duration"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 			"linked_special_values"
 			{
 				"flicker_range"
 				{
 					"value" "50"
-					"operator" "OP_ADD"
+					"operator" " ADD"
 					"RequiresFacetID" "2"
 				}
 			}
@@ -97,7 +97,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 	}
 }

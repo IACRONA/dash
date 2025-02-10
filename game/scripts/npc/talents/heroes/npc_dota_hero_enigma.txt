@@ -5,12 +5,12 @@
 		"damage"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"enigma_house_bolt"
@@ -18,12 +18,12 @@
 		"damage"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"damage_tick"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"enigma_midnight_pulse"
@@ -31,19 +31,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"radius"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"base_damage"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"enigma_black_hole_custom"
@@ -51,19 +51,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"multiplicative_target"	"95"
 		}
 		"damage"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"scepter_pct_damage"
 				{
 					"value" "0.7"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 
 					"multiplicative_target"			"25"
 					"multiplicative_base_value"		"3.5"
@@ -73,7 +73,7 @@
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{

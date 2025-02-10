@@ -5,12 +5,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"damage_reduction"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "6"
 			"linked_special_values"
 			{
@@ -20,7 +20,7 @@
 		"enfeeble_tick_damage"
 		{
 			"value" "8"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"bane_brain_sap"
@@ -28,17 +28,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "7"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"brain_sap_damage"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"shard_radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -51,13 +51,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "3"
 		}
 		"nightmare_invuln_time"
 		{
 			"value" "0.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "4"
 		}
 		"bonus_attack_speed"
@@ -70,13 +70,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"fiend_grip_damage"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

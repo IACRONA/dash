@@ -5,12 +5,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -21,7 +21,7 @@
 		"damage"
 		{
 			"value" "55"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"speed" "50"
@@ -33,12 +33,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"bonus_ms"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"shard_damage" "45"
@@ -47,7 +47,7 @@
 		"stun_radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -56,19 +56,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"techies_land_mines"
@@ -76,7 +76,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"techies_minefield_sign"
@@ -84,7 +84,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -92,13 +92,13 @@
 		"mres_reduction"
 		{
 			"value" "2.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "110"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"techies_minefield_sign"

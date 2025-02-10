@@ -5,18 +5,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "12"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"bonus_damage"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"lifesteal_pct"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"broodmother_spin_web_custom"
@@ -24,17 +24,17 @@
 		// "bonus_movespeed"
 		// {
 		// 	"value" "7"
-		// 	"operator" "OP_ADD"
+		// 	"operator" " ADD"
 		// }
 		"invisible_delay"
 		{
 			"value" "0.05"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"radius"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"broodmother_incapacitating_bite"
@@ -42,18 +42,18 @@
 		"miss_chance"
 		{
 			"value" "5"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "2"
 		}
 		"attack_damage"
 		{
 			"value" "12"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bonus_movespeed"
 		{
 			"value" "-5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "8"
 		}
 	}
@@ -62,7 +62,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "11"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"broodmother_sticky_snare"
@@ -70,7 +70,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "11"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -78,7 +78,7 @@
 		"damage"
 		{
 			"value" "80"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"damage_bonus" "2.5"
@@ -98,7 +98,7 @@
 		"tooltip_spiderling_hp"
 		{
 			"value" "200"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{

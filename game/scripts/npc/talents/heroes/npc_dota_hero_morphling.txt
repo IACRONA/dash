@@ -5,18 +5,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"damage"
 		{
 			"value" "80"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"width"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "8"
 		}
 	}
@@ -25,7 +25,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -34,7 +34,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -42,12 +42,12 @@
 		"damage_base"
 		{
 			"value" "65"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"damage_max"
 		{
 			"value" "0.4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"damage_min" "0.1"
@@ -64,7 +64,7 @@
 		"shared_cooldown"
 		{
 			"value" "-3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "1"
 			"linked_abilities"
 			{
@@ -80,7 +80,7 @@
 		"mana_cost"
 		{
 			"value" "-10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "2"
 			"linked_abilities"
 			{
@@ -96,26 +96,26 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_special_values"
 			{
 				"scepter_illusion_outgoing"
 				{
 					"value" "20"
-					"operator" "OP_ADD"
+					"operator" " ADD"
 				}
 			}
 		}
 		"duration"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"scepter_illusion_incoming"
 				{
 					"value" "-45"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 					
 					"multiplicative_target" "0"
 					"multiplicative_base_value" "300"

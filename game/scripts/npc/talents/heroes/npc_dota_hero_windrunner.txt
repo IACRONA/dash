@@ -5,19 +5,19 @@
 		"shackle_angle"
 		{
 			"value" "7"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "4"
 		}
 		"shackle_distance"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 		}
 		"shackle_count"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 		}
 	}
@@ -26,18 +26,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"powershot_damage"
 		{
 			"value" "90"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"arrow_width"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "8"
 			"linked_special_values"
 			{
@@ -50,7 +50,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "6"
 			"linked_abilities"
 			{
@@ -59,7 +59,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -67,7 +67,7 @@
 		"movespeed_bonus_pct"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -83,12 +83,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"focusfire_damage_reduction"
 		{
 			"value" "6"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

@@ -5,7 +5,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "12"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -14,7 +14,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "12"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -22,7 +22,7 @@
 		"sprout_damage"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"sprout_heal_per_second" "6"
@@ -38,14 +38,14 @@
 		"sprout_damage_radius"
 		{
 			"value" "65"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count"	"6"
 			"linked_special_values"
 			{
 				"vision_range"
 				{
 					"value" "65"
-					"operator" "OP_ADD"
+					"operator" " ADD"
 				}
 			}
 			"linked_abilities"
@@ -55,12 +55,12 @@
 					"radius"
 					{
 						"value" "65"
-						"operator" "OP_ADD"
+						"operator" " ADD"
 					}
 					"range"
 					{
 						"value" "65"
-						"operator" "OP_ADD"
+						"operator" " ADD"
 					}
 				}
 			}
@@ -71,7 +71,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "20"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -81,7 +81,7 @@
 		"barrier"
 		{
 			"value" "70"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"furion_force_of_nature_custom"
@@ -89,7 +89,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "11"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "8"
 		}
 		"treant_damage"
@@ -105,7 +105,7 @@
 				"special_bonus_unique_furion"	"x3"
 			}
 
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"treant_hp"
 		{
@@ -120,7 +120,7 @@
 				"special_bonus_unique_furion"	"x3"
 			}
 
-			"operator" "OP_ADD"
+			"operator" " ADD"
 
 			"linked_special_values"
 			{
@@ -133,13 +133,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "11"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "45"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"backtrack_duration"
 		{
 			"value" "0.2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -24,19 +24,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"cooldown_percentage"
 		{
 			"value" "4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -46,7 +46,7 @@
 		"damage_per_stack"
 		{
 			"value" "4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"faceless_void_time_lock"
@@ -54,13 +54,13 @@
 		"chance_pct"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 		}
 		"bonus_damage"
 		{
 			"value" "55"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"faceless_void_chronosphere"
@@ -68,14 +68,14 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			"RequiresFacetID" "2"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"RequiresFacetID" "2"
 		}
@@ -85,14 +85,14 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			"RequiresFacetID" "3"
 		}
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"RequiresFacetID" "3"
 		}

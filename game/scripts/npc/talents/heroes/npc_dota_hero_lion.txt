@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "6"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "9"
 		}
 		"damage"
 		{
 			"value" "60"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"lion_voodoo"
@@ -19,7 +19,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "6"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 	}
@@ -28,23 +28,23 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"mana_per_second"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"break_distance"
 		{
 			"value" "60"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"ally_pct"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count"	"5"
 		}
 	}
@@ -53,17 +53,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "3"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"damage"
 		{
 			"value" "45"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"damage_per_kill"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

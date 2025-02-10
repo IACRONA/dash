@@ -5,7 +5,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"linked_abilities"
 			{
@@ -14,7 +14,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -22,12 +22,12 @@
 		"attack_speed_bonus"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"duration"
 		{
 			"value" 	"0.5"
-			"operator" 	"OP_ADD"
+			"operator" 	" ADD"
 			"max_count"	"7"
 		}
 	}
@@ -36,12 +36,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"impact_damage"
 		{
 			"value" "18"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"damage_bonus" "8"
@@ -50,7 +50,7 @@
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count"	"10"
 		}
 	}
@@ -59,12 +59,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"health_gain"
 		{
 			"value" "60"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"clinkz_wind_walk"
@@ -72,7 +72,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 			"linked_abilities"
 			{
@@ -81,7 +81,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -89,7 +89,7 @@
 		"move_speed_bonus_pct"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

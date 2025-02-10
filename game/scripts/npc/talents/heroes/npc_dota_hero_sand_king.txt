@@ -5,19 +5,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "8"
 		}
 		"burrow_width"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "65"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"sandking_sand_storm"
@@ -25,18 +25,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"sand_storm_radius"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"sand_storm_damage"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"sandking_scorpion_strike"
@@ -44,17 +44,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "12"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"attack_damage"
 		{
 			"value" "60"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"radius"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -63,12 +63,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"epicenter_radius_base"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -78,7 +78,7 @@
 		"epicenter_damage"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

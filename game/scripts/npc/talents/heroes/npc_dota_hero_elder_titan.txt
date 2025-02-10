@@ -5,19 +5,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"stomp_damage"
 		{
 			"value" "80"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"elder_titan_ancestral_spirit"
@@ -25,7 +25,7 @@
 		"move_pct_heroes"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"move_pct_cap" "4"
@@ -34,12 +34,12 @@
 		"damage_heroes"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"armor_heroes"
 		{
 			"value" "0.6"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"elder_titan_natural_order"
@@ -47,7 +47,7 @@
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -56,13 +56,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "9"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"crack_width"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -72,7 +72,7 @@
 		"damage_pct"
 		{
 			"value" "5"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"multiplicative_target"			"100"
 			"multiplicative_base_value"		"50"

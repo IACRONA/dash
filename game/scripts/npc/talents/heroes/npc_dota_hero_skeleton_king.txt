@@ -5,12 +5,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"AbilityCastRange"
 		{ 
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"cursed_knight_curse_of_blood"
@@ -18,25 +18,25 @@
 		"cooldown_and_manacost"
 		{
 			"value" "5"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"mag_periodic_damage"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"damage_mag_periodic_ally"
 				{
 					"value" "40"
-					"operator" "OP_ADD"
+					"operator" " ADD"
 				}
 			}
 		}
 		"pure_damage"
 		{
 			"value"	"50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"cursed_knight_curse_of_cold"
@@ -44,22 +44,22 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"movement_slow_per_second"
 		{
 			"value" "12"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"AbilityCastRange"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"perid_damage"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"cursed_knight_deadman_field"
@@ -67,17 +67,17 @@
 		"bonus_damage_in_field"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"cooldown_and_manacost"
 		{
 			"value" "7.5"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}		
 		"reflect_spell_damage"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"cursed_knight_belial_pack"
@@ -85,7 +85,7 @@
 		"amp_damage"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

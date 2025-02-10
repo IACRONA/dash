@@ -5,12 +5,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "12"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"burn_damage"
 		{
 			"value"	"15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"talents"
 			{
 				"special_bonus_unique_jakiro_2"	"x2"
@@ -19,7 +19,7 @@
 		"end_radius"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "8"
 			"linked_special_values"
 			{
@@ -32,18 +32,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "3"
 		}
 		"damage"
 		{
 			"value" "65"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"path_radius"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 		}
 	}
@@ -52,7 +52,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "18"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"jakiro_liquid_ice"
@@ -60,7 +60,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "18"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -68,7 +68,7 @@
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -86,7 +86,7 @@
 		"damage"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"pct_health_damage" "0.25"
@@ -106,13 +106,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

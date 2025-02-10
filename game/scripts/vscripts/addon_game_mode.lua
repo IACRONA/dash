@@ -26,11 +26,12 @@ require('libraries/wear_manager')
 require('libraries/flags_system')
 require('libraries/selection_same')
 require('libraries/abilities_damage')
-require('libraries/upgrades')
+require('libraries/talents')
 require('settings/heroes_items_list')
 require('settings/morph_settings')
 require('settings/abilities_give_list')
 TEST_ACTIVATED = false
+
 
 require('settings/books_settings')
  
@@ -690,7 +691,7 @@ function CAddonWarsong:GiveBooks()
                     self.bookReserve[playerId].common = self.bookReserve[playerId].common + 1
                 else
                     self.bookTicks.common[playerId].count = self.bookTicks.common[playerId].count + 1
-                    Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
+                    Talents:GiveTalent(hero, TALENT_RARITY_COMMON)
                     EmitSoundClient("sphere_choice", player)
                 end
 			elseif self.bookTicks.common[playerId].count >= BOOK_COMMON_LIMIT then
@@ -703,7 +704,7 @@ function CAddonWarsong:GiveBooks()
                     self.bookReserve[playerId].rare = self.bookReserve[playerId].rare + 1
                 else
                     self.bookTicks.rare[playerId].count = self.bookTicks.rare[playerId].count + 1
-                    Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
+                    Talents:GiveTalent(hero, TALENT_RARITY_RARE)
                     EmitSoundClient("sphere_choice", player)
                 end
             end
@@ -714,7 +715,7 @@ function CAddonWarsong:GiveBooks()
                     self.bookReserve[playerId].epic = self.bookReserve[playerId].epic + 1
                 else
                     self.bookTicks.epic[playerId].count = self.bookTicks.epic[playerId].count + 1
-                    Upgrades:QueueSelection(hero, UPGRADE_RARITY_EPIC)
+                    Talents:GiveTalent(hero, TALENT_RARITY_EPIC)
                     EmitSoundClient("sphere_choice", player)
                 end
             end
@@ -771,9 +772,9 @@ function CAddonWarsong:OnNPCSpawned(event)
 					for i=1,HERO_STARTING_LEVEL-1 do
 						hUnit:HeroLevelUp(false)
 					end
-					hUnit.upgrades = {}
+					hUnit.talents = {}
 
-					Upgrades:LoadUpgradesData(hUnit:GetUnitName())
+					Talents:LoadUpgradesData(hUnit:GetUnitName())
 
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_warsong_movespeed_bonus', nil)
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_balance', nil)
@@ -812,9 +813,9 @@ function CAddonWarsong:OnNPCSpawned(event)
 		local is_meepo_clone = hUnit.IsClone and hUnit:IsClone()
 
 		if hUnit:IsIllusion() or is_tempest_double or is_meepo_clone then
-			Upgrades:ProcessClone(hUnit, PlayerResource:GetSelectedHeroEntity(hUnit:GetPlayerOwnerID()))
+			Talents:ProcessClone(hUnit, PlayerResource:GetSelectedHeroEntity(hUnit:GetPlayerOwnerID()))
 		else 
-			Upgrades:ApplySummonUpgrades(hUnit, hUnit:GetUnitName(), owner)
+			Talents:ApplySummonUpgrades(hUnit, hUnit:GetUnitName(), owner)
 		end
 	end
 end
@@ -851,13 +852,13 @@ function CAddonWarsong:OnPlayerConnect(event)
 			local hero = PlayerResource:GetSelectedHeroEntity(playerId)
 			if hero and self.bookReserve[playerId] then
 				 for i = 1, self.bookReserve[playerId].common do
-					Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
+					Talents:GiveTalent(hero, TALENT_RARITY_COMMON)
 				 end
 				 for i = 1, self.bookReserve[playerId].rare do
-					Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
+					Talents:GiveTalent(hero, TALENT_RARITY_RARE)
 				 end
 				 for i = 1, self.bookReserve[playerId].epic do
-					Upgrades:QueueSelection(hero, UPGRADE_RARITY_EPIC)
+					Talents:GiveTalent(hero, TALENT_RARITY_EPIC)
 				 end
 				 self.bookReserve[playerId] = {common = 0, rare = 0, epic = 0} -- Очищаем резерв
 			end
@@ -924,8 +925,9 @@ end
 
 
 function CAddonWarsong:SetWinner(teamWinner) 
-	ServerManager:OnEndGame(function()
-		GameRules:SetGameWinner(teamWinner)
-	end)
+	GameRules:SetGameWinner(teamWinner)
+	-- ServerManager:OnEndGame(function()
+	-- 	GameRules:SetGameWinner(teamWinner)
+	-- end)1
 end
 

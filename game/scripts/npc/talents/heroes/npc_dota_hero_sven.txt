@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "8"
 		}
 		"bolt_aoe"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -21,13 +21,13 @@
 		"damage"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"bolt_speed"
 				{
 					"value" "100"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 
 					"multiplicative_target"			"2000"
 					"multiplicative_base_value"		"1000"
@@ -40,7 +40,7 @@
 		"cleave_distance"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -51,7 +51,7 @@
 		"great_cleave_damage"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"sven_warcry"
@@ -59,12 +59,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"movespeed"
 		{
 			"value" "4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"shard_passive_movespeed" "0.5"
@@ -73,7 +73,7 @@
 		"bonus_armor"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "2"
 			"linked_special_values"
 			{
@@ -83,7 +83,7 @@
 		"base_barrier_amount"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "1"
 		}
 	}
@@ -92,17 +92,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"gods_strength_damage"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bonus_slow_resistance"
 		{
 			"value" "6.25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count"	"8"
 		}
 	}

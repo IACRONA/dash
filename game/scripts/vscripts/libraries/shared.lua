@@ -1,120 +1,75 @@
---[[
-Contents of this file are shared between Lua cliend and Lua server
-Mainly utilities to calculate upgrade values with different operators properly
-]]
+ TalentsUtilities =  TalentsUtilities or {}
 
-UpgradesUtilities = UpgradesUtilities or {}
-UpgradesUtilities._refresh_talents = {}
+ 
 
+ function  TalentsUtilities:ParseTalent(talentData, upgrade_name, talentType, abilityName)
+	talentData.type = talentType
+	talentData.upgrade_name = upgrade_name
+	talentData.operator = OPERATOR_TEXT_TO_NUMBER[talentData.operator or " ADD"]
+	talentData.ability_name = ability_name 
+	
 
---- Check if passed talent name is registered to refresh upgrades cache on learn
----@param talent_name string
----@return boolean
-function UpgradesUtilities:IsTalentRegisteredForRefresh(talent_name)
-	return UpgradesUtilities._refresh_talents[talent_name] ~= nil
-end
-
-
-function UpgradesUtilities:RegisterTalents(talents)
-	for talent_name, _ in pairs(talents) do
-		UpgradesUtilities._refresh_talents[talent_name] = true
-		print("[UpgradeUtilities] registered talent for refresh", talent_name)
-	end
-end
-
-
---- Parses upgrade KV into sane enum form
----@param upgrade_data table
----@param upgrade_name string @ either special value name or generic name
----@param upgrade_type UPGRADE_TYPE
----@param ability_name string @ ability name upgrade related to, or "generic"
-function UpgradesUtilities:ParseUpgrade(upgrade_data, upgrade_name, upgrade_type, ability_name)
-	upgrade_data.type = upgrade_type
-	upgrade_data.upgrade_name = upgrade_name
-	upgrade_data.operator = OPERATOR_TEXT_TO_ENUM[upgrade_data.operator or "OP_ADD"]
-	upgrade_data.ability_name = ability_name or "generic"
-
-	if upgrade_data.rarity then
-		upgrade_data.rarity = RARITY_TEXT_TO_ENUM[upgrade_data.rarity] or UPGRADE_RARITY_COMMON
+	if talentData.rarity then
+		talentData.rarity = RARITY_TEXT_TO_NUMBER[talentData.rarity] or TALENT_RARITY_COMMON
 	end
 
-	if upgrade_data.min_rarity then
-		upgrade_data.min_rarity = RARITY_TEXT_TO_ENUM[upgrade_data.min_rarity] or UPGRADE_RARITY_COMMON
+	if talentData.min_rarity then
+		talentData.min_rarity = RARITY_TEXT_TO_NUMBER[talentData.min_rarity] or TALENT_RARITY_COMMON
 	end
 
-	-- transform string to enum value
-	if upgrade_data.attack_capability then
-		upgrade_data.attack_capability = _G[upgrade_data.attack_capability]
+
+	if talentData.attack_capability then
+		talentData.attack_capability = _G[talentData.attack_capability]
 	end
 
-	-- linked is a table - operator assigned if defined, or defaults to OP_ADD (or override operator from parent)
-	-- linked is a value - operator is OP_ADD (post-processed in upgrades.lua)
+	local default_linked_operator = TALENT_OPERATOR.ADD
 
-	local default_linked_operator = UPGRADE_OPERATOR.ADD
-
-	if upgrade_data.linked_default_operator then
-		default_linked_operator = OPERATOR_TEXT_TO_ENUM[upgrade_data.linked_default_operator]
-		upgrade_data.linked_default_operator = nil
+	if talentData.linked_default_operator then
+		default_linked_operator = OPERATOR_TEXT_TO_NUMBER[talentData.linked_default_operator]
+		talentData.linked_default_operator = nil
 	end
 
-	for _, linked_data in pairs(upgrade_data.linked_special_values or {}) do
+	for _, linked_data in pairs(talentData.linked_special_values or {}) do
 		if type(linked_data) == "table" then
-			linked_data.operator = (linked_data.operator and OPERATOR_TEXT_TO_ENUM[linked_data.operator]) or default_linked_operator
-			UpgradesUtilities:RegisterTalents(linked_data.talents or {})
+			linked_data.operator = (linked_data.operator and OPERATOR_TEXT_TO_NUMBER[linked_data.operator]) or default_linked_operator
 		end
 	end
 
-	for linked_ability, linked_data in pairs(upgrade_data.linked_abilities or {}) do
+	for linked_ability, linked_data in pairs(talentData.linked_abilities or {}) do
 		for special_name, linked_special_data in pairs(linked_data or {}) do
 			if type(linked_special_data) == "table" then
-				linked_special_data.operator = (linked_special_data.operator and OPERATOR_TEXT_TO_ENUM[linked_special_data.operator]) or default_linked_operator
-				UpgradesUtilities:RegisterTalents(linked_data.talents or {})
+				linked_special_data.operator = (linked_special_data.operator and OPERATOR_TEXT_TO_NUMBER[linked_special_data.operator]) or default_linked_operator
 			end
 		end
 	end
 
-	UpgradesUtilities:RegisterTalents(upgrade_data.talents or {})
+	 TalentsUtilities:RegisterTalents(talentData.talents or {})
 end
 
 
---- Returns default base value for upgrade from certain ability at certain level
----@param hero any @ hero owning upgrades
----@param ability_level number
----@param ability_name string
----@param upgrade_name string
----@return number
-function UpgradesUtilities:GetDefaultBaseValue(hero, ability_level, ability_name, upgrade_name)
-	if not ability_name or not upgrade_name or ability_name == "generic" then return 0 end
+
+function  TalentsUtilities:GetDefaultBaseValue(hero, ability_level, ability_name, talentName)
+	if not ability_name or not talentName or ability_name == "generic" then return 0 end
 
 	local ability = hero:FindAbilityByName(ability_name)
 	if not IsValidEntity(ability) then return end
 
-	return ability:GetLevelSpecialValueNoOverride(upgrade_name, ability_level or ability:GetLevel()) or 0
+	return ability:GetLevelSpecialValueNoOverride(talentName, ability_level or ability:GetLevel()) or 0
 end
 
 
 
---- Returns calculated BONUS value from upgrades, accounting for different operators, talents etc.
----@param hero any @ hero owning upgrades
----@param upgrade_value number @ base value of specified upgrade instance
----@param count number @ count of specified upgrade instances
----@param upgrade_data table @ upgrade data itself, which should contain at least operator
----@param ability_level number @ optional, for ability base value calculations
----@param ability_name string @ optional, for ability base value calculations
----@param upgrade_name string @ optional, for ability base value calculations
----@return number
-function UpgradesUtilities:CalculateUpgradeValue(hero, upgrade_value, count, upgrade_data, ability_level, ability_name, upgrade_name)
+function  TalentsUtilities:CalculateUpgradeValue(hero, upgrade_value, count, talentData, ability_level, ability_name, talentName)
 	local result = 0
 	local final_multiplier = 1
 
-	if upgrade_data.facets then
+	if talentData.facets then
 		local facet_id = hero:GetHeroFacetID()
-		local value_override = upgrade_data.facets[tostring(facet_id)]
+		local value_override = talentData.facets[tostring(facet_id)]
 		if value_override then upgrade_value = value_override end
 	end
 
-	-- talent handling - either change the base value or fill final multiplier
-	for talent_name, operation in pairs(upgrade_data.talents or {}) do
+	for talent_name, operation in pairs(talentData.talents or {}) do
 		local operator, value
 
 		if type(operation) == "number" then
@@ -128,27 +83,25 @@ function UpgradesUtilities:CalculateUpgradeValue(hero, upgrade_value, count, upg
 		local talent = hero:FindAbilityByName(talent_name)
 		if IsValidEntity(talent) and talent:GetLevel() > 0 then
 			if operator == "+" then result = result + value end
-			-- multiplier talents are processed after the final value is calculated
-			-- this might need to be changed afterwards for multiplicative talents
+
 			if operator == "x" then final_multiplier = final_multiplier * value end
 		end
 	end
 
 	upgrade_value = upgrade_value * final_multiplier
 
-	if not upgrade_data.operator or upgrade_data.operator == UPGRADE_OPERATOR.ADD then
+	if not talentData.operator or talentData.operator == TALENT_OPERATOR.ADD then
 		result = result + upgrade_value * count
 
-		if upgrade_data.increment then
-			-- arithmetic progression - using fomula N * (2a1 + (N - 1) * D) / 2, where N is count and D is an increment
-			-- and since first increment is always 0 (using base value), then 2a1 can be skipped
-			result = result + count * ((count - 1) * upgrade_data.increment) / 2.0
+		if talentData.increment then
+
+			result = result + count * ((count - 1) * talentData.increment) / 2.0
 		end
 
-	elseif upgrade_data.operator == UPGRADE_OPERATOR.MULTIPLY then
-		local target = upgrade_data.multiplicative_target or DEFAULT_MULTIPLICATION_TARGET
+	elseif talentData.operator == TALENT_OPERATOR.MULTIPLY then
+		local target = talentData.multiplicative_target or DEFAULT_MULTIPLICATION_TARGET
 
-		result = result + (upgrade_data.multiplicative_base_value or UpgradesUtilities:GetDefaultBaseValue(hero, ability_level, ability_name, upgrade_name))
+		result = result + (talentData.multiplicative_base_value or  TalentsUtilities:GetDefaultBaseValue(hero, ability_level, ability_name, talentName))
 
 		if result - target == 0 then return 0 end
 

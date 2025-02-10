@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "14"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"outgoing_damage"
 		{
 			"value" "8"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"outgoing_damage_tooltip" "8"
@@ -20,7 +20,7 @@
 		"incoming_damage"
 		{
 			"value" "-35"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			
 			"multiplicative_target"			"-100"
 			"multiplicative_base_value"		"250"
@@ -31,7 +31,7 @@
 				{
 					"value" "-35"
 				
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 					"multiplicative_target" "0"
 				}
 			}
@@ -42,7 +42,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "18"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "4"
 			"linked_abilities"
 			{
@@ -51,7 +51,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "18"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -62,7 +62,7 @@
 		"pull_strength"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -75,7 +75,7 @@
 		"hits"
 		{
 			"value" "-0.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "6"
 			"min_rarity" "rare"
 			"RequiresFacetID" "1"
@@ -83,13 +83,13 @@
 		"armor_reduction"
 		{
 			"value" "-2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "1"
 		}
 		"damage"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "1"
 			"talents"
 			{
@@ -99,7 +99,7 @@
 		"radius"
 		{
 			"value" "65"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "6"
 			"RequiresFacetID" "1"
 		}
@@ -109,20 +109,20 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"RequiresFacetID" "2"
 		}
 		"status_resistance"
 		{
 			"value" "-5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "7"
 			"RequiresFacetID" "2"
 		}
 		"damage"
 		{
 			"value" "55"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "2"
 			"talents"
 			{
@@ -132,7 +132,7 @@
 		"radius"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "8"
 			"RequiresFacetID" "2"
 		}

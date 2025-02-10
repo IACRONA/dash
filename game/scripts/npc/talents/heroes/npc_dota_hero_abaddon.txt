@@ -5,18 +5,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "7"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"self_damage"
 		{
 			"value" "-10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "4"
 		}
 		"target_damage"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 
 			"linked_special_values"
 			{
@@ -29,7 +29,7 @@
 		"missile_speed"
 		{
 			"value" "130"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"abaddon_aphotic_shield"
@@ -37,12 +37,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "6"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"damage_absorb"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"facets"
 			{
 				"2" "45"
@@ -51,14 +51,14 @@
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"RequiresFacetID" "1"
 		}
 		"absorb_damage_aoe"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"RequiresFacetID" "2"
 		}
@@ -68,18 +68,18 @@
 		"curse_slow"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 		}
 		"curse_attack_speed"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"curse_dps"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

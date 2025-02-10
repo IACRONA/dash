@@ -5,18 +5,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"impact_damage"
 		{
 			"value" "80"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"remnant_watch_distance"
 		{
 			"value" "65"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "6"
 			"linked_special_values"
 			{
@@ -29,13 +29,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "90"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"void_spirit_resonant_pulse"
@@ -43,13 +43,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -60,7 +60,7 @@
 		"damage"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"void_spirit_astral_step"
@@ -68,18 +68,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"radius"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"pop_damage"
 		{
 			"value" "55"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

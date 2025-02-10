@@ -5,19 +5,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "9"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"movement_speed"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"bash_radius"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -26,7 +26,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "7"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"spirit_breaker_planar_pocket"
@@ -34,7 +34,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "7"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -42,7 +42,7 @@
 		"movement_speed"
 		{
 			"value" "4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -55,7 +55,7 @@
 		"status_resistance"
 		{
 			"value" "3"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"multiplicative_target"			"100"
 			"multiplicative_base_value"		"70"
@@ -67,7 +67,7 @@
 					"magic_resistance"
 					{
 						"value" "2"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 
 						"multiplicative_target"			"100"
 						"multiplicative_base_value"		"75"
@@ -81,13 +81,13 @@
 		"chance_pct"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "3"
 		}
 		"damage"
 		{
 			"value" "4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"spirit_breaker_nether_strike"
@@ -95,13 +95,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"multiplicative_target"	"95"
 		}
 		"damage"
 		{
 			"value" "150"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

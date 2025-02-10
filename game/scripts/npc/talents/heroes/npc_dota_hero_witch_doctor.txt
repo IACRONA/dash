@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"bounces_tooltip"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -22,7 +22,7 @@
 		"base_damage"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"witch_doctor_voodoo_restoration"
@@ -30,13 +30,13 @@
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"heal"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"witch_doctor_maledict"
@@ -44,18 +44,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"bonus_damage"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -64,7 +64,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -73,7 +73,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -81,7 +81,7 @@
 		"damage"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"facets"
 			{
 				"3" "9"

@@ -5,7 +5,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -15,7 +15,7 @@
 		"radius"
 		{
 			"value" "70"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -25,7 +25,7 @@
 		"total_damage"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"slark_pounce"
@@ -33,25 +33,25 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"leash_duration"
 		{
 			"value" "0.75"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "3"
 		}
 		"leash_radius"
 		{
 			"value" "-125"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "2"
 		}
 		//"essence_stacks"
 		//{
 		//	"value" "1"
-		//	"operator" "OP_ADD"
+		//	"operator" " ADD"
 		//	"max_count" "5"
 		//}
 	}
@@ -60,7 +60,7 @@
 		"agi_gain"
 		{
 			"value" "0.25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"min_rarity" "epic"
 		}
 	}
@@ -69,7 +69,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 			"linked_abilities"
 			{
@@ -78,7 +78,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -89,12 +89,12 @@
 		"bonus_regen"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bonus_movement_speed"
 		{
 			"value" "16"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"damage_min"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 
 			"linked_special_values"
 			{
@@ -24,7 +24,7 @@
 		"start_width"
 		{
 			"value" "45"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 
 			"linked_special_values"
@@ -41,19 +41,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "8"
 		}
 		"invis_duration"
 		{
 			"value" "0.4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count"	"8"
 		}
 		"leash_radius" // TODO: fix this not updating AbilityCastRange indicator
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -62,19 +62,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"damage_impact"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 
 			"linked_special_values"
 			{
 				"bleed_health_pct"
 				{
 					"value"	"0.5"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 
 					"multiplicative_target"			"10"
 					"multiplicative_base_value"		"5"
@@ -85,13 +85,13 @@
 		// "slow_duration"
 		// {
 		// 	"value" "0.2"
-		// 	"operator" "OP_ADD"
+		// 	"operator" " ADD"
 		// }
 		// Would've been cool but its a boolean not a number sadly
 		// "dagger_pass_through"
 		// {
 		// 	"value" "1"
-		// 	"operator" "OP_ADD"
+		// 	"operator" " ADD"
 		// 	"min_rarity" "epic"
 		// }
 	}
@@ -100,19 +100,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"multiplicative_target"			"90"
 		}
 		"mesmerize_radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"aura_damage"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 
 			"linked_special_values"
 			{

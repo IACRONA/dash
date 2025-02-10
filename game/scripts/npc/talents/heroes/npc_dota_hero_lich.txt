@@ -5,18 +5,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"aoe_damage"
 		{
 			"value" "75"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"lich_frost_shield"
@@ -24,7 +24,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"lich_ice_spire"
@@ -32,7 +32,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -40,7 +40,7 @@
 		"damage_reduction"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 
 			"linked_abilities"
@@ -54,12 +54,12 @@
 		"damage"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -75,13 +75,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"mana_drain"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -94,17 +94,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "7"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"damage"
 		{
 			"value" "55"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"projectile_speed"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "8"
 		}
 	}

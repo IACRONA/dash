@@ -52,11 +52,11 @@ function modifier_ability_upgrades_controller:OnRefresh()
 	-- 	local parent_name = self.parent:GetUnitName()
 	-- 	if self.parent:IsHero() and not self.parent:IsSpiritBear() and parent_name ~= owner_hero:GetUnitName() then
 	-- 		local actual_owner = GetIllusionSource(self.parent)
-	-- 		self.parent.upgrades = actual_owner.upgrades or {}
+	-- 		self.parent.talents = actual_owner.talents or {}
 	-- 		-- and update player ID for client to fetch upgrades from
 	-- 		self.source_player_id = actual_owner:GetPlayerOwnerID()
 	-- 	else
-	-- 		self.parent.upgrades = owner_hero.upgrades or {}
+	-- 		self.parent.talents = owner_hero.talents or {}
 	-- 	end
 	-- end
 
@@ -74,7 +74,7 @@ end
 function modifier_ability_upgrades_controller:HandleCustomTransmitterData(data)
 	self.source_player_id = data.source_player_id
 	self.parent = self.parent or self:GetParent()
-	self.parent.upgrades = CustomNetTables:GetTableValue("ability_upgrades", tostring(self.source_player_id)) or {}
+	self.parent.talents = CustomNetTables:GetTableValue("ability_upgrades", tostring(self.source_player_id)) or {}
 	self.cache = {}
 end
 
@@ -94,7 +94,7 @@ function modifier_ability_upgrades_controller:GetModifierOverrideAbilitySpecial(
 	if not self.parent or self.parent:IsNull() then return 0 end
 	if not params.ability then return 0 end
 	if params.ability:IsItem() then return 0 end
-	if not self.parent.upgrades then return 0 end
+	if not self.parent.talents then return 0 end
 
 	local ability_name = params.ability:GetAbilityName()
 	local special_value = params.ability_special_value
@@ -107,8 +107,8 @@ function modifier_ability_upgrades_controller:GetModifierOverrideAbilitySpecial(
 		special_value = "duration"
 	end
 
-	if not self.parent.upgrades[ability_name]
-	or not self.parent.upgrades[ability_name][special_value]
+	if not self.parent.talents[ability_name]
+	or not self.parent.talents[ability_name][special_value]
 	then
 		return 0
 	end
@@ -139,8 +139,8 @@ function modifier_ability_upgrades_controller:GetModifierOverrideAbilitySpecialV
 		special_value_name = "duration"
 	end
 
-	if not self.parent.upgrades[ability_name]
-	or not self.parent.upgrades[ability_name][special_value_name]
+	if not self.parent.talents[ability_name]
+	or not self.parent.talents[ability_name][special_value_name]
 	then
 		return base_value
 	end
@@ -150,7 +150,7 @@ function modifier_ability_upgrades_controller:GetModifierOverrideAbilitySpecialV
 		return base_value + self.cache[ability_name][special_value_name][special_value_level]
 	end
 
-	local upgrade_data = self.parent.upgrades[ability_name][special_value_name]
+	local upgrade_data = self.parent.talents[ability_name][special_value_name]
 
 	if upgrade_data.RequiresFacetID and upgrade_data.RequiresFacetID ~= self.parent:GetHeroFacetID() then
 		-- print("1) disabled", special_value_name, "wrong facet", upgrade_data.RequiresFacetID, self.parent:GetHeroFacetID())
@@ -162,7 +162,7 @@ function modifier_ability_upgrades_controller:GetModifierOverrideAbilitySpecialV
 		return base_value
 	end
 
-	local added_value = UpgradesUtilities:CalculateUpgradeValue(
+	local added_value =  TalentsUtilities:CalculateUpgradeValue(
 		self.parent, upgrade_data.value, upgrade_data.count, upgrade_data, special_value_level, ability_name, special_value_name
 	)
 
@@ -176,12 +176,12 @@ end
 
 function modifier_ability_upgrades_controller:GetModifierPercentageCooldown(params)
 	if not params.ability or params.ability:IsItem() then return 0 end
-	if not self.parent.upgrades then return 0 end
+	if not self.parent.talents then return 0 end
 
 	local ability_name = params.ability:GetAbilityName()
 
-	if not self.parent.upgrades[ability_name]
-	or not self.parent.upgrades[ability_name].cooldown_and_manacost
+	if not self.parent.talents[ability_name]
+	or not self.parent.talents[ability_name].cooldown_and_manacost
 	then
 		return 0
 	end
@@ -191,9 +191,9 @@ function modifier_ability_upgrades_controller:GetModifierPercentageCooldown(para
 		return self.cache[ability_name].cooldown_and_manacost
 	end
 
-	local upgrade_data = self.parent.upgrades[ability_name].cooldown_and_manacost
+	local upgrade_data = self.parent.talents[ability_name].cooldown_and_manacost
 
-	local added_value = UpgradesUtilities:CalculateUpgradeValue(self.parent, upgrade_data.value, upgrade_data.count, upgrade_data)
+	local added_value =  TalentsUtilities:CalculateUpgradeValue(self.parent, upgrade_data.value, upgrade_data.count, upgrade_data)
 
 	self.cache[ability_name] = self.cache[ability_name] or {}
 	self.cache[ability_name].cooldown_and_manacost = added_value
@@ -220,7 +220,7 @@ function modifier_ability_upgrades_controller:GetModifierSpellAmplify_Percentage
 
 	local ability_name = ability:GetAbilityName()
 
-	local ability_upgrades = attacker.upgrades and attacker.upgrades[ability_name] or {}
+	local ability_upgrades = attacker.talents and attacker.talents[ability_name] or {}
 	if not ability_upgrades or not ability_upgrades.damage then return 0 end
 
 	-- discard damage instances that come not from AbilityDamage
@@ -250,7 +250,7 @@ function modifier_ability_upgrades_controller:GetModifierSpellAmplify_Percentage
 			local current_spell_amp = attacker:GetSpellAmplification(false)
 			self.spell_amp_lock = false
 
-			local upgrade_value = UpgradesUtilities:CalculateUpgradeValue(attacker, base_damage, upgrade_count, damage_upgrade, ability:GetLevel(), ability_name, "damage")
+			local upgrade_value =  TalentsUtilities:CalculateUpgradeValue(attacker, base_damage, upgrade_count, damage_upgrade, ability:GetLevel(), ability_name, "damage")
 
 			return upgrade_value * 100 * (1 + current_spell_amp) / ability_damage_kv
 		end

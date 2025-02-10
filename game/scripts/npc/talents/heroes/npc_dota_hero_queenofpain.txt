@@ -5,12 +5,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"strike_damage"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"duration_damage" "10"
@@ -20,7 +20,7 @@
 		"damage_interval"
 		{
 			"value" "-0.16"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"multiplicative_target"			"0"
 			"multiplicative_base_value"		"2.0"
@@ -31,19 +31,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "6"
 		}
 		"shard_aoe"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"shard_damage"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"queenofpain_scream_of_pain"
@@ -51,18 +51,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"area_of_effect"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"queenofpain_sonic_wave"
@@ -70,17 +70,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"damage"
 		{
 			"value" "90"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"final_aoe"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 
 			"linked_special_values"

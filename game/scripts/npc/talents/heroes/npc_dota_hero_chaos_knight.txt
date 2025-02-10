@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "3"
 		}
 		"damage_max"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"damage_min" "40"
@@ -20,7 +20,7 @@
 		"chaos_bolt_speed"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "7"
 		}
 	}
@@ -29,12 +29,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"armor_reduction"
 		{
 			"value" "1.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"chaos_knight_chaos_strike"
@@ -42,19 +42,19 @@
 		"chance"
 		{
 			"value" "4.33"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"crit_max"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"lifesteal"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"chaos_knight_phantasm"
@@ -62,13 +62,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"outgoing_damage"
 		{
 			"value" "12"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"outgoing_damage_tooltip" "12"
@@ -77,7 +77,7 @@
 		"incoming_damage"
 		{
 			"value" "-35"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"multiplicative_target"			"-100"
 			"multiplicative_base_value"		"150"
@@ -87,7 +87,7 @@
 				"incoming_damage_tooltip"
 				{
 					"value" "-35"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 
 					"multiplicative_target" "0"
 					"multiplicative_base_value" "250"

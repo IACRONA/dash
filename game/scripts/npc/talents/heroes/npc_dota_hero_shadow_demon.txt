@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "7"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"illusion_outgoing_damage"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			
 			"linked_special_values"
 			{
@@ -21,7 +21,7 @@
 		"illusion_incoming_damage"
 		{
 			"value" "-30"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			
 			"multiplicative_target"			"-100"
 			"multiplicative_base_value"		"200"
@@ -32,7 +32,7 @@
 				{
 					"value" "-30"
 				
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 					"multiplicative_target" "0"
 				}
 			}
@@ -43,19 +43,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"damage_reflection_pct"
 		{
 			"value" "3.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"radius"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -64,12 +64,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"stack_damage"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"hit_damage" "15"
@@ -79,13 +79,13 @@
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"speed"
 		{
 			"value" "150"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"shadow_demon_demonic_purge"
@@ -93,7 +93,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"shadow_demon_demonic_cleanse"
@@ -101,7 +101,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -109,7 +109,7 @@
 		"purge_damage"
 		{
 			"value" "150"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"shadow_demon_demonic_cleanse"

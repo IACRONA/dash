@@ -5,7 +5,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"sniper_concussive_grenade"
@@ -13,7 +13,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -21,7 +21,7 @@
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -34,7 +34,7 @@
 		"shrapnel_damage"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"facets"
 			{
 				"2" "60"
@@ -57,13 +57,13 @@
 		"proc_chance"
 		{
 			"value" "6"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"sniper_take_aim"
@@ -71,18 +71,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "15"
 		}
 		"bonus_armor"
 		{
 			"value" "4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"slow"
 		{
 			"value" "-10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "6"
 		}
 	}
@@ -91,12 +91,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"damage"
 		{
 			"value" "105"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

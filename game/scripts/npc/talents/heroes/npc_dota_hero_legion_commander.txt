@@ -5,18 +5,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"damage_per_hero" "10"
@@ -28,7 +28,7 @@
 		"bonus_attack_speed"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"legion_commander_press_the_attack"
@@ -36,18 +36,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"move_speed"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"hp_regen"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"legion_commander_moment_of_courage"
@@ -55,12 +55,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"hp_leech_percent"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"legion_commander_duel"
@@ -68,12 +68,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"reward_damage"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

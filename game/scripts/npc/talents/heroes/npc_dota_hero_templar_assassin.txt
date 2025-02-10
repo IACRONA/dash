@@ -5,19 +5,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"instances"
 		{
 			"value" "0.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"min_rarity" "rare"
 		}
 		"bonus_damage"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"templar_assassin_meld"
@@ -25,17 +25,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"bonus_damage"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bonus_armor"
 		{
 			"value" "-0.8"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"templar_assassin_psi_blades"
@@ -43,13 +43,13 @@
 		"attack_spill_pct"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"attack_spill_width"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -62,7 +62,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -75,7 +75,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -83,12 +83,12 @@
 		"trap_bonus_damage"
 		{
 			"value" "85"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"trap_radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}

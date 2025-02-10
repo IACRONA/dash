@@ -5,18 +5,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "9"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"damage_per_second"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"latch_range"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -29,7 +29,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count"	"10"
 			"linked_abilities"
 			{
@@ -38,7 +38,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -46,7 +46,7 @@
 		"leech_damage"
 		{
 			"value" "12"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"treant_natures_guise"
@@ -58,7 +58,7 @@
 		"radius"
 		{
 			"value" "45"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -78,7 +78,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "15"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"treant_natures_guise"
@@ -90,12 +90,12 @@
 		"heal_per_second"
 		{
 			"value" "8"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bonus_armor"
 		{
 			"value" "4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"treant_natures_guise"
@@ -111,7 +111,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"multiplicative_target"	"85"
 			"linked_abilities"
 			{
@@ -120,7 +120,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "10"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -128,7 +128,7 @@
 		"radius"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "8"
 			"linked_special_values"
 			{
@@ -147,7 +147,7 @@
 		"damage"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

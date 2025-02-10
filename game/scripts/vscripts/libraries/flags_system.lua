@@ -128,10 +128,10 @@ function CAddonWarsong:DifferenceFlags()
 			DoWithAllPlayers(function(player, hero)
 				if not hero then return end
 				if hero:GetTeamNumber() == loser then
-					Upgrades:QueueSelection(hero, UPGRADE_RARITY_EPIC)
+					Talents:GiveTalent(hero, TALENT_RARITY_EPIC)
 
 					for i = 1, 3 do
-						Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
+						Talents:GiveTalent(hero, TALENT_RARITY_RARE)
 					end
 				end
 			end)

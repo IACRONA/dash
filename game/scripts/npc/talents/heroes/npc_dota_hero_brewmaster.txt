@@ -5,7 +5,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_special_values"
 			{
 				"duration" "0.5"
@@ -14,7 +14,7 @@
 		"radius"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -25,7 +25,7 @@
 		"damage"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"brewmaster_cinder_brew"
@@ -33,13 +33,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"total_ignite_damage"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"talents"
 			{
 				"special_bonus_unique_brewmaster_5"	"x1.3"
@@ -48,7 +48,7 @@
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -61,13 +61,13 @@
 		"armor"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"magic_resist"
 				{
 					"value" "2"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 
 					"multiplicative_target"			"100"
 					"multiplicative_base_value"		"20"
@@ -85,7 +85,7 @@
 		"crit_chance"
 		{
 			"value" "4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"crit_multiplier" "20"
@@ -99,7 +99,7 @@
 					"radius"
 					{
 						"value" "45"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 
 						"multiplicative_target"			"620"
 						"multiplicative_base_value"		"220"
@@ -110,7 +110,7 @@
 		"dodge_chance"
 		{
 			"value" "7"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"bonus_move_speed" "7"
@@ -123,7 +123,7 @@
 					"radius"
 					{
 						"value" "45"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 
 						"multiplicative_target"			"1000"
 						"multiplicative_base_value"		"600"
@@ -139,7 +139,7 @@
 		"bonus_status_resist"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"multiplicative_target"			"100"
 			"multiplicative_base_value"		"20"
@@ -147,7 +147,7 @@
 			"linked_special_values"
 			{
 				"movespeed" "5"
-				"operator" "OP_MULTIPLY"
+				"operator" "MULTIPLY"
 
 				"multiplicative_target"			"100"
 				"multiplicative_base_value"		"25"
@@ -160,7 +160,7 @@
 					"AbilityCastRange"
 					{
 						"value" "45"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 
 						"multiplicative_target"			"650"
 						"multiplicative_base_value"		"150"
@@ -168,7 +168,7 @@
 					"pull_distance"
 					{
 						"value" "45"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 
 						"multiplicative_target"			"1100"
 						"multiplicative_base_value"		"700"
@@ -182,7 +182,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 			
 			"linked_abilities"
@@ -192,7 +192,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 				"brewmaster_earth_hurl_boulder"
@@ -200,7 +200,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 				"brewmaster_void_astral_pull"
@@ -208,7 +208,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 				"brewmaster_storm_dispel_magic"
@@ -216,7 +216,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 				"brewmaster_storm_cyclone"
@@ -224,7 +224,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 				"brewmaster_storm_wind_walk"
@@ -232,7 +232,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 				"brewmaster_primal_companion"
@@ -240,7 +240,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -248,7 +248,7 @@
 		"brewling_added_health"
 		{
 			"value"	"400"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

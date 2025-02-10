@@ -5,7 +5,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 			"linked_abilities"
 			{
@@ -14,7 +14,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -22,7 +22,7 @@
 		"whirling_radius"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -36,7 +36,7 @@
 		"whirling_damage"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"tree_damage_scale" "2"
@@ -55,12 +55,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -70,12 +70,12 @@
 		"damage"
 		{
 			"value" "22"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"tree_splinter_damage"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "1"
 		}
 	}
@@ -84,21 +84,21 @@
 		"bonus_armor"
 		{
 			"value" "0.06"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
 				"cooldown_and_manacost"
 				{
 					"value" "8"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 				}
 			}
 		}
 		"bonus_hp_regen"
 		{
 			"value" "0.22"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -112,7 +112,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "7"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"shredder_twisted_chakram"
@@ -120,7 +120,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "7"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 						"RequiresFacetID" "2"
 					}
 				}
@@ -129,7 +129,7 @@
 		"radius"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -138,7 +138,7 @@
 					"radius"
 					{
 						"value" "15"
-						"operator" "OP_ADD"
+						"operator" " ADD"
 						"RequiresFacetID" "2"
 					}
 				}
@@ -147,7 +147,7 @@
 		"pass_damage"
 		{
 			"value" "6"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"damage_per_second" "3"
@@ -160,7 +160,7 @@
 		"damage"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "2"
 			"linked_special_values"
 			{

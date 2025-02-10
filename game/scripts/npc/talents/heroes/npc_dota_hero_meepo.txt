@@ -5,7 +5,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 			
 			"linked_abilities"
@@ -15,7 +15,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "10"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -23,13 +23,13 @@
 		"duration"
 		{
 			"value" "0.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "4"
 		}
 		"radius"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			
 			"linked_special_values"
@@ -40,7 +40,7 @@
 		"speed"
 		{
 			"value" "250"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "4"
 			"linked_abilities"
 			{
@@ -56,7 +56,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			
 			"linked_abilities"
 			{
@@ -65,7 +65,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 				"meepo_megameepo_fling"
@@ -73,7 +73,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -81,7 +81,7 @@
 		"radius"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 
 			"linked_abilities"
@@ -95,7 +95,7 @@
 		"poof_damage"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"meepo_ransack"
@@ -103,7 +103,7 @@
 		"health_steal_heroes"
 		{
 			"value" "14"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"health_steal_creeps" "7"
@@ -115,7 +115,7 @@
 	// 	"magic_resist"
 	// 	{
 	// 		"value" "6"
-	// 		"operator" "OP_MULTIPLY"
+	// 		"operator" "MULTIPLY"
 
 	// 		"multiplicative_target"			"100"
 	// 		"multiplicative_base_value"		"20"
@@ -124,14 +124,14 @@
 	// 			"tooltip_magic_resist"
 	// 			{
 	// 				"value" "6" 
-	// 				"operator" "OP_MULTIPLY"
+	// 				"operator" "MULTIPLY"
 	// 				"multiplicative_target"			"100"
 	// 				"multiplicative_base_value"		"20"
 	// 			}
 	// 			"tooltip_magic_resist_multiplicity"
 	// 			{
 	// 				"value" "6"
-	// 				"operator" "OP_MULTIPLY"
+	// 				"operator" "MULTIPLY"
 	// 				"multiplicative_target"			"100"
 	// 				"multiplicative_base_value"		"20"
 	// 			}

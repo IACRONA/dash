@@ -5,12 +5,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"damage"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"movespeed" "2"
@@ -19,7 +19,7 @@
 		"tether_heal_amp"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -28,13 +28,13 @@
 		"max_range"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"hero_damage"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"creep_damage" "4"
@@ -43,7 +43,7 @@
 		"explode_radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -57,32 +57,32 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "9"
 		}
 		"bonus_attack_speed"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "1"
 		}
 		"bonus_spell_amp"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"RequiresFacetID" "1"
 		}
 		"bonus_armor"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "2"
 		}
 		"bonus_mres"
 		{
 			"value" "4"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"RequiresFacetID" "2"
 
 			"multiplicative_target"			"100"
@@ -91,7 +91,7 @@
 		"hp_regen"
 		{
 			"value" "0.1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -100,12 +100,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"cast_delay"
 		{
 			"value" "-0.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 		}
 	}

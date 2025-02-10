@@ -5,7 +5,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "4"
 			"linked_abilities"
 			{
@@ -14,7 +14,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -22,7 +22,7 @@
 		"fireblast_damage"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"ogre_magi_unrefined_fireblast"
@@ -37,7 +37,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"ogre_magi_smash"
@@ -45,7 +45,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -53,7 +53,7 @@
 		"burn_damage"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"ogre_magi_smash"
@@ -68,17 +68,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"bonus_movement_speed"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bonus_attack_speed"
 		{
 			"value" "21"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"self_bonus" "28"
@@ -90,19 +90,19 @@
 		"multicast_2_times"
 		{
 			"value" "7.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "2"
 		}
 		"multicast_3_times"
 		{
 			"value" "4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"multicast_4_times"
 		{
 			"value" "2.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}

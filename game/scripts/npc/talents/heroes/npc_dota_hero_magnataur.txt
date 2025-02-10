@@ -5,18 +5,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"shock_damage"
 		{
 			"value" "55"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"shock_width"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -25,7 +25,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -35,14 +35,14 @@
 		"bonus_damage_pct"
 		{
 			"value" "6"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"cleave_damage_pct" "6"
 				"self_multiplier"
 				{
 					"value" "20"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 
 					"multiplicative_target"			"200"
 					"multiplicative_base_value"		"50"
@@ -55,7 +55,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 			"linked_abilities"
 			{
@@ -64,7 +64,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "14"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -72,7 +72,7 @@
 		"skewer_radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 			"linked_abilities"
 			{
@@ -85,7 +85,7 @@
 		"skewer_damage"
 		{
 			"value" "80"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"tree_hit_damage" "8"
@@ -105,27 +105,27 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"multiplicative_target"	"95"
 		}
 		"pull_radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"RequiresFacetID" "2"
 		}
 		"push_radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"RequiresFacetID" "3"
 		}
 		"polarity_damage"
 		{
 			"value" "225"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

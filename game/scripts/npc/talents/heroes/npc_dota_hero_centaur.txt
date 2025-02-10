@@ -5,19 +5,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "14"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "7"
 		}
 		"radius"
 		{
 			"value" "60"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"stomp_damage"
 		{
 			"value" "150"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"centaur_double_edge"
@@ -25,12 +25,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"edge_damage"
 		{
 			"value" "45"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"strength_damage" "25"
@@ -39,7 +39,7 @@
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -48,12 +48,12 @@
 		"return_damage"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"return_damage_str"
 		{
 			"value" "12"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"centaur_stampede"
@@ -61,7 +61,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "15"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -70,7 +70,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -78,12 +78,12 @@
 		"duration"
 		{
 			"value" "0.7"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"strength_damage"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

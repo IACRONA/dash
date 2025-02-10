@@ -2,7 +2,7 @@
 BOOKS_SHOP = {
 	{
 		name = "item_usual_book",
-		rarity = UPGRADE_RARITY_COMMON,
+		rarity = TALENT_RARITY_COMMON,
 		resources = {
 			warsong = {
 				gold = 3000,
@@ -20,7 +20,7 @@ BOOKS_SHOP = {
 	},
 	{
 		name = "item_rare_book",
-		rarity = UPGRADE_RARITY_RARE,
+		rarity = TALENT_RARITY_RARE,
 		resources = {
 			warsong = {
 				gold = 5500,
@@ -42,7 +42,7 @@ BOOKS_SHOP = {
 	},
 	{
 		name = "item_epic_book",
-		rarity = UPGRADE_RARITY_EPIC,
+		rarity = TALENT_RARITY_EPIC,
 		resources = {
 			warsong = {
 				gold = 5000,

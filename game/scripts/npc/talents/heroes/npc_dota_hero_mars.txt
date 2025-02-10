@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "9"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "7"
 		}
 		"damage"
 		{
 			"value" "60"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"shard_dps" "5"
@@ -20,7 +20,7 @@
 		"spear_width"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -33,17 +33,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"crit_mult"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -56,19 +56,19 @@
 		"physical_damage_reduction"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "2"
 		}
 		"physical_damage_reduction_side"
 		{
 			"value" "12"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 		}
 		"redirect_speed_penatly"
 		{
 			"value" "-18"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "1"
 		}
 	}
@@ -77,18 +77,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"duration"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 		}
 		"spear_damage"
 		{
 			"value" "45"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"mars_bulwark"

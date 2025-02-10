@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "15"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"bear_bat"
 		{
 			"value" "-0.1"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			"multiplicative_target"			"0"
 			"multiplicative_base_value"		"1.45"
@@ -19,12 +19,12 @@
 		"bear_hp"
 		{
 			"value" "550"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bear_movespeed"
 		{
 			"value" "45"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "3"
 		}
 	}
@@ -33,7 +33,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "12"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -43,12 +43,12 @@
 		"bonus_attack_speed"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"armor_sharing"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "4"
 		}
 	}
@@ -57,7 +57,7 @@
 		"bonus_speed"
 		{
 			"value" "-10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"shard_movement_speed_pct" "10"
@@ -74,7 +74,7 @@
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -95,19 +95,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "12"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"bonus_hp"
 		{
 			"value" "550"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "1"
 		}
 		"attack_speed_pct"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "2"
 		}
 	}

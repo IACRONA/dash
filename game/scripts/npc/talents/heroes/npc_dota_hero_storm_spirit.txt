@@ -5,12 +5,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"static_remnant_damage_radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -20,7 +20,7 @@
 		"static_remnant_damage"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"storm_spirit_electric_vortex"
@@ -28,13 +28,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		//electric_vortex_pull_distance"
 		//{
 		//	"value" "30"
-		//	"operator" "OP_ADD"
+		//	"operator" " ADD"
 		//	"max_count" "10"
 		//	"linked_special_values"
 		//	{
@@ -47,7 +47,7 @@
 		"overload_aoe"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -57,12 +57,12 @@
 		"overload_damage"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"overload_attack_slow"
 		{
 			"value" "-20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"shard_attack_speed_bonus" "10"
@@ -74,7 +74,7 @@
 		"ball_lightning_aoe"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -84,7 +84,7 @@
 		"damage"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

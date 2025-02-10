@@ -5,17 +5,17 @@
 		"damage"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"damage_debuff"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"reflect_damage"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"axe_berserkers_call"
@@ -23,19 +23,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"radius"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"bonus_armor"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 
 			"linked_abilities"
 			{
@@ -52,12 +52,12 @@
 		"damage"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -67,17 +67,17 @@
 		"damage"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bonus_attack_speed"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		// "armor_per_stack"
 		// {
 		// 	"value" "0.2"
-		// 	"operator" "OP_ADD"
+		// 	"operator" " ADD"
 		// }
 	}
 }

@@ -5,7 +5,7 @@
 		"damage_reduction"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -18,24 +18,24 @@
 		"cooldown_and_manacost"
 		{
 			"value" "7"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "6"
 		}
 		"radius"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"wave_damage"
 		{
 			"value" "6"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"burn_damage"
 		{
 			"value" "0.2"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"multiplicative_target"			"20"
 			"multiplicative_base_value"		"3"
@@ -46,13 +46,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "7"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "6"
 		}
 		"pit_damage"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" ""
 		}
 	}
 	"abyssal_underlord_atrophy_aura"
@@ -60,19 +60,19 @@
 		"radius"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "8"
 		}
 		"damage_reduction_pct"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"bonus_damage_from_hero"
 		{
 			"value" "17"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"bonus_damage_from_creep" "3"
@@ -89,7 +89,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "7"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 	}

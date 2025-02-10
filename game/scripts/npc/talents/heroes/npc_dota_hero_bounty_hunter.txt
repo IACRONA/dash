@@ -5,17 +5,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"bonus_damage"
 		{
 			"value" "45"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bounce_aoe"
 		{
 			"value" "240"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -28,7 +28,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "20"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_special_values"
 			{
 				"gold_steal" "20"
@@ -37,7 +37,7 @@
 		"bonus_damage"
 		{
 			"value" "70"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"bounty_hunter_wind_walk"
@@ -45,7 +45,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -58,7 +58,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -69,18 +69,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"target_damage_amp"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bonus_gold_self"
 		{
 			"value" "55"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"bonus_gold" "25"
@@ -89,7 +89,7 @@
 		"bonus_move_speed_pct"
 		{
 			"value" "8"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}

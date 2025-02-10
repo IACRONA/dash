@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_special_values"
 			{
 				"hp_cost_perc"
 				{
 					"value" "-3"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 
 					"multiplicative_target"			"0"
 					"multiplicative_base_value"		"15"
@@ -21,12 +21,12 @@
 		"damage_per_second"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"dash_length"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -41,13 +41,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "12"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_special_values"
 			{
 				"hp_cost_perc"
 				{
 					"value" "-4"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 
 					"multiplicative_target"			"0"
 					"multiplicative_base_value"		"20"
@@ -57,7 +57,7 @@
 		"radius"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "8"
 			"linked_special_values"
 			{
@@ -75,7 +75,7 @@
 		"damage_per_second"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"phoenix_launch_fire_spirit"
@@ -90,13 +90,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_special_values"
 			{
 				"hp_cost_perc_per_second"
 				{
 					"value" "-1.2"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 
 					"multiplicative_target"			"0"
 					"multiplicative_base_value"		"6"
@@ -106,7 +106,7 @@
 		"hp_perc_damage"
 		{
 			"value" "1.0"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"multiplicative_target"			"25"
 			"multiplicative_base_value"		"7.75"
@@ -120,7 +120,7 @@
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -133,13 +133,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "9"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"aura_radius"
 		{
 			"value" "65"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -150,7 +150,7 @@
 		"damage_per_sec"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

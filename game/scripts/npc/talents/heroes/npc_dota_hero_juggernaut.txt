@@ -5,19 +5,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "6"
 		}
 		"blade_fury_radius"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"blade_fury_damage_per_tick"
 		{
 			"value" "6"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"juggernaut_healing_ward"
@@ -25,17 +25,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"healing_ward_heal_amount"
 		{
 			"value" "0.75"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"healing_ward_aura_radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -44,13 +44,13 @@
 		"blade_dance_crit_chance"
 		{
 			"value" "4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"blade_dance_crit_mult"
 		{
 			"value" "8"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -59,7 +59,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -68,7 +68,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -76,7 +76,7 @@
 		"duration"
 		{
 			"value" "0.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 			"linked_abilities"
 			{
@@ -89,7 +89,7 @@
 		"omni_slash_radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}

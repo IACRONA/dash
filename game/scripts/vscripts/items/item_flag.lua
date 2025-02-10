@@ -199,7 +199,7 @@ local FlagReturnCountdown = class{
 		)
 
 		for _, hero in ipairs(heroesAround) do
-			Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
+			Talents:GiveTalent(hero, TALENT_RARITY_COMMON)
 		end
 
 		UTIL_Remove(self.hFlagItem:GetContainer())
@@ -432,7 +432,7 @@ modifier_item_flag_carrier = class({
 			DoWithAllPlayers(function(player, hero)
 				if not hero then return end
 				if hero:GetTeamNumber() == nTeam then
-					Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
+					Talents:GiveTalent(hero, TALENT_RARITY_RARE)
 				end
 			end)
 			GameRules.AddonTemplate:IncrementFlags(nTeam)

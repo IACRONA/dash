@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"beam_damage"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"luna_lunar_orbit"
@@ -19,13 +19,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"rotating_glaives_movement_radius"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -35,7 +35,7 @@
 		"rotating_glaives_collision_damage"
 		{
 			"value"	"4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"luna_moon_glaive"
@@ -43,19 +43,19 @@
 		"range"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"bounces"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "6"
 		}
 		"damage_reduction_percent"
 		{
 			"value" "-3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "9"
 		}
 	}
@@ -64,19 +64,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"beams"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}

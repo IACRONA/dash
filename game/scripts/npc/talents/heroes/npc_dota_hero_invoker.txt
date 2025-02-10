@@ -5,7 +5,7 @@
 		"magic_amp"
 		{
 			"value"		"4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"invoker_deafening_blast"
@@ -13,7 +13,7 @@
 		"damage"
 		{
 			"value"		"40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"invoker_ice_wall"
@@ -21,12 +21,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"damage_per_second"
 		{
 			"value" "7"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"invoker_cold_snap"
@@ -34,7 +34,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "8"
 
 			"linked_special_values"
@@ -45,7 +45,7 @@
 		"freeze_damage"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			
 			"linked_special_values"
 			{
@@ -65,7 +65,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "14"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			
 			"linked_special_values"
@@ -81,7 +81,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "12"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 					"area_of_effect" "35"
 				}
@@ -90,7 +90,7 @@
 		"base_damage"
 		{
 			"value" "110"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			
 			"linked_abilities"
 			{
@@ -106,12 +106,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "12"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"damage_per_mana_pct"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"invoker_chaos_meteor"
@@ -119,7 +119,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "12"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			
 			"linked_abilities"
 			{
@@ -128,12 +128,12 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 					"radius_start"
 					{
 						"value" "45"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 
 						"multiplicative_target"			"575"
 						"multiplicative_base_value"		"175"
@@ -141,7 +141,7 @@
 					"radius_end"
 					{
 						"value" "45"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 
 						"multiplicative_target"			"625"
 						"multiplicative_base_value"		"225"
@@ -152,14 +152,14 @@
 		"main_damage"
 		{
 			"value" "75"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			
 			"linked_special_values"
 			{
 				"burn_dps"
 				{
 					"value"			"9"
-					"operator"		"OP_ADD"
+					"operator"		" ADD"
 				}
 			}
 			
@@ -170,7 +170,7 @@
 					"damage"
 					{
 						"value" "85"
-						"operator" "OP_ADD"
+						"operator" " ADD"
 					}
 				}
 			}
@@ -181,7 +181,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "12"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"linked_special_values"
 			{
@@ -195,7 +195,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 					"spirit_armor" "2"
 					"spirit_hp" "250"
@@ -205,7 +205,7 @@
 		"bonus_damage"
 		{
 			"value" "18"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 
 			"linked_special_values"
 			{
@@ -219,7 +219,7 @@
 					"spirit_damage"
 					{
 						"value" "25"
-						"operator" "OP_ADD"
+						"operator" " ADD"
 					}
 					"armor_per_attack" "0.3"
 				}
@@ -231,7 +231,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "9"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			
 			"linked_abilities"
@@ -241,12 +241,12 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 					"area_of_effect"
 					{
 						"value" "30"
-						"operator" "OP_ADD"
+						"operator" " ADD"
 					}
 				}
 			}
@@ -254,7 +254,7 @@
 		"damage"
 		{
 			"value" "130"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			
 			"linked_abilities"
 			{
@@ -263,12 +263,12 @@
 					"health_regen"
 					{
 						"value" "18"
-						"operator" "OP_ADD"
+						"operator" " ADD"
 					}
 					"mana_regen"
 					{
 						"value" "8"
-						"operator" "OP_ADD"
+						"operator" " ADD"
 					}
 				}
 			}

@@ -5,7 +5,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "8"
 			"linked_abilities"
 			{
@@ -14,7 +14,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -22,7 +22,7 @@
 		"illusion_outgoing_tooltip"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"illusion_outgoing_damage" "20"
@@ -31,7 +31,7 @@
 		"range"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -40,13 +40,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"illusion_outgoing_damage"
 		{
 			"value" "14"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"illusion_outgoing_tooltip" "14"
@@ -55,7 +55,7 @@
 		"illusion_incoming_damage"
 		{
 			"value" "-30"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			
 			"multiplicative_target"			"-100"
 			"multiplicative_base_value"		"200"
@@ -66,7 +66,7 @@
 				{
 					"value" "-30"
 				
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 					"multiplicative_target" "0"
 				}
 			}
@@ -77,7 +77,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"terrorblade_demon_zeal"
@@ -85,7 +85,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 					"berserk_bonus_movement_speed" "20"
 				}
@@ -94,7 +94,7 @@
 		"bonus_damage"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"terrorblade_demon_zeal"
@@ -106,7 +106,7 @@
 		"tooltip_attack_range"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -127,7 +127,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 	}
 }

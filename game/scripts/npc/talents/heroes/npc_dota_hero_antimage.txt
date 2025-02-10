@@ -5,13 +5,13 @@
 		"mana_threshold"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 		}
 		"slow_duration"
 		{
 			"value" "0.25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 		}
 	}
@@ -20,7 +20,7 @@
 		"percent_damage_per_burn"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"illusion_percentage" "5"
@@ -29,12 +29,12 @@
 		"mana_per_hit"
 		{
 			"value" "14"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"mana_per_hit_pct"
 		{
 			"value" "0.6"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"antimage_blink"
@@ -42,7 +42,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 	}
@@ -51,7 +51,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "4"
 			"linked_abilities"
 			{
@@ -60,7 +60,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -68,7 +68,7 @@
 		"magic_resistance"
 		{
 			"value" "3"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"multiplicative_target"			"35"
 			"multiplicative_base_value"		"0"
@@ -80,18 +80,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"multiplicative_target"	"95"
 		}
 		"mana_void_damage_per_mana"
 		{
 			"value" "0.15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"mana_void_aoe_radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}

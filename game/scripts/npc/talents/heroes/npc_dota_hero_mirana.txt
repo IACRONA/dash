@@ -5,12 +5,12 @@
 		"damage"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"damage_fire"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"mirana_starfall"
@@ -18,12 +18,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "11"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"starfall_radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -40,7 +40,7 @@
 		"damage"
 		{
 			"value" "45"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"secondary_starfall_damage_percent" "5"
@@ -52,13 +52,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"arrow_bonus_damage"
 		{
 			"value" "75"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"scepter_starstorm_target_pct" "5"
@@ -67,7 +67,7 @@
 		"arrow_max_stunrange"
 		{
 			"value" "-375"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "4"
 		}
 	}
@@ -76,12 +76,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"leap_bonus_duration"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "4"
 			"linked_special_values"
 			{
@@ -92,7 +92,7 @@
 		"leap_speedbonus_as"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"leap_speedbonus" "8"
@@ -105,14 +105,14 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			"RequiresFacetID" "1"
 		}
 		"bonus_movement_speed"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"RequiresFacetID" "1"
 		}
@@ -122,14 +122,14 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			"RequiresFacetID" "2"
 		}
 		"max_total_increase"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "2"
 		}
 	}

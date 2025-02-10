@@ -131,9 +131,9 @@ function modifier_custom_morph_boss_ai:OnDeath(params)
         DoWithAllPlayers(function(player, hero, index)
             if not hero then return end
             if hero:GetTeamNumber() == team then
-                Upgrades:QueueSelection(hero, UPGRADE_RARITY_EPIC)
+                Talents:GiveTalent(hero, TALENT_RARITY_EPIC)
             elseif self.attackerUnits[hero:GetPlayerOwnerID()] then
-                Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
+                Talents:GiveTalent(hero, TALENT_RARITY_RARE)
             end
         end)
         EmitGlobalSound("titan_killing")

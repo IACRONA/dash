@@ -5,18 +5,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"impale_damage"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		//"width"
 		//{
 		//	"value" "25"
-		//	"operator" "OP_ADD"
+		//	"operator" " ADD"
 		//	"max_count" "10"
 		//}
 	}
@@ -25,18 +25,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"max_mana_as_damage_pct"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"damage_echo_pct"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 		}
 	}
@@ -45,13 +45,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "3"
 		}
 		"damage_reflect_pct"
 		{
 			"value" "11"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"nyx_assassin_vendetta"
@@ -59,17 +59,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"movement_speed"
 		{
 			"value" "6"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bonus_damage"
 		{
 			"value" "90"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

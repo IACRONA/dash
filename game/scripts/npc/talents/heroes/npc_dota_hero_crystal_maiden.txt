@@ -5,18 +5,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"radius"
 		{
 			"value" "45"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "9"
 		}
 		"nova_damage"
 		{
 			"value" "60" 
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"crystal_maiden_frostbite"
@@ -24,7 +24,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "4"
 
 			"linked_abilities"
@@ -34,7 +34,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 					"frostbite_radius" "100"
 					"hop_distance" "150"
@@ -44,7 +44,7 @@
 		"damage_per_second"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"creep_damage_per_second" "30"
@@ -56,17 +56,17 @@
 		"chance_frozen"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"aoe_damage"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"shield_health"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"crystal_maiden_ice_spike"
@@ -74,22 +74,22 @@
 		"damage_frozen"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"damage"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"chance_crit"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"slow_pct"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 }

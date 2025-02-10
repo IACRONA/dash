@@ -5,19 +5,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"multiplicative_target"	"95"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "75"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"dark_seer_ion_shell"
@@ -25,18 +25,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"damage_per_second"
 		{
 			"value" "15"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"dark_seer_surge"
@@ -44,12 +44,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"duration"
 		{
 			"value" "0.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -60,7 +60,7 @@
 		"trail_damage"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"dark_seer_normal_punch"
@@ -75,7 +75,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -84,7 +84,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -92,7 +92,7 @@
 		"replica_damage_outgoing"
 		{
 			"value" "12"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"tooltip_outgoing" "12"
@@ -111,7 +111,7 @@
 		"replica_damage_incoming"
 		{
 			"value" "-20"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"multiplicative_target"			"-100"
 			"multiplicative_base_value"		"100"
@@ -122,7 +122,7 @@
 				{
 					"value" "-20"
 
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 					"multiplicative_target" "0"
 				}
 			}
@@ -134,7 +134,7 @@
 					"replica_damage_incoming"
 					{
 						"value" "-20"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 
 						"multiplicative_target"			"-100"
 						"multiplicative_base_value"		"100"

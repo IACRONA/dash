@@ -5,19 +5,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "4"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"avalanche_damage"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"tiny_toss"
@@ -25,13 +25,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -41,7 +41,7 @@
 		"toss_damage"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"tiny_tree_grab"
@@ -49,12 +49,12 @@
 		"bonus_damage"
 		{
 			"value" "18"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"splash_range"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -75,7 +75,7 @@
 		"splash_pct"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"tiny_tree_channel"
@@ -94,17 +94,17 @@
 		"bonus_armor"
 		{
 			"value" "4"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bonus_damage"
 		{
 			"value" "18"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"attack_speed_reduction"
 		{
 			"value" "5.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "4"
 		}
 	}

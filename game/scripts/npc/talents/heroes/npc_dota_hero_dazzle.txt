@@ -5,22 +5,22 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"shield_health"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"damage_return"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"heal_amp"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		} 
 	}
 	"dazzle_dispell"
@@ -28,7 +28,7 @@
 		"AbilityCastRange"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"dazzle_shadow_wave"
@@ -36,12 +36,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"tooltip_max_targets_inc_dazzle"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -53,7 +53,7 @@
 		"damage"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"dazzle_grace"
@@ -61,17 +61,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "5"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"chance_shield"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"heal"
 		{
 			"value" "70"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"dazzle_innate_weave"
@@ -79,12 +79,12 @@
 		"armor_change"
 		{
 			"value" "0.2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"duration"
 		{
 			"value" "1.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "8"
 		}
 	}

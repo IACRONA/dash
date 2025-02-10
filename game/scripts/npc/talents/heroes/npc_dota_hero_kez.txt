@@ -5,7 +5,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -14,7 +14,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "10"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -22,7 +22,7 @@
 		"katana_echo_damage"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"echo_hero_damage" "10"
@@ -34,7 +34,7 @@
 					"base_attack_rate_katana"
 					{
 						"value" "-0.04"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 
 						"multiplicative_target" "0.7"
 						"multiplicative_base_value"	"1.1"
@@ -42,7 +42,7 @@
 					"base_attack_rate_sai"
 					{
 						"value" "-0.02"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 
 						"multiplicative_target" "0.7"
 						"multiplicative_base_value"	"0.9"
@@ -53,7 +53,7 @@
 		"katana_radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -69,7 +69,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "12"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -78,7 +78,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "12"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -86,7 +86,7 @@
 		"bonus_flat_lifesteal"
 		{
 			"value" "80"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"kez_talon_toss"
@@ -98,7 +98,7 @@
 		"lifesteal_pct"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -114,7 +114,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "14"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "7"
 			"linked_abilities"
 			{
@@ -123,7 +123,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "14"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -131,7 +131,7 @@
 		"katana_bleed_attack_damage_pct"
 		{
 			"value" "1.25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -144,7 +144,7 @@
 		"heal_reduction_pct"
 		{
 			"value" "6"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -160,7 +160,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "11"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"kez_ravens_veil"
@@ -168,7 +168,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "11"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -176,7 +176,7 @@
 		"base_damage"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"kez_ravens_veil"
@@ -188,7 +188,7 @@
 		"radius"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{

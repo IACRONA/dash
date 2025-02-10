@@ -393,7 +393,7 @@ function open_talents_choose_players(params) {
   let body = $("#TalentsSelectedMain");
   body.RemoveAndDeleteChildren();
   const isReroll = params.upgrades.reroll;
-  const selection_rarity = params.upgrades.upgrade_rarity || RARITY.COMMON;
+  const selection_rarity = params.upgrades.talentRarity || RARITY.COMMON;
   const imageBooks = {
     [RARITY.COMMON]: "item_usual_book",
     [RARITY.RARE]: "item_rare_book",
@@ -478,12 +478,12 @@ const OPERATOR = {
 };
 
 function CreateTalent(upgradeInfo, data) {
-  let { upgrade_name, ability_name, value, operator, rarity, count } = data;
-  let { upgrade_rarity } = upgradeInfo;
+  let { talentName, ability_name, value, operator, rarity, count } = data;
+  let { talentRarity } = upgradeInfo;
   let spell_block = $.CreatePanel("Panel", $("#TalentsSelectedMain"), "");
   spell_block.AddClass("talent_block");
 
-  const selection_rarity = upgrade_rarity || RARITY.COMMON;
+  const selection_rarity = talentRarity || RARITY.COMMON;
   const min_rarity = data.min_rarity || rarity || RARITY.COMMON;
   const current_count = (count || 0) / min_rarity;
   const hero_idx = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
@@ -526,7 +526,7 @@ function CreateTalent(upgradeInfo, data) {
   } else if (operator == OPERATOR.MULTIPLY) {
     multiply_value = GetMultiplyValueDiff(data, hero_idx, value, max_upgrades_count, current_count);
   }
-  const localize_upgrade = (_ability_name, _upgrade_name, b_check_orb_generic_localize) => {
+  const localize_upgrade = (_ability_name, _talentName, b_check_orb_generic_localize) => {
     let check_localize = (key) => {
       let loc_line = $.Localize(`#${key}`);
 
@@ -535,32 +535,32 @@ function CreateTalent(upgradeInfo, data) {
       }
     };
 
-    check_localize(`${_upgrade_name}_upgrade`);
-    check_localize(`DOTA_Tooltip_ability_${_ability_name}_${_upgrade_name}`);
-    check_localize(`upgrade_DOTA_Tooltip_ability_${_ability_name}_${_upgrade_name}`);
-    check_localize(`DOTA_Tooltip_ability_${_ability_name.replace("_lua", "")}_${_upgrade_name}`);
-    check_localize(`upgrade_DOTA_Tooltip_ability_${_ability_name.replace("_lua", "")}_${_upgrade_name}`);
+    check_localize(`${_talentName}_upgrade`);
+    check_localize(`DOTA_Tooltip_ability_${_ability_name}_${_talentName}`);
+    check_localize(`upgrade_DOTA_Tooltip_ability_${_ability_name}_${_talentName}`);
+    check_localize(`DOTA_Tooltip_ability_${_ability_name.replace("_lua", "")}_${_talentName}`);
+    check_localize(`upgrade_DOTA_Tooltip_ability_${_ability_name.replace("_lua", "")}_${_talentName}`);
     if (b_check_orb_generic_localize) {
-      check_localize(_upgrade_name);
+      check_localize(_talentName);
 
       if (!b_check_hidden) {
-        check_localize(`DOTA_Tooltip_demo_generic_orb_${_upgrade_name}`);
+        check_localize(`DOTA_Tooltip_demo_generic_orb_${_talentName}`);
         loc_upgrade = loc_upgrade.replace(/<b>.*<\/b>/, "");
       }
     }
   };
 
-  localize_upgrade(ability_name, upgrade_name);
+  localize_upgrade(ability_name, talentName);
 
-  if (loc_upgrade == "") localize_upgrade(ability_name, upgrade_name);
-  if (!b_check_hidden && loc_upgrade == "") loc_upgrade = upgrade_name;
+  if (loc_upgrade == "") localize_upgrade(ability_name, talentName);
+  if (!b_check_hidden && loc_upgrade == "") loc_upgrade = talentName;
   if (loc_upgrade == "") return;
 
   const is_pct = loc_upgrade.charAt(0) == "%";
 
   loc_upgrade = loc_upgrade.replace(/%|:/g, "").trim();
 
-  let base_line_localized = $.Localize(`#upgrade_description_${value > 0 && reverse_increment.indexOf(upgrade_name) < 0 ? `inc` : `dec`}`);
+  let base_line_localized = $.Localize(`#upgrade_description_${value > 0 && reverse_increment.indexOf(talentName) < 0 ? `inc` : `dec`}`);
   const line = `<b>${UppercaseConvert(loc_upgrade)}</b> ${base_line_localized} <b>${Math.abs(multiply_value || value)}${is_pct ? "%" : ""}</b>`;
 
   spell_block_text.text = line;
@@ -569,7 +569,7 @@ function CreateTalent(upgradeInfo, data) {
   spell_fate_levels.AddClass("spell_fate_levels");
 
   spell_block.SetPanelEvent("onactivate", function () {
-    GameEvents.SendCustomGameEventToServer("player_talent_selected", { upgrade_name, ability_name });
+    GameEvents.SendCustomGameEventToServer("player_talent_selected", { talentName, ability_name });
     $("#TalentsSelectedMain").style.opacity = "0";
     $("#TalentsSelectedMain").SetHasClass("SpawnPanelSelected", true);
     Game.EmitSound("Flag.KillSelect");

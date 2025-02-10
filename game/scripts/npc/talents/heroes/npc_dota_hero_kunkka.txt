@@ -5,7 +5,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "6"
 			"linked_abilities"
 			{
@@ -14,7 +14,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "9"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -22,7 +22,7 @@
 		"torrent_damage"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"talents"
 			{
 				"special_bonus_unique_kunkka_7"		"x1.2"
@@ -39,7 +39,7 @@
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -55,12 +55,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "6"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"cleave_distance"
 		{
 			"value" "100"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -71,7 +71,7 @@
 		"damage_bonus"
 		{
 			"value" "75"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"kunkka_x_marks_the_spot"
@@ -79,13 +79,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"duration"
 		{
 			"value" "0.75"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "4"
 			"linked_special_values"
 			{
@@ -98,18 +98,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "150"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"ghostship_width"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{

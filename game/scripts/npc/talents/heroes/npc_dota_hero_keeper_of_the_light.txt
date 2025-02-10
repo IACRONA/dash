@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "4"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_special_values"
 			{
 				"max_channel_time"
 				{
 					"value" "-0.21"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 					
 					"multiplicative_target"			"0"
 					"multiplicative_base_value"		"3"
@@ -24,12 +24,12 @@
 					"cooldown_and_manacost"
 					{
 						"value" "4"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 					"max_channel_time"
 					{
 						"value" "-0.21"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					
 						"multiplicative_target"			"0"
 						"multiplicative_base_value"		"3"
@@ -40,7 +40,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "4"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -48,7 +48,7 @@
 		"total_damage"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"keeper_of_the_light_spirit_form_illuminate"
@@ -64,7 +64,7 @@
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -91,17 +91,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "5"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"damage"
 		{
 			"value" "90"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -116,7 +116,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "5"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "9"
 			"linked_special_values"
 			{
@@ -129,13 +129,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "5"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_special_values"
 			{
 				"duration"
 				{
 					"value" "3"
-					"operator" "OP_ADD"
+					"operator" " ADD"
 				}
 			}
 			"linked_abilities"
@@ -145,13 +145,13 @@
 					"cooldown_and_manacost"
 					{
 						"value" "6"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 						"RequiresFacetID" "1"
 					}
 					"duration"
 					{
 						"value" "1"
-						"operator" "OP_ADD"
+						"operator" " ADD"
 						"RequiresFacetID" "1"
 					}
 				}
@@ -160,7 +160,7 @@
 		"cast_range"
 		{
 			"value" "65"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 			"linked_abilities"
 			{
@@ -169,7 +169,7 @@
 					"slow"
 					{
 						"value" "2"
-						"operator" "OP_ADD"
+						"operator" " ADD"
 						"RequiresFacetID" "1"
 					}
 				}
@@ -178,7 +178,7 @@
 					"teleport_delay"
 					{
 						"value" "-0.4"
-						"operator" "OP_ADD"
+						"operator" " ADD"
 						"RequiresFacetID" "2"
 					}
 				}
@@ -187,7 +187,7 @@
 		"illuminate_heal"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"movement_speed" "5"
@@ -199,7 +199,7 @@
 					"magic_resistance"
 					{
 						"value" "10"
-						"operator" "OP_ADD"
+						"operator" " ADD"
 						"RequiresFacetID" "1"
 					}
 				}
@@ -208,7 +208,7 @@
 					"ally_movespeed_pct"
 					{
 						"value" "4"
-						"operator" "OP_ADD"
+						"operator" " ADD"
 						"RequiresFacetID" "2"
 					}
 				}

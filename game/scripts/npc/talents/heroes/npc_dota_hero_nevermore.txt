@@ -5,7 +5,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"nevermore_shadowraze2"
@@ -13,7 +13,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 				"nevermore_shadowraze3" 
@@ -21,7 +21,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -29,7 +29,7 @@
 		"shadowraze_damage"
 		{
 			"value" "65"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"nevermore_shadowraze2"
@@ -45,7 +45,7 @@
 		"shadowraze_radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -62,7 +62,7 @@
 		"stack_bonus_damage"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"nevermore_shadowraze2"
@@ -81,18 +81,18 @@
 		"cooldown_and_manacost"
 		{
 			"value" "11"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"bonus_attack_speed"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"soul_cost"
 		{
 			"value" "-1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "3"
 		}
 	}
@@ -101,12 +101,12 @@
 		"presence_armor_reduction"
 		{
 			"value" "-0.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"presence_radius"
 		{
 			"value" "60"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -115,19 +115,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		// "requiem_radius"
 		// { 
 		// 	"value" "50"
-		// 	"operator" "OP_ADD"
+		// 	"operator" " ADD"
 		// 	"max_count" "8"
 		// }
 		"damage"
 		{
 			"value" "24"
-			"operator" "OP_ADD" 
+			"operator" " ADD" 
 		}
 	}
 }

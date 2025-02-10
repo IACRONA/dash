@@ -5,23 +5,23 @@
 		"cooldown_and_manacost"
 		{
 			"value" "7"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"damage"
 		{
 			"value" "12"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"armor_reduction"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"alchemist_unstable_concoction"
@@ -29,7 +29,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "6"
 			"linked_special_values"
 			{
@@ -39,7 +39,7 @@
 		"max_damage"
 		{
 			"value" "115"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"alchemist_unstable_concoction_throw"
@@ -51,7 +51,7 @@
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
@@ -67,7 +67,7 @@
 		"slow_per_stack"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "3"
 			"linked_special_values"
 			{
@@ -80,7 +80,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"alchemist_berserk_potion"
@@ -88,7 +88,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -96,7 +96,7 @@
 		"bonus_health_regen"
 		{
 			"value" "12"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"bonus_movespeed" "6"
@@ -113,7 +113,7 @@
 		"base_attack_time"
 		{
 			"value" "-0.05"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"multiplicative_target"			"0"
 			"multiplicative_base_value"		"0.9"

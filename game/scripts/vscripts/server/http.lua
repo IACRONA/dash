@@ -18,8 +18,8 @@ function SendRequest(method, url, body, repeatCount, callbacks)
 	end
 	local request = CreateHTTPRequest(method, BASE_URL.. url)
 	request:SetHTTPRequestRawPostBody("application/json", json.encode(body))
-	print("Запустился")
- 	request:Send(function (result)
+
+	request:Send(function (result)
  		local data = json.decode(result["Body"])
 		local isSuccess = result.StatusCode == 200
 

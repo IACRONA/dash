@@ -5,17 +5,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"gush_damage"
 		{
 			"value" "55"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"negative_armor"
 		{
 			"value" "1.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"tidehunter_kraken_shell"
@@ -23,7 +23,7 @@
 		"damage_reduction"
 		{
 			"value" "20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"tidehunter_anchor_smash"
@@ -31,23 +31,23 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"attack_damage"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"damage_reduction"
 		{
 			"value" "-5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "2"
 		}
 		"radius"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}
@@ -56,7 +56,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"multiplicative_target"	"93"
 			"linked_abilities"
 			{
@@ -65,7 +65,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -73,7 +73,7 @@
 		"damage"
 		{
 			"value" "125"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_abilities"
 			{
 				"tidehunter_dead_in_the_water"
@@ -85,7 +85,7 @@
 		"radius"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "8"
 			"linked_special_values"
 			{

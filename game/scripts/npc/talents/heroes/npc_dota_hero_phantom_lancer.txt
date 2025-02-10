@@ -5,13 +5,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"lance_damage"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"tooltip_illusion_damage" "6"
@@ -21,7 +21,7 @@
 		"tooltip_illusion_total_damage_in_pct"
 		{
 			"value" "-60"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			
 			"multiplicative_target"	"0"
 			"multiplicative_base_value"	"400"
@@ -31,7 +31,7 @@
 				"illusion_damage_in_pct"
 				{
 					"value" "-60"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 					
 					"multiplicative_target" "-100"
 					"multiplicative_base_value"	"300"
@@ -44,13 +44,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"illusion_1_damage_in_pct"
 		{
 			"value" "-10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			
 			"multiplicative_target"	"-100"
 			"multiplicative_base_value"	"0"
@@ -61,7 +61,7 @@
 				"illusion_2_damage_in_pct"
 				{
 					"value" "-60"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 					
 					"multiplicative_target" "-100"
 					"multiplicative_base_value"	"500"
@@ -74,12 +74,12 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"min_distance"
 		{
 			"value" "-20"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "5"
 			"linked_special_values"
 			{
@@ -89,7 +89,7 @@
 		"bonus_agility"
 		{
 			"value" "12"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"phantom_lancer_juxtapose"
@@ -97,7 +97,7 @@
 		"proc_chance_pct"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
@@ -107,7 +107,7 @@
 		"tooltip_illusion_damage"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"facets"
 			{
 				"2" "6"
@@ -117,7 +117,7 @@
 				"illusion_damage_out_pct"
 				{
 					"value" "5"
-					"operator" "OP_ADD"
+					"operator" " ADD"
 					"facets"
 					{
 						"2" "6"
@@ -128,7 +128,7 @@
 		"tooltip_total_illusion_damage_in_pct"
 		{
 			"value" "-31"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			
 			"multiplicative_target"	"0"
 			"multiplicative_base_value"	"310"
@@ -139,7 +139,7 @@
 				{
 					"value" "-31"
 				
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 					"multiplicative_target" "-100"
 					"multiplicative_base_value"	"210"
 				}

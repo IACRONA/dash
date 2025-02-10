@@ -5,19 +5,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"dragon_slave_damage"
 		{
 			"value" "45"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 
 			"linked_special_values"
 			{
 				"dragon_slave_burn_damage_tooltip"
 				{
 					"value" "45"
-					"operator" "OP_ADD"
+					"operator" " ADD"
 					"RequiresFacetID" "2"
 				}
 			}
@@ -28,26 +28,26 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"light_strike_array_aoe"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"light_strike_array_damage"
 		{
 			"value" "60"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 
 			"linked_special_values"
 			{
 				"light_strike_array_burn_damage_tooltip"
 				{
 					"value" "60"
-					"operator" "OP_ADD"
+					"operator" " ADD"
 					"RequiresFacetID" "2"
 				}
 			}
@@ -58,12 +58,12 @@
 		"bonus_attack_speed"
 		{
 			"value" "6"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bonus_move_speed_pct"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"lina_fire_bomb"
@@ -71,12 +71,12 @@
 		"damage"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"damage_explode"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"lina_pyrablast"
@@ -84,7 +84,7 @@
 		"damage"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"lina_fire_shield"
@@ -92,7 +92,7 @@
 		"shield"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
  

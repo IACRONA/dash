@@ -5,7 +5,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"necrolyte_death_seeker"
@@ -13,7 +13,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "8"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -21,13 +21,13 @@
 		"area_of_effect"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"heal"
 		{
 			"value" "18"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"damage" "28"
@@ -39,24 +39,24 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"heal_bonus"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"slow_aoe"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"bonus_damage"
 		{
 			"value" "2.5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"min_rarity" "rare"
 			"max_count" "10"
 		}
@@ -66,13 +66,13 @@
 		"aura_radius"
 		{
 			"value" "30"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"aura_damage"
 		{
 			"value" "0.2"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"multiplicative_target"			"12.5"
 			"multiplicative_base_value"		"2.9"
@@ -83,17 +83,17 @@
 		"cooldown_and_manacost"
 		{
 			"value" "7"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"damage_per_health"
 		{
 			"value" "0.1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"hp_per_kill"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"mana_per_kill" "1"

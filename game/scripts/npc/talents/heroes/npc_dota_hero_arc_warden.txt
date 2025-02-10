@@ -5,14 +5,14 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "8"
 			"linked_special_values"
 			{
 				"move_speed_slow_pct"
 				{
 					"value"		"6"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 
 					"multiplicative_target"			"100"
 					"multiplicative_base_value"		"35"
@@ -20,7 +20,7 @@
 				"tempest_move_speed_slow_pct"
 				{
 					"value"		"3"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 
 					"multiplicative_target"			"51.43"
 					"multiplicative_base_value"		"18"
@@ -30,7 +30,7 @@
 		"damage_per_second"
 		{
 			"value" "35"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"tempest_damage_per_second"	"55"
@@ -39,7 +39,7 @@
 		"duration"
 		{
 			"value" "2"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "3"
 			"linked_special_values"
 			{
@@ -52,19 +52,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "5"
 		}
 		"radius"
 		{
 			"value" "40"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"attack_speed_bonus"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"linked_special_values"
 			{
 				"attack_damage_bonus" "35"
@@ -73,7 +73,7 @@
 		"shard_slow_pct"
 		{
 			"value" "4"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 
 			"multiplicative_target"			"100"
 			"multiplicative_base_value"		"30"
@@ -82,7 +82,7 @@
 				"projectile_slow"
 				{
 					"value"		"1.5"
-					"operator" "OP_MULTIPLY"
+					"operator" "MULTIPLY"
 
 					"multiplicative_target"			"100"
 					"multiplicative_base_value"		"75"
@@ -95,13 +95,13 @@
 		"cooldown_and_manacost"
 		{
 			"value" "9"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"wraith_speed_base"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "4"
 			"linked_special_values"
 			{
@@ -111,7 +111,7 @@
 		"spark_damage_base"
 		{
 			"value" "50"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"talents"
 			{
 				"special_bonus_unique_arc_warden"		"x1.4"
@@ -121,7 +121,7 @@
 				"spark_damage_tempest"
 				{
 					"value" "40"
-					"operator" "OP_ADD"
+					"operator" " ADD"
 					"talents"
 					{
 						"special_bonus_unique_arc_warden"		"x1.4"
@@ -135,7 +135,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "10"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 	}
 }

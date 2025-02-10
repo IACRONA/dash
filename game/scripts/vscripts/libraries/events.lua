@@ -172,11 +172,11 @@ function CAddonWarsong:OnTeamKillCredit( event )
 		if GetMapName() == "warsong" then 
 			if not self.wasFirstBlood then 
 				self.wasFirstBlood = true
-				Upgrades:QueueSelection(PlayerResource:GetSelectedHeroEntity(event.killer_userid), UPGRADE_RARITY_RARE)
+				Talents:GiveTalent(PlayerResource:GetSelectedHeroEntity(event.killer_userid), TALENT_RARITY_RARE)
 				DoWithAllPlayers(function(player, hero, playerId)
 					if not hero then return end
 					if playerId ~= event.killer_userid then
-						Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
+						Talents:GiveTalent(hero, TALENT_RARITY_COMMON)
 					end
 				end)
 			end
@@ -189,7 +189,7 @@ function CAddonWarsong:OnTeamKillCredit( event )
 			self.wasFirstBlood = true
 			DoWithAllPlayers(function(player, hero, playerId)
 				if not hero then return end
-				Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
+				Talents:GiveTalent(hero, TALENT_RARITY_COMMON)
 			end)
 		end
 	end
@@ -202,7 +202,7 @@ function CAddonWarsong:OnTeamKillCredit( event )
 		if isOverthrow then
 			if not self.wasFirstBlood then 
 				self.wasFirstBlood = true
-				Upgrades:QueueSelection(PlayerResource:GetSelectedHeroEntity(event.killer_userid), UPGRADE_RARITY_RARE)
+				Talents:GiveTalent(PlayerResource:GetSelectedHeroEntity(event.killer_userid), TALENT_RARITY_RARE)
 			end
 		end		
 		 
@@ -339,14 +339,14 @@ function CAddonWarsong:RecordKillStreak(killer_userid)
 			tripleStreak.rare = tripleStreak.rare + 1
 			if isActiveMap then
 				if SERIAL_KILL_LIMIT.tripple.rare >= tripleStreak.rare then
-						Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
+						Talents:GiveTalent(hero, TALENT_RARITY_RARE)
 						tripleStreak.timer = Timers:CreateTimer(SERIAL_KILL_TIMER.tripple.rare, function()
 							tripleStreak.timer = nil
 						end)
 				end
 			elseif GetMapName() == "dash" then
 				for i = 1, 2 do
-					Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
+					Talents:GiveTalent(hero, TALENT_RARITY_COMMON)
 				end
 			end
 		end
@@ -358,11 +358,11 @@ function CAddonWarsong:RecordKillStreak(killer_userid)
 		if isActiveMap then
 			if SERIAL_KILL_LIMIT.rampage.rare >= rampageStreak.rare.count then
 				for i = 1, rampageStreak.rare.giveCount do
-						Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
+						Talents:GiveTalent(hero, TALENT_RARITY_RARE)
 				end
 			end
 		else 
-			Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
+			Talents:GiveTalent(hero, TALENT_RARITY_RARE)
 		end
 	end
 
@@ -394,7 +394,7 @@ function CAddonWarsong:RewardKillLeader(killer_userid, victim_userid)
 			DoWithAllPlayers(function(player, hero)
 				if not hero then return end
 				if hero:GetTeamNumber() == teamKiller then
-					Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
+					Talents:GiveTalent(hero, TALENT_RARITY_RARE)
 				end
 			end)
 			self.killLeaderRewardTimer[teamKiller] = true
@@ -413,7 +413,7 @@ function CAddonWarsong:BalanceTimerGetBook(hero)
 		tick = tick + 1
 		if tick >= time then
 			tick = 0
-			Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
+			Talents:GiveTalent(hero, TALENT_RARITY_COMMON)
 		end
 		return 1
 	end)
@@ -450,11 +450,11 @@ function CAddonWarsong:BuyBook(data)
     if not resources then return end
     local function SuccessBuyBook()
         local bookName = ""
-        if book.rarity == UPGRADE_RARITY_COMMON then
+        if book.rarity == TALENT_RARITY_COMMON then
             bookName = "<font color='#808080'>обычную</font>"
-        elseif book.rarity == UPGRADE_RARITY_RARE then
+        elseif book.rarity == TALENT_RARITY_RARE then
             bookName = "<font color='#3399ff'>редкую</font>"
-        elseif book.rarity == UPGRADE_RARITY_EPIC then
+        elseif book.rarity == TALENT_RARITY_EPIC then
             bookName = "<font color='#cc99ff'>эпическую</font>"
         end
 
@@ -465,7 +465,7 @@ function CAddonWarsong:BuyBook(data)
             DoWithAllPlayers(function(player, HHhero, playerId)
                 if PlayerResource:GetTeam(playerId) == HHhero:GetTeam() then
                     EmitSoundOnEntityForPlayer("buy_book", HHhero, playerId)
-        			Upgrades:QueueSelection(HHhero, book.rarity)
+        			Talents:GiveTalent(HHhero, book.rarity)
                 end
             end) 
         elseif mapName == "portal_duo" or mapName == "portal_trio" then
@@ -475,7 +475,7 @@ function CAddonWarsong:BuyBook(data)
 			DoWithAllPlayers(function(player, HHhero, playerId)
                 if PlayerResource:GetTeam(playerId) == HHhero:GetTeam() then
                     EmitSoundOnEntityForPlayer("buy_book", HHhero, playerId)
-        			Upgrades:QueueSelection(HHhero, book.rarity)
+        			Talents:GiveTalent(HHhero, book.rarity)
                 end
             end)
         end
@@ -533,7 +533,7 @@ end
 	
 -- 	local function SuccessBuyBook() 
 -- 		EmitSoundOnEntityForPlayer( "buy_book", hero, data.playerId )
---  		Upgrades:QueueSelection(hero, book.rarity)
+--  		Talents:GiveTalent(hero, book.rarity)
 --  	end
 
 -- 	if type == "gold" then 

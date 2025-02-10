@@ -5,42 +5,42 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 		}
 		"wolf_damage"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "1"
 		}
 		"wolf_damage"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "3"
 		}
 		"wolf_hp"
 		{
 			"value" "210"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "1"
 		}
 		"wolf_hp"
 		{
 			"value" "210"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "3"
 		}
 		"damage_per_wolf"
 		{
 			"value" "5"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "2"
 		}
 		"health_per_wolf"
 		{
 			"value" "60"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"RequiresFacetID" "2"
 		}
 	}
@@ -49,19 +49,19 @@
 		"cooldown_and_manacost"
 		{
 			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"max_count" "10"
 		}
 		"attack_damage_reduction"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"armor"
 		{
 			"value" "1"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"lycan_feral_impulse"
@@ -69,12 +69,12 @@
 		"bonus_damage"
 		{
 			"value" "8"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 		"bonus_hp_regen"
 		{
 			"value" "10"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 		}
 	}
 	"lycan_shapeshift"
@@ -82,7 +82,7 @@
 		"cooldown_and_manacost"
 		{
 			"value" "7"
-			"operator" "OP_MULTIPLY"
+			"operator" "MULTIPLY"
 			"linked_abilities"
 			{
 				"lycan_wolf_bite"
@@ -90,7 +90,7 @@
 					"cooldown_and_manacost"
 					{
 						"value" "7"
-						"operator" "OP_MULTIPLY"
+						"operator" "MULTIPLY"
 					}
 				}
 			}
@@ -98,19 +98,19 @@
 		"speed"
 		{
 			"value" "25"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"crit_chance"
 		{
 			"value" "3"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 		"crit_multiplier"
 		{
 			"value" "11"
-			"operator" "OP_ADD"
+			"operator" " ADD"
 			"max_count" "10"
 		}
 	}

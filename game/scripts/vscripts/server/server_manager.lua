@@ -4,22 +4,22 @@ end
  
 function ServerManager:Init()
 	
-	DoWithAllPlayers(function(_,_,playerId)
-		local steamId = PlayerResource:GetSteamAccountID(playerId)
+	-- DoWithAllPlayers(function(_,_,playerId)
+	-- 	local steamId = PlayerResource:GetSteamAccountID(playerId)
  
-		HTTP("POST", "/player/".. steamId, nil, {success = function(data)
-			PlayerInfo:InitPlayer(playerId, data)
-		end})
-	end)
+	-- 	HTTP("POST", "/player/".. steamId, nil, {success = function(data)
+	-- 		PlayerInfo:InitPlayer(playerId, data)
+	-- 	end})
+	-- end)
 
-  	Timers:CreateTimer(2, function()
- 		HTTP("POST", "/store/store_info", nil, {success = function(data)
-			CustomNetTables:SetTableValue("server_info", "store", data) 
-		end})
- 	end)
+  	-- Timers:CreateTimer(2, function()
+ 	-- 	HTTP("POST", "/store/store_info", nil, {success = function(data)
+	-- 		CustomNetTables:SetTableValue("server_info", "store", data) 
+	-- 	end})
+ 	-- end)
 
-	 CustomGameEventManager:RegisterListener('buy_item', Dynamic_Wrap(self, 'BuyItem'))
-	 CustomGameEventManager:RegisterListener('equip_shop_item', Dynamic_Wrap(self, 'EquipShopItem'))
+	--  CustomGameEventManager:RegisterListener('buy_item', Dynamic_Wrap(self, 'BuyItem'))
+	--  CustomGameEventManager:RegisterListener('equip_shop_item', Dynamic_Wrap(self, 'EquipShopItem'))
 end
  
 
