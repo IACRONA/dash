@@ -1,11 +1,11 @@
 <root>
     <styles>
-        <include src="file://{resources}/layout/custom_game/get_keys.css" />
+        <include src="file://{resources}/layout/custom_game/info/info.css" />
     </styles>
     <scripts>
-        <include src="file://{resources}/layout/custom_game/get_keys.js" />
+        <include src="file://{resources}/layout/custom_game/info/info.js" />
     </scripts>
-    <Panel class="KeysRoot">
+    <Panel class="KeysRoot" hittest="false">
         <Panel id="AdminPanel" class="AdminPanel">
             <Panel class="AdminPanelHeader">
                 <Label text="ADMIN PANEL" />

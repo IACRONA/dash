@@ -1,24 +1,8 @@
 const TABLE = "dedicated_keys"
 
 
+$.Msg("info.js loaded")
 
-// Проверяем Steam ID игрока и добавляем отладочный вывод
-const playerInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID())
-const steamID = playerInfo ? playerInfo.player_steamid : 'нет ID'
-
-// Добавляем отладочную информацию на панель
-
-// Получаем и показываем ключи
-const key_encrypt = CustomNetTables.GetTableValue(TABLE, "key_encrypt")
-const encrypt_key = CustomNetTables.GetTableValue(TABLE, "encrypt_key")
-
-
-
-
-function ToggleKeysPanel() {
-    const panel = $('#KeysPanel')
-    panel.SetHasClass('visible', !panel.BHasClass('visible'))
-}
 
 ;(function() {
     // Проверяем Steam ID игрока
@@ -31,7 +15,6 @@ function ToggleKeysPanel() {
     // Проверяем, соответствует ли Steam ID
     const allowedSteamID = '76561199130394530'; // Замените на нужный Steam ID
     const adminPanel = $('#AdminPanel');
-
     if (steamID === allowedSteamID) {
         adminPanel.visible = true; // Показываем панель
         // Получаем и показываем ключи
