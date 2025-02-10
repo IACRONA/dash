@@ -180,7 +180,7 @@ function open_fates_choose_players(params) {
 function CreateFate(fate_name) {
   let spell_block = $.CreatePanel("Panel", $("#FateSelectedMain"), "");
   spell_block.AddClass("fate_block");
- 
+
   let spell_block_bg = $.CreatePanel("Panel", spell_block, "");
   spell_block_bg.AddClass("fate_block_bg");
 
@@ -535,11 +535,11 @@ function CreateTalent(upgradeInfo, data) {
       }
     };
 
-    check_localize(`${_upgrade_name}_upgrade`);
+    check_localize(`${_upgrade_name}_talent`);
     check_localize(`DOTA_Tooltip_ability_${_ability_name}_${_upgrade_name}`);
-    check_localize(`upgrade_DOTA_Tooltip_ability_${_ability_name}_${_upgrade_name}`);
+    check_localize(`Custom_Talent_ability_${_ability_name}_${_upgrade_name}`);
     check_localize(`DOTA_Tooltip_ability_${_ability_name.replace("_lua", "")}_${_upgrade_name}`);
-    check_localize(`upgrade_DOTA_Tooltip_ability_${_ability_name.replace("_lua", "")}_${_upgrade_name}`);
+    check_localize(`Custom_Talent_ability_${_ability_name.replace("_lua", "")}_${_upgrade_name}`);
     if (b_check_orb_generic_localize) {
       check_localize(_upgrade_name);
 
@@ -560,7 +560,7 @@ function CreateTalent(upgradeInfo, data) {
 
   loc_upgrade = loc_upgrade.replace(/%|:/g, "").trim();
 
-  let base_line_localized = $.Localize(`#upgrade_description_${value > 0 && reverse_increment.indexOf(upgrade_name) < 0 ? `inc` : `dec`}`);
+  let base_line_localized = $.Localize(`#talent_description_${value > 0 && reverse_increment.indexOf(upgrade_name) < 0 ? `inc` : `dec`}`);
   const line = `<b>${UppercaseConvert(loc_upgrade)}</b> ${base_line_localized} <b>${Math.abs(multiply_value || value)}${is_pct ? "%" : ""}</b>`;
 
   spell_block_text.text = line;
