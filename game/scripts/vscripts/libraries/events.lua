@@ -468,6 +468,7 @@ function CAddonWarsong:BuyBook(data)
         			Upgrades:QueueSelection(HHhero, book.rarity)
                 end
             end) 
+			return 
         elseif mapName == "portal_duo" or mapName == "portal_trio" then
             -- Уведомление только для покупателя через SendCustomMessageToTeam
             local message = "<font color='#00CED1'>" .. data.playerName .. "</font>".. " Купил " .. bookName .. " книгу улучшений для вашей команды."
@@ -478,9 +479,15 @@ function CAddonWarsong:BuyBook(data)
         			Upgrades:QueueSelection(HHhero, book.rarity)
                 end
             end)
-        end
+			return 
+		elseif mapName == "dash" then
+			-- local message = "<font color='#00CED1'>" .. data.playerName .. "</font>".. " Купил " .. bookName .. " книгу улучшений для вашей команды."
+			-- GameRules:SendCustomMessageToTeam(message,hero:GetTeam(),0,0)
+			EmitSoundOnEntityForPlayer("buy_book", hero, data.playerId)
+			Upgrades:QueueSelection(hero, book.rarity)
+			return
+		end
     end
-
     if type == "gold" then
         local cost = resources.gold
 
