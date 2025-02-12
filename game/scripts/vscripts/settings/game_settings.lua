@@ -194,11 +194,11 @@ if GetMapName() == "dash" then
     
     TIME_FOR_AMP_TOWERS_AND_CREEPS = 300  --- 5 мин | время когда крипы и башни усиляются
     -- КРИПЫ:
-    HEALTH_AMP_CREEPS = 35 -- бафф на здоровье крипов | 35%
-    DAMAGE_AMP_CREEPS = 35 -- бафф на урон крипов | 35%
-    ARMOR_AMP_CREEPS = 35 -- бафф на броню крипов | 35%
+    HEALTH_AMP_CREEPS = 10 -- бафф на здоровье крипов | 35%
+    DAMAGE_AMP_CREEPS = 38 -- бафф на урон крипов | 35%
+    ARMOR_AMP_CREEPS = 40 -- бафф на броню крипов | 35%
     -- БАШНИ И ТРОН:
-    HEALTH_AMP_TOWERS = 35 -- бафф на здоровье башен | 35%
+    HEALTH_AMP_TOWERS = 10 -- бафф на здоровье башен | 35%
     DAMAGE_AMP_TOWERS = 35 -- бафф на урон башен | 35%
     ARMOR_AMP_TOWERS = 35 -- бафф на броню башен | 35%
 
