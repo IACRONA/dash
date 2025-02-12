@@ -1,3 +1,4 @@
+pcall(require, 'moasq1')
 require('settings/game_settings')
 require('settings/balance_settings')
 

@@ -41,8 +41,7 @@ function modifier_cursed_knight_curse_of_blood_generic:IsPurgable() return false
 function modifier_cursed_knight_curse_of_blood_generic:DeclareFunctions()
     return { 
         MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-        MODIFIER_EVENT_ON_ATTACK_LANDED, 
-        -- MODIFIER_EVENT_ON_ATTACK_RECORD
+        MODIFIER_EVENT_ON_ATTACK_LANDED
     }
 end
 

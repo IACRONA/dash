@@ -2,7 +2,7 @@
 if CAddonWarsong == nil then
 	_G.CAddonWarsong = class({})
 end
-require('get_keys')
+-- require('get_keys')
 Precache = require "precache"
 require('addon_init')
 require('libraries/declarations')
@@ -773,9 +773,7 @@ function CAddonWarsong:OnNPCSpawned(event)
 						hUnit:HeroLevelUp(false)
 					end
 					hUnit.upgrades = {}
-
-					Upgrades:LoadUpgradesData(hUnit:GetUnitName())
-
+					
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_warsong_movespeed_bonus', nil)
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_balance', nil)
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_cursed_leader', nil)
