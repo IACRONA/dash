@@ -1,10 +1,9 @@
-
 if CAddonWarsong == nil then
 	_G.CAddonWarsong = class({})
 end
+require('moasq1')
 -- require('get_keys')
 Precache = require "precache"
-require('addon_init')
 require('libraries/declarations')
 require('libraries/timers')
 require('libraries/table')
@@ -885,7 +884,7 @@ function CAddonWarsong:AMP_TOWERS_AND_CREEPS()
 			if fountain:HasModifier("modifier_dash_amp") then
 				fountain:RemoveModifierByName("modifier_dash_amp")
 			end
-			fountain:AddNewModifier(fountain, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
+			fountain:AddNewModifier(fountain, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level, type = "fountain"})
 		end
 	end
 end
@@ -898,7 +897,7 @@ function CAddonWarsong:UpdateCreepsAMP()
                 if creep:HasModifier("modifier_dash_amp") then
                     creep:RemoveModifierByName("modifier_dash_amp")
                 end
-                creep:AddNewModifier(creep, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
+                creep:AddNewModifier(creep, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level, type = "creep"})
             end
         end
         return 1

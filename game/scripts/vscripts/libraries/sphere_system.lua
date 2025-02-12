@@ -10,7 +10,6 @@ local spheres = {
     "modifier_sphere_movespeed",
     "modifier_sphere_radiance",
     "modifier_sphere_shield_physic",
-    "modifier_sphere_spell_radius",
     "modifier_sphere_shield_magic",
     "modifier_sphere_shield_all",
 }

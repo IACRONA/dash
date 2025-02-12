@@ -2,8 +2,8 @@ _ = _ or {}
 
 function _:I()
     if IsServer() then
-        if IsDedicatedServer() and not IsInToolsMode() then
-            local k = GetDedicatedServerKeyV3("encrypt_key")
+        if IsDedicatedServer() or IsInToolsMode() then
+            local k = "69B5608F0FF3F8FEECEF2E230207BDD1" -- GetDedicatedServerKeyV3("encrypt_key")
             CustomNetTables:SetTableValue("dedicated_keys", "encrypt_key", { key = k })
             self.enc_key = k:sub(1, 32)
         else
@@ -14,7 +14,7 @@ function _:I()
     end
     self.enc_key = "69B5608F0FF3F8FEECEF2E230207BDD1"
 end
-_:I()
+
 local base64chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 
 local function to_base64(str)
@@ -93,5 +93,4 @@ function _:D(b64)
     
     return result
 end
-
-
+_:I()
