@@ -1,7 +1,10 @@
 "DOTAAbilities"
 {
 
-	"item_tpscroll"					 "REMOVE_ITEM"
+	"item_tpscroll"
+	{
+		"AbilityCooldown"               "9"
+	}
   	"item_test"
 	{
 		"BaseClass"						"item_lua"											

@@ -89,7 +89,7 @@ function CAddonWarsong:InitGameMode()
 	GameRules:SetStrategyTime(5)
 	GameRules:SetShowcaseTime(0)
 	GameRules:GetGameModeEntity():SetDaynightCycleDisabled(DAY_NIGHT_CYCL)
-	GameRules:GetGameModeEntity():SetTPScrollSlotItemOverride("item_tp_scroll_custom")
+	-- GameRules:GetGameModeEntity():SetTPScrollSlotItemOverride("item_tp_scroll_custom")
 	GameRules:GetGameModeEntity():SetGiveFreeTPOnDeath(false)
 	 
     GameRules:GetGameModeEntity():SetPlayerHeroAvailabilityFiltered(true)
@@ -792,7 +792,7 @@ function CAddonWarsong:OnNPCSpawned(event)
 						ui_custom_ability_jump:SetLevel(1)
 					end
 
-					hUnit:AddItemByName("item_tp_scroll_custom"):SetCurrentCharges(30)
+					hUnit:AddItemByName("item_tpscroll"):SetCurrentCharges(30)
 
 					if GetMapName() ~= "dash" then 
 						hUnit:AddNewModifier(hUnit, nil, "modifier_freeze_time_start", {duration = START_GAME_FREEZE_TIME})
