@@ -87,6 +87,24 @@ local particles =
     "particles/econ/events/compendium_2023/compendium_2023_teleport_lvl2_end.vpcf",
     "particles/econ/events/compendium_2024/compendium_2024_teleport_lvl3.vpcf",
     "particles/econ/events/compendium_2024/compendium_2024_teleport_lvl3_end.vpcf",
+
+    "particles/econ/events/spring_2021/teleport_start_spring_2021_lvl3.vpcf",
+    "particles/econ/events/spring_2021/teleport_end_spring_2021_lvl3.vpcf",
+    "particles/econ/events/ti10/teleport/teleport_start_ti10_lvl2.vpcf", 
+    "particles/econ/events/ti10/teleport/teleport_end_ti10_lvl2.vpcf",
+    "particles/econ/events/ti6/teleport_start_ti6_lvl3.vpcf",
+    "particles/econ/events/ti6/teleport_end_ti6_lvl3.vpcf",
+    "particles/econ/events/ti7/teleport_start_ti7_lvl3.vpcf",
+    "particles/econ/events/ti7/teleport_end_ti7_lvl3.vpcf",
+    "particles/econ/events/ti8/teleport_start_ti8_lvl3.vpcf",
+    "particles/econ/events/ti8/teleport_end_ti8_lvl3.vpcf",
+    "particles/econ/events/fall_major_2016/teleport_start_fm06_lvl2.vpcf",
+    "particles/econ/events/fall_major_2016/teleport_end_fm06_lvl2.vpcf",
+    
+ 
+ 
+ 
+  
     "particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf",
     "particles/units/heroes/hero_juggernaut/juggernaut_blade_fury_end.vpcf",
     "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail.vpcf",

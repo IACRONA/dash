@@ -7,4 +7,6 @@ const TYPE_STORE = {
   music: "music",
 };
 
-module.exports = TYPE_STORE;
+const CURRENCY_FOR_WIN = 10;
+
+module.exports = { TYPE_STORE, CURRENCY_FOR_WIN };

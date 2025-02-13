@@ -69,6 +69,15 @@
     "DOTA_shop_item_titul_five"                                             "Титул дай пять"
     "DOTA_shop_item_aura_autumn"                                             "Аура осени"
     "DOTA_shop_item_aura_aghanim"                                             "Аура аганима"
+
+    "DOTA_shop_item_teleport_mirror"                                             "Зеркальное отражение"
+    "DOTA_shop_item_teleport_scene"                                             "Театральный занавес" 
+    "DOTA_shop_item_teleport_purple_crystal"                                    "Аметистовый кристалл"
+    "DOTA_shop_item_teleport_golden"                                            "Золотое сияние"
+    "DOTA_shop_item_teleport_blood"                                             "Кровавый туман"
+    "DOTA_shop_item_teleport_water"                                             "Морская пучина"
+    "DOTA_shop_item_teleport_cave"                                              "Подземный лабиринт"
+    "DOTA_shop_item_teleport_nature"                                            "Лесная тропа"
     // Кастомный Rearm
     "DOTA_Tooltip_ability_tinker_rearm_custom"												    "Rearm"
     "DOTA_Tooltip_ability_tinker_rearm_custom_abilitydraft_note"							    "Если у способности есть заряды, их число будет увеличиваться на 1 с каждым применением Rearm."

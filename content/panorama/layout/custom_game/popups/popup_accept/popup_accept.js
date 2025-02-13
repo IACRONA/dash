@@ -14,11 +14,13 @@ const ShowPopupAccept = (root, successCallback) => {
   const cancelButton = acceptPopup.FindChildTraverse("PopupAcceptNo");
 
   acceptButton?.SetPanelEvent("onactivate", () => {
+    Game.EmitSound("Flag.RollChoose");
     successCallback?.();
     HidePopupAccept();
   });
 
   cancelButton?.SetPanelEvent("onactivate", () => {
+    Game.EmitSound("Flag.RollChoose");
     HidePopupAccept();
   });
 };

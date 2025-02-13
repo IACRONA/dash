@@ -36,6 +36,30 @@ const STORE = {
     item_teleport_scene: {
       price: 1,
     },
+    item_teleport_mirror: {
+      price: 1,
+    },
+    item_teleport_scene: {
+      price: 1,
+    },
+    item_teleport_purple_crystal: {
+      price: 1,
+    },
+    item_teleport_golden: {
+      price: 1,
+    },
+    item_teleport_blood: {
+      price: 1,
+    },
+    item_teleport_water: {
+      price: 1,
+    },
+    item_teleport_cave: {
+      price: 1,
+    },
+    item_teleport_nature: {
+      price: 1,
+    },
   },
   music: {
     item_music_pudge: {

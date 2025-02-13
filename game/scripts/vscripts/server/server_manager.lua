@@ -69,8 +69,8 @@ function ServerManager:OnEndGame(callback)
 
 	DoWithAllPlayers(function(player,_,playerId)
 		local steamId = PlayerResource:GetSteamAccountID(playerId)
-
-		if not player or steamId == -1 then 
+		print(steamId)
+		if not player or steamId == -1 or steamId == 0 then 
 			playersReady[playerId] = true
 			checkPlayers()
 			return
@@ -80,7 +80,7 @@ function ServerManager:OnEndGame(callback)
 	
 		local newRoll = (playerInfo.roll or 0) - rollUsed
 
-		HTTP("POST", "/player", {id = steamId, roll = newRoll}, {
+		HTTP("POST", "/player", {id = steamId, roll = newRoll, isEndGame = true}, {
 			finnaly = function()
 				playersReady[playerId] = true
 				checkPlayers()

@@ -34,10 +34,36 @@ DONATE_ITEMS = {
     },
     teleportation_effect = {
         item_teleport_mirror = {
-            particle = "particles/econ/events/compendium_2023/compendium_2023_teleport_lvl2",
+            particleStart = "particles/econ/events/compendium_2023/compendium_2023_teleport_lvl2.vpcf",
+            particleEnd = "particles/econ/events/compendium_2023/compendium_2023_teleport_lvl2_end.vpcf",
         },
-          item_teleport_scene = {
-            particle = "particles/econ/events/compendium_2024/compendium_2024_teleport_lvl3",
+        item_teleport_scene = {
+            particleStart = "particles/econ/events/compendium_2024/compendium_2024_teleport_lvl3.vpcf",
+            particleEnd = "particles/econ/events/compendium_2024/compendium_2024_teleport_lvl3_end.vpcf",
+        },
+        item_teleport_purple_crystal = {
+            particleStart = "particles/econ/events/spring_2021/teleport_start_spring_2021_lvl3.vpcf",
+            particleEnd = "particles/econ/events/spring_2021/teleport_end_spring_2021_lvl3.vpcf",
+        },
+        item_teleport_golden = {
+            particleStart = "particles/econ/events/ti10/teleport/teleport_start_ti10_lvl2.vpcf",
+            particleEnd = "particles/econ/events/ti10/teleport/teleport_end_ti10_lvl2.vpcf",
+        },
+        item_teleport_blood = {
+            particleStart = "particles/econ/events/ti6/teleport_start_ti6_lvl3.vpcf",
+            particleEnd = "particles/econ/events/ti6/teleport_end_ti6_lvl3.vpcf",
+        },
+        item_teleport_water = {
+            particleStart = "particles/econ/events/ti7/teleport_start_ti7_lvl3.vpcf",
+            particleEnd = "particles/econ/events/ti7/teleport_end_ti7_lvl3.vpcf",
+        },
+        item_teleport_cave = {
+            particleStart = "particles/econ/events/ti8/teleport_start_ti8_lvl3.vpcf",
+            particleEnd = "particles/econ/events/ti8/teleport_end_ti8_lvl3.vpcf",
+        },
+        item_teleport_nature = {
+            particleStart = "particles/econ/events/fall_major_2016/teleport_start_fm06_lvl2.vpcf",
+            particleEnd = "particles/econ/events/fall_major_2016/teleport_end_fm06_lvl2.vpcf",
         },
     },
     pet = {

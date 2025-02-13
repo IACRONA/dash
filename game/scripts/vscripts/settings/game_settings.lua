@@ -311,7 +311,7 @@ if GetMapName() == "portal_duo" then
     GRANT_LEVELS = 0
     GRANT_GOLD = 1000
 
-    CONDITION_FLAG_COUNT_WIN = 57 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
+    CONDITION_FLAG_COUNT_WIN = 3 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
     BAN_TIME = 3 -- Время на бан
 

@@ -115,6 +115,10 @@
   margin-top: 150px;
 }
 
+#StoreInside.IsCenter {
+  horizontal-align: center;
+}
+
 #StoreHoverBackground {
   width: 100%;
   height: 100%;
@@ -210,22 +214,32 @@
 .ShopItem {
   flow-children: down;
   margin: 10px;
-  width: 150px;
-  height: 225px;
-  border-color: rgb(196, 41, 162);
-  border-width: 2px;
-  border-style: solid;
+  width: 180px;
+  height: 260px;
+  border-radius: 8px;
+  background-color: rgba(30, 20, 20, 0.95);
+  box-shadow: 0px 0px 8px 2px rgba(196, 162, 41, 0.3); /* Изменен на огненно-желтый оттенок */
+  transition-property: pre-transform-scale2d;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in-out;
+}
+
+.ShopItem:hover {
+  pre-transform-scale2d: 1.03;
+  box-shadow: 0px 0px 12px 4px rgba(196, 162, 41, 0.5); /* Изменен на огненно-желтый оттенок */
 }
 
 #ShopItemTitle {
-  font-size: 24px;
-  color: rgb(164, 60, 212);
+  font-size: 22px;
+  color: rgb(255, 230, 180); /* Изменен на светло-желтый */
   font-family: titleFont;
   font-weight: bold;
-  width: 100%;
+  width: 90%;
   text-align: center;
   align: center center;
-  overflow: clip;
+  margin-top: 8px;
+  text-shadow: 0px 0px 4px rgba(212, 164, 60, 0.8); /* Изменен на желтый оттенок */
+  text-overflow: ellipsis;
 }
 
 .ShopItem.IsBought #ShopItemBuy {
@@ -236,6 +250,8 @@
   vertical-align: bottom;
   flow-children: down;
   width: 100%;
+  height: fill-parent-flow(1);
+  padding: 0px 12px;
 }
 
 .ShopItem:not(.IsBought) #ShopItemActivate {
@@ -243,20 +259,23 @@
 }
 
 .ShopItem.IsActive #ShopItemActivate {
-  background-color: gray;
+  background-color: rgba(80, 80, 80, 0.8);
+  box-shadow: inset 0px 0px 4px 2px rgba(0, 0, 0, 0.3);
 }
 
 #ShopItemActivate {
   flow-children: down;
-  width: 100%;
+  width: 85%;
   visibility: visible;
-  margin-bottom: 5px;
-  background-color: rgb(11, 204, 159);
-  padding: 4px;
-  width: 80%;
+  margin-bottom: 12px;
+  background-color: rgb(204, 159, 11); /* Изменен на желтый */
+  padding: 6px;
   horizontal-align: center;
-  opacity: 0.9;
-  border-radius: 3px;
+  border-radius: 6px;
+  vertical-align: bottom;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  transition: 0.2s;
+  transition-property: transform;
 }
 
 #ShopItemActivate Label {
@@ -264,51 +283,65 @@
   text-align: center;
   width: 100%;
   color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 
 #ShopItemActivate:hover {
-  opacity: 1.5;
+  brightness: 1.2;
+  transform: translateY(-1px);
 }
 
 #ShopItemActivate:active {
-  background-color: rgb(8, 156, 121);
-  opacity: 1.5;
+  background-color: rgb(156, 121, 8); /* Изменен на темно-желтый */
+  transform: translateY(1px);
 }
 
 #ShopItemPrice {
   flow-children: right;
   horizontal-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 4px 12px;
+  border-radius: 12px;
 }
 
 #ShopItemPrice Label {
   color: rgb(255, 255, 255);
-  font-size: 18px;
+  font-size: 20px;
   align: center bottom;
+  font-weight: bold;
+  margin-right: 4px;
+  text-shadow: 0px 1px 2px black;
 }
 
 #ShopItemPrice Image {
-  width: 25px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
   align: center bottom;
+  wash-color: #ffd700;
 }
 
 #ShopItemBuyButton {
-  background-color: rgb(159, 11, 204);
-  padding: 4px;
-  width: 80%;
+  background-color: rgb(204, 159, 11); /* Изменен на желтый */
+  padding: 6px;
+  width: 85%;
   align: center bottom;
-  margin-bottom: 5px;
-  opacity: 0.9;
-}
-
-#ShopItemBuyButton:active {
-  background-color: rgb(204, 11, 172);
-  opacity: 1.5;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.15s ease;
 }
 
 #ShopItemBuyButton:hover {
-  opacity: 1.5;
+  brightness: 1.2;
+  transform: translateY(-1px);
+}
+
+#ShopItemBuyButton:active {
+  background-color: rgb(204, 172, 11); /* Изменен на светло-желтый */
+  transform: translateY(1px);
 }
 
 #ShopItemBuyButton Label {
@@ -316,13 +349,24 @@
   text-align: center;
   width: 100%;
   color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+#ShopItemImageContainer {
+  width: 100%;
+  height: 120px;
+  margin-top: 8px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
 }
 
 #ShopItemImage {
-  margin-top: 5px;
-  width: 85px;
-  height: 64px;
+  width: 85%;
+  height: 100%;
   align: center center;
+  transition: all 0.2s ease;
 }
 
 #StoreButtonBack {

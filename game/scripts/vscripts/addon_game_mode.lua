@@ -751,6 +751,7 @@ function CAddonWarsong:OnNPCSpawned(event)
 				and hUnit.bFirstSpawned == nil
 			then
 				hUnit.bFirstSpawned = true
+				hUnit.spawnPoint = hUnit:GetAbsOrigin()
 				self:WearHero(hUnit)
 				if self.nCapturedFlagsCount[hUnit:GetTeamNumber()] == nil then
 					self.nCapturedFlagsCount[hUnit:GetTeamNumber()] = 0
