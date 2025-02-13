@@ -9,7 +9,7 @@
 
 
     // Флаги
-    "DOTA_TOOLTIP_modifier_item_flag_carrier"		"Отнесите флаг на свою базу"
+    "DOTA_TOOLTIP_modifier_item_flag_carrier"		"Отнесите этот флаг к своему"
     "DOTA_TOOLTIP_ABILITY_item_flag_radiant"		"<font color='#bd2'>Флаг Radiant</font>"
     "DOTA_TOOLTIP_ABILITY_item_flag_dire"			"<font color='red'>Флаг Dire</font>"
     "DOTA_TOOLTIP_ABILITY_item_flag_both"			"<font color='white'>Флаг</font>"
