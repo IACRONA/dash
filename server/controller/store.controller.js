@@ -1,6 +1,6 @@
 const db = require("../db");
 const STORE = require("../tables/store.table");
-const TYPE_STORE = require("../tables/constants");
+const { TYPE_STORE } = require("../tables/constants");
 
 class StoreController {
   async getStoreInfo(req, res) {

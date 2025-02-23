@@ -82,14 +82,18 @@ const UpdateStore = () => {
   const playerInventory = playerInfo[activeButton];
 
   body.SetHasClass("IsCenter", parseGamesInfo.length >= 4);
+  const music = CustomNetTables.GetTableValue("server_info", `music`) || {};
+
   parseGamesInfo.forEach(([name, info]) => {
     const item = $.CreatePanel("Panel", body, name);
     items.push(item);
 
     item.BLoadLayoutSnippet("ShopItem");
+    const isMusic = name.includes("item_music");
+    const imageName = isMusic ? "item_music" : name;
 
     $.CreatePanel("Image", item.FindChildTraverse("ShopItemImageContainer"), "ShopItemImage", {
-      src: `file://{resources}/images/custom_game/store_items/${name}.png`,
+      src: `file://{resources}/images/custom_game/store_items/${imageName}.png`,
     });
     item.SetHasClass("IsBought", !!playerInventory[name]);
     item.SetHasClass("IsActive", !!playerInventory[name]?.isActive);
@@ -112,6 +116,22 @@ const UpdateStore = () => {
       ShowLoader($("#StoreContainer"));
       GameEvents.SendCustomGameEventToServer("equip_shop_item", { playerId: Players.GetLocalPlayer(), item: name, type: activeButton });
     });
+
+    if (isMusic) {
+      let soundHandle;
+      item.SetPanelEvent("onmouseover", () => {
+        const sound = music[name].sound;
+
+        soundHandle = Game.EmitSound(sound);
+      });
+
+      item.SetPanelEvent("onmouseout", () => {
+        if (soundHandle) {
+          Game.StopSound(soundHandle);
+          soundHandle = null;
+        }
+      });
+    }
   });
 };
 

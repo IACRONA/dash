@@ -6,6 +6,33 @@ DONATE_ITEMS = {
         item_aura_autumn = {
             modifier = "modifier_donate_aura_autumn"
         },
+        item_aura_pumpkin_green = {
+            modifier = "modifier_donate_aura_pumpkin_green"
+        },
+        item_aura_pumpkin_red = {
+            modifier = "modifier_donate_aura_pumpkin_red"
+        },
+        item_aura_pumpkin_red = {
+            modifier = "modifier_donate_aura_pumpkin_red"
+        },
+        item_aura_pumpkin_yellow = {
+            modifier = "modifier_donate_aura_pumpkin_yellow"
+        },
+        item_aura_aghanim_quantum = {
+            modifier = "modifier_donate_aura_aghanim_quantum"
+        },
+        item_aura_lava= {
+            modifier = "modifier_donate_aura_lava"
+        },
+        item_aura_nature= {
+            modifier = "modifier_donate_aura_nature"
+        },
+        item_aura_golden= {
+            modifier = "modifier_donate_aura_golden"
+        },
+        item_aura_lotus= {
+            modifier = "modifier_donate_aura_lotus"
+        },     
     },
     titul = {
         item_titul_armor = {
@@ -72,7 +99,35 @@ DONATE_ITEMS = {
         },
         item_pet_roshan = {
             model = "models/courier/baby_rosh/babyroshan.vmdl",
-        }
+        },
+        item_pet_greevil = {
+            model = "models/courier/gold_mega_greevil/gold_mega_greevil.vmdl",
+        },
+        item_pet_greevil_gold = {
+            model = "models/courier/greevil/gold_greevil.vmdl",
+        },
+        item_pet_pudge = {
+            model = "models/courier/minipudge/minipudge.vmdl",
+        },
+        item_pet_magician = {
+            model = "models/courier/sw_donkey/sw_donkey.vmdl",
+        },
+        item_pet_cat = {
+            model = "models/items/courier/courier_ti10_radiant/courier_ti10_radiant_lvl1/courier_ti10_radiant_lvl1.vmdl",
+        },
+        item_pet_dog = {
+            model = "models/items/courier/duskie/duskie.vmdl",
+        },
+        item_pet_void_rex = {
+            model = "models/items/courier/faceless_rex/faceless_rex.vmdl",
+        },
+        item_pet_hamster_gold = {
+            model = "models/items/courier/hamster_courier/hamster_courier_lv7.vmdl",
+        },
+        item_pet_greevil_fake = {
+            model = "models/items/courier/nilbog/nilbog.vmdl",
+        },
+         
     }
 }
 

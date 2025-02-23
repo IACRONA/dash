@@ -165,7 +165,16 @@ local models = {
     "models/creeps/neutral_creeps/n_creep_vulture_b/n_creep_vulture_b.vmdl",
     "models/creeps/neutral_creeps/n_creep_kobold/kobold_a/n_creep_kobold_a.vmdl",
     "models/creeps/lane_creeps/creep_bad_siege/creep_bad_siege.vmdl",
-    "models/creeps/lane_creeps/creep_good_siege/creep_good_siege.vmdl"
+    "models/creeps/lane_creeps/creep_good_siege/creep_good_siege.vmdl",
+    "models/courier/gold_mega_greevil/gold_mega_greevil.vmdl",
+    "models/courier/greevil/gold_greevil.vmdl", 
+    "models/courier/minipudge/minipudge.vmdl",
+    "models/courier/sw_donkey/sw_donkey.vmdl",
+    "models/items/courier/courier_ti10_radiant/courier_ti10_radiant_lvl1/courier_ti10_radiant_lvl1.vmdl",
+    "models/items/courier/duskie/duskie.vmdl",
+    "models/items/courier/faceless_rex/faceless_rex.vmdl",
+    "models/items/courier/hamster_courier/hamster_courier_lv7.vmdl",
+    "models/items/courier/nilbog/nilbog.vmdl",
 }
 
 local function PrecacheEverythingFromTable( context, kvtable)
