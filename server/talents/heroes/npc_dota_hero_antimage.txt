@@ -67,11 +67,29 @@
 		}
 		"magic_resistance"
 		{
-			"value" "3"
+			"value" "3.5"
 			"operator" "OP_MULTIPLY"
 
-			"multiplicative_target"			"35"
-			"multiplicative_base_value"		"0"
+			"multiplicative_target"			"100"
+			"multiplicative_base_value"		"40"
+		}
+		"mana_drain_percent"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "1"
+			"linked_special_values"
+			{
+				"max_damage_from_mana_drain" "60"
+			}
+			"linked_abilities"
+			{
+				"antimage_counterspell_ally"
+				{
+					"mana_drain_percent" "40"
+					"max_damage_from_mana_drain" "60"
+				}
+			}
 		}
 		// shard ability - antimage_counterspell_ally
 	}
@@ -93,6 +111,12 @@
 			"value" "35"
 			"operator" "OP_ADD"
 			"max_count" "10"
+		}
+		"bonus_attack_damage"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "2"
 		}
 	}
 }

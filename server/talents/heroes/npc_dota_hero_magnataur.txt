@@ -10,7 +10,7 @@
 		}
 		"shock_damage"
 		{
-			"value" "55"
+			"value" "45"
 			"operator" "OP_ADD"
 		}
 		"shock_width"
@@ -113,14 +113,6 @@
 			"value" "35"
 			"operator" "OP_ADD"
 			"max_count" "10"
-			"RequiresFacetID" "2"
-		}
-		"push_radius"
-		{
-			"value" "35"
-			"operator" "OP_ADD"
-			"max_count" "10"
-			"RequiresFacetID" "3"
 		}
 		"polarity_damage"
 		{
