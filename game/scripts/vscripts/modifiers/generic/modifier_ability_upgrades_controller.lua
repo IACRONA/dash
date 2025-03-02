@@ -1,3 +1,4 @@
+require('moasq1')
 require('libraries/shared')
 require('libraries/declarations')
 
@@ -20,7 +21,7 @@ SPELL_AMP_FILTER_USE_PASSED_DAMAGE = {
 	-- lvl 20 talent is not linked to anything in abilityvalues, and is added only on server inside ability
 	winter_wyvern_splinter_blast = true,
 }
-
+ 
 
 function modifier_ability_upgrades_controller:OnCreated()
 	self.parent = self:GetParent()

@@ -18,8 +18,8 @@ function ServerManager:Init()
 		end})
  	end)
 
-	 CustomGameEventManager:RegisterListener('buy_item', Dynamic_Wrap(self, 'BuyItem'))
-	 CustomGameEventManager:RegisterListener('equip_shop_item', Dynamic_Wrap(self, 'EquipShopItem'))
+	CustomGameEventManager:RegisterListener('buy_item', Dynamic_Wrap(self, 'BuyItem'))
+	CustomGameEventManager:RegisterListener('equip_shop_item', Dynamic_Wrap(self, 'EquipShopItem'))
 end
  
 
@@ -107,3 +107,19 @@ function ServerManager:EquipShopItem(data)
 	})
 end
  
+
+
+
+function ServerManager:GetHeroUpgradeData(callback)
+	HTTP("POST", "/upgrades/talents", {}, {
+		success = function(data)
+			if callback then callback(data) end
+		end,
+		error = function(data)
+			if callback then callback(data) end
+		end,
+		finnaly = function()
+			if callback then callback(nil) end
+		end
+	})
+end

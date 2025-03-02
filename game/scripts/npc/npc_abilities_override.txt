@@ -8,6 +8,19 @@
 		}
 	}
 
+	"item_madstone_bundle"
+	{
+ 
+		"AbilityValues"
+		{
+			"madstone_primary"			"1"
+			"madstone_secondary"		"1"
+			"turbo_madstone_primary"	"1"
+			"turbo_madstone_secondary"	"1"
+		}
+	}
+	
+
 	"pudge_flesh_heap"
 	{
 		"AbilityValues"

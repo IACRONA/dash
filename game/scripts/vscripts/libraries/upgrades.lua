@@ -4,6 +4,7 @@ require('libraries/summons_list')
 BOOK_REROLL_COUNT  = BOOK_REROLL_COUNT  or 3
 function Upgrades:Init()
 	self.upgrades_kv = {}
+	self:UpdateHeroUpgradeData()
 	self.summon_list = {}
 	self.abilities_requires_level_reset = {}
 	self.abilities_requires_level_reset["medusa_split_shot"] = true
@@ -205,14 +206,17 @@ function Upgrades:RollUpgradesOfType(upgrade_type, player_id, rarity, previous_c
 		local ability_upgrades = hero.upgrades[upgrade_data.ability_name] or {}
 
 		-- in case max count is less than 4 for non-generic upgrades
-		if upgrade_data.max_count and not upgrade_data.rarity and upgrade_data.max_count < rarity then return end
+		if tonumber(upgrade_data.max_count) and not upgrade_data.rarity then
+			local max_count = tonumber(upgrade_data.max_count)
+			if max_count and max_count < rarity then return end
+		end
 
-		if upgrade_data.max_count and ability_upgrades[upgrade_data.upgrade_name] then
+		if tonumber(upgrade_data.max_count) and ability_upgrades[upgrade_data.upgrade_name] then
 			local current_count = ability_upgrades[upgrade_data.upgrade_name].count
 
 			-- strict rarity is (atm) only defined for generics
 			-- and for generics it means that count is applied as-is, without 1/2/4 multiplier of rarity
-			if current_count + (rarity / (upgrade_data.rarity or 1)) > upgrade_data.max_count  then return false end
+			if current_count + (rarity / (upgrade_data.rarity or 1)) > tonumber(upgrade_data.max_count)  then return false end
 		end
 
 		if upgrade_data.RequiresFacetID and upgrade_data.RequiresFacetID ~= selected_facet_id then
@@ -282,18 +286,23 @@ function Upgrades:UpgradeSelected(event)
 	end
 end
 
+function Upgrades:UpdateHeroUpgradeData()
+	ServerManager:GetHeroUpgradeData(function(data)
+		if not data then return end
+		for k, v in pairs(data) do
+			Upgrades:LoadUpgradesData(k, v)
+		end
+	end)
+end
 
-function Upgrades:LoadUpgradesData(hero_name)
+function Upgrades:LoadUpgradesData(hero_name, data)
 	if self.upgrades_kv[hero_name] then return end
-  
-	self.upgrades_kv[hero_name] = LoadKeyValues("scripts/npc/talents/heroes/" .. hero_name .. ".txt")
- 
+	self.upgrades_kv[hero_name] = data[hero_name]
 	for ability_name, upgrades in pairs(self.upgrades_kv[hero_name] or {}) do
 		for upgrade_name, upgrade_data in pairs(self.upgrades_kv[hero_name][ability_name]) do
 			UpgradesUtilities:ParseUpgrade(upgrade_data, upgrade_name, UPGRADE_TYPE.ABILITY, ability_name)
 		end
 	end
-
 	CustomNetTables:SetTableValue("ability_upgrades", hero_name, self.upgrades_kv[hero_name] or {})
 end
 
@@ -431,7 +440,7 @@ function Upgrades:AddAbilityUpgrade(hero, ability_name, special_value_name, rari
 		upgrade_data.count = upgrade_data.count + rarity
 	end
 
-	if upgrade_data.max_count and upgrade_data.count >= upgrade_data.max_count then
+	if tonumber(upgrade_data.max_count) and upgrade_data.count >= tonumber(upgrade_data.max_count) then
 		Upgrades:DisableUpgrade(player_id, ability_name, special_value_name)
 	end
 
@@ -470,7 +479,7 @@ function Upgrades:SetGenericUpgrade(hero, upgrade_name, count)
 			count = count,
 			operator = upgrade_def.operator,
 			min_rarity = upgrade_def.rarity,
-			max_count = upgrade_def.max_count
+			max_count = tonumber(upgrade_def.max_count)
 		}
 		upgrade_data = hero.upgrades.generic[upgrade_name]
 	else

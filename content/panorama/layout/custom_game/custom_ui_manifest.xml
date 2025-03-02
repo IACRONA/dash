@@ -5,7 +5,7 @@
 	<Panel>
 	    <CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml" />
 		<CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/custom_ui_hud.xml" />
-        <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/info/info.xml" />
+        <!-- <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/info/info.xml" /> -->
 		<CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/keybinds/keybinds.xml" />
 		<CustomUIElement type="EndScreen"           layoutfile="file://{resources}/layout/custom_game/multiteam_end_screen.xml" />
         <CustomUIElement type="Hud"                 layoutfile="file://{resources}/layout/custom_game/select_kill.xml" />

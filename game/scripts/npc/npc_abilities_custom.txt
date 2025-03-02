@@ -13,6 +13,64 @@
 
 "DOTAAbilities"
 {
+    "no_minimap_icon"
+    {
+        "BaseClass"                 "ability_lua"
+        "vscripts"                  "abilities/no_minimap_icon"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"1"
+    }
+    	"backdoor_protection"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"1"
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityValues"
+		{
+			"radius"
+			{
+				"value" "900"
+			}
+			"activation_time"
+			{
+				"value" "15"
+			}
+			"regen_rate"
+			{
+				"value" "90"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Backdoor Protection In Base
+	//=================================================================================================================
+	"backdoor_protection_in_base"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"1"
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityValues"
+		{
+			"activation_time"
+			{
+				"value" "15"
+			}
+			"regen_rate"
+			{
+				"value" "90"
+			}
+			"radius"
+			{
+				"value" "900"
+			}
+		}
+	}
+
 	"ability_use"
     {
 		"BaseClass"			"ability_lua"

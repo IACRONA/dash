@@ -1,3 +1,5 @@
+
+
 require('settings/game_settings')
 require('settings/balance_settings')
 
@@ -27,7 +29,6 @@ LinkLuaModifier('modifier_mystery_book', 'modifiers/books/modifier_mystery_book'
 LinkLuaModifier('modifier_old_book', 'modifiers/books/modifier_old_book', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_golden_book', 'modifiers/books/modifier_golden_book', LUA_MODIFIER_MOTION_NONE)
 
-LinkLuaModifier('modifier_spell_radius', 'modifiers/generic/modifier_spell_radius', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_spell_amp_magical', 'modifiers/generic/modifier_spell_amp_magical', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_spell_amp_pure', 'modifiers/generic/modifier_spell_amp_pure', LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier('modifier_custom_wear', 'modifiers/generic/modifier_custom_wear', LUA_MODIFIER_MOTION_NONE)

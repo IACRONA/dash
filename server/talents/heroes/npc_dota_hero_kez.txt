@@ -1,0 +1,203 @@
+"npc_dota_hero_kez"
+{
+	"kez_echo_slash"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "10"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"kez_falcon_rush"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "10"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"katana_echo_damage"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"echo_hero_damage" "10"
+			}
+			"linked_abilities"
+			{
+				"kez_falcon_rush"
+				{
+					"base_attack_rate_katana"
+					{
+						"value" "-0.04"
+						"operator" "OP_MULTIPLY"
+
+						"multiplicative_target" "0.7"
+						"multiplicative_base_value"	"1.1"
+					}
+					"base_attack_rate_sai"
+					{
+						"value" "-0.02"
+						"operator" "OP_MULTIPLY"
+
+						"multiplicative_target" "0.7"
+						"multiplicative_base_value"	"0.9"
+					}
+				}
+			}
+		}
+		"katana_radius"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"kez_falcon_rush"
+				{
+					"rush_range" "45"
+				}
+			}
+		}
+	}
+	"kez_grappling_claw"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"kez_talon_toss"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "12"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"bonus_flat_lifesteal"
+		{
+			"value" "80"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"kez_talon_toss"
+				{
+					"damage" "65"
+				}
+			}
+		}
+		"lifesteal_pct"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"kez_talon_toss"
+				{
+					"radius" "40"
+				}
+			}
+		}
+	}
+	"kez_kazurai_katana"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "14"
+			"operator" "OP_MULTIPLY"
+			"max_count" "7"
+			"linked_abilities"
+			{
+				"kez_shodo_sai"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "14"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"katana_bleed_attack_damage_pct"
+		{
+			"value" "1.25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"kez_shodo_sai"
+				{
+					"base_crit_pct" "20"
+				}
+			}
+		}
+		"heal_reduction_pct"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"kez_shodo_sai"
+				{
+					"sai_proc_vuln_chance" "3"
+				}
+			}
+		}
+	}
+	"kez_raptor_dance"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "11"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"kez_ravens_veil"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "11"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"base_damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"kez_ravens_veil"
+				{
+					"bonus_ms" "10"
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"kez_ravens_veil"
+				{
+					"blast_radius" "40"
+					"blast_speed" "40"
+				}
+			}
+		}
+	}
+}

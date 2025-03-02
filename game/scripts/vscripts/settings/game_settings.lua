@@ -60,11 +60,11 @@ if GetMapName() == "warsong" then
 
     NEUTRAL_ITEM_TIMINGS = 
     {
-        TIER_1 = 150, -- 0:00
-        TIER_2 = 250, -- 3:30
-        TIER_3 = 450, -- 9:00
-        TIER_4 = 700, -- 12:00
-        TIER_5 = 820, -- 15:00
+        TIER_1 = 5, -- 0:00
+        TIER_2 = 10, -- 3:30
+        TIER_3 = 15, -- 9:00 
+        TIER_4 = 20, -- 12:00
+        TIER_5 = 25, -- 15:00
     }
 
     -- Магический и физический резист
@@ -192,11 +192,16 @@ if GetMapName() == "dash" then
         TIER_5 = 1000, -- 15:00
     }
     
-    TIME_FOR_AMP_TOWERS_AND_CREEPS = 300  --- 5 мин | время когда крипы усиляются
-    HEALTH_AMP = 35 -- бафф на здоровье крипов | 35%
-    DAMAGE_AMP = 35 -- бафф на урон крипов | 35%
-    ARMOR_AMP = 35 -- бафф на броню крипов | 35%
-    
+    TIME_FOR_AMP_TOWERS_AND_CREEPS = 300  --- 5 мин | время когда крипы и башни усиляются
+    -- КРИПЫ:
+    HEALTH_AMP_CREEPS = 10 -- бафф на здоровье крипов | 35%
+    DAMAGE_AMP_CREEPS = 38 -- бафф на урон крипов | 35%
+    ARMOR_AMP_CREEPS = 40 -- бафф на броню крипов | 35%
+    -- БАШНИ И ТРОН:
+    HEALTH_AMP_TOWERS = 10 -- бафф на здоровье башен | 35%
+    DAMAGE_AMP_TOWERS = 35 -- бафф на урон башен | 35%
+    ARMOR_AMP_TOWERS = 35 -- бафф на броню башен | 35%
+
     -- Магический и физический резист
     RESISTANCE_TIME_ACTIVATED = 300 -- Время когда он начинается (мин.)
     MAGICAL_RESISTANCE_PERCENTAGE = 10
@@ -208,7 +213,7 @@ if GetMapName() == "dash" then
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
-    -- Настройка шаров
+    -- Настройка судеб
     NEW_PASSIVE_SPELLS_COOLDOWN = 360 -- 420s / 7m
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
     

@@ -1,10 +1,9 @@
-
 if CAddonWarsong == nil then
 	_G.CAddonWarsong = class({})
 end
-require('get_keys')
+require('moasq1')
+-- require('get_keys')
 Precache = require "precache"
-require('addon_init')
 require('libraries/declarations')
 require('libraries/timers')
 require('libraries/table')
@@ -90,7 +89,7 @@ function CAddonWarsong:InitGameMode()
 	GameRules:SetStrategyTime(5)
 	GameRules:SetShowcaseTime(0)
 	GameRules:GetGameModeEntity():SetDaynightCycleDisabled(DAY_NIGHT_CYCL)
-	GameRules:GetGameModeEntity():SetTPScrollSlotItemOverride("item_tp_scroll_custom")
+	-- GameRules:GetGameModeEntity():SetTPScrollSlotItemOverride("item_tp_scroll_custom")
 	GameRules:GetGameModeEntity():SetGiveFreeTPOnDeath(false)
 	 
     GameRules:GetGameModeEntity():SetPlayerHeroAvailabilityFiltered(true)
@@ -774,9 +773,7 @@ function CAddonWarsong:OnNPCSpawned(event)
 						hUnit:HeroLevelUp(false)
 					end
 					hUnit.upgrades = {}
-
-					Upgrades:LoadUpgradesData(hUnit:GetUnitName())
-
+					
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_warsong_movespeed_bonus', nil)
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_balance', nil)
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_cursed_leader', nil)
@@ -796,7 +793,7 @@ function CAddonWarsong:OnNPCSpawned(event)
 						ui_custom_ability_jump:SetLevel(1)
 					end
 
-					hUnit:AddItemByName("item_tp_scroll_custom"):SetCurrentCharges(30)
+					hUnit:AddItemByName("item_tpscroll"):SetCurrentCharges(30)
 
 					if GetMapName() ~= "dash" then 
 						hUnit:AddNewModifier(hUnit, nil, "modifier_freeze_time_start", {duration = START_GAME_FREEZE_TIME})
@@ -888,7 +885,7 @@ function CAddonWarsong:AMP_TOWERS_AND_CREEPS()
 			if fountain:HasModifier("modifier_dash_amp") then
 				fountain:RemoveModifierByName("modifier_dash_amp")
 			end
-			fountain:AddNewModifier(fountain, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
+			fountain:AddNewModifier(fountain, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level, type = "fountain"})
 		end
 	end
 end
@@ -901,7 +898,7 @@ function CAddonWarsong:UpdateCreepsAMP()
                 if creep:HasModifier("modifier_dash_amp") then
                     creep:RemoveModifierByName("modifier_dash_amp")
                 end
-                creep:AddNewModifier(creep, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
+                creep:AddNewModifier(creep, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level, type = "creep"})
             end
         end
         return 1

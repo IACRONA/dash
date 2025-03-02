@@ -7,10 +7,24 @@ modifier_dash_amp = class({
 function modifier_dash_amp:OnCreated(kkd)
     if not IsServer() then return end
     local lvl = kkd.lvl
+    local type = kkd.type
     if lvl == nil  or lvl == 0 then return self:Destroy() end
-    local ha = HEALTH_AMP or 0
-    local ar = ARMOR_AMP or 0
-    local da = DAMAGE_AMP or 0
+    local ha =  0
+    local ar =  0
+    local da =  0
+    if type == "creep" then
+        ha = HEALTH_AMP_CREEPS or 0
+        ar = ARMOR_AMP_CREEPS or 0
+        da = DAMAGE_AMP_CREEPS or 0
+    elseif type == "fountain" then
+        ha = HEALTH_AMP_TOWERS or 0
+        ar = ARMOR_AMP_TOWERS or 0
+        da = DAMAGE_AMP_TOWERS or 0
+    elseif type == "tower" then
+        ha = HEALTH_AMP_TOWERS or 0
+        ar = ARMOR_AMP_TOWERS or 0
+        da = DAMAGE_AMP_TOWERS or 0
+    end 
     self.HEALTH_AMP = (ha/100) * lvl
     self.ARMOR_AMP = (ar/100) * lvl
     self.DAMAGE_AMP = (da/100) * lvl

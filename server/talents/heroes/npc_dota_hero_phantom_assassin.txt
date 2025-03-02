@@ -1,0 +1,88 @@
+"npc_dota_hero_phantom_assassin"
+{
+	"phantom_assassin_stifling_dagger"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"duration"
+		{
+			"value" "0.4"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"move_slow" "-10"
+			}
+		}
+		"base_damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+	}
+	"phantom_assassin_phantom_strike"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"bonus_attack_speed"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+		"duration"
+		{
+			"value" "0.3"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
+	"phantom_assassin_blur"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+	}
+	"phantom_assassin_coup_de_grace"
+	{
+		"crit_chance"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "8"
+			"RequiresFacetID" "1"
+			"linked_special_values"
+			{
+				"dagger_crit_chance" "2"
+			}
+		}
+		"attacks_to_proc"
+		{
+			"value" "-0.25"
+			"operator" "OP_ADD"
+			"min_rarity" "epic"
+			"max_count" "8"
+			"RequiresFacetID" "2"
+			"linked_special_values"
+			{
+				"attacks_to_proc_creeps" "-0.25"
+			}
+		}
+		"crit_bonus"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+}

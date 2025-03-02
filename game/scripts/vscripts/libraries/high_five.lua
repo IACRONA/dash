@@ -1,3 +1,4 @@
+-- DASH CR
 LinkLuaModifier("modifier_high_five_thinker", "libraries/high_five", LUA_MODIFIER_MOTION_NONE)
 
 modifier_high_five = class({})
