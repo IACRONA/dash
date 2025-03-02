@@ -13,6 +13,13 @@
 
 "DOTAAbilities"
 {
+    "no_minimap_icon"
+    {
+        "BaseClass"                 "ability_lua"
+        "vscripts"                  "abilities/no_minimap_icon"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"1"
+    }
     	"backdoor_protection"
 	{
 		// General
