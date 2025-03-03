@@ -111,7 +111,19 @@ local particles =
     "particles/units/heroes/hero_juggernaut/jugg_sword_trail.vpcf",
     "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf",
     "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt_end.vpcf",
+
+
+
+    "particles/overhead_particle/leaders/leader_overhead_artifact.vpcf",
+    "particles/overhead_particle/leaders/leader_overhead_celestial.vpcf",
+    "particles/overhead_particle/leaders/leader_overhead_crest.vpcf",
+    "particles/overhead_particle/leaders/leader_overhead_dragon.vpcf",
+    "particles/overhead_particle/leaders/leader_overhead_epic.vpcf",
+    "particles/overhead_particle/leaders/leader_overhead_features.vpcf",
+    "particles/overhead_particle/leaders/leader_overhead_golden.vpcf",
+    "particles/overhead_particle/leaders/leader_overhead_winged.vpcf",
 }
+
 
 local sounds = 
 {

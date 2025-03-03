@@ -68,8 +68,17 @@
     "DOTA_shop_item_reroll_50"                                             "Reroll 50X"
      "DOTA_shop_item_reroll_100"                                             "Reroll 100X"
     "DOTA_shop_item_reroll_300"                                             "Reroll 300X"
-    "DOTA_shop_item_titul_armor"                                             "Титул Защиты"
-    "DOTA_shop_item_titul_five"                                             "Титул дай пять"
+
+    "DOTA_shop_item_titul_artifact"       "Титул Артефакта"
+    "DOTA_shop_item_titul_celestial"      "Титул Небожителя"
+    "DOTA_shop_item_titul_crest"          "Титул Геральда"
+    "DOTA_shop_item_titul_dragon"         "Титул Драконьей Славы"
+    "DOTA_shop_item_titul_epic"           "Эпический Титул"
+    "DOTA_shop_item_titul_features"       "Титул Избранного"
+    "DOTA_shop_item_titul_golden"         "Золотой Титул"
+    "DOTA_shop_item_titul_winged"         "Титул Крылатого"
+
+
     "DOTA_shop_item_aura_autumn"                                             "Аура осени"
     "DOTA_shop_item_aura_aghanim"                                             "Аура аганима"
 

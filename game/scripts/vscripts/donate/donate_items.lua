@@ -35,11 +35,29 @@ DONATE_ITEMS = {
         },     
     },
     titul = {
-        item_titul_armor = {
-            particle = "particles/items2_fx/medallion_of_courage_friend.vpcf",
+        item_titul_artifact = {
+            particle = "particles/overhead_particle/leaders/leader_overhead_artifact.vpcf",
         },
-        item_titul_five = {
-            particle = "particles/econ/events/fall_2022/high_five/high_five_fall_2022_overhead.vpcf",
+        item_titul_celestial = {
+            particle = "particles/overhead_particle/leaders/leader_overhead_celestial.vpcf",
+        },
+        item_titul_crest = {
+            particle = "particles/overhead_particle/leaders/leader_overhead_crest.vpcf",
+        },
+        item_titul_dragon = {
+            particle = "particles/overhead_particle/leaders/leader_overhead_dragon.vpcf",
+        },
+        item_titul_epic = {
+            particle = "particles/overhead_particle/leaders/leader_overhead_epic.vpcf",
+        },
+        item_titul_features = {
+            particle = "particles/overhead_particle/leaders/leader_overhead_features.vpcf",
+        },
+        item_titul_golden = {
+            particle = "particles/overhead_particle/leaders/leader_overhead_golden.vpcf",
+        },
+        item_titul_winged = {
+            particle = "particles/overhead_particle/leaders/leader_overhead_winged.vpcf",
         },
     },
     music = {

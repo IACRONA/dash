@@ -85,11 +85,29 @@ const STORE = {
     },
   },
   titul: {
-    item_titul_armor: {
-      price: 150,
+    item_titul_artifact: {
+      price: 2,
     },
-    item_titul_five: {
-      price: 150,
+    item_titul_celestial: {
+      price: 3,
+    },
+    item_titul_crest: {
+      price: 1,
+    },
+    item_titul_dragon: {
+      price: 1,
+    },
+    item_titul_epic: {
+      price: 1,
+    },
+    item_titul_features: {
+      price: 1,
+    },
+    item_titul_golden: {
+      price: 1,
+    },
+    item_titul_winged: {
+      price: 1,
     },
   },
   teleportation_effect: {
