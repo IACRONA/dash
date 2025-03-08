@@ -147,7 +147,39 @@ local models = {
     "models/creeps/neutral_creeps/n_creep_vulture_b/n_creep_vulture_b.vmdl",
     "models/creeps/neutral_creeps/n_creep_kobold/kobold_a/n_creep_kobold_a.vmdl",
     "models/creeps/lane_creeps/creep_bad_siege/creep_bad_siege.vmdl",
-    "models/creeps/lane_creeps/creep_good_siege/creep_good_siege.vmdl"
+    "models/creeps/lane_creeps/creep_good_siege/creep_good_siege.vmdl",
+    "models/creeps/lane_creeps/creep_2021_dire/creep_2021_dire_flagbearer_melee.vmdl",
+
+    
+
+    -- Одежда для героев
+    "models/items/crystal_maiden/lady_whitewind_shoulder/lady_whitewind_shoulder.vmdl",
+    "models/items/crystal_maiden/lady_whitewind_head/lady_whitewind_head.vmdl",
+    "models/items/crystal_maiden/lady_whitewind_back/lady_whitewind_back.vmdl",
+    "models/items/crystal_maiden/lady_whitewind_arms/lady_whitewind_arms.vmdl",
+    "models/items/crystal_maiden/lady_whitewind_weapon/lady_whitewind_weapon.vmdl",
+    "models/items/dazzle/ti9_cavern_crawl_dazzle_weapon/ti9_cavern_crawl_dazzle_weapon.vmdl",
+    "models/items/dazzle/ti9_cavern_crawl_dazzle_legs/ti9_cavern_crawl_dazzle_legs.vmdl",
+    "models/items/dazzle/ti9_cavern_crawl_dazzle_shoulders/ti9_cavern_crawl_dazzle_shoulders.vmdl",
+    "models/items/dazzle/ti9_cavern_crawl_dazzle_head/ti9_cavern_crawl_dazzle_head.vmdl",
+    "models/items/dazzle/ti9_cavern_crawl_dazzle_arms/ti9_cavern_crawl_dazzle_arms.vmdl",
+    "models/items/axe/ti8_axe_violent_prisoner_of_war_weapon/ti8_axe_violent_prisoner_of_war_weapon.vmdl",
+    "models/items/axe/ti8_axe_violent_prisoner_of_war_armor/ti8_axe_violent_prisoner_of_war_armor.vmdl",
+    "models/items/axe/ti8_axe_violent_prisoner_of_war_belt/ti8_axe_violent_prisoner_of_war_belt.vmdl",
+    "models/items/axe/ti8_axe_violent_prisoner_of_war_misc/ti8_axe_violent_prisoner_of_war_misc.vmdl",
+    "models/items/axe/ti8_axe_violent_prisoner_of_war_head/ti8_axe_violent_prisoner_of_war_head.vmdl",
+    "models/items/lina/origins_flamehair/origins_flamehair.vmdl",
+    "models/heroes/lina/lina_arms.vmdl",
+    "models/heroes/lina/lina_belt.vmdl",
+    "models/heroes/lina/lina_neck.vmdl",
+    "models/items/wraith_king/destruction_lord_weapon/destruction_lord_weapon.vmdl",
+    "models/items/lich/frostivus2018_lich_frozenworlds_head/frostivus2018_lich_frozenworlds_head.vmdl",
+    "models/items/wraith_king/destruction_lord_back/destruction_lord_back.vmdl",
+    "models/items/wraith_king/destruction_lord_shoulder/destruction_lord_shoulder.vmdl",
+    "models/items/wraith_king/destruction_lord_arms/destruction_lord_arms.vmdl",
+    "models/items/wraith_king/destruction_lord_armor/destruction_lord_armor.vmdl",
+
+
 }
 
 local function PrecacheEverythingFromTable( context, kvtable)
