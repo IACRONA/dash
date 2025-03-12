@@ -9,7 +9,7 @@ for hero_name, data in pairs(npc_heroes_list_kv) do
             local ability = data["Ability" ..ab]
             if ability ~= nil and ability ~= "" and ability ~= "generic_hidden" and not ability:find("special_bonus") then
                 CAddonWarsong.abilityHeroMap[ability] = hero_name
-                
+    
             end
         end
     end
@@ -74,7 +74,9 @@ end
 function CAddonWarsong:PrecacheHero(abilities)
     for _, ability_name in pairs(abilities) do
         local hero_name = CAddonWarsong.abilityHeroMap[ability_name]
-        if not self.precached[hero_name] then
+
+        if hero_name and not self.precached[hero_name] then
+
             PrecacheUnitByNameAsync("npc_precache_"..hero_name, function()
                 self.precached[hero_name] = true
             end)
