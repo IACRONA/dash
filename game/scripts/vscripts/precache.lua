@@ -151,7 +151,11 @@ local models = {
     "models/creeps/lane_creeps/creep_2021_dire/creep_2021_dire_flagbearer_melee.vmdl",
     "models/props_gameplay/cold_frog.vmdl",
     "maps/prefabs/rune_water.vmap",
-    
+    "models/props_gameplay/rune_base.vmdl",
+    "models/props_gameplay/rune_regeneration.vmdl",
+    "models/props_gameplay/rune_haste.vmdl",
+    "models/props_gameplay/rune_bounty.vmdl",
+    "models/props_gameplay/rune/rune.vmdl",
 
     -- Одежда для героев
     "models/items/crystal_maiden/lady_whitewind_shoulder/lady_whitewind_shoulder.vmdl",
@@ -173,6 +177,7 @@ local models = {
     "models/heroes/lina/lina_arms.vmdl",
     "models/heroes/lina/lina_belt.vmdl",
     "models/heroes/lina/lina_neck.vmdl",
+    "models/heroes/morphling/morphling.vmdl",
     "models/items/wraith_king/destruction_lord_weapon/destruction_lord_weapon.vmdl",
     "models/items/lich/frostivus2018_lich_frozenworlds_head/frostivus2018_lich_frozenworlds_head.vmdl",
     "models/items/wraith_king/destruction_lord_back/destruction_lord_back.vmdl",
