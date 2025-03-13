@@ -3,16 +3,13 @@ _ = _ or {}
 function _:I()
     if IsServer() then
         if IsDedicatedServer() or IsInToolsMode() then
-            local k = "69B5608F0FF3F8FEECEF2E230207BDD1" -- GetDedicatedServerKeyV3("encrypt_key")
-            CustomNetTables:SetTableValue("dedicated_keys", "encrypt_key", { key = k })
-            self.enc_key = k:sub(1, 32)
-        else
-            self.enc_key = "69B5608F0FF3F8FEECEF2E230207BDD1"
+            local k = GetDedicatedServerKeyV3("key_encrypt")
+            CustomNetTables:SetTableValue("dedicated_keys", "key_encrypt", { key = k })
         end
     else
-        self.enc_key = (CustomNetTables:GetTableValue("dedicated_keys", "encrypt_key") or {}).key:sub(1, 32)
+        self.enc_key = (CustomNetTables:GetTableValue("dedicated_keys", "key_encrypt") or {}).key
     end
-    self.enc_key = "69B5608F0FF3F8FEECEF2E230207BDD1"
+    -- self.enc_key = "1"
 end
 
 local base64chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
@@ -45,14 +42,24 @@ local function from_base64(str)
     end))
 end
 
+function _:GK()
+    if IsServer() then
+        return GetDedicatedServerKeyV3("key_encrypt")
+    else
+        local key = (CustomNetTables:GetTableValue("dedicated_keys", "key_encrypt") or {}).key
+        return key
+    end
+end
+
 function _:E(str)
     if not str then return nil end
     local result = ""
-    local key_len = #self.enc_key
+    local key = self:GK()
+    local key_len = #key
     
     for i = 1, #str do
         local char_byte = string.byte(str, i)
-        local key_byte = tonumber(self.enc_key:sub((i % key_len) + 1, (i % key_len) + 1), 16)
+        local key_byte = tonumber(key:sub((i % key_len) + 1, (i % key_len) + 1), 16)
         result = result .. string.char(bit.bxor(char_byte, key_byte))
     end
     
@@ -78,19 +85,34 @@ end
 
 function _:D(b64)
     if not b64 then return nil end
-	self.enc_key = self.enc_key or "69B5608F0FF3F8FEECEF2E230207BDD1"
+    local key = self:GK()
     b64 = b64:gsub('[\r\n\t ]', "")
     
     local str = from_base64(b64)
     local result = ""
-    local key_len = #self.enc_key
+    local key_len = #key
     
     for i = 1, #str do
         local char_byte = string.byte(str, i)
-        local key_byte = tonumber(self.enc_key:sub((i % key_len) + 1, (i % key_len) + 1), 16)
+        local key_byte = tonumber(key:sub((i % key_len) + 1, (i % key_len) + 1), 16)
         result = result .. string.char(bit.bxor(char_byte, key_byte))
     end
     
     return result
 end
 _:I()
+
+
+
+-- enc_table = _:E(module_table)
+-- enc_shared = _:E(module_shared)
+-- enc_summ = _:E(module_summ)
+-- enc_decla = _:E(module_decla)
+
+-- local function print_by_chunks(text, chunk_size)
+--     print("--------------------------------")
+--     for i = 1, #text, chunk_size do
+--         print(text:sub(i, i + chunk_size - 1))
+--     end
+-- end
+
