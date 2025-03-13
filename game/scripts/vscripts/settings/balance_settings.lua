@@ -100,7 +100,7 @@ if GetMapName() == "portal_duo" then
     --Убийства лидера последееий и иногда предпоследний командой кулдаун
     KILL_LEADER_REWARD_TIME = 240
 
-    BOOK_REROLL_COUNT  = 1
+    BOOK_REROLL_COUNT  = 3
     BOOK_COMMON_COOLDOWN = 65
     BOOK_RARE_START = 480
     BOOK_RARE_COOLDOWN = 85
@@ -216,7 +216,7 @@ if GetMapName() == "portal_trio" then
     --Убийства лидера последееий и иногда предпоследний командой кулдаун
     KILL_LEADER_REWARD_TIME = 240
 
-    BOOK_REROLL_COUNT  = 1
+    BOOK_REROLL_COUNT  = 3
     BOOK_COMMON_COOLDOWN = 65
     BOOK_RARE_START = 480
     BOOK_RARE_COOLDOWN = 85

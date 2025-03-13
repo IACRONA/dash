@@ -137,7 +137,7 @@ if GetMapName() == "warsong" then
     HIMARON_SWORD_COOLDOWN = 23
 
     -- Процент получения
-    PERCENT_OF_LEVEL_MINUTE = 190
+    PERCENT_OF_LEVEL_MINUTE = 210
 
     REROLL_SPHERES = 1
     NEW_SPHERES = 240
@@ -195,8 +195,8 @@ if GetMapName() == "dash" then
     TIME_FOR_AMP_TOWERS_AND_CREEPS = 300  --- 5 мин | время когда крипы и башни усиляются
     -- КРИПЫ:
     HEALTH_AMP_CREEPS = 10 -- бафф на здоровье крипов | 35%
-    DAMAGE_AMP_CREEPS = 38 -- бафф на урон крипов | 35%
-    ARMOR_AMP_CREEPS = 40 -- бафф на броню крипов | 35%
+    DAMAGE_AMP_CREEPS = 38 -- 5афф на урон крипов | 35%
+    ARMOR_AMP_CREEPS = 40 --афф на броню крипов | 35%
     -- БАШНИ И ТРОН:
     HEALTH_AMP_TOWERS = 10 -- бафф на здоровье башен | 35%
     DAMAGE_AMP_TOWERS = 35 -- бафф на урон башен | 35%
@@ -314,7 +314,7 @@ if GetMapName() == "portal_duo" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 1000
+    GRANT_GOLD = 1150
 
     CONDITION_FLAG_COUNT_WIN = 57 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
@@ -417,7 +417,7 @@ if GetMapName() == "portal_duo" then
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Время за сколько в сумме будет 30 лвл  в минутах
-    PERCENT_OF_LEVEL_MINUTE = 190
+    PERCENT_OF_LEVEL_MINUTE = 210
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
@@ -447,7 +447,7 @@ if GetMapName() == "portal_trio" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 1000
+    GRANT_GOLD = 1150
 
     CONDITION_FLAG_COUNT_WIN = 50 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
@@ -554,7 +554,7 @@ if GetMapName() == "portal_trio" then
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Процент уровня
-    PERCENT_OF_LEVEL_MINUTE = 190
+    PERCENT_OF_LEVEL_MINUTE = 210
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
@@ -590,7 +590,7 @@ UPGRADE_HEALTH = 280
 UPGRADE_ARMOR = 1
 
 -- Время игры в секундах
-GAME_TIME_CLOCK = 1235
+GAME_TIME_CLOCK = 1080
 
 -- Не отображать выбор скиллов этому герою
 HEROES_SELECT_SPELL_DISABLED = 
@@ -609,11 +609,6 @@ JUMP_COOLDOWN = 0.5 -- ПЕРЕЗАРЯДКА ПРЫЖКА
 JUMP_SPEED = 430 -- СКОРОСТЬ ПРЫЖКА
 JUMP_HEIGHT = 98 -- ВЫСОТА ПРЫЖКА
 JUMP_DISTANCE = 230 -- ДИСТАНЦИЯ ПРЫЖКА
-
-
-
-
-
 
 
 -- ДЛЯ ЧЕНА ( 2 СКИЛЛ, ЛВЛ ЕГО КРИПОВ)
