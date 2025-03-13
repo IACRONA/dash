@@ -150,6 +150,7 @@ local models = {
     "models/creeps/lane_creeps/creep_good_siege/creep_good_siege.vmdl",
     "models/creeps/lane_creeps/creep_2021_dire/creep_2021_dire_flagbearer_melee.vmdl",
     "models/props_gameplay/cold_frog.vmdl",
+    "maps/prefabs/rune_water.vmap",
     
 
     -- Одежда для героев
