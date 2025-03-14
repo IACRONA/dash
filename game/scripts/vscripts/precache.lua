@@ -156,7 +156,26 @@ local models = {
     "models/props_gameplay/rune_haste.vmdl",
     "models/props_gameplay/rune_bounty.vmdl",
     "models/props_gameplay/rune/rune.vmdl",
-
+    "models/props_gameplay/rune_arcane.vmdl",
+    "models/props_gameplay/rune_doubledamage01.vmdl",
+    "models/props_gameplay/rune_goldxp.vmdl",
+    "models/props_gameplay/rune_haste01.vmdl",
+    "models/props_gameplay/rune_illusion01.vmdl",
+    "models/props_gameplay/rune_invisibility01.vmdl",
+    "models/props_gameplay/rune_regeneration01.vmdl",
+    "models/props_gameplay/rune_shield01.vmdl",
+    "models/props_gameplay/rune_water.vmdl",
+    "models/props_gameplay/rune_xp.vmdl",
+    "models/items/morphling/crown_of_tears/mesh/crown_of_tears_model.vmdl",
+    "models/items/morphling/abyss_overlord_shoulder/abyss_overlord_shoulder.vmdl",
+    "models/items/morphling/abyss_overlord_back/abyss_overlord_back.vmdl",
+    "models/items/morphling/ethereal_blade/ethereal_blade.vmdl",
+    "models/items/morphling/abyss_overlord_misc/abyss_overlord_misc.vmdl",
+     
+     
+     
+     
+ 
     -- Одежда для героев
     "models/items/crystal_maiden/lady_whitewind_shoulder/lady_whitewind_shoulder.vmdl",
     "models/items/crystal_maiden/lady_whitewind_head/lady_whitewind_head.vmdl",
