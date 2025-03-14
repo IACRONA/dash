@@ -65,6 +65,7 @@ function item_tp_scroll_custom:OnSpellStart()
     local playerColor = Vector(50,20,3)
 
     local playerParticle = DonateManager:GetCurrentTeleportationEffect(caster)
+
     local startParticle = playerParticle and playerParticle.particleStart or "particles/items2_fx/teleport_start.vpcf"
     local endParticle = playerParticle and playerParticle.particleEnd or "particles/items2_fx/teleport_end.vpcf"
 
