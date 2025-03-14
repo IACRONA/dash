@@ -949,7 +949,7 @@
         [
             "sounds/spells/cursed_knight_pick_hero.vsnd",
         ]
-        volume = "1.000000"
+        volume = "0.250000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -965,7 +965,7 @@
         [
             "sounds/spells/cursed_knight_get_aghanim.vsnd",
         ]
-        volume = "1.000000"
+        volume = "0.2500000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -981,7 +981,7 @@
         [
             "sounds/spells/cursed_knight_dead.vsnd",
         ]
-        volume = "1.000000"
+        volume = "0.2500000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -997,7 +997,7 @@
         [
             "sounds/spells/cursed_knight_random1.vsnd",
         ]
-        volume = "0.800000"
+        volume = "0.200000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -1013,7 +1013,7 @@
         [
             "sounds/spells/cursed_knight_random2.vsnd",
         ]
-        volume = "0.800000"
+        volume = "0.200000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -1029,7 +1029,7 @@
         [
             "sounds/spells/cursed_knight_random3.vsnd",
         ]
-        volume = "0.800000"
+        volume = "0.2400000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
@@ -1045,7 +1045,7 @@
         [
             "sounds/spells/cursed_knight_random4.vsnd",
         ]
-        volume = "0.800000"
+        volume = "0.200000"
         pitch_rand_min = "0"
         pitch_rand_max = "0"
         pitch = "1.000000"
