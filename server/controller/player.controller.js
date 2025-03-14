@@ -1,6 +1,6 @@
 const db = require("../db");
 const { TYPE_STORE } = require("../tables/constants");
-const { CURRENCY_FOR_WIN } = require("../tables/constants");
+const { REROLL_FOR_WIN } = require("../tables/constants");
 
 class PlayerController {
   async getOrCreatePlayer(req, res) {
@@ -28,14 +28,14 @@ class PlayerController {
     if (!player.rows[0]) return res.status(403).json({ error: "Такого игрока нет" });
 
     const currentPlayer = player.rows[0];
-    let newCurrency = Math.max(currency !== undefined ? currency : currentPlayer.currency, 0);
-    newCurrency += isEndGame ? CURRENCY_FOR_WIN : 0;
+    let newRerolls = Math.max(roll !== undefined ? roll : currentPlayer.roll, 0);
+    newRerolls += isEndGame ? REROLL_FOR_WIN : 0;
 
     const updatedPlayer = await db.query(
       "UPDATE player SET currency = $1, roll = $2, aura = $3, pet = $4, titul = $5, teleportation_effect = $6, music = $7 WHERE steam_id = $8 RETURNING *",
       [
-        newCurrency,
-        Math.max(roll !== undefined ? roll : currentPlayer.roll, 0),
+        Math.max(currency !== undefined ? currency : currentPlayer.currency, 0),
+        newRerolls,
         aura !== undefined ? aura : currentPlayer.aura,
         pet !== undefined ? pet : currentPlayer.pet,
         titul !== undefined ? titul : currentPlayer.titul,
