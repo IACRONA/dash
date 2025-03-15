@@ -34,6 +34,22 @@ function CAddonWarsong:OnEntityKilled( params )
 			if killedUnit:GetUnitName() == "npc_dota_hero_skeleton_king" then
 				EmitSoundOn("cursed_knight_dead", killedUnit)
 			end
+
+			if not killedUnit:IsClone() and not killedUnit:IsTempestDouble() and hero then 
+				local mapName = GetMapName()
+				if mapName == "warsong_duo" or mapName == "portal_duo" or mapName == "portal_trio" or mapName == "dash" then 
+					local teamNumber  = hero:GetTeamNumber()
+					local isOverthrow = mapName == "portal_duo" or mapName == "portal_trio"
+
+					self.nCapturedFlagsCount[teamNumber] = GetTeamHeroKills(teamNumber)
+				
+					if isOverthrow then
+						self:RewardKillLeader(hero:GetPlayerOwnerID(), killedUnit:GetPlayerOwnerID())
+					end
+			
+					self:OnTeamKillChange()
+				end
+			end
         end
 	end
     if killedUnit:GetUnitName() == "npc_dota_badguys_fort" or killedUnit:GetUnitName() == "npc_dota_goodguys_fort" then
@@ -182,9 +198,7 @@ function CAddonWarsong:OnTeamKillCredit( event )
 			end
 		end	
 	end
-	if GetMapName() == "dash" then
-		self.nCapturedFlagsCount[event.teamnumber] = self.nCapturedFlagsCount[event.teamnumber]  + 1
- 
+	if GetMapName() == "dash" then 
 		if not self.wasFirstBlood then 
 			self.wasFirstBlood = true
 			DoWithAllPlayers(function(player, hero, playerId)
@@ -198,7 +212,7 @@ function CAddonWarsong:OnTeamKillCredit( event )
 
 	if GetMapName() == "warsong_duo" or GetMapName() == "portal_duo" or GetMapName() == "portal_trio" then
 		local isOverthrow = GetMapName() == "portal_duo" or GetMapName() == "portal_trio"
-		self.nCapturedFlagsCount[event.teamnumber] = self.nCapturedFlagsCount[event.teamnumber]  + 1
+
 		if isOverthrow then
 			if not self.wasFirstBlood then 
 				self.wasFirstBlood = true
@@ -206,10 +220,7 @@ function CAddonWarsong:OnTeamKillCredit( event )
 			end
 		end		
 		 
- 		if isOverthrow then
-			self:RewardKillLeader(event.killer_userid, event.victim_userid)
-		end
-		self:OnTeamKillChange()
+ 
 	end
 end
 
@@ -280,8 +291,6 @@ function CAddonWarsong:OnTeamKillChange()
 			hero.balanceModifier.outgoingDamage = 0
 		end
 	end)
-
-    DeepPrintTable(self.teamBalanceTier)
  end
 
 
@@ -382,6 +391,7 @@ end
 
 function CAddonWarsong:RewardKillLeader(killer_userid, victim_userid)
 	local hero = PlayerResource:GetSelectedHeroEntity(killer_userid)
+ 
 	if not hero then return end
 	local teamKiller = hero:GetTeamNumber()
 	local teamVictim = PlayerResource:GetSelectedHeroEntity(victim_userid):GetTeamNumber()

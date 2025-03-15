@@ -11,13 +11,11 @@
 		{
 			"value" "60"
 			"operator" "OP_ADD"
-			"RequiresFacetID" "1"
 		}
 		"distance_to_damage"
 		{
 			"value" "6"
 			"operator" "OP_ADD"
-			"RequiresFacetID" "2"
 		}
 		"hook_speed"
 		{

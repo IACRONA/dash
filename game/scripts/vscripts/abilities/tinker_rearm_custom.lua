@@ -4,6 +4,10 @@ function tinker_rearm_custom:GetCooldown(level)
     return self.BaseClass.GetCooldown( self, level )
 end
 
+function tinker_rearm_custom:IsStealable()
+    return false
+end
+
 function tinker_rearm_custom:OnSpellStart()
     if not IsServer() then return end
     self:GetCaster():EmitSound("Hero_Tinker.Rearm")

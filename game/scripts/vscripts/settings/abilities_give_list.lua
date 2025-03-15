@@ -491,3 +491,4 @@ RANDOM_ULTIMATES_WG =
 	"primal_beast_pulverize",
 	"ringmaster_wheel",
 }
+ 
