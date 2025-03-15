@@ -1,4 +1,4 @@
-const humanFriendlyToActualKeyMap = 
+const humanFriendlyToActualKeyMap =
 {
     TAB: "tab",
     BACKSPACE: "backspace",
@@ -32,7 +32,7 @@ const humanFriendlyToActualKeyMap =
     "KEYPAD ENTER": "kp_enter",
 };
 
-const russian_language_button = 
+const russian_language_button =
 {
     "й" : "q",
     "ц" : "w",
@@ -62,7 +62,7 @@ const russian_language_button =
     "ь" : "m",
 }
 
-const english_language_button = 
+const english_language_button =
 {
     "q" : "й",
     "w" : "ц",
@@ -97,7 +97,7 @@ var abilities_settings = {}
 var abilities_list = ["cast_ability_8", "cast_jump"]
 var saves_buttons_name = {}
 
-function GetGameKeybind(command) 
+function GetGameKeybind(command)
 {
     if (command == null || command == undefined)
     {
@@ -106,15 +106,15 @@ function GetGameKeybind(command)
     return Game.GetKeybindForCommand(command).toLowerCase();
 }
 
-function ConvertHumanFriendlyToActual(key) 
+function ConvertHumanFriendlyToActual(key)
 {
     return humanFriendlyToActualKeyMap[key] || key.toLowerCase();
 }
 
-function OnSettingsOpen() 
+function OnSettingsOpen()
 {
     let settings = $("#SettingsRoot");
-    if (settings.BHasClass("open")) 
+    if (settings.BHasClass("open"))
     {
         OnSettingsClose();
         return;
@@ -129,7 +129,7 @@ function OnSettingsOpen()
     Game.EmitSound("ui_settings_slide_in")
 }
 
-function OnSettingsClose() 
+function OnSettingsClose()
 {
     let settings = $("#SettingsRoot");
     settings.RemoveClass("open");
@@ -171,14 +171,14 @@ function InitButtons()
 
     let SaveBinds = $("#SaveBinds")
 
-    SaveBinds.SetPanelEvent('onmouseover', function() 
+    SaveBinds.SetPanelEvent('onmouseover', function()
     {
-        $.DispatchEvent('DOTAShowTextTooltip', SaveBinds, $.Localize("#keybinds_notification")); 
+        $.DispatchEvent('DOTAShowTextTooltip', SaveBinds, $.Localize("#keybinds_notification"));
     });
-    SaveBinds.SetPanelEvent('onmouseout', function() 
+    SaveBinds.SetPanelEvent('onmouseout', function()
     {
         $.DispatchEvent('DOTAHideTextTooltip', SaveBinds);
-    });   
+    });
 }
 
 function CreateBindButton(ability_name)
@@ -201,7 +201,7 @@ function CreateBindButton(ability_name)
     let entry_panel = $.CreatePanel("TextEntry", $.GetContextPanel(), "CustomKeybindEntry", {maxchars: 1})
     entry_panel.AddClass("CustomKeybindEntry")
 
-    button_panel.SetPanelEvent("onactivate", function() 
+    button_panel.SetPanelEvent("onactivate", function()
     {
         SetPreActivateBind(button_panel, entry_panel, ability_name, bind_name)
     })
@@ -213,8 +213,15 @@ function SetPreActivateBind(button_panel, entry_panel, ability_name, bind_name)
     entry_panel.SetFocus()
     button_panel.SetHasClass("ActiveBind", true)
     button_panel.SetHasClass("HoverEffect", false)
-    CheckFocusPanel(entry_panel, button_panel)
-    entry_panel.SetPanelEvent("ontextentrychange", function () 
+	if (entry_panel.BHasKeyFocus()) {
+		CheckFocusPanel(entry_panel, button_panel)
+	} else {
+		entry_panel.SetPanelEvent("onfocus", function() {
+			CheckFocusPanel(entry_panel, button_panel)
+		})
+	}
+    // CheckFocusPanel(entry_panel, button_panel)
+    entry_panel.SetPanelEvent("ontextentrychange", function ()
     {
         OnSubmitted(bind_name, entry_panel, button_panel, ability_name)
     })
@@ -244,17 +251,23 @@ function OnSubmitted(bind_name, entry_panel, button_panel, ability_name)
 
 function CheckFocusPanel(panel, button_panel)
 {
-    if (panel.BHasKeyFocus())
-    {
-        $.Schedule( 1/144, () => 
-        { 
-            CheckFocusPanel(panel, button_panel)
-        })
-        return
-    }
+	panel.ClearPanelEvent("onfocus")
     button_panel.SetHasClass("ActiveBind", false)
     button_panel.SetHasClass("HoverEffect", true)
 }
+// function CheckFocusPanel(panel, button_panel)
+// {
+//     if (panel.BHasKeyFocus())
+//     {
+//         $.Schedule( 1/144, () =>
+//         {
+//             CheckFocusPanel(panel, button_panel)
+//         })
+//         return
+//     }
+//     button_panel.SetHasClass("ActiveBind", false)
+//     button_panel.SetHasClass("HoverEffect", true)
+// }
 
 function SaveKeyBinds()
 {
@@ -267,7 +280,7 @@ function SaveKeyBinds()
         SetKeyBindButton(ability_name, button_keypad)
         if (button_keypad != "space" && english_language_button[button_keypad])
         {
-            SetKeyBindButton(ability_name, english_language_button[button_keypad])  
+            SetKeyBindButton(ability_name, english_language_button[button_keypad])
         }
         saves_buttons_name[ability_name] = button_keypad
     }
@@ -277,14 +290,14 @@ function SetKeyBindButton(ability_name, button_keypad)
 {
     const name_bind = "KeyBind_Custom_" + Math.floor(Math.random() * 99999999);
 
-    Game.AddCommand(name_bind, () => 
+    Game.AddCommand(name_bind, () =>
     {
         UseAbility(ability_name)
     }, "", 0);
     Game.CreateCustomKeyBind(button_keypad, name_bind);
 }
 
-function GetAbilityList() 
+function GetAbilityList()
 {
     let abilities_list = ["none", "none", "ui_custom_ability_jump"];
     let abilities = CustomNetTables.GetTableValue("abilities_list", String(Players.GetLocalPlayer()))
@@ -304,7 +317,7 @@ function GetAbilityList()
 
 function UseAbility(ability_name)
 {
-    let find_ability = 
+    let find_ability =
     {
         "cast_ability_7" : 0,
         "cast_ability_8" : 1,
@@ -321,14 +334,14 @@ function UpdateSkillBar()
 {
     let keybind_list = [];
     let abilities_list = GetAbilityList();
-    let find_ability = 
+    let find_ability =
     {
         "cast_ability_7" : 0,
         "cast_ability_8" : 1,
         "cast_jump" : 2,
     }
 
-    for (ability_keypad_name in find_ability) 
+    for (ability_keypad_name in find_ability)
     {
         if (saves_buttons_name[ability_keypad_name])
         {
@@ -341,9 +354,9 @@ function UpdateSkillBar()
     }
 
     let abilities = FindDotaHudElement("abilities")
-    if (abilities) 
+    if (abilities)
     {
-        for (var i = 0; i < abilities.GetChildCount(); i++) 
+        for (var i = 0; i < abilities.GetChildCount(); i++)
         {
             let ability_panel = abilities.GetChild(i)
             if (ability_panel)
@@ -352,7 +365,7 @@ function UpdateSkillBar()
                 let HotkeyText = ability_panel.FindChildTraverse("HotkeyText")
                 let ability_name = ability_panel.FindChildTraverse("AbilityImage").abilityname
                 if (ability_name && ability_name == abilities_list[0])
-                {  
+                {
                     if (HotkeyText)
                     {
                         HotkeyText.text = String(keybind_list[0]).toUpperCase()
@@ -363,7 +376,7 @@ function UpdateSkillBar()
                     }
                 }
                 if (ability_name && ability_name == abilities_list[1])
-                {  
+                {
                     if (HotkeyText)
                     {
                         HotkeyText.text = String(keybind_list[1]).toUpperCase()
@@ -374,7 +387,7 @@ function UpdateSkillBar()
                     }
                 }
                 if (ability_name && ability_name == abilities_list[2])
-                {  
+                {
                     if (HotkeyText)
                     {
                         HotkeyText.text = String(keybind_list[2]).toUpperCase()
@@ -393,7 +406,7 @@ function UpdateSkillBar()
 function ResetBinds()
 {
     let SettingsKeybindsList = $("#SettingsKeybindsList")
-    for (var i = 0; i < SettingsKeybindsList.GetChildCount(); i++) 
+    for (var i = 0; i < SettingsKeybindsList.GetChildCount(); i++)
     {
         let button_bind = SettingsKeybindsList.GetChild(i)
         if (button_bind)
@@ -432,7 +445,7 @@ function ResetKeyBindName(button_keypad)
         button_keypad = russian_language_button[button_keypad]
     }
 
-    let abilities_list = 
+    let abilities_list =
     {
         [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY1] : 0,
         [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY2] : 1,
@@ -465,7 +478,7 @@ function ResetKeyBindName(button_keypad)
         [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY2_AUTOMATIC_AUTOCAST] : 4,
         [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_ULTIMATE_AUTOMATIC_AUTOCAST] : 5,
     }
-    let items_list = 
+    let items_list =
     {
         [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY1] : 0,
         [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY2] : 1,
@@ -498,7 +511,7 @@ function ResetKeyBindName(button_keypad)
     for (bind_filter in abilities_list)
     {
         let slot_num = abilities_list[bind_filter]
-        let bind_orig_button = GetGameKeybind(Number(bind_filter)) 
+        let bind_orig_button = GetGameKeybind(Number(bind_filter))
         if (russian_language_button[bind_orig_button])
         {
             bind_orig_button = russian_language_button[bind_orig_button]
@@ -514,7 +527,7 @@ function ResetKeyBindName(button_keypad)
     for (bind_filter in items_list)
     {
         let slot_num = items_list[bind_filter]
-        let bind_orig_button = GetGameKeybind(Number(bind_filter)) 
+        let bind_orig_button = GetGameKeybind(Number(bind_filter))
         if (russian_language_button[bind_orig_button])
         {
             bind_orig_button = russian_language_button[bind_orig_button]
@@ -537,7 +550,7 @@ function ResetKeyBindName(button_keypad)
 function SetResetKeyBind(button_keypad, is_item, slot, lose)
 {
     const name_bind = "KeyBind_Custom_" + Math.floor(Math.random() * 99999999);
-    Game.AddCommand(name_bind, () => 
+    Game.AddCommand(name_bind, () =>
     {
         if (is_item)
         {
