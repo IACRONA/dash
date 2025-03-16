@@ -111,7 +111,8 @@ local particles =
     "particles/units/heroes/hero_juggernaut/jugg_sword_trail.vpcf",
     "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf",
     "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt_end.vpcf",
-
+    "particles/base_attacks/ranged_badguy.vpcf",
+    "particles/base_attacks/ranged_goodguy.vpcf",
 
 
     "particles/overhead_particle/leaders/leader_overhead_artifact.vpcf",
@@ -122,6 +123,9 @@ local particles =
     "particles/overhead_particle/leaders/leader_overhead_features.vpcf",
     "particles/overhead_particle/leaders/leader_overhead_golden.vpcf",
     "particles/overhead_particle/leaders/leader_overhead_winged.vpcf",
+
+
+
 }
 
 
@@ -210,11 +214,12 @@ local models = {
     "models/items/morphling/abyss_overlord_back/abyss_overlord_back.vmdl",
     "models/items/morphling/ethereal_blade/ethereal_blade.vmdl",
     "models/items/morphling/abyss_overlord_misc/abyss_overlord_misc.vmdl",
-     
-     
-     
-     
  
+     
+    ----- Героои
+    "models/heroes/phoenix/phoenix_egg.vmdl",
+    "models/heroes/abyssal_underlord/abyssal_underlord_portal_model.vmdl",
+    
     -- Одежда для героев
     "models/items/crystal_maiden/lady_whitewind_shoulder/lady_whitewind_shoulder.vmdl",
     "models/items/crystal_maiden/lady_whitewind_head/lady_whitewind_head.vmdl",
@@ -245,6 +250,7 @@ local models = {
 
 }
 
+ 
 local function PrecacheEverythingFromTable( context, kvtable)
     for key, value in pairs(kvtable) do
         if type(value) == "table" then
@@ -288,6 +294,7 @@ return function(context)
     for _, p in pairs(sounds) do
         PrecacheResource("soundfile", p, context)
     end
+ 
     PrecacheResource( "particle_folder", "particles/neutral_fx/", context )
     PrecacheResource( "particle_folder", "particles/items_fx/", context )
     PrecacheResource( "particle_folder", "particles/items5_fx/", context )
