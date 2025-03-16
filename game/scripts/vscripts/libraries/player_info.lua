@@ -4,6 +4,8 @@ if PlayerInfo == nil then
 end
  
 function PlayerInfo:InitPlayer(playerId, info)
+	print("Platyer")
+	DeepPrintTable(info)
 	CustomNetTables:SetTableValue("rolls_player", tostring(playerId), {roll = info.roll, roll_used = 0}) 
 
 	PlayerInfo:UpdatePlayerTable(playerId, info)
@@ -23,12 +25,13 @@ function PlayerInfo:UpdatePlayerTable(playerId, info)
 	for key, value in pairs(info) do
 		if type(value) == "string" then
 			local success, parsed = pcall(json.decode, value)
+			print(parsed)
 			if success then
-				info[key] = parsed[0] or parsed
+				info[key] =  parsed
 			end
 		end
 	end
-	
+	DeepPrintTable(info)
 	CustomNetTables:SetTableValue("player_info", tostring(playerId), info) 
 	DonateManager:CheckForChangeDonate(playerId)
 end

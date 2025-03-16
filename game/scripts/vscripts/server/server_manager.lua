@@ -60,6 +60,8 @@ function ServerManager:OnEndGame(callback)
 	local playersReady = {}
 	local checkPlayers = function()
 		local canEnd = true
+		LogPanorama(playersReady)
+
 		DoWithAllPlayers(function(_,_,id)
 			if not playersReady[id] then canEnd = false end
 		end)
@@ -69,16 +71,27 @@ function ServerManager:OnEndGame(callback)
 
 	DoWithAllPlayers(function(player,_,playerId)
 		local steamId = PlayerResource:GetSteamAccountID(playerId)
-		print(steamId)
+		LogPanorama(playersReady)
+
+		LogPanorama(steamId)
+		
 		if not player or steamId == -1 or steamId == 0 then 
 			playersReady[playerId] = true
 			checkPlayers()
 			return
 		end
+		LogPanorama(playersReady)
+
 		local rollUsed = PlayerInfo:GetRollUsedPlayer(playerId)
 		local playerInfo = CustomNetTables:GetTableValue("player_info", tostring(playerId)) 
 	
+		if not playerInfo then 
+			playersReady[playerId] = true
+			return checkPlayers()
+		end
+
 		local newRoll = (playerInfo.roll or 0) - rollUsed
+		LogPanorama("sendRequest to ".. steamId)
 
 		HTTP("POST", "/player", {id = steamId, roll = newRoll, isEndGame = true}, {
 			finnaly = function()
@@ -86,6 +99,10 @@ function ServerManager:OnEndGame(callback)
 				checkPlayers()
  			end,
 		})
+	end)
+
+	Timers:CreateTimer(10, function()
+		callback()
 	end)
 end
 

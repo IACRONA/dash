@@ -170,7 +170,7 @@ function CAddonWarsong:GameTimeClock()
     CustomGameEventManager:Send_ServerToAllClients( "GameTimer_2", broadcast_gametimer )
     if GAME_TIME_CLOCK <= 0 then
     	local sortedTeams = {}
-        DeepPrintTable(self.nCapturedFlagsCount)
+
 		for team, kills in pairs( self.nCapturedFlagsCount ) do
 			table.insert( sortedTeams, { teamID = team, teamScore = kills } )
 		end
