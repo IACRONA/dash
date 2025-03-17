@@ -116,24 +116,26 @@ function CAddonWarsong:UpdateLeaderPortalDuo()
 	local leader = sortedTeams[1].teamID
 	local allHeroes = HeroList:GetAllHeroes()
 	for _,entity in pairs( allHeroes ) do
-		if entity:GetTeamNumber() == leader and (sortedTeams[1] and sortedTeams[1].teamScore or 0) ~=  (sortedTeams[2] and sortedTeams[2].teamScore or 0) then
-			if entity:IsAlive() == true then
-				local existingParticle = entity:Attribute_GetIntValue( "particleID", -1 )
-       			if existingParticle == -1 then
-					self:AddLeaderParticle(entity)
- 				end
+		if not entity:IsNull() then
+			if entity:GetTeamNumber() == leader and (sortedTeams[1] and sortedTeams[1].teamScore or 0) ~=  (sortedTeams[2] and sortedTeams[2].teamScore or 0) then
+				if entity:IsAlive() == true then
+					local existingParticle = entity:Attribute_GetIntValue( "particleID", -1 )
+					if existingParticle == -1 then
+						self:AddLeaderParticle(entity)
+					end
+				else
+					local particleLeader = entity:Attribute_GetIntValue( "particleID", -1 )
+					if particleLeader ~= -1 then
+						ParticleManager:DestroyParticle( particleLeader, true )
+						entity:DeleteAttribute( "particleID" )
+					end
+				end
 			else
 				local particleLeader = entity:Attribute_GetIntValue( "particleID", -1 )
 				if particleLeader ~= -1 then
 					ParticleManager:DestroyParticle( particleLeader, true )
 					entity:DeleteAttribute( "particleID" )
 				end
-			end
-		else
-			local particleLeader = entity:Attribute_GetIntValue( "particleID", -1 )
-			if particleLeader ~= -1 then
-				ParticleManager:DestroyParticle( particleLeader, true )
-				entity:DeleteAttribute( "particleID" )
 			end
 		end
 	end
