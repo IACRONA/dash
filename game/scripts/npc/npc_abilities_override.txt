@@ -280,7 +280,7 @@
 	{
 		"AbilityValues"
 		{
-            "AbilityCooldown" 							"80  70 60"
+            "AbilityCooldown" 							"80  80 85"
         }
     }
 

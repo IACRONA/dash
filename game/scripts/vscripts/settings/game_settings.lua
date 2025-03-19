@@ -318,7 +318,7 @@ if GetMapName() == "portal_duo" then
 
     CONDITION_FLAG_COUNT_WIN = 57 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
-    BAN_TIME = 3 -- Время на бан
+    BAN_TIME = 6 -- Время на бан
 
     GOOD_FLAG_SCALE = 0.9
     BAD_FLAG_SCALE = 0.9
@@ -363,10 +363,10 @@ if GetMapName() == "portal_duo" then
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
 
     -- One Punchman
-    ONE_PUNCHMAN_SETTINGS_CHANCE = {3,5,8}
+    ONE_PUNCHMAN_SETTINGS_CHANCE = {1,1,2}
     ONE_PUNCHMAN_SETTINGS_CHANCE_SOUL = {8,10,20}
     ONE_PUNCHMAN_SETTINGS_COOLDOWN = 35
-    ONE_PUNCHMAN_SETTINGS_COOLDOWN_KILL = 80
+    ONE_PUNCHMAN_SETTINGS_COOLDOWN_KILL = 90
     ONE_PUNCHMAN_SETTINGS_DURATION = 20
     ONE_PUNCHMAN_SETTINGS_ATTACK_SPEED = {60,70,80} 
     ONE_PUNCHMAN_SETTINGS_LIFESTEAL = {10,12,22}
@@ -455,7 +455,7 @@ if GetMapName() == "portal_trio" then
     FLAG_RETURN_DURATION = 4
     FLAG_AUTO_RETURN_DURATION = 45
 
-    BAN_TIME = 3 -- Время на бан
+    BAN_TIME = 5 -- Время на бан
 
     GOOD_FLAG_SCALE = 0.9
     BAD_FLAG_SCALE = 0.9
@@ -500,7 +500,7 @@ if GetMapName() == "portal_trio" then
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
 
     -- One Punchman
-    ONE_PUNCHMAN_SETTINGS_CHANCE = {3,5,8}
+    ONE_PUNCHMAN_SETTINGS_CHANCE = {1,1,2}
     ONE_PUNCHMAN_SETTINGS_CHANCE_SOUL = {8,10,20}
     ONE_PUNCHMAN_SETTINGS_COOLDOWN = 35
     ONE_PUNCHMAN_SETTINGS_COOLDOWN_KILL = 80
