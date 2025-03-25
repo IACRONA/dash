@@ -166,9 +166,12 @@ function SpawnMvp(num, table_mvp) {
     text: `${$.Localize("#hud_end_game_rating")}: ${playerInfo.getPlayerRaiting(player_id)}`,
   });
 
+  var winningTeamId = Game.GetGameWinner();
+  const winStreak = playerInfo.getPlayerWinStreak(player_id) + (gamePlayerInfo.player_team_id === winningTeamId ? 1 : 0);
+
   let playerCurrentWin = $.CreatePanel("Label", mvp_panel_player, "", {
     class: "player_current_win",
-    text: `${$.Localize("#hud_end_game_current_streak")}: ${playerInfo.getPlayerWinStreak(player_id)}`,
+    text: `${$.Localize("#hud_end_game_current_streak")}: ${winStreak}`,
   });
 
   if (num <= 1) {
