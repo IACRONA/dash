@@ -3,10 +3,11 @@ if ServerManager == nil then
 end
 
 function ServerManager:Init()
+	ServerManager.playersId = {}
 
 	DoWithAllPlayers(function(_,_,playerId)
 		local steamId = PlayerResource:GetSteamAccountID(playerId)
-
+		ServerManager.playersId[tostring(steamId)] = playerId
 		HTTP("POST", "/player/".. steamId, nil, {success = function(data)
 			PlayerInfo:InitPlayer(playerId, data)
 		end})
@@ -62,7 +63,7 @@ function ServerManager:OnEndGame(callback)
 
 	local playersReady = {}
 	local matchSent = false
-	local checkPlayers = function()
+	local checkPlayers = function(data)
 		local canEnd = matchSent
 		LogPanorama(playersReady)
 
@@ -70,7 +71,23 @@ function ServerManager:OnEndGame(callback)
 			if not playersReady[id] then canEnd = false end
 		end)
 
-		if canEnd then callback() end
+		if canEnd then 
+ 			if data then 
+				local newData = {}
+
+				for steamId, value in pairs(data) do
+					local playerIdSteam = ServerManager.playersId[tostring(steamId)]
+
+					if playerIdSteam ~= nil then 
+						newData[playerIdSteam] = value
+					end
+				end
+
+				CustomNetTables:SetTableValue("server_info", "get_raiting", newData)
+			end
+
+			callback()
+		 end
 	end
 
 	DoWithAllPlayers(function(player,_,playerId)
@@ -137,9 +154,9 @@ function ServerManager:OnEndGame(callback)
 	-- if not GameRules:IsCheatMode() or not IsDedicatedServer() then
 	if true then
 		HTTP("POST", "/match/result", {places = places, map_name = GetMapName()}, {
-			finnaly = function()
+			finnaly = function(data)
 				matchSent = true
-				checkPlayers()
+				checkPlayers(data)
 			end,
 		})
 	else

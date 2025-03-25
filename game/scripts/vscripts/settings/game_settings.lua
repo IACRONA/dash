@@ -590,7 +590,7 @@ UPGRADE_HEALTH = 280
 UPGRADE_ARMOR = 1
 
 -- Время игры в секундах
-GAME_TIME_CLOCK = 1080
+GAME_TIME_CLOCK = 10
 
 -- Не отображать выбор скиллов этому герою
 HEROES_SELECT_SPELL_DISABLED = 

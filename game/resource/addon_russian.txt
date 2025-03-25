@@ -43,6 +43,7 @@
     "time_until_1"									"Осталось 3 минуты"
     "time_until_2"									"Осталась 1 минута"
 
+
     // Ошибки с флагом
     "error_cant_pickup_flag"						"Вы не можете поднять флаг"
     "error_cant_portal_with_flag"					"Вы не можете зайти в портал с флагом"
@@ -56,7 +57,11 @@
 
     //  hud
     "hud_books_shop_buy"            "Купить"
-
+    "custom_end_screen_legend_raiting"              "Рейтинг"
+    "hud_win_streak_current"                        "Череда"
+    "hud_end_game_rating"                           "Рейтинг"
+    "hud_end_game_current_streak"                           "Текущая череда побед"
+    
 
     // varibale предметов
     "dota_ability_variable_pure_damage"          "к чистому урону способностей"

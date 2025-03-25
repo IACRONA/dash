@@ -25,6 +25,9 @@
 			</Panel>
 			<Panel id="PlayerItemsContainer" class="ScoreCol_Items ScoreboardPanel" />
 			<Panel id="PlayerNeutralItemsContainer" class="ScoreCol_NeutralItems ScoreboardPanel" />
+			<Panel id="RaitingContainer" class="ScoreCol_Raiting ScoreboardPanel" >
+				<Label id="Raiting" html="true" text="999" />
+			</Panel>
 		</Panel>
 	</Panel>
 </root>

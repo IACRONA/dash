@@ -39,63 +39,72 @@ function _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer
   var networthValue = -1;
   var isTeammate = false;
 
-  var playerInfo = Game.GetPlayerInfo(playerId);
-  if (playerInfo) {
-    isTeammate = playerInfo.player_team_id == localPlayerTeamId;
+  var gamePlayerInfo = Game.GetPlayerInfo(playerId);
+  if (gamePlayerInfo) {
+    isTeammate = gamePlayerInfo.player_team_id == localPlayerTeamId;
     if (isTeammate) {
       ultStateOrTime = Game.GetPlayerUltimateStateOrTime(playerId);
     }
-    goldValue = playerInfo.player_gold;
-    networthValue = playerInfo.player_networth;
+    goldValue = gamePlayerInfo.player_gold;
+    networthValue = gamePlayerInfo.player_networth;
 
-    playerPanel.SetHasClass("player_dead", playerInfo.player_respawn_seconds >= 0);
+    playerPanel.SetHasClass("player_dead", gamePlayerInfo.player_respawn_seconds >= 0);
     playerPanel.SetHasClass("local_player_teammate", isTeammate && playerId != Game.GetLocalPlayerID());
 
-    _ScoreboardUpdater_SetTextSafe(playerPanel, "RespawnTimer", playerInfo.player_respawn_seconds + 1); // value is rounded down so just add one for rounded-up
-    _ScoreboardUpdater_SetTextSafe(playerPanel, "PlayerName", playerInfo.player_name);
-    _ScoreboardUpdater_SetTextSafe(playerPanel, "Level", playerInfo.player_level);
-    _ScoreboardUpdater_SetTextSafe(playerPanel, "Kills", playerInfo.player_kills);
-    _ScoreboardUpdater_SetTextSafe(playerPanel, "Deaths", playerInfo.player_deaths);
-    _ScoreboardUpdater_SetTextSafe(playerPanel, "Assists", playerInfo.player_assists);
+    const givingRating = playerInfo.getPlayerGivingRating(playerId);
+    const addRatingText = `${givingRating < 0 ? "-" : "+"} ${givingRating}`;
+
+    const ratingText = `${playerInfo.getPlayerRaiting(playerId)} <font color="#${givingRating < 0 ? "ff0000" : "009900"}"> ${addRatingText}</font>`;
+
+    _ScoreboardUpdater_SetTextSafe(playerPanel, "RespawnTimer", gamePlayerInfo.player_respawn_seconds + 1); // value is rounded down so just add one for rounded-up
+    _ScoreboardUpdater_SetTextSafe(playerPanel, "PlayerName", gamePlayerInfo.player_name);
+    _ScoreboardUpdater_SetTextSafe(playerPanel, "Level", gamePlayerInfo.player_level);
+    _ScoreboardUpdater_SetTextSafe(playerPanel, "Kills", gamePlayerInfo.player_kills);
+    _ScoreboardUpdater_SetTextSafe(playerPanel, "Deaths", gamePlayerInfo.player_deaths);
+    _ScoreboardUpdater_SetTextSafe(playerPanel, "Assists", gamePlayerInfo.player_assists);
+    _ScoreboardUpdater_SetTextSafe(playerPanel, "Raiting", ratingText);
 
     var playerPortrait = playerPanel.FindChildInLayoutFile("HeroIcon");
     if (playerPortrait) {
-      if (playerInfo.player_selected_hero !== "") {
-        playerPortrait.SetImage("file://{images}/heroes/" + playerInfo.player_selected_hero + ".png");
+      if (gamePlayerInfo.player_selected_hero !== "") {
+        playerPortrait.SetImage("file://{images}/heroes/" + gamePlayerInfo.player_selected_hero + ".png");
       } else {
         playerPortrait.SetImage("file://{images}/custom_game/unassigned.png");
       }
     }
 
-    if (playerInfo.player_selected_hero_id == -1) {
+    if (gamePlayerInfo.player_selected_hero_id == -1) {
       _ScoreboardUpdater_SetTextSafe(playerPanel, "HeroName", $.Localize("#DOTA_Scoreboard_Picking_Hero"));
     } else {
-      _ScoreboardUpdater_SetTextSafe(playerPanel, "HeroName", $.Localize("#" + playerInfo.player_selected_hero));
+      _ScoreboardUpdater_SetTextSafe(playerPanel, "HeroName", $.Localize("#" + gamePlayerInfo.player_selected_hero));
     }
 
     var heroNameAndDescription = playerPanel.FindChildInLayoutFile("HeroNameAndDescription");
     if (heroNameAndDescription) {
-      if (playerInfo.player_selected_hero_id == -1) {
+      if (gamePlayerInfo.player_selected_hero_id == -1) {
         heroNameAndDescription.SetDialogVariable("hero_name", $.Localize("#DOTA_Scoreboard_Picking_Hero"));
       } else {
-        heroNameAndDescription.SetDialogVariable("hero_name", $.Localize("#" + playerInfo.player_selected_hero));
+        heroNameAndDescription.SetDialogVariable("hero_name", $.Localize("#" + gamePlayerInfo.player_selected_hero));
       }
-      heroNameAndDescription.SetDialogVariableInt("hero_level", playerInfo.player_level);
+      heroNameAndDescription.SetDialogVariableInt("hero_level", gamePlayerInfo.player_level);
     }
 
-    playerPanel.SetHasClass("player_connection_abandoned", playerInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED);
-    playerPanel.SetHasClass("player_connection_failed", playerInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_FAILED);
-    playerPanel.SetHasClass("player_connection_disconnected", playerInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED);
+    playerPanel.SetHasClass("player_connection_abandoned", gamePlayerInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED);
+    playerPanel.SetHasClass("player_connection_failed", gamePlayerInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_FAILED);
+    playerPanel.SetHasClass(
+      "player_connection_disconnected",
+      gamePlayerInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED
+    );
 
     var playerAvatar = playerPanel.FindChildInLayoutFile("AvatarImage");
     if (playerAvatar) {
-      playerAvatar.steamid = playerInfo.player_steamid;
+      playerAvatar.steamid = gamePlayerInfo.player_steamid;
     }
 
     var playerColorBar = playerPanel.FindChildInLayoutFile("PlayerColorBar");
     if (playerColorBar !== null) {
       if (GameUI.CustomUIConfig().team_colors) {
-        var teamColor = GameUI.CustomUIConfig().team_colors[playerInfo.player_team_id];
+        var teamColor = GameUI.CustomUIConfig().team_colors[gamePlayerInfo.player_team_id];
         if (teamColor) {
           playerColorBar.style.backgroundColor = teamColor;
         }

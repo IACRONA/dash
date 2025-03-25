@@ -35,6 +35,6 @@ function SendRequest(method, url, body, repeatCount, callbacks)
 			end
 		end
 
-		if callbacks.finnaly then callbacks.finnaly() end	
+		if callbacks.finnaly then callbacks.finnaly(data) end	
   	end)
 end

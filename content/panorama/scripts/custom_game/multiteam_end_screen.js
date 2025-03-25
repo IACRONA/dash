@@ -120,8 +120,8 @@ function SpawnMvp(num, table_mvp) {
   }
 
   let player_id = table_mvp[num].player_id;
-  let playerInfo = Game.GetPlayerInfo(player_id);
-  let hero_name = playerInfo.player_selected_hero;
+  let gamePlayerInfo = Game.GetPlayerInfo(player_id);
+  let hero_name = gamePlayerInfo.player_selected_hero;
   if (hero_name == null) {
     hero_name = "npc_dota_hero_pudge";
   }
@@ -152,14 +152,24 @@ function SpawnMvp(num, table_mvp) {
 
   let player_name_mvp = $.CreatePanel("Label", mvp_panel_player, "");
   player_name_mvp.AddClass("player_name_mvp");
-  player_name_mvp.text = playerInfo.player_name;
+  player_name_mvp.text = gamePlayerInfo.player_name;
 
   let player_scores = $.CreatePanel("Label", mvp_panel_player, "");
   player_scores.AddClass("player_scores");
-  player_scores.text = playerInfo.player_kills + " / " + playerInfo.player_deaths + " / " + playerInfo.player_assists;
+  player_scores.text = gamePlayerInfo.player_kills + " / " + gamePlayerInfo.player_deaths + " / " + gamePlayerInfo.player_assists;
 
   let player_best_inf = $.CreatePanel("Label", mvp_panel_player, "");
   player_best_inf.AddClass("player_best_inf");
+
+  let playerElo = $.CreatePanel("Label", mvp_panel_player, "", {
+    class: "player_raiting",
+    text: `${$.Localize("#hud_end_game_rating")}: ${playerInfo.getPlayerRaiting(player_id)}`,
+  });
+
+  let playerCurrentWin = $.CreatePanel("Label", mvp_panel_player, "", {
+    class: "player_current_win",
+    text: `${$.Localize("#hud_end_game_current_streak")}: ${playerInfo.getPlayerWinStreak(player_id)}`,
+  });
 
   if (num <= 1) {
     player_best_inf.text = $.Localize("#mpv_best");

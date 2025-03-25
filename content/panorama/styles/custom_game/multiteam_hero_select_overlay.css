@@ -90,7 +90,19 @@
 #PlayersContainer {
   horizontal-align: center;
   flow-children: right;
-  height: 140px;
+  height: 160px;
+}
+
+#PanelStreak {
+  flow-children: down;
+  background-color: rgba(19, 19, 19, 0.98);
+  width: 100%;
+}
+
+.StreakText {
+  horizontal-align: center;
+  color: #fff;
+  font-size: 18px;
 }
 
 .local_player_team #PlayerPortraitsOverlay {
