@@ -314,7 +314,7 @@ if GetMapName() == "portal_duo" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 1150
+    GRANT_GOLD = 1200
 
     CONDITION_FLAG_COUNT_WIN = 57 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
@@ -354,7 +354,7 @@ if GetMapName() == "portal_duo" then
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
-    NEW_ULTIMATE_COOLDOWN = 300 -- 5 мин
+    NEW_ULTIMATE_COOLDOWN = 270 -- 5 мин
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -399,7 +399,7 @@ if GetMapName() == "portal_duo" then
     IMMORTAL_SETTINGS_DAMAGE = {720,890,1400}
     IMMORTAL_SETTINGS_CHANCE_BKB = {10,20,30}
     IMMORTAL_SETTINGS_DURATION_BKB = {2,3,4}
-    IMMORTAL_SETTINGS_COOLDOWN_BKB = {60,60,60}
+    IMMORTAL_SETTINGS_COOLDOWN_BKB = {60,55,50}
 
     -- Himaron
     HIMARON_SETTINGS_CHANCE = {20,35,50}
@@ -431,7 +431,7 @@ if GetMapName() == "portal_duo" then
     }
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 240
+    NEW_SPHERES = 220
     MAX_SPHERE_LEVEL = 4
     COUNT_SPHERE_CHOICE = 2
     MAX_SPHERE_COUNT = 14
@@ -491,7 +491,7 @@ if GetMapName() == "portal_trio" then
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
-    NEW_ULTIMATE_COOLDOWN = 300
+    NEW_ULTIMATE_COOLDOWN = 270
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -500,7 +500,7 @@ if GetMapName() == "portal_trio" then
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
 
     -- One Punchman
-    ONE_PUNCHMAN_SETTINGS_CHANCE = {1,1,2}
+    ONE_PUNCHMAN_SETTINGS_CHANCE = {1,2,3}
     ONE_PUNCHMAN_SETTINGS_CHANCE_SOUL = {8,10,20}
     ONE_PUNCHMAN_SETTINGS_COOLDOWN = 35
     ONE_PUNCHMAN_SETTINGS_COOLDOWN_KILL = 80
@@ -523,7 +523,7 @@ if GetMapName() == "portal_trio" then
     DEFENDER_SETTINGS_ARMOR = 55
     DEFENDER_SETTINGS_INCREASE_hEAL = 160
     DEFENDER_SETTINGS_DURATION_BONUS = {11,13,15}
-    DEFENDER_SETTINGS_COOLDOWN = 27
+    DEFENDER_SETTINGS_COOLDOWN = 25
     DEFENDER_SETTINGS_SHIELD_CHANCE = {15,18,23}
     DEFENDER_SETTINGS_BLOCK_DAMAGE = 650
     DEFENDER_SETTINGS_ROOTED_DURATION = 2
@@ -536,7 +536,7 @@ if GetMapName() == "portal_trio" then
     IMMORTAL_SETTINGS_DAMAGE = {720,890,1400}
     IMMORTAL_SETTINGS_CHANCE_BKB = {10,20,30}
     IMMORTAL_SETTINGS_DURATION_BKB = {2,3,4}
-    IMMORTAL_SETTINGS_COOLDOWN_BKB = {60,60,60}
+    IMMORTAL_SETTINGS_COOLDOWN_BKB = {60,55,50}
 
     -- Himaron
     HIMARON_SETTINGS_CHANCE = {20,35,50}
@@ -568,7 +568,7 @@ if GetMapName() == "portal_trio" then
     }
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 240
+    NEW_SPHERES = 220
     MAX_SPHERE_LEVEL = 4
     COUNT_SPHERE_CHOICE = 2
     MAX_SPHERE_COUNT = 14
@@ -590,7 +590,7 @@ UPGRADE_HEALTH = 280
 UPGRADE_ARMOR = 1
 
 -- Время игры в секундах
-GAME_TIME_CLOCK = 10
+GAME_TIME_CLOCK = 1080
 
 -- Не отображать выбор скиллов этому герою
 HEROES_SELECT_SPELL_DISABLED = 
