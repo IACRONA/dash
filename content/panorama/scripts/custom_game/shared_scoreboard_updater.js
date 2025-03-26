@@ -12,12 +12,7 @@ function _ScoreboardUpdater_SetTextSafe(panel, childName, textValue) {
 
 //=============================================================================
 //=============================================================================
-function _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer, playerId, localPlayerTeamId) {
-  //$.Msg( '^^^_ScoreboardUpdater_UpdatePlayerPanel' );
-  var bAltPressed = IsDotaAltPressed();
-  $.GetContextPanel().SetHasClass("AltPressed", bAltPressed == true);
-  //$.Msg( 'ALT PRESSED = ' + bAltPressed );
-
+function _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer, playerId, localPlayerTeamId, isGameEnd) {
   var playerPanelName = "_dynamic_player_" + playerId;
   var playerPanel = playersContainer.FindChild(playerPanelName);
   if (playerPanel === null) {
@@ -28,41 +23,46 @@ function _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer
 
   playerPanel.SetHasClass("is_local_player", playerId == Game.GetLocalPlayerID());
 
-  var bTipsAvailable = GameUI.AreTipsAvailable();
-  playerPanel.SetHasClass("TipsAvailable", bTipsAvailable);
-
-  var bIsPlayerTippable = GameUI.IsPlayerTippable(playerId);
-  playerPanel.SetHasClass("PlayerTippable", bIsPlayerTippable);
-
-  var ultStateOrTime = PlayerUltimateStateOrTime_t.PLAYER_ULTIMATE_STATE_HIDDEN; // values > 0 mean on cooldown for that many seconds
-  var goldValue = -1;
-  var networthValue = -1;
   var isTeammate = false;
 
   var gamePlayerInfo = Game.GetPlayerInfo(playerId);
   if (gamePlayerInfo) {
     isTeammate = gamePlayerInfo.player_team_id == localPlayerTeamId;
-    if (isTeammate) {
-      ultStateOrTime = Game.GetPlayerUltimateStateOrTime(playerId);
-    }
-    goldValue = gamePlayerInfo.player_gold;
-    networthValue = gamePlayerInfo.player_networth;
 
     playerPanel.SetHasClass("player_dead", gamePlayerInfo.player_respawn_seconds >= 0);
     playerPanel.SetHasClass("local_player_teammate", isTeammate && playerId != Game.GetLocalPlayerID());
-
-    const givingRating = playerInfo.getPlayerGivingRating(playerId);
-    const addRatingText = `${givingRating < 0 ? "-" : "+"} ${givingRating}`;
-
-    const ratingText = `${playerInfo.getPlayerRaiting(playerId)} <font color="#${givingRating < 0 ? "ff0000" : "009900"}"> ${addRatingText}</font>`;
-
     _ScoreboardUpdater_SetTextSafe(playerPanel, "RespawnTimer", gamePlayerInfo.player_respawn_seconds + 1); // value is rounded down so just add one for rounded-up
-    _ScoreboardUpdater_SetTextSafe(playerPanel, "PlayerName", gamePlayerInfo.player_name);
-    _ScoreboardUpdater_SetTextSafe(playerPanel, "Level", gamePlayerInfo.player_level);
-    _ScoreboardUpdater_SetTextSafe(playerPanel, "Kills", gamePlayerInfo.player_kills);
-    _ScoreboardUpdater_SetTextSafe(playerPanel, "Deaths", gamePlayerInfo.player_deaths);
-    _ScoreboardUpdater_SetTextSafe(playerPanel, "Assists", gamePlayerInfo.player_assists);
-    _ScoreboardUpdater_SetTextSafe(playerPanel, "Raiting", ratingText);
+
+    if (isGameEnd) {
+      $.Msg(isGameEnd);
+
+      const givingRating = playerInfo.getPlayerGivingRating(playerId);
+      const addRatingText = `${givingRating < 0 ? "-" : "+"} ${givingRating}`;
+
+      const ratingText = `${playerInfo.getPlayerRaiting(playerId)} <font color="#${givingRating < 0 ? "ff0000" : "009900"}"> ${addRatingText}</font>`;
+
+      _ScoreboardUpdater_SetTextSafe(playerPanel, "PlayerName", gamePlayerInfo.player_name);
+      _ScoreboardUpdater_SetTextSafe(playerPanel, "Level", gamePlayerInfo.player_level);
+      _ScoreboardUpdater_SetTextSafe(playerPanel, "Kills", gamePlayerInfo.player_kills);
+      _ScoreboardUpdater_SetTextSafe(playerPanel, "Deaths", gamePlayerInfo.player_deaths);
+      _ScoreboardUpdater_SetTextSafe(playerPanel, "Assists", gamePlayerInfo.player_assists);
+      _ScoreboardUpdater_SetTextSafe(playerPanel, "Raiting", ratingText);
+
+      if (gamePlayerInfo.player_selected_hero_id == -1) {
+        _ScoreboardUpdater_SetTextSafe(playerPanel, "HeroName", $.Localize("#DOTA_Scoreboard_Picking_Hero"));
+      } else {
+        _ScoreboardUpdater_SetTextSafe(playerPanel, "HeroName", $.Localize("#" + gamePlayerInfo.player_selected_hero));
+      }
+      var heroNameAndDescription = playerPanel.FindChildInLayoutFile("HeroNameAndDescription");
+      if (heroNameAndDescription) {
+        if (gamePlayerInfo.player_selected_hero_id == -1) {
+          heroNameAndDescription.SetDialogVariable("hero_name", $.Localize("#DOTA_Scoreboard_Picking_Hero"));
+        } else {
+          heroNameAndDescription.SetDialogVariable("hero_name", $.Localize("#" + gamePlayerInfo.player_selected_hero));
+        }
+        heroNameAndDescription.SetDialogVariableInt("hero_level", gamePlayerInfo.player_level);
+      }
+    }
 
     var playerPortrait = playerPanel.FindChildInLayoutFile("HeroIcon");
     if (playerPortrait) {
@@ -72,109 +72,73 @@ function _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer
         playerPortrait.SetImage("file://{images}/custom_game/unassigned.png");
       }
     }
+  }
 
-    if (gamePlayerInfo.player_selected_hero_id == -1) {
-      _ScoreboardUpdater_SetTextSafe(playerPanel, "HeroName", $.Localize("#DOTA_Scoreboard_Picking_Hero"));
+  playerPanel.SetHasClass("player_connection_abandoned", gamePlayerInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED);
+  playerPanel.SetHasClass("player_connection_failed", gamePlayerInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_FAILED);
+  playerPanel.SetHasClass("player_connection_disconnected", gamePlayerInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED);
+
+  var playerColorBar = playerPanel.FindChildInLayoutFile("PlayerColorBar");
+  if (playerColorBar !== null) {
+    if (GameUI.CustomUIConfig().team_colors) {
+      var teamColor = GameUI.CustomUIConfig().team_colors[gamePlayerInfo.player_team_id];
+      if (teamColor) {
+        playerColorBar.style.backgroundColor = teamColor;
+      }
     } else {
-      _ScoreboardUpdater_SetTextSafe(playerPanel, "HeroName", $.Localize("#" + gamePlayerInfo.player_selected_hero));
-    }
-
-    var heroNameAndDescription = playerPanel.FindChildInLayoutFile("HeroNameAndDescription");
-    if (heroNameAndDescription) {
-      if (gamePlayerInfo.player_selected_hero_id == -1) {
-        heroNameAndDescription.SetDialogVariable("hero_name", $.Localize("#DOTA_Scoreboard_Picking_Hero"));
-      } else {
-        heroNameAndDescription.SetDialogVariable("hero_name", $.Localize("#" + gamePlayerInfo.player_selected_hero));
-      }
-      heroNameAndDescription.SetDialogVariableInt("hero_level", gamePlayerInfo.player_level);
-    }
-
-    playerPanel.SetHasClass("player_connection_abandoned", gamePlayerInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED);
-    playerPanel.SetHasClass("player_connection_failed", gamePlayerInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_FAILED);
-    playerPanel.SetHasClass(
-      "player_connection_disconnected",
-      gamePlayerInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED
-    );
-
-    var playerAvatar = playerPanel.FindChildInLayoutFile("AvatarImage");
-    if (playerAvatar) {
-      playerAvatar.steamid = gamePlayerInfo.player_steamid;
-    }
-
-    var playerColorBar = playerPanel.FindChildInLayoutFile("PlayerColorBar");
-    if (playerColorBar !== null) {
-      if (GameUI.CustomUIConfig().team_colors) {
-        var teamColor = GameUI.CustomUIConfig().team_colors[gamePlayerInfo.player_team_id];
-        if (teamColor) {
-          playerColorBar.style.backgroundColor = teamColor;
-        }
-      } else {
-        var playerColor = "#000000";
-        playerColorBar.style.backgroundColor = playerColor;
-      }
+      var playerColor = "#000000";
+      playerColorBar.style.backgroundColor = playerColor;
     }
   }
 
-  var playerItemsContainer = playerPanel.FindChildInLayoutFile("PlayerItemsContainer");
-  if (playerItemsContainer) {
-    var playerItems = Game.GetPlayerItems(playerId);
-    if (playerItems) {
-      //   $.Msg("playerItems = ", playerItems);
-      var i;
-      for (i = playerItems.inventory_slot_min; i < playerItems.inventory_slot_max; ++i) {
-        // skip over backpack items
-        if (i >= playerItems.inventory_slot_max - playerItems.backpack_size) {
-          continue;
+  if (isGameEnd) {
+    var playerItemsContainer = playerPanel.FindChildInLayoutFile("PlayerItemsContainer");
+
+    if (playerItemsContainer) {
+      var playerItems = Game.GetPlayerItems(playerId);
+      if (playerItems) {
+        //   $.Msg("playerItems = ", playerItems);
+        var i;
+        for (i = playerItems.inventory_slot_min; i < playerItems.inventory_slot_max; ++i) {
+          // skip over backpack items
+          if (i >= playerItems.inventory_slot_max - playerItems.backpack_size) {
+            continue;
+          }
+
+          var itemPanelName = "_dynamic_item_" + i;
+          var itemPanel = playerItemsContainer.FindChild(itemPanelName);
+          var itemInfo = playerItems.inventory[i];
+
+          if (itemPanel === null) {
+            itemPanel = $.CreatePanel("DOTAItemImage", playerItemsContainer, itemPanelName, {
+              itemname: itemInfo ? itemInfo.item_name : "",
+            });
+            itemPanel.AddClass("PlayerItem");
+          }
         }
 
         var itemPanelName = "_dynamic_item_" + i;
         var itemPanel = playerItemsContainer.FindChild(itemPanelName);
-        var itemInfo = playerItems.inventory[i];
-
         if (itemPanel === null) {
-          itemPanel = $.CreatePanel("DOTAItemImage", playerItemsContainer, itemPanelName, {
-            itemname: itemInfo ? itemInfo.item_name : "",
-          });
+          itemPanel = $.CreatePanel("Image", playerItemsContainer, itemPanelName);
           itemPanel.AddClass("PlayerItem");
         }
-      }
 
-      // neutral item
-      var itemPanelName = "_dynamic_item_" + i;
-      var itemPanel = playerItemsContainer.FindChild(itemPanelName);
-      if (itemPanel === null) {
-        itemPanel = $.CreatePanel("Image", playerItemsContainer, itemPanelName);
-        itemPanel.AddClass("PlayerItem");
-      }
-
-      var itemInfo = playerItems.neutral_item;
-      if (itemInfo) {
-        var item_image_name = "file://{images}/items/" + itemInfo.item_name.replace("item_", "") + ".png";
-        itemPanel.SetImage(item_image_name);
-      } else {
-        itemPanel.SetImage("");
+        var itemInfo = playerItems.neutral_item;
+        if (itemInfo) {
+          var item_image_name = "file://{images}/items/" + itemInfo.item_name.replace("item_", "") + ".png";
+          itemPanel.SetImage(item_image_name);
+        } else {
+          itemPanel.SetImage("");
+        }
       }
     }
   }
-
-  if (isTeammate) {
-    _ScoreboardUpdater_SetTextSafe(playerPanel, "TeammateGoldAmount", goldValue);
-  }
-
-  _ScoreboardUpdater_SetTextSafe(playerPanel, "PlayerGoldAmount", goldValue);
-  _ScoreboardUpdater_SetTextSafe(playerPanel, "PlayerNetworth", networthValue);
-
-  playerPanel.SetHasClass("player_ultimate_ready", ultStateOrTime == PlayerUltimateStateOrTime_t.PLAYER_ULTIMATE_STATE_READY);
-  playerPanel.SetHasClass("player_ultimate_no_mana", ultStateOrTime == PlayerUltimateStateOrTime_t.PLAYER_ULTIMATE_STATE_NO_MANA);
-  playerPanel.SetHasClass("player_ultimate_not_leveled", ultStateOrTime == PlayerUltimateStateOrTime_t.PLAYER_ULTIMATE_STATE_NOT_LEVELED);
-  playerPanel.SetHasClass("player_ultimate_hidden", ultStateOrTime == PlayerUltimateStateOrTime_t.PLAYER_ULTIMATE_STATE_HIDDEN);
-  playerPanel.SetHasClass("player_ultimate_cooldown", ultStateOrTime > 0);
-  _ScoreboardUpdater_SetTextSafe(playerPanel, "PlayerUltimateCooldown", ultStateOrTime);
 }
 
 //=============================================================================
 //=============================================================================
-function _ScoreboardUpdater_UpdateTeamPanel(scoreboardConfig, containerPanel, teamDetails, teamsInfo) {
+function _ScoreboardUpdater_UpdateTeamPanel(scoreboardConfig, containerPanel, teamDetails, teamsInfo, isGameEnd) {
   if (!containerPanel) return;
 
   var teamId = teamDetails.team_id;
@@ -201,7 +165,7 @@ function _ScoreboardUpdater_UpdateTeamPanel(scoreboardConfig, containerPanel, te
   var playersContainer = teamPanel.FindChildInLayoutFile("PlayersContainer");
   if (playersContainer) {
     for (var playerId of teamPlayers) {
-      _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer, playerId, localPlayerTeamId);
+      _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer, playerId, localPlayerTeamId, isGameEnd);
     }
   }
 
@@ -338,27 +302,22 @@ function stableCompareFunc(a, b) {
 
 //=============================================================================
 //=============================================================================
-function _ScoreboardUpdater_UpdateAllTeamsAndPlayers(scoreboardConfig, teamsContainer) {
-  //	$.Msg( "_ScoreboardUpdater_UpdateAllTeamsAndPlayers: ", scoreboardConfig );
-
+function _ScoreboardUpdater_UpdateAllTeamsAndPlayers(scoreboardConfig, teamsContainer, isGameEnd) {
   var teamsList = [];
   for (var teamId of Game.GetAllTeamIDs()) {
     teamsList.push(Game.GetTeamDetails(teamId));
   }
 
-  // update/create team panels
   var teamsInfo = { max_team_players: 0 };
   var panelsByTeam = [];
   for (var i = 0; i < teamsList.length; ++i) {
-    var teamPanel = _ScoreboardUpdater_UpdateTeamPanel(scoreboardConfig, teamsContainer, teamsList[i], teamsInfo);
+    var teamPanel = _ScoreboardUpdater_UpdateTeamPanel(scoreboardConfig, teamsContainer, teamsList[i], teamsInfo, isGameEnd);
     if (teamPanel) {
       panelsByTeam[teamsList[i].team_id] = teamPanel;
     }
   }
 
   if (teamsList.length > 1) {
-    //		$.Msg( "panelsByTeam: ", panelsByTeam );
-
     // sort
     if (scoreboardConfig.shouldSort) {
       teamsList.sort(stableCompareFunc);
@@ -384,7 +343,7 @@ function _ScoreboardUpdater_UpdateAllTeamsAndPlayers(scoreboardConfig, teamsCont
 
 //=============================================================================
 //=============================================================================
-function ScoreboardUpdater_InitializeScoreboard(scoreboardConfig, scoreboardPanel) {
+function ScoreboardUpdater_InitializeScoreboard(scoreboardConfig, scoreboardPanel, isGameEnd) {
   GameUI.CustomUIConfig().teamsPrevPlace = [];
   if (typeof scoreboardConfig.shouldSort === "undefined") {
     // default to true
@@ -394,7 +353,7 @@ function ScoreboardUpdater_InitializeScoreboard(scoreboardConfig, scoreboardPane
     // default to true
     scoreboardConfig.shouldReorder = true;
   }
-  _ScoreboardUpdater_UpdateAllTeamsAndPlayers(scoreboardConfig, scoreboardPanel);
+  _ScoreboardUpdater_UpdateAllTeamsAndPlayers(scoreboardConfig, scoreboardPanel, isGameEnd);
   return { scoreboardConfig: scoreboardConfig, scoreboardPanel: scoreboardPanel };
 }
 

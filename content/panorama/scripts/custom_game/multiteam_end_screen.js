@@ -10,7 +10,7 @@
     playerXmlName: "file://{resources}/layout/custom_game/multiteam_end_screen_player.xml",
   };
 
-  var endScoreboardHandle = ScoreboardUpdater_InitializeScoreboard(scoreboardConfig, $("#TeamsContainer"));
+  var endScoreboardHandle = ScoreboardUpdater_InitializeScoreboard(scoreboardConfig, $("#TeamsContainer"), true);
   $.GetContextPanel().SetHasClass("endgame", 1);
 
   var teamInfoList = ScoreboardUpdater_GetSortedTeamInfoList(endScoreboardHandle);

@@ -26,7 +26,7 @@ function UpdatePlayer(teamPanel, playerId) {
     playerPanel.BLoadLayout("file://{resources}/layout/custom_game/multiteam_hero_select_overlay_player.xml", false, false);
     playerPanel.AddClass("PlayerPanel");
     const playerTable = CustomNetTables.GetTableValue("player_info", `${playerId}`) || {};
-    $.Msg(playerTable);
+
     const winStreakCurrent = playerTable.win_streak_current || 0;
     const maxWinStreakCurrent = playerTable.win_streak_max || 0;
 
