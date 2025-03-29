@@ -151,8 +151,8 @@ function ServerManager:OnEndGame(callback)
 		end
 	end)
 
-	-- if not GameRules:IsCheatMode() or not IsDedicatedServer() then
-	if true then
+    if not GameRules:IsCheatMode() and IsDedicatedServer() then
+	-- if true then
 		HTTP("POST", "/match/result", {places = places, map_name = GetMapName()}, {
 			finnaly = function(data)
 				matchSent = true

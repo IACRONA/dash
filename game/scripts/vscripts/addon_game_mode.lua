@@ -103,7 +103,7 @@ function CAddonWarsong:InitGameMode()
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 5 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 5 )
 		GameRules:GetGameModeEntity():SetPauseEnabled(IsInToolsMode())
-		GameRules:GetGameModeEntity():SetCameraDistanceOverride(1250)
+		GameRules:GetGameModeEntity():SetCameraDistanceOverride(1200)
 		SendToServerConsole( "r_farz 8000" )
 	elseif GetMapName() == "portal_duo" then
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 2 )

@@ -58,7 +58,7 @@
     //  hud
     "hud_books_shop_buy"            "Купить"
     "custom_end_screen_legend_raiting"              "Рейтинг"
-    "hud_win_streak_current"                        "MVP"
+    "hud_win_streak_current"                        "MVP Streak"
     "hud_end_game_rating"                           "Рейтинг"
     "hud_end_game_current_streak"                           "Череда MVP"
     
