@@ -5,7 +5,7 @@ end
  
 function PlayerInfo:InitPlayer(playerId, info)
 	CustomNetTables:SetTableValue("rolls_player", tostring(playerId), {roll = info.roll, roll_used = 0}) 
-	DeepPrintTable(info)
+
 	PlayerInfo:UpdatePlayerTable(playerId, info)
 end
 
