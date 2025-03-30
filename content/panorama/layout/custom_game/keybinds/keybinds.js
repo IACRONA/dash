@@ -1,11 +1,7 @@
+
 HEROES_DONT_JUMP = [
     "npc_dota_hero_earthshaker"
 ]
-
-
-
-
-
 
 const humanFriendlyToActualKeyMap =
 {
