@@ -74,12 +74,12 @@ if GetMapName() == "warsong" then
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
-    NEW_ULTIMATE_COOLDOWN = 300
+    NEW_ULTIMATE_COOLDOWN = 270
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка шаров
-    NEW_PASSIVE_SPELLS_COOLDOWN = 325 -- 420s / 7m
+    NEW_PASSIVE_SPELLS_COOLDOWN = 289 -- 420s / 7m
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
     
     -- One Punchman
@@ -209,12 +209,12 @@ if GetMapName() == "dash" then
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
-    NEW_ULTIMATE_COOLDOWN = 300 -- 5 мин
+    NEW_ULTIMATE_COOLDOWN = 270 -- 5 мин
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка судеб
-    NEW_PASSIVE_SPELLS_COOLDOWN = 360 -- 420s / 7m
+    NEW_PASSIVE_SPELLS_COOLDOWN = 300 -- 420s / 7m
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
     
     -- One Punchman
@@ -359,7 +359,7 @@ if GetMapName() == "portal_duo" then
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка шаров
-    NEW_PASSIVE_SPELLS_COOLDOWN = 325 --420 -- 420s / 7m
+    NEW_PASSIVE_SPELLS_COOLDOWN = 289 --420 -- 420s / 7m
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
 
     -- One Punchman
@@ -496,7 +496,7 @@ if GetMapName() == "portal_trio" then
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка шаров
-    NEW_PASSIVE_SPELLS_COOLDOWN = 325 --420 -- 420s / 7m
+    NEW_PASSIVE_SPELLS_COOLDOWN = 289 --420 -- 420s / 7m
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
 
     -- One Punchman
