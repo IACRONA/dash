@@ -12,7 +12,9 @@ class HighFive {
         this.HighFiveKeyButtonLabel = this.button.FindChildTraverse("HighFiveKeyButtonLabel")
         this.heroIndex = Game.GetPlayerInfo(this.playerId).player_selected_hero_entity_index;
         this.keybind_button = null;
-        this.Tick();
+        // this.Tick();
+		GameEvents.Subscribe("dota_player_update_selected_unit", (() => this.OnUpdateUnit()))
+		GameEvents.Subscribe("dota_player_update_query_unit", (() => this.OnUpdateUnit()))
     }
     RemoveOnRestart() {
         dotaHud.FindChildrenWithClassTraverse("__HF_Remove__").forEach(panel => panel.DeleteAsync(0));
@@ -32,21 +34,29 @@ class HighFive {
         high_five.SetParent(container);
         return high_five;
     }
-    HighFive() 
+    HighFive()
     {
         var selected_index = Players.GetLocalPlayerPortraitUnit();
         GameEvents.SendCustomGameEventToServer( "high_five", {PlayerID : this.playerId, selected_index : selected_index} );
-    } 
-    HighFiveBind() 
-    {
-        GameEvents.SendCustomGameEventToServer( "high_five", {PlayerID : this.playerId, selected_index : selected_index} );
-    } 
-    Tick() {
-        var selected_index = Players.GetLocalPlayerPortraitUnit();
-        this.button.SetHasClass("Hidden", !Entities.IsRealHero(selected_index));
-        this.heroIndex = Game.GetPlayerInfo(this.playerId).player_selected_hero_entity_index;
-        $.Schedule(Game.GetGameFrameTime(), () => this.Tick());
     }
+    HighFiveBind()
+    {
+        GameEvents.SendCustomGameEventToServer( "high_five", {PlayerID : this.playerId, selected_index : selected_index} );
+    }
+	OnUpdateUnit() {
+		$.Schedule(0.1, () => {
+			var selected_index = Players.GetLocalPlayerPortraitUnit();
+			this.button.SetHasClass("Hidden", !Entities.IsRealHero(selected_index));
+			this.heroIndex = Game.GetPlayerInfo(this.playerId).player_selected_hero_entity_index;
+			// $.Schedule(Game.GetGameFrameTime(), () => this.Tick());
+		})
+	}
+    // Tick() {
+    //     var selected_index = Players.GetLocalPlayerPortraitUnit();
+    //     this.button.SetHasClass("Hidden", !Entities.IsRealHero(selected_index));
+    //     this.heroIndex = Game.GetPlayerInfo(this.playerId).player_selected_hero_entity_index;
+    //     $.Schedule(Game.GetGameFrameTime(), () => this.Tick());
+    // }
 }
 var highfive = new HighFive();
 

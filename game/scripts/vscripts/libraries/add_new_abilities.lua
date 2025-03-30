@@ -68,20 +68,18 @@ function CAddonWarsong:HeroAddNewAbility(entity, is_ultimate, player_id, is_rero
     end
     CustomNetTables:SetTableValue("abilities_list", tostring(entity:GetPlayerOwnerID()), CAddonWarsong.player_abilities_info[entity:GetPlayerOwnerID()])
     local random_abilities = self:GetNewAbilityPlayer(entity, abilities_list)
-    self:PrecacheHero(random_abilities)
+
     CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(entity:GetPlayerOwnerID()), "spell_select_open_panel", {spell_list = random_abilities, is_ultimate = is_ultimate, is_reroll = not (not is_reroll)})
 end
-function CAddonWarsong:PrecacheHero(abilities)
-    for _, ability_name in pairs(abilities) do
-        local hero_name = CAddonWarsong.abilityHeroMap[ability_name]
+function CAddonWarsong:PrecacheHero(ability_name)
+    local hero_name = CAddonWarsong.abilityHeroMap[ability_name]
 
-        if hero_name and not self.precached[hero_name] then
+    if hero_name and not self.precached[hero_name] then
 
-            PrecacheUnitByNameAsync("npc_precache_"..hero_name, function()
-                self.precached[hero_name] = true
-            end)
-        end
-    end 
+        PrecacheUnitByNameAsync("npc_precache_"..hero_name, function()
+            self.precached[hero_name] = true
+        end)
+    end
 end
 function CAddonWarsong:SelectAbilityToHero(player_id, ability_name, is_ultimate)
     local entity = PlayerResource:GetSelectedHeroEntity(player_id)
@@ -102,6 +100,7 @@ function CAddonWarsong:SelectAbilityToHero(player_id, ability_name, is_ultimate)
         end
         CustomNetTables:SetTableValue("abilities_list", tostring(entity:GetPlayerOwnerID()), CAddonWarsong.player_abilities_info[entity:GetPlayerOwnerID()])
         if new_ability then
+            self:PrecacheHero(new_ability)
             if string.find(random_ability, "invoker") then
                 if entity:GetLevel() >= 30 then
                     new_ability:SetLevel(3)

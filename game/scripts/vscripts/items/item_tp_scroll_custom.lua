@@ -25,6 +25,13 @@ function item_tp_scroll_custom:OnSpellStart()
     local caster = self:GetCaster()
     local vision_radius = self:GetSpecialValueFor("vision_radius")
     local cursorPoint = self:GetCursorPosition()
+    local target = self:GetCursorTarget()
+
+    if target then
+        if target == caster and caster.spawnPoint then
+            cursorPoint = caster.spawnPoint
+        end
+    end
 
     local building = FindUnitsInRadius(
         caster:GetTeamNumber(), 
@@ -59,8 +66,11 @@ function item_tp_scroll_custom:OnSpellStart()
 
     local playerParticle = DonateManager:GetCurrentTeleportationEffect(caster)
 
+    local startParticle = playerParticle and playerParticle.particleStart or "particles/items2_fx/teleport_start.vpcf"
+    local endParticle = playerParticle and playerParticle.particleEnd or "particles/items2_fx/teleport_end.vpcf"
+
     self.startParticle = ParticleManager:CreateParticle(
-        playerParticle.. ".vpcf" or "particles/items2_fx/teleport_start.vpcf", 
+        startParticle, 
         PATTACH_WORLDORIGIN, 
         caster
     )
@@ -71,7 +81,7 @@ function item_tp_scroll_custom:OnSpellStart()
     ParticleManager:SetParticleControl(self.startParticle, 5, Vector(3,0,0))
     ParticleManager:SetParticleControl(self.startParticle, 6, caster:GetAbsOrigin())
     self.endParticle = ParticleManager:CreateParticle(
-        playerParticle and playerParticle.. "_end.vpcf" or"particles/items2_fx/teleport_end.vpcf", 
+        endParticle, 
         PATTACH_WORLDORIGIN, 
         caster
     )

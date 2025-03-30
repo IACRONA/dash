@@ -23,12 +23,13 @@ function PlayerInfo:UpdatePlayerTable(playerId, info)
 	for key, value in pairs(info) do
 		if type(value) == "string" then
 			local success, parsed = pcall(json.decode, value)
+
 			if success then
-				info[key] = parsed[0] or parsed
+				info[key] =  parsed
 			end
 		end
 	end
-	
+
 	CustomNetTables:SetTableValue("player_info", tostring(playerId), info) 
 	DonateManager:CheckForChangeDonate(playerId)
 end

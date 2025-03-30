@@ -96,7 +96,7 @@ end
 function DonateManager:GetCurrentTitulParticle(hero)
     local playerInfo = CustomNetTables:GetTableValue("player_info", tostring(hero:GetPlayerOwnerID())) 
 
-    if not playerInfo then return nil end
+    if  not (playerInfo and playerInfo.titul) then return nil end
 
     for itemName, itemData in pairs(playerInfo.titul) do
         if itemData.isActive and DONATE_ITEMS.titul[itemName] then
@@ -116,7 +116,7 @@ function DonateManager:GetCurrentTeleportationEffect(hero)
 
     for itemName, itemData in pairs(playerInfo.teleportation_effect) do
         if itemData.isActive and DONATE_ITEMS.teleportation_effect[itemName] then
-            return DONATE_ITEMS.teleportation_effect[itemName].particle
+            return {particleStart = DONATE_ITEMS.teleportation_effect[itemName].particleStart, particleEnd = DONATE_ITEMS.teleportation_effect[itemName].particleEnd}
         end
     end
 

@@ -25,6 +25,20 @@ function UpdatePlayer(teamPanel, playerId) {
     playerPanel = $.CreatePanel("Image", playerContainer, playerPanelName);
     playerPanel.BLoadLayout("file://{resources}/layout/custom_game/multiteam_hero_select_overlay_player.xml", false, false);
     playerPanel.AddClass("PlayerPanel");
+    const playerTable = CustomNetTables.GetTableValue("player_info", `${playerId}`) || {};
+
+    const winStreakCurrent = playerTable.win_streak_current || 0;
+    const maxWinStreakCurrent = playerTable.win_streak_max || 0;
+
+    const panelStreak = $.CreatePanel("Panel", playerPanel, "PanelStreak");
+    const labelStreak = $.CreatePanel("Label", panelStreak, "StreakLabel", {
+      class: "StreakText",
+      text: `${$.Localize("#hud_win_streak_current")}`,
+    });
+    const winLabel = $.CreatePanel("Label", panelStreak, "WinStreakLabel", {
+      class: "StreakText",
+      text: `${winStreakCurrent} / ${maxWinStreakCurrent}`,
+    });
   }
 
   var playerInfo = Game.GetPlayerInfo(playerId);

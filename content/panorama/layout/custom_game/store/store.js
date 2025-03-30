@@ -19,6 +19,8 @@ let items = [];
     const type = button.id;
     button.SetPanelEvent("onactivate", () => {
       if (!storeInfo) return;
+      Game.EmitSound("Flag.RollChoose");
+
       randomBodyBackground = Math.floor(Math.random() * 4) + 1;
       storeBody.style.backgroundImage = `url("file://{resources}/images/interface/store/content/store_body_${randomBodyBackground}.png")`;
 
@@ -44,6 +46,8 @@ let items = [];
   const buttonBack = $("#StoreButtonBack");
 
   buttonBack.SetPanelEvent("onactivate", () => {
+    Game.EmitSound("Flag.RollChoose");
+
     storeBody.RemoveClass("IsActive");
   });
 
@@ -77,14 +81,19 @@ const UpdateStore = () => {
   });
   const playerInventory = playerInfo[activeButton];
 
+  body.SetHasClass("IsCenter", parseGamesInfo.length >= 4);
+  const music = CustomNetTables.GetTableValue("server_info", `music`) || {};
+
   parseGamesInfo.forEach(([name, info]) => {
     const item = $.CreatePanel("Panel", body, name);
     items.push(item);
 
     item.BLoadLayoutSnippet("ShopItem");
+    const isMusic = name.includes("item_music");
+    const imageName = isMusic ? "item_music" : name;
 
     $.CreatePanel("Image", item.FindChildTraverse("ShopItemImageContainer"), "ShopItemImage", {
-      src: `file://{resources}/images/custom_game/store_items/${name}.png`,
+      src: `file://{resources}/images/custom_game/store_items/${imageName}.png`,
     });
     item.SetHasClass("IsBought", !!playerInventory[name]);
     item.SetHasClass("IsActive", !!playerInventory[name]?.isActive);
@@ -95,6 +104,7 @@ const UpdateStore = () => {
 
     const buyButton = item.FindChildTraverse("ShopItemBuy");
     buyButton.SetPanelEvent("onactivate", () => {
+      Game.EmitSound("Flag.RollChoose");
       ShowPopupAccept($("#StoreContainer"), () => {
         ShowLoader($("#StoreContainer"));
         GameEvents.SendCustomGameEventToServer("buy_item", { playerId: Players.GetLocalPlayer(), item: name, type: activeButton });
@@ -102,9 +112,26 @@ const UpdateStore = () => {
     });
     const activeElement = item.FindChildTraverse("ShopItemActivate");
     activeElement.SetPanelEvent("onactivate", () => {
+      Game.EmitSound("Flag.RollChoose");
       ShowLoader($("#StoreContainer"));
       GameEvents.SendCustomGameEventToServer("equip_shop_item", { playerId: Players.GetLocalPlayer(), item: name, type: activeButton });
     });
+
+    if (isMusic) {
+      let soundHandle;
+      item.SetPanelEvent("onmouseover", () => {
+        const sound = music[name].sound;
+
+        soundHandle = Game.EmitSound(sound);
+      });
+
+      item.SetPanelEvent("onmouseout", () => {
+        if (soundHandle) {
+          Game.StopSound(soundHandle);
+          soundHandle = null;
+        }
+      });
+    }
   });
 };
 

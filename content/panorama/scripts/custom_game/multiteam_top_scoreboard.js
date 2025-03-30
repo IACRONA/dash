@@ -86,7 +86,7 @@ function UpdateTimer(data) {
     });
   }
 
-  if (data.timer_minute_10 == 0 && data.timer_minute_01 <= 0) {
+  if (data.timer_minute_10 == 0 && data.timer_minute_01 <= 0 && data.timer_second_10 < 3) {
     Game.EmitSound("Tutorial.TaskProgress");
   }
 

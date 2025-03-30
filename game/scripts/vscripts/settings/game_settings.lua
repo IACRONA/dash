@@ -314,11 +314,11 @@ if GetMapName() == "portal_duo" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 1150
+    GRANT_GOLD = 1200
 
     CONDITION_FLAG_COUNT_WIN = 57 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
-    BAN_TIME = 3 -- Время на бан
+    BAN_TIME = 6 -- Время на бан
 
     GOOD_FLAG_SCALE = 0.9
     BAD_FLAG_SCALE = 0.9
@@ -354,7 +354,7 @@ if GetMapName() == "portal_duo" then
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
-    NEW_ULTIMATE_COOLDOWN = 300 -- 5 мин
+    NEW_ULTIMATE_COOLDOWN = 270 -- 5 мин
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -363,10 +363,10 @@ if GetMapName() == "portal_duo" then
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
 
     -- One Punchman
-    ONE_PUNCHMAN_SETTINGS_CHANCE = {3,5,8}
+    ONE_PUNCHMAN_SETTINGS_CHANCE = {1,1,2}
     ONE_PUNCHMAN_SETTINGS_CHANCE_SOUL = {8,10,20}
     ONE_PUNCHMAN_SETTINGS_COOLDOWN = 35
-    ONE_PUNCHMAN_SETTINGS_COOLDOWN_KILL = 80
+    ONE_PUNCHMAN_SETTINGS_COOLDOWN_KILL = 90
     ONE_PUNCHMAN_SETTINGS_DURATION = 20
     ONE_PUNCHMAN_SETTINGS_ATTACK_SPEED = {60,70,80} 
     ONE_PUNCHMAN_SETTINGS_LIFESTEAL = {10,12,22}
@@ -399,7 +399,7 @@ if GetMapName() == "portal_duo" then
     IMMORTAL_SETTINGS_DAMAGE = {720,890,1400}
     IMMORTAL_SETTINGS_CHANCE_BKB = {10,20,30}
     IMMORTAL_SETTINGS_DURATION_BKB = {2,3,4}
-    IMMORTAL_SETTINGS_COOLDOWN_BKB = {60,60,60}
+    IMMORTAL_SETTINGS_COOLDOWN_BKB = {60,55,50}
 
     -- Himaron
     HIMARON_SETTINGS_CHANCE = {20,35,50}
@@ -431,7 +431,7 @@ if GetMapName() == "portal_duo" then
     }
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 240
+    NEW_SPHERES = 220
     MAX_SPHERE_LEVEL = 4
     COUNT_SPHERE_CHOICE = 2
     MAX_SPHERE_COUNT = 14
@@ -447,7 +447,7 @@ if GetMapName() == "portal_trio" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 1150
+    GRANT_GOLD = 1200
 
     CONDITION_FLAG_COUNT_WIN = 50 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
@@ -455,7 +455,7 @@ if GetMapName() == "portal_trio" then
     FLAG_RETURN_DURATION = 4
     FLAG_AUTO_RETURN_DURATION = 45
 
-    BAN_TIME = 3 -- Время на бан
+    BAN_TIME = 5 -- Время на бан
 
     GOOD_FLAG_SCALE = 0.9
     BAD_FLAG_SCALE = 0.9
@@ -491,7 +491,7 @@ if GetMapName() == "portal_trio" then
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
-    NEW_ULTIMATE_COOLDOWN = 300
+    NEW_ULTIMATE_COOLDOWN = 270
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -500,7 +500,7 @@ if GetMapName() == "portal_trio" then
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
 
     -- One Punchman
-    ONE_PUNCHMAN_SETTINGS_CHANCE = {3,5,8}
+    ONE_PUNCHMAN_SETTINGS_CHANCE = {1,2,3}
     ONE_PUNCHMAN_SETTINGS_CHANCE_SOUL = {8,10,20}
     ONE_PUNCHMAN_SETTINGS_COOLDOWN = 35
     ONE_PUNCHMAN_SETTINGS_COOLDOWN_KILL = 80
@@ -523,7 +523,7 @@ if GetMapName() == "portal_trio" then
     DEFENDER_SETTINGS_ARMOR = 55
     DEFENDER_SETTINGS_INCREASE_hEAL = 160
     DEFENDER_SETTINGS_DURATION_BONUS = {11,13,15}
-    DEFENDER_SETTINGS_COOLDOWN = 27
+    DEFENDER_SETTINGS_COOLDOWN = 25
     DEFENDER_SETTINGS_SHIELD_CHANCE = {15,18,23}
     DEFENDER_SETTINGS_BLOCK_DAMAGE = 650
     DEFENDER_SETTINGS_ROOTED_DURATION = 2
@@ -536,7 +536,7 @@ if GetMapName() == "portal_trio" then
     IMMORTAL_SETTINGS_DAMAGE = {720,890,1400}
     IMMORTAL_SETTINGS_CHANCE_BKB = {10,20,30}
     IMMORTAL_SETTINGS_DURATION_BKB = {2,3,4}
-    IMMORTAL_SETTINGS_COOLDOWN_BKB = {60,60,60}
+    IMMORTAL_SETTINGS_COOLDOWN_BKB = {60,55,50}
 
     -- Himaron
     HIMARON_SETTINGS_CHANCE = {20,35,50}
@@ -568,7 +568,7 @@ if GetMapName() == "portal_trio" then
     }
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 240
+    NEW_SPHERES = 220
     MAX_SPHERE_LEVEL = 4
     COUNT_SPHERE_CHOICE = 2
     MAX_SPHERE_COUNT = 14
@@ -615,7 +615,7 @@ JUMP_DISTANCE = 230 -- ДИСТАНЦИЯ ПРЫЖКА
 creep_ability_level_from_time = {
     {0, 1},       -- С 0 секунды крипы имеют уровень 1
     {200, 2},     -- С 5 минуты (300 секунд) крипы имеют уровень 2
-    {500, 3},     -- С 10 минуты крипы имеют уровень 3
-    {700, 4},     -- С 15 минуты крипы имеют уровень 4
-    {840, 5},    -- С 20 минуты крипы имеют уровень 5
+    {400, 3},     -- С 10 минуты крипы имеют уровень 3
+    {500, 4},     -- С 15 минуты крипы имеют уровень 4
+    {650, 5},    -- С 20 минуты крипы имеют уровень 5
 }

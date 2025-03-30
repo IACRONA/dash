@@ -28,7 +28,7 @@ function HidePickScreen() {
       map = "dash";
     }
     if (map == "portal_trio") {
-      map = "portal_trio_strat"
+      map = "portal_trio_strat";
     }
     StrategyMinimap.style.backgroundImage = 'url("file://{images}/custom_game/' + map + '.png")';
     StrategyMinimap.style.backgroundSize = "100% 100%";
@@ -36,7 +36,7 @@ function HidePickScreen() {
   if (!Game.GameStateIsAfter(2)) {
     if (hidden == false) {
       hidden = true;
-      PreGame.style.opacity = "0"; 
+      PreGame.style.opacity = "0";
     }
     $.Schedule(0.1, HidePickScreen);
   } else {
@@ -66,3 +66,7 @@ if (Game.GetMapInfo().map_display_name == "portal_duo" || Game.GetMapInfo().map_
 if (Game.GetMapInfo().map_display_name == "dash") {
   GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_INVENTORY_PROTECT, true);
 }
+
+GameEvents.Subscribe("print", (event) => {
+  $.Msg(event.message);
+});

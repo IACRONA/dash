@@ -102,8 +102,8 @@ function CAddonWarsong:InitGameMode()
 	if GetMapName() == "warsong" then
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 5 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 5 )
-		GameRules:GetGameModeEntity():SetPauseEnabled(false)
-		GameRules:GetGameModeEntity():SetCameraDistanceOverride(1250)
+		GameRules:GetGameModeEntity():SetPauseEnabled(IsInToolsMode())
+		GameRules:GetGameModeEntity():SetCameraDistanceOverride(1200)
 		SendToServerConsole( "r_farz 8000" )
 	elseif GetMapName() == "portal_duo" then
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 2 )
@@ -112,12 +112,12 @@ function CAddonWarsong:InitGameMode()
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_2, 2 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_3, 2 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_4, 2 )
-		GameRules:GetGameModeEntity():SetPauseEnabled(false)
+		GameRules:GetGameModeEntity():SetPauseEnabled(IsInToolsMode())
 	elseif GetMapName() == "portal_trio" then 
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 3 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 3 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_1, 3 )
-		GameRules:GetGameModeEntity():SetPauseEnabled(false)	
+	 	GameRules:GetGameModeEntity():SetPauseEnabled(IsInToolsMode())	
 	elseif GetMapName() == "dash" then
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 5 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 5 )
@@ -750,6 +750,7 @@ function CAddonWarsong:OnNPCSpawned(event)
 				and hUnit.bFirstSpawned == nil
 			then
 				hUnit.bFirstSpawned = true
+				hUnit.spawnPoint = hUnit:GetAbsOrigin()
 				self:WearHero(hUnit)
 				if self.nCapturedFlagsCount[hUnit:GetTeamNumber()] == nil then
 					self.nCapturedFlagsCount[hUnit:GetTeamNumber()] = 0

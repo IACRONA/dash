@@ -87,13 +87,47 @@ local particles =
     "particles/econ/events/compendium_2023/compendium_2023_teleport_lvl2_end.vpcf",
     "particles/econ/events/compendium_2024/compendium_2024_teleport_lvl3.vpcf",
     "particles/econ/events/compendium_2024/compendium_2024_teleport_lvl3_end.vpcf",
+
+    "particles/econ/events/spring_2021/teleport_start_spring_2021_lvl3.vpcf",
+    "particles/econ/events/spring_2021/teleport_end_spring_2021_lvl3.vpcf",
+    "particles/econ/events/ti10/teleport/teleport_start_ti10_lvl2.vpcf", 
+    "particles/econ/events/ti10/teleport/teleport_end_ti10_lvl2.vpcf",
+    "particles/econ/events/ti6/teleport_start_ti6_lvl3.vpcf",
+    "particles/econ/events/ti6/teleport_end_ti6_lvl3.vpcf",
+    "particles/econ/events/ti7/teleport_start_ti7_lvl3.vpcf",
+    "particles/econ/events/ti7/teleport_end_ti7_lvl3.vpcf",
+    "particles/econ/events/ti8/teleport_start_ti8_lvl3.vpcf",
+    "particles/econ/events/ti8/teleport_end_ti8_lvl3.vpcf",
+    "particles/econ/events/fall_major_2016/teleport_start_fm06_lvl2.vpcf",
+    "particles/econ/events/fall_major_2016/teleport_end_fm06_lvl2.vpcf",
+    
+ 
+ 
+ 
+  
     "particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf",
     "particles/units/heroes/hero_juggernaut/juggernaut_blade_fury_end.vpcf",
     "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail.vpcf",
     "particles/units/heroes/hero_juggernaut/jugg_sword_trail.vpcf",
     "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf",
     "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt_end.vpcf",
+    "particles/base_attacks/ranged_badguy.vpcf",
+    "particles/base_attacks/ranged_goodguy.vpcf",
+
+
+    "particles/overhead_particle/leaders/leader_overhead_artifact.vpcf",
+    "particles/overhead_particle/leaders/leader_overhead_celestial.vpcf",
+    "particles/overhead_particle/leaders/leader_overhead_crest.vpcf",
+    "particles/overhead_particle/leaders/leader_overhead_dragon.vpcf",
+    "particles/overhead_particle/leaders/leader_overhead_epic.vpcf",
+    "particles/overhead_particle/leaders/leader_overhead_features.vpcf",
+    "particles/overhead_particle/leaders/leader_overhead_golden.vpcf",
+    "particles/overhead_particle/leaders/leader_overhead_winged.vpcf",
+
+
+
 }
+
 
 local sounds = 
 {
@@ -148,6 +182,15 @@ local models = {
     "models/creeps/neutral_creeps/n_creep_kobold/kobold_a/n_creep_kobold_a.vmdl",
     "models/creeps/lane_creeps/creep_bad_siege/creep_bad_siege.vmdl",
     "models/creeps/lane_creeps/creep_good_siege/creep_good_siege.vmdl",
+    "models/courier/gold_mega_greevil/gold_mega_greevil.vmdl",
+    "models/courier/greevil/gold_greevil.vmdl", 
+    "models/courier/minipudge/minipudge.vmdl",
+    "models/courier/sw_donkey/sw_donkey.vmdl",
+    "models/items/courier/courier_ti10_radiant/courier_ti10_radiant_lvl1/courier_ti10_radiant_lvl1.vmdl",
+    "models/items/courier/duskie/duskie.vmdl",
+    "models/items/courier/faceless_rex/faceless_rex.vmdl",
+    "models/items/courier/hamster_courier/hamster_courier_lv7.vmdl",
+    "models/items/courier/nilbog/nilbog.vmdl",
     "models/creeps/lane_creeps/creep_2021_dire/creep_2021_dire_flagbearer_melee.vmdl",
     "models/props_gameplay/cold_frog.vmdl",
     "maps/prefabs/rune_water.vmap",
@@ -171,11 +214,12 @@ local models = {
     "models/items/morphling/abyss_overlord_back/abyss_overlord_back.vmdl",
     "models/items/morphling/ethereal_blade/ethereal_blade.vmdl",
     "models/items/morphling/abyss_overlord_misc/abyss_overlord_misc.vmdl",
-     
-     
-     
-     
  
+     
+    ----- Героои
+    "models/heroes/phoenix/phoenix_egg.vmdl",
+    "models/heroes/abyssal_underlord/abyssal_underlord_portal_model.vmdl",
+    
     -- Одежда для героев
     "models/items/crystal_maiden/lady_whitewind_shoulder/lady_whitewind_shoulder.vmdl",
     "models/items/crystal_maiden/lady_whitewind_head/lady_whitewind_head.vmdl",
@@ -204,9 +248,9 @@ local models = {
     "models/items/wraith_king/destruction_lord_arms/destruction_lord_arms.vmdl",
     "models/items/wraith_king/destruction_lord_armor/destruction_lord_armor.vmdl",
 
-
 }
 
+ 
 local function PrecacheEverythingFromTable( context, kvtable)
     for key, value in pairs(kvtable) do
         if type(value) == "table" then
@@ -250,6 +294,7 @@ return function(context)
     for _, p in pairs(sounds) do
         PrecacheResource("soundfile", p, context)
     end
+ 
     PrecacheResource( "particle_folder", "particles/neutral_fx/", context )
     PrecacheResource( "particle_folder", "particles/items_fx/", context )
     PrecacheResource( "particle_folder", "particles/items5_fx/", context )

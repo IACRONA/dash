@@ -280,7 +280,7 @@
 	{
 		"AbilityValues"
 		{
-            "AbilityCooldown" 							"80  70 60"
+            "AbilityCooldown" 							"80  80 85"
         }
     }
 
@@ -767,34 +767,7 @@
         }
     }
 
-	"legion_commander_duel"
-	{
-		"AbilityValues"
-		{
-			"duration"				"4.0 4.75 5.5"
-			"duration_scepter"		
-			{
-				"value"			"6 7 8"
-				"RequiresScepter"	"1"
-			}
-			"reward_damage"			
-			{
-				"value"			"5 10 15"
-				"LinkedSpecialBonus"	"special_bonus_unique_legion_commander"
-			}
-			"victory_range"			"600"
-			"scepter_damage_reduction_pct"			
-			{
-				"value"				"50"
-				"RequiresScepter"						"1"
-			}
-			"AbilityCooldown"	
-			{
-				"value"					"80 70 60"
-				"special_bonus_scepter"			"-20"
-			}
-		}
-	}
+ 
 
 	"tinker_rearm_custom"
 	{
@@ -1310,7 +1283,7 @@
  
 		"AbilityValues"
 		{
-				"ball_lightning_travel_cost_percent"	"2"		
+				"ball_lightning_travel_cost_percent"	"1.1"		
 		}
 	}
 

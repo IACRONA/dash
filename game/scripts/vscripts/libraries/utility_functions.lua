@@ -292,3 +292,7 @@ function GetRandomPathablePositionWithin(vPos, nRadius, nMinRadius )
 end
 
  
+
+function LogPanorama(message)
+	CustomGameEventManager:Send_ServerToAllClients("print", {message=message})
+end

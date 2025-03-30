@@ -11,6 +11,7 @@ const ShowPopupError = (root, message) => {
   const closeButton = errorPopup.FindChildTraverse("PopupErrorClose");
 
   closeButton?.SetPanelEvent("onactivate", () => {
+    Game.EmitSound("Flag.RollChoose");
     HidePopupError();
   });
 };
