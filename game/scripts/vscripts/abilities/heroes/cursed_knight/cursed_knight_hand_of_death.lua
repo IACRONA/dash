@@ -14,7 +14,7 @@ function cursed_knight_hand_of_death:OnSpellStart()
 			Ability = self,
 			Source = caster,
 			Target = target,
-			iMoveSpeed = hook_speed*2.7,
+			iMoveSpeed = hook_speed*2.7, 
 		})
 		self.bRetracting = false
 		Randomint = RandomInt(1, 3)
@@ -31,30 +31,16 @@ function cursed_knight_hand_of_death:OnProjectileHit( hTarget, vLocation )
 	end
 
     if self.bRetracting == false then
- 
 		local bTargetPulled = false
+        if not hTarget then return end
+        
         local hook_speed = self:GetSpecialValueFor( "hook_speed" )
-
-        -- EmitSoundOn( "Hero_Pudge.AttackHookImpact", hTarget )
-		if not hTarget then return end
-        hTarget:AddNewModifier( self:GetCaster(), self, "modifier_cursed_knight_hand_of_death", nil )
+        local distance = (hTarget:GetAbsOrigin() - self:GetCaster():GetAbsOrigin()):Length2D()
+        local duration = distance / hook_speed
+        
+        hTarget:AddNewModifier( self:GetCaster(), self, "modifier_cursed_knight_hand_of_death", { duration = duration } )
 		self.bRetracting = true
-	else
-		if self.hVictim ~= nil then
-			local vFinalHookPos = vLocation
-			self.hVictim:InterruptMotionControllers( true )
-			self.hVictim:RemoveModifierByName( "modifier_cursed_knight_hand_of_death" )
-
-			local vVictimPosCheck = self.hVictim:GetOrigin() - vFinalHookPos 
-			local flPad = self:GetCaster():GetPaddedCollisionRadius() + self.hVictim:GetPaddedCollisionRadius()
-			if vVictimPosCheck:Length2D() > flPad then
-				FindClearSpaceForUnit( self.hVictim, self.vStartPosition, false )
-			end
-		end
-
-		self.hVictim = nil
 	end
-
 	return true
 end
  
@@ -92,6 +78,8 @@ function modifier_cursed_knight_hand_of_death:OnCreated( kv )
 		if self:ApplyHorizontalMotionController() == false then 
 			self:Destroy()
 		end
+		-- Сохраняем продолжительность для использования в UpdateHorizontalMotion
+		self.duration = kv.duration
 	end
 end
 
@@ -160,4 +148,19 @@ function modifier_cursed_knight_hand_of_death:OnHorizontalMotionInterrupted()
 			self:Destroy()
 		end
 	end
+end
+
+function modifier_cursed_knight_hand_of_death:OnDestroy()
+    if IsServer() then
+        local parent = self:GetParent()
+        local caster = self:GetCaster()
+        
+        parent:InterruptMotionControllers(true)
+        
+        local vVictimPosCheck = parent:GetOrigin() - caster:GetAbsOrigin()
+        local flPad = caster:GetPaddedCollisionRadius() + parent:GetPaddedCollisionRadius()
+        if vVictimPosCheck:Length2D() > flPad then
+            FindClearSpaceForUnit(parent, caster:GetAbsOrigin(), false)
+        end
+    end
 end
