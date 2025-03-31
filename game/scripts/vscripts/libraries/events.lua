@@ -48,6 +48,9 @@ function CAddonWarsong:OnEntityKilled( params )
 					end
 			
 					self:OnTeamKillChange()
+					if GetMapName() == "portal_duo" or GetMapName() == "portal_trio" then
+						self:UpdateLeaderPortalDuo()
+					end
 				end
 			end
         end
@@ -232,10 +235,6 @@ function CAddonWarsong:OnTeamKillCredit( event )
 		end		
 		 
  
-	end
-
-	if GetMapName() == "portal_duo" or GetMapName() == "portal_trio" then
-		self:UpdateLeaderPortalDuo()
 	end
 end
 
