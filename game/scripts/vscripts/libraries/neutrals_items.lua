@@ -1,4 +1,14 @@
-function CAddonWarsong:GiveNeutralsItemsForPlayers(nTime)
+function CAddonWarsong:InitNeutralItems()
+    Timers:CreateTimer(1, function()
+            self:GiveNeutralsItemsForPlayers()
+        return 1
+    end)
+end
+
+
+function CAddonWarsong:GiveNeutralsItemsForPlayers()
+    local nTime = GameRules:GetDOTATime(false, false)
+
     local nNextTier = (self.nLastTierDropped or 0) + 1
     local nTierTiming = NEUTRAL_ITEM_TIMINGS['TIER_' .. nNextTier]
     local teamMadstone = {}

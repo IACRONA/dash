@@ -289,19 +289,16 @@ end
 
 -- Игровой think 0.5 sec and 1 sec start
 function CAddonWarsong:OnThink()
-	local nTime = GameRules:GetDOTATime(false, false)
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-		if GetMapName() ~= "dota" then
-            if GetMapName() ~= "dash" then
-                self:GetWinPlayers()
-            end
-            self:GiveNeutralsItemsForPlayers(nTime)
+		if GetMapName() ~= "dash" then
+			self:GetWinPlayers()
 		end
-        if GetMapName() == "portal_duo" or GetMapName() == "portal_trio" then
-            self:UpdateLeaderPortalDuo()
-        end
 	end
 	return 0.5
+end
+
+function CAddonWarsong:OnStartGame()
+	self:InitNeutralItems()
 end
 
 function CAddonWarsong:OnGameRulesStateChange()
@@ -456,6 +453,8 @@ function CAddonWarsong:OnGameRulesStateChange()
 			end
         end
 	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		self:OnStartGame()
+
 		self:DayNightCycle()
 
         if GetMapName() == "warsong" then

@@ -115,8 +115,13 @@ function modifier_custom_morph_boss_ai:OnDeath(params)
             self.target_kill[params.unit:entindex()] = self.target_kill[params.unit:entindex()] + 1
             GameRules.AddonTemplate.nCapturedFlagsCount[params.unit:GetTeamNumber()] = GameRules.AddonTemplate.nCapturedFlagsCount[params.unit:GetTeamNumber()] - MORPH_KILL_HERO_STEAL_POINT
             GameRules.AddonTemplate.nMorphKillsCount[params.unit:GetTeamNumber()] = GameRules.AddonTemplate.nMorphKillsCount[params.unit:GetTeamNumber()] - MORPH_KILL_HERO_STEAL_POINT
+
             CustomNetTables:SetTableValue("kills_morph", tostring(params.unit:GetTeamNumber()), {kills = GameRules.AddonTemplate.nMorphKillsCount[params.unit:GetTeamNumber()]})
+
             EmitAnnouncerSoundForPlayer("titan_lose", params.unit:GetPlayerOwnerID())
+            if GetMapName() == "portal_duo" or GetMapName() == "portal_trio" then
+                self:UpdateLeaderPortalDuo()
+            end
         end
     end
     if params.attacker ~= self:GetParent() and params.unit == self:GetParent() then
@@ -126,6 +131,8 @@ function modifier_custom_morph_boss_ai:OnDeath(params)
         GameRules.AddonTemplate.nCapturedFlagsCount[team] = GameRules.AddonTemplate.nCapturedFlagsCount[team] + MORPH_REWARD_MAX_KILLS
         
         CustomNetTables:SetTableValue("kills_morph", tostring(team), {kills = GameRules.AddonTemplate.nMorphKillsCount[team]})
+
+        
         CustomGameEventManager:Send_ServerToAllClients('kill_morphling_notification', {team = params.attacker:GetTeamNumber()})
 
         DoWithAllPlayers(function(player, hero, index)
@@ -137,5 +144,8 @@ function modifier_custom_morph_boss_ai:OnDeath(params)
             end
         end)
         EmitGlobalSound("titan_killing")
+        if GetMapName() == "portal_duo" or GetMapName() == "portal_trio" then
+            self:UpdateLeaderPortalDuo()
+        end
     end
 end

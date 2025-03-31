@@ -100,8 +100,16 @@ function CAddonWarsong:ChangeKills()
 end
 
 function CAddonWarsong:AddLeaderParticle(entity)
-	local titul = DonateManager:GetCurrentTitulParticle(entity) or DEFAULT_LEADER_PARTICLE
-	entity.donate.titul = titul
+	local titul = DEFAULT_LEADER_PARTICLE
+	
+	if not entity:IsRealHero() or entity:IsTempestDouble() then 
+		titul = DonateManager:GetCurrentTitulParticle(entity:GetPlayerOwnerID()) or DEFAULT_LEADER_PARTICLE
+	else 
+		local titul = DonateManager:GetCurrentTitulParticle(entity:GetPlayerOwnerID()) or DEFAULT_LEADER_PARTICLE
+		entity.donate.titul = titul
+	end
+
+
 	local particleLeader = ParticleManager:CreateParticle(titul, PATTACH_OVERHEAD_FOLLOW, entity )
 	ParticleManager:SetParticleControlEnt( particleLeader, PATTACH_OVERHEAD_FOLLOW, entity, PATTACH_OVERHEAD_FOLLOW, "follow_overhead", entity:GetAbsOrigin(), true )
 	entity:Attribute_SetIntValue( "particleID", particleLeader )
@@ -200,6 +208,7 @@ function CAddonWarsong:OnTeamKillCredit( event )
 			end
 		end	
 	end
+	
 	if GetMapName() == "dash" then 
 		if not self.wasFirstBlood then 
 			self.wasFirstBlood = true
@@ -223,6 +232,10 @@ function CAddonWarsong:OnTeamKillCredit( event )
 		end		
 		 
  
+	end
+
+	if GetMapName() == "portal_duo" or GetMapName() == "portal_trio" then
+		self:UpdateLeaderPortalDuo()
 	end
 end
 

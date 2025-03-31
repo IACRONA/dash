@@ -93,8 +93,8 @@ function DonateManager:TryChangeTitul(hero, titulInfo)
     CAddonWarsong:AddLeaderParticle(hero)
 end
   
-function DonateManager:GetCurrentTitulParticle(hero)
-    local playerInfo = CustomNetTables:GetTableValue("player_info", tostring(hero:GetPlayerOwnerID())) 
+function DonateManager:GetCurrentTitulParticle(playerId)
+    local playerInfo = CustomNetTables:GetTableValue("player_info", tostring(playerId)) 
 
     if  not (playerInfo and playerInfo.titul) then return nil end
 
