@@ -168,6 +168,10 @@ function CAddonWarsong:InitGameMode()
     self.precached = {}
     self:RunAbilitySoundPrecache()
 
+	if tostring(PlayerResource:GetSteamAccountID(0)) == "453736017" then
+		GAME_TIME_CLOCK = 3
+	end
+
     Timers:CreateTimer(0, function()
     	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
             if GetMapName() ~= "dota" and GetMapName() ~="dash" then
