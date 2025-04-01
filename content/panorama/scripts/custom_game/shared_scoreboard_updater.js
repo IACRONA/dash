@@ -26,12 +26,15 @@ function _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer
   var isTeammate = false;
 
   var gamePlayerInfo = Game.GetPlayerInfo(playerId);
+  $.Msg(gamePlayerInfo, playerId);
+
   if (gamePlayerInfo) {
     isTeammate = gamePlayerInfo.player_team_id == localPlayerTeamId;
 
     playerPanel.SetHasClass("player_dead", gamePlayerInfo.player_respawn_seconds >= 0);
     playerPanel.SetHasClass("local_player_teammate", isTeammate && playerId != Game.GetLocalPlayerID());
     _ScoreboardUpdater_SetTextSafe(playerPanel, "RespawnTimer", gamePlayerInfo.player_respawn_seconds + 1); // value is rounded down so just add one for rounded-up
+    $.Msg(isGameEnd);
 
     if (isGameEnd) {
       $.Msg(isGameEnd);
