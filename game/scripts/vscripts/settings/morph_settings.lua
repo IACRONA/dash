@@ -1,11 +1,11 @@
 -- Время оглушения всех игроков на карте после спавна морфа (задержка до спавна морфа) в секундах
 SPAWN_MORPHLING_STUN_DELAY = 5 -- СКОЛЬКО СТОИТ МОРФ
-SPAWN_MORPHLING_STUN_DELAY_HERO = 4 -- СКОЛЬКО СТОИТ ГЕРОЙ
+SPAWN_MORPHLING_STUN_DELAY_HERO = 5 -- СКОЛЬКО СТОИТ ГЕРОЙ
 
 -- Время спавна босса морфа (через сколько секунд после начала игры)
 SPAWN_MORPHLING_TIME_TOOLTIP = RandomInt(380, 410) -- Случайное время спавна ОТ СТАРТА ИГРЫ (от 300 до 400 секунд) ЭТО ПЕРВЫЙ СПАВН
 -- Повторное время спавна босса морфа
-SPAWN_MORPHLING_TIME_TOOLTIP_DOUBLE = RandomInt(700, 960) -- Случайное время спавна ОТ СТАРТА ИГРЫ (от 600 до 800 секунд) ЭТО ВТОРОЙ СПАВН
+SPAWN_MORPHLING_TIME_TOOLTIP_DOUBLE = RandomInt(700, 840) -- Случайное время спавна ОТ СТАРТА ИГРЫ (от 600 до 800 секунд) ЭТО ВТОРОЙ СПАВН
 
 SPAWN_MORPHLING_TIME = GAME_TIME_CLOCK - SPAWN_MORPHLING_TIME_TOOLTIP -- Не трогать
 SPAWN_MORPHLING_TIME_DOUBLE = GAME_TIME_CLOCK - SPAWN_MORPHLING_TIME_TOOLTIP_DOUBLE -- Не трогать
