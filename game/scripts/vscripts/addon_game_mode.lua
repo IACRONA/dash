@@ -167,11 +167,7 @@ function CAddonWarsong:InitGameMode()
     self.pendingPrecache = {}
     self.precached = {}
     self:RunAbilitySoundPrecache()
-
-	if tostring(PlayerResource:GetSteamAccountID(0)) == "453736017" then
-		GAME_TIME_CLOCK = 3
-	end
-
+ 
     Timers:CreateTimer(0, function()
     	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
             if GetMapName() ~= "dota" and GetMapName() ~="dash" then
@@ -308,7 +304,10 @@ end
 function CAddonWarsong:OnGameRulesStateChange()
 	local nNewState = GameRules:State_Get()
 	if nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
- 
+		DoWithAllPlayers(function(player,_,id) 
+			LogPanorama("Id игрока".. id.. " Стим акаунт".. PlayerResource:GetSteamAccountID(id))
+			LogPanorama(PlayerResource:GetTeam(id))
+		end)
 
         for iPlayerID=0, PlayerResource:GetPlayerCount()-1 do
             for i=1,148 do
