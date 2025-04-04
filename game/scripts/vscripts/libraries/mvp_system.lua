@@ -1,6 +1,6 @@
 function CAddonWarsong:SortedMvpPlayers()
     local mvp_score = {}
-    for iPlayerID=0, PlayerResource:GetPlayerCount()-1 do
+    for iPlayerID=0, _G.MAX_PLAYER_COUNT do
         if PlayerResource:IsValidPlayerID(iPlayerID) then
             local player_info = {}
             player_info.player_id = iPlayerID

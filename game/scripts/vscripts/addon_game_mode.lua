@@ -1,6 +1,8 @@
 if CAddonWarsong == nil then
 	_G.CAddonWarsong = class({})
 end
+_G.MAX_PLAYER_COUNT = 12
+
 require('moasq1')
 -- require('get_keys')
 Precache = require "precache"
@@ -309,13 +311,14 @@ function CAddonWarsong:OnGameRulesStateChange()
 			LogPanorama(PlayerResource:GetTeam(id))
 		end)
 
-        for iPlayerID=0, PlayerResource:GetPlayerCount()-1 do
+		for iPlayerID=0, _G.MAX_PLAYER_COUNT do
             for i=1,148 do
                 if DOTAGameManager:GetHeroNameByID( i ) ~= nil then
                     GameRules:AddHeroToPlayerAvailability(iPlayerID, i )
                 end
             end 	
         end
+
         self.banned_heroes_same = {}
         Timers:CreateTimer(0.1, function()
             local nNewState = GameRules:State_Get()
@@ -417,12 +420,14 @@ function CAddonWarsong:OnGameRulesStateChange()
 		if GetMapName() == "warsong" or GetMapName() == "dash" then
 			if PlayerResource:GetPlayerCount() ~= 10 then  
 				local team = 2
-				for i=0, PlayerResource:GetPlayerCount() - 1 do 
-					if i%2 == 0 then 
-						team = RandomInt(2,3)
+				for i=0, _G.MAX_PLAYER_COUNT do 
+					if PlayerResource:IsValidPlayer(i) then 
+						if i%2 == 0 then 
+							team = RandomInt(2,3)
+						end
+						PlayerResource:SetCustomTeamAssignment(i, team)
+						team = team == 3 and 2 or 3
 					end
-					PlayerResource:SetCustomTeamAssignment(i, team)
-					team = team == 3 and 2 or 3
 				end
 			end
 		end

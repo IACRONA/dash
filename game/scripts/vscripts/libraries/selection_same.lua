@@ -24,18 +24,20 @@ function CAddonWarsong:DisableHeroForTeam(team, hero_name)
         return
     end
     self.banned_heroes_same[team][hero_name] = true
-    for iPlayerID=0, PlayerResource:GetPlayerCount()-1 do
-        if PlayerResource:GetTeam(iPlayerID) == team then
-            GameRules:ClearPlayerHeroAvailability(iPlayerID)
-            for i=1,148 do
-                local avial = true
-                for name,_ in pairs(self.banned_heroes_same[team]) do
-                    if DOTAGameManager:GetHeroIDByName( name ) == i then
-                        avial = false
+    for iPlayerID=0, _G.MAX_PLAYER_COUNT do
+        if PlayerResource:IsValidPlayer(iPlayerID) then 
+            if PlayerResource:GetTeam(iPlayerID) == team then
+                GameRules:ClearPlayerHeroAvailability(iPlayerID)
+                for i=1,148 do
+                    local avial = true
+                    for name,_ in pairs(self.banned_heroes_same[team]) do
+                        if DOTAGameManager:GetHeroIDByName( name ) == i then
+                            avial = false
+                        end
                     end
-                end
-                if avial then
-                    GameRules:AddHeroToPlayerAvailability(iPlayerID, i )
+                    if avial then
+                        GameRules:AddHeroToPlayerAvailability(iPlayerID, i )
+                    end
                 end
             end
         end

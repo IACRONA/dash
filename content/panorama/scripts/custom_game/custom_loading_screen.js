@@ -85,7 +85,7 @@ function UpdatePlayersConnectionState() {
       $("#player_" + player).RemoveClass("playerConnected");
       $("#player_" + player).RemoveClass("playerConnectedFailed");
       let pState = Game.GetPlayerInfo(player).player_connection_state;
-      $.Msg(player, Game.GetPlayerInfo(player));
+
       if (pState == DOTAConnectionState_t.DOTA_CONNECTION_STATE_CONNECTED) {
         nPlayersLoaded++;
         $.Schedule(0.3, function () {
