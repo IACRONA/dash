@@ -14,9 +14,9 @@
 		"AbilityValues"
 		{
 			"madstone_primary"			"1"
-			"madstone_secondary"		"1"
+			"madstone_secondary"		"0"
 			"turbo_madstone_primary"	"1"
-			"turbo_madstone_secondary"	"1"
+			"turbo_madstone_secondary"	"0"
 		}
 	}
 	
