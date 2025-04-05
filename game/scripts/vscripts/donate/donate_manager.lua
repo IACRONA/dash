@@ -95,9 +95,10 @@ end
   
 function DonateManager:GetCurrentTitulParticle(playerId)
     local playerInfo = CustomNetTables:GetTableValue("player_info", tostring(playerId)) 
+    local hero = PlayerResource:GetSelectedHeroEntity(playerId)
 
     if  not (playerInfo and playerInfo.titul) then return nil end
-
+    if not hero then return nil end
     for itemName, itemData in pairs(playerInfo.titul) do
         if itemData.isActive and DONATE_ITEMS.titul[itemName] then
             local titul = DONATE_ITEMS.titul[itemName].particle

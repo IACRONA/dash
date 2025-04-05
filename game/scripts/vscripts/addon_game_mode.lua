@@ -301,16 +301,18 @@ end
 
 function CAddonWarsong:OnStartGame()
 	self:InitNeutralItems()
+
+	if GetMapName() == "portal_duo" or GetMapName() == "portal_trio" then
+		Timers:CreateTimer(1, function()
+			self:UpdateLeaderPortalDuo()
+			return 0.5
+		end)
+	end
 end
 
 function CAddonWarsong:OnGameRulesStateChange()
 	local nNewState = GameRules:State_Get()
 	if nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
-		DoWithAllPlayers(function(player,_,id) 
-			LogPanorama("Id игрока".. id.. " Стим акаунт".. PlayerResource:GetSteamAccountID(id))
-			LogPanorama(PlayerResource:GetTeam(id))
-		end)
-
 		for iPlayerID=0, _G.MAX_PLAYER_COUNT do
             for i=1,148 do
                 if DOTAGameManager:GetHeroNameByID( i ) ~= nil then
