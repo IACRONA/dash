@@ -4,6 +4,7 @@ lina_pyrablast = class({})
 
 function lina_pyrablast:Precache(context)
 	PrecacheResource("particle", "particles/acrona/lina/lina_pyrablast.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_tail_dragonform_proj.vpcf", context)
 end
 
 function lina_pyrablast:GetBehavior()

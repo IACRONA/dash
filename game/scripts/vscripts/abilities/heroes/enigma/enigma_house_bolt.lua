@@ -5,6 +5,7 @@ enigma_house_bolt = class({})
 
 function enigma_house_bolt:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_warlock/warlock_fatal_bonds_icon.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_necrolyte/necrolyte_death_seeker_enemy.vpcf", context)
 end
 
 function enigma_house_bolt:OnSpellStart()

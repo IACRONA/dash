@@ -108,7 +108,7 @@ function CAddonWarsong:AddLeaderParticle(entity)
 	if not entity:IsRealHero() or entity:IsTempestDouble() then 
 		titul = DonateManager:GetCurrentTitulParticle(entity:GetPlayerOwnerID()) or DEFAULT_LEADER_PARTICLE
 	else 
-		local titul = DonateManager:GetCurrentTitulParticle(entity:GetPlayerOwnerID()) or DEFAULT_LEADER_PARTICLE
+		titul = DonateManager:GetCurrentTitulParticle(entity:GetPlayerOwnerID()) or DEFAULT_LEADER_PARTICLE
 		entity.donate.titul = titul
 	end
 
