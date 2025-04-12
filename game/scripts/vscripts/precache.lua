@@ -101,7 +101,8 @@ local particles =
     "particles/econ/events/fall_major_2016/teleport_start_fm06_lvl2.vpcf",
     "particles/econ/events/fall_major_2016/teleport_end_fm06_lvl2.vpcf",
     
- 
+    "particles/base_attacks/ranged_siege_good.vpcf",
+    "particles/base_attacks/ranged_siege_bad.vpcf",
  
  
   
@@ -214,7 +215,16 @@ local models = {
     "models/items/morphling/abyss_overlord_back/abyss_overlord_back.vmdl",
     "models/items/morphling/ethereal_blade/ethereal_blade.vmdl",
     "models/items/morphling/abyss_overlord_misc/abyss_overlord_misc.vmdl",
- 
+    
+    "models/creeps/neutral_creeps/n_creep_satyr_spawn_a/n_creep_satyr_spawn_b.vmdl",
+    "models/creeps/neutral_creeps/n_creep_satyr_spawn_a/n_creep_satyr_spawn_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl",
+    "models/creeps/neutral_creeps/n_creep_beast/n_creep_beast.vmdl",
+    "models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl",
+    "models/creeps/neutral_creeps/n_creep_ogre_lrg/n_creep_ogre_lrg.vmdl",
+    "models/creeps/neutral_creeps/n_creep_furbolg/n_creep_furbolg_disrupter.vmdl",
+    "models/creeps/neutral_creeps/n_creep_vulture_a/n_creep_vulture_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_forest_trolls/n_creep_forest_troll_high_priest.vmdl",
      
     ----- Героои
     "models/heroes/phoenix/phoenix_egg.vmdl",
