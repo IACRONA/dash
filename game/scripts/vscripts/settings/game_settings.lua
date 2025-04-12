@@ -347,7 +347,7 @@ if GetMapName() == "portal_duo" then
     }
 
     -- Магический и физический резист
-    RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
+    RESISTANCE_TIME_ACTIVATED = 8 -- Время когда он начинается (мин.)
     MAGICAL_RESISTANCE_PERCENTAGE = 10
     PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
@@ -416,7 +416,7 @@ if GetMapName() == "portal_duo" then
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Время за сколько в сумме будет 30 лвл  в минутах
-    PERCENT_OF_LEVEL_MINUTE = 210
+    PERCENT_OF_LEVEL_MINUTE = 211
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
@@ -454,7 +454,7 @@ if GetMapName() == "portal_trio" then
     FLAG_RETURN_DURATION = 4
     FLAG_AUTO_RETURN_DURATION = 45
 
-    BAN_TIME = 5 -- Время на бан
+    BAN_TIME = 6 -- Время на бан
 
     GOOD_FLAG_SCALE = 0.9
     BAD_FLAG_SCALE = 0.9
@@ -484,7 +484,7 @@ if GetMapName() == "portal_trio" then
     }
 
     -- Магический и физический резист
-    RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
+    RESISTANCE_TIME_ACTIVATED = 8 -- Время когда он начинается (мин.)
     MAGICAL_RESISTANCE_PERCENTAGE = 10
     PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
@@ -553,15 +553,15 @@ if GetMapName() == "portal_trio" then
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Процент уровня
-    PERCENT_OF_LEVEL_MINUTE = 210
+    PERCENT_OF_LEVEL_MINUTE = 212
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
 
     DASH_RESPAWN_TIME_LEVEL = 
     {
-        {8, 8},
-        {15, 9},
+        {8, 6},
+        {15, 8},
         {28, 10},
         {30, 10},
     }
