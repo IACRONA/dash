@@ -290,7 +290,7 @@
 	{
 		"AbilityValues"
 		{
-            "AbilityCooldown" 							"80  70 60"
+            "AbilityCooldown" 							"80  70 55"
         }
     }
 
@@ -355,7 +355,7 @@
 	{
 		"AbilityValues"
 		{
-            "AbilityCooldown" 							"80  70 65"
+            "AbilityCooldown" 							"80  70 60"
         }
     }
 
@@ -385,7 +385,7 @@
 
 	"lion_finger_of_death"
 	{
-		"AbilityCooldown" 							"60 60 55"
+		"AbilityCooldown" 							"80 60 55"
 	}
 
 	"lone_druid_true_form"
@@ -557,7 +557,7 @@
 	{
 		"AbilityValues"
 		{
-            "AbilityCooldown" 							"80 70 60"
+            "AbilityCooldown" 							"80 70 45"
         }
     }
 
@@ -567,7 +567,7 @@
 		{
 			"AbilityCooldown"
 			{	
-				"value"									"80 70 60"
+				"value"									"80 70 65"
 				"special_bonus_unique_queen_of_pain_3"	"-10"
 			}
 		}
@@ -595,7 +595,7 @@
 		{
 			"AbilityCooldown"				
 			{
-				"value"								"80 70 60"
+				"value"								"80 70 65"
 				"special_bonus_scepter"				"-30"
 			}
 		}
