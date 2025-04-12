@@ -456,8 +456,11 @@ end
 function CAddonWarsong:GetWinPlayers()
     for team, score in pairs(self.nCapturedFlagsCount) do
         if score >= self.nWinConditionGoal then
+			LogPanorama("Погнала сортировка бим бим чикибамбони")
             self:SortedMvpPlayers()
+			LogPanorama("Сортировка выполнена тудым сюдым")
             CAddonWarsong:SetWinner(team)
+			LogPanorama("Победа")
         end
     end
 end

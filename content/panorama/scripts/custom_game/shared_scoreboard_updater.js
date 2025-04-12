@@ -183,7 +183,7 @@ function _ScoreboardUpdater_UpdateTeamPanel(scoreboardConfig, containerPanel, te
   }
 
   _ScoreboardUpdater_SetTextSafe(teamPanel, "TeamScore", teamDetails.team_score + bonus_kills_morph);
-  _ScoreboardUpdater_SetTextSafe(teamPanel, "TeamName", $.Localize(teamDetails.team_name));
+  _ScoreboardUpdater_SetTextSafe(teamPanel, "TeamName", $.Localize(`${teamDetails.team_name}_topbar`));
 
   if (GameUI.CustomUIConfig().kills_count_info != null && teamDetails.team_score + bonus_kills_morph >= GameUI.CustomUIConfig().kills_count_info - 5) {
     let KillsRemaining = teamPanel.FindChildInLayoutFile("KillsRemaining");

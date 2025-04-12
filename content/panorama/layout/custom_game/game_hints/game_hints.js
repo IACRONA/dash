@@ -1,40 +1,37 @@
-var NOTIFICATION_TIMER = 10
+var NOTIFICATION_TIMER = 6;
 
 GameEvents.Subscribe("warsong_game_hint_create", warsong_game_hint_create);
 
-function warsong_game_hint_create(data)
-{
-    CreateHint(data.text)
+function warsong_game_hint_create(data) {
+  CreateHint(data.text);
 }
 
-function CreateHint(text)
-{ 
-    let HintPanel = $.CreatePanel("Panel", $("#HintsContainer"), "")
-    HintPanel.AddClass("HintPanel")
-    HintPanel.AddClass("VisibleHint")
+function CreateHint(text) {
+  let HintPanel = $.CreatePanel("Panel", $("#HintsContainer"), "");
+  HintPanel.AddClass("HintPanel");
+  HintPanel.AddClass("VisibleHint");
 
-    let HintLabel = $.CreatePanel("Label", HintPanel, text)
-    HintLabel.AddClass("HintLabel")
-    HintLabel.html = true
-    HintLabel.text = $.Localize("#"+text)
-    HintPanel.DeleteAsync(NOTIFICATION_TIMER+1)
+  let HintBackground = $.CreatePanel("Panel", HintPanel, "HintBackground");
 
-    let schedule_id = $.Schedule(NOTIFICATION_TIMER, function () 
-    {
-        if (HintPanel)
-        {
-            HintPanel.RemoveClass("VisibleHint")
-        }
-    });
+  let HintLabel = $.CreatePanel("Label", HintPanel, text);
+  HintLabel.AddClass("HintLabel");
+  HintLabel.html = true;
+  HintLabel.text = $.Localize("#" + text);
+  HintPanel.DeleteAsync(NOTIFICATION_TIMER + 1);
 
-    let Close = $.CreatePanel("Panel", HintPanel, "")
-    Close.AddClass("Close")
+  let schedule_id = $.Schedule(NOTIFICATION_TIMER, function () {
+    if (HintPanel) {
+      HintPanel.RemoveClass("VisibleHint");
+    }
+  });
 
-    Close.SetPanelEvent("onactivate", function()
-    {
-        $.CancelScheduled(schedule_id)
-        HintPanel.DeleteAsync(0)
-    })
+  let Close = $.CreatePanel("Panel", HintPanel, "");
+  Close.AddClass("Close");
 
-    Game.EmitSound("ui.npe_objective_given")
+  Close.SetPanelEvent("onactivate", function () {
+    $.CancelScheduled(schedule_id);
+    HintPanel.DeleteAsync(0);
+  });
+
+  Game.EmitSound("ui.npe_objective_given");
 }
