@@ -100,14 +100,14 @@ if GetMapName() == "portal_duo" then
     --Убийства лидера последееий и иногда предпоследний командой кулдаун
     KILL_LEADER_REWARD_TIME = 150
 
-    BOOK_REROLL_COUNT  = 3
-    BOOK_COMMON_COOLDOWN = 65
+    BOOK_REROLL_COUNT  = 1
+    BOOK_COMMON_COOLDOWN = 75
     BOOK_RARE_START = 480
-    BOOK_RARE_COOLDOWN = 85
+    BOOK_RARE_COOLDOWN = 90
     BOOK_EPIC_COOLDOWN = 306
-    BOOK_COMMON_LIMIT = 30
-    BOOK_RARE_LIMIT = 25
-    BOOK_EPIC_LIMIT = 8
+    BOOK_COMMON_LIMIT = 20
+    BOOK_RARE_LIMIT = 16
+    BOOK_EPIC_LIMIT = 4
 end
 
 if GetMapName() == "portal_trio" then
@@ -175,7 +175,7 @@ if GetMapName() == "portal_trio" then
     --Уменьшение урона по послденей команде [1] - это какой тир нужен
     LAST_MODIFIER_BALANCE = {
         [1] = {
-            incoming = -10,
+            incoming = -15,
         },
     }
 
@@ -189,12 +189,12 @@ if GetMapName() == "portal_trio" then
     --Уменьшение урона по первой команде [1] - это какой тир нужен
     FIRST_MODIFIER_CURSED_LEADER = {
         [1] = {
-            incoming = 12,
-            outgoing = -12,
+            incoming = 15,
+            outgoing = -15,
         },
         [2] = {
-            incoming = 12,
-            outgoing = -12,
+            incoming = 13,
+            outgoing = -13,
         },
         [3] = {
             incoming = 12,
@@ -214,16 +214,16 @@ if GetMapName() == "portal_trio" then
     }
 
     --Убийства лидера последееий и иногда предпоследний командой кулдаун
-    KILL_LEADER_REWARD_TIME = 150
+    KILL_LEADER_REWARD_TIME = 120
 
-    BOOK_REROLL_COUNT  = 3
-    BOOK_COMMON_COOLDOWN = 65
+    BOOK_REROLL_COUNT  = 1
+    BOOK_COMMON_COOLDOWN = 75
     BOOK_RARE_START = 480
-    BOOK_RARE_COOLDOWN = 85
+    BOOK_RARE_COOLDOWN = 90
     BOOK_EPIC_COOLDOWN = 306
-    BOOK_COMMON_LIMIT = 30
-    BOOK_RARE_LIMIT = 25
-    BOOK_EPIC_LIMIT = 8
+    BOOK_COMMON_LIMIT = 20
+    BOOK_RARE_LIMIT = 16
+    BOOK_EPIC_LIMIT = 4
 end
 
 if GetMapName() == "warsong" then
@@ -273,9 +273,9 @@ if GetMapName() == "warsong" then
     BOOK_RARE_START = 480
     BOOK_RARE_COOLDOWN = 90
     BOOK_EPIC_COOLDOWN = 306
-    BOOK_COMMON_LIMIT = 30
-    BOOK_RARE_LIMIT = 25
-    BOOK_EPIC_LIMIT = 8
+    BOOK_COMMON_LIMIT = 20
+    BOOK_RARE_LIMIT = 16
+    BOOK_EPIC_LIMIT = 4
 end
 
 if GetMapName() == "dash" then
@@ -306,9 +306,9 @@ if GetMapName() == "dash" then
     BOOK_REROLL_COUNT  = 0
     BOOK_COMMON_COOLDOWN = 90
     BOOK_RARE_START = 600
-    BOOK_RARE_COOLDOWN = 110
-    BOOK_EPIC_COOLDOWN = 480
-    BOOK_COMMON_LIMIT = 30
+    BOOK_RARE_COOLDOWN = 120
+    BOOK_EPIC_COOLDOWN = 490
+    BOOK_COMMON_LIMIT = 20
     BOOK_RARE_LIMIT = 15
-    BOOK_EPIC_LIMIT = 7
+    BOOK_EPIC_LIMIT = 4
 end

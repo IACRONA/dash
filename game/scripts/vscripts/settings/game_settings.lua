@@ -203,14 +203,14 @@ if GetMapName() == "dash" then
     ARMOR_AMP_TOWERS = 2 -- бафф на броню башен | 35%
 
     -- Магический и физический резист
-    RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
+    RESISTANCE_TIME_ACTIVATED = 8 -- Время когда он начинается (мин.)
     MAGICAL_RESISTANCE_PERCENTAGE = 10
     PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
     -- Время до новых способностей
-    NEW_ABILITY_COOLDOWN = 5400
-    NEW_ULTIMATE_COOLDOWN = 270 -- 5 мин
-    MAX_COUNT_ULTI_ABILITIES = 3
+    NEW_ABILITY_COOLDOWN = 54000
+    NEW_ULTIMATE_COOLDOWN = 420 -- 5 мин
+    MAX_COUNT_ULTI_ABILITIES = 1
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -506,7 +506,7 @@ if GetMapName() == "portal_trio" then
     ONE_PUNCHMAN_SETTINGS_CHANCE = {1,2,3}
     ONE_PUNCHMAN_SETTINGS_CHANCE_SOUL = {8,10,20}
     ONE_PUNCHMAN_SETTINGS_COOLDOWN = 35
-    ONE_PUNCHMAN_SETTINGS_COOLDOWN_KILL = 80
+    ONE_PUNCHMAN_SETTINGS_COOLDOWN_KILL = 75
     ONE_PUNCHMAN_SETTINGS_DURATION = 20
     ONE_PUNCHMAN_SETTINGS_ATTACK_SPEED = {60,80,95} 
     ONE_PUNCHMAN_SETTINGS_LIFESTEAL = {10,12,22}
@@ -564,10 +564,10 @@ if GetMapName() == "portal_trio" then
 
     DASH_RESPAWN_TIME_LEVEL = 
     {
-        {8, 8},
-        {15, 9},
-        {28, 10},
-        {30, 10},
+        {8, 6},
+        {15, 8},
+        {28, 9},
+        {30, 9},
     }
 
     REROLL_SPHERES = 1
