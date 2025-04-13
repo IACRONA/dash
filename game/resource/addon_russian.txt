@@ -205,7 +205,7 @@
 
     // Настройки подсказок для Dash
     "loading_screen_hint_dash_1_name"                       "Рандомные способности"
-    "loading_screen_hint_dash_1_description"                "Рандомные способности и ультимейты для героя, не забивайте сохранить ваши настройки в keybinds."
+    "loading_screen_hint_dash_1_description"                "Рандомные способности и ультимейты для героя, не забывайте сохранить ваши настройки в keybinds."
 
     "loading_screen_hint_dash_2_name"                       "Выбор судьбы"
     "loading_screen_hint_dash_2_description"                "Выберите одну из пяти уникальных судеб для вашего героя, но учтите у вас есть всего три уровня прокачки. "

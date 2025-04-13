@@ -1298,8 +1298,4 @@
 	"item_recipe_dagon_3" 	"REMOVE"
 	"item_recipe_dagon_4" 	"REMOVE"
 	"item_recipe_dagon_5" 	"REMOVE"
-	"item_recipe_travel_boots" 	""
-	"item_recipe_travel_boots_2" 	"REMOVE"
-	"item_travel_boots" 	""
-	"item_travel_boots_2" 	"REMOVE"
 }
