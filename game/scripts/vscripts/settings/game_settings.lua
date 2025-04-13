@@ -18,7 +18,7 @@ SPHERE_RADIANCE_DAMAGE = 35
 
 SPHERE_MISS = 5
 SPHERE_SPELL_RADIUS = 10
- 
+MAX_COUNT_ULTI_ABILITIES = 3
 
 BUYBACK_COOLDOWN = 240
 -- Настройки WARSONG
@@ -74,6 +74,7 @@ if GetMapName() == "warsong" then
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 270
+    MAX_COUNT_ULTI_ABILITIES = 3 
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -209,6 +210,7 @@ if GetMapName() == "dash" then
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 270 -- 5 мин
+    MAX_COUNT_ULTI_ABILITIES = 3
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -354,6 +356,7 @@ if GetMapName() == "portal_duo" then
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 270 -- 5 мин
+    MAX_COUNT_ULTI_ABILITIES = 3
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -491,6 +494,7 @@ if GetMapName() == "portal_trio" then
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 270
+    MAX_COUNT_ULTI_ABILITIES = 3
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
