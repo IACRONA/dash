@@ -19,6 +19,7 @@ SPHERE_RADIANCE_DAMAGE = 35
 SPHERE_MISS = 5
 SPHERE_SPELL_RADIUS = 10
  
+MAX_COUNT_ULTIMATES_ABILITIES = 3
 
 BUYBACK_COOLDOWN = 240
 -- Настройки WARSONG
@@ -73,7 +74,8 @@ if GetMapName() == "warsong" then
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
-    NEW_ULTIMATE_COOLDOWN = 270
+    NEW_ULTIMATE_COOLDOWN = 10 -- Новая ульта
+    MAX_COUNT_ULTIMATES_ABILITIES = 3 -- колво ультов за игру 
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -209,6 +211,7 @@ if GetMapName() == "dash" then
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 270 -- 5 мин
+    MAX_COUNT_ULTIMATES_ABILITIES = 3 -- колво ультов за игру 
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -354,6 +357,7 @@ if GetMapName() == "portal_duo" then
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 270 -- 5 мин
+    MAX_COUNT_ULTIMATES_ABILITIES = 3 -- колво ультов за игру 
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -491,6 +495,7 @@ if GetMapName() == "portal_trio" then
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 270
+    MAX_COUNT_ULTIMATES_ABILITIES = 3 -- колво ультов за игру 
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -589,7 +594,7 @@ UPGRADE_HEALTH = 280
 UPGRADE_ARMOR = 1
 
 -- Время игры в секундах
-GAME_TIME_CLOCK = 30
+GAME_TIME_CLOCK = 1000
 
 -- Не отображать выбор скиллов этому герою
 HEROES_SELECT_SPELL_DISABLED = 

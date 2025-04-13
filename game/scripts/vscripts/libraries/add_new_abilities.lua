@@ -16,6 +16,8 @@ for hero_name, data in pairs(npc_heroes_list_kv) do
 end
 
 function CAddonWarsong:ChangeNewAbilities(is_ultimate)
+    self.countUtliAbilities = (self.countUtliAbilities or 0) + 1
+    if self.countUtliAbilities >= MAX_COUNT_ULTIMATES_ABILITIES + 1 then return end
     if not CAddonWarsong.InitHintsAbilities then
         CreateHints("warsong_hints_random_spells")
         CAddonWarsong.InitHintsAbilities = true
