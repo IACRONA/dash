@@ -50,7 +50,7 @@ BOOKS_SHOP = {
 				purchaseType = "both",							
 			},
 			dash = {
-				gold = 8000,
+				gold = 5000,
 				heads = 1,	
 				purchaseType = "both",			
 			},

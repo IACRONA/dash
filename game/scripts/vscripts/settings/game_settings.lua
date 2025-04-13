@@ -151,11 +151,11 @@ end
 if GetMapName() == "dash" then
     RESPAWN_TIME = 10
 
-    START_GOLD = 600
+    START_GOLD = 650
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
-    GRANT_GOLD = 300
+    GRANT_GOLD = 240
 
     CONDITION_FLAG_COUNT_WIN = 7
 
@@ -172,7 +172,7 @@ if GetMapName() == "dash" then
     MAX_SPEED = 550
     FLAG_CARRIER_MAX_SPEED = 400
 
-    BAN_TIME = 5 -- Время на бан
+    BAN_TIME = 7 -- Время на бан
 
     DAY_NIGHT_CYCL = false -- Включение / выключение смены для и ночи
 
@@ -203,7 +203,7 @@ if GetMapName() == "dash" then
     ARMOR_AMP_TOWERS = 2 -- бафф на броню башен | 35%
 
     -- Магический и физический резист
-    RESISTANCE_TIME_ACTIVATED = 300 -- Время когда он начинается (мин.)
+    RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
     MAGICAL_RESISTANCE_PERCENTAGE = 10
     PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
@@ -273,7 +273,7 @@ if GetMapName() == "dash" then
     HIMARON_SWORD_COOLDOWN = 14
 
     -- Время за сколько в сумме будет 30 лвл  в минутах
-    PERCENT_OF_LEVEL_MINUTE = 90
+    PERCENT_OF_LEVEL_MINUTE = 80
 
     -- Время возрождения для dash
     -- уровень, время респавна
@@ -281,12 +281,12 @@ if GetMapName() == "dash" then
     {
         {8, 10},
         {15, 15},
-        {28, 28},
+        {28, 35},
         {30, 60},
     }
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 400
+    NEW_SPHERES = 220
     MAX_SPHERE_LEVEL = 3
     COUNT_SPHERE_CHOICE = 2
     MAX_SPHERE_COUNT = 10
