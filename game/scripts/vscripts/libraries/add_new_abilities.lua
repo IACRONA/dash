@@ -16,8 +16,6 @@ for hero_name, data in pairs(npc_heroes_list_kv) do
 end
 
 function CAddonWarsong:ChangeNewAbilities(is_ultimate)
-    self.countUtliAbilities = (self.countUtliAbilities or 0) + 1
-    if self.countUtliAbilities >= MAX_COUNT_ULTIMATES_ABILITIES + 1 then return end
     if not CAddonWarsong.InitHintsAbilities then
         CreateHints("warsong_hints_random_spells")
         CAddonWarsong.InitHintsAbilities = true
@@ -146,8 +144,8 @@ end
 function CAddonWarsong:GetNewAbilityPlayer(hero, list)
     local abilities = {}
     local count = 3
-    list = table.shuffle(list)
-    for _, ability_name in pairs(list) do
+    local shuffled = table.shuffle(list)
+    for _, ability_name in pairs(shuffled) do
         if not hero:HasAbility(ability_name) then
             count = count - 1
             table.insert(abilities, ability_name)
@@ -160,23 +158,24 @@ function CAddonWarsong:GetNewAbilityPlayer(hero, list)
 end
 
 function CAddonWarsong:RemoveModifierFromAbility(ability)
-	for _,entity in pairs( HeroList:GetAllHeroes() ) do
-		for id, modifier in pairs(entity:FindAllModifiers()) do
-			if modifier and modifier:GetAbility() == ability then
-				modifier:Destroy()
-			end
-		end
-	end
-	local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
-	for _,thinker in pairs(thinkers) do 
-        if thinker and not thinker:IsNull() then
-        	for id, modifier in pairs(thinker:FindAllModifiers()) do
-				if modifier and modifier:GetAbility() == ability then
-					if thinker and not thinker:IsNull() then
-						thinker:Destroy()
-					end
-				end
-			end
+    for _, hero in pairs(HeroList:GetAllHeroes()) do
+        if IsValidEntity(hero) then
+            local modifiers = hero:FindAllModifiers()
+            for _, modifier in pairs(modifiers) do
+                if modifier and modifier:GetAbility() == ability then
+                    modifier:Destroy()
+                end
+            end
+        end
+    end
+    for _, thinker in pairs(Entities:FindAllByClassname("npc_dota_thinker")) do
+        if IsValidEntity(thinker) then
+            local modifiers = thinker:FindAllModifiers()
+            for _, modifier in pairs(modifiers) do
+                if modifier and modifier:GetAbility() == ability then
+                    thinker:Destroy()
+                end
+            end
         end
     end
 end

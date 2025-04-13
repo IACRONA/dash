@@ -15,63 +15,89 @@ local spheres = {
 }
 
 function CAddonWarsong:GivePlayersSphere()
-    CAddonWarsong.sphere_count_number = CAddonWarsong.sphere_count_number + 1
-    for i=0,24 do
-        if PlayerResource:IsValidPlayer(i) and PlayerResource:GetSelectedHeroEntity(i) ~= nil then
-            if CAddonWarsong.player_selected_sphere[i] == nil then
-                CAddonWarsong.player_selected_sphere[i] = 0
+    self.sphere_count_number = self.sphere_count_number + 1
+
+    for playerID = 0, 24 do
+        if PlayerResource:IsValidPlayerID(playerID) then
+            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+            if hero then
+                if not self.player_selected_sphere[playerID] then
+                    self.player_selected_sphere[playerID] = 0
+                end
+
+                local player = PlayerResource:GetPlayer(playerID)
+                if IsValidEntity(player) then
+                    CustomGameEventManager:Send_ServerToPlayer(player, "open_sphere_choose_players", { sphereList = self:GetSphereList(hero) })
+                end
             end
-            local hero = PlayerResource:GetSelectedHeroEntity(i)
- 
-            CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(i), 'open_sphere_choose_players', {sphereList = self:GetSphereList(hero)})
         end
     end
 end
 
-function CAddonWarsong:SelectPlayerSphere(player_id, sphere_name)
-    local hero = PlayerResource:GetSelectedHeroEntity(player_id)
-    
+function CAddonWarsong:SelectPlayerSphere(playerID, sphere_name)
+    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+    if not hero then return end
+
     Timers:CreateTimer(0.1, function()
         if hero:IsAlive() then
             local modifier = hero:AddNewModifier(hero, nil, sphere_name, {})
-            modifier:IncrementStackCount()
+            if modifier then
+                modifier:IncrementStackCount()
+            end
             return
         end
         return 0.1
     end)
+    self.player_selected_sphere[playerID] = (self.player_selected_sphere[playerID] or 0) + 1
 
-    CAddonWarsong.player_selected_sphere[player_id] = CAddonWarsong.player_selected_sphere[player_id] + 1
-
-    if CAddonWarsong.player_selected_sphere[player_id] < CAddonWarsong.sphere_count_number then
-        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(player_id), 'open_sphere_choose_players', {sphereList = self:GetSphereList(hero)})
+    local player = PlayerResource:GetPlayer(playerID)
+    if self.player_selected_sphere[playerID] < self.sphere_count_number then
+        if IsValidEntity(player) then
+            CustomGameEventManager:Send_ServerToPlayer(player, "open_sphere_choose_players", { sphereList = self:GetSphereList(hero) })
+        end
     end
 end
 
 function CAddonWarsong:GetSphereList(hero)
     local passSpheres = {}
-
-    for _,sphere in pairs(spheres) do
+    
+    for _, sphere in ipairs(spheres) do
         local modifier = hero:FindModifierByName(sphere)
         if not modifier or modifier:GetStackCount() < MAX_SPHERE_LEVEL then 
-               table.insert(passSpheres, {name = sphere, level = modifier and modifier:GetStackCount() or 0})
+            table.insert(passSpheres, { name = sphere, level = modifier and modifier:GetStackCount() or 0 })
         end
     end
+
+    local tempSpheres = {}
+    for i, sphereData in ipairs(passSpheres) do
+        tempSpheres[i] = sphereData
+    end
+
     local sphereList = {}
-    for i=1,COUNT_SPHERE_CHOICE do
-        local index = RandomInt(1, #passSpheres)
-        local sphere = passSpheres[index]
-        table.insert(sphereList, sphere)
-        table.remove(passSpheres, index)
+    for i = 1, COUNT_SPHERE_CHOICE do
+        if #tempSpheres > 0 then
+            local index = RandomInt(1, #tempSpheres)
+            table.insert(sphereList, tempSpheres[index])
+            table.remove(tempSpheres, index)
+        end
     end
 
     return sphereList
 end
 
 function CAddonWarsong:RerollPlayerSphere(event)
-    if PlayerResource:IsValidPlayer(event.PlayerID) and PlayerResource:GetSelectedHeroEntity(event.PlayerID) ~= nil then
-        PlayerInfo:UpdateRollTable(event.PlayerID, -1, 1)
-
-        local hero = PlayerResource:GetSelectedHeroEntity(event.PlayerID)   
-        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(event.PlayerID), 'open_sphere_choose_players', {sphereList = self:GetSphereList(hero), isReroll = true})
+    local playerID = event.PlayerID
+    if PlayerResource:IsValidPlayerID(playerID) then
+        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+        if hero then
+            PlayerInfo:UpdateRollTable(playerID, -1, 1)
+            local player = PlayerResource:GetPlayer(playerID)
+            if IsValidEntity(player) then
+                CustomGameEventManager:Send_ServerToPlayer(player, "open_sphere_choose_players", {
+                    sphereList = self:GetSphereList(hero),
+                    isReroll = true
+                })
+            end
+        end
     end 
 end

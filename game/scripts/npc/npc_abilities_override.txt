@@ -290,7 +290,7 @@
 	{
 		"AbilityValues"
 		{
-            "AbilityCooldown" 							"80  70 55"
+            "AbilityCooldown" 							"80  70 60"
         }
     }
 
@@ -355,7 +355,7 @@
 	{
 		"AbilityValues"
 		{
-            "AbilityCooldown" 							"80  70 60"
+            "AbilityCooldown" 							"80  70 65"
         }
     }
 
@@ -385,7 +385,7 @@
 
 	"lion_finger_of_death"
 	{
-		"AbilityCooldown" 							"80 60 55"
+		"AbilityCooldown" 							"60 60 55"
 	}
 
 	"lone_druid_true_form"
@@ -557,7 +557,7 @@
 	{
 		"AbilityValues"
 		{
-            "AbilityCooldown" 							"80 70 45"
+            "AbilityCooldown" 							"80 70 60"
         }
     }
 
@@ -567,7 +567,7 @@
 		{
 			"AbilityCooldown"
 			{	
-				"value"									"80 70 65"
+				"value"									"80 70 60"
 				"special_bonus_unique_queen_of_pain_3"	"-10"
 			}
 		}
@@ -595,7 +595,7 @@
 		{
 			"AbilityCooldown"				
 			{
-				"value"								"80 70 65"
+				"value"								"80 70 60"
 				"special_bonus_scepter"				"-30"
 			}
 		}
@@ -1298,4 +1298,8 @@
 	"item_recipe_dagon_3" 	"REMOVE"
 	"item_recipe_dagon_4" 	"REMOVE"
 	"item_recipe_dagon_5" 	"REMOVE"
+	"item_recipe_travel_boots" 	""
+	"item_recipe_travel_boots_2" 	"REMOVE"
+	"item_travel_boots" 	""
+	"item_travel_boots_2" 	"REMOVE"
 }

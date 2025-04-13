@@ -19,7 +19,6 @@ SPHERE_RADIANCE_DAMAGE = 35
 SPHERE_MISS = 5
 SPHERE_SPELL_RADIUS = 10
  
-MAX_COUNT_ULTIMATES_ABILITIES = 3
 
 BUYBACK_COOLDOWN = 240
 -- Настройки WARSONG
@@ -74,8 +73,7 @@ if GetMapName() == "warsong" then
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
-    NEW_ULTIMATE_COOLDOWN = 10 -- Новая ульта
-    MAX_COUNT_ULTIMATES_ABILITIES = 3 -- колво ультов за игру 
+    NEW_ULTIMATE_COOLDOWN = 270
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -211,7 +209,6 @@ if GetMapName() == "dash" then
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 270 -- 5 мин
-    MAX_COUNT_ULTIMATES_ABILITIES = 3 -- колво ультов за игру 
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -350,14 +347,13 @@ if GetMapName() == "portal_duo" then
     }
 
     -- Магический и физический резист
-    RESISTANCE_TIME_ACTIVATED = 8 -- Время когда он начинается (мин.)
+    RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
     MAGICAL_RESISTANCE_PERCENTAGE = 10
     PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 270 -- 5 мин
-    MAX_COUNT_ULTIMATES_ABILITIES = 3 -- колво ультов за игру 
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -420,7 +416,7 @@ if GetMapName() == "portal_duo" then
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Время за сколько в сумме будет 30 лвл  в минутах
-    PERCENT_OF_LEVEL_MINUTE = 211
+    PERCENT_OF_LEVEL_MINUTE = 210
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
@@ -458,7 +454,7 @@ if GetMapName() == "portal_trio" then
     FLAG_RETURN_DURATION = 4
     FLAG_AUTO_RETURN_DURATION = 45
 
-    BAN_TIME = 6 -- Время на бан
+    BAN_TIME = 5 -- Время на бан
 
     GOOD_FLAG_SCALE = 0.9
     BAD_FLAG_SCALE = 0.9
@@ -488,14 +484,13 @@ if GetMapName() == "portal_trio" then
     }
 
     -- Магический и физический резист
-    RESISTANCE_TIME_ACTIVATED = 8 -- Время когда он начинается (мин.)
+    RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
     MAGICAL_RESISTANCE_PERCENTAGE = 10
     PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 270
-    MAX_COUNT_ULTIMATES_ABILITIES = 3 -- колво ультов за игру 
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -558,15 +553,15 @@ if GetMapName() == "portal_trio" then
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Процент уровня
-    PERCENT_OF_LEVEL_MINUTE = 212
+    PERCENT_OF_LEVEL_MINUTE = 210
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
 
     DASH_RESPAWN_TIME_LEVEL = 
     {
-        {8, 6},
-        {15, 8},
+        {8, 8},
+        {15, 9},
         {28, 10},
         {30, 10},
     }
@@ -588,13 +583,13 @@ FOUNTAIN_DELAY_MODIFIER = 1.5
 START_GAME_FREEZE_TIME = 12
 
 -- Защитники флагов
-UPGRADE_TIME_CHECK = 1 -- каждые 1 минут
+UPGRADE_TIME_CHECK = 1.1 -- каждые 1 минут
 UPGRADE_DAMAGE = 55
 UPGRADE_HEALTH = 280
 UPGRADE_ARMOR = 1
 
 -- Время игры в секундах
-GAME_TIME_CLOCK = 1000
+GAME_TIME_CLOCK = 1080
 
 -- Не отображать выбор скиллов этому герою
 HEROES_SELECT_SPELL_DISABLED = 
