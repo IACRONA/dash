@@ -4,6 +4,7 @@ axe_struck = class({})
 
 function axe_struck:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture.vpcf", context)
+	PrecacheResource("particle", "particles/acrona/axe_struck/axe_struck_projectile.vpcf", context)
 end
 
 function axe_struck:OnSpellStart()

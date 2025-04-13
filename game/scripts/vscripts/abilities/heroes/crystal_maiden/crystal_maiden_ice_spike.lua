@@ -2,6 +2,11 @@ LinkLuaModifier('modifier_crystal_maiden_ice_spike_debuff', 'abilities/heroes/cr
 
 crystal_maiden_ice_spike = class({})
  
+function crystal_maiden_ice_spike:Precache(context)
+	PrecacheResource("particle", "particles/units/heroes/hero_winter_wyvern/wyvern_splinter_blast.vpcf", context)
+end
+ 
+
 function crystal_maiden_ice_spike:OnSpellStart()
 	local caster = self:GetCaster()
 

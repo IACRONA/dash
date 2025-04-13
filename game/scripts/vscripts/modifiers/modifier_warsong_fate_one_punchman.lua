@@ -2,6 +2,7 @@ LinkLuaModifier("modifier_warsong_fate_one_punchman_debuff", "modifiers/modifier
 LinkLuaModifier("modifier_warsong_fate_one_punchman_buff", "modifiers/modifier_warsong_fate_one_punchman", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_warsong_fate_one_punchman_cooldown", "modifiers/modifier_warsong_fate_one_punchman", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_warsong_fate_one_punchman_cooldown_kill", "modifiers/modifier_warsong_fate_one_punchman", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_generic_knockback_lua", "modifiers/modifier_generic_knockback_lua.lua", LUA_MODIFIER_MOTION_BOTH )
 
 require("settings/game_settings")
 
@@ -40,7 +41,7 @@ function modifier_warsong_fate_one_punchman:OnAttackLanded(params)
     local cooldown_kill = ONE_PUNCHMAN_SETTINGS_COOLDOWN_KILL
     local duration = ONE_PUNCHMAN_SETTINGS_DURATION
     if RollPercentage(chance) and not self:GetCaster():HasModifier("modifier_warsong_fate_one_punchman_cooldown_kill") then
-        params.target:AddNewModifier(self:GetParent(), nil, "modifier_warsong_fate_one_punchman_debuff", {duration = 1})
+        params.target:AddNewModifier(self:GetParent(), nil, "modifier_warsong_fate_one_punchman_debuff", {duration = 0.5})
         self:GetCaster():AddNewModifier(self:GetCaster(), nil, "modifier_warsong_fate_one_punchman_cooldown_kill", {duration = cooldown_kill})
     end
     if RollPercentage(chance_soul) then
@@ -59,7 +60,8 @@ function modifier_warsong_fate_one_punchman_debuff:IsPurgable() return false end
 function modifier_warsong_fate_one_punchman_debuff:IsHidden() return true end
 function modifier_warsong_fate_one_punchman_debuff:OnCreated()
     if not IsServer() then return end
-    local speed = (self:GetParent():GetAbsOrigin() - self:GetCaster():GetAbsOrigin()):Length2D()
+    self.casterPoint = self:GetCaster():GetAbsOrigin()
+    local speed = ((self:GetParent():GetAbsOrigin() - self:GetCaster():GetAbsOrigin()):Length2D()) * 2
     local info = {Target = self:GetParent(), Source = self:GetCaster(), Ability = nil, EffectName = "particles/units/heroes/hero_muerta/muerta_parting_shot_projectile.vpcf", iMoveSpeed = speed, vSourceLoc= self:GetCaster():GetAbsOrigin(), bDodgeable = false}
     ProjectileManager:CreateTrackingProjectile(info)
 end
@@ -68,11 +70,32 @@ function modifier_warsong_fate_one_punchman_debuff:OnDestroy()
     if not IsServer() then return end
     self:GetParent():EmitSound("fate_one_punchman_cast")
     local parent = self:GetParent()
+    local caster = self:GetCaster()
     parent.one_punchman_die = true
-    ApplyDamage({victim = self:GetParent(), attacker = self:GetCaster(), damage = self:GetParent():GetMaxHealth(), damage_type = DAMAGE_TYPE_PURE})
-    if self:GetParent():IsAlive() then
-        self:GetParent():Kill(nil, self:GetCaster())
-    end
+    local direction = parent:GetAbsOrigin() - self.casterPoint
+    direction.z = 0
+    direction = direction:Normalized()
+
+    parent:AddNewModifier(parent, nil, "modifier_generic_knockback_lua",
+        {
+            direction_x = direction.x,
+            direction_y = direction.y,
+            distance = 500,
+            height = 0,	
+            duration = 0.5,
+            IsStun = true,
+            removeOnDeath = false
+        }
+    )
+
+    ApplyDamage({victim = parent, attacker = caster, damage = parent:GetMaxHealth(), damage_type = DAMAGE_TYPE_PURE})
+    if parent:IsAlive() then
+        parent:Kill(nil, caster)
+    end	
+
+        
+ 
+
     Timers:CreateTimer(1, function()
         parent.one_punchman_die = nil
     end)

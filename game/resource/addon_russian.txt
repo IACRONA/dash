@@ -32,6 +32,14 @@
     "DOTA_Custom3"    								"FLUX"
     "DOTA_Custom4"    								"SPRITE"
 
+    "DOTA_GoodGuys_topbar"   							    "VENECIA"
+    "DOTA_BadGuys_topbar"    								"JOIN"
+    "DOTA_Custom1_topbar"    								"FROST"
+    "DOTA_Custom2_topbar"    								"MAMY"
+    "DOTA_Custom3_topbar"    								"FLUX"
+    "DOTA_Custom4_topbar"    								"SPRITE"
+
+ 
     "Victory_DOTA_GoodGuys"   						"VENECIA VICTORY"
     "Victory_DOTA_BadGuys"    						"JOIN VICTORY"
     "Victory_DOTA_Custom1"    						"FROST VICTORY"

@@ -249,7 +249,7 @@ function CreateHints(text, player_id)
 end
 
 function DoWithAllPlayers(func)
-	for i=0, PlayerResource:GetPlayerCount() - 1 do 
+	for i=0, _G.MAX_PLAYER_COUNT do 
 	  local player = PlayerResource:GetPlayer(i)
 	  local hero = PlayerResource:GetSelectedHeroEntity(i) 
 	  if  PlayerResource:IsValidPlayer(i) then func(player, hero, i) end

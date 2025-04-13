@@ -4,7 +4,12 @@ LinkLuaModifier('modifier_sniper_aim_bonus_cooldown', 'abilities/heroes/sniper/s
  
 sniper_aim_bonus = class({})
 
+function sniper_aim_bonus:Precache(context)
+	PrecacheResource("particle", "particles/units/heroes/hero_siren/siren_net_projectile.vpcf", context)
+end
+
  
+
 function sniper_aim_bonus:Spawn()
 	if IsClient() then return end
 

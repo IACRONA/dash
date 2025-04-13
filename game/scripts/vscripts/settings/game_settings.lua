@@ -60,13 +60,12 @@ if GetMapName() == "warsong" then
 
     NEUTRAL_ITEM_TIMINGS = 
     {
-        TIER_1 = 5, -- 0:00
-        TIER_2 = 10, -- 3:30
-        TIER_3 = 15, -- 9:00 
-        TIER_4 = 20, -- 12:00
-        TIER_5 = 25, -- 15:00
+        TIER_1 = 150, -- 0:00
+        TIER_2 = 350, -- 3:30
+        TIER_3 = 500, -- 9:00   
+        TIER_4 = 720, -- 12:00
+        TIER_5 = 820, -- 15:00
     }
-
     -- Магический и физический резист
     RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
     MAGICAL_RESISTANCE_PERCENTAGE = 10
@@ -192,15 +191,15 @@ if GetMapName() == "dash" then
         TIER_5 = 1000, -- 15:00
     }
     
-    TIME_FOR_AMP_TOWERS_AND_CREEPS = 300  --- 5 мин | время когда крипы и башни усиляются
+    TIME_FOR_AMP_TOWERS_AND_CREEPS = 450  --- 5 мин | время когда крипы и башни усиляются
     -- КРИПЫ:
     HEALTH_AMP_CREEPS = 10 -- бафф на здоровье крипов | 35%
     DAMAGE_AMP_CREEPS = 38 -- 5афф на урон крипов | 35%
     ARMOR_AMP_CREEPS = 40 --афф на броню крипов | 35%
     -- БАШНИ И ТРОН:
-    HEALTH_AMP_TOWERS = 10 -- бафф на здоровье башен | 35%
+    HEALTH_AMP_TOWERS = 2 -- бафф на здоровье башен | 35%
     DAMAGE_AMP_TOWERS = 35 -- бафф на урон башен | 35%
-    ARMOR_AMP_TOWERS = 35 -- бафф на броню башен | 35%
+    ARMOR_AMP_TOWERS = 2 -- бафф на броню башен | 35%
 
     -- Магический и физический резист
     RESISTANCE_TIME_ACTIVATED = 300 -- Время когда он начинается (мин.)
@@ -348,7 +347,7 @@ if GetMapName() == "portal_duo" then
     }
 
     -- Магический и физический резист
-    RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
+    RESISTANCE_TIME_ACTIVATED = 8 -- Время когда он начинается (мин.)
     MAGICAL_RESISTANCE_PERCENTAGE = 10
     PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
@@ -408,7 +407,7 @@ if GetMapName() == "portal_duo" then
     HIMARON_SETTINGS_COOLDOWN_REDUCTION = 30
     HIMARON_SETTINGS_SPELL_AMPLIFY = 25
     HIMARON_SETTINGS_PURE_DAMAGE_INCREASE = {25,35,45}
-    HIMARON_SETTINGS_COOLDOWN = 27
+    HIMARON_SETTINGS_COOLDOWN = 16
     HIMARON_SETTINGS_DURATION = 12
     DEMON_SETTINGS_CHANCE = {15,22,35}
     DEMON_SETTINGS_MIN_DAMAGE = {550,850,1200}
@@ -417,7 +416,7 @@ if GetMapName() == "portal_duo" then
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Время за сколько в сумме будет 30 лвл  в минутах
-    PERCENT_OF_LEVEL_MINUTE = 210
+    PERCENT_OF_LEVEL_MINUTE = 211
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
@@ -455,7 +454,7 @@ if GetMapName() == "portal_trio" then
     FLAG_RETURN_DURATION = 4
     FLAG_AUTO_RETURN_DURATION = 45
 
-    BAN_TIME = 5 -- Время на бан
+    BAN_TIME = 6 -- Время на бан
 
     GOOD_FLAG_SCALE = 0.9
     BAD_FLAG_SCALE = 0.9
@@ -477,15 +476,15 @@ if GetMapName() == "portal_trio" then
 
     NEUTRAL_ITEM_TIMINGS = 
     {
-        TIER_1 = 150, -- 0:00
-        TIER_2 = 350, -- 3:30
-        TIER_3 = 500, -- 9:00
-        TIER_4 = 720, -- 12:00
+        TIER_1 = 100, -- 0:00
+        TIER_2 = 250, -- 3:30
+        TIER_3 = 450, -- 9:00
+        TIER_4 = 640, -- 12:00
         TIER_5 = 800, -- 15:00
     }
 
     -- Магический и физический резист
-    RESISTANCE_TIME_ACTIVATED = 10 -- Время когда он начинается (мин.)
+    RESISTANCE_TIME_ACTIVATED = 8 -- Время когда он начинается (мин.)
     MAGICAL_RESISTANCE_PERCENTAGE = 10
     PHYSICAL_RESISTANCE_PERCENTAGE = 10
 
@@ -516,9 +515,9 @@ if GetMapName() == "portal_trio" then
     MURDER_SETTINGS_KILL_REFRESH_LAST_SPELL = {16,20,23}
 
     -- Defender
-    DEFENDER_SETTINGS_REFLECT_CHANCE = {15,20,29}
+    DEFENDER_SETTINGS_REFLECT_CHANCE = {15,20,38}
     DEFENDER_SETTINGS_EVASION_CHANCE = {12,20,25}
-    DEFENDER_BUFF_CHANCE = {12,20,25}
+    DEFENDER_BUFF_CHANCE = {14,20,30}
     DEFENDER_SETTINGS_MAGICAL_RESISTANCE = 45
     DEFENDER_SETTINGS_ARMOR = 55
     DEFENDER_SETTINGS_INCREASE_hEAL = 160
@@ -542,27 +541,27 @@ if GetMapName() == "portal_trio" then
     HIMARON_SETTINGS_CHANCE = {20,35,50}
     HIMARON_SETTINGS_DAMAGE = 150
     HIMARON_SETTINGS_MOVESPEED = 150
-    HIMARON_SETTINGS_COOLDOWN_REDUCTION = 30
+    HIMARON_SETTINGS_COOLDOWN_REDUCTION = 28
     HIMARON_SETTINGS_SPELL_AMPLIFY = 25
     HIMARON_SETTINGS_PURE_DAMAGE_INCREASE = {25,35,45}
-    HIMARON_SETTINGS_COOLDOWN = 27
+    HIMARON_SETTINGS_COOLDOWN = 16
     HIMARON_SETTINGS_DURATION = 12
     DEMON_SETTINGS_CHANCE = {15,22,35}
-    DEMON_SETTINGS_MIN_DAMAGE = {550,850,1200}
-    DEMON_SETTINGS_MAX_DAMAGE = {640,930,1800}
+    DEMON_SETTINGS_MIN_DAMAGE = {650,850,1800}
+    DEMON_SETTINGS_MAX_DAMAGE = {740,1230,2600}
     DEMON_SETTINGS_INCREASE_DAMAGE_SELF = 20
     HIMARON_SWORD_COOLDOWN = 15
 
     -- Процент уровня
-    PERCENT_OF_LEVEL_MINUTE = 210
+    PERCENT_OF_LEVEL_MINUTE = 212
 
     -- Сколько дают доп. киллов за нажатие на старте
     HOW_MUCH_KILLS_ADD = 2
 
     DASH_RESPAWN_TIME_LEVEL = 
     {
-        {8, 8},
-        {15, 9},
+        {8, 6},
+        {15, 8},
         {28, 10},
         {30, 10},
     }
@@ -584,7 +583,7 @@ FOUNTAIN_DELAY_MODIFIER = 1.5
 START_GAME_FREEZE_TIME = 12
 
 -- Защитники флагов
-UPGRADE_TIME_CHECK = 1.1 -- каждые 1 минут
+UPGRADE_TIME_CHECK = 1 -- каждые 1 минут
 UPGRADE_DAMAGE = 55
 UPGRADE_HEALTH = 280
 UPGRADE_ARMOR = 1

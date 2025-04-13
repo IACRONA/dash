@@ -26,6 +26,7 @@ function _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer
   var isTeammate = false;
 
   var gamePlayerInfo = Game.GetPlayerInfo(playerId);
+
   if (gamePlayerInfo) {
     isTeammate = gamePlayerInfo.player_team_id == localPlayerTeamId;
 
@@ -34,8 +35,6 @@ function _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer
     _ScoreboardUpdater_SetTextSafe(playerPanel, "RespawnTimer", gamePlayerInfo.player_respawn_seconds + 1); // value is rounded down so just add one for rounded-up
 
     if (isGameEnd) {
-      $.Msg(isGameEnd);
-
       const givingRating = playerInfo.getPlayerGivingRating(playerId);
       const addRatingText = `${givingRating < 0 ? "-" : "+"} ${givingRating}`;
 
@@ -184,7 +183,7 @@ function _ScoreboardUpdater_UpdateTeamPanel(scoreboardConfig, containerPanel, te
   }
 
   _ScoreboardUpdater_SetTextSafe(teamPanel, "TeamScore", teamDetails.team_score + bonus_kills_morph);
-  _ScoreboardUpdater_SetTextSafe(teamPanel, "TeamName", $.Localize(teamDetails.team_name));
+  _ScoreboardUpdater_SetTextSafe(teamPanel, "TeamName", $.Localize(`${teamDetails.team_name}_topbar`));
 
   if (GameUI.CustomUIConfig().kills_count_info != null && teamDetails.team_score + bonus_kills_morph >= GameUI.CustomUIConfig().kills_count_info - 5) {
     let KillsRemaining = teamPanel.FindChildInLayoutFile("KillsRemaining");

@@ -3,6 +3,13 @@ LinkLuaModifier('modifier_dazzle_life_shield', 'abilities/heroes/dazzle/dazzle_l
 
 dazzle_grace = class({})
 
+ 
+
+function dazzle_grace:Precache(context)
+	PrecacheResource("particle", "particles/econ/items/wisp/calavera/io_calavera_attack.vpcf", context)
+end
+
+ 
 function dazzle_grace:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()

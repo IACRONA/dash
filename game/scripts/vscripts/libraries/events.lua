@@ -108,7 +108,7 @@ function CAddonWarsong:AddLeaderParticle(entity)
 	if not entity:IsRealHero() or entity:IsTempestDouble() then 
 		titul = DonateManager:GetCurrentTitulParticle(entity:GetPlayerOwnerID()) or DEFAULT_LEADER_PARTICLE
 	else 
-		local titul = DonateManager:GetCurrentTitulParticle(entity:GetPlayerOwnerID()) or DEFAULT_LEADER_PARTICLE
+		titul = DonateManager:GetCurrentTitulParticle(entity:GetPlayerOwnerID()) or DEFAULT_LEADER_PARTICLE
 		entity.donate.titul = titul
 	end
 
@@ -456,8 +456,11 @@ end
 function CAddonWarsong:GetWinPlayers()
     for team, score in pairs(self.nCapturedFlagsCount) do
         if score >= self.nWinConditionGoal then
+			LogPanorama("Погнала сортировка бим бим чикибамбони")
             self:SortedMvpPlayers()
+			LogPanorama("Сортировка выполнена тудым сюдым")
             CAddonWarsong:SetWinner(team)
+			LogPanorama("Победа")
         end
     end
 end

@@ -13,6 +13,11 @@ end
 function modifier_generic_knockback_lua:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+
+function modifier_generic_knockback_lua:RemoveOnDeath()
+	return self.removeOnDeath
+end
+
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_generic_knockback_lua:OnCreated( kv )
@@ -29,6 +34,8 @@ function modifier_generic_knockback_lua:OnCreated( kv )
 			-- kv.IsMultiple() // later
 
 		-- references
+		self.removeOnDeath = kv.removeOnDeath ~= 0  
+
 		self.distance = kv.distance or 0
 		self.height = kv.height or -1
 		self.duration = kv.duration or 0
@@ -80,6 +87,8 @@ function modifier_generic_knockback_lua:OnCreated( kv )
 		elseif self.stun then
 			self:SetStackCount( 2 )
 		end
+		self:SetHasCustomTransmitterData(true)
+
 	else
 		self.anim = self:GetStackCount()
 		self:SetStackCount( 0 )
@@ -107,6 +116,16 @@ function modifier_generic_knockback_lua:OnDestroy( kv )
 	self:GetParent():InterruptMotionControllers( true )
 end
 
+function modifier_generic_knockback_lua:AddCustomTransmitterData()
+    return 
+    {
+        removeOnDeath = self.removeOnDeath,
+    }
+end
+
+function modifier_generic_knockback_lua:HandleCustomTransmitterData( data )
+    self.removeOnDeath = data.removeOnDeath
+end
 --------------------------------------------------------------------------------
 -- Setter
 function modifier_generic_knockback_lua:SetEndCallback( func ) 
