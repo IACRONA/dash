@@ -11,107 +11,85 @@ function Spawn( entityKeyValues )
 end
 
 function Morphling_AI_think()
-    if not IsServer() then return end
     if not thisEntity:IsAlive() then return end
     if GameRules:IsGamePaused() then return 0.1 end
     if thisEntity:IsChanneling() then return 0.1 end
-
     if not thisEntity:HasModifier("modifier_custom_morph_boss_ai") then
         thisEntity:AddNewModifier(thisEntity, nil, "modifier_custom_morph_boss_ai", {})
     end
+    if thisEntity:GetTeamNumber() ~= DOTA_TEAM_NEUTRALS then return end
 
-    if thisEntity:GetTeamNumber() ~= DOTA_TEAM_NEUTRALS then
-        return
-    end
-
-    local selfEntity = thisEntity
     local current_target = nil
     local current_portal = nil
-    local origin = selfEntity:GetAbsOrigin()
 
-    if selfEntity.current_target and not selfEntity.current_target:IsNull() and selfEntity.current_target:IsAlive() then
-        local targetCandidate = selfEntity.current_target
-        local dist = (origin - targetCandidate:GetAbsOrigin()):Length2D()
-        if dist < 2000 then
-            current_target = targetCandidate
-        else
-            selfEntity.current_target = nil
+    -- Поиск цели в радиусе
+    if thisEntity.current_target and not thisEntity.current_target:IsNull() and thisEntity.current_target:IsAlive() then
+        current_target = thisEntity.current_target
+        local length = (thisEntity:GetAbsOrigin() - thisEntity.current_target:GetAbsOrigin()):Length2D()
+        if length >= 2000 then
+            current_target = nil
+            thisEntity.current_target = nil
         end
-    end
-
-    if not current_target then
-        local find_targets = FindUnitsInRadius(
-            selfEntity:GetTeamNumber(),
-            origin,
-            nil,
-            2000,
-            DOTA_UNIT_TARGET_TEAM_ENEMY,
-            DOTA_UNIT_TARGET_HERO,
-            bit.bor(DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD),
-            FIND_CLOSEST,
-            false
-        )
-        for _, unit in pairs(find_targets) do
-            if unit and not unit:IsNull() and unit:IsAlive() then
-                current_target = unit
-                selfEntity.current_target = unit
+    else
+        local find_targets = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetAbsOrigin(), nil, 2000, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, FIND_CLOSEST, false)
+        for _, find_target in pairs(find_targets) do
+            if find_target and not find_target:IsNull() and find_target:IsAlive() then
+                current_target = find_target
+                thisEntity.current_target = find_target
                 break
             end
         end
     end
 
-    if selfEntity.current_target and (selfEntity.current_target:IsNull() or not selfEntity.current_target:IsAlive()) then
+    if thisEntity.current_target and (thisEntity.current_target:IsNull() or not thisEntity.current_target:IsAlive()) then
         current_target = nil
-        selfEntity.current_target = nil
+        thisEntity.current_target = nil
     end
 
-    if not current_target or not GridNav:CanFindPath(origin, current_target:GetAbsOrigin()) then
-        local portals = GameRules.AddonTemplate.aPortals
-        current_portal = portals[1]
-        if current_portal and selfEntity.portal_cooldown[current_portal.index] and selfEntity.portal_cooldown_full[current_portal.index] then
-            current_portal = portals[2]
+    -- Поиск портала
+    if current_target == nil or not GridNav:CanFindPath(thisEntity:GetAbsOrigin(), current_target:GetAbsOrigin()) then
+        current_portal = GameRules.AddonTemplate.aPortals[1]
+
+        if current_portal and thisEntity.portal_cooldown[current_portal.index] ~= nil and thisEntity.portal_cooldown_full[current_portal.index] ~= nil then
+            current_portal = GameRules.AddonTemplate.aPortals[2]
         end
 
-        local best_distance = (current_portal.vPos - origin):Length2D()
-        for _, tPortal in ipairs(portals) do
-            if tPortal.nTeam == 0 and tPortal ~= current_portal then
-                local candidate_distance = (tPortal.vPos - origin):Length2D()
-                if candidate_distance < best_distance and not selfEntity.portal_cooldown[tPortal.index] and not selfEntity.portal_cooldown_full[tPortal.index] then
-                    current_portal = tPortal
-                    best_distance = candidate_distance
-                end
+        local distance = (current_portal.vPos - thisEntity:GetAbsOrigin()):Length2D()
+        for _, tPortal in ipairs(GameRules.AddonTemplate.aPortals) do
+            if tPortal.nTeam == 0 and (tPortal ~= current_portal) and ( (tPortal.vPos - thisEntity:GetAbsOrigin()):Length2D() < distance ) and not thisEntity.portal_cooldown[tPortal.index] and not thisEntity.portal_cooldown_full[tPortal.index] then
+                current_portal = tPortal
+                distance = (current_portal.vPos - thisEntity:GetAbsOrigin()):Length2D()
             end
         end
-
-        if current_portal and current_portal.nTeam ~= 0 then
-            current_portal = nil
-        end
+        if current_portal.nTeam ~= 0 then current_portal = nil end
     end
 
     if not current_portal and not current_target then
-        selfEntity.portal_cooldown_full = {}
+        thisEntity.portal_cooldown_full = {}
     end
 
-    if current_portal then
-        selfEntity:MoveToPosition(current_portal.vPos)
-        if current_portal:IsTouching(selfEntity:GetAbsOrigin()) then
+    -- Ходьба до портала
+    if current_portal ~= nil then
+        thisEntity:MoveToPosition(current_portal.vPos)
+        if current_portal:IsTouching(thisEntity:GetAbsOrigin()) then
             local next_portal = current_portal.tNext
-            selfEntity.portal_cooldown_full[current_portal.index] = true
-            selfEntity.portal_cooldown[next_portal.index] = true
+            thisEntity.portal_cooldown_full[current_portal.index] = true
+            thisEntity.portal_cooldown[next_portal.index] = true
             Timers:CreateTimer(5, function()
-                selfEntity.portal_cooldown[next_portal.index] = nil
+                thisEntity.portal_cooldown[next_portal.index] = nil
             end)
-            local nParticle1 = ParticleManager:CreateParticle("particles/econ/items/tinker/boots_of_travel/teleport_start_bots_ground_flash.vpcf", PATTACH_WORLDORIGIN, nil)
-            ParticleManager:SetParticleControl(nParticle1, 0, selfEntity:GetAbsOrigin())
-            EmitSoundOnLocationWithCaster(selfEntity:GetAbsOrigin(), "Hero_AbyssalUnderlord.DarkRift.Cancel", selfEntity)
-            
-            FindClearSpaceForUnit(selfEntity, next_portal.vPos, true)
-            
-            local nParticle2 = ParticleManager:CreateParticle("particles/econ/events/fall_major_2015/teleport_end_fallmjr_2015_ground_flash.vpcf", PATTACH_WORLDORIGIN, nil)
-            ParticleManager:SetParticleControl(nParticle2, 0, selfEntity:GetAbsOrigin())
-            EmitSoundOnLocationWithCaster(selfEntity:GetAbsOrigin(), "Hero_Underlord.Portal.Out", selfEntity)
-            
-            selfEntity:SetThink(function()
+
+			local nParticle1 = ParticleManager:CreateParticle('particles/econ/items/tinker/boots_of_travel/teleport_start_bots_ground_flash.vpcf', PATTACH_WORLDORIGIN, nil)
+			ParticleManager:SetParticleControl(nParticle1, 0, thisEntity:GetOrigin())
+            EmitSoundOnLocationWithCaster(thisEntity:GetOrigin(), 'Hero_AbyssalUnderlord.DarkRift.Cancel', thisEntity)
+
+            FindClearSpaceForUnit(thisEntity, next_portal.vPos, true)
+
+			local nParticle2 = ParticleManager:CreateParticle('particles/econ/events/fall_major_2015/teleport_end_fallmjr_2015_ground_flash.vpcf', PATTACH_WORLDORIGIN, nil)
+			ParticleManager:SetParticleControl(nParticle2, 0, thisEntity:GetOrigin())
+            EmitSoundOnLocationWithCaster(thisEntity:GetOrigin(), 'Hero_Underlord.Portal.Out', thisEntity)
+
+            thisEntity:SetThink(function()
                 ParticleManager:DestroyParticle(nParticle1, false)
                 ParticleManager:DestroyParticle(nParticle2, false)
                 ParticleManager:ReleaseParticleIndex(nParticle1)
@@ -120,9 +98,10 @@ function Morphling_AI_think()
         end
     end
 
-    if current_target then
-        if not selfEntity:HasModifier("modifier_boss_delay_anim") then
-            selfEntity:MoveToTargetToAttack(current_target)
+    -- Атакуем цель
+    if current_target ~= nil then
+        if not thisEntity:HasModifier("modifier_boss_delay_anim") then
+            thisEntity:MoveToTargetToAttack(current_target)
         end
     end
 
