@@ -209,8 +209,8 @@ if GetMapName() == "dash" then
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 54000
-    NEW_ULTIMATE_COOLDOWN = 420 -- 5 мин
-    MAX_COUNT_ULTI_ABILITIES = 1
+    NEW_ULTIMATE_COOLDOWN = 340 -- 5 мин
+    MAX_COUNT_ULTI_ABILITIES = 3
     REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
@@ -445,19 +445,19 @@ end
 if GetMapName() == "portal_trio" then
     RESPAWN_TIME = 6
 
-    START_GOLD = 700
+    START_GOLD = 600
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 60
     GRANT_LEVELS = 0
     GRANT_GOLD = 1200
 
-    CONDITION_FLAG_COUNT_WIN = 50 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
+    CONDITION_FLAG_COUNT_WIN = 42 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
     FLAG_RETURN_RADIUS = 238
     FLAG_RETURN_DURATION = 4
     FLAG_AUTO_RETURN_DURATION = 45
 
-    BAN_TIME = 5 -- Время на бан
+    BAN_TIME = 6 -- Время на бан
 
     GOOD_FLAG_SCALE = 0.9
     BAD_FLAG_SCALE = 0.9
@@ -564,9 +564,9 @@ if GetMapName() == "portal_trio" then
 
     DASH_RESPAWN_TIME_LEVEL = 
     {
-        {8, 6},
-        {15, 8},
-        {28, 9},
+        {8, 5},
+        {15, 7},
+        {28, 8},
         {30, 9},
     }
 
@@ -584,7 +584,7 @@ FOUNTAIN_BONUS_MOVESPEED = 250
 FOUNTAIN_DELAY_MODIFIER = 1.5
 
 -- Задержка до начала игры
-START_GAME_FREEZE_TIME = 12
+START_GAME_FREEZE_TIME = 10
 
 -- Защитники флагов
 UPGRADE_TIME_CHECK = 1.1 -- каждые 1 минут
@@ -593,7 +593,7 @@ UPGRADE_HEALTH = 280
 UPGRADE_ARMOR = 1
 
 -- Время игры в секундах
-GAME_TIME_CLOCK = 1080
+GAME_TIME_CLOCK = 1000
 
 -- Не отображать выбор скиллов этому герою
 HEROES_SELECT_SPELL_DISABLED = 
