@@ -225,6 +225,7 @@ local models = {
     "models/creeps/neutral_creeps/n_creep_furbolg/n_creep_furbolg_disrupter.vmdl",
     "models/creeps/neutral_creeps/n_creep_vulture_a/n_creep_vulture_a.vmdl",
     "models/creeps/neutral_creeps/n_creep_forest_trolls/n_creep_forest_troll_high_priest.vmdl",
+    "models/heroes/witchdoctor/witchdoctor_ward.vmdl",
      
     ----- Героои
     "models/heroes/phoenix/phoenix_egg.vmdl",
