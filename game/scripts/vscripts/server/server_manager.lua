@@ -8,6 +8,7 @@ function ServerManager:Init()
 	DoWithAllPlayers(function(_,_,playerId)
 		local steamId = PlayerResource:GetSteamAccountID(playerId)
 		ServerManager.playersId[tostring(steamId)] = playerId
+
 		HTTP("POST", "/player/".. steamId, nil, {success = function(data)
 			PlayerInfo:InitPlayer(playerId, data)
 		end})
@@ -49,7 +50,7 @@ function ServerManager:SendServerPlayerRoll(playerId)
 	if not playerInfo then return end
 
 	local newRoll = (playerInfo.roll or 0) - rollUsed
-	HTTP("POST", "/player", {id = steamId, roll = newRoll}, {
+	HTTP("POST", "/player", {id = steamId, roll = newRoll, keybinds = playerInfo.keybinds}, {
 		success = function(data)
 			PlayerInfo:UpdateRollTable(playerId, 0, -rollUsed)
 			PlayerInfo:UpdatePlayerTable(playerId, data)
@@ -134,7 +135,7 @@ function ServerManager:OnEndGame(callback)
 		local newRoll = (playerInfo.roll or 0) - rollUsed
 		LogPanorama("sendRequest to ".. steamId)
 
-		HTTP("POST", "/player", {id = steamId, roll = newRoll, isEndGame = true}, {
+		HTTP("POST", "/player", {id = steamId, roll = newRoll, isEndGame = true, keybinds = playerInfo.keybinds}, {
 			finnaly = function()
 				playersReady[playerId] = true
 				checkPlayers()

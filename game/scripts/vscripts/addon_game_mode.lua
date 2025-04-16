@@ -252,6 +252,10 @@ function CAddonWarsong:InitGameMode()
         self:RerollPlayerSphere(event)
 	end)
 
+ 
+
+	 
+
 	CustomGameEventManager:RegisterListener('Request_RemainingFlags', function(_, event)
 		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(event.PlayerID), 'update_flags_count', {
 			radiant = self.nWinConditionGoal - (self.nCapturedFlagsCount[DOTA_TEAM_GOODGUYS] or 0),

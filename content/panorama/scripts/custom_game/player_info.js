@@ -35,4 +35,8 @@ const playerInfo = {
 
     return playerTable.win_streak_current || 0;
   },
+  getKeybindsPlayer: () => {
+    const rollTable = CustomNetTables.GetTableValue("player_info", `${Players.GetLocalPlayer()}`) || {};
+    return rollTable.keybinds || {};
+  },
 };

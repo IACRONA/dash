@@ -1,5 +1,6 @@
 <root>
 	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/player_info.js" />
 		<include src="s2r://panorama/layout/custom_game/keybinds/keybinds.vjs_c" />
 	</scripts>
     <styles>

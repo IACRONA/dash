@@ -3,6 +3,12 @@ if PlayerInfo == nil then
 	PlayerInfo = class({})
 end
  
+function PlayerInfo:Init() 
+	CustomGameEventManager:RegisterListener('player_change_keybinds', function(_, event)
+		PlayerInfo:OnPlayerChangeKeybinds(event)
+	end)
+end
+
 function PlayerInfo:InitPlayer(playerId, info)
 	CustomNetTables:SetTableValue("rolls_player", tostring(playerId), {roll = info.roll, roll_used = 0}) 
 
@@ -53,4 +59,17 @@ function PlayerInfo:GetRollUsedPlayer(playerId)
 	return table and table.roll_used or 0
 end
 
+function PlayerInfo:OnPlayerChangeKeybinds(data)
+	local playerId = data.PlayerID
+
+	if not PlayerResource:IsValidPlayer(playerId) then return end
+
+	local playerInfo = CustomNetTables:GetTableValue("player_info", tostring(playerId)) 
+
+	playerInfo.keybinds = data.keybinds
+
+	CustomNetTables:SetTableValue("player_info", tostring(playerId), playerInfo) 	
+end
+
  
+PlayerInfo:Init() 
