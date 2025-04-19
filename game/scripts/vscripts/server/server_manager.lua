@@ -84,7 +84,7 @@ function ServerManager:OnEndGame(callback)
 					end
 				end
 
-				CustomNetTables:SetTableValue("server_info", "get_raiting", newData)
+				CustomNetTables:SetTableValue("server_info", "end_game_info", newData)
 			end
 
 			callback()
