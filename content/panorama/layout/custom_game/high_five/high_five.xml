@@ -12,6 +12,11 @@
                 <Panel class="PanelImageB" />
             </Button>
         </snippet>
+        <snippet name="SummonMountSnippet">
+            <Button id="SummonMount" class="__HF_Remove__">
+                <Panel class="PanelImageMount" />
+            </Button>
+        </snippet>
     </snippets>
-    <Panel />
+    <Panel/>
 </root>

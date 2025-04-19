@@ -216,6 +216,7 @@ local models = {
     "models/items/morphling/ethereal_blade/ethereal_blade.vmdl",
     "models/items/morphling/abyss_overlord_misc/abyss_overlord_misc.vmdl",
     
+    "models/items/courier/blue_lightning_horse/blue_lightning_horse.vmdl",
     "models/creeps/neutral_creeps/n_creep_satyr_spawn_a/n_creep_satyr_spawn_b.vmdl",
     "models/creeps/neutral_creeps/n_creep_satyr_spawn_a/n_creep_satyr_spawn_a.vmdl",
     "models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl",

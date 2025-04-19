@@ -1615,6 +1615,12 @@
     "DOTA_Tooltip_ability_skeleton_king_bone_guard_skeleton_health"       "ЗДОРОВЬЕ СКЕЛЕТА:"
 
     "DOTA_Tooltip_ability_shadow_shaman_mass_serpent_ward_bonus_damage"                  "ДОП. УРОН:"
+
+
+
+    "DOTA_Tooltip_ability_summon_mount"       "ПРИЗВАТЬ КОНЯ"
+    "DOTA_Tooltip_ability_summon_mount_Description"       "Призывает коня прямо на поле битвы. Сидя на коне, нельзя бить, пассивные заклинания отключены."
+    "DOTA_Tooltip_ability_summon_mount_Note0" "При нанесении/получении урона или использовании способностей конь убежит."
     }
 }
  

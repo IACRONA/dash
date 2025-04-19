@@ -232,6 +232,9 @@ function CAddonWarsong:InitGameMode()
 	CustomGameEventManager:RegisterListener('high_five', function(_, event)
 		self:HighFive(event)
 	end)
+	CustomGameEventManager:RegisterListener('summon_mount', function (_, event)
+		self:SummonMount(event)
+	end)
     CustomGameEventManager:RegisterListener('ability_select_to_hero', function(_, event)
         self:SelectAbilityToHero(event.PlayerID, event.spell_name, event.is_ultimate)
 	end)
@@ -778,7 +781,13 @@ function CAddonWarsong:OnNPCSpawned(event)
 				if hUnit:GetUnitName() == "npc_dota_hero_skeleton_king" then
 					hUnit:AddNewModifier(hUnit, nil, "modifier_skeleton_king_sound_set", {})
 				end
- 
+				local mountsAbility = hUnit:AddAbility("summon_mount")
+				if mountsAbility then
+					mountsAbility:SetLevel(1)
+
+					--cosmetic abilities should be set in indexes 200+ to save hotkeys on server!
+					mountsAbility:SetAbilityIndex(201)
+				end
 				-- local particleLeader = ParticleManager:CreateParticle("particles/overhead_particle/leader_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, hUnit )
 				-- ParticleManager:SetParticleControlEnt( particleLeader, PATTACH_OVERHEAD_FOLLOW, hUnit, PATTACH_OVERHEAD_FOLLOW, "follow_overhead", hUnit:GetAbsOrigin(), true )
 				if GetMapName() ~= "dota" then
@@ -932,7 +941,35 @@ function CAddonWarsong:HighFive(params)
         hero:AddNewModifier(hero, nil, "modifier_high_five", {duration = 10})
     end
 end
-
+function CAddonWarsong:SummonMount(params)
+	if params.PlayerID == nil then return end
+	local player = PlayerResource:GetPlayer(params.PlayerID)
+    local hero = PlayerResource:GetSelectedHeroEntity(params.PlayerID)
+	local selected_index = params.selected_index
+	local hero_selected = EntIndexToHScript(selected_index)
+	local SummonMountAbility
+	if hero_selected ~= hero then
+		SummonMountAbility = hero_selected:FindAbilityByName('summon_mount')
+		if SummonMountAbility then
+			ExecuteOrderFromTable({
+				UnitIndex = hero_selected:GetEntityIndex(),
+				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+				AbilityIndex = SummonMountAbility:GetEntityIndex()
+			})
+		end
+		return 
+	end
+	if hero then
+        SummonMountAbility = hero:FindAbilityByName('summon_mount')
+		if SummonMountAbility then
+			ExecuteOrderFromTable({
+				UnitIndex = hero:GetEntityIndex(),
+				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+				AbilityIndex = SummonMountAbility:GetEntityIndex()
+			})
+		end
+    end
+end
 
 
 function CAddonWarsong:SetWinner(teamWinner) 

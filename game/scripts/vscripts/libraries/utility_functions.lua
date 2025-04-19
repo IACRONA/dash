@@ -296,3 +296,116 @@ end
 function LogPanorama(message)
 	CustomGameEventManager:Send_ServerToAllClients("print", {message=message})
 end
+
+
+function CDOTA_BaseNPC:_SetPlayerMount_SB2023(hMount)
+	if hMount and not hMount:IsNull() then
+		self.hCurrentRidingMount = hMount
+	end
+end
+function CDOTA_BaseNPC:_IsMount_SB2023()
+	if self:GetUnitName() == "npc_dota_base_mount" then
+		return true
+	end
+
+	return false
+end
+
+function CDOTA_BaseNPC:_GetPlayerMount_SB2023()
+	if self.hCurrentRidingMount and not self.hCurrentRidingMount:IsNull() then
+		return self.hCurrentRidingMount
+	end
+
+	return nil
+end
+
+function CDOTA_BaseNPC:_IsPlayerMounted_SB2023()
+	if not self:_GetPlayerMount_SB2023() then
+		return false
+	end
+
+	if self.hCurrentRidingMount:IsAlive() and self:HasModifier("modifier_mounted") then
+		return true
+	end
+
+	return false
+end
+
+function CDOTA_BaseNPC:_RespawnPlayerMount_SB2023(respawnPos)
+	local mount = self:_GetPlayerMount_SB2023()
+
+	if mount then
+		mount:SetRespawnPosition(respawnPos)
+		mount:RespawnHero(false, false)
+	end
+end
+
+function CDOTA_BaseNPC:_SetPlayerMount_SB2023(hMount)
+	if hMount and not hMount:IsNull() then
+		self.hCurrentRidingMount = hMount
+	end
+end
+function ExecuteOrderFromTable_SB2023(data)
+	if not data or not data["UnitIndex"] or not data["OrderType"] then
+		return
+	end
+
+	local unitIndex = data["UnitIndex"]
+	local orderType = data["OrderType"]
+
+	local unit = EntIndexToHScript(unitIndex)
+
+	if not unit or unit:IsNull() or not unit:IsAlive() or unit:IsCommandRestricted() then
+		return
+	end
+
+	local abilityIndex = data["AbilityIndex"]
+
+	if abilityIndex then
+		local ability = EntIndexToHScript(abilityIndex)
+		if not ability or ability:IsNull() then
+			return
+		end
+
+		local castSpellOrders = {
+			[DOTA_UNIT_ORDER_CAST_TARGET] = true,
+			[DOTA_UNIT_ORDER_CAST_POSITION] = true,
+			[DOTA_UNIT_ORDER_CAST_NO_TARGET] = true,
+			[DOTA_UNIT_ORDER_CAST_TARGET_TREE] = true,
+		}
+
+		if castSpellOrders[orderType] then
+			if ability.IsItem and ability:IsItem() then
+				if unit:IsMuted() then
+					return
+				end
+			else
+				if unit:IsSilenced() then
+					return
+				end
+			end
+		end
+	end
+
+	ExecuteOrderFromTable(data)
+end
+function CDOTA_BaseNPC:_HasAppliedState_SB2023(state)
+	local buffs = self:FindAllModifiers()
+
+	for _,buff in pairs( buffs ) do
+		if buff ~= nil and buff then
+			local states = {}
+			buff:CheckStateToTable(states)
+
+			for key, value in pairs(states) do
+				if value == true then
+					if tostring(key) == tostring(state) then
+						return true
+					end
+				end
+			end
+		end
+	end
+
+	return false
+end

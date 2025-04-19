@@ -504,4 +504,56 @@
             "model_scale"     "2"
         }
     }    
+    "summon_mount"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/summon_mount"
+        "MaxLevel"                      "1"
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"            "summon_mount"
+        
+        "AbilityCastAnimation"          "ACT_DOTA_GENERIC_CHANNEL_1"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+        "AbilityCastPoint"              "0"
+        
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "AbilityChannelTime"            "0.01"
+            "cooldown_on_dismount"          "4"
+            "ms_speed"                      "450"
+            "ms_speed_bonus"                "175"
+        }
+    }
+    "mount_moving_passive"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/mounts/mount_moving_passive"
+
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+
+        "MaxLevel"                      "1"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        "IsOnCastBar"                   "0"
+
+        "KillToastOverride"             "PENGUIN"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityValues"
+        {
+            "mount_cast_point"      "0.4"
+            "dismount_from_damage"  "1"
+        }
+    }
 }
