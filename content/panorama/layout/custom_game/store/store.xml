@@ -53,7 +53,7 @@
  			</Panel>
  			<Button id="StoreButton" onactivate="ShowStore()">
 					<Image id="StoreButtonImage" src="file://{resources}/images/interface/store.png" />
-					<!-- <Image id="StoreButtonImage" src="file://{resources}/images/custom_game/store_items/item_titul_winged.png" /> -->
+					<!-- <Image id="StoreButtonImage" src="file://{resources}/images/custom_game/store_items/item_aura_aghanim_quantum.png" /> -->
  			</Button>
  		</Panel>
 	</Panel>
