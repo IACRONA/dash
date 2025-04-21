@@ -1398,6 +1398,7 @@
     "Custom_Talent_ability_kunkka_ghostship_damage"  "УРОН"
     "Custom_Talent_ability_kunkka_tidal_wave_damage" "УРОН"
     "Custom_Talent_ability_ancient_apparition_ice_blast_damage"  "УРОН"
+    "Custom_Talent_ability_pudge_rot_attack_damage_per_second_tooltip"  "%К УРОНУ ОТ АТАК В СЕК."
     "Custom_Talent_ability_sniper_assassinate_damage"    "УРОН"
     "Custom_Talent_ability_marci_unleash_time_between_flurries"  "ДЛИТЕЛЬНОСТЬ ОБЕЗОРУЖИВАНИЯ"
     "Custom_Talent_ability_shadow_shaman_ether_shock_end_radius" "РАДИУС"

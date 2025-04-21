@@ -603,7 +603,6 @@ HEROES_SELECT_SPELL_DISABLED =
 -- Не отображать выбор ультимейтов этому герою
 HEROES_SELECT_ULTIMATE_DISABLED =
 {
-  ["npc_dota_hero_tinker"] = true
 }
 
 -- Настройки прыжка

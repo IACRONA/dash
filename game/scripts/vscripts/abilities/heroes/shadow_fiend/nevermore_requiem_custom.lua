@@ -104,7 +104,7 @@ function nevermore_requiem_custom:OnProjectileHit_ExtraData( hTarget, vLocation,
  			local modifier = hTarget:FindModifierByName("modifier_nevermore_requiem_custom")
  			local duration = self:GetSpecialValueFor("requiem_slow_duration")
 
- 			if params and not params.scepter and not params.isDead then 
+			if params and not params.scepter and  params.isDead ~= 1 then 
 	 			if modifier then
 	 				duration = math.min(duration + modifier:GetRemainingTime(), self:GetSpecialValueFor("requiem_slow_duration_max"))
 	 			end
@@ -423,6 +423,10 @@ end
 modifier_nevermore_requiem_custom = class({})
 
 --------------------------------------------------------------------------------
+
+function modifier_nevermore_requiem_custom:IsHidden()
+	return false
+end
 
 function modifier_nevermore_requiem_custom:IsDebuff()
 	return true

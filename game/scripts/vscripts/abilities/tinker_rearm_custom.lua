@@ -24,9 +24,9 @@ function tinker_rearm_custom:OnChannelFinish( bInterrupted )
     	return 
     end
 
-    for i=0,self:GetCaster():GetAbilityCount()-1 do
+    for i=0, 6 do
         local ability = self:GetCaster():GetAbilityByIndex( i )
-        if ability and ability:GetAbilityType()~=DOTA_ABILITY_TYPE_ATTRIBUTES then
+        if ability and ability:GetAbilityType()~=DOTA_ABILITY_TYPE_ATTRIBUTES  then
             ability:RefreshCharges()
             ability:EndCooldown()
         end

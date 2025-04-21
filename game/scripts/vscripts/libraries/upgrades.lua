@@ -219,12 +219,12 @@ function Upgrades:RollUpgradesOfType(upgrade_type, player_id, rarity, previous_c
 			if current_count + (rarity / (upgrade_data.rarity or 1)) > tonumber(upgrade_data.max_count)  then return false end
 		end
 
-		if upgrade_data.RequiresFacetID and upgrade_data.RequiresFacetID ~= selected_facet_id then
+		if upgrade_data.RequiresFacetID and tonumber(upgrade_data.RequiresFacetID) ~= selected_facet_id then
 			-- print("1) discarded", upgrade_data.ability_name, upgrade_name, "wrong facet", upgrade_data.RequiresFacetID, selected_facet_id)
 			return false
 		end
 
-		if upgrade_data.DisabledWithFacetID and upgrade_data.DisabledWithFacetID == selected_facet_id then
+		if upgrade_data.DisabledWithFacetID and tonumber(upgrade_data.DisabledWithFacetID) == selected_facet_id then
 			-- print("2) discarded", upgrade_data.ability_name, upgrade_name, "wrong facet", upgrade_data.DisabledWithFacetID, selected_facet_id)
 			return false
 		end
