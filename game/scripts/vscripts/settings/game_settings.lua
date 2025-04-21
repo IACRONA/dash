@@ -575,7 +575,6 @@ if GetMapName() == "portal_trio" then
     MAX_SPHERE_LEVEL = 4
     COUNT_SPHERE_CHOICE = 2
     MAX_SPHERE_COUNT = 14
-    
 end
 
 -- Фонтан эффект скорости

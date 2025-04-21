@@ -26,7 +26,7 @@
 	[
 		{
 			map = "portal_duo"
-			MaxPlayers = 12
+			MaxPlayers = 10
 		},
 		{
 			map = "warsong"

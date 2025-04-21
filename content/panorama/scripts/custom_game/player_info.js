@@ -26,9 +26,9 @@ const playerInfo = {
   },
 
   getPlayerGivingRating: (playerId) => {
-    const givingRating = CustomNetTables.GetTableValue("server_info", `get_raiting`) || {};
+    const givingRating = CustomNetTables.GetTableValue("server_info", `end_game_info`) || {};
 
-    return givingRating[`${playerId}`] || 0;
+    return givingRating[`${playerId}`]?.elo || 0;
   },
   getPlayerWinStreak: (playerId) => {
     const playerTable = CustomNetTables.GetTableValue("player_info", `${playerId}`) || {};
