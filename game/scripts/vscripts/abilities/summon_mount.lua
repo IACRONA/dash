@@ -150,6 +150,7 @@ end
 
 function summon_mount:OnChannelFinish(bInterrupted)
 	if IsServer() then
+		if self:GetCaster():HasModifier('modifier_freeze_time_start') then return end
 		if bInterrupted then
 			self:DismountHero()
 			StopSoundOn("Mount.Channeling.Start", self:GetCaster())
