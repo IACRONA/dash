@@ -784,7 +784,6 @@ function CAddonWarsong:OnNPCSpawned(event)
 				local mountsAbility = hUnit:AddAbility("summon_mount")
 				if mountsAbility then
 					mountsAbility:SetLevel(1)
-
 					--cosmetic abilities should be set in indexes 200+ to save hotkeys on server!
 					mountsAbility:SetAbilityIndex(201)
 				end
@@ -818,7 +817,9 @@ function CAddonWarsong:OnNPCSpawned(event)
 					hUnit:AddItemByName("item_tpscroll"):SetCurrentCharges(30)
 
 					if GetMapName() ~= "dash" then 
-						hUnit:AddNewModifier(hUnit, nil, "modifier_freeze_time_start", {duration = START_GAME_FREEZE_TIME})
+						if hUnit:GetUnitName() ~= 'npc_dota_base_mount' then 
+							hUnit:AddNewModifier(hUnit, nil, "modifier_freeze_time_start", {duration = START_GAME_FREEZE_TIME})
+						end
 					end
 					DonateManager:InitHero(hUnit)
 				end
