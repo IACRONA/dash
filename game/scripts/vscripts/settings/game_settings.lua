@@ -286,10 +286,10 @@ if GetMapName() == "dash" then
     }
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 220
+    NEW_SPHERES = 250
     MAX_SPHERE_LEVEL = 3
     COUNT_SPHERE_CHOICE = 2
-    MAX_SPHERE_COUNT = 10
+    MAX_SPHERE_COUNT = 4
     -- таверы которые нужно снести чтобы можно было сломать центральную башню для радиант 
     tower_to_kills_for_radiant = {
         ["npc_dota_badguys_tower2_bot"] = 2,

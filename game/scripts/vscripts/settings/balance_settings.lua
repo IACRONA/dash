@@ -309,6 +309,6 @@ if GetMapName() == "dash" then
     BOOK_RARE_COOLDOWN = 140
     BOOK_EPIC_COOLDOWN = 490
     BOOK_COMMON_LIMIT = 20
-    BOOK_RARE_LIMIT = 15
+    BOOK_RARE_LIMIT = 10
     BOOK_EPIC_LIMIT = 3
 end
