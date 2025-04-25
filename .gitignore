@@ -4,6 +4,7 @@
 *.cfg
 *.*_c
 !*.vmat_c
+!*.vtex_c
 
 
 
