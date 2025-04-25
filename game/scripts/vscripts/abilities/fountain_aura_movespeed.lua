@@ -52,7 +52,7 @@ function modifier_fountain_aura_movespeed_buff:GetTexture() return "filler_abili
 
 function modifier_fountain_aura_movespeed_buff:OnCreated()
     if not IsServer() then return end
-    print("Пурдж")
+
     self:GetParent():Purge(false, true, false, true, true)
 end
 

@@ -91,7 +91,7 @@ function CAddonWarsong:InitGameMode()
 	GameRules:SetStrategyTime(5)
 	GameRules:SetShowcaseTime(0)
 	GameRules:GetGameModeEntity():SetDaynightCycleDisabled(DAY_NIGHT_CYCL)
-	-- GameRules:GetGameModeEntity():SetTPScrollSlotItemOverride("item_tp_scroll_custom")
+	GameRules:GetGameModeEntity():SetTPScrollSlotItemOverride("item_tp_scroll_custom")
 	GameRules:GetGameModeEntity():SetGiveFreeTPOnDeath(false)
 	 
     GameRules:GetGameModeEntity():SetPlayerHeroAvailabilityFiltered(true)
@@ -190,6 +190,7 @@ function CAddonWarsong:InitGameMode()
 		hGME:SetFountainPercentageManaRegen(FOUNTAIN_MAX_MANA_REGEN_PCT)
 		GameRules:SetStartingGold(START_GOLD)
 		GameRules:SetUseUniversalShopMode(true)
+		GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
 		hGME:SetLoseGoldOnDeath(false)
         hGME:SetCanSellAnywhere(true)
     else
@@ -813,7 +814,7 @@ function CAddonWarsong:OnNPCSpawned(event)
 						ui_custom_ability_jump:SetLevel(1)
 					end
 
-					hUnit:AddItemByName("item_tpscroll"):SetCurrentCharges(30)
+					hUnit:AddItemByName("item_tp_scroll_custom"):SetCurrentCharges(30)
 
 					if GetMapName() ~= "dash" then 
 						if hUnit:GetUnitName() ~= 'npc_dota_base_mount' then 
@@ -973,6 +974,7 @@ end
 
 
 function CAddonWarsong:SetWinner(teamWinner) 
+	print(teamWinner)
 	ServerManager:OnEndGame(function()
 		GameRules:SetGameWinner(teamWinner)
 	end)

@@ -1,12 +1,12 @@
 local BASE_URL = "https://109.172.7.191/api"
 -- local BASE_URL = "http://localhost:8080/api"
 
--- local SERVER_KEY = GetDedicatedServerKeyV3("heroes_def")
+local SERVER_KEY = GetDedicatedServerKeyV3("dota_dash")
 local MAX_REPEAT = 5
 
 function HTTP(method, url, body, callbacks) 
 	local DataToSend = body or {}
-    -- DataToSend['api_key'] = SERVER_KEY
+    DataToSend['api_key'] = SERVER_KEY
 	local repeatCount = 0
 	SendRequest(method, url, DataToSend, repeatCount, callbacks)
 end

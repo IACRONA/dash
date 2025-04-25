@@ -1054,7 +1054,23 @@
         event_type = "1.000000"
         vsnd_duration = 1.368000
     }
-
+    ui_timer_counter = 
+    {
+        type = "dota_src1_3d"
+        vsnd_files = 
+        [
+            "sounds/ui_timer_counter.vsnd",
+        ]
+        volume = "10.200000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "100.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+        vsnd_duration = 1.368000
+    }
+ 
 }
  
  

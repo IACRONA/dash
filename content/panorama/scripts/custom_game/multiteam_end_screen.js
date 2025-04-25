@@ -33,10 +33,10 @@
   var endScreenVictory = $("#WinLabelContainer");
   if (endScreenVictory) {
     if ($("#VictoryLabel")) {
-      if (winningTeamId == 3) {
+      if (winningTeamId == 2) {
         $("#VictoryLabel").text = $.Localize("#Victory_DOTA_GoodGuys");
         $("#ContinueButton").style.washColor = "white";
-      } else if (winningTeamId == 2) {
+      } else if (winningTeamId == 3) {
         $("#VictoryLabel").text = $.Localize("#Victory_DOTA_BadGuys");
         $("#ContinueButton").style.washColor = "white";
       } else if (winningTeamId == 6) {
@@ -53,7 +53,8 @@
         $("#ContinueButton").style.washColor = "white";
       }
     }
-    endScreenVictory.SetDialogVariable("VictoryLabel", $.Localize(winningTeamDetails.team_name));
+
+    endScreenVictory.SetDialogVariable("VictoryLabel", $.Localize(winningTeamDetails.team_name) + " dsad");
     if (GameUI.CustomUIConfig().team_colors) {
       var teamColor = GameUI.CustomUIConfig().team_colors[winningTeamId];
       teamColor = teamColor.replace(";", "");
@@ -95,6 +96,7 @@ function StartMvp() {
         SpawnMvp(3, table_mvp);
         $.Schedule(5, () => {
           OpenDefaultTable();
+          OpenReward();
         });
       });
     });
@@ -105,6 +107,19 @@ function OpenDefaultTable() {
   $("#MVPScreen").style.visibility = "collapse";
   $("#WinLabelContainer").style.visibility = "visible";
   $("#EndScreenWindow").style.visibility = "visible";
+}
+
+function OpenReward() {
+  $("#RewardsPlayer").AddClass("IsActive");
+  const rewardCurrency = $("#RewardsPlayerShardLabel");
+  const playerId = Game.GetLocalPlayerID();
+  Game.EmitSound("ui_timer_counter");
+
+  AnimateCounter(rewardCurrency, 0, +playerInfo.getPlayerGivingCurrency(playerId), 800, { pre: "+", after: " Dash Points" });
+
+  const rewardRolls = $("#RewardsPlayerRollLabel");
+
+  AnimateCounter(rewardRolls, 0, +playerInfo.getPlayerGivingRolls(playerId), 800, { pre: "+", after: " Rolls" });
 }
 
 function PlayMusic(table_mvp) {

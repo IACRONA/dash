@@ -55,8 +55,11 @@ function CAddonWarsong:OnEntityKilled( params )
 			end
         end
 	end
-    if killedUnit:GetUnitName() == "npc_dota_badguys_fort" or killedUnit:GetUnitName() == "npc_dota_goodguys_fort" then
-        CAddonWarsong:SortedMvpPlayers()
+    if killedUnit:GetUnitName() == "npc_dota_badguys_fort_custom" or killedUnit:GetUnitName() == "npc_dota_goodguys_fort_custom" then
+		local isDireFort = killedUnit:GetUnitName() == "npc_dota_badguys_fort_custom"
+
+		CAddonWarsong:SortedMvpPlayers()
+		CAddonWarsong:SetWinner(isDireFort and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS) 
     end
 	if killedUnit:IsBuilding() then
 		local mid_destroy_dire = true
