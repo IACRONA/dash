@@ -24,7 +24,16 @@ const playerInfo = {
 
     return playerTable.rating_elo?.[Game.GetMapInfo().map_display_name] || 0;
   },
+  getPlayerGivingCurrency: (playerId) => {
+    const endGameInfo = CustomNetTables.GetTableValue("server_info", "end_game_info") || {};
 
+    return endGameInfo[`${playerId}`]?.currency || 0;
+  },
+  getPlayerGivingRolls: (playerId) => {
+    const endGameInfo = CustomNetTables.GetTableValue("server_info", "end_game_info") || {};
+
+    return endGameInfo[`${playerId}`]?.roll || 0;
+  },
   getPlayerGivingRating: (playerId) => {
     const givingRating = CustomNetTables.GetTableValue("server_info", `end_game_info`) || {};
 

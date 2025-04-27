@@ -5,6 +5,7 @@
     </styles>
 
     <scripts>
+		<include src="s2r://panorama/scripts/custom_game/utils.js" />
 		<include src="s2r://panorama/scripts/custom_game/player_info.vjs_c" />
          <include src="s2r://panorama/scripts/custom_game/shared_scoreboard_updater.vjs_c" />
        <include src="s2r://panorama/scripts/custom_game/multiteam_end_screen.vjs_c" />
@@ -19,20 +20,32 @@
 			<DOTAScenePanel id="VictoryBackgroundScene" map="backgrounds/accept_popup_test" camera="shot_camera" hittest="false" particleonly="true"/>
 			<Label id="VictoryLabel" class="TitleFont" text="" hittest="false"/>
 		</Panel>
-		<Panel hittest="false" class="EndScreenWindow" id="EndScreenWindow">
-			<Panel class="Legend">
-				<Panel class="LegendPanel ScoreCol_Hero" />
-				<Label class="LegendPanel ScoreCol_Kills" text="#custom_end_screen_legend_kills" />
-				<Label class="LegendPanel ScoreCol_Deaths" text="#custom_end_screen_legend_deaths" />
-				<Label class="LegendPanel ScoreCol_Assists" text="#custom_end_screen_legend_assists" />
-				<Label class="LegendPanel ScoreCol_Items" text="#custom_end_screen_legend_items" />
-				<Label class="LegendPanel ScoreCol_NeutralItems" text="" />
-				<Label class="LegendPanel ScoreCol_Raiting" text="#custom_end_screen_legend_raiting" />
+		<Panel id="EndScreenInfo">
+			<Panel id="RewardsPlayer">
+				<Panel class="RewardsPlayerShard">
+					<Image class="RewardsPlayerShardImage" src="file://{resources}/images/interface/currency.png" />
+					<Label id="RewardsPlayerShardLabel" class="RewardShardText" text="+ 0 Dash Points" />
+				</Panel>
+				<Panel class="RewardsPlayerRoll">
+					<Image class="RewardsPlayerRollImage" src="file://{resources}/images/custom_game/dice.png" />
+					<Label id="RewardsPlayerRollLabel" class="RewardRollText" text="+ 0 Rolls" />
+				</Panel>
 			</Panel>
-			<Panel id="TeamsContainer" />
-			<Button id="ContinueButton" class="LargeButton ButtonBevel" onactivate="Game.FinishGame();">
-				<Label text="#CustomEndScreenClose" />
-			</Button>
+			<Panel hittest="false" class="EndScreenWindow" id="EndScreenWindow">
+				<Panel class="Legend">
+					<Panel class="LegendPanel ScoreCol_Hero" />
+					<Label class="LegendPanel ScoreCol_Kills" text="#custom_end_screen_legend_kills" />
+					<Label class="LegendPanel ScoreCol_Deaths" text="#custom_end_screen_legend_deaths" />
+					<Label class="LegendPanel ScoreCol_Assists" text="#custom_end_screen_legend_assists" />
+					<Label class="LegendPanel ScoreCol_Items" text="#custom_end_screen_legend_items" />
+					<Label class="LegendPanel ScoreCol_NeutralItems" text="" />
+					<Label class="LegendPanel ScoreCol_Raiting" text="#custom_end_screen_legend_raiting" />
+				</Panel>
+				<Panel id="TeamsContainer" />
+				<Button id="ContinueButton" class="LargeButton ButtonBevel" onactivate="Game.FinishGame();">
+					<Label text="#CustomEndScreenClose" />
+				</Button>
+			</Panel>
 		</Panel>
         <Panel class="WinBackground" />
 	</Panel>

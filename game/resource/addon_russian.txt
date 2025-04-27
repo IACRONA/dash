@@ -158,6 +158,8 @@
     // Осталось фрагов
     "KillsRemaining"        "Осталось "
 
+    "npc_boss_kunkka"           "Ghost Pirate"
+    "npc_boss_tidehunter"           "Kraken"
     // Морфлинг оповещения
     "morph_notif"                   "Титан моря проснулся из-за вашего громкого боя.<br>Убив его, вы получите 10 фрагов, но если он вас убьет, то он их отнимет.<br>Советую убегать…"
     "npc_custom_boss_morphling"     "Титан Моря"
@@ -399,6 +401,13 @@
     "DOTA_Tooltip_ability_item_bag_of_gold_custom"						"Big\nCoin"
     "DOTA_Tooltip_ability_item_bag_of_gold_Description"					"Gold shared for your team."
     "DOTA_Tooltip_ability_item_bag_of_gold_custom_Description"			"Big Gold shared for your team."
+
+    "DOTA_Tooltip_Ability_item_tp_scroll_custom"				"Town Portal Scroll"
+    "DOTA_Tooltip_ability_item_tp_scroll_custom_Description"						"<h1>Использование: Teleport</h1>После %tooltip_channel_time% сек. произнесения заклинания, телепортирует героя к выбранной союзной постройке.<br><br>При двойном нажатии телепортирует к фонтану своей команды."
+    "DOTA_Tooltip_ability_item_tp_scroll_custom_Note0"						"Если несколько героев будут телепортироваться в одно место, то длительность телепортации будет возрастать для каждого следующего героя."
+    "DOTA_Tooltip_ability_item_tp_scroll_custom_Note1"						"Оцепенение прерывает и не позволяет совершить телепортацию."
+    "DOTA_Tooltip_ability_item_tp_scroll_custom_Lore"						"То, что нужно истинному герою."
+
     "DOTA_Tooltip_ability_item_book_of_strength"						"Book of Strength"
     "DOTA_Tooltip_ability_item_book_of_strength_Description"			"Consume to gain 5 Strength permanently."
     "DOTA_Tooltip_ability_item_book_of_greater_strength"				"Book of Fortitude"
