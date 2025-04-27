@@ -4,7 +4,6 @@
 *.cfg
 *.*_c
 !*.vmat_c
-!*.vtex_c
 
 
 
@@ -12,3 +11,4 @@ node_modules
 link.bat
 util_git.bat
 game/main.py
+game/soundevents/game_sounds_custom_announcer.vsndevts_c

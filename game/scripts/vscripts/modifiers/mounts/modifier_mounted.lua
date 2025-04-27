@@ -267,8 +267,6 @@ function modifier_mounted:OnOrder( params )
 	if params.unit == self:GetParent() then
 		local validMoveOrders =
 		{
-			[DOTA_UNIT_ORDER_ATTACK_TARGET] = true,
-			[DOTA_UNIT_ORDER_MOVE_TO_TARGET] = true,
 			[DOTA_UNIT_ORDER_MOVE_TO_POSITION] = true,
 			[DOTA_UNIT_ORDER_ATTACK_MOVE] = true,
 			[DOTA_UNIT_ORDER_PICKUP_ITEM] = true,
@@ -281,6 +279,8 @@ function modifier_mounted:OnOrder( params )
 			[DOTA_UNIT_ORDER_CAST_TARGET_TREE] = true,
 			[DOTA_UNIT_ORDER_CAST_NO_TARGET] = true,
 			[DOTA_UNIT_ORDER_CAST_TOGGLE] = true,
+			[DOTA_UNIT_ORDER_ATTACK_TARGET] = true,
+			[DOTA_UNIT_ORDER_MOVE_TO_TARGET] = true,
 		}
 
 		local stopOrders = {
@@ -310,11 +310,9 @@ function modifier_mounted:OnOrder( params )
 					return
 				end
 			end
-
 			--other abilities: just dismount!
 			self:Destroy()
 		elseif stopOrders[params.order_type] then
-
 			--give order to mount!
 			self:GetMount():Stop()
 		elseif patrolOrders[params.order_type] then
