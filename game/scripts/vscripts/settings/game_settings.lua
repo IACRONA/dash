@@ -153,9 +153,9 @@ if GetMapName() == "dash" then
 
     START_GOLD = 650
     HERO_STARTING_LEVEL = 1
-    GRANT_INTERVAL = 60
+    GRANT_INTERVAL = 30
     GRANT_LEVELS = 0
-    GRANT_GOLD = 240
+    GRANT_GOLD = 145
 
     CONDITION_FLAG_COUNT_WIN = 7
 
@@ -204,8 +204,8 @@ if GetMapName() == "dash" then
 
     -- Магический и физический резист
     RESISTANCE_TIME_ACTIVATED = 8 -- Время когда он начинается (мин.)
-    MAGICAL_RESISTANCE_PERCENTAGE = 10
-    PHYSICAL_RESISTANCE_PERCENTAGE = 10
+    MAGICAL_RESISTANCE_PERCENTAGE = 8
+    PHYSICAL_RESISTANCE_PERCENTAGE = 8
 
     -- Время до новых способностей
     NEW_ABILITY_COOLDOWN = 54000
@@ -282,13 +282,13 @@ if GetMapName() == "dash" then
         {8, 10},
         {15, 15},
         {28, 35},
-        {30, 60},
+        {30, 65},
     }
 
     REROLL_SPHERES = 1
     NEW_SPHERES = 250
     MAX_SPHERE_LEVEL = 3
-    COUNT_SPHERE_CHOICE = 2
+    COUNT_SPHERE_CHOICE = 2 
     MAX_SPHERE_COUNT = 4
     -- таверы которые нужно снести чтобы можно было сломать центральную башню для радиант 
     tower_to_kills_for_radiant = {
