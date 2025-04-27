@@ -16,6 +16,10 @@ function item_tp_scroll_custom:OnChannelFinish(bInterrupted)
         ParticleManager:DestroyParticle(self.startParticle, true)
         ParticleManager:DestroyParticle(self.endParticle, true)
     end
+
+    caster:RemoveGesture(ACT_DOTA_TELEPORT )
+    caster:StartGesture(ACT_DOTA_TELEPORT_END )
+
 	StopSoundOn("Portal.Loop_Disappear", caster)
 	StopSoundOn("Portal.Loop_Appear", caster)
 end
@@ -92,6 +96,8 @@ function item_tp_scroll_custom:OnSpellStart()
     ParticleManager:SetParticleControlEnt(self.endParticle, 3, caster, PATTACH_CUSTOMORIGIN, "attach_hitloc", self.point, false)
     ParticleManager:SetParticleControl(self.endParticle, 5, self.point)
     ParticleManager:SetParticleControl(self.endParticle, 4, Vector(1,0,0))
+
+    caster:StartGesture(ACT_DOTA_TELEPORT )
 	EmitSoundOn("Portal.Loop_Disappear", caster)
 
     EmitSoundOn("Portal.Loop_Appear", caster)
