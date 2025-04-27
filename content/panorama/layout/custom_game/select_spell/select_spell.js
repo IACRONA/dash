@@ -141,7 +141,7 @@ function CreateRerollPanel(is_ultimate) {
 }
 
 GameEvents.Subscribe("open_fates_choose_players", open_fates_choose_players);
-
+// open_fates_choose_players()
 function open_fates_choose_players(params) {
   $("#FateSelectedMain").RemoveAndDeleteChildren();
 
@@ -152,12 +152,12 @@ function open_fates_choose_players(params) {
     4: "fate_one_punchman",
     5: "fate_himaron",
   };
-  let actions_block = $.CreatePanel("Panel", $("#FateSelectedMain"), "SpellActions");
+  // let actions_block = $.CreatePanel("Panel", $("#FateSelectedMain"), "SpellActions");
 
-  let Choose_Your_Fate = $.CreatePanel("Label", actions_block, "");
-  Choose_Your_Fate.AddClass("Choose_Your_Fate");
-  Choose_Your_Fate.text = $.Localize("#Choose_Your_Fate");
-  let rerollPanel = $.CreatePanel("Panel", actions_block, "SpellReroll");
+  // let Choose_Your_Fate = $.CreatePanel("Label", actions_block, "");
+  // Choose_Your_Fate.AddClass("Choose_Your_Fate");
+  // Choose_Your_Fate.text = $.Localize("#Choose_Your_Fate");
+  // let rerollPanel = $.CreatePanel("Panel", actions_block, "SpellReroll");
 
   for (let i = 1; i <= Object.keys(list).length; i++) {
     CreateFate(list[i]);
@@ -182,7 +182,7 @@ function CreateFate(fate_name) {
   spell_block.AddClass("fate_block");
 
   let spell_block_bg = $.CreatePanel("Panel", spell_block, "");
-  spell_block_bg.AddClass("fate_block_bg");
+  spell_block_bg.AddClass("fate_block_bg"); 
 
   let spell_block_icon = $.CreatePanel("Panel", spell_block, "");
   spell_block_icon.AddClass("spell_block_icon_fate");
@@ -192,16 +192,25 @@ function CreateFate(fate_name) {
   let spell_block_text = $.CreatePanel("Label", spell_block, "");
   spell_block_text.AddClass("fate_block_text");
   spell_block_text.text = $.Localize("#" + fate_name);
-
+ 
   let spell_block_description = $.CreatePanel("Label", spell_block, "", {
     class: "fate_block_description",
-    text: $.Localize("#" + fate_name + "_description"),
+    text: $.Localize("#" + fate_name + "_description"), 
   });
+  let spell_block_particle = $.CreatePanel("DOTAParticleScenePanel", spell_block, "",{
+    id: "hoverParticle",
+    particleName: "particles/rebuild/ui/debris/debris_pitch_purple_fx.vpcf",
+    lookAt: "0 0 0",
+    cameraOrigin: "0 0 60",
+    fov: 90, 
+    hittest: false});
+  spell_block_particle.AddClass("hoverParticle");
 
-  let fate_level = 0;
+   
+  let fate_level = 0; 
 
   let fate_selected_table = CustomNetTables.GetTableValue("fate_selected", String(Players.GetLocalPlayer()));
-  if (fate_selected_table) {
+  if (fate_selected_table) { 
     if (fate_selected_table[fate_name]) {
       fate_level = fate_selected_table[fate_name];
     }

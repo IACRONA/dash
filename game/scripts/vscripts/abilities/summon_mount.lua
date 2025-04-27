@@ -1,4 +1,4 @@
-if  summon_mount == nil then
+if summon_mount == nil then
 	summon_mount = class({})
 end
 
@@ -159,7 +159,7 @@ function summon_mount:OnChannelFinish(bInterrupted)
 
 			if not self.mount or self.mount:IsNull() then
 				self:CreateMount()
-			end
+			end 
 
 			if self.mount then
 				local vPos = self:GetValidPositionForMount()

@@ -99,8 +99,8 @@
 }
 
 .fate_block {
-  width: 390px;
-  height: 130px;
+  width: 420px;
+  height: 140px;
   margin-bottom: 0px;
   transition-property: brightness;
   transition-duration: 0.3s;
@@ -110,11 +110,24 @@
 .fate_block:hover {
   brightness: 1.5;
 }
-
+.hoverParticle
+{
+  align: center center;
+  width: 480px; 
+  height: 180px;
+  z-index: 99;
+  transform: rotateZ(180deg);
+  brightness: 1;
+  opacity: 0;
+}
+.fate_block:hover .hoverParticle
+{
+  opacity: 1;
+}
 .fate_block_bg {
   width: 100%;
   height: 100%;
-  background-image: url("file://{images}/custom_game/talents/red_background_fate.png");
+  background-image: url("file://{images}/custom_game/fate_card_select.png");
   background-size: 100%;
 }
 
@@ -250,7 +263,7 @@
 
 .spell_fate_levels {
   horizontal-align: left;
-  margin-left: 280px;
+  margin-left: 300px;
   margin-top: 90px;
   width: 100%;
   flow-children: right;
@@ -267,14 +280,16 @@
   width: 25px;
   height: 32px;
   background-image: url("file://{images}/custom_game/fate_active.png");
-  background-size: 100%;
+  background-size: 100%; 
 }
 .spell_block_icon_fate {
-  width: 92px;
-  height: 92px;
-  margin-left: 15px;
-  margin-top: 27px;
+  width: 72px;
+  height: 72px;
+  vertical-align: center;
+  horizontal-align: right;
+  margin-right: 45px;
   border-top-left-radius: 20px;
+  margin-bottom: 40px;
 }
 .spell_block_icon {
   width: 74px;
@@ -491,11 +506,7 @@
 }
 
 .fate_block_text {
-  width: 190px;
-  height: 20px;
   z-index: 3;
-  margin-left: 115px;
-  margin-top: 26px;
   color: white;
   font-weight: semi-bold;
   text-transform: uppercase;
@@ -503,18 +514,24 @@
   text-shadow: 0px 0px 2px 3 #000000;
   font-family: titleFont;
   horizontal-align: center;
+  margin-top: 20px;
+  margin-right: 120px;
+
 }
 
 .fate_block_description {
   padding-right: 12px;
   z-index: 3;
-  margin-left: 115px;
-  margin-top: 54px;
   line-height: 18px;
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   text-shadow: 0px 0px 2px 3 #000000;
   font-family: titleFont;
+  vertical-align: center;
+  margin-top: 30px;
+  margin-left: 35px;
+  width: 230px;
+  text-align: center;
 }
 
 .RerollBlock:not(.IsActive) {

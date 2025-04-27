@@ -1,0 +1,40 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nMaxParticles = 10
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 6
+	m_controlPointConfigurations = 
+	[
+		
+		{
+			m_name = "preview"
+		},
+		
+		{
+			m_name = "absorigin_follow"
+			m_previewState = 
+			{
+				m_previewModel = "models/heroes/omniknight/omniknight.vmdl"
+				m_nModSpecificData = 13
+				m_sequenceName = "omni_ti8_taunt"
+				m_hitboxSetName = "default"
+			}
+		},
+	]
+	m_Children = 
+	[
+		
+		{
+			m_ChildRef = resource:"particles/rebuild/ui/report/report_set_ranking_ui.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/rebuild/ui/report/report_set_ranking_02.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/rebuild/ui/report/report_set_ranking_01.vpcf"
+		},
+	]
+}

@@ -1,0 +1,134 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vrfunknown:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_BoundingBoxMin = 
+	[
+		-16384.000000,
+		-16384.000000,
+		-16384.000000,
+	]
+	m_BoundingBoxMax = 
+	[
+		16384.000000,
+		16384.000000,
+		16384.000000,
+	]
+	m_flCullRadius = -1.000000
+	m_flConstantRadius = 7.000000
+	m_ConstantColor = 
+	[
+		229,
+		92,
+		140,
+		255,
+	]
+	m_bShouldSort = false
+	m_bScreenSpaceEffect = true
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+			m_previewState = 
+			{
+				m_groundType = "PET_GROUND_NONE"
+			}
+		},
+	]
+	m_Emitters = 
+	[
+		
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_flStartTime = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.150000
+			}
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.000000
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+			m_LocalCoordinateSystemSpeedMax = 
+			[
+				256.000000,
+				0.000000,
+				0.000000,
+			]
+			m_LocalCoordinateSystemSpeedMin = 
+			[
+				256.000000,
+				0.000000,
+				0.000000,
+			]
+			m_vecDistanceBias = 
+			[
+				1.000000,
+				1.000000,
+				0.000000,
+			]
+		},
+	]
+	m_Operators = 
+	[
+		
+		{
+			_class = "C_OP_Decay"
+		},
+	]
+	m_Renderers = 
+	[
+	]
+	m_Children = 
+	[
+		
+		{
+			m_ChildRef = resource:"particles/rebuild/ui/game_fight/team_death_ui.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/rebuild/ui/game_fight/team_death_05.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/rebuild/ui/game_fight/team_death_01.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/rebuild/ui/game_fight/team_death_04.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/rebuild/ui/game_fight/team_death_06.vpcf"
+		},
+		
+		{
+			m_ChildRef = resource:"particles/rebuild/ui/game_fight/team_death_03.vpcf"
+		},
+	]
+}
