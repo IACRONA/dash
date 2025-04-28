@@ -1,5 +1,9 @@
 let queue = {};
-
+const OPERATOR = {
+  ADD: 1,
+  MULTIPLY: 2,
+};
+const reverse_increment = ["cooldown_and_manacost"];
 CustomNetTables.SubscribeNetTableListener("rolls_player", (_, eventKey, eventValue) => OnUpdateRoll(eventKey, eventValue));
 
 const OnUpdateRoll = (playerId, data) => {
@@ -42,6 +46,7 @@ function show_queue_panels() {
     }
   }
 }
+// spell_select_open_panel({"spell_list":{"1":"earthshaker_echo_slam","2":"primal_beast_pulverize","3":"void_spirit_astral_step"},"is_ultimate":1,"is_reroll":0})
 
 function spell_select_open_panel(params) {
   const isReroll = params.is_reroll;
@@ -62,10 +67,10 @@ function spell_select_open_panel(params) {
   }
   let actions_block = $.CreatePanel("Panel", $("#SpellSelectedMain"), "SpellActions");
 
-  let Choose_Your_Spell = $.CreatePanel("Label", actions_block, "");
-  Choose_Your_Spell.AddClass("Choose_Your_Spell");
-  Choose_Your_Spell.AddClass(params.is_ultimate ? "IsUltimate" : "IsSpell");
-  Choose_Your_Spell.text = $.Localize(params.is_ultimate ? "#Choose_Your_Spell_Ultimate" : "#Choose_Your_Spell");
+  // let Choose_Your_Spell = $.CreatePanel("Label", actions_block, "");
+  // Choose_Your_Spell.AddClass("Choose_Your_Spell");
+  // Choose_Your_Spell.AddClass(params.is_ultimate ? "IsUltimate" : "IsSpell");
+  // Choose_Your_Spell.text = $.Localize(params.is_ultimate ? "#Choose_Your_Spell_Ultimate" : "#Choose_Your_Spell");
 
   $.Schedule(0.1, function () {
     $("#SpellSelectedMain").SetHasClass("SpawnPanelSelected", false);
@@ -92,14 +97,21 @@ function CreateSpellBlock(spell_name, is_ultimate) {
   let spell_block_text = $.CreatePanel("Label", spell_block, "");
   spell_block_text.AddClass("spell_block_text");
   spell_block_text.text = $.Localize("#DOTA_Tooltip_ability_" + spell_name);
-
+  let spell_block_particle = $.CreatePanel("DOTAParticleScenePanel", spell_block, "",{
+    id: "hoverParticle",
+    particleName: "particles/rebuild/ui/debris/debris_pitch_purple_fx.vpcf",
+    lookAt: "0 0 0",
+    cameraOrigin: "0 0 60",
+    fov: 90, 
+    hittest: false}); 
+  spell_block_particle.AddClass("hoverParticle");
   spell_block.SetPanelEvent("onactivate", function () {
     GameEvents.SendCustomGameEventToServer("ability_select_to_hero", { spell_name: spell_name, is_ultimate: is_ultimate });
     $("#SpellSelectedMain").style.opacity = "0";
     $("#SpellSelectedMain").SetHasClass("SpawnPanelSelected", true);
     Game.EmitSound("Flag.KillSelect");
     CancelChooseAbilities();
-  });
+  }); 
 }
 
 function CancelChooseAbilities() {
@@ -188,7 +200,7 @@ function CreateFate(fate_name) {
   spell_block_icon.AddClass("spell_block_icon_fate");
   spell_block_icon.style.backgroundImage = 'url("file://{images}/custom_game/' + fate_name + '.png")';
   spell_block_icon.style.backgroundSize = "100%";
-
+ 
   let spell_block_text = $.CreatePanel("Label", spell_block, "");
   spell_block_text.AddClass("fate_block_text");
   spell_block_text.text = $.Localize("#" + fate_name);
@@ -259,18 +271,19 @@ function CancelChooseFates() {
 }
 
 GameEvents.Subscribe("open_sphere_choose_players", open_sphere_choose_players);
-
+// open_sphere_choose_players({"sphereList":{"1":{"name":"modifier_sphere_shield_all","level":0},"2":{"name":"modifier_sphere_miss","level":0}}})
+// open_fates_choose_players()
 function open_sphere_choose_players(params) {
   let body = $("#SphereSelectedMain");
   body.RemoveAndDeleteChildren();
 
   let block_actions = $.CreatePanel("Panel", $("#SphereSelectedMain"), "SpellActions");
 
-  let Choose_Your_Fate = $.CreatePanel("Label", block_actions, "");
-  Choose_Your_Fate.AddClass("Choose_Your_Sphere");
-  Choose_Your_Fate.text = $.Localize("#Choose_Your_Sphere");
+  // let Choose_Your_Fate = $.CreatePanel("Label", block_actions, "");
+  // Choose_Your_Fate.AddClass("Choose_Your_Sphere");
+  // Choose_Your_Fate.text = $.Localize("#Choose_Your_Sphere");
 
-  CreateSphereRerollPanel();
+  // CreateSphereRerollPanel();
 
   for (let i = 1; i <= Object.keys(params.sphereList).length; i++) {
     CreateSphere(params.sphereList[i]);
@@ -278,7 +291,7 @@ function open_sphere_choose_players(params) {
 
   if (Object.values(queue).length > 0) {
     if (!queue.sphere) {
-      queue.sphere = true;
+      queue.sphere = true; 
     }
   } else {
     queue.sphere = true;
@@ -301,8 +314,7 @@ function CreateSphere(data) {
 
   let spell_block_wrapper = $.CreatePanel("Panel", spell_block, "");
   spell_block_wrapper.AddClass("spell_block_icon");
-  spell_block_wrapper.style.backgroundColor = "#010329";
-  spell_block_wrapper.style.borderRadius = "2px";
+
   let spell_block_icon = $.CreatePanel("Panel", spell_block_wrapper, "");
   spell_block_icon.AddClass("spell_block_icon");
   spell_block_icon.style.backgroundImage = 'url("file://{images}/custom_game/spheres/' + name + '.png")';
@@ -317,10 +329,16 @@ function CreateSphere(data) {
   spell_block_text.text = description;
 
   if (description.length > 18) spell_block_text.AddClass("IsBig");
-
+  let spell_block_particle = $.CreatePanel("DOTAParticleScenePanel", spell_block, "",{
+    id: "hoverParticle",
+    particleName: "particles/rebuild/ui/spheres/sphere_pitch_fx.vpcf",
+    lookAt: "0 0 0",
+    cameraOrigin: "0 0 60",
+    fov: 90,  
+    hittest: false});
+  spell_block_particle.AddClass("hoverParticle");
   let spell_fate_levels = $.CreatePanel("Panel", spell_block, "");
-  spell_fate_levels.AddClass("spell_fate_levels");
-
+  spell_fate_levels.AddClass("spell_sphere_levels");
   for (let i = 1; i <= 4; i++) {
     let spell_fate_level = $.CreatePanel("Panel", spell_fate_levels, "");
     spell_fate_level.AddClass("spell_fate_level");
@@ -328,7 +346,6 @@ function CreateSphere(data) {
       spell_fate_level.AddClass("spell_fate_level_active");
     }
   }
-
   spell_block.SetPanelEvent("onactivate", function () {
     GameEvents.SendCustomGameEventToServer("player_sphere_selected", { sphere_name: name });
     $("#SphereSelectedMain").style.opacity = "0";
@@ -391,12 +408,48 @@ const RARITY = {
   RARE: 2,
   EPIC: 4,
 };
-
+const ParticleForRarity = {
+  [RARITY.COMMON] : "particles/rebuild/ui/books/default/sphere_pitch_fx_default.vpcf",
+  [RARITY.RARE] : "particles/rebuild/ui/books/rare/sphere_pitch_fx_rare.vpcf",
+  [RARITY.EPIC] : "particles/rebuild/ui/books/epic/sphere_pitch_fx_epic.vpcf", 
+}
 const rarityClass = {
   [RARITY.COMMON]: "IsCommon",
   [RARITY.RARE]: "IsRare",
-  [RARITY.EPIC]: "IsEpic",
-};
+  [RARITY.EPIC]: "IsEpic", 
+}; 
+// open_talents_choose_players({
+//   upgrades: {
+//     reroll: true,
+//     upgrade_rarity: RARITY.EPIC,
+//     choices: {
+//       1: {
+//         upgrade_name: "cooldown_and_manacost",
+//         ability_name: "tinker_laser",
+//         value: 10,
+//         operator: OPERATOR.ADD,
+//         rarity: RARITY.COMMON,
+//         count: 1
+//       },
+//       2: {
+//         upgrade_name: "damage",
+//         ability_name: "tinker_march_of_the_machines",
+//         value: 15,
+//         operator: OPERATOR.MULTIPLY,
+//         rarity: RARITY.RARE,
+//         count: 2
+//       },
+//       3: {
+//         upgrade_name: "damage_absorb",
+//         ability_name: "tinker_defense_matrix",
+//         value: 20,
+//         operator: OPERATOR.ADD,
+//         rarity: RARITY.EPIC,
+//         count: 3
+//       }
+//     }
+//   }
+// });
 
 function open_talents_choose_players(params) {
   let body = $("#TalentsSelectedMain");
@@ -410,12 +463,12 @@ function open_talents_choose_players(params) {
   };
   let actions_block = $.CreatePanel("Panel", $("#TalentsSelectedMain"), "TalentActions");
   actions_block.AddClass(rarityClass[selection_rarity]);
-
+ 
   let TitleBlock = $.CreatePanel("Panel", actions_block, "TitleBlock");
 
-  let Choose_Your_Fate = $.CreatePanel("Label", TitleBlock, "");
-  Choose_Your_Fate.AddClass("Choose_Your_Talent");
-  Choose_Your_Fate.text = $.Localize("#Choose_Your_Talent");
+  // let Choose_Your_Fate = $.CreatePanel("Label", TitleBlock, "");
+  // Choose_Your_Fate.AddClass("Choose_Your_Talent");
+  // Choose_Your_Fate.text = $.Localize("#Choose_Your_Talent");
   // const itemPreviewImage = $.CreatePanel("Panel", TitleBlock, "ImageBookTalent")
   // itemPreviewImage.style.backgroundImage = `url("file://{resources}/images/items/${imageBooks[selection_rarity]}.png")`;
   // itemPreviewImage.style.backgroundSize = "200% 101%";
@@ -472,20 +525,11 @@ function CreateTalentRerollPanel(body) {
     Game.EmitSound("Flag.RollChoose");
   });
 }
-
-const reverse_increment = ["cooldown_and_manacost"];
-
 function UppercaseConvert(line) {
   line = line.toLowerCase();
   line = line.charAt(0).toUpperCase() + line.substring(1);
   return line;
 }
-
-const OPERATOR = {
-  ADD: 1,
-  MULTIPLY: 2,
-};
-
 function CreateTalent(upgradeInfo, data) {
   let { upgrade_name, ability_name, value, operator, rarity, count } = data;
   let { upgrade_rarity } = upgradeInfo;
@@ -499,9 +543,6 @@ function CreateTalent(upgradeInfo, data) {
   const max_upgrades_count = current_count + selection_rarity;
   let spell_block_bg = $.CreatePanel("Panel", spell_block, "");
   spell_block_bg.AddClass("talent_block_bg");
-
-  if (selection_rarity == RARITY.COMMON) {
-  }
   spell_block_bg.AddClass(rarityClass[selection_rarity]);
 
   let spell_block_wrapper = $.CreatePanel("Panel", spell_block, "");
@@ -526,7 +567,15 @@ function CreateTalent(upgradeInfo, data) {
     class: "talent_levels",
     text: `с ${current_count}  уровень до ${max_upgrades_count} уровень`,
   });
-
+  $.Msg(ParticleForRarity[rarity])
+  let spell_block_particle = $.CreatePanel("DOTAParticleScenePanel", spell_block, "",{
+    id: "hoverParticle",
+    particleName: ParticleForRarity[upgrade_rarity],
+    lookAt: "0 0 0",
+    cameraOrigin: "0 0 60",
+    fov: 90,  
+    hittest: false}); 
+  spell_block_particle.AddClass("hoverParticle");
   let loc_upgrade = "";
   let b_check_hidden = true;
   let multiply_value;

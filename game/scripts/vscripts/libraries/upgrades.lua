@@ -31,7 +31,7 @@ function Upgrades:GetPendingUpgradesCount(player_id)
 	return #Upgrades.queued_selection[player_id]
 end
 
-  
+   
 
 function Upgrades:QueueSelection(hero, rarity)
 	if not IsValidEntity(hero) then return end

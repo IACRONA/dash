@@ -4,7 +4,7 @@ end
 _G.MAX_PLAYER_COUNT = 12
 
 require('moasq1')
--- require('get_keys')
+require('get_keys')
 Precache = require "precache"
 require('libraries/declarations')
 require('libraries/timers')

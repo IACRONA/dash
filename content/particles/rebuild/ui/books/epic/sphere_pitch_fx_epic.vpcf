@@ -1,0 +1,28 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf61:version{39d3ce1d-9442-4407-9b78-8317145b1732} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 10
+	m_flConstantRadius = 25.0
+	m_flConstantLifespan = 0.1
+	m_bShouldSort = false
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/rebuild/ui/books/epic/sphere_pitch_fx_01_epic.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/rebuild/ui/books/epic/sphere_pitch_fx_02_epic.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/rebuild/ui/debris/debris_pitch_purple_05.vpcf"
+		},
+	]
+}
