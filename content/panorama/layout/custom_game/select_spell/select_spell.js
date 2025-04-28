@@ -412,7 +412,7 @@ const ParticleForRarity = {
   [RARITY.COMMON] : "particles/rebuild/ui/books/default/sphere_pitch_fx_default.vpcf",
   [RARITY.RARE] : "particles/rebuild/ui/books/rare/sphere_pitch_fx_rare.vpcf",
   [RARITY.EPIC] : "particles/rebuild/ui/books/epic/sphere_pitch_fx_epic.vpcf", 
-}
+} 
 const rarityClass = {
   [RARITY.COMMON]: "IsCommon",
   [RARITY.RARE]: "IsRare",

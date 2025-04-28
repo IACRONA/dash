@@ -235,12 +235,12 @@
   padding-bottom: 6px;
   background-size: 100%;
   background-position: center;
-  background-image: url("file://{images}/custom_game/talents/reroll_background.png");
+  /* background-image: url("file://{images}/custom_game/talents/reroll_background.png"); */
 }
 
-.reroll_block.IsSpell {
+/* .reroll_block.IsSpell {
   background-image: url("file://{images}/custom_game/talents/rare_background.png");
-}
+} */
 
 .reroll_block.IsSpell .reroll_block_text,
 .reroll_block.IsUltimate .reroll_block_text {
@@ -248,9 +248,9 @@
   margin-left: 0px;
 }
 
-.reroll_block.IsUltimate {
+/* .reroll_block.IsUltimate {
   background-image: url("file://{images}/custom_game/talents/red_background.png");
-}
+} */
 
 .reroll_block:hover {
   brightness: 1.5;
@@ -258,7 +258,7 @@
 
 .reroll_block_text {
   font-weight: semi-bold;
-  font-size: 17px;
+  font-size: 24px;
   horizontal-align: center;
   margin-left: 0px;
   text-shadow: 0px 0px 4px 2 #000000;
@@ -473,16 +473,16 @@
   padding-right: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-size: 100%;
+  /* background-size: 100%;
   background-position: center;
-  background-image: url("file://{images}/custom_game/talents/reroll_background.png");
+  background-image: url("file://{images}/custom_game/talents/reroll_background.png"); */
 }
 
 .reroll_talent_block:hover {
   brightness: 1.5;
 }
 
-#TalentActions.IsCommon .reroll_talent_block {
+/* #TalentActions.IsCommon .reroll_talent_block {
   background-image: url("file://{images}/custom_game/talents/common_background.png");
 }
 
@@ -492,7 +492,7 @@
 
 #TalentActions.IsEpic .reroll_talent_block {
   background-image: url("file://{images}/custom_game/talents/epic_background.png");
-}
+} */
 
 #TalentActions,
 #SpellActions {
@@ -517,7 +517,7 @@
 
 .reroll_talent_block_text {
   font-weight: semi-bold;
-  font-size: 17px;
+  font-size: 24px;
   text-shadow: 0px 0px 4px 2 #000000;
   text-align: center;
   vertical-align: center;
