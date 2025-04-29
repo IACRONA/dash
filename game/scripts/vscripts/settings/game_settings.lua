@@ -28,9 +28,9 @@ if GetMapName() == "warsong" then
 
     START_GOLD = 600
     HERO_STARTING_LEVEL = 1
-    GRANT_INTERVAL = 60
+    GRANT_INTERVAL = 30
     GRANT_LEVELS = 0
-    GRANT_GOLD = 550
+    GRANT_GOLD = 250
 
     CONDITION_FLAG_COUNT_WIN = 8
 
@@ -140,7 +140,7 @@ if GetMapName() == "warsong" then
     PERCENT_OF_LEVEL_MINUTE = 210
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 240
+    NEW_SPHERES = 24000
     MAX_SPHERE_LEVEL = 4
     COUNT_SPHERE_CHOICE = 2
     MAX_SPHERE_COUNT = 14
@@ -286,7 +286,7 @@ if GetMapName() == "dash" then
     }
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 250
+    NEW_SPHERES = 25000
     MAX_SPHERE_LEVEL = 3
     COUNT_SPHERE_CHOICE = 2 
     MAX_SPHERE_COUNT = 4
@@ -313,9 +313,9 @@ if GetMapName() == "portal_duo" then
 
     START_GOLD = 700
     HERO_STARTING_LEVEL = 1
-    GRANT_INTERVAL = 60
+    GRANT_INTERVAL = 30
     GRANT_LEVELS = 0
-    GRANT_GOLD = 1200
+    GRANT_GOLD = 600
 
     CONDITION_FLAG_COUNT_WIN = 57 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
@@ -447,9 +447,9 @@ if GetMapName() == "portal_trio" then
 
     START_GOLD = 600
     HERO_STARTING_LEVEL = 1
-    GRANT_INTERVAL = 60
+    GRANT_INTERVAL = 30
     GRANT_LEVELS = 0
-    GRANT_GOLD = 1200
+    GRANT_GOLD = 600
 
     CONDITION_FLAG_COUNT_WIN = 42 -- Количество убийств для победы в дуо прикрепил к переменной с флагами
 
@@ -571,7 +571,7 @@ if GetMapName() == "portal_trio" then
     }
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 220
+    NEW_SPHERES = 22000
     MAX_SPHERE_LEVEL = 4
     COUNT_SPHERE_CHOICE = 2
     MAX_SPHERE_COUNT = 14
