@@ -19,4 +19,4 @@ if IsServer() then
 
     local key_server5 = GetDedicatedServerKeyV3("encrypt_key_server5") or "encrypt_key_server5"   
     CustomNetTables:SetTableValue("dedicated_keys", "key_server5", {key = key_server5})
-end 
+end

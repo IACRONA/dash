@@ -1,156 +1,67 @@
-UpgradesUtilities = UpgradesUtilities or {}
-UpgradesUtilities._refresh_talents = {}
-
-
---- Check if passed talent name is registered to refresh upgrades cache on learn
----@param talent_name string
----@return boolean
-function UpgradesUtilities:IsTalentRegisteredForRefresh(talent_name)
-	return UpgradesUtilities._refresh_talents[talent_name] ~= nil
-end
-
-
-function UpgradesUtilities:RegisterTalents(talents)
-	for talent_name, _ in pairs(talents) do
-		UpgradesUtilities._refresh_talents[talent_name] = true
-		print("[UpgradeUtilities] registered talent for refresh", talent_name)
-	end
-end
-
-
---- Parses upgrade KV into sane enum form
----@param upgrade_data table
----@param upgrade_name string @ either special value name or generic name
----@param upgrade_type UPGRADE_TYPE
----@param ability_name string @ ability name upgrade related to, or "generic"
-function UpgradesUtilities:ParseUpgrade(upgrade_data, upgrade_name, upgrade_type, ability_name)
-	upgrade_data.type = upgrade_type
-	upgrade_data.upgrade_name = upgrade_name
-	upgrade_data.operator = OPERATOR_TEXT_TO_ENUM[upgrade_data.operator or "OP_ADD"]
-	upgrade_data.ability_name = ability_name or "generic"
-
-	if upgrade_data.rarity then
-		upgrade_data.rarity = RARITY_TEXT_TO_ENUM[upgrade_data.rarity] or UPGRADE_RARITY_COMMON
-	end
-
-	if upgrade_data.min_rarity then
-		upgrade_data.min_rarity = RARITY_TEXT_TO_ENUM[upgrade_data.min_rarity] or UPGRADE_RARITY_COMMON
-	end
-
-	-- transform string to enum value
-	if upgrade_data.attack_capability then
-		upgrade_data.attack_capability = _G[upgrade_data.attack_capability]
-	end
-
-	-- linked is a table - operator assigned if defined, or defaults to OP_ADD (or override operator from parent)
-	-- linked is a value - operator is OP_ADD (post-processed in upgrades.lua)
-
-	local default_linked_operator = UPGRADE_OPERATOR.ADD
-
-	if upgrade_data.linked_default_operator then
-		default_linked_operator = OPERATOR_TEXT_TO_ENUM[upgrade_data.linked_default_operator]
-		upgrade_data.linked_default_operator = nil
-	end
-
-	for _, linked_data in pairs(upgrade_data.linked_special_values or {}) do
-		if type(linked_data) == "table" then
-			linked_data.operator = (linked_data.operator and OPERATOR_TEXT_TO_ENUM[linked_data.operator]) or default_linked_operator
-			UpgradesUtilities:RegisterTalents(linked_data.talents or {})
-		end
-	end
-
-	for linked_ability, linked_data in pairs(upgrade_data.linked_abilities or {}) do
-		for special_name, linked_special_data in pairs(linked_data or {}) do
-			if type(linked_special_data) == "table" then
-				linked_special_data.operator = (linked_special_data.operator and OPERATOR_TEXT_TO_ENUM[linked_special_data.operator]) or default_linked_operator
-				UpgradesUtilities:RegisterTalents(linked_data.talents or {})
-			end
-		end
-	end
-
-	UpgradesUtilities:RegisterTalents(upgrade_data.talents or {})
-end
-
-
---- Returns default base value for upgrade from certain ability at certain level
----@param hero any @ hero owning upgrades
----@param ability_level number
----@param ability_name string
----@param upgrade_name string
----@return number
-function UpgradesUtilities:GetDefaultBaseValue(hero, ability_level, ability_name, upgrade_name)
-	if not ability_name or not upgrade_name or ability_name == "generic" then return 0 end
-
-	local ability = hero:FindAbilityByName(ability_name)
-	if not IsValidEntity(ability) then return end
-
-	return ability:GetLevelSpecialValueNoOverride(upgrade_name, ability_level or ability:GetLevel()) or 0
-end
-
-
-
---- Returns calculated BONUS value from upgrades, accounting for different operators, talents etc.
----@param hero any @ hero owning upgrades
----@param upgrade_value number @ base value of specified upgrade instance
----@param count number @ count of specified upgrade instances
----@param upgrade_data table @ upgrade data itself, which should contain at least operator
----@param ability_level number @ optional, for ability base value calculations
----@param ability_name string @ optional, for ability base value calculations
----@param upgrade_name string @ optional, for ability base value calculations
----@return number
-function UpgradesUtilities:CalculateUpgradeValue(hero, upgrade_value, count, upgrade_data, ability_level, ability_name, upgrade_name)
-	local result = 0
-	local final_multiplier = 1
-
-	if upgrade_data.facets then
-		local facet_id = hero:GetHeroFacetID()
-		local value_override = upgrade_data.facets[tostring(facet_id)]
-		if value_override then upgrade_value = value_override end
-	end
-
-	-- talent handling - either change the base value or fill final multiplier
-	for talent_name, operation in pairs(upgrade_data.talents or {}) do
-		local operator, value
-
-		if type(operation) == "number" then
-			operator = "+"
-			value = operation
-		else
-			operator = string.sub(operation, 1, 1)
-			value = tonumber(string.sub(operation, 2))
-		end
-
-		local talent = hero:FindAbilityByName(talent_name)
-		if IsValidEntity(talent) and talent:GetLevel() > 0 then
-			if operator == "+" then result = result + value end
-			-- multiplier talents are processed after the final value is calculated
-			-- this might need to be changed afterwards for multiplicative talents
-			if operator == "x" then final_multiplier = final_multiplier * value end
-		end
-	end
-
-	upgrade_value = upgrade_value * final_multiplier
-
-	if not upgrade_data.operator or upgrade_data.operator == UPGRADE_OPERATOR.ADD then
-		result = result + upgrade_value * count
-
-		if upgrade_data.increment then
-			-- arithmetic progression - using fomula N * (2a1 + (N - 1) * D) / 2, where N is count and D is an increment
-			-- and since first increment is always 0 (using base value), then 2a1 can be skipped
-			result = result + count * ((count - 1) * upgrade_data.increment) / 2.0
-		end
-
-	elseif upgrade_data.operator == UPGRADE_OPERATOR.MULTIPLY then
-		local target = upgrade_data.multiplicative_target or DEFAULT_MULTIPLICATION_TARGET
-
-		result = result + (upgrade_data.multiplicative_base_value or UpgradesUtilities:GetDefaultBaseValue(hero, ability_level, ability_name, upgrade_name))
-
-		if result - target == 0 then return 0 end
-
-		upgrade_value = math.abs(upgrade_value / (result - target))
-
-		result = (target - result) * (1 - (1 - upgrade_value) ^ count)
-	end
-
-	return result
-end
+return _:DM([[IiApQE9bQyNTQERSTU8qRkpCX1JSWkFOIExLS11FSwBTdWhwamJpc1p5YGhnfGJmcyg4IF17bXFlZWh4V3ptZml1bWp7KWF4Jn5
+yCF52a3JuaWx3W3xib2l8bGV7JVVxYWd/bnFmW35hbWFhfHouNyZ+cggBYHlubHlga2AoXnNnemRkbXhfd21tZH9ra3cwSXJQbm
+RsYH5UYGhreHJpcmppT2t8Wm5lcm12aCB/a29hb3lUbG9pbykLDX1tfXt4aCVacmx0bWRqflxwZ2Rid2ltdi5XeW9ldmR+Y116Z
+WZlb3B8U31vZmNre11lZ2FlUi13OS5mYm8KbWtkAgEAZXFvbn9rYWoqVXFjfWlta3lTcWZuYnJlZXw3W2FpYXh3ZXpRYWRuZHd3
+KXlqbmtqfnMoDgZuZnwqcmRjZ2VyU25uYGwoLlcram4odWFheXkrcGBhbmx6dyMgZWsFAQBbemF3bmZudVl0ZmFgcGdteC1femB
+mem55a1t1bGdnYHB5W3VlY21nelVoZGJnViYxIHt/fGEEAQJzcmFrdCApUVZ0Zn9qZmtRfmltbXthbH1XJndqZWJ1eGV9aG0kem
+lnZm58JWZneSpxYWd/bnFmJiYgdWVjbWd6VWhkYmciDAVlYWkDYWBsAQlmfWtjfGJlbSRUfWxwb2Bvc1RwZmRgemNjdjVSanR/Z
+Vp9bnZvbG4rdXhicmlvb1xgYHlqLi5xemdzZWttVmBra2AjIn52a3JuaWxbenF7ZiwoZGJhZ2N3fV5jam9rLQAJdHRoemhqb1lh
+bnZqKHh5f2gpOS59e2RyaWFlV39zc2ELBH5yaXZrZGRba2l9byRzdWhwamJpX2FsZGEuNSt2cG93YWxuVW1lbGgBC3t0bXJgYGp
+XbW9+Zytgcm50bXRgfyk5LkdbRlJJUU9aVF5GXFVSX01RQURVTF96eG58a2JgUGZqcm0uYH1sdm98ZHEgZ3cgKkRaXEVFSSlfBA
+1/cGZ2bmxsUW5ncW4samRlbGZ5cFtgaWZmIDUlYWpiZmpweFJlY2NhKm9zJC1vbGBvdGxsIAEMBWlpLXx0aXpqZ2VXYWF8aiRxZ
+XNkf3sucGJlbw4GAXx+bXRka2dUYm10biN7ZXxhf3ogNSVSSVlDV11eWU5aWlteT15BQV1EVX92Yn1jb2NTZG55aCp8aXlqdHFY
+IGd5KlZURl9KRktbWEFTTVtRVk1FS0hATAEPaW5rBwMNZ24rdnBvd2FsblVnZXVsJW9nalVyYHZmfHAufm5gYQgCD3lwaH9oYGt
+Xb2J0aSttYWVVcWVzZH97LjkqUkBWRlxQUV5DXVtdX0lTRUFYRF97eGxxYWxgX2xqfmIqbGRlXXxleGl1fVIoZnwqU1VIUEpCSV
+9dTFtNWlFUQE9FSE9GAQNmamUHAQsjKSp0c2Vhe29heGslfHZ5b2JnL3lmJGtmfm4gfmRsfW4ACm1nLX5yaXZrZGRba2l9byRnc
+XtjaG1TY259aGZnZGJ3eShxaG1lAAoNdH1scG9gb19lZXtpJ29+cmRsaVRlbXBub2BoZ3xyIz0oWkdTfnpkdmBpbl1qZX5hL2V7
+fGhtYVlmbnJqZGVsZnlwWQQBbm1kAg8JJSYqb21vZm5mLm15IGAke2lrYm8mKC9te2N+YXtieyRve3hqZ2ZgZChibCNgZGtibGt
+gJiBudi9sbGhrc2l7cStyYyBAXVZFSkwrK296JW9+bnhxbWVoK21+YXhhdWt9KG98ZWslf2N5Y2J0JgcAKSMoZ2puY2BkKGJ5I2
+Uhe2pue2EqLSFrf217b35pdy9reCZDUFBMTUAuIHtsc3wocHpkaWZ3cmhvImdqKnVxY31pbWt5KGl6YyIMBgljYmplYihvZmZpc
+Gx8VGZqampob11hdG9yYHBgeikzKlNVSFBKQklfQF1MVk9cRFEuSUFEAgEDamIheHtlfGVuZV5gbnxoIGZva2Rnb1loZWlsfGh6
+V2RzZXpkdGd5KndsZGMBCwdgb2ZgcWN8VmJjaG5qZlRpfGV9bH1rfCg2I09YQFJJX0VRW1VIU1ZRUEVfREpaRVJ7emF3bmZuWWh
+he2wnaGdmYGZkV2Flbmp/b3BeYntnfGV+b3NZBQEAe3phd25mblloYXtsJ2hnZmBmZFdhZW5qf29wXmJ7Z3xlfm9zJDIoZ2dmDA
+xqbG8MBglpYnskUSQrb2lmbmVsVG5icGAtYmwudGtpc3cnfXlpeGdhal1vZ3hhIWFgamVtb1xzeGBjYWpmXHJgYX5nfSRlciF/c
+iEpamUMDAZrbSZ4eX9oIWhnZmBmZFdhYXxqIyM5PC0pdm9mZmUjJHtgbGAADwwGbmJoZ2VrUm1lemklbHBtd2F8ZHgjOSElZ2tg
+b29kXmBufGggZXZgfWN/aX4gbmNtJEFYTlFBXEpSV19PW1BeWURdS0pfTVpoZmZia25ZYW52aihjcGp/aHBhelYqIGd3IGxubGJ
+xbXlUbmdqYWVlW2B4bHxrcmp9CAIPBVV/antlam14VnRhaWl8Ym9wPlNobGt9cG9yVWVjbWd6eS5pZmxgY2hfa2x9ZSB8am9lZn
+FzKGR4I398JAELB2FkZAsNamZtBAAPY2BwK2plbmRobVtvamJvaXx8LChnY21vZGlUZm9wayBoai94aGd4dS16cmx0bWRqUm1le
+mklb2lmbmVsVGthbW1kf2trdypvcyR0dSAubmkPBgttaX4gfH1sZ2dpZ1xuaWhlJCtmampqaG9dfXRvY2hlY1dtb35nJWZsK3Zt
+aX1+IWhnZmBmZFdhYXxqKmx2IXZ2Ky5gZQoIDQZhby5+f3VqKmdvYmtqaVZ3fm1oamFkWmRpf2sqJDwwKyB6ZWhsZCYvfGFrZAw
+MBgsCamVuZGhtW314bmBpaWlfbGp+YipufW5wb3BlciE5LyBlZ2RtYGtdeHZpY2ZsZVtqaX9iLmd1ZXpqfmx2IWxlZi5LWkVTRV
+tHW1FeQ11bXV9JU0VBWERfYmFlaGVsWnN4bmlqZW1Sb2N6ZSRvcWF9aX1heFssL215JmhlaWx8aHpXZ2puY2BkV2R6ZnZgeWRwB
+A0DCQhRf297b25jdlp2YmpldGZoej5cbWxqc3xgclxqZmZqdX4jbmdqYWVlW2tpfW8kcmRjZ2VyfyBgfyl/cyEBCgkBYG5sAQMK
+YW9pAQtram4KCw1aeG58a2JgfFd/b2Bpe2RsdzRabmRpe3Flel9rb2FveXgqe3RtcmBgaldtb35nK3tjZ2NidHwtZnYuc3YqCm1
+rZAIBbHZqYnlibWAkX3Bmdm5sbH1fcmxja39vaXM1SmxwSm1tYnVkcUJpeG9VZW14bipmYXhvLSRuamBiY3J8UG5ucGlsIy1oZm
+dkYnd5V2thZW4mI3FxanljamFVbmBpaiEDB2NgJWFtfyZtYmZhYHB3V2VibW0lb3orZGxwIXh7ZXxlbmVeam5lbC5ldCVuYGJqZ
+XR2UmdlY20rPj0oJ2dtZW9xbWIvK3ZmYWQgc2F7fXtgKjYlamxvDAYJY2JqZWIoamFpZGx0cSs3I2xkf2Q4SG1kZEBmZmRgenNE
+fEFjZmMkYW1kZW16cVRtYWVgKQICY2Ukb2J/Ikd3XGFtbWtNZ3pjcnwnY2lvYGl7dCAkemBubSB6YHR9eWQjYW9pAQgHdm90dHZ
+hKGhsY2pse3sxQWl0Q2h/YWJbe2ZjYWRsXmpmdmFPYkR0a3Z4aWVhJ315aXhnYWpdZWdhZSMtaGZnZGJ3eVdpZX5uZiNrcy1qYG
+doY3R4PkhtfUJvcGBjKiIvLG99LTkOa2ZvCQpucG5rf2NsaiFYe2V8ZW5lclF7YWVnfm9gfDhIZ2BjemFocGtde2RyaWFlXmpmd
+mEpZW5wYSgqdXFjfWlta1VwZGN3biosY2B4Z3AiKH5zZ3pkZG1UbmJwYCErY2xtZml1fVBkbHhvaikvY2lvYGl7dFZqb2VuLyB9
+dWd6am5mW29sZmcnDgNsbmduZCl8b3VwY3YrOywwBQRla21pZyNmYWthZFRndmh1ZHtuZ2F4IDwkPgIDB2NgJXpybHRtZGpSbWV
+6aSVlYWtgdHsrfmthbwcCC2JraWFtJGlpamt+WWxrIjYmZGV9YjNDa3xDZnJnQ2Frbn5KQCkkAQsHaGVjYGgvfmhif2NaYHRudH
+5pa2gpOS59e2RyaWFlV29rd2Uva2pha3B5W3VrfHx7Z2RhLWljaGN4X2ZpIFkEAQJqZihzYWR+b1xrd2h5cGdgbyB1bGpmKXt6Y
+XduZm5ZemFjeGwkMyh9Ymx9YF9nfW9xdmhpbiJram4KCGFhbAMEAysoL3Zqamluey1hZWBsZ2pubyUtKG5jd2xkfythZmVkZ2Qk
+e2BsLmhndmoifWdgdWotZnYubmJvbChjaWZqZiNpdGF/a35oY2VzDgZuZnwqcmRjZ2VyU25uYGwoLmd7ZnJpcWlnZSpqaiF9amt
+8dyJ1cWN9aW1rVWJke2Mlcm1samN9dy5neSN7dSwgbGQACg1tYmhjYiRlcGR2bnxmfCYmc25ufmMGCgYEYGIufHJzZSBqcG15a3
+dtbmMiIjM5KiJvcWJqbHwoJnFnZ2UMBQkGYnlhfGl/bHIoOCAqICgJDQgEfWNicW8gPCRgeGx8a3JsYGwBDwVlY35sDgcBAmxwb
+XdhfGR4Izkhfn9wZ2ptLnJxbSBmfm90ZHtrZGggID4hKTUnAgIKCX5kbH1uKj4kdWJld2Nmb3Ipd3t6YGBtKHZ6YCNpfGV9bH1t
+YWYnIzIhLAoBAm9tYAsHAgtia2lhbSR7aWVrZHIlMiJjY35vNUtgampJaWpsYXF5SnJEYmlkJX9jYmFkdF5qbmVsJwAPDGZkK09
+/Vm5hYGBLZn9qdHEtdGlnb21wKC1qbGokfmFtYWF8M0lvcklqdG5qJCkvMyk0LnxjZm4CDAkBYmwja3FoeWN6a3ggPDkvKiIsKn
+JtamwrdGlzemF9JDMoeWZzfWl0KCAqdWVteG4ia2puCggNBiUkLmdzaXtre2plZX0tfWVibWV3cyhkcm0renFrYmh4cWtgKmFnc
+Gp6KXpiYyVpa2VnYCB5bGVxayhicCBrZGxrfmZicGRpAQsHDSctIXBnYXouZ29iZ3YraGllay19ay5qbiNjYGRub25uI2VneW5w
+eWV4ZHIkaWd7LmdzaXtre2plY255YHJrKH9ibG1rdHsBAwoNaGsrbX5heGF1a30oNDMqJH0tIn9uaW4va2Bqb2RUbnVkcWl4Z2N
+mdiEwK2RnamtsXml6ZH1nempsanArLCx2bmF8YS5tZWcKAQxlZm8ACmFvaQEIB3F6Z3Nla21WeGtqcGoiNiZ5cGh/aGBrV31ibH
+1gICIrbGpqYGFUb3tofmlxaGZtewQAD2xpImVpeCB6fW52b2xuXGRpcWEmZHpmdmB5ZHAua3ggdHRoemhqb1lhbnZqKGNwan9oc
+GF6Kz49KFBQT1lLR0FeQltHXEVeT1MqTkxNLn5uYGEIAg9+ZXx4ZXAuNStxZXtwbHwrISNxcWp5Y2phVXZgaHptKSQqZWp6bH8M
+BgkGZG8ke3hscWFsYF9san5iKmhjaHBraW9udSR7YGxgAA8MBi8mJm1yZnlhaWt8YmAgeHdvb3lvcHdoYmUiIyR/c2hqaChvYWd
+zaW4iRSYmICc/aDUuIysrTigoIDkiKikkRSQrLS42JiB2bGp6bC5EJmx8ImhpeW57LWhqaihPI2l7JWFmK2NtZ3NoZmdgcAAJCA
+0iJSlvZGIlfGtlZWkgaWR7d3ooYm1jemBtbWV+I21yLWpueWVzcyE0LyB8fWNoYi9ganVpIHlsZXFrIScjdGBgbig5azIkYmxlI
+mxhKnNqbX94bGoADwwGcG51eWx7LTQkfG14dmx8JSsoaGV2anUtISImLGlvdGp7KCQuOy8lJSJ+dmtybmlsW2ppf2IuYWtjem5n
+Zmp1JCstLjYkMAsNBm1nagAMDGpueGNlZi94eWN8aW9mX2xkdGklZXNhc2x/bXwkNz0hUV9PW09OQ1pAUk5UTVRAXydJW0RfSlB
+EXCB8Y29tDggEZ21tZWYgdWV9b2x6KjslenJsdG1kalJtZXppJW51ZHFpeGdjYGV1ZH1nUXBrcmZheyhmfCpCQElDXkpYX0JYRV
+BHWEdKQ0lRSUdFVVdFU0pOVgQOAwlzYXx9ZXoqOyV9Z3hzYHQvJikse3hscWFsYF9san5iKmx4Z3ZndGZpYmV7YX9rVWRkfGdUc
+G1semgpa3woXnNnemRkbXhfd21tZH9ra3cwR2RwS21vb39qcU1jeGNaYWN4bCxmbXlsLChkYmFnY3d9XmFudGtoJiBgZmZkYHpz
+WWtub24qLHV/antlam1UbWFlYCkhAQAKDWhrK3Brd39sdSQiKH1veGFgeyI2OywwL3lhYWAoeWZ0fXduKDsqZmplBwELB3F6Z3N
+la21WeGtqcGoiNiZhYXtlJ2VseyN2cG93YWxuVXVlbXhuIiEkInJkd3pkfS4nJnFucGxjeCkmBwMNB3pucHVkcSA1KyJ3ZXNqbn
+YuKSpyZHd6ZH0nKiwlJzMrKywoPi0kJHt4bHFhbGBffmpmdmEoLVUibWt/bnUtBQFsYG4MDwZwbnJ5cmEte2F9fWd3Cm1rZAI=]])
