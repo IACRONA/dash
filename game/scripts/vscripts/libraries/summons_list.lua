@@ -1,108 +1,317 @@
-return _:DM([[IiApQE9bQyNTS1dJWF8qRkpCX1JSWkFOIExLS11FSwBVUEJPREhTVEBSSEZHREJXWVdIQVgrNyN/CwRlcm1bbm91ZVBkcG1raFp
-4bWdgPSAyLXIOBwFqYWlkbHRxKzcjJm10aGNgW3l1bGlgZlZ5ZWpzanEpKgYJBmVsZWJ8YyM9KCd3Z2dsXGxxLycIBw1uYWxlaG
-0pMyokcmBubVloYWJsbmEsJAEKfSQPCWZ7aVxgbnlqXWJ9aWFvW3hnZWg4JjgveQEPBWFtZGVtenErPiAqaXlramRcd3RgZm1gW
-31vbXJqeysiAA8MZ2dqanhoLzApJnlnZ2VfYHUiJAEDCmBgYGplayQ3ICNzYGRvUW5naG5lbiQgCgZwJQ4HZntgX2xqdGlUZnpn
-YGNUdWFobDMhOS9zAwcDZ2dmbmJydSAyLStod2tqbV97cG1lZGRcc25hfWd9JiYKCA1nbWhifm4lMiIpcWNsaVJhdCwkAQoJbGR
-taWxvIzkhL3xtYmJVZGBpbm9sLCYMDHIuAQ9icGxSbWt6aVRveWtkbld8ZW9iNS02InUOAwlgZmZkYHpzJjgvIGd/b2FhUnpxY2
-VkbV9/amx+bnkhKAsEAmprZWZ0aSQyKCt5ZWpjUGp7JCAKBgRtZWNpbGYgNSUif2RmZVtlbGZjaWEoLAsNciQDB2R2ZlBmZHJtX
-2N0amVgV3xsbG4wIDUrcQkNCGxpa2JtfnkhOS8qZXdpZ2tQcX5rYW9hUn5rYn5ucCIkDwkBY29iaHVlKz8uJn1vbWJQYHksJgwM
-BmZqa21nai00JCx/ZG9mV2FhZWptZiYtBwJ/Ig4DbnFnUGxmemtZaXZhamhTd2BhbzIuNSt4CgEMYWpiZmpweC02Iixoc2NgalB
-7fGNnaWtQdWRqemV8LyUOBwFjZmFkcWgoNiohc25hbV1mdCgsCw0GbGhja2FgLz8rJHtvY2tWYG9lamRlKikKAXYmCQ4IY3thUW
-BldGBbbW1ofX5rZHx2bnRTaG56YiQzKHAJCQFkYmFnY3d9ITArIGxha3N1aW57fWt4WWZubmdZY2ZQeWFhUX9ib2RXbWF/YCgvD
-ggEY2dvaH5oITkvKmFvfW1abWN4Y1NtbnVWbGtpZ3doKikKAQJrYW1tZH97UXF6Z3Nla216LjcmcX13bioGCXIhAw1geGhcZGdx
-YVdpb2J3dWBqcXpheF9pZXhjVj8qOyV0CAIPbWJmYWBwdyg2IyJqYGF7f2did3VoeV1tZWZsXmtpV31mb1lyZm5vWWRheGYrKAQ
-BAmtlaWl0YCs3IyZpbHxpUWZrc2RbYmlxUWJjZGN2YyQgCgYEaGZnZGJ3eVdwcG95a2dhci02Inp2f2UtDgZ1JQQDaHVsXW9peG
-FQb2xlfXxmYnN8YHJXY2t0b14/Kz8ufwAJCGVtYWVnfn8lMiIpZGlhfHlkZX18bnFfa2RsZFRlZVt1ZW5deW1mZF5sbn9iLCYMD
-AZqbmdgdGctNCQsYGp0a1dnYXtuVW5leVJjZ29ofmgjKAUBAG9ob2lmdnJZeXBof2hga3srPiB8d3VtJwAKeS0HAmx+Z1VkbnBu
-V2tra3VxYmN4cmlyUGVoc2VXOCM9KH4KAQJrYW1tZH97LjkqImNhbnt9Y2t1cWpwVGVtbGNSZmJRfGNmX39sbGxUYmJzai8nCAc
-NYmVgaHtgKTMqJG1udWBZbmF8aFZpb3BUa2VpaXRgKSYJDQhsaWtibX55XnF/b3tvbmN2Lz8rcn51aiEDDXMkAQpueGZfbGR+Yl
-tjaGpxemlrc3VhfVdhb31tWjsiNiZ3CgYEaGZnZGJ3eSg4ICppb2J3dWBqcXpheF9iZWNkVmFsWXFnZ1RxZWxrUmFleWMpLwoBD
-GhtamZ3bCEwKyBmZX1rXmZue2xRZ2d9UGpuZ2B0Zy8lDgcBamFpZGx0cVR/c2NzbG9nfSQ3IHV2em0lBAN7KQUIAmh8Y1BpZnBv
-V2lmYXtxbWl4fmZ2Xm9kY3wkNyB6DgYBaGxjamx7eys7LCJtaGh3emVqcHRtd19ramZvW25rVHZmYVV3aGhrV2tha3QnIwgCD2R
-lbmF9bC41KyFiZ2RyV2lrcGFeYGp6UWxvYW1wZyolBAMPYW5vamFpIDItK2ZhaXlcYml2ZVdva25lZmgpCAd5JgoIan9rVmplcm
-RQYG5nf3RibHpwa3pUYW9pd185KzcjfwsEAmNsbWZpdX0vNSksaGNkfHZmZ390an9WZ29kZ1xvblp0YG5VdG1taVRgYWV4Ii0OB
-gFha2tqcWciNiYuYmBse1tsaXhmX2VkeFdjb2JodWUpLgQNA2RgaW5vbC43JidtbWp0U2JufmxbamlmYmdtJwoBdiYJDW99aF1q
-a35hXmZqaXp6Z2d2e2d5WW5vbn9WNi41K3gKAQxhamJmanB4LTYiLGZvYXJwYml6em90WmxjZ2pTb2lSfWxrV3xqbGxaYmdqeCE
-oCwQCamtlZnRpJDIoK2xlZ3dQYGp1aV9ibHFbZm1qb3RgJywCAgNnZWxsbGcuOSoiY2tuelZsa3VgUGZqa21nai8DDXMkAQpueG
-ZfbGR+YltjaGpxemlrc3VhfVdrYWt0WjwiNiZ3CgYEaGZnZGJ3eSg4ICppb2J3dWBqcXpheF9iZWNkVmFsWXFnZ1RxZWxrUmtrb
-3opLwoBDGhtamZ3bCEwKyBsa2tyXmZue2xRZ2d9UGpuZ2B0Zy8lDgcBb2JtaWJlKDYqIWZubHldbGV5ZV5gbmVoaW8kDwZ/JwwF
-bn9uVmBhfGpcYm1kc3xma3BwZH9UYGFleF81JDIocgQDD2Rta2dveHkvMCkmbG1qcHRlZHN8bnhcZ2BhZ11hYlV0aWFQf2Bibll
-nYGN5JCAKBgRhYW9kf2sgNSUiamRrcVtjbHhnUWlreF5samllemIkKQULAmJtbW5qbCQzKClhb2l3X2pqeWZbZWxmY2lhKAoIeS
-MCAGB6ZVprbX9nU2JqbHpwY2l4d2V6Wmd6bmt3YXNSaW1vdio9IX8FAQBvaG9pZnZyJjEgLW9sZX18ZmJzfGByV2hrb2heYm1de
-mxvX3ZtY2xWbGVndy0uAQ8FaGpsZXBmKDYjImpqYXpUYnNbdWJkbnpteiItDgYBbW9nZ2JqIjYmLmJgbHtbamlmYmdtWnRnZGZ3
-bXEvAQtzKAAJb3RsV21hfmdaeWt4Z2tlUGtoaWdkYmJyOSU9KHAACg1gb2JuZ3BzIDwkLX5gfWthYFBxfmthb2FSb2VjYWdqYXp
-2IiQBAwpsZGxndmYkNyAjYm5lYGJjZ3dQanskIAoGBG1lY2lsZiA1JSJuamdqaGhseV1vcH5hYm9QbGhja2FgLS4BD3EsBQRndG
-1Xb2x0aVp2YXhrZGFea2pvZ2hjYXM2LzUpdQAPDG5gYmpldHYtNCQsfmJwYW9gX3t+Z25rb1JtY2NtZmlgdnwqJQQDD21qY2dyZ
-CAyLStib2Vib2lpd19geygvDggEb2NjZW1lITkvKm9vZ29pZmN5WW10e2xqb1Fsam5hb2AiJAEDfigLBGVybVtub3VlUH5gfWth
-YFBkamtlbGZsezcuNSt4CgEMYWpiZmpweC02IixyY3NgY2pXentna2phXW1nYWljZGh2fSonCQkBbWVpZ35rJDwtKWRvaWNsaGV
-9V2F+KCoPBgtvZ2FhaGgpOS4qbWJtYWlpaXlVYnB1bGhpUWBrbWBjaiolBAN7KQUIAishIGF9altqZ39iX39sdGtjVWdrYnlkcF
-Fgb2F1bFB/aHxuJjgvIHxveGNnUm1rbXxkcV9sYGF8Y1V0ZXNpKS4EDSctIWp/a1ZqZXJkUHV5Z2V0Z1JibWBvVHBrbWllfGRkX
-HNgf3lrYXYqPSEmfGNsYm9yamFdYG9iZ1B7aGl+YXlqY1dkdXpqKC8OCwRlcm1bbm91ZVB+bGBla2RhYW50U3BjbG5xa1d8YnJs
-WjEoNip4DggEamBnaGN0eCQyKCt4b2hqYmNlZWlyUH1lZWl9blx3aXdkV2h/cHBuYCkuBA0DaGRlY3xhLjcmJ3hjeWJTaH9SfWt
-hZH9qcCopCgECbmJpYGpuIjMkKHdgdmtXbW9nZ2JqXX9pY2x7ZHkmIgICfiwCDG54aFVna3VsVHRramVtYGpsbXtRempkaHduWX
-thfWlWNi41K3gKAQxhamJmanB4LTYiLHJvbm5pbmZqa3hZdWNjbHNpX3hse2BRa35wdGdoIiQBAwpsZGxndmYkNyAjc256bVFid
-lp7bWRqeGl/LyUOBwFvYm1pYmUoNiohc2B/b11qZWdhZmFQfGZhZnJsfyAnDAV9IwcAan5rVGdvfGRffm5kbGlgY2hnfFt6bGBj
-em1WeWt0YVAxKzssewUEAGVsYWdqdHElPSgpfGZqbmBqbG1heF9xaG5vfGtVcWR9ZlRleXN7YmQmIgICCmhtZGx8Yyo+JCN6anB
-qW2JwXnBgZ2V6Y3YnIwgCD2hhYmxuYS41KyF3aXdkV29rbmVmaFR2YWtmdGh0LSQDB3cqDwZse2VTZGB5aFt4bWVsbWlrY215VX
-NoYGp+Z1Fza3JlWzsoNC5xDAwGY2lvYGl7dCk5Lip9Zm5naGFmaG9xW3FhamV7YVV3YHZrV2p7eXJqYiAnDAUJZ2hoaHpgKz4gK
-nJhem9Va3ReeWRtYnBjcCMoBQEAamtrZGhnKzssInhse2BRbGpuYW9gX3xkZW9waH0pLgQNdywLDgZmeW1VYmp7Y1RjZWRgYWZq
-LjUreAoBDGFqYmZqcHgtNiIsYWRpZmluV21rZ2lrZmFUZWNueWh7d2dnZVxjfXZ0Z2YoLw4IBGNnb2h+aCE5LypsZ25paWBsVG5
-8X3tiZmh6YXshLAIMCWxqZ2JjZC02IixhY2RuaGBmVmpnYVp7bWRqeGl/LwMNcyQBCm54Zl9sZH5iW21oeHFrdlVlaGBgZGZgKj
-sldAgCD21iZmFgcHcoNiMibWtpb2ZrXGBkYGRsZ2dVY25qeW17fWNpa1BhfnV4b2IvJQ4HAWNmYWRxaCg2KiFhaGlkbmFqVWhxW
-3tnZmJ+b3UtLgEPBWRuYGhjayg2IyJtbGRnZ2VtW2VgbF16a2VsdW1/KgMHdyoPBmx7ZVNkYHloW2l6bmJ0bXdfbWJubGhuYys/
-Ln8ACQhlbWFlZ35/JTIiKWNiaWhgaFtqbWZsbmFmX2tkZHVhc35ibWBbaXVycGBlKyIADwxnZ2pqeGgvMCkma2FvbGxna19ge1V
-3a25hf2t+JiYKCA1raWRvbWMlMiIpY2VkYGFmalFsZmRffGpvZH9jcyYLBHYuBA1kcGJba2d9b1VibH1nVGNlZGBhZmouNSt4Cg
-EMYWpiZmpweC02IixhZGlmaW5XbWtnaWtmYVRlY255aHt3Z2dlXGN9dnRnZigvDggEY2dvaH5oITkvKmxnbmlpYGxUbnxfe2Jma
-HpheyEsAgwJbGpnYmNkLTYiLGFjZG5oYGZWamdhWnttZGp4aX8vAw1zJAEJCWZ1Y1dvZXdlXnpqcGJraWteY2BkbGMqOyV0CAIP
-bWJmYWBwdyg2IyJ/ZHJkZGloW3NsYmxRa2xfYmxuZ3osJgwMBi8mJmRlbmF9bC41KyFnZ2llZVRicyYtBwILIykqZGBpbm9sLjc
-mJ2htZ2NhX2tgbiYiAgIKLSUlYXpmZXEkPC0pZWFob21eZX1lZnwoKg8GC2pkZWxmeXBbe3hscWFsYHMoNip3dnRoJwgHeSYKCw
-1heGpRbmlxbl18Z35sYG5iW2NpYWxyV2xteCs3I38LBAJjbG1maXV9LzUpLH1nd2NtaG1TdX9lbGV4aWchLAIMCWlpY29tdXRUd
-35jeGFlYXwoNC5+dHBqLgEPcSwFBGd0bVdvbHRpWndpeWZsZ2pSZmtga3hfaGl/KDQucQwMBmNpb2Bpe3QpOS4qfGJyZGpjY1R/
-c2xkbH1jYiYmCggNbmpgYmNyfFB3e2F+YWtoeiQzKH9xdW0pCgF2JgkOCwRlcm1bbm91ZVBkZmBvWWF9d2JiU2JqbHs1LjUreAo
-BDGFqYmZqcHgtNiIsaGVuZFtrenxnbll2f2t5b3hfbWhodiwkAQoJemB0emRrYHBoe24iMyR+cnRhIwIAB2JjZGN2YyYxIC1vbG
-V8V2NzIiQPCQFqeG5rcy02Iixmb2FzW256ZGF4JCkFCAIPa2VhaHttbVd+c2d6ZGRteCo+JHV/fmciDgMJaWFuZH1mVWRqYXd4W
-W1zUGBmYGduYmZyKDggfHl/ZigLBHYuBA1kcGJba2d9b1VqamFnVGJ+dWZpVmZraXkxIDUlewICA2JmaGFidnckNyAjaGBmbFFu
-dHBmZlR1fGl9ZH1bbG1qcSIkDwkBeW93dm5saHZncm8gPCR7enxrJgwMBmpuZ2B0Zy00JCxqbmJyV21wKicACg1gf2ZtfCQ3ICN
-maml7UWt0aGBwKSoGCgYEbmFgbXlqY1dwcG95a2dhci02Inp2f2UtDgYBYWtranFnXWlpYnV8Umh3UWVkZ2lubGV6KzcjcHN4bi
-4EDXcsCw1heGpRbmlxbl1naWJlUGl7cWdsVGFlaXczKDYqeA4IBGpgZ2hjdHgkMigrYmVoYFBmeXNlZFB+eW18YX9cYm1kcionA
-AoNc2h/cGFlaXRocmooNC5+dHBqLgEPBWhqbGVwZig2IyJqYGF6VGJzJi0HAgtvdmdvcyQyKCtsb2d3UGN5a2NyLSEDDgcBbGZu
-bXdpa1R/c2NzbG9nfSQ3IHV2em0lBAMPbWpjZ3JkX21iZ3F9V2pwX2VqZGFtY2Z2ITArdnxxbywLDXIkAwdkdmZQZmRybV9jYmd
-hUWx5dmlsWmJtang3JDwtcAgHDWtiaGhmfHAuNyYnY21lY1NkfXhgYFF7e2pyYXFfam5rcSYtBwILfGF+cm5lbHxgeG8mOC92eX
-NpLAUEAGxraWd3aCg4ICppb2J2XmV7ICIOAwlgdmJney43JidtZ2p0U2F9YGZ2LCQBCQkBYmVmbnhqZ154e2V8ZW5lciQyKH18f
-2MpBQsCbmlhY3lhW2xnZXZzV2RzV2ZlZ21nZG5wLjkqdHNxaiQDB3cqDwZse2VTZGB5aFtiZ2VmX2x3dWFvVWFhYH8+IjMkcQoI
-DW5qYGJjcnwvPyskYG9haFZgfH1iZ197dWl6Yn5cZmRseSAiDgMJc2F7emZvaXJseWcrOyx0fXhsKAQBAmtlaWl0YCs3IyZjaGp
-wUWx6Ii0OBgFofGdpdy8/KyRuZW5/VmV8ZWRxIiQPCgECbWZqZH9iYVFxemdzZWttei43JnF9d24qBgkGZWxlYnxjXGJna3V7VG
-twW2xib2tobW9yITkvfHt7byoPBn8nDAYJYX1qW2pnf2Jfa2lpZmBwXHdqaGdnemtkX2B2bGBsfCo7JXQIAg9tYmZhYHB3KDYjI
-mtpaWZgcFxzaGNvXXllZmsjKAUBAG9ob2lmdnJZeXBof2hga3srPiB8d3VtAQN+KAsHAmx+Z1VkbnBuV2t8b3FobnF/Y35famx7
-cGZXOiM9KH4KAQJrYW1tZH97LjkqImN2an9kb3lyYH1de3RlbW5hVnd+ZGJ3IiQPCQFqbmdhZVJjZ29ofmghOS8qa3xvcWlmbGx
-ZbWRraG1bZm1qb3RgJywCAgNiZmhhYnZ3W39wZnZubGx9Kjsle3B+YyAKBnAlDgQBZXNjV2FvfGpVYXZkemZjfXBvcl5hbnp9Zl
-U0JTIicAwFCW5vYGhnfHIjPSgnYnpufW5lcnlucFF0eGlsZWNXen5mb3EtLgEPBWFraWxgUWBuYmx8bSA1KyhhdmR6Z2tgY1VhZ
-WBqbFZmb2dpe2opKgYJBmxrbWJhf3pffXVnempuZnchMCt2fHFvLAsNciQDBANodWxdb2l4YVBve2F5ZWpwdG13X21qeHdsXj4r
-Py5/AAkIZW1hZWd+fyUyIilkfmV4YGh3em15XHB6bG1pZ1VwdG1kfyAiDgMJYGBrbW1RYmNkY3ZjJjEgLW97YXlkYm1nV2RkbG5
-uXGxkbGd2ZiYmCggNbmpgYmNyfFB3e2F+YWtoeiQzKH9xdW0pCgF2JgkOCGN7YVFgZXRgW216bHlnZ3Z7Z3lZf3Rgf2RbPyg2I3
-sCDAlpaWNvbXV0Kz8uJmhyZHNiaXp6b3Raf3Bia21sUH55aGd8KS8KAQxhbG9vZ1tpaGpuemwqPSEmbXpseWZva2hdamJoZWtSY
-WFvZH9rIiQPCQFqaGpoaHlyXXt0bXJgYGp7KTMqcnd6ZycMBX0jBwMNYHhoXGRncWFXaXhmc2xseHZrdlVzdWt9ZVY8KjsldAgC
-D21iZmFgcHcoNiMiandlf2ZrcHBkf1RyfG1nYW1bfHhlZ34kKQULAmdoZGppVmxraWd3aCg4ICppeGZzbWRlZVFlbmRkYFBgbG9
-mcm0tLgEPBWFtZGVtenFUdnBvd2FsbnkjOSF5eXdrKAAJfCgFAgBgemVaa21/Z1NifWh+aW97f2ZyV3Z0Z3lnXDchMCt5BA0DYW
-NtY2F9dyo7JS1geWN7bW5+fWF8V3txaWVkbFd4em9tdS8nCAcNa2RlYWtXYWtranFnIjYmLmJ9aH5oZ2ZsXGFsYWVsVGJmZW15Y
-yAiDgMJYGZmZGB6c1lwf2V5Z2hlfC00JHp6fmYsAgx9JAEACmpxblRmYXBrX2N2an9kb3lyYH1dbW9+ZVA8KTkucwEKCWlnaWRi
-fnokPC0pYHxhfW1gd3tte1F6dGxiY2dZf3BjZH0mIgICCmFsYWVsVGJmZW15YyIzJChic2F4ZGBgbVlka2ZuYlNoamxlcGYqJwk
-JAWRiYWdjd31eeHtlfGVuZXIkMih9fH9jKQULdioGCgZjeWdRbGR3YVdncm18Z2J3dWh5XWhteGVeNi81KXUADwxuYGJqZXR2LT
-QkLGp5ZndlZHN8bnhcdHNkZmNiW3lwbW17KiUEAw9ka2ZuYlNoamxlcGYoNiMiandlf2djbWNebG9ma2BVaGRlY3xhLCYMDAZja
-W9gaXt0VnF+b3liZG12IDUrfnFxZCEBC3MoAAoIan9rVmplcmRQYHlje21ufn1hfFdtanJtWjMoNip4DggEamBnaGN0eCQyKCts
-eGNyYmN4cmlyUH17bWNpZ1xzeGlpfCkmCQ0IbG9ma2BVaGRlY3xhLjcmJ21wbnFgaWFqVmVqbG5nX2BgYWR/YiEoCwQCY2xtZml
-1fVB9eWl4Z2FqcSs7LHR9eGwoBAF2LwoCDG54aFVna3VsVGB8YX1tYHd7bXtRfGlsa106JjEgdAcADW9qYm9pfHwgNSsoYXZkem
-ZjfXBvcl50fWFkb2ZZdn9uYnIuLAUEAGVqbG5nX2BgYWR/YiM5IS9pcGtzZmlvY1BpbWpvYlpnZ2pqeGgtIQMNB2lpamxhcXlXf
-npkdmBpbnEuOSp0c3FqJAMHdyoPBQtldm9fa2J9ZVFqeWZ3ZWRzfG54XHJuZG9dPCQ3IHoOBgFobGNqbHt7KzssIm1/bHNjaXh3
-ZXpacHpiZ2JoXn57bmdwKCwLDQZpbWpvYlpnZ2pqeGgvMCkmbHpudGxha2dXam5nYWVSY2dvaH5oIygFAQBvaG9pZnZyWXlwaH9
-oYGt7Kz4gfHd1bScACnktBwELYHRpX2Vre2lWbHhjcmJjeHJpclB7Zm1qVzgjPSh+CgECa2FtbWR/ey45KiJjdmp/ZG95cmB9XX
-t0ZW1uYVZ3fmRidyIkDwkBam5nYWVSY2dvaH5oITkvKmt8b3FpZmxsWW1ka2htW2Ztam90YCcsAgIDYmZoYWJ2d1t/cGZ2bmxsf
-So7JXtwfmMgCgZwJQ4EAWVzY1dhb3xqVXlhdH5UYWJrf2QhOS9zAwcDZ2dmbmJydSAyLSt+e314XGxhYmh8ZWNtY15vZG56JiYK
-CA1uamBiY3J8UHd7YX5ha2h6JDMof3F1bQ8JdScACQ1vfWhdamt+YV5wfW1oYH5ZYHZneCYxIHQHAA1vamJvaXx8IDUrKHd2ZGx
-ldlFhc2VyW2ZmVnpiY1ppbXljf3QtIQMNB35icGlna19sanMjOSEvfWt9bWVuXmVgbSsiAA8MeWt4b2NuUGNgY2Z8Kz4gKnNpe2
-JlbVtgYm4gIg4DfS0OBQFnfmlZYWB2all7cm5kfWxRY2JtZ1d2a21nb3drb1J8Y3x2Y29zJDIocgQDD2Rta2dveHkvMCkmfWNub
-2V8am5XYGNtY15vZGxrW211YHZrKiUEAw9tamNncmQgMi0rd2VtZ2Z0Z2tfYG5rb3BpLycIBw1uYWxlaG0pMyokdmRnZ2N4b2FS
-bWVjaWxmX3xqb2R/Y3MmCwR2LgQOA25xZ1BsZnprWWlmYWNZZWNqUnp0Z3puIz0ofgoBAmthbW1kf3suOSoibW1sYFZnaWNafHJ
-idGkiIwcADW9sb2ZkV21laWd+ayQ8LSljamBvZF5samllemIkKQULdioGCgZjeWdRbGR3YVdncmdkbm5rdWVucFF3emllYX1kYG
-BtJjgveQEPBWFtZGVtenErPiAqZ3JnZG5ua3VlbnBRd3phdmpQe3lnbmN3Y2tlYX8iIwcADW9qYm9pfHxffXttcWVlaHgiMyR+c
-nRhIwIAcyYMeAU=]])
+SUMMON_TO_ABILITY_MAP = {
+	npc_dota_lycan_wolf1 = {
+		ability = "lycan_summon_wolves",
+		health = "wolf_hp",
+		damage = "wolf_damage",
+	},
+	npc_dota_lycan_wolf2 = {
+		ability = "lycan_summon_wolves",
+		health = "wolf_hp",
+		damage = "wolf_damage",
+	},
+	npc_dota_lycan_wolf3 = {
+		ability = "lycan_summon_wolves",
+		health = "wolf_hp",
+		damage = "wolf_damage",
+	},
+	npc_dota_lycan_wolf4 = {
+		ability = "lycan_summon_wolves",
+		health = "wolf_hp",
+		damage = "wolf_damage",
+	},
+	npc_dota_lycan_wolf5 = {
+		ability = "lycan_summon_wolves",
+		health = "wolf_hp",
+		damage = "wolf_damage",
+	},
+	npc_dota_lycan_wolf6 = {
+		ability = "lycan_summon_wolves",
+		health = "wolf_hp",
+		damage = "wolf_damage",
+	},
+
+	npc_dota_beastmaster_hawk = {
+		ability = "beastmaster_call_of_the_wild_hawk",
+		health = "hawk_base_max_health",
+		ability_upgrades = true,
+	},
+	npc_dota_beastmaster_hawk_1 = {
+		ability = "beastmaster_call_of_the_wild_hawk",
+		health = "hawk_base_max_health",
+		ability_upgrades = true,
+	},
+	npc_dota_beastmaster_hawk_2 = {
+		ability = "beastmaster_call_of_the_wild_hawk",
+		health = "hawk_base_max_health",
+		ability_upgrades = true,
+	},
+	npc_dota_beastmaster_hawk_3 = {
+		ability = "beastmaster_call_of_the_wild_hawk",
+		health = "hawk_base_max_health",
+		ability_upgrades = true,
+	},
+	npc_dota_beastmaster_hawk_4 = {
+		ability = "beastmaster_call_of_the_wild_hawk",
+		health = "hawk_base_max_health",
+		ability_upgrades = true,
+	},
+
+	npc_dota_beastmaster_boar = {
+		ability = "beastmaster_call_of_the_wild_boar",
+		health = "boar_base_max_health",
+		damage = "boar_base_damage"
+	},
+	npc_dota_beastmaster_boar_1 = {
+		ability = "beastmaster_call_of_the_wild_boar",
+		health = "boar_base_max_health",
+		damage = "boar_base_damage"
+	},
+	npc_dota_beastmaster_boar_2 = {
+		ability = "beastmaster_call_of_the_wild_boar",
+		health = "boar_base_max_health",
+		damage = "boar_base_damage"
+	},
+	npc_dota_beastmaster_boar_3 = {
+		ability = "beastmaster_call_of_the_wild_boar",
+		health = "boar_base_max_health",
+		damage = "boar_base_damage"
+	},
+	npc_dota_beastmaster_boar_4 = {
+		ability = "beastmaster_call_of_the_wild_boar",
+		health = "boar_base_max_health",
+		damage = "boar_base_damage"
+	},
+	npc_dota_beastmaster_greater_boar = {
+		ability = "beastmaster_call_of_the_wild_boar",
+		health = "boar_hp_tooltip",
+		damage = "boar_damage_tooltip"
+	},
+	npc_dota_visage_familiar1 = {
+		ability = "visage_summon_familiars",
+		health = "familiar_hp",
+		damage = "familiar_attack_damage",
+	},
+	npc_dota_visage_familiar2 = {
+		ability = "visage_summon_familiars",
+		health = "familiar_hp",
+		damage = "familiar_attack_damage",
+	},
+	npc_dota_visage_familiar3 = {
+		ability = "visage_summon_familiars",
+		health = "familiar_hp",
+		damage = "familiar_attack_damage",
+	},
+
+	-- npc_dota_witch_doctor_death_ward = "witch_doctor_death_ward",
+	-- npc_dota_wraith_king_skeleton_warrior = "skeleton_king_vampiric_aura",
+
+	npc_dota_venomancer_plague_ward_1 = {
+		ability = "venomancer_plague_ward_custom",
+		health = "ward_hp_tooltip",
+		damage = "ward_damage_tooltip",
+	},
+	npc_dota_venomancer_plague_ward_2 = {
+		ability = "venomancer_plague_ward_custom",
+		health = "ward_hp_tooltip",
+		damage = "ward_damage_tooltip",
+	},
+	npc_dota_venomancer_plague_ward_3 = {
+		ability = "venomancer_plague_ward_custom",
+		health = "ward_hp_tooltip",
+		damage = "ward_damage_tooltip",
+	},
+	npc_dota_venomancer_plague_ward_4 = {
+		ability = "venomancer_plague_ward_custom",
+		health = "ward_hp_tooltip",
+		damage = "ward_damage_tooltip",
+	},
+
+	npc_dota_eidolon = {
+		ability = "enigma_demonic_conversion_custom",
+		health = "eidolon_hp_tooltip",
+		damage = "eidolon_dmg_tooltip"
+	},
+	npc_dota_lesser_eidolon = {
+		ability = "enigma_demonic_conversion_custom",
+		health = "eidolon_hp_tooltip",
+		damage = "eidolon_dmg_tooltip"
+	},
+	npc_dota_greater_eidolon = {
+		ability = "enigma_demonic_conversion_custom",
+		health = "eidolon_hp_tooltip",
+		damage = "eidolon_dmg_tooltip"
+	},
+	npc_dota_dire_eidolon = {
+		ability = "enigma_demonic_conversion_custom",
+		health = "eidolon_hp_tooltip",
+		damage = "eidolon_dmg_tooltip"
+	},
+
+	npc_dota_warlock_golem = {
+		ability = "warlock_rain_of_chaos",
+		-- health = "golem_hp",
+		-- damage = "golem_dmg",
+		-- armor = "golem_armor",
+		ability_upgrades = true,
+	},
+
+	npc_dota_warlock_major_imp = {
+		ability = "warlock_upheaval",
+		ability_upgrades = true,
+	},
+	npc_dota_warlock_minor_imp = {
+		ability = "warlock_upheaval",
+		ability_upgrades = true,
+	},
+
+
+	npc_dota_lone_druid_bear1 = {
+		ability = "lone_druid_spirit_bear",
+		retroactive = true,
+		health = "bear_hp",
+		armor = "bear_armor",
+
+		generic_upgrades = true,
+		health_bonus_as_modifier = true,
+	},
+	npc_dota_lone_druid_bear2 = {
+		ability = "lone_druid_spirit_bear",
+		retroactive = true,
+		health = "bear_hp",
+		armor = "bear_armor",
+
+		generic_upgrades = true,
+		health_bonus_as_modifier = true,
+	},
+	npc_dota_lone_druid_bear3 = {
+		ability = "lone_druid_spirit_bear",
+		retroactive = true,
+		health = "bear_hp",
+		armor = "bear_armor",
+
+		generic_upgrades = true,
+		health_bonus_as_modifier = true,
+	},
+	npc_dota_lone_druid_bear4 = {
+		ability = "lone_druid_spirit_bear",
+		retroactive = true,
+		health = "bear_hp",
+		armor = "bear_armor",
+
+		generic_upgrades = true,
+		health_bonus_as_modifier = true,
+	},
+	npc_dota_lone_druid_bear5 = {
+		ability = "lone_druid_spirit_bear",
+		retroactive = true,
+		health = "bear_hp",
+		armor = "bear_armor",
+
+		generic_upgrades = true,
+		health_bonus_as_modifier = true,
+	},
+
+	npc_dota_clinkz_skeleton_archer = {
+		ability = "clinkz_wind_walk",
+		ability_upgrades = true
+	},
+
+	npc_dota_brewmaster_earth_1 = {
+		ability = "brewmaster_primal_split",
+		added_health = "brewling_added_health",
+		ability_upgrades = true,
+	},
+
+	npc_dota_brewmaster_earth_2 = {
+		ability = "brewmaster_primal_split",
+		added_health = "brewling_added_health",
+		ability_upgrades = true,
+	},
+
+	npc_dota_brewmaster_earth_3 = {
+		ability = "brewmaster_primal_split",
+		added_health = "brewling_added_health",
+		ability_upgrades = true,
+	},
+
+	npc_dota_brewmaster_storm_1 = {
+		ability = "brewmaster_primal_split",
+		added_health = "brewling_added_health",
+		ability_upgrades = true,
+	},
+
+	npc_dota_brewmaster_storm_2 = {
+		ability = "brewmaster_primal_split",
+		added_health = "brewling_added_health",
+		ability_upgrades = true,
+	},
+
+	npc_dota_brewmaster_storm_3 = {
+		ability = "brewmaster_primal_split",
+		added_health = "brewling_added_health",
+		ability_upgrades = true,
+	},
+
+	npc_dota_brewmaster_fire_1 = {
+		ability = "brewmaster_primal_split",
+		added_health = "brewling_added_health",
+		ability_upgrades = true,
+	},
+
+	npc_dota_brewmaster_fire_2 = {
+		ability = "brewmaster_primal_split",
+		added_health = "brewling_added_health",
+		ability_upgrades = true,
+	},
+
+	npc_dota_brewmaster_fire_3 = {
+		ability = "brewmaster_primal_split",
+		added_health = "brewling_added_health",
+		ability_upgrades = true,
+	},
+
+	npc_dota_brewmaster_void_1 = {
+		ability = "brewmaster_primal_split",
+		added_health = "brewling_added_health",
+		ability_upgrades = true,
+	},
+
+	npc_dota_brewmaster_void_2 = {
+		ability = "brewmaster_primal_split",
+		added_health = "brewling_added_health",
+		ability_upgrades = true,
+	},
+
+	npc_dota_brewmaster_void_3 = {
+		ability = "brewmaster_primal_split",
+		added_health = "brewling_added_health",
+		ability_upgrades = true,
+	},
+
+	npc_dota_zeus_cloud = {
+		ability = "zuus_lightning_bolt",
+		ability_upgrades = true
+	},
+
+	npc_dota_treant_eyes = {
+		ability = "treant_eyes_in_the_forest",
+		vision_day = "vision_aoe",
+		vision_night = "vision_aoe",
+	},
+
+	npc_dota_wraith_king_skeleton_warrior = {
+		ability = "skeleton_king_bone_guard",
+		health = "skeleton_health",
+		damage = "skeleton_damage_tooltip"
+	},
+
+	npc_dota_lich_ice_spire = {
+		ability = "lich_ice_spire",
+		added_health = "added_health",
+	},
+
+	npc_dota_broodmother_spiderling = {
+		ability = "broodmother_spawn_spiderlings",
+		ability_upgrades = true,
+	},
+}

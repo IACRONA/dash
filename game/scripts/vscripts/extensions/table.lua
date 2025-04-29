@@ -1,147 +1,516 @@
-return _:DM([[IiApQE9bQyNTS1dJWF8qRkpCX1JSWkFOIExLS11FSwBgcGFhf29jbi95aGZibSVgb2ZxYWFleStwLS19Y2JxbykLDWlney5VKiV
-5ImJoLHBuZHt3JnwiI2RnDwkBYmwjciEwNiJ4ZWZ1ZCR7YGxgAA8MBnBucnlyYS19dnttAQoJbWtkAgJvbWALBwJwa3B/cm8kaW
-llfW8MYGFmAQxqdWFufW1hZit3YWppZSZoZmxqZCV/KwQNZm9iZWMoe2t5c2l7IjYmd30FBG9rfChgLyB+JWlmK3pibXN+I3YnJ
-G5vCw0Gemx9f2pxVGlWJjEgeQcAYWBsAQpybXF1emUqcWFyeGd2BGFkZAsOaX1nbX5vamEif2dubGojemx7bm1vZWwtdCEBA3ck
-PC1/Y2xoby5iaGBmbCZ+Lw8GZGR0LGkvMCkneiQrMiwoKDEob2UJDQggJiJaS05POyRdaWdqZWtMYXYBDwVsYG5oaC5iKz4gZWR
-0YCV4YmplYmYqZy0ACQhwVGFUIipyXmVfKzssdFRnVCgufFBqXQIMZWZvAAkNc2h/d3xqKnQLYWFsAwRsc2tsdmJpYiB7bGtoay
-ZmZnJvYChhZXp2cDAhK2tgdH90My0FAW9heCZsI3Qrb2Igf2xgdn0gYm1wfXEyIStubA4IBGJsfnF+MVptUig0LnwMDGpsbwwFc
-mp5fHZgKGJtcH1xMQJuZGcOCwdtd2Bnfmluai98aGxmYytsbX5oeCh7JAMkLigrb29rZGwoaCo+JDEHKyIuJGxvcyRQKGBgKnZk
-ZnB4LnggYH8pf3MhK2dvAiUgKCsqIyQhbis/LmcqKyE1BSgpLipja2sIASYsIC9/bHB7emUjYwJgbmwBAGVxb25/a2FqKnRgZmN
-tJ2hjaGFQZ2djYWVheSFwIihtdm5rLAooKyojYm5/K2kiJHwgaGoveGhneHUteysrYmMKLy0pJC4oKyNpbiVmfWVpK3AtLWAuLn
-IjIHVsamYDLiomJS8iKyYsIC8te2F6fXltIGMpIH4BKiMkIS0rIi5hZGQLJC8oKWtkYg9qbG8MBmZ6Y2pwZ2dlI3RpZ2xtJWxqa
-mVmbnsmcCYgdy0FKCkuKmBqfSJgKixfeS1gai54ampyey10IStubA4hLSsiLiQqIGhiL1d/Ljc7JXkif25pbgUtKSQuKCsjICgl
-ICh5b3dxc2MraQQkKiAhJC8oKWtkYg8vIismaW5rBwMkLigrcWV8cHJmK2RqaAtoZWYEDmx1b2d7YWZgKnJkbW5uKH9obmFla3l
-rZHN5IGpyYWwjCSQhLStuYWdrbCFrfWFuUX5/dWoiNiZ4eX9oIWt8YWwqCiglIChnZWBlbS1obX59ACAhJC9hby5ldGxoXX9/fG
-UvMDQkKXxqYWxtIiB8Y29tDiEtKyIuJCogYmt/cSkzKn14BSIrJiwgLy0pYmF6K2xyYWJfY25zLyRuf2JlUXJrbHRhL2FnLnpnb
-H1xI2l+aWgkKWBhAisjICglICgrKiMkIW5kcndfZXJoY1BjbHdXJjgvbXlva195bGVxawIrIyAoJSAoK29tYAstKyIuYWZzZCQi
-JSlgf2tnanAnJn90fWRnYyIoaWxvZGBhZicqZnBiBysiLiQqICEkbGd5dyo7JWBwYmEGIC8tKWFgbAEjICglcm1/f3FqIW5kcnc
-Ob25lDgVufGBpcmxgbCtybWJjaCdga217YG94fChneWNkLQstKyIuaGVjYGgvZ3tnbVlxdnJuJjEge3R5YSZneWpnIQ8gKCsqb2
-tibGcibWt6eQskLygpZ2wman1rbFl4eX9oKTkzKCx3YWppZS8rfmthbwcrIi4kKiAhJGxneXcqOyV0fwEmLCAvLSkkLm5kcSBnd
-2lvVGFmfS0tZHBnY1V2YGh6bSlnZCZranp/KixvfWRuKC5mYm8gbGoKKCsqIyQhLSsiLiQqY250dlN9b2hqYCFmbmN8Y2B9cCxh
-emJkX2NgeSFWKj4kdWxpbmsqbmVkdGxneXciaXdmZVRwbWx6aCAOLigrIyAoJSBtZW4JJCEtKyIuJCpzZHBibX1vfmdnY2cjZWN
-wdiEpcG9qZ2YubGBleGhlc30pam52Y2F+YXVlbWRsJmV0bGgrIi8GIC8tKWFie24jLSUlbn1maGZ2LS14dnxtZGctJG1nZmJvZ2
-sjIm5ybwovLSkkLigrI2NndXkoNipsdmhqASIuJCplb2AFKCkuKnRge3d5aCxjYH1wDmtmbwkKbnBua39jbGoheWpgYmEkcmBqa
-2dkJn4vDy8iKyZgb2xsZSRlbXJwIDUle3UBKiMkIWtkcC5vJiBeJGZmKX5rb3d8Kn8vLGRgBykkLigrIyAocWFqZ28tbW9+bnB6
-LGFleHcjKGInACYlLyJuaGgKLy0pJGJnaGJsKG5lcSs3I29kdHhZXGVkZG5pRmZ9JjsqJSwiYGN1cyZQAyQuKCtxZXxwcmYrflh
-vZHRWLi5vb3kLYWFsAwRsc2tsdmJpYiB7bGtoayZ4a3VuY2xtI35haCgHKyIuJCctIUl6e30uaGMlbiJjZ39oL3loZmJtASMgKC
-VsZ2hrbyR1LTYiemVobGQqfGBoYmZpcmxte38kdG1hIA4uKCsjZmd3IGErNyMnIXknIjwoKi0hNS9sZgQqJiUvIismLGxgbmhoL
-mIrIyAoOCBaamRna2xEZXYmNSYgaC0FKCkuKiYlLyJ/XWVdIy19X2RVKz4gfF5qVScqd19oUAEiLiQqZW9gBSgpLip0YHt3eWgs
-dAVoZ2AEAm12bmtxaWdlKndlY2FuLGphb3BybHpub2JvLnFtbiIMLCAvLSQpLkV+cHQoZ2UoaiprZXJlK3ZvZmZlCyQvKCliZWV
-kYyJ/JjEge2xraGsmb2ZleGZveHIid2ZtJAEiLiQqZm52L2EpMyolJXsuKzQgICItOCRqZwEjICglICgrKm9rYmxnImQkKiAhOS
-9aaGBuaWhGbH8uPSwvZCAOLigrIyAoJSB8UGNeKCF5UGhTJDcgdV9lVSUufl1sUggrJiwgamNtDi4oKyNybXF1emUqdw5kY28IB
-GJ/bmJwZmdnLn5nZ2NnJXRtbmtiZFt9Z2ZmKHwpIGtkf21wKAcrIi4kZm9iZWMoYmtzWXFuYGdjLD0veWhmYm0lbmFjYF9jbnNc
-cGBvZ2cmcCMKISQvKGJrc1lxbmBnYywgLy0pJC41K3dhamllJnhidmJnYW4qZWFzX3VlbWRsJwAmJS8iZ2lvYWMteyQuKCsjICg
-lIDUrcX4OIS0rImhreCBoJDIoOCIqZWp6bH8maG8FLSkkLigrIyBkamNpZypoYXgtNiJlYXNfdWVtZGxVY1sPLyIrJiwgLy19ZW
-xkbi1pZnZlen8icSgheVBpa31XKQskLygpa2RiDy8iKyZ+ZXt4e2ouegFmbmwPCiUmKlFlb2lkb2J9KnNkaGprfS5raCVqbm5ra
-W57ISlzZ3xjI2Nna2Rhf2NsanIHbXdgZ35pbmovfGhsZmMrfWNlYmNtUHpgcGZXaGxubGx0YWRkK3AtLW13YGcjCiEkLyhlYWln
-aS9pbn9/IDItcnkEKCsjIG5qcihgJiNyIWRlIn5lY3JyLHshKWplDCUvIismLCAvZG8kaH1lYCh8KSBjJyp1LSF5Y2dgDiogISQ
-vKCkuKiYlL3ZqZGBlIWRnd2t6fytrbXxzJCthKg4hLSsiLiQqIGRqawIpLiomYGFmAQwsIC8tZWttaWcja218IDUrYWZ9clZZY2
-BgZW1IansgOCIqJSVkZ3J1JV0FLSkkLnpud3V6ayB8UGFmfVwhK2lrfQBlb2AFAm97ZGVxZm1lJnhhbWFsKnxpZWdvZVpzZ2ZvX
-HNoeWNdbWtkZGhwZmdnJn4qJWxtfmh4LC9rfGptIQEKbGdmYWQrYWZ9XnlqYGJhKj0hf3ICAwdsaXcvaScmeiBmYyl0b2F5cCh8
-LCBsZAAjJCEtKyIuJGNmIWJ6ZmomfiolZC4rcCUge2VsagQoKyMgKCUgKCsqIyR1bGluaypjbnJhfXwhZW9/WntjaWppLC9mIA4
-uKCsjICglIG1lbgkkIS0rZ2BgAAohJC8oYmtzWXFuYGdjLD0veWhmYm0lcGh9Y2ZkbiJoYXhSf2NsaG8pCyQvKCliZWVkYyJ5Jj
-EgdHADJC4oK2VveiVpKDYqMighbmR3YHAqZG4OLygpLiomJS9uZGVtbC9mbH0uNStoZXFadGlpZmZfaFABIi4kKiAhJC98aGxmY
-ytmbHhjfnQnfyUkelNgZnlVLAooKyojYW9pASIuJCpyZHB6emcueAxgYWYBDCEtL19scHt6ZSNhZGkgY25zcCRgfitjLnBrYm1h
-BW58YGlybGBsK3JtYmNoJ2lvY25ca218X3xqaG9hKXkiCC4kKiBta2xpZS54JjgveXYMLCAvLW9rfChgLyBXJWlmK3pibXN+I3Y
-nJG5vCyQvKCkuKiYle2NpamkuZmN6YXx8I3EsKG4pAisqIyRkY28ILiQqIHNhe317YCp0D2psbwwGLSItW2F6fXltIGlpbCh9a2
-9xZH4rY30kayB1ZW1kbARsc2tsdmJpYiB7bGtoayZmYmttWnZpZ39mW3VsaW5rLH4pCyQvKCliZWVkYyJ5JjEgdHADJC4oK2Vve
-iVfJCt8I21vLXtjZ3Z5KHUtL2xmBComJS8iKyYsdG5vZWEgYWVwZXpxKHonKnUtCy0rIi5hZGQLJC8oKXxvcnB9bCt0BmVhaQMO
-aH1lYHRham4of2thaGQje3Bnan4odSgvYSAEA29jL2xkcixpL3lhYWAoYiM9KDUgbWVuCQ1oaytsYXAqdCFwZ21nLnhjcXpwZSZ
-pbmsHKSQuKG1scihuLCh9KmpqIX1qa3x3InQoJGtnAy4qJiUGa20meHl/aCFyJyg2PiAqcWFqZ28hJHVlbmwEJCogIQ0GeHtnZH
-ItfHZ5b2JnIX9sdCYqKyEsKGwpKCUkI28hIyUiLCQwICMtBSgpLioPDHtjaWppLn9/YGp6IH0vIGEuMSEBKiMkIQRubn1hACAhJ
-C8oKS4qD3V9a2VyJHN7f2BqaSZ5ZnAgJyAqJypqLSEjJSJlKCp2KA4vKCkuKiYlL2dlYgYgLy0pYWBsAWZubA8Kbn5kYHBoYmUi
-emVobGQqZWdgYCIoKyErASYsIC9hZmdvZCticm8lPShwJC0qfAcrIi4kZm9iZWMoey43Jn5yCCsmLCBpYnskUSQrdyBhayB4amN
-xdylseWUnJG5vCyQvKCkuKiYlZmQrcnVwaiV9LS41NiMifGRiZG4oI3BpaGUILiQqICEkLygpLiomY2BwK1kgIHktYGoueGpqcn
-stdCErbmwOIS0rIi4kKiAhJC8oKS4qJnFuYGdjImlhfmx2eiB5LyB+LAooKyojJCEtKyIuJCplb2AFKCkuKiYlLyJuan9lBS0pJ
-C4oKyMgKCUgKCYnI01nLWJ2Lm15IGAkeWlle28qJWZseGN+dC9kfSRqYXlmY3xpeShiZHdrIXljZy5wa2JtYQUoKS4qJiUvIism
-LCB7bGtoayZibXNtd3QgeSYjcCgHKyIuJCogISRqZm0EKiYlL2dlYgYKLy0pJHxtf3ZyZiVyAm5kZw4LB213YGd+aW5qL3xobGZ
-jK2p6f2NiZCd5OCgufDkqCgFjb3orVS8kaHluby5tZCBodG5he30icjcmIm9pBgkGeWhmYm0lam57YHJ8I34yKCFkf2djLQAJZG
-prAmxgbgwPBS8mJn5lYmJ/YS5hf2ZtAmN1Zmh+amtvLX9jbGhvLnNhYmd/a1VvcWpvI3JubCMtYHBrZSIJCWFjIGZkfiNwY2Erd
-mZhZCBzYXt9e2AqY2trCAEmLCAvYWZnb2Qram5sYHgoNioyDghhZGFvaCpsZGpofGEuNyYme2BnDAVsYG5oaC5heFxhendhcSs3
-I2hkY2x2ZiR0PSE0BQIAIycmY2BwK2d+cm50eigueHlmc213dm0raWx2c2hodi5tZGRoZ2p7KWxzJmFga2VhLHB9YnlhfChrcWV
-lanZtawAKbWctYnFRZXhyYH0vfGFrZAwMBnVjb2BlL2RnYGtwKz89KGllZmx+ayRlYgELBw1jZiFwbWRSZ2RiYHdfKzsxIGZ5bG
-kufGNmbgIMCQECfmJmbWglcGtpZXZkLHtqZSIqb2trZ3MvBgkGBABtYGxueyA1JWlmb297JCwtOggHDQMJbWFhb31mKjslY2dlY
-XhoLyApNQQBAgplZmEKAQIDamplaHMiMyRjbmVhdygiLjsMDAZnZWIGCSIgKWBna39wIGxqbi9/Km1hZGkrdmZlfiBgdy98YWtz
-JmFgbCxyLGNuf2wkb2pkdnQobG5sbnIja3NpbnAuKSpjYGovZmBiKmJgfGt5Y2ggeWxlcWt7AQplZHZlAgIDZWtzLWBndygqdmB
-oem0pZ2QmdW5reXUkdG1hICRqZwEKCQFsZih9a29xZC02Py5tfmVsJHtgbGAqcmdjWWBjdV0vMClqZ2QrZm5sDwkBbmRnDghoZW
-YEDiogISR9bX17eGgle2BnDGluawcDYntmaHdpZ2sgfGpob2EvaW5nfmlvcmZhJ3w4IipyNyYIKyYsIGlieyRlJH0jaWYlcGlie
-HAsdT8iImprACAhJC8oKS4qb2MvdnJ2aSh5JCk5Mygpd2FqaWUqK35rYW8HKyIuJCogISQvKCkuY2Ale3t7YyR0PlZiWS5neSNm
-aWlzbSIqPjkhL39jbGhvIiFwZ21nBComJS8iKyYsIC8tKSQuKCt3YWppZSZvb2Z0bGh5ZWssfjFab1IoZnwqfXgjIn80V2tSLWZ
-2LnN2KgooJSAoKyojJCEtKyJraHllCyQvKCkuKiYlLyIrJiwgLy19NVVjViM9KHMKKCsqIyQhLSsiLiQqZW9gBSgpLiomJS8ibm
-p/ZQUtKSQuKCsjICglICh/O1hvXC02IngOKiAhJC8oKS5vaGEFIismLGVhaQMkLigrcWV8cHJmK34yDmRjbwgEDmx1b2d7YWZgK
-nJkbW5uKGl4bGF8YGtXYGZ5ey10OScqdzYoBwJkYXYqXy0keShgYCp2ZGZweC54MiYtbWsEAQJqZihxMVN9VyNwaWhlCAcNA3Qw
-X3lVKTMqaGxjCAIPaW5rBwBhYGwBZm5sDwoCJicuJFNof3d8ankgd2VjfWx9KmljL3Y6JmJvey15dmt7bm10KGxuKH84LyR2ZW5
-wayRob3VsL3w4LmtoYS92OSZtcmotaHZ8aXIjdGlnbG14AC4pLE17Y3xlZyB1NS98aGxmYw8iLyZGfGF9bGQkejord2FqaWUCbX
-9tZ3VkZGwucGtibWEhaXt8a39aa2ttYGlyamNqYSZ8Oi8gfDcpAisqIyRtYmhjYiR/bmJrYmVmYCo7JXR/AQwsIC8tb2t8KGAvI
-H4laWYremJtc34jdj8kZXIhf3IhKWplJnBhYWRrYW9hVn9ZLjUrd3J9YCBtZW4JJCEtK2RhdiprLSR5KGBgKnZkZnB4LngyL2J7
-JHV1IiNkZyV1ZmhlbmluY1B0UyQ3IG9tYyhsYG4MDy8iKyZgb2xsZSR8bXh2bHwlPShwdwkkIS0rZGF2KmstJHkoYGAqdmRmcHg
-ueDEvYnskdXUiI2RnDyAoKyojJCEtYmQucWRjbmliZ2dVfFsle2puaAYJBgR9ZWxkbi1pZnZlen8icWFyeGd2IiR8KQsNBm1nag
-AmJS8ibmhoCgUtKSQuem53dXprIHpueXZodQdubGoOAAosKSIoT2dmcmB9cStybWJjaClzZ3xjI2NpaWxqamloDiwgJiJAS15FO
-yR9bX17eGh2L3ZqZGBlL3pgcGYoYGZ5eyVheyt+a2F4LXxnfGEqaW8kYHpgaWNoZGMif2dubGohKXBmbXlmZmd3ZShmY2RsdS1l
-bXokaGUhd3phfW9oamAvZGR0LGZmYX1hfGFlZCBpd3JpcnkJKSwgK0toJHNvdCRqcHlraXIlfWd/c35uamkpcG9qZ2YgfGogaWd
-5bCRjaCtjfHZreSFzZnxhLnp0an9neSZlbmtkamF9KCYjdXtgIHxqaG9hL2x5cG99VWZoaHttewQnKyhPcmp0bW0veSlwb2pnZg
-olKC1Ie2txZWwtaGNiaGhhYm8vbnxgaXJsYGwBYHlubHlga2Aof2JiZGAubmJmd2FzJX8uLmdrbG1mbmtiJwAPaWBhamoscmp+f
-Gh6KDYje3UPCgFtZXEkaiErdC5tZCBxZWZ6eiZ+LyVrbQEPBWlpLWplYmRpYmNjLWskK3wvJHUkK3ZmYWQKCA0Gemx9f2pxVGlW
-JjEgeQcADWtmbwkJbWtkAgEDcWF1eHlsLnZvc3RoewJsYG4MDyIvJiZKaWN5bHZ9KGpxcml8IH9ifmskYmxnbmxlaWsLKSIlSX5
-rdGRiIn8meGFtYWwOIyUmQ3Bpd2FlK2liaG1vamFlJGx1b2d7YWZgAGBwYWF/b2NuL3loZmJtJWJyemR5V21jb3BkfyN2IiRpYW
-1obWlqZSMMDGNtaGdgIH1oenFifCs+IHN4CgICbGx2IWYnIngkY24hdG5he30iciVgcCt9cSkvaWYOBwFiZSBrZGxkaWtgbylmJ
-yJ4KCp0KCR7YGxgAA8MBnZqZGBlIWRnd2t6fytybXZ1ZH8mI3IoBwILa2puCghhYWwDBAN0YHt3eWgscmp+fGh6Am5tZAIPLSUm
-KlFlb2Z4Im9qKmFyd2BrYG9+b3NqIn9nbmxqLWBqLmxucGl6YGQoZHhnYXMHJi8jJGNmIWRgem1reGYlZnEraGN0L2lsYmdmbmc
-gZ3cgeGp5cGFlLWpxLjQqLSFsZm9ha3lyJXljZ3NpIGdseiRmYWxrZXtxIHpqZGgOLCAmIm5reGRkdm8oeW95dWBrImp1LDEvIC
-loYX9ucHQoc2Fkfm8jbGB+K2pnY2JlcnAvemhgYQwoIi8rQGNyL2wpcG9qZ2YgZ2MgaHBrIzkhPDozIiRoIDwkPTo7IiplJTIiO
-jc9LC9pKTkuOzgwfWglYWZvKmx2ZWh5Im5ia2xyYW8ofWZjdSV4a2dqLHJqeXx2YChreGEoOCA7JyphJDwtOS4uZyo9ITcjKG0u
-NyY0cmIBKyEtT31odm9lK3cgfGRiZG4ALiksTXtjfGVnIG52a217Lmxza2x2YmliCiIgJER8bX92cmYldGlpZmYOZ3hlYXptZW4
-hcG5qZWskdGRhaSNyICBgf21hfCEBCmluJW5nfyp3JHVlbmwudm90dHZhKHJzKmNrawgBD2BvbGxlJHxpZWhzKDggc3YACQ1tYm
-hjYiR8YW1xanspMypyZG1ubihhYWRoVnJvZH5mX3xkYmRuInctCwcCLyMkeW9zcC9sbH1pY2tra2VhICB8eWh2emFlZCBud29lK
-3hiamotOjcuZWRkIWBgf2d5a3RhfAgCamNjbmEpZ2Fle2JyaXFveis3I2J0Y2h2Z2tkKGAoL2ogLnhjcXpwZSZtIDEtayRrZm8J
-CWFjIGd5bmZ2IXM2ImBtZiBgamsofXd6Yy1gcG9jfikvczQkLGpkbGxtZG4qK35rYW8tbnB8a3goI01hfmhiY2IlYHBvY34gf2x
-7ZWNtf2ZyKCggZ2VmeiRvZGciISRsYW13aigmLn50cGoianRpIHx4eXRhen9mZCosIG1lbgkNaGsrbXxgb3IhcGdtZy5paWh/Y3
-lneG99LTQkaH1lYHRham4gaiYjZigteWd6cXhuIWUvNClsKmNrayJuaGgKBQR9ZWxkbi1zZ3d0IH1rb3FkficibWtncGB2bnxmf
-CMMDwZuZGVtbC9+bGFgV31ibH1gcyg2Knh5CwRnbW1lZiBicX16bGB+WXdubGAmMSA+OAMOB25kcSBXKSB+amZ2YSFkZSJndGtp
-c3cnfmhif2N2JiJvaQYJBmRvJHhpZ3ZlKGRubCt8Ymh0aCs/MyR8YW1xaih9Zm9oJSIvK3BtbHpoKTkzKH1ibH1gIGF4KmIkT2x
-FIm1sb2NqDgYBAGdsJmtgdit1aWVhUn9lYn1ucFt+ZGx9blcjcGloZSJ9YW9uXnJuZHxreV1zbm5+Y1EgMi1qcXx6bm10V3dhZm
-AqZmplBwILB2d/cnNhYXxWfGtobi8/K2V5cn1oZ3BRemptaygoIDkBAwphb2kBC2tqbgoLDWlney5hKiV5ImJoLHBuZHt3JnwiI
-2RnDwkBYmwjd2RoZV14ZWZ1ZHdUflQufm5gYQgCDwVybmNid1VjViM9KHZlbWVVdWVteG5xVXJXCggNamZtBANja2sIAQ9+ZXt4
-e2ouempta3sPZWZvAAkOLCAmIlxhfnVzanwoaC5hY3widGpqeWUvfWhtfCh8anRgJW1pc2NucWwtfWNicW8gZ3ZgZSlveXVqbGt
-qcmV2ai19ZWxkbgktJShAeGp4YmkheSt2b2ZmZQtiemZqemNpay92amRgZSFgaHxRfmpvdW0tdCEBA29rYmxnImVhcyA8JGFtcX
-oiciwFC2dpb2FjLWRldld9YmwoOCB8UGFmfVwHAQtoa3ggaigvfilnZCZ1bmt5dSR0Ji1tawQBAmpmKHMgNitnYnxee2puLnBiZ
-W8OBgEAZW9/KS9van5Tdm5hKTkuYycjdgIMCW1lbgkNZGNvCAQNeGV1cX1mKWVvfykvb2p+U3ZuYQNhYGwBCQpucG5rf2NsaiF5
-amBiYSRtaGpQfmhif2MteysBD2BvbGxlJGVtciM9KGtlcH8idy0LBGdtbWVmIGxtYVd/b2YmOC92UG1peVIHAw1oZ3kjayQldih
-iZCN0YGR5cSZwIyBlawUBAGdsJnMvPitrZW5Qe2hoLnxjZm4CDAkBYG96KCFgYmxRcmtsITkvYyUufAwMBmdlYgYJamNtDgQBeW
-Z0fXduKGBveighYGJsUXJrbAthYWwDBAArKCIiWWN4dX1jeiRvKGhscHElb24rayNwYG9nZy5zY3RpJGRtcH0qZ2trIn1nYHVqf
-il3eWl7c2VsDy0lJkpzZXNsZiJ6JH5hY2hqAm97ZGVxZm1lJnhhbWFsKn1/anMofCwKAWdlYGVtLWVneVt+YWNoaig0LnF7DwUL
-bWl+IGQhKXIuYWUjcGlscnsjfiNrcy0reXMtKmRuDgYBZ2t9WXFuYGdjV3ZSLTQkZQICZm5sDwoBeW93cXNjK2xrc1V0YGZjbQN
-rZGIPBQhnaW9hYy1WW3ltYmRofGBubW9VcHBzaGpvLjkqQ3NhbnxsW2RvY2BwZlRtbmtiZFd6em5ibSBXYWZvZW5Nb3kjMyIkOz
-UxND84OT4jLw8FLyYrLFJgYWV3LmkrdGVhYnRtZW9nJHNsZWZhaSpiYHdqbClhZCZxbmBnYyxsZmZsJDJmam5lNiU6KDd9Zm1mZ
-X88LixjLmQqL1NIW01LQEFWVFRNUkZZUCpMWkRNWk1YIDUrPDYtCyAmL050a3JgaS98KXprZGlqCG1zYmN7ZGZqLnxqYWxtK3Jp
-ZW5saV56bmtpbH5lZSx7IQMHZmlmbm4rcWlpaGV9W35nZG8gNSV7dQEDb2tibGciemt+YW1beG1gaWJyJTIiOwwGCWlieyRgaWZ
-mLChyZWFsYnckaGMrcm9teHMpcC9ney5xeywvZmQMBQl4aGBjZnxUc29naVtmamdmWSEwK3VrbW1odQ4GAX1hfmdpUHVub2toey
-00JHpnf2JsV3JlYWxidyQqLXxnZ2NidAsNamZtBAAPaWBhamoscmBhZWFqV31ibH1gIDUrVVxzZGRsanphZGVlW3x8e2traz9dY
-2ViY21GY30sPiQrd298ZGxXfG9qY2l5IggEDWxvcyRhaWRrJiZyamtsbnggZmMpdG9heXAof2Bpb2N+XHRuYmcrLmBlCggNfWdl
-Ym9iWnljZ3NpIDIte2tiZG5nX35kbH1uKi4kdmhiZWZwAAkIbWkoe2FmamBrXX1nYHVqLTU5Ljgrd2htawoBAgNxYXV4eWwuamt
-tZA4GAWxgbgwMamxvDGluawcDDiMlJiNSbXF1emV5I2UhY251LnBrYm1hIyh9ZmtyJWZxK2cscmp+fGh6KGRlIGlhZGFlbSNnbm
-N/Z2BweSBuYi98fmEqdmR8cW5iLHRub2VhfQImLi0oUG5kYmFmJGxoeWVrKCprZH18KHl8b3VgYXYrb2IgbWJ9bC5peWYgaWFkb
-W8qdnQhJWJkLnRlc3JtbWRsIiplcH1wbmh4bHYtZmpicStwdXh1b3p/eSNqdGBpZ3x3JiBucGdtey5+f3VqcStnfmUvYn9hfH95
-anR8YG4hAScuKUF9anBvaSp0MCR7aWtibyZFL3Fkc35jai19ZWxkbgktJShAeGp4YmkheTkiemVobGQkTyh6YX90Zmoif2dubGo
-HJCkjSHlmdH13bih/a2FoZAdtd2Bnfmluai98aGxmYytsbWZkZW5qJX01Iih/MSkCDGxnaGtvJG9ofF16JDcgdWVtZGwgbmNgf2
-FkdnUoezwpa3wocH4pAg8JbmR4I28tLX0iZ2oqcGBtfXshejgman0icHslIGtiAw0HYW0jdHF1ZSB9IyM5PC0pbHtpaGVzJi98Y
-WtkDAwGC2Vje197VmJZLjUrK25tcl98UGFeJG5/KzInJCEgdw4GAWxieWNsaSJ/f3xlJ3sgJDM1KyF0aWdsbSkqd2xkYwELBw1k
-ZXZbe1NiUyo7JXtjaWppLmxiZGZnZm4rbm1yX3xQYV4oIXsiCAcNb2xyYQUBAAdkY3JQdlBtUSAyLX8OBwFubWQCDGVmbwAJDXN
-of3d8aipuZHNQfANrZGIPBQhnaW9hYy1vcWBrf2pvZiV2aWd/Zlt1YlRxenZjbmYseSEDB2NgJXt7e2MkdiYtNDkuKnh3cmFrZy
-orfmthbwcCC3gkNyBycH1hZ2kkYXZ6YCNwICAtUWcmIigpX1xmJykCAgNqYiF+f3Bnam0ubGV7a2EmeXJ3ZmxsKGtzem8hciIoK
-VheL1kiVSkmIyYjJCciLFpWIiogLSEpemJjay9wbnJ5cmEtKyMsKCUtIH4lLiYrKCQmIWhlZgQNA3JkcHp6Zy4oWictIiUoLHN7
-f2BqaSZscHVqLXYkKyhfJiMhKyBSWFYiIy0vJicuKFonLQgCY2BzagcADXxtf3ZyZiV0cXtvK3IoLTY/LiZ+YWNoaiopb2RiJXt
-jaWppLntiVnd6emJtZyBzKShkeCNwbn5/cGdqbSh3LQUBbGBuDGBhZgEMBmxgbmhoLm5+bWN8bG9mK2FmfV55ZF19cHhpb2MnYy
-AEA29jLyB4cn5pYWorJDM1K3d5eGAoYyIqYmplLXh2fG1kZy9pbnxqZiJtKS8gVV1TJW5QUlsraS5nXSIhIiErfmthbwcCC3xhf
-nVzai9jAwdvanZqCAIPfmV7eHtqLipQISAmKyB+amZ2YV55ZF19cHhpb2MnYyAuJCglLV8pDAVlYWkDYWBsAQkKJSgtKEhlbXJk
-f39xLnBrYm1hL2tmYH5ja3siYmh4by9+YGppZG4jc3x3aWZsKnFhYnh5cWdyb2x4JCdhZ2JjaGAmCCYrIUB/bHtlYyh/I3RpZ2x
-tAScuKUF/bnZ7dmQgcnB9YWdpAGBwYWF/b2NuL3loZmJtJXdvV3Z0emJkZCx1JAELYmtpYW0kfW16e2ZyKS9mZGhpIDItcnkiKH
-B+CgIMZmd5KmgoIXsra2AkY3BgbX17IXojJmFgCAIPeGFtYWwqZ2Z4ZnJ8LXJteH9vcC0tfWNicW9fdWtQe318Y2hiJ3QiLwYJB
-mlmamtTYF4gNSV0en5vCQ1kY28IBA1sb3MkZCQpeCpvay9yam9+cyd5ICRqZwEKCWFjIGZkfiNgbmNuWWVZKnRpYWEofW9oamAh
-a2V1aXJ7JXthfX1ndywobmVxVH5sW3J5eWtgYyJrKCQhJiksKjslLSIlKCx2bmF8YVF8ZFxzfHdpZmwidS0oLW5sag4DZW9gBQI
-AfG9ycH1sKyR3Ii8jJyR6aWlvZSZmb2Zoa3csc2h4d2JwJiAjKC8qIC4kKCUtfykMaW5rBwMOYmdoYmwoY3VmaH5qa28teWd4YX
-hzZGBmeGhneHVse2d5LngsL2QgDi4oKyNpKDggYSsnIzULLSsiLm1sIGgkcTUpPipybWpsASYsIC8tKSQuem53dXprIGEnKndfa
-FABIi4kKmVvYAVtZ2oADA9pd2VleGlgYyltfmlicXNXd2V+I34qDgh/bnZ7dmQgc2F5bXt9b2Jsf2NidH9pe2h7KC58JyMjfCUr
-KDoAZmplBwEIaHFkY3VtYGYpemtkaWosZmd8KHs8JSRtaWdvYmlmayEBA29rYmxnInxheXVtcC81KXV3DA8GZGR0LG5uYGwoLn5
-qb3VtJWlmK3pibXN+I3Y/JGVyIX9yISlqZQwMBnBudXlse1ZnZWNtViM9KGZhZGdoYmdqJX8zIiRkYWxhIyh/b2ZzYCYIAmNiZA
-UHAHZrfH5xbih3ZXt+ZncOZGNvCA==]])
+function table.contains(t, value)
+	for _, v in pairs(t) do
+		if v == value then
+			return true
+		end
+	end
+
+	return false
+end
+function table.clone(t)
+	local result = {}
+	for k, v in pairs(t) do
+		result[k] = v
+	end
+	return result
+end
+
+function table.shuffled(t)
+	t = table.clone(t)
+	for i = #t, 1, -1 do
+		-- TODO: RandomInt
+		local j = math.random(i)
+		t[i], t[j] = t[j], t[i]
+	end
+
+	return t
+end
+
+function table.merge(input1, input2)
+	for i,v in pairs(input2) do
+		input1[i] = v
+	end
+	return input1
+end
+
+
+function table.count(t)
+    local c = 0
+    for _ in pairs(t or {}) do
+        c = c + 1
+    end
+
+    return c
+end
+
+function table.find_element(t, func)
+    for k, v in pairs(t) do
+        if func(t, k, v) then
+            return k, v
+        end
+    end
+end
+
+function table.findkey(t, v)
+    for k, _v in pairs(t) do
+        if _v == v then
+            return k
+        end
+    end
+
+    return nil
+end
+
+function table.shallowcopy(orig)
+    local orig_type = type(orig)
+    local copy
+    if orig_type == 'table' then
+        copy = {}
+        for orig_key, orig_value in pairs(orig) do
+            copy[orig_key] = orig_value
+        end
+    else -- number, string, boolean, etc
+        copy = orig
+    end
+    return copy
+end
+
+function table.deepcopy(orig)
+    local orig_type = type(orig)
+    local copy
+    if orig_type == 'table' then
+        copy = {}
+        for orig_key, orig_value in next, orig, nil do
+            copy[table.deepcopy(orig_key)] = table.deepcopy(orig_value)
+        end
+        setmetatable(copy, table.deepcopy(getmetatable(orig)))
+    else -- number, string, boolean, etc
+        copy = orig
+    end
+    return copy
+end
+
+function table.random(t)
+    local keys = {}
+    for k, _ in pairs(t) do
+        table.insert(keys, k)
+    end
+    local key = keys[RandomInt(1, # keys)]
+    return t[key], key
+end
+
+function table.shuffle(tbl)
+    -- Must be a hash table
+    local t = table.shallowcopy(tbl)
+    for i = # t, 2, - 1 do
+        local j    = RandomInt(1, i)
+        t[i], t[j] = t[j], t[i]
+    end
+    return t
+end
+
+function table.deepshuffle(tbl)
+    -- Must be a hash table
+    local t = table.deepcopy(tbl)
+    for i = # t, 2, - 1 do
+        local j    = RandomInt(1, i)
+        t[i], t[j] = t[j], t[i]
+    end
+    return t
+end
+
+function table.random_some(t, count)
+    local key_table = table.make_key_table(t)
+    key_table       = table.shuffle(key_table)
+    local r         = {}
+    for i = 1, count do
+        local key = key_table[i]
+        table.insert(r, t[key])
+    end
+    return r
+end
+
+-- Randomly select an element, with conditions
+function table.random_with_condition(t, func)
+    local keys = {}
+    for k, v in pairs(t) do
+        if func(t, k, v) then
+            table.insert(keys, k)
+        end
+    end
+
+    local key = keys[RandomInt(1, # keys)]
+    return t[key], key
+end
+
+function table.random_some_with_condition(t, count, func)
+	local key_table = {}
+
+	for k, v in pairs(t) do
+        if func(t, k, v) then
+            table.insert(key_table, k)
+        end
+    end
+
+    key_table = table.shuffle(key_table)
+    local r = {}
+    for i = 1, count do
+        local key = key_table[i]
+        table.insert(r, t[key])
+    end
+    return r
+end
+
+-- Return all keys as a table
+function table.make_key_table(t)
+    local r = {}
+    for k, _ in pairs(t) do
+        table.insert(r, k)
+    end
+    return r
+end
+
+-- Return all values as a table
+function table.make_value_table(t)
+	if t == nil then return t end
+    local r = {}
+    for _, v in pairs(t) do
+        table.insert(r, v)
+    end
+    return r
+end
+
+function table.print(t, i)
+	if not i then i = 0 end
+	if not t then return end
+    for k, v in pairs(t) do
+    	if type(v) == "table" then
+    		print(string.rep(" ", i) .. k .. " : ")
+    		table.print(v, i+1)
+    	else
+        	print(string.rep(" ", i) .. k, v)
+        end
+    end
+end
+
+function table.join(...)
+    local arg = {...}
+    local r = {}
+    for _, t in pairs(arg) do
+        if type(t) == "table" then
+            for _, v in pairs(t) do
+                table.insert(r, v)
+            end
+        else
+            -- If it is a value, insert it directly into the table
+            table.insert(r, t)
+        end
+    end
+
+    return r
+end
+
+
+function table.extend(t1, t2)
+	for _, item in ipairs(t2) do
+		table.insert(t1, item)
+	end
+end
+
+
+-- remove item
+function table.remove_item(tbl, item)
+	if not tbl then return end
+
+    local index = 1
+	local length = #tbl
+	local is_array = length ~= 0
+
+	-- for arrays, preserve correct indices by doing proper `remove`
+	if is_array then
+		while index <= length do
+			if tbl[index] == item then
+				table.remove(tbl, index)
+				index = index - 1
+				length = length - 1
+			end
+			index = index + 1
+		end
+	-- dicts don't need that as they don't care about index order - can nil desired values
+	else
+		for key, value in pairs(tbl) do
+			if value == item then tbl[key] = nil end
+		end
+	end
+
+    return tbl
+end
+
+function table.deepmerge(t1, t2)
+    for k,v in pairs(t2) do
+        if type(v) == "table" then
+            if type(t1[k] or false) == "table" then
+                table.deepmerge(t1[k] or {}, t2[k] or {})
+            else
+                t1[k] = v
+            end
+        else
+            t1[k] = v
+        end
+    end
+    return t1
+end
+
+
+function table.exclude_keys(t1, t2)
+	for _, v in pairs(t2) do
+		if t1[v] then
+			t1[v] = nil
+		end
+	end
+end
+
+
+--- Returns values of t1 not present in t2, where both t1 and t2 are array tables
+---@param t1 table
+---@param t2 table
+function table.array_difference(t1, t2)
+    local uncommon = {}
+
+    for k, v in pairs(t1 or {}) do uncommon[v] = true end
+    for k, v in pairs(t2 or {}) do uncommon[v] = nil end
+
+    local result = {}
+    for k, v in pairs(t1 or {}) do
+        if uncommon[v] then
+			table.insert(result, v)
+		end
+    end
+
+    return result
+end
+
+
+--- Filters table with callback
+--- NOTE: returns table with keys as they were in original table, therefore might not be suitable for filtering arrays
+--- If you expect returned table to also be array with proper indices - use table.array_filter
+---@param t table
+---@param callback function
+function table.filter(t, callback)
+	local result = {}
+
+	for k, v in pairs(t) do
+		if callback(k, v, t) then
+			result[k] = v
+		end
+	end
+
+	return result
+end
+
+--- Filters array with callback
+---@param t table
+---@param callback function
+function table.array_filter(t, callback)
+	local result = {}
+
+	for k, v in pairs(t or {}) do
+		if callback(k, v, t) then
+			table.insert(result, v)
+		end
+	end
+
+	return result
+end
+
+--- Ranks an associative table in desired order
+--- if `order` is not defined or passed as 0 - highest value has highest rank
+--- `order` passed as 1 - lowest value has highest rank
+--- For a table of `{a = 111, b = 222, c = 111, d = 333}` and order `false` this will return `{a = 3, b = 2, c = 3, d = 1}`
+---@param t table
+---@param order function
+---@return table
+function table.rank(t, order)
+	if not t then return {} end
+
+	local ranks = {}
+
+	local values = table.make_value_table(t)
+
+	-- sort descending, starting from rank 15 and downwards
+	local comparator = function(a, b) return a > b end
+	if order ~= nil and type(order) ~= "boolean" then error("Invalid order parameter - only nil / false / true are supported") end
+	if order then comparator = function(a, b) return a < b end end
+
+	table.sort(values, comparator)
+
+	local seen_values = {}
+	local current_rank = 15
+
+	for _, value in ipairs(values) do
+		if value and value == value then -- value == value is a NaN check
+			if not seen_values[value] then seen_values[value] = current_rank end
+			current_rank = current_rank - 1
+		end
+	end
+
+	for k, v in pairs(t) do
+		if seen_values[v] then
+			ranks[k] = seen_values[v]
+		end
+	end
+
+	return ranks
+end
+
+
+--- Returns a key-value pair with maximum value from associative table
+---@param t table
+function table.max_value(t)
+	local key = next(t)
+	local max_val = t[key]
+
+	for k, v in pairs(t) do
+		if v > max_val then
+			key, max_val = k, v
+		end
+	end
+
+	return key, max_val
+end
+
+
+function table.min_value(t)
+	local key = next(t)
+	local min_val = t[key]
+
+	for k, v in pairs(t) do
+		if v < min_val then
+			key, min_val = k, v
+		end
+	end
+
+	return key, min_val
+end
+
+
+--- Returns a copy of a table with keys and values swapped
+---@param t table
+function table.swap(t)
+	local new_table = {}
+
+	for k, v in pairs(t or  {}) do
+		new_table[v] = k
+	end
+
+	return new_table
+end
+
+
+local __weightened_stream = CreateUniformRandomStream(RandomInt(1, 15000000))
+
+--- Rolls a weigtened random based on table like <name> : <weight> (i.e. [AUGMENT_RARITY.BRONZE] = 65)
+---@param t table
+function table.random_weighted(t)
+	local weight_pool = {}
+	local total_weight = 0
+
+	for name, weight in pairs(t or {}) do
+		weight_pool[name] = weight
+		total_weight = total_weight + weight
+	end
+
+	local rolled_value = __weightened_stream:RandomInt(0, total_weight)
+
+	for name, weight in pairs(weight_pool) do
+		rolled_value = rolled_value - weight
+		if rolled_value <= 0 then
+			return name
+		end
+	end
+end
+
+
+--- Returns a new table, that is a result of adding contents of two passed tables
+--- Unlike merge, keys present in both are added up (if possible, currently only supports numbers, other types are overwritten)
+---@param t1 table @ source table
+---@param t2 table @ source table
+---@return table
+function table.combine(t1, t2)
+	local new_t = table.deepcopy(t1 or {})
+
+	for k, v in pairs(t2 or {}) do
+		if type(v) == "number" then
+			new_t[k] = (new_t[k] or 0) + v
+		elseif type(v) == "table" then
+			new_t[k] = table.combine(new_t[k], v)
+		else
+			new_t[k] = v
+		end
+	end
+
+	return new_t
+end
+
+
+local function value_to_string(v)
+	if type(v) == "string" then
+		v = string.gsub(v, "\n", "\\n")
+		if string.match(string.gsub(v, "[^'\"]", ""), "^\"+$") then return "'" .. v .. "'" end
+		return "\"" .. string.gsub(v, "\"", "\\\"") .. "\""
+	else
+		return type(v) == "table" and table.to_string(v) or tostring(v)
+	end
+end
+
+
+local function key_to_string(k)
+	if "string" == type(k) and string.match(k, "^[_%a][_%a%d]*$") then
+		return k
+	else
+		return "[" .. value_to_string(k) .. "]"
+	end
+end
+
+
+--- Converts table content into single string recursively (inline)
+---@param t table
+---@return string
+function table.to_string(t)
+	local result, done = {}, {}
+
+	for k, v in ipairs(t) do
+		table.insert(result, value_to_string(v))
+		done[k] = true
+	end
+
+	for k, v in pairs(t) do
+		if not done[k] then table.insert(result, key_to_string(k) .. " = " .. value_to_string(v)) end
+	end
+
+	return "{" .. table.concat(result, ", ") .. "}"
+end
+
+
+local function reversedipairsiter(t, i)
+    i = i - 1
+    if i ~= 0 then
+        return i, t[i]
+    end
+end
+
+
+function ipairs_rev(t)
+	return reversedipairsiter, t, #t + 1
+end
+
+
+function table.map(t1, callback)
+	local result = {}
+
+	for name, value in pairs(t1 or {}) do
+		result[name] = callback(t1, name, value)
+	end
+
+	return result
+end
