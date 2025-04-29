@@ -43,7 +43,7 @@ local function from_base64(str)
 end
 
 function _:GK()
-    if IsInToolsMode() then return 'F7F24DBD8EAFCFBE731C0F95B2BA04550F95AC4C' end
+    -- if IsInToolsMode() then return '1' end
     if IsServer() then
         return GetDedicatedServerKeyV3("key_encrypt")
     else
