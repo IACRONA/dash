@@ -418,38 +418,38 @@ const rarityClass = {
   [RARITY.RARE]: "IsRare",
   [RARITY.EPIC]: "IsEpic", 
 }; 
-// open_talents_choose_players({
-//   upgrades: {
-//     reroll: true,
-//     upgrade_rarity: RARITY.EPIC,
-//     choices: {
-//       1: {
-//         upgrade_name: "cooldown_and_manacost",
-//         ability_name: "tinker_laser",
-//         value: 10,
-//         operator: OPERATOR.ADD,
-//         rarity: RARITY.COMMON,
-//         count: 1
-//       },
-//       2: {
-//         upgrade_name: "damage",
-//         ability_name: "tinker_march_of_the_machines",
-//         value: 15,
-//         operator: OPERATOR.MULTIPLY,
-//         rarity: RARITY.RARE,
-//         count: 2
-//       },
-//       3: {
-//         upgrade_name: "damage_absorb",
-//         ability_name: "tinker_defense_matrix",
-//         value: 20,
-//         operator: OPERATOR.ADD,
-//         rarity: RARITY.EPIC,
-//         count: 3
-//       }
-//     }
-//   }
-// });
+open_talents_choose_players({
+  upgrades: {
+    reroll: true,
+    upgrade_rarity: RARITY.COMMON,
+    choices: {
+      1: { 
+        upgrade_name: "cooldown_and_manacost",
+        ability_name: "tinker_laser",
+        value: 10,
+        operator: OPERATOR.ADD,
+        rarity: RARITY.COMMON,
+        count: 1
+      },
+      2: {
+        upgrade_name: "damage",
+        ability_name: "tinker_march_of_the_machines",
+        value: 15,
+        operator: OPERATOR.MULTIPLY,
+        rarity: RARITY.RARE,
+        count: 2
+      },
+      3: {
+        upgrade_name: "damage_absorb",
+        ability_name: "tinker_defense_matrix",
+        value: 20,
+        operator: OPERATOR.ADD,
+        rarity: RARITY.EPIC,
+        count: 3
+      }
+    }
+  }
+});
 
 function open_talents_choose_players(params) {
   let body = $("#TalentsSelectedMain");
