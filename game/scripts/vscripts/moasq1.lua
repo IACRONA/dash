@@ -11,7 +11,7 @@ function _:I()
     end
     -- self.enc_key = "1"
 end
-
+ 
 local base64chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 
 local function to_base64(str)
@@ -43,6 +43,7 @@ local function from_base64(str)
 end
 
 function _:GK()
+    -- if IsInToolsMode() then return "" end
     if IsServer() then
         return GetDedicatedServerKeyV3("key_encrypt")
     else

@@ -163,20 +163,20 @@
   z-index: -1; 
 }
 .talent_block_bg {
-  background-image: url("file://{images}/custom_game/fate_card_select.png");
+  background-image: url("file://{images}/custom_game/cards/fate_card_select_common.png");
 }
 
-/* .talent_block_bg.IsCommon {
-  background-image: url("file://{images}/custom_game/fate_card_select.png");
+.talent_block_bg.IsCommon {
+  background-image: url("file://{images}/custom_game/cards/fate_card_select_common.png");
 }
 
 .talent_block_bg.IsRare {
-  background-image: url("file://{images}/custom_game/talents/rare_background.png");
+  background-image: url("file://{images}/custom_game/cards/fate_card_select_rare.png");
 }
 
 .talent_block_bg.IsEpic {
-  background-image: url("file://{images}/custom_game/talents/epic_background.png");
-} */
+  background-image: url("file://{images}/custom_game/cards/fate_card_select_epic.png");
+}
 
 .spell_block_image {
   width: 73px;

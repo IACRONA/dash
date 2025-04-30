@@ -418,86 +418,86 @@ const rarityClass = {
   [RARITY.RARE]: "IsRare",
   [RARITY.EPIC]: "IsEpic", 
 }; 
-// open_talents_choose_players({
-//   upgrades: {
-//     reroll: true,
-//     upgrade_rarity: RARITY.EPIC,
-//     choices: {
-//       1: {
-//         upgrade_name: "cooldown_and_manacost",
-//         ability_name: "tinker_laser",
-//         value: 10,
-//         operator: OPERATOR.ADD,
-//         rarity: RARITY.COMMON,
-//         count: 1
-//       },
-//       2: {
-//         upgrade_name: "damage",
-//         ability_name: "tinker_march_of_the_machines",
-//         value: 15,
-//         operator: OPERATOR.MULTIPLY,
-//         rarity: RARITY.RARE,
-//         count: 2
-//       },
-//       3: {
-//         upgrade_name: "damage_absorb",
-//         ability_name: "tinker_defense_matrix",
-//         value: 20,
-//         operator: OPERATOR.ADD,
-//         rarity: RARITY.EPIC,
-//         count: 3
-//       }
-//     }
-//   }
-// });
-
-function open_talents_choose_players(params) {
-  let body = $("#TalentsSelectedMain");
-  body.RemoveAndDeleteChildren();
-  const isReroll = params.upgrades.reroll;
-  const selection_rarity = params.upgrades.upgrade_rarity || RARITY.COMMON;
-  const imageBooks = {
-    [RARITY.COMMON]: "item_usual_book",
-    [RARITY.RARE]: "item_rare_book",
-    [RARITY.EPIC]: "item_epic_book",
-  };
-  let actions_block = $.CreatePanel("Panel", $("#TalentsSelectedMain"), "TalentActions");
-  actions_block.AddClass(rarityClass[selection_rarity]);
- 
-  let TitleBlock = $.CreatePanel("Panel", actions_block, "TitleBlock");
-
-  // let Choose_Your_Fate = $.CreatePanel("Label", TitleBlock, "");
-  // Choose_Your_Fate.AddClass("Choose_Your_Talent");
-  // Choose_Your_Fate.text = $.Localize("#Choose_Your_Talent");
-  // const itemPreviewImage = $.CreatePanel("Panel", TitleBlock, "ImageBookTalent")
-  // itemPreviewImage.style.backgroundImage = `url("file://{resources}/images/items/${imageBooks[selection_rarity]}.png")`;
-  // itemPreviewImage.style.backgroundSize = "200% 101%";
-  // itemPreviewImage.style.backgroundRepeat = "no-repeat";
-  // itemPreviewImage.style.backgroundPosition = "50% 60%";
-
-  CreateTalentRerollPanel(actions_block);
-
-  for (let i = 1; i <= Object.keys(params.upgrades.choices).length; i++) {
-    CreateTalent(params.upgrades, params.upgrades.choices[i]);
-  }
-
-  if (isReroll) {
-    $("#TalentsSelectedMain").style.opacity = "1";
-  } else {
-    if (Object.values(queue).length > 0) {
-      if (!queue.talent) {
-        queue.talent = true;
+open_talents_choose_players({
+  upgrades: {
+    reroll: true, 
+    upgrade_rarity: RARITY.COMMON,
+    choices: {
+      1: { 
+        upgrade_name: "cooldown_and_manacost",
+        ability_name: "tinker_laser",
+        value: 10,
+        operator: OPERATOR.ADD,
+        rarity: RARITY.COMMON,
+        count: 1
+      },
+      2: {
+        upgrade_name: "damage",
+        ability_name: "tinker_march_of_the_machines",
+        value: 15,
+        operator: OPERATOR.MULTIPLY,
+        rarity: RARITY.RARE,
+        count: 2
+      },
+      3: {
+        upgrade_name: "damage_absorb",
+        ability_name: "tinker_defense_matrix",
+        value: 20,
+        operator: OPERATOR.ADD,
+        rarity: RARITY.EPIC,
+        count: 3
       }
-    } else {
-      queue.talent = true;
-      body.style.opacity = "1";
     }
   }
+});
 
-  $.Schedule(0.5, function () {
-    body.SetHasClass("SpawnPanelSelected", false);
-  });
-}
+// function open_talents_choose_players(params) {
+//   let body = $("#TalentsSelectedMain");
+//   body.RemoveAndDeleteChildren();
+//   const isReroll = params.upgrades.reroll;
+//   const selection_rarity = params.upgrades.upgrade_rarity || RARITY.COMMON;
+//   const imageBooks = {
+//     [RARITY.COMMON]: "item_usual_book",
+//     [RARITY.RARE]: "item_rare_book",
+//     [RARITY.EPIC]: "item_epic_book",
+//   };
+//   let actions_block = $.CreatePanel("Panel", $("#TalentsSelectedMain"), "TalentActions");
+//   actions_block.AddClass(rarityClass[selection_rarity]);
+ 
+//   let TitleBlock = $.CreatePanel("Panel", actions_block, "TitleBlock");
+
+//   // let Choose_Your_Fate = $.CreatePanel("Label", TitleBlock, "");
+//   // Choose_Your_Fate.AddClass("Choose_Your_Talent");
+//   // Choose_Your_Fate.text = $.Localize("#Choose_Your_Talent");
+//   // const itemPreviewImage = $.CreatePanel("Panel", TitleBlock, "ImageBookTalent")
+//   // itemPreviewImage.style.backgroundImage = `url("file://{resources}/images/items/${imageBooks[selection_rarity]}.png")`;
+//   // itemPreviewImage.style.backgroundSize = "200% 101%";
+//   // itemPreviewImage.style.backgroundRepeat = "no-repeat";
+//   // itemPreviewImage.style.backgroundPosition = "50% 60%";
+
+//   CreateTalentRerollPanel(actions_block);
+
+//   for (let i = 1; i <= Object.keys(params.upgrades.choices).length; i++) {
+//     CreateTalent(params.upgrades, params.upgrades.choices[i]);
+//   }
+
+//   if (isReroll) {
+//     $("#TalentsSelectedMain").style.opacity = "1";
+//   } else {
+//     if (Object.values(queue).length > 0) {
+//       if (!queue.talent) {
+//         queue.talent = true;
+//       }
+//     } else {
+//       queue.talent = true;
+//       body.style.opacity = "1";
+//     }
+//   }
+
+//   $.Schedule(0.5, function () {
+//     body.SetHasClass("SpawnPanelSelected", false);
+//   });
+// }
 
 function CreateTalentRerollPanel(body) {
   const reroll_count = playerInfo.getRollPlayer();
@@ -567,7 +567,6 @@ function CreateTalent(upgradeInfo, data) {
     class: "talent_levels",
     text: `с ${current_count}  уровень до ${max_upgrades_count} уровень`,
   });
-  $.Msg(ParticleForRarity[rarity])
   let spell_block_particle = $.CreatePanel("DOTAParticleScenePanel", spell_block, "",{
     id: "hoverParticle",
     particleName: ParticleForRarity[upgrade_rarity],

@@ -15,7 +15,6 @@ function SendRequest(method, url, body, repeatCount, callbacks)
 	if repeatCount >= MAX_REPEAT then
 		if callbacks.error then callbacks.error({error = "Сервер не отвечает"}) end	
 		if callbacks.finnaly then callbacks.finnaly() end	
-
 		return 
 	end
 	local request = CreateHTTPRequest(method, BASE_URL.. url)
