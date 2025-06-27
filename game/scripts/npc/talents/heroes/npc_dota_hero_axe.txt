@@ -1,0 +1,83 @@
+"npc_dota_hero_axe"
+{
+	"axe_charge"
+	{
+		"damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+		"damage_debuff"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+		}
+		"reflect_damage"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+		}
+	}
+	"axe_berserkers_call"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+		}
+		"radius"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"bonus_armor"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+
+			"linked_abilities"
+			{
+				"axe_battle_hunger"
+				{
+					"scepter_armor_change" "0.5"
+				}
+			}
+		}
+	}
+ 
+	"axe_counter_helix"
+	{
+		"damage"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
+	"axe_culling_blade_rage"
+	{
+ 
+		"damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+		"bonus_attack_speed"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+		}
+		// "armor_per_stack"
+		// {
+		// 	"value" "0.2"
+		// 	"operator" "OP_ADD"
+		// }
+	}
+}

@@ -1,0 +1,171 @@
+"npc_dota_hero_shredder"
+{
+	"shredder_whirling_death"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+			"linked_abilities"
+			{
+				"shredder_flamethrower"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+				}
+			}
+		}
+		"whirling_radius"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"shredder_flamethrower"
+				{
+					"width" "25"
+					"length" "25"
+				}
+			}
+		}
+		"whirling_damage"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"tree_damage_scale" "2"
+			}
+			"linked_abilities"
+			{
+				"shredder_flamethrower"
+				{
+					"damage_per_second" "5"
+				}
+			}
+		}
+	}
+	"shredder_timber_chain"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"chain_radius" "30"
+			}
+		}
+		"damage"
+		{
+			"value" "22"
+			"operator" "OP_ADD"
+		}
+		"tree_splinter_damage"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "1"
+		}
+	}
+	"shredder_reactive_armor"
+	{
+		"bonus_armor"
+		{
+			"value" "0.06"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"cooldown_and_manacost"
+				{
+					"value" "8"
+					"operator" "OP_MULTIPLY"
+				}
+			}
+		}
+		"bonus_hp_regen"
+		{
+			"value" "0.22"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"radius" "30"
+				"explosion_radius" "30"
+			}
+		}
+	}
+	"shredder_chakram"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "7"
+			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"shredder_twisted_chakram"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "7"
+						"operator" "OP_MULTIPLY"
+						"RequiresFacetID" "2"
+					}
+				}
+			}
+		}
+		"radius"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"shredder_twisted_chakram"
+				{
+					"radius"
+					{
+						"value" "15"
+						"operator" "OP_ADD"
+						"RequiresFacetID" "2"
+					}
+				}
+			}
+		}
+		"pass_damage"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"damage_per_second" "3"
+				"speed" "25"
+			}
+		}
+	}
+	"shredder_twisted_chakram"
+	{
+		"damage"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "2"
+			"linked_special_values"
+			{
+				"speed" "25"
+			}
+		}
+	}
+}

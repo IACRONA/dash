@@ -1,0 +1,95 @@
+"npc_dota_hero_crystal_maiden"
+{
+	"crystal_maiden_crystal_nova"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"radius"
+		{
+			"value" "45"
+			"operator" "OP_ADD"
+			"max_count" "9"
+		}
+		"nova_damage"
+		{
+			"value" "60" 
+			"operator" "OP_ADD"
+		}
+	}
+	"crystal_maiden_frostbite"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "4"
+
+			"linked_abilities"
+			{
+				"crystal_maiden_crystal_clone"
+				{
+					"cooldown_and_manacost"
+					{
+						"value" "8"
+						"operator" "OP_MULTIPLY"
+					}
+					"frostbite_radius" "100"
+					"hop_distance" "150"
+				}
+			}
+		}
+		"damage_per_second"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"creep_damage_per_second" "30"
+			}
+		}
+	}
+	"crystal_maiden_frozen_shield"
+	{
+		"chance_frozen"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+		}
+		"aoe_damage"
+		{
+			"value" "100"
+			"operator" "OP_ADD"
+		}
+		"shield_health"
+		{
+			"value" "100"
+			"operator" "OP_ADD"
+		}
+	}
+	"crystal_maiden_ice_spike"
+	{
+		"damage_frozen"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+		"damage"
+		{
+			"value" "100"
+			"operator" "OP_ADD"
+		}
+		"chance_crit"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+		}
+		"slow_pct"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+		}
+	}
+}

@@ -19,7 +19,7 @@ require('donate/donate_manager')
 require('libraries/neutrals_items')
 require('libraries/portals_system')
 require('libraries/add_new_abilities')
-require('libraries/fate_system')
+require('libraries/fate_system') 
 require('libraries/sphere_system')
 require('libraries/mvp_system')
 require('libraries/spawner_system')
@@ -794,6 +794,8 @@ function CAddonWarsong:OnNPCSpawned(event)
 						hUnit:HeroLevelUp(false)
 					end
 					hUnit.upgrades = {}
+					
+					Upgrades:LoadUpgradesData(hUnit:GetUnitName())
 					
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_warsong_movespeed_bonus', nil)
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_balance', nil)

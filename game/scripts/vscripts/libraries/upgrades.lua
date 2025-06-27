@@ -4,7 +4,6 @@ require('libraries/summons_list')
 BOOK_REROLL_COUNT  = BOOK_REROLL_COUNT  or 3
 function Upgrades:Init()
 	self.upgrades_kv = {}
-	self:UpdateHeroUpgradeData()
 	self.summon_list = {}
 	self.abilities_requires_level_reset = {}
 	self.abilities_requires_level_reset["medusa_split_shot"] = true
@@ -40,7 +39,7 @@ function Upgrades:QueueSelection(hero, rarity)
 	if not  PlayerResource:IsValidPlayerID(player_id) then return end
 
 	Upgrades.queued_selection[player_id] = Upgrades.queued_selection[player_id] or {}
-
+ 
 	table.insert(Upgrades.queued_selection[player_id], {
 		rarity = rarity, 
 		is_lucky_trinket_proc = Upgrades.lucky_trinket_proc[player_id]
@@ -177,7 +176,6 @@ function Upgrades:RollUpgradesOfType(upgrade_type, player_id, rarity, previous_c
 	if not IsValidEntity(hero) then return end
 
 	local hero_name = hero:GetUnitName()
-		-- turns table of <ability_name>:<list of ability upgrades> into <list of all abilities upgrades>
 	pool = table.join(unpack(table.make_value_table(Upgrades.upgrades_kv[hero_name])))
  
 	-- transform previous choices into lookup table for filtering
@@ -286,26 +284,21 @@ function Upgrades:UpgradeSelected(event)
 	end
 end
 
-function Upgrades:UpdateHeroUpgradeData()
-	ServerManager:GetHeroUpgradeData(function(data)
-		if not data then return end
-		for k, v in pairs(data) do
-			Upgrades:LoadUpgradesData(k, v)
-		end
-	end)
-end
-
-function Upgrades:LoadUpgradesData(hero_name, data)
+function Upgrades:LoadUpgradesData(hero_name)
 	if self.upgrades_kv[hero_name] then return end
-	self.upgrades_kv[hero_name] = data[hero_name]
+	self.upgrades_kv[hero_name] = LoadKeyValues("scripts/npc/talents/heroes/" .. hero_name .. ".txt")
+	if not self.upgrades_kv[hero_name] then
+		print("Файл талантов не найден или ошибка парсинга для героя: " .. hero_name)
+	end
+  
 	for ability_name, upgrades in pairs(self.upgrades_kv[hero_name] or {}) do
 		for upgrade_name, upgrade_data in pairs(self.upgrades_kv[hero_name][ability_name]) do
 			UpgradesUtilities:ParseUpgrade(upgrade_data, upgrade_name, UPGRADE_TYPE.ABILITY, ability_name)
 		end
 	end
+
 	CustomNetTables:SetTableValue("ability_upgrades", hero_name, self.upgrades_kv[hero_name] or {})
 end
-
 
 function Upgrades:GetUpgradeValue(hero_name, ability_name, special_value_name)
 	return self.upgrades_kv[hero_name][ability_name][special_value_name].value

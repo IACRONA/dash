@@ -1,0 +1,83 @@
+"npc_dota_hero_life_stealer"
+{
+	"life_stealer_rage"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "4"
+			"RequiresFacetID" "2"
+		}
+	}
+	"life_stealer_unfettered"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "5"
+			"RequiresFacetID" "3"
+		}
+	}
+	"life_stealer_open_wounds"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"heal_percent"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+		}
+	}
+	"life_stealer_ghoul_frenzy"
+	{
+		"movement_speed_bonus"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+		}
+		"attack_speed_bonus"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+	}
+	"life_stealer_infest"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+		"damage"
+		{
+			"value" "100"
+			"operator" "OP_ADD"
+		}
+		"bonus_movement_speed"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+		}
+		"bonus_health"
+		{
+			"value"			"125"
+			"talents"
+			{
+				"special_bonus_unique_lifestealer_infest_target_bonus"	"x1.15"
+			}
+			"operator" "OP_ADD"
+		}
+	}
+}
