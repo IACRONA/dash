@@ -280,8 +280,8 @@ if GetMapName() == "dash" then
     DASH_RESPAWN_TIME_LEVEL = 
     {
         {8, 10},
-        {15, 15},
-        {28, 35},
+        {19, 18},
+        {28, 30},
         {30, 65},
     }
 
