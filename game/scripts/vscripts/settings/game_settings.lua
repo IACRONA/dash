@@ -30,7 +30,7 @@ if GetMapName() == "warsong" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 30
     GRANT_LEVELS = 0
-    GRANT_GOLD = 250
+    GRANT_GOLD = 25
 
     CONDITION_FLAG_COUNT_WIN = 8
 
@@ -155,7 +155,7 @@ if GetMapName() == "dash" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 30
     GRANT_LEVELS = 0
-    GRANT_GOLD = 145
+    GRANT_GOLD = 200
 
     CONDITION_FLAG_COUNT_WIN = 7
 
@@ -172,7 +172,7 @@ if GetMapName() == "dash" then
     MAX_SPEED = 550
     FLAG_CARRIER_MAX_SPEED = 400
 
-    BAN_TIME = 7 -- Время на бан
+    BAN_TIME = 10 -- Время на бан
 
     DAY_NIGHT_CYCL = false -- Включение / выключение смены для и ночи
 
@@ -280,8 +280,8 @@ if GetMapName() == "dash" then
     DASH_RESPAWN_TIME_LEVEL = 
     {
         {8, 10},
-        {19, 18},
-        {28, 30},
+        {15, 15},
+        {28, 35},
         {30, 65},
     }
 

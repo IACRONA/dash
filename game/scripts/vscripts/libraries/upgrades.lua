@@ -618,7 +618,9 @@ function Upgrades:ApplySummonUpgrades(summon, summon_name, owner)
 	if owner:GetClassname() == "dota_player_controller" then
 		owner = owner:GetAssignedHero()
 	end
-
+	
+	SUMMON_TO_ABILITY_MAP = SUMMON_TO_ABILITY_MAP or {}
+	
 	local summon_params = SUMMON_TO_ABILITY_MAP[summon_name]
 	if not summon_params then return end
 

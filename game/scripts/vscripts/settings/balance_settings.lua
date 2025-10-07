@@ -303,7 +303,7 @@ if GetMapName() == "dash" then
             incoming = -10,
         },
     }
-    BOOK_REROLL_COUNT  = 0
+    BOOK_REROLL_COUNT  = 3
     BOOK_COMMON_COOLDOWN = 100
     BOOK_RARE_START = 600
     BOOK_RARE_COOLDOWN = 140
