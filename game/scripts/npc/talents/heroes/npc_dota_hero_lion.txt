@@ -4,9 +4,9 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "6"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
-			"max_count" "9"
+			"max_count" "5"
 		}
 		"damage"
 		{
@@ -16,12 +16,6 @@
 	}
 	"lion_voodoo"
 	{
-		"cooldown_and_manacost"
-		{
-			"value" "6"
-			"operator" "OP_MULTIPLY"
-			"max_count" "5"
-		}
 	}
 	"lion_mana_drain"
 	{
@@ -52,17 +46,17 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "2"
+			"value" "6"
 			"operator" "OP_MULTIPLY"
 		}
 		"damage"
 		{
-			"value" "40"
+			"value" "65"
 			"operator" "OP_ADD"
 		}
 		"damage_per_kill"
 		{
-			"value" "1.7"
+			"value" "4"
 			"operator" "OP_ADD"
 		}
 	}

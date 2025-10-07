@@ -1,5 +1,14 @@
 "npc_dota_hero_jakiro"
 {
+	"jakiro_double_trouble"
+	{
+		"attack_damage_reduction"
+		{
+			"value" "-5"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "3"
+		}
+	}
 	"jakiro_dual_breath"
 	{
 		"cooldown_and_manacost"
@@ -9,7 +18,7 @@
 		}
 		"burn_damage"
 		{
-			"value"	"15"
+			"value"	"12"
 			"operator" "OP_ADD"
 			"talents"
 			{
@@ -37,8 +46,14 @@
 		}
 		"damage"
 		{
+			"value" "55"
+			"operator" "OP_ADD"
+		}
+		"detonate_damage"
+		{
 			"value" "65"
 			"operator" "OP_ADD"
+			"RequiresFacetID" "4"
 		}
 		"path_radius"
 		{
@@ -51,7 +66,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "18"
+			"value" "15"
 			"operator" "OP_MULTIPLY"
 			"linked_abilities"
 			{
@@ -59,7 +74,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "18"
+						"value" "15"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -87,16 +102,11 @@
 		{
 			"value" "20"
 			"operator" "OP_ADD"
-			"linked_special_values"
-			{
-				"pct_health_damage" "0.25"
-			}
 			"linked_abilities"
 			{
 				"jakiro_liquid_ice"
 				{
-					"damage" "20"
-					"pct_health_damage" "0.25"
+					"damage" "60"
 				}
 			}
 		}
@@ -111,7 +121,7 @@
 		}
 		"damage"
 		{
-			"value" "25"
+			"value" "20"
 			"operator" "OP_ADD"
 		}
 	}

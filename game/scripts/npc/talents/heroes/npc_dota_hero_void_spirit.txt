@@ -48,13 +48,29 @@
 		}
 		"radius"
 		{
-			"value" "35"
+			"value" "40"
 			"operator" "OP_ADD"
 			"max_count" "10"
+		}
+		"base_absorb_amount"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"talents"
+			{
+				"special_bonus_unique_void_spirit_resonant_pulse_barrier"		"x1.2"
+			}
 			"linked_special_values"
 			{
-				"base_absorb_amount" "30"
-				"absorb_per_hero_hit" "20"
+				"absorb_per_hero_hit"
+				{
+					"value" "40"
+					"operator" "OP_ADD"
+					"talents"
+					{
+						"special_bonus_unique_void_spirit_resonant_pulse_barrier"		"x1.2"
+					}
+				}
 			}
 		}
 		"damage"

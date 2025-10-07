@@ -1,5 +1,33 @@
 "npc_dota_hero_medusa"
 {
+	"medusa_venomed_volley"
+	{
+		"attack_slow"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "3"
+			"linked_special_values"
+			{
+				"move_slow" "3"
+			}
+		}
+	}
+	"medusa_undulation"
+	{
+		"fixed_movespeed"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "4"
+			"linked_special_values"
+			{
+				"stone_gaze_ms_tooltip_only" "15"
+			}
+		}
+	}
 	"medusa_split_shot"
 	{
 		"damage_modifier"
@@ -15,7 +43,7 @@
 		{
 			"value" "1"
 			"operator" "OP_ADD"
-			"max_count" "10"
+			"max_count" "5"
 		}
 	}
 	"medusa_mystic_snake"
@@ -47,6 +75,16 @@
 		{
 			"value" "40"
 			"operator" "OP_ADD"
+		}
+		"mana_per_damage"
+		{
+			"value" "-0.5"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"RequiresFacetID" "1"
+
+			"multiplicative_target"			"0"
+			"multiplicative_base_value"		"6"
 		}
 	}
 	"medusa_mana_shield"
@@ -95,12 +133,6 @@
 		{
 			"value" "10"
 			"operator" "OP_ADD"
-		}
-		"speed_boost"
-		{
-			"value" "10"
-			"operator" "OP_ADD"
-			"max_count" "5"
 		}
 	}
 }

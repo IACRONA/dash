@@ -4,7 +4,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "9"
+			"value" "6"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
@@ -19,25 +19,18 @@
 				"cast_bonus_gold" "20"
 			}
 		}
-		"bonus_creep_level"
-		{
-			"value"			"1"
-
-			"min_rarity"	"rare"
-			"max_count"		"2"
-		}
 	}
 	"doom_bringer_scorched_earth"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "12"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 		}
 		"damage_per_second"
 		{
-			"value" "16"
+			"value" "10"
 			"operator" "OP_ADD"
 		}
 		"radius"
@@ -86,18 +79,14 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "7"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
 		"damage"
 		{
-			"value" "28"
+			"value" "14"
 			"operator" "OP_ADD"
-			"facets"
-			{
-				"3" "12"
-			}
 		}
 	}
 }

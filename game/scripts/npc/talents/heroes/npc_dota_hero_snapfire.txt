@@ -1,20 +1,33 @@
 "npc_dota_hero_snapfire"
 {
+	"snapfire_buckshot"
+	{
+		"damage_amp"
+		{
+			"value" "6.5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"glancing_shot_damage_pct" "3"
+			}
+		}
+	}
 	"snapfire_scatterblast"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "9"
 			"operator" "OP_MULTIPLY"
 		}
 		"damage"
 		{
-			"value" "45"
+			"value" "40"
 			"operator" "OP_ADD"
 		}
 		"point_blank_dmg_bonus_pct"
 		{
-			"value" "35"
+			"value" "30"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
@@ -35,7 +48,7 @@
 		}
 		"impact_damage"
 		{
-			"value" "110"
+			"value" "100"
 			"operator" "OP_ADD"
 		}
 	}
@@ -56,7 +69,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "9"
 			"operator" "OP_MULTIPLY"
 			"linked_abilities"
 			{
@@ -64,7 +77,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "8"
+						"value" "9"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -72,36 +85,35 @@
 		}
 		"impact_radius"
 		{
-			"value" "35"
+			"value" "30"
 			"operator" "OP_ADD"
 			"max_count" "10"
+			"linked_special_values"
+			{
+				"burn_ground_duration" "0.35"
+			}
 			"linked_abilities"
 			{
 				"snapfire_spit_creep"
 				{
-					"impact_radius" "35"
+					"impact_radius" "30"
+					"burn_ground_duration" "0.35"
 				}
 			}
 		}
 		"damage_per_impact"
 		{
-			"value" "50"
-			"operator" "OP_ADD"
-		}
-		"burn_damage"
-		{
-			"value" "20"
+			"value" "40"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"burn_ground_duration" "0.5"
+				"burn_damage" "15"
 			}
 			"linked_abilities"
 			{
 				"snapfire_spit_creep"
 				{
-					"burn_damage" "20"
-					"burn_ground_duration" "0.5"
+					"burn_damage" "15"
 				}
 			}
 		}

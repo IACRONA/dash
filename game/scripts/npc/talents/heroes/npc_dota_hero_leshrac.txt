@@ -49,7 +49,7 @@
 			"max_count" "5"
 			"linked_abilities"
 			{
-				"leshrac_greater_lightning_storm"
+				"leshrac_greater_lightning_storm_lua"
 				{
 					"cooldown_and_manacost" "8"
 				}
@@ -67,7 +67,7 @@
 			"max_count" "10"
 			"linked_abilities"
 			{
-				"leshrac_greater_lightning_storm"
+				"leshrac_greater_lightning_storm_lua"
 				{
 					"radius" "30"
 				}
@@ -90,7 +90,7 @@
 		}
 		"damage"
 		{
-			"value" "6"
+			"value" "7"
 			"operator" "OP_ADD"
 		}
 	}

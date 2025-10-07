@@ -10,11 +10,11 @@
 		}
 		"outgoing_damage"
 		{
-			"value" "8"
+			"value" "7"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"outgoing_damage_tooltip" "8"
+				"outgoing_damage_tooltip" "7"
 			}
 		}
 		"incoming_damage"
@@ -22,8 +22,8 @@
 			"value" "-35"
 			"operator" "OP_MULTIPLY"
 			
-			"multiplicative_target"			"-100"
-			"multiplicative_base_value"		"250"
+			"multiplicative_target"			"-70"
+			"multiplicative_base_value"		"200"
 			
 			"linked_special_values"
 			{
@@ -32,7 +32,8 @@
 					"value" "-35"
 				
 					"operator" "OP_MULTIPLY"
-					"multiplicative_target" "0"
+					"multiplicative_target" "30"
+					"multiplicative_base_value"		"300"
 				}
 			}
 		}
@@ -82,7 +83,7 @@
 		}
 		"armor_reduction"
 		{
-			"value" "-2"
+			"value" "-1.75"
 			"operator" "OP_ADD"
 			"RequiresFacetID" "1"
 		}
@@ -93,7 +94,7 @@
 			"RequiresFacetID" "1"
 			"talents"
 			{
-				"special_bonus_unique_earth_spirit_8"		"x1.3"
+				"special_bonus_unique_naga_siren_2"		"x1.3"
 			}
 		}
 		"radius"
@@ -108,15 +109,15 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "9"
 			"operator" "OP_MULTIPLY"
 			"RequiresFacetID" "2"
 		}
-		"status_resistance"
+		"max_movement_speed"
 		{
-			"value" "-5"
+			"value" "-15"
 			"operator" "OP_ADD"
-			"max_count" "7"
+			"max_count" "8"
 			"RequiresFacetID" "2"
 		}
 		"damage"

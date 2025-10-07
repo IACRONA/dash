@@ -1,5 +1,19 @@
 "npc_dota_hero_phoenix"
 {
+	"phoenix_dying_light"
+	{
+		"damage_pct"
+		{
+			"value" "0.75"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "1"
+			"linked_special_values"
+			{
+				"radius" "30"
+			}
+		}
+	}
 	"phoenix_icarus_dive"
 	{
 		"cooldown_and_manacost"
@@ -10,17 +24,17 @@
 			{
 				"hp_cost_perc"
 				{
-					"value" "-3"
+					"value" "-1.5"
 					"operator" "OP_MULTIPLY"
 
-					"multiplicative_target"			"0"
+					"multiplicative_target"			"1.5"
 					"multiplicative_base_value"		"15"
 				}
 			}
 		}
 		"damage_per_second"
 		{
-			"value" "35"
+			"value" "25"
 			"operator" "OP_ADD"
 		}
 		"dash_length"
@@ -40,47 +54,56 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "12"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 			"linked_special_values"
 			{
 				"hp_cost_perc"
 				{
-					"value" "-4"
+					"value" "-2"
 					"operator" "OP_MULTIPLY"
 
-					"multiplicative_target"			"0"
+					"multiplicative_target"			"2"
 					"multiplicative_base_value"		"20"
 				}
-			}
-		}
-		"radius"
-		{
-			"value" "50"
-			"operator" "OP_ADD"
-			"max_count" "8"
-			"linked_special_values"
-			{
-				"attackspeed_slow" "-30"
+				"radius"
+				{
+					"value" "40"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"600"
+					"multiplicative_base_value"		"200"
+				}
 			}
 			"linked_abilities"
 			{
 				"phoenix_launch_fire_spirit"
 				{
-					"radius" "50"
-					"attackspeed_slow" "-30"
+					"radius"
+					{
+						"value" "40"
+						"operator" "OP_MULTIPLY"
+
+						"multiplicative_target"			"600"
+						"multiplicative_base_value"		"200"
+					}
 				}
 			}
 		}
 		"damage_per_second"
 		{
-			"value" "35"
+			"value" "30"
 			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"attackspeed_slow" "-15"
+			}
 			"linked_abilities"
 			{
 				"phoenix_launch_fire_spirit"
 				{
-					"damage_per_second" "35"
+					"damage_per_second" "30"
+					"attackspeed_slow" "-15"
 				}
 			}
 		}
@@ -89,56 +112,66 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
 			"linked_special_values"
 			{
 				"hp_cost_perc_per_second"
 				{
-					"value" "-1.2"
+					"value" "-0.48"
 					"operator" "OP_MULTIPLY"
 
-					"multiplicative_target"			"0"
+					"multiplicative_target"			"0.6"
 					"multiplicative_base_value"		"6"
 				}
 			}
 		}
 		"hp_perc_damage"
 		{
-			"value" "1.0"
+			"value" "0.6"
 			"operator" "OP_MULTIPLY"
 
 			"multiplicative_target"			"25"
 			"multiplicative_base_value"		"7.75"
 			"linked_special_values"
 			{
-				"base_damage" "5"
-				"hp_perc_heal" "0.5"
-				"base_heal" "5"
+				"base_damage" "4"
+				"base_heal" "2"
+				"hp_perc_heal"
+				{
+					"value" "0.2"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"8"
+					"multiplicative_base_value"		"2"
+				}
 			}
 		}
 		"radius"
 		{
-			"value" "35"
+			"value" "25"
 			"operator" "OP_ADD"
 			"max_count" "10"
-			"linked_special_values"
-			{
-				"blind_per_second" "1"
-			}
+		}
+		"focal_point_max_multiplier"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "2"
 		}
 	}
 	"phoenix_supernova"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "9"
+			"value" "7"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
 		"aura_radius"
 		{
-			"value" "65"
+			"value" "60"
 			"operator" "OP_ADD"
 			"max_count" "5"
 			"linked_special_values"
@@ -149,7 +182,7 @@
 		}
 		"damage_per_sec"
 		{
-			"value" "30"
+			"value" "22"
 			"operator" "OP_ADD"
 		}
 	}

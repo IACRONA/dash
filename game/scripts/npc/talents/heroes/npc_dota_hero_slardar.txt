@@ -7,10 +7,24 @@
 			"value" "8"
 			"operator" "OP_MULTIPLY"
 		}
-		"bonus_speed"
+		"speed_burst_percent"
 		{
 			"value" "6"
 			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "1"
+			"linked_special_values"
+			{
+				"speed_burst_max_duration" "0.5"
+				"speed_burst_duration" "0.5"
+			}
+			"linked_abilities"
+			{
+				"slardar_seaborn_sentinel"
+				{
+					"river_speed" "3"
+				}
+			}
 		}
 	}
 	"slardar_slithereen_crush"
@@ -71,6 +85,13 @@
 				"puddle_duration" "1.2"
 				"puddle_radius" "30"
 			}
+		}
+		"armor_pct"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "2"
 		}
 	}
 	"slardar_seaborn_sentinel"

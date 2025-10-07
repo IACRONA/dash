@@ -1,5 +1,15 @@
 "npc_dota_hero_earth_spirit"
 {
+	"earth_spirit_stone_caller"
+	{
+		"duration"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "2"
+		}
+	}
 	"earth_spirit_boulder_smash"
 	{
 		"cooldown_and_manacost"
@@ -27,6 +37,7 @@
 			"linked_special_values"
 			{
 				"rock_search_aoe" "30"
+				"AbilityCastRange" "30"
 			}
 			"linked_abilities"
 			{
@@ -60,6 +71,7 @@
 			{
 				"speed" "100"
 				"rock_speed" "160"
+				"allied_hero_speed" "190"
 				"delay" "-0.1"
 			}
 		}
@@ -67,6 +79,17 @@
 		{
 			"value" "70"
 			"operator" "OP_ADD"
+		}
+		"allied_bonus_movespeed"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "3"
+			"linked_special_values"
+			{
+				"allied_bonus_movespeed_duration" "0.6"
+			}
 		}
 	}
 	"earth_spirit_geomagnetic_grip"
@@ -131,8 +154,14 @@
 			"operator" "OP_ADD"
 			"talents"
 			{
-				"special_bonus_unique_earth_spirit_8"		"x1.3"
+				"special_bonus_unique_earth_spirit_8"		"x1.25"
 			}
+		}
+		"magnetized_rocks_bonus_self_damage"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "1"
 		}
 	}
 }

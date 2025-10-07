@@ -84,9 +84,9 @@ function CAddonWarsong:OnEntityKilled( params )
 			end
 		end
 		if mid_destroy_dire or mid_destroy_radiant then
-			local all_buildings = Entities:FindAllInSphere(Vector(0, 0, 0), 99999999999)
+			local all_buildings = Entities:FindAllByClassname("npc_dota_tower")
 			for _, tower in pairs(all_buildings) do
-				local tower_name = tower.GetUnitName and tower:GetUnitName()
+				local tower_name = tower:GetUnitName()
 				if mid_destroy_dire and tower_name == "npc_dota_badguys_tower4" then
 					tower:RemoveModifierByName("modifier_for_middle_towers_for_unvulbure")
 				elseif mid_destroy_radiant and tower_name == "npc_dota_goodguys_tower4" then

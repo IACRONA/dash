@@ -80,5 +80,10 @@
 			"operator" "OP_ADD"
 			"max_count" "5"
 		}
+		"movement_bonus"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
 	}
 }

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/game/dota/scripts/**)",
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/game/**)",
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/game/dota/**)",
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/game/bin/**)",
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/panorama/layout/**)",
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/panorama/layout/custom_game/select_spell/**)",
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

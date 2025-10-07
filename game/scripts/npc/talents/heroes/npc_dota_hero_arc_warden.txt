@@ -1,5 +1,19 @@
 "npc_dota_hero_arc_warden"
 {
+	"arc_warden_runic_infusion"
+	{
+		"duration"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+		}
+		"all_attribute_bonus_per_stack"
+		{
+			"value" "0.5"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "4"
+		}
+	}
 	"arc_warden_flux"
 	{
 		"cooldown_and_manacost"
@@ -74,7 +88,7 @@
 			"operator" "OP_ADD"
 			"talents"
 			{
-				"special_bonus_unique_arc_warden"		"x1.4"
+				"special_bonus_unique_arc_warden"		"x1.5"
 			}
 		}
 	}
@@ -94,6 +108,13 @@
 			{
 				"max_slow"	"-7"
 			}
+		}
+		"rune_duration"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+			"max_count" "4"
+			"RequiresFacetID" "3"
 		}
 	}
 }

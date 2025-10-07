@@ -303,7 +303,7 @@ function CAddonWarsong:OnThink()
 			self:GetWinPlayers()
 		end
 	end
-	return 0.5
+	return 2
 end
 
 function CAddonWarsong:OnStartGame()
@@ -312,7 +312,7 @@ function CAddonWarsong:OnStartGame()
 	if GetMapName() == "portal_duo" or GetMapName() == "portal_trio" then
 		Timers:CreateTimer(1, function()
 			self:UpdateLeaderPortalDuo()
-			return 0.5
+			return 1
 		end)
 	end
 end
@@ -332,10 +332,10 @@ function CAddonWarsong:OnGameRulesStateChange()
         Timers:CreateTimer(0.1, function()
             local nNewState = GameRules:State_Get()
             if nNewState ~= DOTA_GAMERULES_STATE_HERO_SELECTION then
-                return 
+                return
             end
             self:HeroSelectionUpdater()
-            return 0.1
+            return 0.5  -- Увеличено с 0.2 до 0.5 секунд для оптимизации
         end)
 		self.flagPositions = {}
 		self.flagItemNames = {}
@@ -568,12 +568,12 @@ function CAddonWarsong:OnGameRulesStateChange()
 
 			if GetMapName() == "dash" then
 				self:GiveTowersModifiersUNVUIL()
-				Timers:CreateTimer(1, function()
+				Timers:CreateTimer(3, function()
 					local goldTeam = {
 						[DOTA_TEAM_GOODGUYS] = 0,
 						[DOTA_TEAM_BADGUYS] = 0,
 					}
- 					
+
 					local radiantScore = self.nCapturedFlagsCount[DOTA_TEAM_GOODGUYS] or 0
 					local direScore = self.nCapturedFlagsCount[DOTA_TEAM_BADGUYS] or 0
 
@@ -581,7 +581,7 @@ function CAddonWarsong:OnGameRulesStateChange()
 					local loser = leader == DOTA_TEAM_GOODGUYS and DOTA_TEAM_BADGUYS or DOTA_TEAM_GOODGUYS
 					local dataLoser = {place = "last"}
 					local dataLeader = {place = "first", tier = 0}
-								
+
 					local differenceKill = (self.nCapturedFlagsCount[leader] or 0) - (self.nCapturedFlagsCount[loser] or 0)
 					DoWithAllPlayers(function(player, hero, playerId)
 						if not hero then return end
@@ -602,7 +602,7 @@ function CAddonWarsong:OnGameRulesStateChange()
  					else
 						dataLoser.tier = 0
 					end
-				
+
 					self.teamBalanceTier[loser] = dataLoser
 					self.teamBalanceTier[leader] = dataLeader
 
@@ -610,26 +610,26 @@ function CAddonWarsong:OnGameRulesStateChange()
 						if not hero then return end
 						if not hero.balanceModifier then return end
 						local team = hero:GetTeamNumber()
-				
+
 						local tier = self.teamBalanceTier[team].tier
 						local place = self.teamBalanceTier[team].place
-				
+
 						if place == "last" and LAST_MODIFIER_BALANCE[tier] then
 							local incomingDamage = LAST_MODIFIER_BALANCE[tier].incoming
 							local outgoingDamage = LAST_MODIFIER_BALANCE[tier].outgoing
 							if incomingDamage or outgoingDamage then
-								hero.balanceModifier:SetStackCount(1) 
+								hero.balanceModifier:SetStackCount(1)
 								hero.balanceModifier.incomingDamage = incomingDamage or 0
 								hero.balanceModifier.outgoingDamage = outgoingDamage or 0
 							end
 						 else
-							 hero.balanceModifier:SetStackCount(0) 
-							hero.balanceModifier.incomingDamage = 0	
+							 hero.balanceModifier:SetStackCount(0)
+							hero.balanceModifier.incomingDamage = 0
 							hero.balanceModifier.outgoingDamage = 0
 						end
 					end)
-					
-					return 2
+
+					return 3  -- Увеличено с 2 до 3 секунд для оптимизации
 				end)
 			end
 		end
@@ -660,17 +660,17 @@ function CAddonWarsong:GiveBooks()
 	DoWithAllPlayers(function(player, hero, playerId)
         initPlayerBooks(playerId)
     end)
-	Timers:CreateTimer(1, function()
+	Timers:CreateTimer(2, function()
 		DoWithAllPlayers(function(player, hero, playerId)
 			if not hero then return end
 			if self.bookTicks.common[playerId] == nil then
 				initPlayerBooks(playerId)
 				return
-			end 
+			end
 
-			self.bookTicks.common[playerId].tick = self.bookTicks.common[playerId].tick + 1
-			self.bookTicks.rare[playerId].tick = self.bookTicks.rare[playerId].tick + 1
-			self.bookTicks.epic[playerId].tick = self.bookTicks.epic[playerId].tick + 1
+			self.bookTicks.common[playerId].tick = self.bookTicks.common[playerId].tick + 2
+			self.bookTicks.rare[playerId].tick = self.bookTicks.rare[playerId].tick + 2
+			self.bookTicks.epic[playerId].tick = self.bookTicks.epic[playerId].tick + 2
 
 			local team = hero:GetTeamNumber()
 			local commonTime = BOOK_COMMON_COOLDOWN
@@ -735,8 +735,8 @@ function CAddonWarsong:GiveBooks()
                 end
             end
 		end)
- 
-		return 1
+
+		return 2  -- Увеличено с 1 до 2 секунд для оптимизации
 	end)
 end
 
@@ -842,11 +842,11 @@ function CAddonWarsong:OnNPCSpawned(event)
 		end
 	end
 end
--- выдаем неуязвимость центральным башням 
+-- выдаем неуязвимость центральным башням
 function CAddonWarsong:GiveTowersModifiersUNVUIL()
-    local all_buildings = Entities:FindAllInSphere(Vector(0,0,0), 99999999999)
+    local all_buildings = Entities:FindAllByClassname("npc_dota_tower")
     for _, tower in pairs(all_buildings) do
-        local tower_name = tower.GetUnitName and tower:GetUnitName()
+        local tower_name = tower:GetUnitName()
         if tower_name == "npc_dota_goodguys_tower4" or tower_name == "npc_dota_badguys_tower4" then
             tower:AddNewModifier(tower, nil, "modifier_for_middle_towers_for_unvulbure", {})
         end
@@ -904,21 +904,19 @@ function CAddonWarsong:AMP_TOWERS_AND_CREEPS()
 		end
 		tower:AddNewModifier(tower, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
 	end
-	local all_fountains = Entities:FindAllInSphere(Vector(0,0,0), 99999999999)
+	local all_fountains = Entities:FindAllByClassname("ent_dota_fountain")
 	for _, fountain in pairs(all_fountains) do
-		if fountain:GetName() == "dota_badguys_fort" or fountain:GetName() == "dota_goodguys_fort" then
-			if fountain:HasModifier("modifier_dash_amp") then
-				fountain:RemoveModifierByName("modifier_dash_amp")
-			end
-			fountain:AddNewModifier(fountain, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level, type = "fountain"})
+		if fountain:HasModifier("modifier_dash_amp") then
+			fountain:RemoveModifierByName("modifier_dash_amp")
 		end
+		fountain:AddNewModifier(fountain, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level, type = "fountain"})
 	end
 end
 function CAddonWarsong:UpdateCreepsAMP()
     Timers:CreateTimer(function()
-        local all_creeps = Entities:FindAllInSphere(Vector(0,0,0), 99999999999)
+        local all_creeps = Entities:FindAllByClassname("npc_dota_creep*")
         for _, creep in pairs(all_creeps) do
-            if creep.IsCreep and creep:IsCreep() then
+            if creep and not creep:IsNull() and creep:IsAlive() then
                 -- Удаляем старый модификатор перед добавлением нового
                 if creep:HasModifier("modifier_dash_amp") then
                     creep:RemoveModifierByName("modifier_dash_amp")
@@ -926,7 +924,7 @@ function CAddonWarsong:UpdateCreepsAMP()
                 creep:AddNewModifier(creep, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level, type = "creep"})
             end
         end
-        return 1
+        return 5  -- Увеличено с 1 до 5 секунд для оптимизации
     end)
 end
 -- Дай пять механика

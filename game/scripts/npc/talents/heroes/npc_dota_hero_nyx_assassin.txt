@@ -4,13 +4,13 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "6"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 		}
 		"impale_damage"
 		{
-			"value" "40"
+			"value" "30"
 			"operator" "OP_ADD"
 		}
 		//"width"
@@ -24,33 +24,40 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "6"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 		}
 		"max_mana_as_damage_pct"
 		{
-			"value" "3"
+			"value" "1.5"
 			"operator" "OP_ADD"
 		}
 		"damage_echo_pct"
 		{
-			"value" "3"
+			"value" "2"
 			"operator" "OP_ADD"
 			"max_count" "5"
+		}
+		"mana_burn_pct"
+		{
+			"value" "1.5"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"RequiresFacetID" "1"
 		}
 	}
 	"nyx_assassin_spiked_carapace"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "6"
 			"operator" "OP_MULTIPLY"
-			"max_count" "3"
+			"max_count" "4"
 		}
 		"damage_reflect_pct"
 		{
-			"value" "11"
+			"value" "6"
 			"operator" "OP_ADD"
 		}
 	}
@@ -68,8 +75,15 @@
 		}
 		"bonus_damage"
 		{
-			"value" "90"
+			"value" "80"
 			"operator" "OP_ADD"
+		}
+		"free_pathing_duration"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"RequiresFacetID" "2"
 		}
 	}
 }

@@ -51,7 +51,8 @@
 			{
 				"treant_natures_guise"
 				{
-					"shard_damage" "50"
+					"shard_damage" "28"
+					"attack_damage_pct" "21"
 				}
 			}
 		}
@@ -96,14 +97,6 @@
 		{
 			"value" "4"
 			"operator" "OP_ADD"
-			"linked_abilities"
-			{
-				"treant_natures_guise"
-				{
-					"shard_root_time" "0.15"
-					"shard_by_tree_root_time" "0.3"
-				}
-			}
 		}
 	}
 	"treant_overgrowth"
@@ -112,7 +105,7 @@
 		{
 			"value" "10"
 			"operator" "OP_MULTIPLY"
-			"multiplicative_target"	"85"
+			"multiplicative_target"			"85"
 			"linked_abilities"
 			{
 				"treant_eyes_in_the_forest"

@@ -1,33 +1,50 @@
 "npc_dota_hero_dazzle"
 {
-	"dazzle_life_shield"
+	"dazzle_poison_touch"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "22"
+			"operator" "OP_ADD"
+		}
+		"start_radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"end_radius" "40"
+			}
+		}
+		"split_damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "2"
+			"linked_special_values"
+			{
+				"split_radius" "30"
+			}
+		}
+	}
+	"dazzle_shallow_grave"
 	{
 		"cooldown_and_manacost"
 		{
 			"value" "10"
 			"operator" "OP_MULTIPLY"
+			"max_count" "5"
 		}
-		"shield_health"
+		"heal_amplify"
 		{
-			"value" "110"
-			"operator" "OP_ADD"
-		}
-		"damage_return"
-		{
-			"value" "5"
-			"operator" "OP_ADD"
-		}
-		"heal_amp"
-		{
-			"value" "3"
-			"operator" "OP_ADD"
-		} 
-	}
-	"dazzle_dispell"
-	{
-		"AbilityCastRange"
-		{
-			"value" "20"
+			"value" "6"
 			"operator" "OP_ADD"
 		}
 	}
@@ -56,22 +73,12 @@
 			"operator" "OP_ADD"
 		}
 	}
-	"dazzle_grace"
+	"dazzle_nothl_projection"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "4"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
-		}
-		"chance_shield"
-		{
-			"value" "2"
-			"operator" "OP_ADD"
-		}
-		"heal"
-		{
-			"value" "60"
-			"operator" "OP_ADD"
 		}
 	}
 	"dazzle_innate_weave"
@@ -86,6 +93,13 @@
 			"value" "1.5"
 			"operator" "OP_ADD"
 			"max_count" "8"
+		}
+		"heal_amplification_pct"
+		{
+			"value" "1.5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "1"
 		}
 	}
 }

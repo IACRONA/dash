@@ -4,20 +4,9 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "5"
 			"operator" "OP_MULTIPLY"
-			"max_count" "4"
-			"RequiresFacetID" "2"
-		}
-	}
-	"life_stealer_unfettered"
-	{
-		"cooldown_and_manacost"
-		{
-			"value" "8"
-			"operator" "OP_MULTIPLY"
-			"max_count" "5"
-			"RequiresFacetID" "3"
+			"max_count" "6"
 		}
 	}
 	"life_stealer_open_wounds"
@@ -37,12 +26,12 @@
 	{
 		"movement_speed_bonus"
 		{
-			"value" "5"
+			"value" "4"
 			"operator" "OP_ADD"
 		}
 		"attack_speed_bonus"
 		{
-			"value" "25"
+			"value" "21"
 			"operator" "OP_ADD"
 		}
 	}
@@ -62,7 +51,7 @@
 		}
 		"damage"
 		{
-			"value" "100"
+			"value" "80"
 			"operator" "OP_ADD"
 		}
 		"bonus_movement_speed"

@@ -36,6 +36,13 @@
 			"value" "150"
 			"operator" "OP_ADD"
 			"max_count" "8"
+			"linked_abilities"
+			{
+				"oracle_rain_of_destiny"
+				{
+					"heal_amp" "5"
+				}
+			}
 		}
 		"radius"
 		{

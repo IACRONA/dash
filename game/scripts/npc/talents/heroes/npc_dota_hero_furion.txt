@@ -1,10 +1,19 @@
 "npc_dota_hero_furion"
 {
+	"furion_natures_profit"
+	{
+		"hero_level_gold_multiplier"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "3"
+		}
+	}
 	"furion_sprout"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "12"
+			"value" "13"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 			"linked_abilities"
@@ -13,7 +22,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "12"
+						"value" "13"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -21,30 +30,37 @@
 		}
 		"sprout_damage"
 		{
-			"value" "50"
+			"value" "40"
 			"operator" "OP_ADD"
-			"linked_special_values"
-			{
-				"sprout_heal_per_second" "6"
-			}
 			"linked_abilities"
 			{
 				"furion_curse_of_the_forest"
 				{
-					"damage_per_tree" "3"
+					"damage_per_tree" "2"
 				}
+			}
+		}
+		"sprout_heal_per_second"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "1"
+
+			"talents"
+			{
+				"special_bonus_unique_furion_8"	"x1.3"
 			}
 		}
 		"sprout_damage_radius"
 		{
-			"value" "65"
+			"value" "80"
 			"operator" "OP_ADD"
-			"max_count"	"6"
+			"max_count"	"5"
 			"linked_special_values"
 			{
 				"vision_range"
 				{
-					"value" "65"
+					"value" "80"
 					"operator" "OP_ADD"
 				}
 			}
@@ -54,12 +70,12 @@
 				{
 					"radius"
 					{
-						"value" "65"
+						"value" "80"
 						"operator" "OP_ADD"
 					}
 					"range"
 					{
-						"value" "65"
+						"value" "80"
 						"operator" "OP_ADD"
 					}
 				}
@@ -70,57 +86,41 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "20"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
-			"max_count" "5"
 			"linked_special_values"
 			{
-				"buff_duration" "3"
+				"barrier" "85"
 			}
-		}
-		"barrier"
-		{
-			"value" "70"
-			"operator" "OP_ADD"
 		}
 	}
 	"furion_force_of_nature_custom"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "11"
+			"value" "13"
 			"operator" "OP_MULTIPLY"
-			"max_count" "8"
+			"max_count" "7"
 		}
 		"treant_damage"
 		{
-			"value" "50"
-			"facets"
-			{
-				"2" "75"
-			}
+			"value" "60"
+			"operator" "OP_ADD"
 
 			"talents"
 			{
 				"special_bonus_unique_furion"	"x3"
 			}
-
-			"operator" "OP_ADD"
 		}
 		"treant_hp"
 		{
-			"value" "400"
-			"facets"
-			{
-				"2" "800"
-			}
+			"value" "450"
+			"operator" "OP_ADD"
 
 			"talents"
 			{
 				"special_bonus_unique_furion"	"x3"
 			}
-
-			"operator" "OP_ADD"
 
 			"linked_special_values"
 			{
@@ -132,13 +132,13 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "11"
+			"value" "13"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
 		"damage"
 		{
-			"value" "45"
+			"value" "70"
 			"operator" "OP_ADD"
 		}
 	}

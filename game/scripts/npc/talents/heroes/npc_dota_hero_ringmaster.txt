@@ -4,26 +4,26 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "5"
+			"value" "11"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
 		"damage_min"
 		{
-			"value" "60"
+			"value" "30"
 			"operator" "OP_ADD"
 
 			"linked_special_values"
 			{
 				"damage_max"
 				{
-					"value"	"150"
+					"value"	"120"
 				}
 			}
 		}
 		"start_width"
 		{
-			"value" "45"
+			"value" "35"
 			"operator" "OP_ADD"
 			"max_count" "10"
 
@@ -31,7 +31,7 @@
 			{
 				"end_width"
 				{
-					"value"	"25"
+					"value"	"35"
 				}
 			}
 		}
@@ -42,31 +42,56 @@
 		{
 			"value" "8"
 			"operator" "OP_MULTIPLY"
-			"max_count" "8"
+			"multiplicative_target"	"76.67"
+
+			"linked_special_values"
+			{
+				"explosion_damage"
+				{
+					"value"	"50"
+				}
+			}
 		}
-		"invis_duration"
+		"move_speed"
 		{
-			"value" "0.4"
+			"value" "8"
 			"operator" "OP_ADD"
-			"max_count"	"8"
+			"max_count"	"5"
+
+			"linked_special_values"
+			{
+				"magic_resist"
+				{
+					"value"	"4"
+				}
+			}
 		}
 		"leash_radius" // TODO: fix this not updating AbilityCastRange indicator
 		{
 			"value" "30"
 			"operator" "OP_ADD"
 			"max_count" "10"
+
+			"linked_special_values"
+			{
+				"explosion_radius"
+				{
+					"value"	"30"
+				}
+			}
 		}
 	}
 	"ringmaster_impalement"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "12"
 			"operator" "OP_MULTIPLY"
+			"max_count" "10"
 		}
 		"damage_impact"
 		{
-			"value" "60"
+			"value" "75"
 			"operator" "OP_ADD"
 
 			"linked_special_values"
@@ -99,26 +124,25 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "11"
 			"operator" "OP_MULTIPLY"
-			"multiplicative_target"			"90"
 		}
 		"mesmerize_radius"
 		{
-			"value" "30"
+			"value" "40"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
 		"aura_damage"
 		{
-			"value" "200"
+			"value" "25"
 			"operator" "OP_ADD"
 
 			"linked_special_values"
 			{
 				"explosion_damage"
 				{
-					"value"	"250"
+					"value"	"150"
 				}
 			}
 		}

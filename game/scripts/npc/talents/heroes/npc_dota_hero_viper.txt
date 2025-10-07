@@ -1,11 +1,28 @@
 "npc_dota_hero_viper"
 {
+	"viper_predator"
+	{
+		"damage_base"
+		{
+			"value" "0.15"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"damage_per_level" "0.02"
+			}
+		}
+	}
 	"viper_poison_attack"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "12"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
+			"max_count" "4"
+			"linked_special_values"
+			{
+				"max_stacks" "1"
+			}
 		}
 		"damage"
 		{
@@ -16,11 +33,16 @@
 			}
 			"operator" "OP_ADD"
 		}
-		"max_stacks"
+		"accumulated_damage_explosion_pct"
 		{
-			"value" "1"
+			"value" "10"
 			"operator" "OP_ADD"
-			"max_count" "4"
+			"max_count" "10"
+			"RequiresFacetID" "1"
+			"linked_special_values"
+			{
+				"expiration_damage_radius" "30"
+			}
 		}
 	}
 	"viper_nethertoxin"
@@ -65,10 +87,10 @@
 	{
 		"duration"
 		{
-			"value" "0.25"
+			"value" "0.5"
 			"operator" "OP_ADD"
-			"max_count" "8"
-			"min_rarity" "epic"
+			"max_count" "10"
+			"RequiresFacetID" "2"
 		}
 		"bonus_magic_resistance"
 		{
@@ -95,13 +117,6 @@
 		{
 			"value" "7"
 			"operator" "OP_MULTIPLY"
-		}
-		"duration"
-		{
-			"value" "0.5"
-			"operator" "OP_ADD"
-			"max_count" "8"
-			"min_rarity" "rare"
 		}
 		"damage"
 		{

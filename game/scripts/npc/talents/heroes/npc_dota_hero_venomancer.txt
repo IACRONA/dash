@@ -1,5 +1,13 @@
 "npc_dota_hero_venomancer"
 {
+	"venomancer_sepsis"
+	{
+		"bonus_dmg_per_debuff_pct"
+		{
+			"value" "4"
+			"operator" "OP_ADD"
+		}
+	}
 	"venomancer_venomous_gale"
 	{
 		"cooldown_and_manacost"
@@ -29,7 +37,7 @@
 	{
 		"damage"
 		{
-			"value" "15"
+			"value" "13"
 			"operator" "OP_ADD"
 		}
 		"movement_speed"
@@ -43,14 +51,24 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "7"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
 		"ward_damage_tooltip"
 		{
-			"value"			"16"
+			"value"			"12"
 
+			"talents"
+			{
+				"special_bonus_unique_venomancer"	"x2.5"
+			}
+
+			"operator" "OP_ADD"
+		}
+		"ward_hp_tooltip"
+		{
+			"value"		"40"
 			"talents"
 			{
 				"special_bonus_unique_venomancer"	"x2.5"

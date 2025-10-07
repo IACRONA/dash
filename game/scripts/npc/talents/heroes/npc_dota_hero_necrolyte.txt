@@ -1,5 +1,17 @@
 "npc_dota_hero_necrolyte"
 {
+	"necrolyte_sadist"
+	{
+		"health_regen"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"mana_regen" "1"
+			}
+		}
+	}
 	"necrolyte_death_pulse"
 	{
 		"cooldown_and_manacost"
@@ -41,11 +53,14 @@
 			"value" "8"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
-		}
-		"heal_bonus"
-		{
-			"value" "5"
-			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"heal_bonus"
+				{
+					"value" "2"
+					"operator" "OP_ADD"
+				}
+			}
 		}
 		"slow_aoe"
 		{

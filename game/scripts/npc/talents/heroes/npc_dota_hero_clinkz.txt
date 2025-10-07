@@ -6,6 +6,7 @@
 		{
 			"value" "8"
 			"operator" "OP_MULTIPLY"
+			"max_count"	"10"
 
 			"linked_abilities"
 			{
@@ -26,9 +27,9 @@
 		}
 		"duration"
 		{
-			"value" 	"0.5"
-			"operator" 	"OP_ADD"
-			"max_count"	"7"
+			"value" "0.5"
+			"operator" "OP_ADD"
+			"max_count"	"5"
 		}
 	}
 	"clinkz_tar_bomb"
@@ -40,11 +41,11 @@
 		}
 		"impact_damage"
 		{
-			"value" "18"
+			"value" "16"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"damage_bonus" "9"
+				"damage_bonus" "7"
 			}
 		}
 		"radius"
@@ -63,7 +64,7 @@
 		}
 		"health_gain"
 		{
-			"value" "60"
+			"value" "50"
 			"operator" "OP_ADD"
 		}
 	}

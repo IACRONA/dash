@@ -4,7 +4,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 			"max_count" "6"
 			"linked_abilities"
@@ -13,7 +13,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "9"
+						"value" "10"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -21,7 +21,7 @@
 		}
 		"torrent_damage"
 		{
-			"value" "100"
+			"value" "60"
 			"operator" "OP_ADD"
 			"talents"
 			{
@@ -54,7 +54,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "6"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
 		}
 		"cleave_distance"
@@ -70,7 +70,7 @@
 		}
 		"damage_bonus"
 		{
-			"value" "75"
+			"value" "55"
 			"operator" "OP_ADD"
 		}
 	}

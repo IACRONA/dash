@@ -57,6 +57,13 @@
 			"value" "1"
 			"operator" "OP_ADD"
 		}
+		"stack_count_increase_on_disable"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "3"
+			"RequiresFacetID" "2"
+		}
 	}
 	"primal_beast_pulverize"
 	{
@@ -64,7 +71,7 @@
 		{
 			"value" "8"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
+			"max_count" "3"
 			"linked_abilities"
 			{
 				"primal_beast_rock_throw"
@@ -102,6 +109,13 @@
 					"fragment_impact_radius" "30"
 				}
 			}
+		}
+		"bonus_aoe_pct_per_hit"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "3"
+			"RequiresFacetID" "3"
 		}
 	}
 }

@@ -1,5 +1,13 @@
 "npc_dota_hero_rubick"
 {
+	"rubick_might_and_magus"
+	{
+		"bonus_damage_pct"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+	}
 	"rubick_telekinesis"
 	{
 		"cooldown_and_manacost"
@@ -35,7 +43,7 @@
 		}
 		"damage"
 		{
-			"value" "35"
+			"value" "30"
 			"operator" "OP_ADD"
 		}
 		"jump_damage_reduction_pct"
@@ -46,7 +54,7 @@
 		}
 		"attack_damage_reduction"
 		{
-			"value" "13"
+			"value" "11"
 			"operator" "OP_ADD"
 			"max_count" "4"
 		}
@@ -71,6 +79,13 @@
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
+		"aoe_bonus"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "2"
+			"RequiresFacetID" "2"
+		}
 	}
 	"rubick_spell_steal"
 	{
@@ -83,6 +98,13 @@
 			{
 				"stolen_debuff_amp" "5"
 			}
+		}
+		"stolen_mana_reduction"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "2"
+			"RequiresFacetID" "1"
 		}
 	}
 }

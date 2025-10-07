@@ -1,5 +1,18 @@
 "npc_dota_hero_earthshaker"
 {
+	"earthshaker_slugger"
+	{
+		"projectile_body_damage_hero"
+		{
+			"value" "135"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "2"
+			"linked_special_values"
+			{
+				"projectile_body_damage_creep" "30"
+			}
+		}
+	}
 	"earthshaker_fissure"
 	{
 		"fissure_radius"
@@ -18,7 +31,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "5"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 		}
@@ -27,6 +40,18 @@
 			"value" "50"
 			"operator" "OP_ADD"
 		}
+		"scepter_cleave_pct"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"scepter_cleave_distance" "35"
+				"scepter_cleave_ending_width" "30"
+				"scepter_cleave_starting_width" "30"
+			}
+		}
 	}
 	"earthshaker_aftershock"
 	{
@@ -34,6 +59,13 @@
 		{
 			"value" "50"
 			"operator" "OP_ADD"
+		}
+		"aftershock_range"
+		{
+			"value" "15"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "1"
 		}
 	}
 	"earthshaker_echo_slam"

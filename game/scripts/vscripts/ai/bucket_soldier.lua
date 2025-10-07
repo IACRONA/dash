@@ -34,7 +34,7 @@ function Spawn( entityKeyValues )
 		return
 	end
 
-	thisEntity:SetContextThink( "BucketSoldierThink", BucketSoldierThink, 0.1 )
+	thisEntity:SetContextThink( "BucketSoldierThink", BucketSoldierThink, 0.3 )
 	thisEntity.AI = CBucketSoldier( thisEntity )
 end
 
@@ -48,7 +48,7 @@ function BucketSoldierThink()
 		return fThinkTime
 	end
 
-	return 0.1
+	return 0.3  -- Увеличено с 0.1 до 0.3 для оптимизации
 end
 
 function CBucketSoldier:constructor( me )
@@ -95,14 +95,14 @@ function CBucketSoldier:BotThink()
 	if self.nState == BUCKET_SOLDIER_STATE_IDLE then
 		if self:ShouldLeash() == true then
 			self:ChangeBotState( BUCKET_SOLDIER_STATE_LEASHED )
-			return 0.1
+			return 0.3
 		end
 
 		local hTarget = self:FindBestTarget()
 		if hTarget ~= nil then
 			self.hAttackTarget = hTarget
 			self:ChangeBotState( BUCKET_SOLDIER_STATE_ATTACKING )
-			return 0.1
+			return 0.3
 		end
 
 		if GameRules:GetGameTime() > self.flNextPatrolTime then
@@ -113,7 +113,7 @@ function CBucketSoldier:BotThink()
 	elseif self.nState == BUCKET_SOLDIER_STATE_ATTACKING then
 		if self:ShouldLeash() == true then
 			self:ChangeBotState( BUCKET_SOLDIER_STATE_LEASHED )
-			return 0.1
+			return 0.3
 		end
 		if self.hAttackTarget ~= nil and self.hAttackTarget:IsNull() == false and self.hAttackTarget:IsRealHero() == false then
 			self.hAttackTarget = self:FindBestTarget()
@@ -121,7 +121,7 @@ function CBucketSoldier:BotThink()
 
 		if self.hAttackTarget == nil or self.hAttackTarget:IsNull() == true or self.hAttackTarget:IsAlive() == false then
 			self:ChangeBotState( BUCKET_SOLDIER_STATE_IDLE )
-			return 0.1
+			return 0.3
 		end
 
 		self:AttackTarget( self.hAttackTarget )
@@ -131,12 +131,12 @@ function CBucketSoldier:BotThink()
 	elseif self.nState == BUCKET_SOLDIER_STATE_LEASHED then
 		if GameRules:GetGameTime() > self.flMaxLeashTime then
 			self:ChangeBotState( BUCKET_SOLDIER_STATE_IDLE )
-			return 0.1
+			return 0.3
 		end
 		local flDist = ( self.vLeashDestination - self.me:GetAbsOrigin() ):Length2D()
 		if flDist < 200 then
 			self:ChangeBotState( BUCKET_SOLDIER_STATE_IDLE )
-			return 0.1
+			return 0.3
 		end
 		flDist = ( self.vInitialSpawnPos - self.me:GetAbsOrigin() ):Length2D()
 		if flDist < WINTER2022_BUCKET_SOLDIER_LEASHING_REACTIVATE_RANGE then
@@ -144,7 +144,7 @@ function CBucketSoldier:BotThink()
 			if hTarget ~= nil then
 				self.hAttackTarget = hTarget
 				self:ChangeBotState( BUCKET_SOLDIER_STATE_ATTACKING )
-				return 0.1
+				return 0.3
 			end
 		end
 		ExecuteOrderFromTable({
@@ -156,7 +156,7 @@ function CBucketSoldier:BotThink()
 	elseif self.nState == BUCKET_SOLDIER_STATE_SCREAM_ATTACK then
 		if self:ShouldLeash() == true then
 			self:ChangeBotState( BUCKET_SOLDIER_STATE_LEASHED )
-			return 0.1
+			return 0.3
 		end
 		if self.hAttackTarget == nil or self.hAttackTarget:IsNull() == true or self.hAttackTarget:IsAlive() == false then
 			self:ChangeBotState( BUCKET_SOLDIER_STATE_IDLE )
@@ -175,7 +175,7 @@ function CBucketSoldier:BotThink()
 		end
 	end
 
-	return 0.1
+	return 0.3  -- Увеличено с 0.1 до 0.3 для оптимизации
 end
 
 function CBucketSoldier:LeashToBucket()

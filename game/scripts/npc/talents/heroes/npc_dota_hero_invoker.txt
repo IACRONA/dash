@@ -21,12 +21,7 @@
 						"value" "10"
 						"operator" "OP_MULTIPLY"
 					}
-					"duration"
-					{
-						"value" "1"
-						"operator" "OP_ADD"
-					}
-					"wall_element_radius"
+					"wall_width"
 					{
 						"value" "30"
 						"operator" "OP_ADD"
@@ -38,11 +33,6 @@
 		{
 			"value" "20"
 			"operator" "OP_ADD"
-			
-			"linked_special_values"
-			{
-				"freeze_heal" "32"
-			}
 			"linked_abilities"
 			{
 				"invoker_ice_wall"
@@ -130,14 +120,14 @@
 		}
 		"main_damage"
 		{
-			"value" "45"
+			"value" "40"
 			"operator" "OP_ADD"
 			
 			"linked_special_values"
 			{
 				"burn_dps"
 				{
-					"value"			"9"
+					"value"			"8"
 					"operator"		"OP_ADD"
 				}
 			}
@@ -232,7 +222,7 @@
 		}
 		"damage"
 		{
-			"value" "100"
+			"value" "80"
 			"operator" "OP_ADD"
 			
 			"linked_abilities"
@@ -255,51 +245,10 @@
 	}
 	"invoker_quas"
 	{
-		"intrinsic_attack_damage_dot_per_second"
-		{
-			"value"			"6"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "1"
-			"talents"
-			{
-				"special_bonus_unique_invoker_13"	"x2"
-			}
-			
-			"linked_abilities"
-			{
-				"invoker_wex"
-				{
-					"intrinsic_attack_speed"
-					{
-						"value"		"8"
-						"operator" "OP_ADD"
-
-						"talents"
-						{
-							"special_bonus_unique_invoker_13"	"x2"
-						}
-					}
-				}
-				"invoker_exort"
-				{
-					"intrinsic_attack_damage"
-					{
-						"value"		"5"
-						"operator" "OP_ADD"
-
-						"talents"
-						{
-							"special_bonus_unique_invoker_13"	"x2"
-						}
-					}
-				}
-			}
-		}
-		"lifesteal_per_instance"
+		"hp_regen_per_instance"
 		{
 			"value"			"3"
 			"operator" "OP_ADD"
-			"RequiresFacetID" "2"
 			"talents"
 			{
 				"special_bonus_unique_invoker_13"	"x2"
@@ -311,7 +260,17 @@
 				{
 					"move_speed_per_instance"
 					{
-						"value"		"2"
+						"value"		"1.8"
+						"operator" "OP_ADD"
+
+						"talents"
+						{
+							"special_bonus_unique_invoker_13"	"x2"
+						}
+					}
+					"attack_speed_per_instance"
+					{
+						"value"		"3"
 						"operator" "OP_ADD"
 
 						"talents"
@@ -322,9 +281,9 @@
 				}
 				"invoker_exort"
 				{
-					"magic_amp"
+					"bonus_damage_per_instance"
 					{
-						"value"		"1.5"
+						"value"		"6"
 						"operator" "OP_ADD"
 
 						"talents"

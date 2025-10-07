@@ -4,28 +4,28 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "9"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 		}
 		"movement_speed"
 		{
-			"value" "30"
+			"value" "35"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
 		"bash_radius"
 		{
-			"value" "40"
+			"value" "50"
 			"operator" "OP_ADD"
-			"max_count" "10"
+			"max_count" "8"
 		}
 	}
 	"spirit_breaker_bulldoze"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "7"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
 			"linked_abilities"
 			{
@@ -33,7 +33,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "7"
+						"value" "8"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -41,7 +41,7 @@
 		}
 		"movement_speed"
 		{
-			"value" "4"
+			"value" "5"
 			"operator" "OP_ADD"
 			"max_count" "10"
 			"linked_abilities"
@@ -66,7 +66,7 @@
 				{
 					"magic_resistance"
 					{
-						"value" "2"
+						"value" "2.5"
 						"operator" "OP_MULTIPLY"
 
 						"multiplicative_target"			"100"
@@ -94,9 +94,8 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "12"
 			"operator" "OP_MULTIPLY"
-			"multiplicative_target"	"95"
 		}
 		"damage"
 		{

@@ -1,5 +1,18 @@
 "npc_dota_hero_abaddon"
 {
+	"abaddon_withering_mist"
+	{
+		"heal_reduction_pct"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"hp_threshold_pct" "3"
+			}
+		}
+	}
 	"abaddon_death_coil"
 	{
 		"cooldown_and_manacost"
@@ -12,24 +25,29 @@
 			"value" "-10"
 			"operator" "OP_ADD"
 			"max_count" "4"
+			"RequiresFacetID" "1"
+		}
+		"self_damage_enemy_target"
+		{
+			"value" "-10"
+			"operator" "OP_ADD"
+			"max_count" "7"
+			"RequiresFacetID" "3"
 		}
 		"target_damage"
 		{
-			"value" "50"
+			"value" "40"
 			"operator" "OP_ADD"
-
 			"linked_special_values"
 			{
-				"heal_amount"
-				{
-					"value"	"40"
-				}
+				"heal_amount" "40"
 			}
 		}
 		"missile_speed"
 		{
 			"value" "130"
 			"operator" "OP_ADD"
+			"max_count" "10"
 		}
 	}
 	"abaddon_aphotic_shield"
@@ -41,26 +59,14 @@
 		}
 		"damage_absorb"
 		{
-			"value" "55"
+			"value" "35"
 			"operator" "OP_ADD"
-			"facets"
-			{
-				"2" "45"
-			}
 		}
 		"radius"
 		{
 			"value" "30"
 			"operator" "OP_ADD"
 			"max_count" "10"
-			"RequiresFacetID" "1"
-		}
-		"absorb_damage_aoe"
-		{
-			"value" "55"
-			"operator" "OP_ADD"
-			"max_count" "10"
-			"RequiresFacetID" "2"
 		}
 	}
 	"abaddon_frostmourne"
@@ -73,12 +79,12 @@
 		}
 		"curse_attack_speed"
 		{
-			"value" "45"
+			"value" "30"
 			"operator" "OP_ADD"
 		}
 		"curse_dps"
 		{
-			"value" "60"
+			"value" "30"
 			"operator" "OP_ADD"
 		}
 	}

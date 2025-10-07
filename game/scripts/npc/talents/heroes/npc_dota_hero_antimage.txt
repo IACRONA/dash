@@ -4,15 +4,13 @@
 	{
 		"mana_threshold"
 		{
-			"value" "10"
+			"value" "6"
 			"operator" "OP_ADD"
 			"max_count" "5"
-		}
-		"slow_duration"
-		{
-			"value" "0.25"
-			"operator" "OP_ADD"
-			"max_count" "5"
+			"linked_special_values"
+			{
+				"slow_duration" "0.15"
+			}
 		}
 	}
 	"antimage_mana_break"
@@ -28,12 +26,12 @@
 		}
 		"mana_per_hit"
 		{
-			"value" "14"
+			"value" "12"
 			"operator" "OP_ADD"
 		}
 		"mana_per_hit_pct"
 		{
-			"value" "0.6"
+			"value" "0.5"
 			"operator" "OP_ADD"
 		}
 	}
@@ -67,7 +65,7 @@
 		}
 		"magic_resistance"
 		{
-			"value" "3.5"
+			"value" "3.7"
 			"operator" "OP_MULTIPLY"
 
 			"multiplicative_target"			"100"
@@ -75,19 +73,19 @@
 		}
 		"mana_drain_percent"
 		{
-			"value" "40"
+			"value" "60"
 			"operator" "OP_ADD"
 			"RequiresFacetID" "1"
 			"linked_special_values"
 			{
-				"max_damage_from_mana_drain" "60"
+				"max_damage_from_mana_drain" "80"
 			}
 			"linked_abilities"
 			{
 				"antimage_counterspell_ally"
 				{
-					"mana_drain_percent" "40"
-					"max_damage_from_mana_drain" "60"
+					"mana_drain_percent" "60"
+					"max_damage_from_mana_drain" "80"
 				}
 			}
 		}
@@ -99,22 +97,21 @@
 		{
 			"value" "8"
 			"operator" "OP_MULTIPLY"
-			"multiplicative_target"	"95"
 		}
 		"mana_void_damage_per_mana"
 		{
-			"value" "0.15"
+			"value" "0.12"
 			"operator" "OP_ADD"
 		}
 		"mana_void_aoe_radius"
 		{
-			"value" "35"
+			"value" "30"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
 		"bonus_attack_damage"
 		{
-			"value" "30"
+			"value" "25"
 			"operator" "OP_ADD"
 			"RequiresFacetID" "2"
 		}

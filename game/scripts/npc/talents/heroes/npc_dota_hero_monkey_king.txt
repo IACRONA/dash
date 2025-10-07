@@ -47,6 +47,9 @@
 			{
 				"monkey_king_tree_dance"
 				{
+					"perched_jump_distance" "50"
+					"ground_jump_distance" "50"
+					"give_up_distance" "50"
 					"perched_day_vision" "105"
 					"perched_night_vision" "75"
 				}
@@ -89,7 +92,7 @@
 			"value" "-0.1"
 			"operator" "OP_MULTIPLY"
 
-			"multiplicative_target"			"0"
+			"multiplicative_target"			"0.12"
 			"multiplicative_base_value"		"1.2"
 		}
 		"bonus_armor"

@@ -23,6 +23,13 @@
 			"value" "70"
 			"operator" "OP_ADD"
 		}
+		"damage_over_time_pct"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "2"
+		}
 	}
 	"puck_waning_rift"
 	{
@@ -49,18 +56,25 @@
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
+		"knock_distance"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "1"
+			"linked_special_values"
+			{
+				"pull_distance" "30"
+			}
+		}
 	}
 	"puck_phase_shift"
 	{
 		"shard_attack_range_bonus"
 		{
-			"value" "40"
+			"value" "50"
 			"operator" "OP_ADD"
-			"max_count" "10"
-			"linked_special_values"
-			{
-				"shard_bonus_damage" "20"
-			}
+			"max_count" "8"
 		}
 	}
 	"puck_dream_coil"

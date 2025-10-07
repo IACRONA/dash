@@ -1,5 +1,32 @@
 "npc_dota_hero_riki"
 {
+	"riki_innate_backstab"
+	{
+		"damage_multiplier"
+		{
+			"value" "0.15"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"backstab_angle"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+		"bonus_xp_kill"
+		{
+			"value" "130"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"RequiresFacetID" "1"
+			"linked_special_values"
+			{
+				"bonus_xp_assist" "65"
+				"bonus_xp_assist_other" "65"
+			}
+		}
+	}
 	"riki_smoke_screen"
 	{
 		"cooldown_and_manacost"
@@ -54,31 +81,25 @@
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
+		"creep_agility_multiplier"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"RequiresFacetID" "2"
+			"linked_special_values"
+			{
+				"cooldown_reduction_per_creep_kill" "0.5"
+			}
+		}
 	}
 	"riki_backstab"
 	{
 		"fade_delay"
 		{
-			"value" "-0.2"
-			"operator" "OP_MULTIPLY"
-
-			"multiplicative_target"			"0"
-			"multiplicative_base_value"		"2"
-		}
-	}
-	"riki_innate_backstab"
-	{
-		"damage_multiplier"
-		{
-			"value" "0.15"
+			"value" "-0.15"
 			"operator" "OP_ADD"
-			"max_count" "10"
-		}
-		"backstab_angle"
-		{
-			"value" "10"
-			"operator" "OP_ADD"
-			"max_count" "4"
+			"max_count" "5"
 		}
 	}
 }

@@ -1,6 +1,15 @@
 "npc_dota_hero_terrorblade"
 {
-	"terrorblade_reflection"
+	"terrorblade_dark_unity"
+	{
+		"outside_radius_bonus_damage_pct"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "6"
+		}
+	}
+	"terrorblade_reflection_lua"
 	{
 		"cooldown_and_manacost"
 		{
@@ -21,16 +30,16 @@
 		}
 		"illusion_outgoing_tooltip"
 		{
-			"value" "20"
+			"value" "16"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"illusion_outgoing_damage" "20"
+				"illusion_outgoing_damage" "16"
 			}
 		}
 		"range"
 		{
-			"value" "30"
+			"value" "35"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
@@ -57,8 +66,8 @@
 			"value" "-30"
 			"operator" "OP_MULTIPLY"
 			
-			"multiplicative_target"			"-100"
-			"multiplicative_base_value"		"200"
+			"multiplicative_target"			"-72.5"
+			"multiplicative_base_value"		"175"
 			
 			"linked_special_values"
 			{
@@ -67,7 +76,8 @@
 					"value" "-30"
 				
 					"operator" "OP_MULTIPLY"
-					"multiplicative_target" "0"
+					"multiplicative_target" "27.5"
+					"multiplicative_base_value"		"275"
 				}
 			}
 		}
@@ -126,8 +136,9 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
+			"max_count" "10"
 		}
 	}
 }

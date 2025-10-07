@@ -1,5 +1,22 @@
 "npc_dota_hero_razor"
 {
+	"razor_unstable_current"
+	{
+		"movespeed_per_level_pct"
+		{
+			"value" "0.4"
+			"operator" "OP_ADD"
+		}
+	}
+	"razor_dynamo"
+	{
+		"spell_amp_mult"
+		{
+			"value" "0.5"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "2"
+		}
+	}
 	"razor_plasma_field"
 	{
 		"cooldown_and_manacost"
@@ -33,21 +50,14 @@
 		{
 			"value" "8"
 			"operator" "OP_MULTIPLY"
-		}
-		"drain_length"
-		{
-			"value" "2.5"
-			"operator" "OP_ADD"
-			"max_count" "4"
 			"linked_special_values"
 			{
-				"drain_duration" "4.5"
-				"pull_speed"	"25" // shard
+				"drain_length" "1"
 			}
 		}
 		"drain_rate"
 		{
-			"value" "6"
+			"value" "7"
 			"operator" "OP_ADD"
 		}
 	}
@@ -68,6 +78,15 @@
 			{
 				"special_bonus_unique_razor_storm_surge_damage_and_slow"	"x1.25"
 			}
+		}
+		"strike_internal_cd"
+		{
+			"value" "-0.1"
+			"operator" "OP_MULTIPLY"
+			"RequiresFacetID" "1"
+			
+			"multiplicative_target"			"2.5"
+			"multiplicative_base_value"		"3"
 		}
 	}
 	"razor_eye_of_the_storm"

@@ -1,5 +1,18 @@
 "npc_dota_hero_faceless_void"
 {
+	"faceless_void_distortion_field"
+	{
+		"attack_projectile_slow"
+		{
+			"value" "2.5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"slow_distance_max" "25"
+			}
+		}
+	}
 	"faceless_void_time_walk"
 	{
 		"cooldown_and_manacost"
@@ -12,7 +25,7 @@
 		{
 			"value" "0.2"
 			"operator" "OP_ADD"
-			"max_count" "5"
+			"max_count" "10"
 			"linked_special_values"
 			{
 				"radius_scepter" "30"
@@ -21,32 +34,16 @@
 	}
 	"faceless_void_time_dilation"
 	{
-		"cooldown_and_manacost"
-		{
-			"value" "8"
-			"operator" "OP_MULTIPLY"
-			"max_count" "5"
-		}
-		"radius"
-		{
-			"value" "35"
-			"operator" "OP_ADD"
-			"max_count" "10"
-		}
-		"cooldown_percentage"
-		{
-			"value" "4"
-			"operator" "OP_ADD"
-			"max_count" "5"
-			"linked_special_values"
-			{
-				"slow" "2"
-			}
-		}
 		"damage_per_stack"
 		{
 			"value" "4"
 			"operator" "OP_ADD"
+		}
+		"radius"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"max_count" "10"
 		}
 	}
 	"faceless_void_time_lock"
@@ -59,7 +56,7 @@
 		}
 		"bonus_damage"
 		{
-			"value" "55"
+			"value" "50"
 			"operator" "OP_ADD"
 		}
 	}
@@ -69,7 +66,7 @@
 		{
 			"value" "8"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
+			"multiplicative_target"	"50"
 			"RequiresFacetID" "2"
 		}
 		"radius"
@@ -84,9 +81,9 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "6"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
+			"multiplicative_target"	"50"
 			"RequiresFacetID" "3"
 		}
 		"radius"

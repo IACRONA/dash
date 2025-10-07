@@ -18,6 +18,10 @@
 			"value" "35"
 			"operator" "OP_ADD"
 			"max_count" "10"
+			"linked_special_values"
+			{
+				"knockback_distance" "30"
+			}
 		}
 	}
 	"huskar_burning_spear"
@@ -27,33 +31,19 @@
 			"value" "-0.75"
 			"operator" "OP_ADD"
 			"max_count" "4"
-			"RequiresFacetID" "1"
-		}
-		"health_cost"
-		{
-			"value" "-0.75"
-			"operator" "OP_ADD"
-			"max_count" "4"
-			"RequiresFacetID" "2"
+			"DisabledWithFacetID" "4"
 		}
 		"max_health_cost"
 		{
 			"value" "-0.3"
 			"operator" "OP_ADD"
 			"max_count" "10"
-			"RequiresFacetID" "3"
+			"RequiresFacetID" "4"
 		}
 		"burn_damage"
 		{
 			"value" "5"
 			"operator" "OP_ADD"
-		}
-		"duration"
-		{
-			"value" "1.5"
-			"operator" "OP_ADD"
-			"min_rarity" "rare"
-			"max_count" "6"
 		}
 	}
 	"huskar_berserkers_blood"

@@ -4,26 +4,23 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "15"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
+			"max_count" "5"
 			"linked_special_values"
 			{
-				"movement_scepter" "5"
-				"mana_cost_scepter" "-2"
+				"movement_scepter" "10"
+				"mana_cost_scepter" "-4"
 			}
 		}
 		"percent_damage"
 		{
-			"value" "2"
-			"operator" "OP_MULTIPLY"
+			"value" "1"
+			"operator" "OP_ADD"
 			"max_count" "10"
-
-			"multiplicative_target"			"50"
-			"multiplicative_base_value"		"10"
 			"linked_special_values"
 			{
-				"night_vision_bonus" "60"
+				"attack_range_bonus" "30"
 			}
 		}
 	}
@@ -31,26 +28,26 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "15"
 			"operator" "OP_MULTIPLY"
-			"max_count" "8"
+			"max_count" "5"
 		}
 		"split_radius"
 		{
-			"value" "30"
+			"value" "50"
 			"operator" "OP_ADD"
-			"max_count" "10"
+			"max_count" "8"
 			"linked_abilities"
 			{
 				"winter_wyvern_cold_embrace"
 				{
-					"shard_splinter_range" "30"
+					"shard_splinter_range" "50"
 				}
 			}
 		}
 		"damage"
 		{
-			"value" "60"
+			"value" "80"
 			"operator" "OP_ADD"
 		}
 	}
@@ -58,45 +55,57 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "11"
 			"operator" "OP_MULTIPLY"
-			"max_count" "8"
+			"max_count" "6"
 		}
 		"heal_additive"
 		{
-			"value" "40"
+			"value" "100"
 			"operator" "OP_ADD"
-			"linked_special_values"
-			{
-				"heal_percentage" "0.75"
-			}
+		}
+		"heal_percentage"
+		{
+			"value" "2"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+		"damage_buff_pct"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "3"
 		}
 	}
 	"winter_wyvern_winters_curse"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "15"
 			"operator" "OP_MULTIPLY"
 		}
 		"radius"
 		{
-			"value" "30"
+			"value" "80"
 			"operator" "OP_ADD"
-			"max_count" "10"
+			"max_count" "5"
 			"linked_special_values"
 			{
-				"damage_reduction" "-10"
+				"damage_reduction" "-20"
 			}
 		}
-		"damage_amplification"
+		"bonus_attack_speed"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+		"transfer_duration_pct"
 		{
 			"value" "5"
 			"operator" "OP_ADD"
-			"linked_special_values"
-			{
-				"bonus_attack_speed" "25"
-			}
+			"max_count" "10"
+			"RequiresFacetID" "4"
 		}
 	}
 }

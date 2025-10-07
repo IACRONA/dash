@@ -16,7 +16,7 @@
 		}
 		"impact_damage"
 		{
-			"value" "160"
+			"value" "100"
 			"operator" "OP_ADD"
 		}
 	}
@@ -24,69 +24,44 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "9"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 			"linked_special_values"
 			{
-				"ally_movespeed_pct" "6"
+				"ally_movespeed_pct" "5"
 			}
 		}
 		"landing_radius"
 		{
-			"value" "55"
+			"value" "40"
 			"operator" "OP_ADD"
-			"max_count" "7"
+			"max_count" "10"
 			"linked_special_values"
 			{
-				"max_jump_distance" "65"
+				"max_jump_distance" "50"
 			}
 		}
 		"impact_damage"
 		{
-			"value" "150"
+			"value" "85"
 			"operator" "OP_ADD"
-		}
-	}
-	"marci_guardian"
-	{
-		"lifesteal_pct"
-		{
-			"value" "6"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "1"
-		}
-		"bonus_damage"
-		{
-			"value" "6"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "1"
 		}
 	}
 	"marci_bodyguard"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
-			"RequiresFacetID" "2"
-			"linked_special_values"
-			{
-				"bonus_armor"
-				{
-					"value" "3"
-					"operator" "OP_ADD"
-				}
-			}
 		}
 		"lifesteal_pct"
 		{
-			"value" "3"
+			"value" "2.5"
 			"operator" "OP_ADD"
-			"RequiresFacetID" "2"
 			"linked_special_values"
 			{
-				"bonus_damage" "3"
+				"bonus_damage" "2.5"
 			}
 		}
 	}
@@ -94,7 +69,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "7"
 			"operator" "OP_MULTIPLY"
 		}
 		"time_between_flurries"
@@ -105,7 +80,7 @@
 		}
 		"pulse_damage"
 		{
-			"value" "60"
+			"value" "55"
 			"operator" "OP_ADD"
 		}
 	}

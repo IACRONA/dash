@@ -4,22 +4,22 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "15"
 			"operator" "OP_MULTIPLY"
 		}
 		"bonus_damage"
 		{
-			"value" "45"
+			"value" "60"
 			"operator" "OP_ADD"
 		}
 		"bounce_aoe"
 		{
-			"value" "240"
+			"value" "300"
 			"operator" "OP_ADD"
-			"max_count" "5"
+			"max_count" "4"
 			"linked_special_values"
 			{
-				"slow_duration" "0.2"
+				"slow_duration" "0.25"
 			}
 		}
 	}
@@ -31,12 +31,12 @@
 			"operator" "OP_MULTIPLY"
 			"linked_special_values"
 			{
-				"gold_steal" "20"
+				"gold_steal" "30"
 			}
 		}
 		"bonus_damage"
 		{
-			"value" "70"
+			"value" "90"
 			"operator" "OP_ADD"
 		}
 	}
@@ -44,12 +44,12 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
-			"max_count" "5"
+			"max_count" "4"
 			"linked_special_values"
 			{
-				"stun_duration" "0.2"
+				"stun_duration" "0.25"
 			}
 			"linked_abilities"
 			{
@@ -57,7 +57,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "8"
+						"value" "10"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -68,29 +68,29 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "15"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 		}
 		"target_damage_amp"
 		{
-			"value" "3"
+			"value" "4"
 			"operator" "OP_ADD"
 		}
 		"bonus_gold_self"
 		{
-			"value" "55"
+			"value" "65"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"bonus_gold" "25"
+				"bonus_gold" "30"
 			}
 		}
 		"bonus_move_speed_pct"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_ADD"
-			"max_count" "10"
+			"max_count" "8"
 		}
 	}
 }

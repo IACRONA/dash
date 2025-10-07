@@ -10,7 +10,7 @@
 		}
 		"laser_damage"
 		{
-			"value" "25"
+			"value" "30"
 			"operator" "OP_ADD"
 		}
 	}
@@ -19,26 +19,23 @@
 		"cooldown_and_manacost"
 		{
 			"value" "20"
-			"operator" "OP_MULTIPLY" 
+			"operator" "OP_MULTIPLY"
 			"multiplicative_target"	"95.69"
 		}
 		"damage"
 		{
+			"value" "16"
+			"operator" "OP_ADD"
+		}
+		"heal_per_second"
+		{
 			"value" "8"
 			"operator" "OP_ADD"
-			"linked_special_values"
-			{
-				"heal_per_second"
-				{
-					"value" "6"
-					"operator" "OP_ADD"
-					"RequiresFacetID" "1"
-				}
-			}
+			"RequiresFacetID" "1"
 		}
 		"splash_radius"
 		{
-			"value" "25"
+			"value" "30"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
@@ -65,31 +62,23 @@
 		}
 		"damage_absorb"
 		{
-			"value" "50"
+			"value" "60"
 			"operator" "OP_ADD"
 		}
 		"status_resistance"
 		{
-			"value" "5"
+			"value" "6"
 			"operator" "OP_MULTIPLY"
 
 			"multiplicative_target"			"100"
 			"multiplicative_base_value"		"40"
 		}
-		"barrier_duration"
+		"flicker_range"
 		{
-			"value" "2"
+			"value" "100"
 			"operator" "OP_ADD"
-			"max_count" "5"
-			"linked_special_values"
-			{
-				"flicker_range"
-				{
-					"value" "50"
-					"operator" "OP_ADD"
-					"RequiresFacetID" "2"
-				}
-			}
+			"max_count" "10"
+			"RequiresFacetID" "2"
 		}
 	}
 	"tinker_rearm"

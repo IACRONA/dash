@@ -19,7 +19,7 @@ function modifier_warsong_soldier_upgrade:OnCreated(data)
 		self:GetParent():SetHealth(self.base + self:GetStackCount() * self.hp_upgrade)
 	end
 	self:SetHasCustomTransmitterData(true)
-	self:StartIntervalThink(0.1)
+	self:StartIntervalThink(1.0)  -- Увеличено с 0.1 до 1.0 для оптимизации
 end
 
 function modifier_warsong_soldier_upgrade:OnIntervalThink()
@@ -96,5 +96,5 @@ function modifier_warsong_soldier_upgrade:GetAuraSearchType()
 end
 
 function modifier_warsong_soldier_upgrade:GetAuraDuration()
-    return 0.1
+    return 0.5  -- Увеличено с 0.1 до 0.5 для оптимизации производительности
 end

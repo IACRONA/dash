@@ -4,16 +4,16 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "7"
 			"operator" "OP_MULTIPLY"
 		}
 		"damage"
 		{
-			"value" "45"
+			"value" "40"
 			"operator" "OP_ADD"
-			"linked_special_values"
+			"talents"
 			{
-				"bonus_damage_per_target" "7.5"
+				"special_bonus_unique_earth_spirit_8"		"x1.8"
 			}
 		}
 		"end_radius"
@@ -31,7 +31,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "7"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 			"linked_abilities"
@@ -40,7 +40,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "8"
+						"value" "7"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -60,7 +60,7 @@
 						"value"			"-35"
 						"operator"				"OP_MULTIPLY"
 						
-						"multiplicative_target"	"0"
+						"multiplicative_target"	"35"
 						"multiplicative_base_value"	"350"
 					}
 					"images_take_damage_percent"
@@ -68,7 +68,7 @@
 						"value"			"-35"
 						"operator"				"OP_MULTIPLY"
 						
-						"multiplicative_target"	"-100"
+						"multiplicative_target"	"-65"
 						"multiplicative_base_value"	"250"
 					}
 				}
@@ -76,18 +76,18 @@
 		}
 		"damage_per_second"
 		{
-			"value" "15"
+			"value" "12"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"pop_damage" "55"
+				"pop_damage" "40"
 			}
 			"linked_abilities"
 			{
 				"grimstroke_dark_portrait"
 				{
-					"images_do_damage_percent_tooltip" "25"
-					"images_do_damage_percent" "25"
+					"images_do_damage_percent_tooltip" "20"
+					"images_do_damage_percent" "20"
 				}
 			}
 		}
@@ -96,7 +96,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "7"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
@@ -108,7 +108,7 @@
 		}
 		"max_damage"
 		{
-			"value" "55"
+			"value" "48"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
@@ -121,14 +121,14 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "6"
 			"operator" "OP_MULTIPLY"
-			"multiplicative_target"	"80"
 		}
 		"chain_duration"
 		{
-			"value" "1.2"
+			"value" "1"
 			"operator" "OP_ADD"
+			"max_count" "5"
 		}
 	}
 }

@@ -1,5 +1,22 @@
 "npc_dota_hero_sven"
 {
+	"sven_vanquisher"
+	{
+		"bonus_damage_pct"
+		{
+			"value" "8"
+			"operator" "OP_ADD"
+		}
+	}
+	"sven_wrath_of_god"
+	{
+		"bonus_damage_per_str"
+		{
+			"value" "0.1"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "2"
+		}
+	}
 	"sven_storm_bolt"
 	{
 		"cooldown_and_manacost"
@@ -58,7 +75,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "9"
 			"operator" "OP_MULTIPLY"
 		}
 		"movespeed"
@@ -74,10 +91,9 @@
 		{
 			"value" "2"
 			"operator" "OP_ADD"
-			"RequiresFacetID" "2"
 			"linked_special_values"
 			{
-				"shard_passive_armor" "0.8"
+				"shard_passive_armor" "1"
 			}
 		}
 		"base_barrier_amount"
@@ -91,19 +107,24 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "6"
 			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"bonus_slow_resistance"
+				{
+					"value" "5"
+					"operator" "OP_MULTIPLY"
+					
+					"multiplicative_target"			"100"
+					"multiplicative_base_value"		"50"
+				}
+			}
 		}
 		"gods_strength_damage"
 		{
 			"value" "20"
 			"operator" "OP_ADD"
-		}
-		"bonus_slow_resistance"
-		{
-			"value" "6.25"
-			"operator" "OP_ADD"
-			"max_count"	"8"
 		}
 	}
 }

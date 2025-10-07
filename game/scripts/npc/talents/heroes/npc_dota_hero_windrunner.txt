@@ -14,34 +14,54 @@
 			"operator" "OP_ADD"
 			"max_count" "5"
 		}
-		"shackle_count"
+		"bonus_damage_per_hero"
 		{
-			"value" "1"
+			"value" "15"
 			"operator" "OP_ADD"
-			"max_count" "5"
+			"RequiresFacetID" "4"
 		}
 	}
 	"windrunner_powershot"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
-			"max_count" "5"
+			"max_count" "10"
 		}
 		"powershot_damage"
 		{
-			"value" "90"
+			"value" "45"
 			"operator" "OP_ADD"
 		}
 		"arrow_width"
 		{
-			"value" "50"
+			"value" "40"
 			"operator" "OP_ADD"
-			"max_count" "8"
+			"max_count" "10"
 			"linked_special_values"
 			{
-				"vision_radius" "50"
+				"vision_radius" "40"
+			}
+		}
+		"min_execute_threshold"
+		{
+			"value" "0.5"
+			"operator" "OP_MULTIPLY"
+			"RequiresFacetID" "5"
+
+			"multiplicative_target"			"10"
+			"multiplicative_base_value"		"5"
+			"linked_special_values"
+			{
+				"max_execute_threshold"
+				{
+					"value" "1.2"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"24"
+					"multiplicative_base_value"		"12"
+				}
 			}
 		}
 	}
@@ -49,7 +69,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "7"
 			"operator" "OP_MULTIPLY"
 			"max_count" "6"
 			"linked_abilities"
@@ -58,7 +78,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "8"
+						"value" "7"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -66,14 +86,27 @@
 		}
 		"movespeed_bonus_pct"
 		{
-			"value" "5"
+			"value" "4"
 			"operator" "OP_ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
 				"windrunner_gale_force"
 				{
-					"wind_strength" "25"
+					"wind_strength" "20"
+				}
+			}
+		}
+		"physical_damage_pct"
+		{
+			"value" "-3"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_abilities"
+			{
+				"windrunner_gale_force"
+				{
+					"radius" "30"
 				}
 			}
 		}
@@ -82,12 +115,12 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
 		}
 		"focusfire_damage_reduction"
 		{
-			"value" "6"
+			"value" "4"
 			"operator" "OP_ADD"
 		}
 	}

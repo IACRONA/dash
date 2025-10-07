@@ -24,45 +24,90 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
-		}
-		"sand_storm_radius"
-		{
-			"value" "40"
-			"operator" "OP_ADD"
 			"max_count" "10"
+			"linked_special_values"
+			{
+				"sand_storm_radius" "40"
+			}
 		}
 		"sand_storm_damage"
 		{
 			"value" "15"
 			"operator" "OP_ADD"
 		}
+		"blind_pct"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"RequiresFacetID" "3"
+		}
 	}
 	"sandking_scorpion_strike"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "12"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
+			"linked_abilities"
+			{
+				"sandking_caustic_finale"
+				{
+					"caustic_finale_damage_pct"
+					{
+						"value" "1.5"
+						"operator" "OP_MULTIPLY"
+						
+						"multiplicative_target"			"100"
+						"multiplicative_base_value"		"15"
+					}
+				}
+			}
 		}
 		"attack_damage"
 		{
-			"value" "60"
+			"value" "35"
 			"operator" "OP_ADD"
+			"linked_abilities"
+			{
+				"sandking_caustic_finale"
+				{
+					"caustic_finale_damage_base" "35"
+				}
+			}
 		}
 		"radius"
 		{
-			"value" "40"
+			"value" "25"
 			"operator" "OP_ADD"
 			"max_count" "10"
+			"linked_special_values"
+			{
+				"inner_radius" "10"
+			}
+			"linked_abilities"
+			{
+				"sandking_caustic_finale"
+				{
+					"caustic_finale_radius" "25"
+				}
+			}
+		}
+		"caustic_damage_pct"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"RequiresFacetID" "4"
 		}
 	}
 	"sandking_epicenter"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "7"
 			"operator" "OP_MULTIPLY"
 		}
 		"epicenter_radius_base"
@@ -72,12 +117,12 @@
 			"max_count" "10"
 			"linked_special_values"
 			{
-				"shard_radius" "30"
+				"shard_radius" "40"
 			}
 		}
 		"epicenter_damage"
 		{
-			"value" "20"
+			"value" "12"
 			"operator" "OP_ADD"
 		}
 	}

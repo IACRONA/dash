@@ -8,9 +8,15 @@
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 		}
+		"pct_damage"
+		{
+			"value" "22"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "1"
+		}
 		"damage"
 		{
-			"value" "80"
+			"value" "50"
 			"operator" "OP_ADD"
 		}
 		"width"
@@ -24,16 +30,16 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "7"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
+			"max_count" "5"
 			"linked_abilities"
 			{
 				"morphling_adaptive_strike_str"
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "8"
+						"value" "7"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -41,52 +47,56 @@
 		}
 		"damage_base"
 		{
-			"value" "65"
+			"value" "40"
 			"operator" "OP_ADD"
 		}
 		"damage_max"
 		{
-			"value" "0.4"
+			"value" "0.2"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"damage_min" "0.1"
-			}
-			"linked_abilities"
-			{
-				"morphling_adaptive_strike_str"
-				{
-					"knockback_max" "75"
-					"knockback_min" "15"
-				}
+				"damage_min" "0.2"
 			}
 		}
-		"shared_cooldown"
+		"knockback_max"
 		{
-			"value" "-3"
+			"value" "70"
 			"operator" "OP_ADD"
-			"max_count" "1"
-			"linked_abilities"
+			"RequiresFacetID" "2"
+			"max_count" "5"
+			"linked_special_values"
 			{
-				"morphling_adaptive_strike_str"
-				{
-					"shared_cooldown" "-3"
-				}
+				"knockback_min" "10"
 			}
 		}
 	}
 	"morphling_morph_agi"
 	{
-		"mana_cost"
+		"morph_cooldown"
 		{
-			"value" "-10"
-			"operator" "OP_ADD"
-			"max_count" "2"
+			"value" "-0.005"
+			"operator" "OP_MULTIPLY"
+
+			"multiplicative_target"			"0.006"
+			"multiplicative_base_value"		"0.06"
+			"linked_special_values"
+			{
+				"morph_rate_tooltip" "2"
+			}
 			"linked_abilities"
 			{
 				"morphling_morph_str"
 				{
-					"mana_cost" "-10"
+					"morph_cooldown"
+					{
+						"value" "-0.005"
+						"operator" "OP_MULTIPLY"
+
+						"multiplicative_target"			"0.006"
+						"multiplicative_base_value"		"0.06"
+					}
+					"morph_rate_tooltip" "2"
 				}
 			}
 		}
@@ -99,11 +109,7 @@
 			"operator" "OP_MULTIPLY"
 			"linked_special_values"
 			{
-				"scepter_illusion_outgoing"
-				{
-					"value" "20"
-					"operator" "OP_ADD"
-				}
+				"scepter_illusion_outgoing" "20"
 			}
 		}
 		"duration"
@@ -117,7 +123,7 @@
 					"value" "-45"
 					"operator" "OP_MULTIPLY"
 					
-					"multiplicative_target" "0"
+					"multiplicative_target" "30"
 					"multiplicative_base_value" "300"
 				}
 			}

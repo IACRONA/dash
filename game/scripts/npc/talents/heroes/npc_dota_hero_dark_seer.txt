@@ -1,12 +1,29 @@
 "npc_dota_hero_dark_seer"
 {
+	"dark_seer_quick_wit"
+	{
+		"int_to_atkspd"
+		{
+			"value" "0.5"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "1"
+		}
+	}
+	"dark_seer_heart_of_battle"
+	{
+		"movement_speed_pct"
+		{
+			"value" "1.5"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "2"
+		}
+	}
 	"dark_seer_vacuum"
 	{
 		"cooldown_and_manacost"
 		{
 			"value" "8"
 			"operator" "OP_MULTIPLY"
-			"multiplicative_target"	"95"
 		}
 		"radius"
 		{
@@ -70,7 +87,7 @@
 			}
 		}
 	}
-	"dark_seer_wall_of_replica"
+	"dark_seer_wall_of_replica_lua"
 	{
 		"cooldown_and_manacost"
 		{

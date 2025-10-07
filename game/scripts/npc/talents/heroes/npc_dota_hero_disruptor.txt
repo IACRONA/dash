@@ -51,7 +51,7 @@
 		{
 			"value" "8"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
+			"max_count" "5"
 		}
 		"damage_to_distance_pct"
 		{
@@ -67,16 +67,16 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "12"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
+			"max_count" "5"
 			"RequiresFacetID" "1"
 		}
-		"radius"
+		"formation_time"
 		{
-			"value" "30"
+			"value" "-0.1"
 			"operator" "OP_ADD"
-			"max_count" "10"
+			"max_count" "5"
 			"RequiresFacetID" "1"
 		}
 	}
@@ -84,16 +84,16 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "12"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
+			"max_count" "5"
 			"RequiresFacetID" "2"
 		}
 		"wall_width"
 		{
-			"value" "60"
+			"value" "120"
 			"operator" "OP_ADD"
-			"max_count" "10"
+			"max_count" "5"
 			"RequiresFacetID" "2"
 		}
 	}

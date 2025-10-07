@@ -1,5 +1,18 @@
 "npc_dota_hero_ancient_apparition"
 {
+	"ancient_apparition_death_rime"
+	{
+		"damage"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"talents"
+			{
+				"special_bonus_unique_ancient_apparition_6"		"x1.5"
+			}
+		}
+	}
 	"ancient_apparition_cold_feet"
 	{
 		"cooldown_and_manacost"
@@ -10,8 +23,9 @@
 		}
 		"frost_stacks"
 		{
-			"value" "2"
+			"value" "1.5"
 			"operator" "OP_ADD"
+			"min_rarity" "rare"
 		}
 		"break_distance"
 		{
@@ -48,13 +62,12 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
-		}
-		"damage"
-		{
-			"value" "15"
-			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"damage" "10"
+			}
 		}
 	}
 	"ancient_apparition_ice_blast"
@@ -73,7 +86,7 @@
 		}
 		"damage"
 		{
-			"value" "100"
+			"value" "50"
 			"operator" "OP_ADD"
 		}
 	}

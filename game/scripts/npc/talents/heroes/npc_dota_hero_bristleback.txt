@@ -4,7 +4,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "7"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 			"linked_abilities"
@@ -13,7 +13,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "7"
+						"value" "8"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -39,18 +39,18 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "9"
 			"operator" "OP_MULTIPLY"
 		}
 		"radius"
 		{
-			"value" "15"
+			"value" "25"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
 		"quill_base_damage"
 		{
-			"value" "9"
+			"value" "6"
 			"operator" "OP_ADD"
 		}
 	}
@@ -58,7 +58,7 @@
 	{
 		"side_damage_reduction"
 		{
-			"value" "3.2"
+			"value" "3"
 			"operator" "OP_MULTIPLY"
 
 			"multiplicative_target"			"100"
@@ -66,32 +66,37 @@
 		}
 		"back_damage_reduction"
 		{
-			"value" "3.5"
+			"value" "3"
 			"operator" "OP_MULTIPLY"
 
 			"multiplicative_target"			"100"
 			"multiplicative_base_value"		"48"
 		}
+		"goo_radius"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+			"max_count" "8"
+			"RequiresFacetID" "2"
+		}
 	}
 	"bristleback_warpath"
 	{
-		"damage_per_stack"
+		"cooldown_and_manacost"
 		{
-			"value" "4"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "1"
-		}
-		"damage_per_stack"
-		{
-			"value" "4"
-			"operator" "OP_ADD"
+			"value" "12"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
 			"RequiresFacetID" "3"
+			"linked_special_values"
+			{
+				"active_duration" "0.5"
+			}
 		}
-		"aspd_per_stack"
+		"damage_per_stack"
 		{
-			"value" "8"
+			"value" "4"
 			"operator" "OP_ADD"
-			"RequiresFacetID" "2"
 		}
 		"move_speed_per_stack"
 		{

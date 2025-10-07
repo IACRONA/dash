@@ -1,22 +1,39 @@
 "npc_dota_hero_tiny"
 {
+	"tiny_craggy_exterior"
+	{
+		"damage_reduction_per_stack"
+		{
+			"value" "0.5"
+			"operator" "OP_ADD"
+			"max_count" "6"
+		}
+	}
+	"tiny_insurmountable"
+	{
+		//"str_to_slow_resist_pct"
+		//{
+		//	"value" "4"
+		//	"operator" "OP_ADD"
+		//	"max_count" "10"
+		//	"RequiresFacetID" "2"
+		//	"linked_special_values"
+		//	{
+		//		"str_to_status_resist_pct" "2"
+		//	}
+		//}
+	}
 	"tiny_avalanche"
 	{
-		"cooldown_and_manacost"
-		{
-			"value" "8"
-			"operator" "OP_MULTIPLY"
-			"max_count" "4"
-		}
 		"radius"
 		{
-			"value" "30"
+			"value" "40"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
 		"avalanche_damage"
 		{
-			"value" "35"
+			"value" "45"
 			"operator" "OP_ADD"
 		}
 	}
@@ -30,25 +47,36 @@
 		}
 		"radius"
 		{
-			"value" "30"
+			"value" "35"
 			"operator" "OP_ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
-				"grab_radius" "30"
+				"grab_radius" "35"
 			}
 		}
 		"toss_damage"
 		{
-			"value" "35"
+			"value" "40"
 			"operator" "OP_ADD"
 		}
+		//"land_movement_slow"
+		//{
+		//	"value" "5"
+		//	"operator" "OP_ADD"
+		//	"max_count" "10"
+		//	"RequiresFacetID" "1"
+		//	"linked_special_values"
+		//	{
+		//		"land_attack_slow" "20"
+		//	}
+		//}
 	}
 	"tiny_tree_grab"
 	{
 		"bonus_damage"
 		{
-			"value" "18"
+			"value" "20"
 			"operator" "OP_ADD"
 		}
 		"splash_range"
@@ -65,6 +93,7 @@
 				"tiny_tree_channel"
 				{
 					"splash_radius" "40"
+					"tree_grab_radius" "40"
 				}
 				"tiny_toss_tree"
 				{
@@ -74,17 +103,17 @@
 		}
 		"splash_pct"
 		{
-			"value" "20"
+			"value" "25"
 			"operator" "OP_ADD"
 			"linked_abilities"
 			{
 				"tiny_tree_channel"
 				{
-					"splash_pct" "20"
+					"splash_pct" "25"
 				}
 				"tiny_toss_tree"
 				{
-					"splash_pct" "20"
+					"splash_pct" "25"
 				}
 			}
 		}
@@ -98,12 +127,12 @@
 		}
 		"bonus_damage"
 		{
-			"value" "18"
+			"value" "20"
 			"operator" "OP_ADD"
 		}
 		"attack_speed_reduction"
 		{
-			"value" "5.5"
+			"value" "6.75"
 			"operator" "OP_ADD"
 			"max_count" "4"
 		}

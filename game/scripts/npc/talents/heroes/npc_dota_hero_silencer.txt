@@ -1,5 +1,15 @@
 "npc_dota_hero_silencer"
 {
+	"silencer_oppressive_silence"
+	{
+		"damage_pct"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "4"
+		}
+	}
 	"silencer_curse_of_the_silent"
 	{
 		"cooldown_and_manacost"
@@ -10,33 +20,44 @@
 		}
 		"damage"
 		{
-			"value" "4"
+			"value" "5"
+			"operator" "OP_ADD"
+		}
+		"application_damage"
+		{
+			"value" "30"
 			"operator" "OP_ADD"
 		}
 		"radius"
 		{
-			"value" "25"
+			"value" "30"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
 		"movespeed"
 		{
-			"value" "-3"
+			"value" "-4"
 			"operator" "OP_ADD"
-			"max_count" "10"
+			"max_count" "7"
 		}
 	}
 	"silencer_glaives_of_wisdom"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "12"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"intellect_damage_pct" "2"
+			}
 		}
-		"intellect_damage_pct"
+		"bounce_range"
 		{
-			"value" "1.5"
+			"value" "30"
 			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "3"
 		}
 	}
 	"silencer_last_word"
@@ -49,22 +70,13 @@
 		}
 		"damage"
 		{
-			"value" "50"
+			"value" "60"
 			"operator" "OP_ADD"
 		}
 		"int_multiplier"
 		{
-			"value" "0.3"
+			"value" "0.4"
 			"operator" "OP_ADD"
 		}
-	}
-	"silencer_global_silence"
-	{
-		//"cooldown_and_manacost"
-		//{
-		//	"value" "2.5"
-		//	"operator" "OP_MULTIPLY"
-		//	"max_count" "9"
-		//}
 	}
 }

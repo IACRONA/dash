@@ -7,16 +7,6 @@
 			"value" "10"
 			"operator" "OP_MULTIPLY"
 		}
-		"damage_reduction"
-		{
-			"value" "5"
-			"operator" "OP_ADD"
-			"max_count" "6"
-			"linked_special_values"
-			{
-				"cast_reduction" "5"
-			}
-		}
 		"enfeeble_tick_damage"
 		{
 			"value" "8"
@@ -54,15 +44,16 @@
 			"operator" "OP_MULTIPLY"
 			"max_count" "3"
 		}
-		"nightmare_invuln_time"
-		{
-			"value" "0.5"
-			"operator" "OP_ADD"
-			"max_count" "4"
-		}
 		"bonus_attack_speed"
 		{
 			"value" "60"
+			"RequiresFacetID" "1"
+		}
+		"walk_speed"
+		{
+			"value" "25"
+			"RequiresFacetID" "2"
+			"max_count" "3"
 		}
 	}
 	"bane_fiends_grip"
@@ -77,6 +68,16 @@
 		{
 			"value" "25"
 			"operator" "OP_ADD"
+		}
+		"fiend_grip_mana_drain"
+		{
+			"value" "0.5"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"scepter_incoming_illusion_damage" "-20"
+			}
 		}
 	}
 }

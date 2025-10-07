@@ -4,25 +4,23 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 		}
 		"radius"
 		{
-			"value" "30"
+			"value" "40"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
 		"damage"
 		{
-			"value" "20"
+			"value" "24"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"damage_per_hero" "10"
-				"damage_per_unit" "5"
-				"armor_per_hero" "0.5"
-				"armor_per_creep" "0.1"
+				"damage_per_unit" "12"
+				"damage_per_hero" "12"
 			}
 		}
 		"bonus_attack_speed"
@@ -30,23 +28,29 @@
 			"value" "40"
 			"operator" "OP_ADD"
 		}
+		"shield_per_damage_pct"
+		{
+			"value" "7"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "1"
+		}
 	}
 	"legion_commander_press_the_attack"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
 		"move_speed"
 		{
-			"value" "5"
+			"value" "6"
 			"operator" "OP_ADD"
 		}
 		"hp_regen"
 		{
-			"value" "15"
+			"value" "18"
 			"operator" "OP_ADD"
 		}
 	}
@@ -74,6 +78,12 @@
 		{
 			"value" "10"
 			"operator" "OP_ADD"
+		}
+		"assist_reward_damage"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "2"
 		}
 	}
 }

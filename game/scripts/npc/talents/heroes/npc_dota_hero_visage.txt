@@ -1,5 +1,14 @@
 "npc_dota_hero_visage"
 {
+	"visage_lurker"
+	{
+		"cooldown_speed_per_stack"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "8"
+		}
+	}
 	"visage_grave_chill"
 	{
 		"cooldown_and_manacost"
@@ -22,6 +31,13 @@
 				"radius" "200"
 			}
 		}
+		"target_radius"
+		{
+			"value" "40"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "1"
+		}
 	}
 	"visage_soul_assumption"
 	{
@@ -35,10 +51,16 @@
 			"value" "10"
 			"operator" "OP_ADD"
 		}
-		"stack_duration"
+		"soul_charge_gold"
 		{
-			"value" "1"
+			"value" "10"
 			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"gold_max_tooltip" "60"
+			}
+			"RequiresFacetID" "3"
 		}
 	}
 	"visage_gravekeepers_cloak"
@@ -105,6 +127,13 @@
 					"bonus_damage" "5"
 				}
 			}
+		}
+		"familiar_attack_range"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"RequiresFacetID" "2"
 		}
 	}
 }

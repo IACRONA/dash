@@ -9,13 +9,13 @@
 			"max_count" "10"
 			"linked_special_values"
 			{
-				"maim_slow" "4"
+				"maim_slow" "3"
 				"maim_attack_slow" "8"
 			}
 		}
 		"bonus_armor"
 		{
-			"value" "4"
+			"value" "3.5"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
@@ -86,17 +86,24 @@
 	{
 		"attack_speed"
 		{
-			"value" "5"
+			"value" "4"
 			"operator" "OP_ADD"
+		}
+		"armor_per_stack"
+		{
+			"value" "0.7"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"RequiresFacetID" "1"
 		}
 	}
 	"troll_warlord_battle_trance"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "6"
 			"operator" "OP_MULTIPLY"
-			"multiplicative_target"	"75"
+			"multiplicative_target"	"77"
 		}
 		"lifesteal"
 		{
@@ -105,14 +112,21 @@
 		}
 		"attack_speed"
 		{
-			"value" "50"
+			"value" "40"
 			"operator" "OP_ADD"
 		}
 		"trance_duration"
 		{
 			"value" "1"
 			"operator" "OP_ADD"
+			"max_count" "4"
+		}
+		"attack_speed_share_percent"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
 			"max_count" "5"
+			"RequiresFacetID" "2"
 		}
 	}
 }

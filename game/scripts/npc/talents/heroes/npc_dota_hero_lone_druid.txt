@@ -12,8 +12,8 @@
 		{
 			"value" "-0.1"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
-			"multiplicative_target"			"0"
+			"max_count" "5"
+			"multiplicative_target"			"0.145"
 			"multiplicative_base_value"		"1.45"
 		}
 		"bear_hp"
@@ -42,14 +42,14 @@
 		}
 		"bonus_attack_speed"
 		{
-			"value" "35"
+			"value" "30"
 			"operator" "OP_ADD"
 		}
 		"armor_sharing"
 		{
-			"value" "20"
+			"value" "15"
 			"operator" "OP_ADD"
-			"max_count" "4"
+			"max_count" "5"
 		}
 	}
 	"lone_druid_savage_roar"
@@ -58,6 +58,7 @@
 		{
 			"value" "-10"
 			"operator" "OP_ADD"
+			"max_count" "10"
 			"linked_special_values"
 			{
 				"shard_movement_speed_pct" "10"
@@ -73,19 +74,19 @@
 		}
 		"radius"
 		{
-			"value" "35"
+			"value" "40"
 			"operator" "OP_ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
-				"shard_radius" "105"
+				"shard_radius" "80"
 				"shard_duration" "1"
 			}
 			"linked_abilities"
 			{
 				"lone_druid_savage_roar_bear"
 				{
-					"radius" "35"
+					"radius" "40"
 				}
 			}
 		}
@@ -102,13 +103,6 @@
 		{
 			"value" "550"
 			"operator" "OP_ADD"
-			"RequiresFacetID" "1"
-		}
-		"attack_speed_pct"
-		{
-			"value" "10"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "2"
 		}
 	}
 }

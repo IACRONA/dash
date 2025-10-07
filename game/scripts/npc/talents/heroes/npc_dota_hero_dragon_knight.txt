@@ -33,19 +33,19 @@
 		}
 		"start_radius"
 		{
-			"value" "30"
+			"value" "35"
 			"operator" "OP_ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
-				"end_radius" "30"
-				"reduction" "-4"
+				"end_radius" "35"
+				"reduction" "-2"
 			}
 			"linked_abilities"
 			{
 				"dragon_knight_fireball"
 				{
-					"radius" "30"
+					"radius" "35"
 				}
 			}
 		}
@@ -99,25 +99,26 @@
 		}
 		"corrosive_breath_armor_reduction"
 		{
-			"value" "0.9"
+			"value" "1"
 			"operator" "OP_ADD"
+			"max_count" "10"
 			"RequiresFacetID" "2"
 		}
 		"frost_bonus_attack_speed"
 		{
-			"value" "-20"
+			"value" "-25"
 			"operator" "OP_ADD"
 			"RequiresFacetID" "3"
 		}
 		"frost_bonus_movement_speed"
 		{
-			"value" "-3"
+			"value" "-5"
 			"operator" "OP_ADD"
-			"max_count" "10"
+			"max_count" "5"
 			"RequiresFacetID" "3"
 			"linked_special_values"
 			{
-				"frost_healing_reduction" "5"
+				"frost_healing_reduction" "10"
 			}
 		}
 	}

@@ -9,18 +9,29 @@
 		}
 		"static_remnant_damage_radius"
 		{
-			"value" "30"
+			"value" "25"
 			"operator" "OP_ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
-				"static_remnant_radius" "30"
+				"static_remnant_radius" "25"
 			}
 		}
 		"static_remnant_damage"
 		{
-			"value" "50"
+			"value" "40"
 			"operator" "OP_ADD"
+		}
+		"AbilityCastRange"
+		{
+			"value" "120"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"RequiresFacetID" "2"
+			"linked_special_values"
+			{
+				"static_remnant_travel_speed" "45"
+			}
 		}
 	}
 	"storm_spirit_electric_vortex"
@@ -31,41 +42,43 @@
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 		}
-		//electric_vortex_pull_distance"
-		//{
-		//	"value" "30"
-		//	"operator" "OP_ADD"
-		//	"max_count" "10"
-		//	"linked_special_values"
-		//	{
-		//		"radius_scepter" "30"
-		//	}
-		//}
+		"enemy_overload_duration"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "5"
+			"RequiresFacetID" "1"
+			"linked_special_values"
+			{
+				"electric_vortex_pull_distance" "20"
+				"radius_scepter" "20"
+			}
+		}
 	}
 	"storm_spirit_overload"
 	{
 		"overload_aoe"
 		{
-			"value" "30"
+			"value" "25"
 			"operator" "OP_ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
-				"shard_activation_radius" "110"
+				"shard_activation_radius" "75"
 			}
 		}
 		"overload_damage"
 		{
-			"value" "25"
+			"value" "20"
 			"operator" "OP_ADD"
 		}
 		"overload_attack_slow"
 		{
-			"value" "-20"
+			"value" "-25"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"shard_attack_speed_bonus" "10"
+				"shard_attack_speed_bonus" "15"
 			}
 		}
 	}
@@ -83,7 +96,7 @@
 		}
 		"damage"
 		{
-			"value" "5"
+			"value" "4"
 			"operator" "OP_ADD"
 		}
 	}

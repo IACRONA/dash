@@ -4,83 +4,41 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "7"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
-			"linked_special_values"
-			{
-				"impact_slow_duration" "0.2"
-			}
-
-			"linked_abilities"
-			{
-				"muerta_parting_shot"
-				{
-					"cooldown_and_manacost"
-					{
-						"value" "8"
-						"operator" "OP_MULTIPLY"
-					}
-				}
-			}
+			"max_count" "5"
 		}
 		"damage"
 		{
-			"value" "55"
+			"value" "45"
 			"operator" "OP_ADD"
-
-			"linked_abilities"
-			{
-				"muerta_parting_shot"
-				{
-					"damage"		"45"
-				}
-			}
 		}
 		"radius"
 		{
-			"value" "25"
+			"value" "15"
 			"operator" "OP_ADD"
-			"max_count" "10"
-
+			"max_count" "5"
 			"linked_special_values"
 			{
-				"ricochet_radius_start"		"25"
-				"ricochet_radius_end"		"25"
+				"ricochet_radius_start"		"15"
+				"ricochet_radius_end"		"15"
 			}
 		}
 	}
-	"muerta_the_calling"
+	"muerta_the_calling_lua"
 	{
-		"cooldown_and_manacost"
-		{
-			"value" "8"
-			"operator" "OP_MULTIPLY"
-			"max_count" "10"
-		}
 		"damage"
 		{
-			"value" "20"
+			"value" "16"
 			"operator" "OP_ADD"
-		}
-		"dead_zone_distance"
-		{
-			"value" "20"
-			"operator" "OP_ADD"
-			"max_count" "10"
-			"linked_special_values"
-			{
-				"hit_radius" "7"
-			}
 		}
 		"aura_movespeed_slow"
 		{
-			"value" "-5"
-			"operator" "OP_ADD"
-			"linked_special_values"
-			{
-				"aura_attackspeed_slow" "-10"
-			}
+			"value" "-4"
+			"operator" "OP_MULTIPLY"
+			
+			"multiplicative_target" "-60"
+			"multiplicative_base_value" "-20"
 		}
 	}
 	"muerta_gunslinger"
@@ -100,6 +58,12 @@
 	}
 	"muerta_pierce_the_veil"
 	{
+		"cooldown_and_manacost"
+		{
+			"value" "5"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
 		"bonus_damage"
 		{
 			"value" "15"

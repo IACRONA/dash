@@ -1,26 +1,35 @@
 "npc_dota_hero_pangolier"
 {
+	"pangolier_fortune_favors_the_bold"
+	{
+		"chance_reduce"
+		{
+			"value" "-3.5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
+	}
 	"pangolier_swashbuckle"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "12"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
+			"max_count" "8"
 		}
 		"damage"
 		{
-			"value" "20"
+			"value" "16"
 			"operator" "OP_ADD"
 		}
 		"start_radius"
 		{
-			"value" "35"
+			"value" "30"
 			"operator" "OP_ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
-				"end_radius" "35"
+				"end_radius" "30"
 			}
 		}
 	}
@@ -28,7 +37,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "10"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
 			"max_count" "7"
 			"linked_special_values"
@@ -38,19 +47,18 @@
 		}
 		"damage"
 		{
-			"value" "60"
+			"value" "25"
 			"operator" "OP_ADD"
-		}
-		"hero_shield"
-		{
-			"value" "60"
-			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"hero_shield" "25"
+			}
 		}
 		"radius"
 		{
-			"value" "50"
+			"value" "40"
 			"operator" "OP_ADD"
-			"max_count" "8"
+			"max_count" "10"
 		}
 	}
 	"pangolier_lucky_shot"
@@ -63,12 +71,12 @@
 		}
 		"armor"
 		{
-			"value" "2"
+			"value" "1"
 			"operator" "OP_ADD"
 			
 			"linked_special_values"
 			{
-				"attack_slow" "20"
+				"attack_slow" "15"
 			}
 		}
 	}
@@ -76,7 +84,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "12"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 			"max_count" "7"
 			"linked_abilities"
@@ -85,7 +93,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "12"
+						"value" "10"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -113,9 +121,9 @@
 				}
 			}
 		}
-		"damage"
+		"damage_pct"
 		{
-			"value" "80"
+			"value" "25"
 			"operator" "OP_ADD"
 		}
 	}

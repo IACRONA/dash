@@ -4,13 +4,13 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
 		"search_aoe"
 		{
-			"value" "25"
+			"value" "40"
 			"operator" "OP_ADD"
 			"max_count" "10"
 
@@ -19,13 +19,13 @@
 				// shard imp explode ability
 				"warlock_imp_explode"
 				{
-					"explosion_radius"	"30"
+					"explosion_radius"	"40"
 				}
 			}
 		}
 		"damage_share_percentage"
 		{
-			"value" "1"
+			"value" "1.5"
 			"operator" "OP_ADD"
 			
 			"linked_abilities"
@@ -33,7 +33,7 @@
 				// shard imp explode ability
 				"warlock_imp_explode"
 				{
-					"explosion_dmg"	"25" // flat
+					"explosion_dmg"	"35" // flat
 				}
 			}
 		}
@@ -54,27 +54,33 @@
 			"value" "15"
 			"operator" "OP_ADD"
 		}
+		"spell_aoe"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
 	}
 	"warlock_upheaval"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 		}
 		"aoe"
 		{
-			"value" "40"
+			"value" "50"
 			"operator" "OP_ADD"
-			"max_count" "10"
+			"max_count" "8"
 		}
 		"damage_per_second"
 		{
-			"value" "3"
+			"value" "4"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"max_damage" "33"
+				"max_damage" "60"
 			}
 		}
 	}
@@ -82,47 +88,61 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "6"
+			"value" "9"
 			"operator" "OP_MULTIPLY"
 		}
 		"golem_hp"
 		{
-			"value" "140"
+			"value" "700"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"golem_hp_scepter" "240"
+				"golem_hp_scepter" "700"
 				"bonus_slow_resistance" "2"
 			}
 			"linked_abilities"
 			{
 				"warlock_golem_flaming_fists"
 				{
-					"radius" "30"
+					"radius"
+					{
+						"value" "40"
+						"operator" "OP_MULTIPLY"
+
+						"multiplicative_target"			"650"
+						"multiplicative_base_value"		"200"
+					}
 				}
-				"warlock_golem_permanent_immolation"
+				"warlock_golem_permanent_immolation_lua"
 				{
-					"aura_radius" "30"
+					"aura_radius"
+					{
+						"value" "40"
+						"operator" "OP_MULTIPLY"
+
+						"multiplicative_target"			"750"
+						"multiplicative_base_value"		"300"
+					}
 				}
 			}
 		}
 		"golem_dmg"
 		{
-			"value" "30"
+			"value" "50"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"golem_dmg_scepter" "38"
+				"golem_dmg_scepter" "40"
 			}
 			"linked_abilities"
 			{
 				"warlock_golem_flaming_fists"
 				{
-					"damage" "12"
+					"damage" "15"
 				}
-				"warlock_golem_permanent_immolation"
+				"warlock_golem_permanent_immolation_lua"
 				{
-					"aura_damage" "10"
+					"aura_damage" "15"
 				}
 			}
 		}

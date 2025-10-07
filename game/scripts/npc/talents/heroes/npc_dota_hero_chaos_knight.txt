@@ -4,24 +4,22 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "15"
+			"value" "5"
 			"operator" "OP_MULTIPLY"
-			"max_count" "3"
+			"max_count" "5"
+			"linked_special_values"
+			{
+				"chaos_bolt_speed" "100"
+			}
 		}
 		"damage_max"
 		{
-			"value" "200"
+			"value" "80"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
 				"damage_min" "40"
 			}
-		}
-		"chaos_bolt_speed"
-		{
-			"value" "100"
-			"operator" "OP_ADD"
-			"max_count" "7"
 		}
 	}
 	"chaos_knight_reality_rift"
@@ -41,13 +39,13 @@
 	{
 		"chance"
 		{
-			"value" "5.33"
+			"value" "3.33"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
 		"crit_max"
 		{
-			"value" "35"
+			"value" "15"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
@@ -61,36 +59,36 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "9"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
 		"outgoing_damage"
 		{
-			"value" "16"
+			"value" "12"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"outgoing_damage_tooltip" "16"
+				"outgoing_damage_tooltip" "12"
 			}
 		}
 		"incoming_damage"
 		{
-			"value" "-35"
+			"value" "-25"
 			"operator" "OP_MULTIPLY"
 
-			"multiplicative_target"			"-100"
-			"multiplicative_base_value"		"150"
+			"multiplicative_target"			"-65"
+			"multiplicative_base_value"		"250"
 
 			"linked_special_values"
 			{
 				"incoming_damage_tooltip"
 				{
-					"value" "-35"
+					"value" "-25"
 					"operator" "OP_MULTIPLY"
 
-					"multiplicative_target" "0"
-					"multiplicative_base_value" "250"
+					"multiplicative_target" "35"
+					"multiplicative_base_value" "350"
 				}
 			}
 		}

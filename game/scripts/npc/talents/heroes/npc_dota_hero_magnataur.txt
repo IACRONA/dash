@@ -54,7 +54,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "7"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 			"linked_abilities"
@@ -69,33 +69,25 @@
 				}
 			}
 		}
-		"skewer_radius"
+		"damage_distance_pct"
 		{
-			"value" "35"
+			"value" "7.5"
 			"operator" "OP_ADD"
-			"max_count" "5"
-			"linked_abilities"
+			"linked_special_values"
 			{
-				"magnataur_horn_toss"
-				{
-					"radius" "80"
-				}
+				"tree_hit_damage" "13"
+				"cliff_hit_damage" "50"
 			}
 		}
 		"skewer_damage"
 		{
-			"value" "80"
+			"value" "90"
 			"operator" "OP_ADD"
-			"linked_special_values"
-			{
-				"tree_hit_damage" "8"
-				"cliff_hit_damage" "35"
-			}
 			"linked_abilities"
 			{
 				"magnataur_horn_toss"
 				{
-					"damage" "80"
+					"damage" "90"
 				}
 			}
 		}
@@ -106,7 +98,6 @@
 		{
 			"value" "8"
 			"operator" "OP_MULTIPLY"
-			"multiplicative_target"	"95"
 		}
 		"pull_radius"
 		{

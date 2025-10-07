@@ -1,21 +1,27 @@
 "npc_dota_hero_axe"
 {
-	"axe_charge"
+	"axe_coat_of_blood"
 	{
-		"damage"
+		"armor_per_kill"
 		{
-			"value" "25"
+			"value" "0.2"
 			"operator" "OP_ADD"
 		}
-		"damage_debuff"
+	}
+	"axe_one_man_army"
+	{
+		//"armor_pct_as_strength" // doesn't work
+		//{
+		//	"value" "15"
+		//	"operator" "OP_ADD"
+		//	"RequiresFacetID" "1"
+		//}
+		"radius"
 		{
-			"value" "5"
+			"value" "-175"
 			"operator" "OP_ADD"
-		}
-		"reflect_damage"
-		{
-			"value" "30"
-			"operator" "OP_ADD"
+			"RequiresFacetID" "1"
+			"max_count" "4"
 		}
 	}
 	"axe_berserkers_call"
@@ -45,13 +51,42 @@
 				}
 			}
 		}
+		"bonus_attack_speed"
+		{
+			"value" "35"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "2"
+		}
 	}
- 
+	"axe_battle_hunger"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"damage_per_second"
+		{
+			"value" "10"
+			"operator" "OP_ADD"
+		}
+		"armor_multiplier"
+		{
+			"value" "0.1"
+			"operator" "OP_ADD"
+
+			"talents"
+			{
+				"special_bonus_unique_axe"		"x2"
+			}
+		}
+	}
 	"axe_counter_helix"
 	{
 		"damage"
 		{
-			"value" "10"
+			"value" "20"
 			"operator" "OP_ADD"
 		}
 		"radius"
@@ -61,23 +96,21 @@
 			"max_count" "10"
 		}
 	}
-	"axe_culling_blade_rage"
+	"axe_culling_blade"
 	{
- 
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"speed_bonus" "3"
+			}
+		}
 		"damage"
 		{
 			"value" "25"
 			"operator" "OP_ADD"
 		}
-		"bonus_attack_speed"
-		{
-			"value" "10"
-			"operator" "OP_ADD"
-		}
-		// "armor_per_stack"
-		// {
-		// 	"value" "0.2"
-		// 	"operator" "OP_ADD"
-		// }
 	}
 }

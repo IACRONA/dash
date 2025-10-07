@@ -66,12 +66,12 @@
 	{
 		"slow_per_stack"
 		{
-			"value" "2"
+			"value" "1"
 			"operator" "OP_ADD"
 			"max_count" "3"
 			"linked_special_values"
 			{
-				"attack_damage_per_stack" "2"
+				"attack_damage_per_stack" "1"
 			}
 		}
 	}
@@ -115,7 +115,7 @@
 			"value" "-0.05"
 			"operator" "OP_MULTIPLY"
 
-			"multiplicative_target"			"0"
+			"multiplicative_target"			"0.09"
 			"multiplicative_base_value"		"0.9"
 			
 			"linked_abilities"

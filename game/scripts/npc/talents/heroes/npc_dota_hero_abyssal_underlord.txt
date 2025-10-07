@@ -43,12 +43,6 @@
 	}
 	"abyssal_underlord_pit_of_malice"
 	{
-		"cooldown_and_manacost"
-		{
-			"value" "7"
-			"operator" "OP_MULTIPLY"
-			"max_count" "6"
-		}
 		"pit_damage"
 		{
 			"value" "20"
@@ -68,6 +62,11 @@
 			"value" "3"
 			"operator" "OP_ADD"
 			"max_count" "10"
+
+			"talents"
+			{
+				"special_bonus_unique_underlord_3"	"x1.1"
+			}
 		}
 		"bonus_damage_from_hero"
 		{
@@ -83,6 +82,12 @@
 				"special_bonus_unique_underlord_3"	"x1.1"
 			}
 		}
+		//"cleave_damage_pct"
+		//{
+		//	"value" "10"
+		//	"operator" "OP_ADD"
+		//	"RequiresFacetID" "1"
+		//}
 	}
 	"abyssal_underlord_dark_portal"
 	{

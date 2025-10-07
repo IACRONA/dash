@@ -4,8 +4,9 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "15"
+			"value" "20"
 			"operator" "OP_MULTIPLY"
+			"max_count" "5"
 		}
 		"bonus_movement_speed"
 		{
@@ -14,25 +15,25 @@
 			"max_count" "4"
 			"linked_special_values"
 			{
-				"self_attack_range_bonus" "75"
+				"self_attack_range_bonus" "100"
 			}
 		}
 		"bonus_attack_speed"
 		{
-			"value" "80"
+			"value" "100"
 			"operator" "OP_ADD"
 		}
 	}
 	"chen_soul_persuasion"
 	{
-		"health_min"
+		"bonus_health_per_level"
 		{
-			"value" "1000"
+			"value" "60"
 			"operator" "OP_ADD"
 		}
 		"damage_bonus"
 		{
-			"value" "50"
+			"value" "55"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
@@ -46,20 +47,21 @@
 		{
 			"value" "20"
 			"operator" "OP_MULTIPLY"
+			"max_count" "5"
 		}
 		"heal_rate"
 		{
-			"value" "6"
+			"value" "8"
 			"operator" "OP_ADD"
 		}
 		"bonus_armor"
 		{
-			"value" "6"
+			"value" "8"
 			"operator" "OP_ADD"
-			"max_count" "10"
+			"max_count" "5"
 			"linked_special_values"
 			{
-				"heal_amp" "8"
+				"heal_amp" "16"
 			}
 		}
 	}
@@ -67,17 +69,17 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "12"
 			"operator" "OP_MULTIPLY"
 		}
 		"heal_amount"
 		{
-			"value" "100"
+			"value" "240"
 			"operator" "OP_ADD"
 		}
 		"heal_per_second"
 		{
-			"value" "20"
+			"value" "40"
 			"operator" "OP_ADD"
 		}
 	}

@@ -6,18 +6,14 @@
 		{
 			"value" "10"
 			"operator" "OP_MULTIPLY"
-			"linked_special_values"
-			{
-				"max_stacks" "1"
-			}
 		}
 		"damage"
 		{
-			"value" "5"
+			"value" "3"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"application_damage" "4"
+				"application_damage" "3"
 			}
 		}
 		"radius"
@@ -57,7 +53,7 @@
 		{
 			"value" "13"
 			"operator" "OP_MULTIPLY"
-			"max_count" "4"
+			"max_count" "5"
 		}
 		"damage_per_second"
 		{

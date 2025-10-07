@@ -4,24 +4,22 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "9"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
+			"max_count" "8"
+			"linked_special_values"
+			{
+				"speed" "80"
+			}
 		}
 		"damage"
 		{
-			"value" "20"
+			"value" "30"
 			"operator" "OP_ADD"
 		}
 		"dagger_radius"
 		{
-			"value" "30"
-			"operator" "OP_ADD"
-			"max_count" "10"
-		}
-		"speed"
-		{
-			"value" "100"
+			"value" "50"
 			"operator" "OP_ADD"
 			"max_count" "8"
 		}
@@ -30,12 +28,16 @@
 	{
 		"bonus_damage"
 		{
-			"value" "4"
+			"value" "6"
 			"operator" "OP_ADD"
+			"facets"
+			{
+				"1" "12"
+			}
 		}
 		"radius"
 		{
-			"value" "-30"
+			"value" "-35"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
@@ -44,7 +46,7 @@
 	{
 		"max_radius"
 		{
-			"value" "20"
+			"value" "30"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
@@ -53,63 +55,64 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "12"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
+			"max_count" "7"
 		}
-		"tooltip_outgoing"
+		"illusion_damage_outgoing"
 		{
-			"value" "8"
+			"value" "12"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"illusion_damage_outgoing" "8"
+				"tooltip_outgoing" "12"
 			}
 			"linked_abilities"
 			{
-				"spectre_haunt"
+				"spectre_haunt_lua"
 				{
-					"illusion_damage_outgoing" "8"
-					"tooltip_outgoing" "8"
+					"illusion_damage_outgoing" "12"
+					"tooltip_outgoing" "12"
 				}
 			}
 		}
-		"tooltip_illusion_total_damage_incoming"  
+		"illusion_damage_incoming"
 		{
-			"value" "-15"
+			"value" "-30"
 			"operator" "OP_MULTIPLY"
 			
-			"multiplicative_target"		"-100"
+			"multiplicative_target"		"-80"
 			"multiplicative_base_value"		"100"
 
 			"linked_special_values"
 			{
-				"illusion_damage_incoming"
+				"tooltip_illusion_total_damage_incoming"
 				{
-					"value"			"-15"
+					"value"			"-30"
 
 					"operator" "OP_MULTIPLY"
-					"multiplicative_target"		"0"
+					"multiplicative_target"		"20"
+					"multiplicative_base_value"		"200"
 				}
 			}
 
 			"linked_abilities"
 			{
-				"spectre_haunt"
+				"spectre_haunt_lua"
 				{
 					"illusion_damage_incoming"
 					{
-						"value"			"-15"
+						"value"			"-30"
 
 						"operator" "OP_MULTIPLY"
-						"multiplicative_target"		"-100"
+						"multiplicative_target"		"-80"
 					}
 					"tooltip_illusion_total_damage_incoming"
 					{
-						"value"			"-15"
+						"value"			"-30"
 
 						"operator" "OP_MULTIPLY"
-						"multiplicative_target"		"0"
+						"multiplicative_target"		"20"
 					}
 				}
 			}

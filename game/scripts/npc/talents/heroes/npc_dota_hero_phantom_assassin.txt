@@ -1,5 +1,18 @@
 "npc_dota_hero_phantom_assassin"
 {
+	"phantom_assassin_blur"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"active_movespeed_bonus" "3"
+			}
+		}
+	}
 	"phantom_assassin_stifling_dagger"
 	{
 		"cooldown_and_manacost"
@@ -30,7 +43,6 @@
 		{
 			"value" "8"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
 		}
 		"bonus_attack_speed"
 		{
@@ -44,12 +56,12 @@
 			"max_count" "5"
 		}
 	}
-	"phantom_assassin_blur"
+	"phantom_assassin_immaterial"
 	{
-		"cooldown_and_manacost"
+		"evasion"
 		{
-			"value" "8"
-			"operator" "OP_MULTIPLY"
+			"value" "3.5"
+			"operator" "OP_ADD"
 			"max_count" "10"
 		}
 	}
@@ -60,7 +72,7 @@
 			"value" "1"
 			"operator" "OP_ADD"
 			"max_count" "8"
-			"RequiresFacetID" "1"
+			"RequiresFacetID" "3"
 			"linked_special_values"
 			{
 				"dagger_crit_chance" "2"

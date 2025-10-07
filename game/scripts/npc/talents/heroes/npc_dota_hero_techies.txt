@@ -32,7 +32,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "7"
 			"operator" "OP_MULTIPLY"
 		}
 		"bonus_ms"
@@ -67,7 +67,7 @@
 		}
 		"damage"
 		{
-			"value" "100"
+			"value" "90"
 			"operator" "OP_ADD"
 		}
 	}
@@ -75,7 +75,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "5"
 			"operator" "OP_MULTIPLY"
 			"linked_abilities"
 			{
@@ -83,7 +83,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "8"
+						"value" "5"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -91,19 +91,26 @@
 		}
 		"mres_reduction"
 		{
-			"value" "2.5"
+			"value" "2"
 			"operator" "OP_ADD"
 			"max_count" "10"
+			"linked_abilities"
+			{
+				"techies_minefield_sign"
+				{
+					"aura_radius" "40"
+				}
+			}
 		}
 		"damage"
 		{
-			"value" "100"
+			"value" "70"
 			"operator" "OP_ADD"
 			"linked_abilities"
 			{
 				"techies_minefield_sign"
 				{
-					"scepter_move_damage" "45"
+					"scepter_move_damage" "30"
 				}
 			}
 		}

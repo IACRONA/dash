@@ -4,8 +4,19 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "6"
 			"operator" "OP_MULTIPLY"
+			"linked_special_values"
+			{
+				"damage_interval"
+				{
+					"value" "-0.12"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"			"0.2"
+					"multiplicative_base_value"		"2"
+				}
+			}
 		}
 		"strike_damage"
 		{
@@ -17,14 +28,13 @@
 				"duration_heal" "5"
 			}
 		}
-		"damage_interval"
-		{
-			"value" "-0.16"
-			"operator" "OP_MULTIPLY"
-
-			"multiplicative_target"			"0"
-			"multiplicative_base_value"		"2.0"
-		}
+		//Makes Shadow Strike useless if you don't have Scepter
+		//"aoe_radius"
+		//{
+		//	"value" "40"
+		//	"operator" "OP_ADD"
+		//	"max_count" "10"
+		//}
 	}
 	"queenofpain_blink"
 	{
@@ -50,18 +60,18 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 		}
 		"area_of_effect"
 		{
-			"value" "30"
+			"value" "35"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
 		"damage"
 		{
-			"value" "50"
+			"value" "40"
 			"operator" "OP_ADD"
 		}
 	}
@@ -74,18 +84,17 @@
 		}
 		"damage"
 		{
-			"value" "90"
+			"value" "70"
 			"operator" "OP_ADD"
 		}
 		"final_aoe"
 		{
-			"value" "30"
+			"value" "35"
 			"operator" "OP_ADD"
 			"max_count" "10"
-
 			"linked_special_values"
 			{
-				"knockback_distance" "30"
+				"knockback_distance" "35"
 				"starting_aoe" "10"
 			}
 		}

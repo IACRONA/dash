@@ -13,6 +13,12 @@
 			"value" "55"
 			"operator" "OP_ADD"
 		}
+		"bounce_range_pct"
+		{
+			"value" "5"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
 	}
 	"vengefulspirit_wave_of_terror"
 	{

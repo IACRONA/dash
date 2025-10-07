@@ -4,7 +4,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "4"
+			"value" "7"
 			"operator" "OP_MULTIPLY"
 			"linked_special_values"
 			{
@@ -23,7 +23,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "4"
+						"value" "7"
 						"operator" "OP_MULTIPLY"
 					}
 					"max_channel_time"
@@ -39,7 +39,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "4"
+						"value" "7"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -47,7 +47,7 @@
 		}
 		"total_damage"
 		{
-			"value" "35"
+			"value" "60"
 			"operator" "OP_ADD"
 			"linked_abilities"
 			{
@@ -90,8 +90,9 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "5"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
+			"max_count" "10"
 		}
 		"damage"
 		{
@@ -115,7 +116,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "5"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
 			"max_count" "9"
 			"linked_special_values"
@@ -128,7 +129,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "5"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
 			"linked_special_values"
 			{
@@ -144,7 +145,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "6"
+						"value" "8"
 						"operator" "OP_MULTIPLY"
 						"RequiresFacetID" "1"
 					}
@@ -159,7 +160,7 @@
 		}
 		"cast_range"
 		{
-			"value" "65"
+			"value" "75"
 			"operator" "OP_ADD"
 			"max_count" "5"
 			"linked_abilities"
@@ -198,7 +199,7 @@
 				{
 					"magic_resistance"
 					{
-						"value" "10"
+						"value" "4"
 						"operator" "OP_ADD"
 						"RequiresFacetID" "1"
 					}

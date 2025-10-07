@@ -4,36 +4,36 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 		}
 		"lance_damage"
 		{
-			"value" "30"
+			"value" "35"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"tooltip_illusion_damage" "6"
-				"illusion_damage_out_pct" "6"
+				"tooltip_illusion_damage" "7"
+				"illusion_damage_out_pct" "7"
 			}
 		}
 		"tooltip_illusion_total_damage_in_pct"
 		{
-			"value" "-60"
+			"value" "-70"
 			"operator" "OP_MULTIPLY"
 			
-			"multiplicative_target"	"0"
+			"multiplicative_target"	"40"
 			"multiplicative_base_value"	"400"
 			
 			"linked_special_values"
 			{
 				"illusion_damage_in_pct"
 				{
-					"value" "-60"
+					"value" "-70"
 					"operator" "OP_MULTIPLY"
 					
-					"multiplicative_target" "-100"
+					"multiplicative_target" "-60"
 					"multiplicative_base_value"	"300"
 				}
 			}
@@ -43,27 +43,27 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 		}
 		"illusion_1_damage_in_pct"
 		{
-			"value" "-10"
+			"value" "-12"
 			"operator" "OP_MULTIPLY"
 			
-			"multiplicative_target"	"-100"
+			"multiplicative_target"	"-90"
 			"multiplicative_base_value"	"0"
 			
 			"linked_special_values"
 			{
-				"illusion_2_damage_out_pct" "20"
+				"illusion_2_damage_out_pct" "24"
 				"illusion_2_damage_in_pct"
 				{
-					"value" "-60"
+					"value" "-70"
 					"operator" "OP_MULTIPLY"
 					
-					"multiplicative_target" "-100"
+					"multiplicative_target" "-40"
 					"multiplicative_base_value"	"500"
 				}
 			}
@@ -73,22 +73,22 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 		}
 		"min_distance"
 		{
-			"value" "-20"
+			"value" "-25"
 			"operator" "OP_ADD"
 			"max_count" "5"
 			"linked_special_values"
 			{
-				"bonus_speed" "80"
+				"bonus_speed" "100"
 			}
 		}
 		"bonus_agility"
 		{
-			"value" "12"
+			"value" "13"
 			"operator" "OP_ADD"
 		}
 	}
@@ -96,51 +96,51 @@
 	{
 		"proc_chance_pct"
 		{
-			"value" "5"
+			"value" "6.25"
 			"operator" "OP_ADD"
-			"max_count" "10"
+			"max_count" "8"
 			"linked_special_values"
 			{
-				"illusion_proc_chance_pct" "1"
+				"illusion_proc_chance_pct" "1.25"
 			}
 		}
 		"tooltip_illusion_damage"
 		{
-			"value" "5"
+			"value" "6"
 			"operator" "OP_ADD"
 			"facets"
 			{
-				"2" "6"
+				"2" "7"
 			}
 			"linked_special_values"
 			{
 				"illusion_damage_out_pct"
 				{
-					"value" "5"
+					"value" "6"
 					"operator" "OP_ADD"
 					"facets"
 					{
-						"2" "6"
+						"2" "7"
 					}
 				}
 			}
 		}
 		"tooltip_total_illusion_damage_in_pct"
 		{
-			"value" "-31"
+			"value" "-35"
 			"operator" "OP_MULTIPLY"
 			
-			"multiplicative_target"	"0"
+			"multiplicative_target"	"31"
 			"multiplicative_base_value"	"310"
 			
 			"linked_special_values"
 			{
 				"illusion_damage_in_pct"
 				{
-					"value" "-31"
+					"value" "-35"
 				
 					"operator" "OP_MULTIPLY"
-					"multiplicative_target" "-100"
+					"multiplicative_target" "-69"
 					"multiplicative_base_value"	"210"
 				}
 			}

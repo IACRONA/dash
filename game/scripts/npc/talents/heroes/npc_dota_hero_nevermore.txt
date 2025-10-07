@@ -1,10 +1,26 @@
 "npc_dota_hero_nevermore"
 {
+	"nevermore_necromastery"
+	{
+		"necromastery_max_souls"
+		{
+			"value" "1.5"
+			"operator" "OP_ADD"
+			"min_rarity" "rare"
+			"max_count" "10"
+		}
+		"necromastery_soul_release"
+		{
+			"value" "0.05"
+			"operator" "OP_ADD"
+			"max_count" "6"
+		}
+	}
 	"nevermore_shadowraze1"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "9"
 			"operator" "OP_MULTIPLY"
 			"linked_abilities"
 			{
@@ -12,15 +28,15 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "8"
+						"value" "9"
 						"operator" "OP_MULTIPLY"
 					}
 				}
-				"nevermore_shadowraze3" 
+				"nevermore_shadowraze3"
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "8"
+						"value" "9"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -61,7 +77,7 @@
 		}
 		"stack_bonus_damage"
 		{
-			"value" "50"
+			"value" "60"
 			"operator" "OP_ADD"
 			"linked_abilities"
 			{
@@ -80,20 +96,24 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "11"
+			"value" "14"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
+			"max_count" "7"
 		}
 		"bonus_attack_speed"
 		{
-			"value" "30"
+			"value" "35"
 			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"bonus_move_speed" "3"
+			}
 		}
 		"soul_cost"
 		{
 			"value" "-1"
 			"operator" "OP_ADD"
-			"max_count" "3"
+			"max_count" "5"
 		}
 	}
 	"nevermore_dark_lord"
@@ -103,31 +123,25 @@
 			"value" "-0.5"
 			"operator" "OP_ADD"
 		}
-		"presence_radius"
-		{
-			"value" "60"
-			"operator" "OP_ADD"
-			"max_count" "10"
-		}
 	}
-	"nevermore_requiem_custom"
+	"nevermore_requiem"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
-		// "requiem_radius"
-		// { 
-		// 	"value" "50"
-		// 	"operator" "OP_ADD"
-		// 	"max_count" "8"
-		// }
+		"requiem_reduction_mres"
+		{
+			"value" "-5"
+			"operator" "OP_ADD"
+			"max_count" "10"
+		}
 		"damage"
 		{
-			"value" "24"
-			"operator" "OP_ADD" 
+			"value" "30"
+			"operator" "OP_ADD"
 		}
 	}
 }

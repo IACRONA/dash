@@ -1,5 +1,17 @@
 "npc_dota_hero_death_prophet"
 {
+	"death_prophet_mourning_ritual"
+	{
+		"delay_pct"
+		{
+			"value" "5"
+			"operator" "OP_MULTIPLY"
+			"RequiresFacetID" "3"
+
+			"multiplicative_target"			"100"
+			"multiplicative_base_value"		"45"
+		}
+	}
 	"death_prophet_carrion_swarm"
 	{
 		"cooldown_and_manacost"
@@ -92,6 +104,16 @@
 				"scepter_spirit_bonus_damage" "5"
 				"max_damage" "9"
 				"min_damage" "9"
+			}
+		}
+		"hero_spirit_min_damage"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "2"
+			"linked_special_values"
+			{
+				"hero_spirit_max_damage" "20"
 			}
 		}
 	}

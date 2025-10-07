@@ -1,16 +1,25 @@
 "npc_dota_hero_drow_ranger"
 {
+	"drow_ranger_glacier"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"RequiresFacetID" "1"
+			"max_count" "8"
+		}
+	}
 	"drow_ranger_frost_arrows"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "12"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
-		}
-		"damage"
-		{
-			"value" "10"
-			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"damage" "8"
+			}
 		}
 		"shard_burst_damage_per_stack"
 		{
@@ -55,6 +64,13 @@
 		{
 			"value" "12"
 			"operator" "OP_ADD"
+		}
+		"multishot_movespeed"
+		{
+			"value" "-6" // can't reduce multishot_movespeed to 0% or lower
+			"operator" "OP_ADD"
+			"RequiresFacetID" "2"
+			"max_count" "4"
 		}
 	}
 	"drow_ranger_marksmanship"

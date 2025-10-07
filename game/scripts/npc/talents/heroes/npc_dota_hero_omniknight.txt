@@ -1,5 +1,14 @@
 "npc_dota_hero_omniknight"
 {
+	"omniknight_degen_aura"
+	{
+		"speed_bonus"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+			"max_count" "5"
+		}
+	}
 	"omniknight_purification"
 	{
 		"cooldown_and_manacost"
@@ -14,7 +23,7 @@
 		}
 		"radius"
 		{
-			"value" "35"
+			"value" "40"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
@@ -23,22 +32,22 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "5"
+			"value" "6"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
 		"base_strength"
 		{
-			"value" "6"
+			"value" "7"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"base_hpregen" "4"
+				"base_hpregen" "5"
 			}
 		}
 		"strength_bonus"
 		{
-			"value" "1.5"
+			"value" "2"
 			"operator" "OP_ADD"
 		}
 	}
@@ -46,22 +55,17 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
-			"max_count"	"4"
-			"linked_special_values"
-			{
-				"attack_cooldown" "-0.5"
-			}
 		}
 		"base_damage"
 		{
-			"value" "4"
+			"value" "5"
 			"operator" "OP_ADD"
 		}
 		"bonus_damage"
 		{
-			"value" "15"
+			"value" "20"
 			"operator" "OP_ADD"
 		}
 	}
@@ -69,7 +73,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "9"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}

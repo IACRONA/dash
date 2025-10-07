@@ -1,15 +1,28 @@
 "npc_dota_hero_hoodwink"
 {
+	"hoodwink_mistwoods_wayfarer"
+	{
+		"radius"
+		{
+			"value" "30"
+			"operator" "OP_ADD"
+			"max_count" "10"
+			"linked_special_values"
+			{
+				"redirect_chance" "6.5"
+			}
+		}
+	}
 	"hoodwink_acorn_shot"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 		}
 		"acorn_shot_damage"
 		{
-			"value" "20"
+			"value" "24"
 			"operator" "OP_ADD"
 		}
 		"bounce_count"
@@ -20,7 +33,7 @@
 		}
 		"bounce_range"
 		{
-			"value" "30"
+			"value" "40"
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
@@ -29,16 +42,16 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
+			"max_count" "8"
 			"linked_abilities"
 			{
 				"hoodwink_hunters_boomerang"
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "8"
+						"value" "10"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -46,26 +59,26 @@
 		}
 		"trap_radius"
 		{
-			"value" "30"
+			"value" "40"
 			"operator" "OP_ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
 				"hoodwink_hunters_boomerang"
 				{
-					"radius" "30"
+					"radius" "40"
 				}
 			}
 		}
 		"total_damage"
 		{
-			"value" "75"
+			"value" "95"
 			"operator" "OP_ADD"
 			"linked_abilities"
 			{
 				"hoodwink_hunters_boomerang"
 				{
-					"damage" "35"
+					"damage" "45"
 					"spell_amp" "3.5"
 				}
 			}
@@ -77,16 +90,10 @@
 		{
 			"value" "8"
 			"operator" "OP_MULTIPLY"
-		}
-		"movement_speed_pct"
-		{
-			"value" "10"
-			"operator" "OP_ADD"
-			"max_count" "6"
+			"max_count" "10"
 			"linked_special_values"
 			{
-				"evasion" "5"
-				"radius" "50"
+				"movement_speed_pct" "6.5"
 			}
 		}
 	}
@@ -94,16 +101,15 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
-			"multiplicative_target"	"95"
 			"linked_abilities"
 			{
 				"hoodwink_decoy"
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "8"
+						"value" "10"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -111,14 +117,22 @@
 		}
 		"max_damage"
 		{
-			"value" "200"
+			"value" "240"
 			"operator" "OP_ADD"
+			"facets"
+			{
+				"3" "180"
+			}
 		}
 		"max_charge_time"
 		{
 			"value" "-0.5"
 			"operator" "OP_ADD"
 			"max_count" "4"
+			"facets"
+			{
+				"3" "-0.375"
+			}
 		}
 	}
 }

@@ -2,23 +2,6 @@
 {
 	"ogre_magi_fireblast"
 	{
-		"cooldown_and_manacost"
-		{
-			"value" "8"
-			"operator" "OP_MULTIPLY"
-			"max_count" "4"
-			"linked_abilities"
-			{
-				"ogre_magi_unrefined_fireblast"
-				{
-					"cooldown_and_manacost"
-					{
-						"value" "8"
-						"operator" "OP_MULTIPLY"
-					}
-				}
-			}
-		}
 		"fireblast_damage"
 		{
 			"value" "30"
@@ -36,74 +19,70 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "15"
 			"operator" "OP_MULTIPLY"
-			"linked_abilities"
-			{
-				"ogre_magi_smash"
-				{
-					"cooldown_and_manacost"
-					{
-						"value" "8"
-						"operator" "OP_MULTIPLY"
-					}
-				}
-			}
+			"max_count" "10"
 		}
 		"burn_damage"
 		{
-			"value" "10"
+			"value" "16"
 			"operator" "OP_ADD"
-			"linked_abilities"
-			{
-				"ogre_magi_smash"
-				{
-					"damage" "25"
-				}
-			}
+		}
+	}
+	"ogre_magi_smash"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "15"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
 		}
 	}
 	"ogre_magi_bloodlust"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
+			"max_count" "10"
 		}
 		"bonus_movement_speed"
 		{
-			"value" "3"
+			"value" "3.5"
 			"operator" "OP_ADD"
 		}
 		"bonus_attack_speed"
 		{
-			"value" "21"
+			"value" "24"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"self_bonus" "28"
+				"self_bonus" "30"
 			}
 		}
 	}
 	"ogre_magi_multicast"
 	{
+		"strength_mult"
+		{
+			"value" "0.01"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "1"
+		}
 		"multicast_2_times"
 		{
-			"value" "7.5"
+			"value" "2"
 			"operator" "OP_ADD"
-			"max_count" "2"
-		}
-		"multicast_3_times"
-		{
-			"value" "4"
-			"operator" "OP_ADD"
-			"max_count" "10"
-		}
-		"multicast_4_times"
-		{
-			"value" "2.5"
-			"operator" "OP_ADD"
-			"max_count" "10"
+			"RequiresFacetID" "2"
+			"linked_special_values"
+			{
+				"multicast_3_times" "2"
+				"multicast_4_times" "2"
+			}
 		}
 	}
 }

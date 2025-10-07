@@ -48,12 +48,13 @@
 			"operator" "OP_ADD"
 			"max_count" "2"
 		}
-		//"essence_stacks"
-		//{
-		//	"value" "1"
-		//	"operator" "OP_ADD"
-		//	"max_count" "5"
-		//}
+		"essence_stacks"
+		{
+			"value" "1"
+			"operator" "OP_ADD"
+			"max_count" "6"
+			"RequiresFacetID" "1"
+		}
 	}
 	"slark_essence_shift"
 	{
@@ -86,15 +87,20 @@
 	}
 	"slark_barracuda"
 	{
-		"bonus_regen"
-		{
-			"value" "40"
-			"operator" "OP_ADD"
-		}
 		"bonus_movement_speed"
 		{
-			"value" "16"
+			"value" "6"
 			"operator" "OP_ADD"
+			"linked_special_values"
+			{
+				"bonus_regen" "30"
+			}
+		}
+		"corruption_armor"
+		{
+			"value" "-2"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "2"
 		}
 	}
 }

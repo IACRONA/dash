@@ -4,7 +4,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 			"linked_abilities"
@@ -13,7 +13,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "8"
+						"value" "10"
 						"operator" "OP_MULTIPLY"
 					}
 				}
@@ -21,15 +21,15 @@
 		}
 		"whirling_radius"
 		{
-			"value" "25"
+			"value" "30"
 			"operator" "OP_ADD"
 			"max_count" "10"
 			"linked_abilities"
 			{
 				"shredder_flamethrower"
 				{
-					"width" "25"
-					"length" "25"
+					"width" "30"
+					"length" "30"
 				}
 			}
 		}
@@ -54,27 +54,27 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "10"
 			"operator" "OP_MULTIPLY"
 		}
 		"radius"
 		{
-			"value" "30"
+			"value" "35"
 			"operator" "OP_ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
-				"chain_radius" "30"
+				"chain_radius" "35"
 			}
 		}
 		"damage"
 		{
-			"value" "22"
+			"value" "25"
 			"operator" "OP_ADD"
 		}
 		"tree_splinter_damage"
 		{
-			"value" "10"
+			"value" "30"
 			"operator" "OP_ADD"
 			"RequiresFacetID" "1"
 		}
@@ -83,27 +83,40 @@
 	{
 		"bonus_armor"
 		{
-			"value" "0.06"
+			"value" "0.07"
 			"operator" "OP_ADD"
-			"max_count" "10"
 			"linked_special_values"
 			{
 				"cooldown_and_manacost"
 				{
 					"value" "8"
 					"operator" "OP_MULTIPLY"
+					"multiplicative_target"	"80"
 				}
 			}
 		}
 		"bonus_hp_regen"
 		{
-			"value" "0.22"
+			"value" "0.25"
 			"operator" "OP_ADD"
-			"max_count" "10"
 			"linked_special_values"
 			{
-				"radius" "30"
-				"explosion_radius" "30"
+				"radius"
+				{
+					"value" "30"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"		"900"
+					"multiplicative_base_value"	"600"
+				}
+				"explosion_radius"
+				{
+					"value" "30"
+					"operator" "OP_MULTIPLY"
+
+					"multiplicative_target"		"900"
+					"multiplicative_base_value"	"600"
+				}
 			}
 		}
 	}
@@ -111,7 +124,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "7"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
 			"linked_abilities"
 			{
@@ -119,7 +132,7 @@
 				{
 					"cooldown_and_manacost"
 					{
-						"value" "7"
+						"value" "8"
 						"operator" "OP_MULTIPLY"
 						"RequiresFacetID" "2"
 					}
@@ -128,21 +141,9 @@
 		}
 		"radius"
 		{
-			"value" "25"
+			"value" "30"
 			"operator" "OP_ADD"
 			"max_count" "10"
-			"linked_abilities"
-			{
-				"shredder_twisted_chakram"
-				{
-					"radius"
-					{
-						"value" "15"
-						"operator" "OP_ADD"
-						"RequiresFacetID" "2"
-					}
-				}
-			}
 		}
 		"pass_damage"
 		{
@@ -159,7 +160,7 @@
 	{
 		"damage"
 		{
-			"value" "10"
+			"value" "12"
 			"operator" "OP_ADD"
 			"RequiresFacetID" "2"
 			"linked_special_values"

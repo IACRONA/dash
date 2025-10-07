@@ -6,7 +6,7 @@
 		{
 			"value" "8"
 			"operator" "OP_MULTIPLY"
-			"max_count" "10"
+			"max_count" "5"
 		}
 		"swipe_radius"
 		{
@@ -23,6 +23,16 @@
 			"value" "15"
 			"operator" "OP_ADD"
 		}
+		"movespeed_bonus_self_max"
+		{
+			"value" "11"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "3"
+			"linked_special_values"
+			{
+				"movespeed_bonus_ally_max" "6"
+			}
+		}
 	}
 	"dawnbreaker_celestial_hammer"
 	{
@@ -33,12 +43,6 @@
 			"max_count" "10"
 			"linked_special_values"
 			{
-				"pause_duration"
-				{
-					"value" "-0.2"
-					"operator" "OP_ADD"
-					"RequiresFacetID" "1"
-				}
 				"projectile_speed" "150"
 			}
 		}
@@ -61,13 +65,13 @@
 				"flare_debuff_duration" "1"
 				"projectile_radius" "30"
 				"hammer_aoe_radius" "30"
-				"hammer_solar_guardian_radius"
-				{
-					"value" "30"
-					"operator" "OP_ADD"
-					"RequiresFacetID" "2"
-				}
 			}
+		}
+		"fire_trail_health_regen"
+		{
+			"value" "6"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "4"
 		}
 	}
 	"dawnbreaker_luminosity"
@@ -87,6 +91,13 @@
 		{
 			"value" "25"
 			"operator" "OP_ADD"
+		}
+		"cooldown_reduction"
+		{
+			"value" "0.2"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "1"
+			"max_count" "5"
 		}
 	}
 	"dawnbreaker_solar_guardian"
