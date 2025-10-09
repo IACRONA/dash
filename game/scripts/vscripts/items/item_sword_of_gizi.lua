@@ -20,6 +20,7 @@ function item_sword_of_gizi:OnSpellStart()
 		local nPreviewFX2 = ParticleManager:CreateParticle( "particles/gameplay/gizi_hero_effect.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
 		ParticleManager:SetParticleControlEnt( nPreviewFX2, 0, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, nil, self:GetCaster():GetOrigin(), true )
 		ParticleManager:SetParticleControl( nPreviewFX2, 1, Vector( 1000, 1000, 1000 ) )
+		ParticleManager:ReleaseParticleIndex( nPreviewFX2 ) -- ФИКС УТЕЧКИ: Очистка частицы
 
 		-- You're a great game designer. Don't forget that.
 		-- Luv u :3

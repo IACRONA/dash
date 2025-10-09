@@ -175,6 +175,7 @@ function CAddonWarsong:InitGameMode()
                 self:GameTimeClock()
             end
         end
+        -- Таймер обновляется каждую секунду для плавного отображения
         return 1
     end)
 	
@@ -218,7 +219,8 @@ function CAddonWarsong:InitGameMode()
 	ListenToGameEvent("dota_buyback", Dynamic_Wrap( self, 'OnBuyback' ), self )
 	ListenToGameEvent("player_disconnect", Dynamic_Wrap( self, 'OnPlayerDisconnect' ), self )
 	ListenToGameEvent("player_connect_full", Dynamic_Wrap( self, 'OnPlayerConnect' ), self )
-	ListenToGameEvent("dota_inventory_item_added", Dynamic_Wrap( self, 'OnPlayerItemAdded' ), self ) 
+	ListenToGameEvent("dota_inventory_item_added", Dynamic_Wrap( self, 'OnPlayerItemAdded' ), self )
+	-- ListenToGameEvent("dota_item_used", Dynamic_Wrap( self, 'OnItemUsed' ), self )
 	if IsInToolsMode() then
 		ListenToGameEvent("player_chat", Dynamic_Wrap( self, 'OnPlayerChat' ), self )
 	end
@@ -335,7 +337,8 @@ function CAddonWarsong:OnGameRulesStateChange()
                 return
             end
             self:HeroSelectionUpdater()
-            return 0.5  -- Увеличено с 0.2 до 0.5 секунд для оптимизации
+            -- ОПТИМИЗАЦИЯ: Увеличен интервал с 0.5s до 1.0s
+            return 1.0
         end)
 		self.flagPositions = {}
 		self.flagItemNames = {}
@@ -558,12 +561,13 @@ function CAddonWarsong:OnGameRulesStateChange()
 					if hHero and not hHero:HasModifier("modifier_freeze_time_start") then
 						local expForNextLevel = expTable[hHero:GetLevel()]
 						if expForNextLevel then
-							local exp = PERCENT_OF_LEVEL_MINUTE / 60
+							-- ОПТИМИЗАЦИЯ: Увеличен интервал с 1s до 5s, опыт начисляется пропорционально больше
+							local exp = PERCENT_OF_LEVEL_MINUTE / 60 * 5
 							hHero:AddExperience(math.ceil(expForNextLevel * (exp / 100)), 0, false, true)
 						end
 					end
 				end
-				return 1
+				return 5
 			end)
 
 			if GetMapName() == "dash" then
@@ -629,7 +633,8 @@ function CAddonWarsong:OnGameRulesStateChange()
 						end
 					end)
 
-					return 3  -- Увеличено с 2 до 3 секунд для оптимизации
+					-- ОПТИМИЗАЦИЯ: Увеличен интервал с 3s до 5s
+					return 5
 				end)
 			end
 		end
@@ -660,17 +665,25 @@ function CAddonWarsong:GiveBooks()
 	DoWithAllPlayers(function(player, hero, playerId)
         initPlayerBooks(playerId)
     end)
+	print("[GiveBooks] Initialized! Starting timer...")
 	Timers:CreateTimer(2, function()
 		DoWithAllPlayers(function(player, hero, playerId)
-			if not hero then return end
+			if not hero then
+				print("[GiveBooks] Hero is nil for player", playerId)
+				return
+			end
 			if self.bookTicks.common[playerId] == nil then
+				print("[GiveBooks] Reinitializing books for player", playerId)
 				initPlayerBooks(playerId)
 				return
 			end
 
-			self.bookTicks.common[playerId].tick = self.bookTicks.common[playerId].tick + 2
-			self.bookTicks.rare[playerId].tick = self.bookTicks.rare[playerId].tick + 2
-			self.bookTicks.epic[playerId].tick = self.bookTicks.epic[playerId].tick + 2
+			-- ОПТИМИЗАЦИЯ: Увеличен интервал с 2s до 5s
+			self.bookTicks.common[playerId].tick = self.bookTicks.common[playerId].tick + 5
+			self.bookTicks.rare[playerId].tick = self.bookTicks.rare[playerId].tick + 5
+			self.bookTicks.epic[playerId].tick = self.bookTicks.epic[playerId].tick + 5
+
+			print("[GiveBooks] Tick update for player", playerId, "- common tick:", self.bookTicks.common[playerId].tick)
 
 			local team = hero:GetTeamNumber()
 			local commonTime = BOOK_COMMON_COOLDOWN
@@ -706,11 +719,12 @@ function CAddonWarsong:GiveBooks()
                     self.bookReserve[playerId].common = self.bookReserve[playerId].common + 1
                 else
                     self.bookTicks.common[playerId].count = self.bookTicks.common[playerId].count + 1
+                    print("[GiveBooks] Giving COMMON book to player", playerId, "count:", self.bookTicks.common[playerId].count)
                     Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
                     EmitSoundClient("sphere_choice", player)
                 end
 			elseif self.bookTicks.common[playerId].count >= BOOK_COMMON_LIMIT then
-				-- print("Лимит на книги RARE")
+				-- print("Лимит на книги COMMON")
             end
 
 			if GameRules:GetDOTATime(false, false) >= BOOK_RARE_START and self.bookTicks.rare[playerId].count < BOOK_RARE_LIMIT and self.bookTicks.rare[playerId].tick >= rareTime then
@@ -719,6 +733,7 @@ function CAddonWarsong:GiveBooks()
                     self.bookReserve[playerId].rare = self.bookReserve[playerId].rare + 1
                 else
                     self.bookTicks.rare[playerId].count = self.bookTicks.rare[playerId].count + 1
+                    print("[GiveBooks] Giving RARE book to player", playerId, "count:", self.bookTicks.rare[playerId].count)
                     Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
                     EmitSoundClient("sphere_choice", player)
                 end
@@ -730,13 +745,15 @@ function CAddonWarsong:GiveBooks()
                     self.bookReserve[playerId].epic = self.bookReserve[playerId].epic + 1
                 else
                     self.bookTicks.epic[playerId].count = self.bookTicks.epic[playerId].count + 1
+                    print("[GiveBooks] Giving EPIC book to player", playerId, "count:", self.bookTicks.epic[playerId].count)
                     Upgrades:QueueSelection(hero, UPGRADE_RARITY_EPIC)
                     EmitSoundClient("sphere_choice", player)
                 end
             end
 		end)
 
-		return 2  -- Увеличено с 1 до 2 секунд для оптимизации
+		-- ОПТИМИЗАЦИЯ: Увеличен интервал с 2s до 5s
+		return 5
 	end)
 end
 
@@ -760,9 +777,9 @@ function CAddonWarsong:OnNPCSpawned(event)
     end
 
 	if hUnit:IsRealHero() then
-		Timers:CreateTimer(0.03, function()			
-			if  not hUnit:IsClone() 
-				and not hUnit:IsTempestDouble() 
+		Timers:CreateTimer(0.03, function()
+			if  not hUnit:IsClone()
+				and not hUnit:IsTempestDouble()
 				and hUnit.bFirstSpawned == nil
 			then
 				hUnit.bFirstSpawned = true
@@ -794,9 +811,9 @@ function CAddonWarsong:OnNPCSpawned(event)
 						hUnit:HeroLevelUp(false)
 					end
 					hUnit.upgrades = {}
-					
+
 					Upgrades:LoadUpgradesData(hUnit:GetUnitName())
-					
+
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_warsong_movespeed_bonus', nil)
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_balance', nil)
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_cursed_leader', nil)
@@ -811,15 +828,17 @@ function CAddonWarsong:OnNPCSpawned(event)
 					if hUnit:HasAbility('nevermore_necromastery') then
 						hUnit:AddNewModifier(hUnit, nil, 'modifier_nevermore_souls', {})
 					end
-					local ui_custom_ability_jump = hUnit:AddAbility('ui_custom_ability_jump')
-					if ui_custom_ability_jump then
-						ui_custom_ability_jump:SetLevel(1)
-					end
 
-					hUnit:AddItemByName("item_tp_scroll_custom")
+					-- ОПТИМИЗАЦИЯ: Отключена способность прыжка для улучшения FPS
+					-- local ui_custom_ability_jump = hUnit:AddAbility('ui_custom_ability_jump')
+					-- if ui_custom_ability_jump then
+					-- 	ui_custom_ability_jump:SetLevel(1)
+					-- end
 
-					if GetMapName() ~= "dash" then 
-						if hUnit:GetUnitName() ~= 'npc_dota_base_mount' then 
+					-- hUnit:AddItemByName("item_tp_scroll_custom")
+
+					if GetMapName() ~= "dash" then
+						if hUnit:GetUnitName() ~= 'npc_dota_base_mount' then
 							hUnit:AddNewModifier(hUnit, nil, "modifier_freeze_time_start", {duration = START_GAME_FREEZE_TIME})
 						end
 					end
@@ -829,6 +848,11 @@ function CAddonWarsong:OnNPCSpawned(event)
 		end)
 	end
  
+	-- Применяем AMP модификатор к крипам при спавне (оптимизация вместо таймера)
+	if GetMapName() == "dash" and self.AMP_Init and hUnit:IsCreep() then
+		hUnit:AddNewModifier(hUnit, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level, type = "creep"})
+	end
+
 	local owner = hUnit:GetOwner()
 
 	if owner and not owner:IsNull() then
@@ -837,7 +861,7 @@ function CAddonWarsong:OnNPCSpawned(event)
 
 		if hUnit:IsIllusion() or is_tempest_double or is_meepo_clone then
 			Upgrades:ProcessClone(hUnit, PlayerResource:GetSelectedHeroEntity(hUnit:GetPlayerOwnerID()))
-		else 
+		else
 			Upgrades:ApplySummonUpgrades(hUnit, hUnit:GetUnitName(), owner)
 		end
 	end
@@ -889,44 +913,66 @@ function CAddonWarsong:OnPlayerConnect(event)
 	end)
 end
 
+-- function CAddonWarsong:OnItemUsed(event)
+-- 	local hero = PlayerResource:GetSelectedHeroEntity(event.PlayerID)
+-- 	if not hero then return end
+
+-- 	local item = EntIndexToHScript(event.itemEntIndex)
+-- 	if not item then return end
+
+-- 	-- Проверяем что это TP scroll
+-- 	if item:GetAbilityName() == "item_tpscroll" then
+-- 		-- Восстанавливаем TP scroll через небольшую задержку
+-- 		Timers:CreateTimer(0.1, function()
+-- 			-- Проверяем есть ли TP scroll в специальном слоте
+-- 			local tpSlot = hero:FindItemInInventory("item_tpscroll")
+-- 			if not tpSlot then
+-- 				-- Если нет, создаём новый
+-- 				hero:AddItemByName("item_tpscroll")
+-- 			end
+-- 		end)
+-- 	end
+-- end
+
 CAddonWarsong.amp_bonus_level = 0
 CAddonWarsong.AMP_Init = false
-function CAddonWarsong:AMP_TOWERS_AND_CREEPS() 
+-- Кеш для башен и фонтанов (оптимизация)
+CAddonWarsong.cached_towers = nil
+CAddonWarsong.cached_fountains = nil
+
+function CAddonWarsong:AMP_TOWERS_AND_CREEPS()
 	self.amp_bonus_level = self.amp_bonus_level + 1
-	if not self.AMP_Init then 
-		self:UpdateCreepsAMP()
-	end
 	self.AMP_Init = true
-	local all_towers = Entities:FindAllByClassname("npc_dota_tower")
-	for _, tower in pairs(all_towers) do
-		if tower:HasModifier("modifier_dash_amp") then
-			tower:RemoveModifierByName("modifier_dash_amp")
-		end
-		tower:AddNewModifier(tower, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
+
+	-- Кешируем башни и фонтаны при первом вызове
+	if not self.cached_towers then
+		self.cached_towers = Entities:FindAllByClassname("npc_dota_tower")
 	end
-	local all_fountains = Entities:FindAllByClassname("ent_dota_fountain")
-	for _, fountain in pairs(all_fountains) do
-		if fountain:HasModifier("modifier_dash_amp") then
-			fountain:RemoveModifierByName("modifier_dash_amp")
+	if not self.cached_fountains then
+		self.cached_fountains = Entities:FindAllByClassname("ent_dota_fountain")
+	end
+
+	-- Используем кешированные объекты
+	for _, tower in pairs(self.cached_towers) do
+		if tower and not tower:IsNull() then
+			if tower:HasModifier("modifier_dash_amp") then
+				tower:RemoveModifierByName("modifier_dash_amp")
+			end
+			tower:AddNewModifier(tower, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level})
 		end
-		fountain:AddNewModifier(fountain, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level, type = "fountain"})
+	end
+
+	for _, fountain in pairs(self.cached_fountains) do
+		if fountain and not fountain:IsNull() then
+			if fountain:HasModifier("modifier_dash_amp") then
+				fountain:RemoveModifierByName("modifier_dash_amp")
+			end
+			fountain:AddNewModifier(fountain, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level, type = "fountain"})
+		end
 	end
 end
-function CAddonWarsong:UpdateCreepsAMP()
-    Timers:CreateTimer(function()
-        local all_creeps = Entities:FindAllByClassname("npc_dota_creep*")
-        for _, creep in pairs(all_creeps) do
-            if creep and not creep:IsNull() and creep:IsAlive() then
-                -- Удаляем старый модификатор перед добавлением нового
-                if creep:HasModifier("modifier_dash_amp") then
-                    creep:RemoveModifierByName("modifier_dash_amp")
-                end
-                creep:AddNewModifier(creep, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level, type = "creep"})
-            end
-        end
-        return 5  -- Увеличено с 1 до 5 секунд для оптимизации
-    end)
-end
+
+-- УДАЛЕН таймер UpdateCreepsAMP - теперь модификаторы применяются при спавне крипа в OnNPCSpawned
 -- Дай пять механика
 function CAddonWarsong:HighFive(params)
     if params.PlayerID == nil then return end

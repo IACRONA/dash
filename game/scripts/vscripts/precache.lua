@@ -113,6 +113,8 @@ local particles =
     "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt_end.vpcf",
     "particles/base_attacks/ranged_badguy.vpcf",
     "particles/base_attacks/ranged_goodguy.vpcf",
+    "particles/base_attacks/ranged_siege_bad.vpcf",
+    "particles/base_attacks/ranged_siege_good.vpcf",
 
 
     "particles/overhead_particle/leaders/leader_overhead_artifact.vpcf",
@@ -187,6 +189,8 @@ local models = {
     "models/courier/greevil/gold_greevil.vmdl", 
     "models/courier/minipudge/minipudge.vmdl",
     "models/courier/sw_donkey/sw_donkey.vmdl",
+    "models/props_gameplay/donkey.vmdl",
+    "models/items/courier/blue_lightning_horse/blue_lightning_horse.vmdl",
     "models/items/courier/courier_ti10_radiant/courier_ti10_radiant_lvl1/courier_ti10_radiant_lvl1.vmdl",
     "models/items/courier/duskie/duskie.vmdl",
     "models/items/courier/faceless_rex/faceless_rex.vmdl",
@@ -264,11 +268,16 @@ local models = {
 "models/heroes/attachto_ghost/attachto_ghost.vmdl",
 "models/creeps/neutral_creeps/n_creep_enraged_wildkin/n_creep_enraged_wildkin.vmdl",
 "models/creeps/neutral_creeps/n_creep_centaur_chief/n_creep_centaur_chief.vmdl",
+"models/creeps/neutral_creeps/n_creep_beast/n_creep_beast.vmdl",
+"models/creeps/neutral_creeps/n_creep_forest_trolls/n_creep_forest_troll_high_priest.vmdl",
+"models/creeps/neutral_creeps/n_creep_furbolg/n_creep_furbolg_disrupter.vmdl",
+"models/creeps/neutral_creeps/n_creep_satyr_spawn_a/n_creep_satyr_spawn_a.vmdl",
+"models/creeps/neutral_creeps/n_creep_satyr_spawn_a/n_creep_satyr_spawn_b.vmdl",
 
 
 
- 
-     
+
+
     ----- Героои
     "models/heroes/phoenix/phoenix_egg.vmdl",
     "models/heroes/abyssal_underlord/abyssal_underlord_portal_model.vmdl",

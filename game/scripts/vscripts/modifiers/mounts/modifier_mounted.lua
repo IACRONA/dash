@@ -151,13 +151,16 @@ function modifier_mounted:UpdateHorizontalMotion( me, dt )
 	end
 
 	if self:GetMount() then
+		-- Кеш для attachment lookup
+		if not self.cachedAttachment then
+			self.cachedAttachment = self:GetMount():ScriptLookupAttachment(self.horizontalAttachmentName)
+		end
+
 		local origin = self:GetMount():GetAbsOrigin()
 		origin.z = 0.0
 
-		local attachment = self:GetMount():ScriptLookupAttachment(self.horizontalAttachmentName)
-
-		if attachment then
-			local attachmentOrigin = self:GetMount():GetAttachmentOrigin(attachment)
+		if self.cachedAttachment then
+			local attachmentOrigin = self:GetMount():GetAttachmentOrigin(self.cachedAttachment)
 
 			if attachmentOrigin then
 				origin = attachmentOrigin
@@ -180,13 +183,16 @@ function modifier_mounted:UpdateVerticalMotion(me, dt)
 	end
 
 	if self:GetMount() then
+		-- Кеш для attachment lookup
+		if not self.cachedVerticalAttachment then
+			self.cachedVerticalAttachment = self:GetMount():ScriptLookupAttachment(self.verticalAttachmentName)
+		end
+
 		local vMyPos = me:GetOrigin()
 		vMyPos.z = self:GetMount():GetAbsOrigin().z
 
-		local attachment = self:GetMount():ScriptLookupAttachment(self.verticalAttachmentName)
-
-		if attachment then
-			local attachmentOrigin = self:GetMount():GetAttachmentOrigin(attachment)
+		if self.cachedVerticalAttachment then
+			local attachmentOrigin = self:GetMount():GetAttachmentOrigin(self.cachedVerticalAttachment)
 			if attachmentOrigin then
 				vMyPos = attachmentOrigin
 				vMyPos.z = vMyPos.z + self.mountOffset

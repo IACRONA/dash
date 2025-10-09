@@ -74,10 +74,11 @@ function CAddonWarsong:SpawnMorphling()
         Timers:CreateTimer(SPAWN_MORPHLING_STUN_DELAY, function()
             local modifier_kill = morphling:AddNewModifier(morphling, nil, "modifier_kill", {duration = MORPHLING_LIFE_TIME})
             CustomGameEventManager:Send_ServerToAllClients('start_morphling_timer', {time = modifier_kill:GetRemainingTime()})
-            Timers:CreateTimer(FrameTime(), function()
+            -- ОПТИМИЗАЦИЯ: Увеличен интервал с FrameTime() до 0.1s
+            Timers:CreateTimer(0.1, function()
                 if modifier_kill and not modifier_kill:IsNull() then
                     CustomGameEventManager:Send_ServerToAllClients('tick_morphling_timer', {time = modifier_kill:GetRemainingTime()})
-                    return FrameTime()
+                    return 0.1
                 end
                 if morphling and morphling.die == nil then
                     if MORPH_OUT_TIME_STUN ~= 0 then

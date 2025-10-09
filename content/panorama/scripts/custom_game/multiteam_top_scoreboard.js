@@ -18,7 +18,8 @@ function UpdateScoreboard() {
   }
   ScoreboardUpdater_SetScoreboardActive(g_ScoreboardHandle, true);
 
-  $.Schedule(0.2, UpdateScoreboard);
+  // ОПТИМИЗАЦИЯ: Увеличен интервал с 0.2s до 1.0s для снижения нагрузки
+  $.Schedule(1.0, UpdateScoreboard);
 }
 
 (function () {

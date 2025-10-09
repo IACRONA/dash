@@ -45,6 +45,11 @@ function item_coral:OnSpellStart()
 			true
 		)
 
+		-- ФИКС УТЕЧКИ: Очистка всех 3 частиц
+		ParticleManager:ReleaseParticleIndex( particleImpact )
+		ParticleManager:ReleaseParticleIndex( particle )
+		ParticleManager:ReleaseParticleIndex( particleHead )
+
 		for i = 1, hCharges do
 
 				local bCoralBuff = hCaster:FindModifierByName( "modifier_item_coral_consumed" )

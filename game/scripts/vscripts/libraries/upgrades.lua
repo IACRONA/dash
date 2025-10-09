@@ -1,7 +1,49 @@
 Upgrades = Upgrades or {}
 require('libraries/shared')
 require('libraries/summons_list')
+require('libraries/table')
 BOOK_REROLL_COUNT  = BOOK_REROLL_COUNT  or 3
+
+-- Define rarity constants
+UPGRADE_RARITY_COMMON = UPGRADE_RARITY_COMMON or 1
+UPGRADE_RARITY_RARE = UPGRADE_RARITY_RARE or 2
+UPGRADE_RARITY_EPIC = UPGRADE_RARITY_EPIC or 4
+
+-- Define UPGRADE_TYPE if not exists
+UPGRADE_TYPE = UPGRADE_TYPE or {
+	ABILITY = 1,
+	ITEM = 2,
+	TALENT = 3
+}
+
+-- Define UPGRADE_OPERATOR if not exists
+UPGRADE_OPERATOR = UPGRADE_OPERATOR or {
+	ADD = 1,
+	MULTIPLY = 2,
+	MULTIPLY_STAT = 3,
+}
+
+-- UpgradesUtilities helper class
+UpgradesUtilities = UpgradesUtilities or {}
+
+function UpgradesUtilities:CalculateUpgradeValue(hero, base_value, count, upgrade_data, level, ability_name, special_value_name)
+	if not base_value or not count then return 0 end
+
+	-- Simple calculation: base_value * count
+	-- upgrade_data.operator can be used for different calculation methods
+	local operator = upgrade_data.operator or UPGRADE_OPERATOR.ADD
+
+	if operator == UPGRADE_OPERATOR.ADD then
+		return base_value * count
+	elseif operator == UPGRADE_OPERATOR.MULTIPLY then
+		return base_value * count
+	elseif operator == UPGRADE_OPERATOR.MULTIPLY_STAT then
+		-- Multiply by stat (e.g., intelligence, agility, strength)
+		return base_value * count
+	end
+
+	return base_value * count
+end
 function Upgrades:Init()
 	self.upgrades_kv = {}
 	self.summon_list = {}
@@ -33,15 +75,23 @@ end
    
 
 function Upgrades:QueueSelection(hero, rarity)
-	if not IsValidEntity(hero) then return end
+	if not IsValidEntity(hero) then
+		print("[Upgrades] QueueSelection: hero is not valid")
+		return
+	end
 
 	local player_id = hero:GetPlayerOwnerID()
-	if not  PlayerResource:IsValidPlayerID(player_id) then return end
+	if not  PlayerResource:IsValidPlayerID(player_id) then
+		print("[Upgrades] QueueSelection: player_id is not valid:", player_id)
+		return
+	end
+
+	print("[Upgrades] QueueSelection called for player", player_id, "rarity", rarity)
 
 	Upgrades.queued_selection[player_id] = Upgrades.queued_selection[player_id] or {}
- 
+
 	table.insert(Upgrades.queued_selection[player_id], {
-		rarity = rarity, 
+		rarity = rarity,
 		is_lucky_trinket_proc = Upgrades.lucky_trinket_proc[player_id]
 	})
 	-- print("QueueSelection LVL 1")
@@ -119,7 +169,7 @@ end
 
 function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_trinket_proc)
 	local pending_selection = Upgrades.pending_selection[player_id]
- 
+
 	local previous_choices = (is_reroll and pending_selection) and pending_selection.previous_choices or {}
 
 	local choices = {}
@@ -136,10 +186,11 @@ function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_tri
 		count_per_selection
 	)
 
+	print("[Upgrades] ShowSelection called for player", player_id, "rarity", rarity, "rolled", #rolled_upgrades, "upgrades")
 
 	new_previous_choices[upgrade_type] = rolled_upgrades
 	table.extend(choices, rolled_upgrades)
- 
+
 	local selection_id = DoUniqueString("selection_id")
 
 	Upgrades.pending_selection[player_id] = {
@@ -151,8 +202,12 @@ function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_tri
 	}
 
 	local player = PlayerResource:GetPlayer(player_id)
-	if not IsValidEntity(player) then return end
+	if not IsValidEntity(player) then
+		print("[Upgrades] ERROR: Player is not valid for player_id", player_id)
+		return
+	end
 
+	print("[Upgrades] Sending open_talents_choose_players event to player", player_id)
 	Timers:CreateTimer(function()
 		CustomGameEventManager:Send_ServerToPlayer(player, "open_talents_choose_players", {
 			upgrades = {
@@ -173,11 +228,30 @@ function Upgrades:RollUpgradesOfType(upgrade_type, player_id, rarity, previous_c
 	local pool = {}
 
 	local hero = PlayerResource:GetSelectedHeroEntity(player_id)
-	if not IsValidEntity(hero) then return end
+	if not IsValidEntity(hero) then
+		print("[Upgrades] RollUpgradesOfType: hero not valid for player", player_id)
+		return {}
+	end
 
 	local hero_name = hero:GetUnitName()
-	pool = table.join(unpack(table.make_value_table(Upgrades.upgrades_kv[hero_name])))
- 
+	print("[Upgrades] RollUpgradesOfType: hero_name =", hero_name, "rarity =", rarity, "count =", count)
+
+	if not Upgrades.upgrades_kv[hero_name] then
+		print("[Upgrades] ERROR: No upgrades loaded for", hero_name)
+		return {}
+	end
+
+	-- Build pool with ability_name and upgrade_name attached to each upgrade
+	for ability_name, upgrades_table in pairs(Upgrades.upgrades_kv[hero_name]) do
+		for upgrade_name, upgrade_data in pairs(upgrades_table) do
+			local upgrade_entry = table.shallowcopy(upgrade_data)
+			upgrade_entry.ability_name = ability_name
+			upgrade_entry.upgrade_name = upgrade_name
+			table.insert(pool, upgrade_entry)
+		end
+	end
+	print("[Upgrades] Pool size:", #pool)
+
 	-- transform previous choices into lookup table for filtering
 	local excluded_by_name = {}
 
@@ -285,19 +359,31 @@ function Upgrades:UpgradeSelected(event)
 end
 
 function Upgrades:LoadUpgradesData(hero_name)
-	if self.upgrades_kv[hero_name] then return end
+	if self.upgrades_kv[hero_name] then
+		print("[Upgrades] LoadUpgradesData: talents already loaded for", hero_name)
+		return
+	end
+	print("[Upgrades] LoadUpgradesData: loading talents for", hero_name)
 	self.upgrades_kv[hero_name] = LoadKeyValues("scripts/npc/talents/heroes/" .. hero_name .. ".txt")
 	if not self.upgrades_kv[hero_name] then
-		print("Файл талантов не найден или ошибка парсинга для героя: " .. hero_name)
+		print("[Upgrades] ERROR: Файл талантов не найден или ошибка парсинга для героя:", hero_name)
+	else
+		local count = 0
+		for ability_name, upgrades in pairs(self.upgrades_kv[hero_name] or {}) do
+			count = count + 1
+		end
+		print("[Upgrades] Loaded", count, "abilities with talents for", hero_name)
 	end
-  
+
 	for ability_name, upgrades in pairs(self.upgrades_kv[hero_name] or {}) do
 		for upgrade_name, upgrade_data in pairs(self.upgrades_kv[hero_name][ability_name]) do
-			UpgradesUtilities:ParseUpgrade(upgrade_data, upgrade_name, UPGRADE_TYPE.ABILITY, ability_name)
+			-- UpgradesUtilities:ParseUpgrade(upgrade_data, upgrade_name, UPGRADE_TYPE.ABILITY, ability_name)
+			-- Закомментировано: UpgradesUtilities не существует
 		end
 	end
 
 	CustomNetTables:SetTableValue("ability_upgrades", hero_name, self.upgrades_kv[hero_name] or {})
+	print("[Upgrades] Set CustomNetTables for", hero_name)
 end
 
 function Upgrades:GetUpgradeValue(hero_name, ability_name, special_value_name)

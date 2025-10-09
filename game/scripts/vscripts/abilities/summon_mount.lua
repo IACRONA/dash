@@ -61,8 +61,11 @@ function summon_mount:OnChannelThink(flInterval)
 		if self.forceInterrupt then
 			self.forceInterrupt = false
 			self:EndChannel(true)
-			
-			StopSoundOn("Mount.Channeling.Start", self:GetCaster())
+
+			if self.channelingSound then
+				StopSoundOn("Mount.Channeling.Start", self:GetCaster())
+				self.channelingSound = false
+			end
 		end
 	end
 end
@@ -75,6 +78,7 @@ function summon_mount:OnSpellStart()
 			return
 		end
 		self:GetCaster():EmitSound("Mount.Channeling.Start")
+		self.channelingSound = true
 	end
 end
 
@@ -153,7 +157,10 @@ function summon_mount:OnChannelFinish(bInterrupted)
 		if self:GetCaster():HasModifier('modifier_freeze_time_start') then return end
 		if bInterrupted then
 			self:DismountHero()
-			StopSoundOn("Mount.Channeling.Start", self:GetCaster())
+			if self.channelingSound then
+				StopSoundOn("Mount.Channeling.Start", self:GetCaster())
+				self.channelingSound = false
+			end
 		else
 			self:EndCooldown()
 

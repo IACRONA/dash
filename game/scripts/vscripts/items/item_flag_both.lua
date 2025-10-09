@@ -99,7 +99,8 @@ local FlagReturnCountdown = class{
 
 		--self:CreateTimerParticle()
 
-		Timers:CreateTimer(function()
+		-- ОПТИМИЗАЦИЯ: Сохраняем ID таймера для очистки, увеличен интервал с FrameTime() до 0.1s
+		self.timerID = Timers:CreateTimer(function()
 			if self:IsNull() then
 				self:Destroy()
 				return
@@ -107,7 +108,7 @@ local FlagReturnCountdown = class{
 
 			self:Think()
 
-			return FrameTime()
+			return 0.1
 		end)
 	end,
 	
@@ -116,6 +117,11 @@ local FlagReturnCountdown = class{
 			RemoveFOWViewer(DOTA_TEAM_GOODGUYS, self.nViewer1)
 			RemoveFOWViewer(DOTA_TEAM_BADGUYS, self.nViewer2)
 			self:DestroyTimerParticle()
+			-- ОПТИМИЗАЦИЯ: Очищаем таймер для предотвращения утечки памяти
+			if self.timerID then
+				Timers:RemoveTimer(self.timerID)
+				self.timerID = nil
+			end
 			self.bNull = true
 		end
 	end,
@@ -410,6 +416,7 @@ modifier_item_flag_carrier_both = class({
 
 			local vfx = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_commander_duel_victory.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.carrier)
 			ParticleManager:DestroyParticle(vfx, false)
+			ParticleManager:ReleaseParticleIndex(vfx) -- ФИКС УТЕЧКИ: Освобождение индекса частицы
 
 			GameRules.AddonTemplate:PlaySoundForTeam('Flag.Deliver.Good', self.nOwnerTeam)
 			GameRules.AddonTemplate:PlaySoundForTeam('Flag.Deliver.Bad', self.nOpponentTeam)

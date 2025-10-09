@@ -12,7 +12,8 @@ function AnimateCounter(panel, min, max, duration, { pre, after }) {
     panel.text = `${pre || ""}${currentValue.toString()}${after || ""}`;
 
     if (progress < 1) {
-      $.Schedule(0.01, Update); // вызываем снова через 10 мс
+      // ОПТИМИЗАЦИЯ: Увеличен интервал с 0.01s (100 FPS) до 0.033s (~30 FPS)
+      $.Schedule(0.033, Update);
     }
   }
 

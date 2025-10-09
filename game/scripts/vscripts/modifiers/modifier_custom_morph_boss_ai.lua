@@ -35,7 +35,9 @@ function modifier_custom_morph_boss_ai:OnCreated()
     self:AddParticle(head, false, false, -1, false, false)
     self.target_kill = {}
     self.cast_interval = 0
-    self:StartIntervalThink(0.1)
+
+    -- ОПТИМИЗАЦИЯ: Увеличен интервал с 0.1 до 0.2 секунды
+    self:StartIntervalThink(0.2)
 end
 
 function modifier_custom_morph_boss_ai:OnDestroy()
@@ -56,12 +58,15 @@ end
 
 function modifier_custom_morph_boss_ai:OnIntervalThink()
     if not IsServer() then return end
-    for i=0, 14 do
-        AddFOWViewer(i, self:GetParent():GetAbsOrigin(), 500, 0.1, false)
-    end
-    self.cast_interval = self.cast_interval + FrameTime()
 
-    if self.cast_interval >= 0.5 then
+    -- ОПТИМИЗАЦИЯ: FOW viewer добавляется на 0.3 секунды вместо 0.1
+    for i=0, 14 do
+        AddFOWViewer(i, self:GetParent():GetAbsOrigin(), 500, 0.3, false)
+    end
+
+    self.cast_interval = self.cast_interval + 0.2
+
+    if self.cast_interval >= 0.6 then
         self.cast_interval = 0
         if self:GetParent():IsSilenced() then return end
         if self:GetParent():IsStunned() then return end

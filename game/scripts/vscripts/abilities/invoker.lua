@@ -1163,7 +1163,9 @@ function modifier_invoker_ice_wall_custom:OnCreated(kv)
         self.ice_wall_end_point                 = self.origin + self.endpoint_distance_from_center
         self.ice_wall_particle_effect           = kv.ice_wall_particle_effect
         self.ice_wall_particle_effect_spikes    = kv.ice_wall_particle_effect_spikes
-        self:StartIntervalThink(0.1)
+
+        -- ОПТИМИЗАЦИЯ: Уменьшена частота проверки с 0.1 до 0.2 секунды
+        self:StartIntervalThink(0.2)
     end
 end
 
@@ -1224,7 +1226,9 @@ function modifier_invoker_ice_wall_custom_aura:OnCreated(kv)
         self.origin                             = self:GetParent():GetAbsOrigin()
         self.ability                            = self:GetAbility()
         self.ice_wall_particle_effect           = kv.ice_wall_particle_effect
-        self:StartIntervalThink(0.1)
+
+        -- ОПТИМИЗАЦИЯ: Уменьшена частота проверки с 0.1 до 0.2 секунды
+        self:StartIntervalThink(0.2)
     end
 end
 

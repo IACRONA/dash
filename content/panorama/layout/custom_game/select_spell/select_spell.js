@@ -102,9 +102,17 @@ function CreateSpellBlock(spell_name, is_ultimate) {
     particleName: "particles/rebuild/ui/debris/debris_pitch_purple_fx.vpcf",
     lookAt: "0 0 0",
     cameraOrigin: "0 0 60",
-    fov: 90, 
-    hittest: false}); 
+    fov: 90,
+    hittest: false});
   spell_block_particle.AddClass("hoverParticle");
+
+  // Принудительно запускаем партикл для стабильности
+  $.Schedule(0.01, function() {
+    if (spell_block_particle && spell_block_particle.IsValid()) {
+      spell_block_particle.StartParticles();
+    }
+  });
+
   spell_block.SetPanelEvent("onactivate", function () {
     GameEvents.SendCustomGameEventToServer("ability_select_to_hero", { spell_name: spell_name, is_ultimate: is_ultimate });
     $("#SpellSelectedMain").style.opacity = "0";
@@ -214,11 +222,18 @@ function CreateFate(fate_name) {
     particleName: "particles/rebuild/ui/debris/debris_pitch_purple_fx.vpcf",
     lookAt: "0 0 0",
     cameraOrigin: "0 0 60",
-    fov: 90, 
+    fov: 90,
     hittest: false});
   spell_block_particle.AddClass("hoverParticle");
 
-   
+  // Принудительно запускаем партикл для стабильности
+  $.Schedule(0.01, function() {
+    if (spell_block_particle && spell_block_particle.IsValid()) {
+      spell_block_particle.StartParticles();
+    }
+  });
+
+
   let fate_level = 0; 
 
   let fate_selected_table = CustomNetTables.GetTableValue("fate_selected", String(Players.GetLocalPlayer()));
@@ -334,9 +349,17 @@ function CreateSphere(data) {
     particleName: "particles/rebuild/ui/spheres/sphere_pitch_fx.vpcf",
     lookAt: "0 0 0",
     cameraOrigin: "0 0 60",
-    fov: 90,  
+    fov: 90,
     hittest: false});
   spell_block_particle.AddClass("hoverParticle");
+
+  // Принудительно запускаем партикл для стабильности
+  $.Schedule(0.01, function() {
+    if (spell_block_particle && spell_block_particle.IsValid()) {
+      spell_block_particle.StartParticles();
+    }
+  });
+
   let spell_fate_levels = $.CreatePanel("Panel", spell_block, "");
   spell_fate_levels.AddClass("spell_sphere_levels");
   for (let i = 1; i <= 4; i++) {
@@ -572,9 +595,16 @@ function CreateTalent(upgradeInfo, data) {
     particleName: ParticleForRarity[upgrade_rarity],
     lookAt: "0 0 0",
     cameraOrigin: "0 0 60",
-    fov: 90,  
-    hittest: false}); 
+    fov: 90,
+    hittest: false});
   spell_block_particle.AddClass("hoverParticle");
+
+  // Принудительно запускаем партикл и добавляем задержку для стабильности
+  $.Schedule(0.01, function() {
+    if (spell_block_particle && spell_block_particle.IsValid()) {
+      spell_block_particle.StartParticles();
+    }
+  });
   let loc_upgrade = "";
   let b_check_hidden = true;
   let multiply_value;

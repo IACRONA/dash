@@ -13,7 +13,9 @@ function modifier_high_five:OnCreated()
     self:GetParent():EmitSound("high_five.cast")
     local particle = ParticleManager:CreateParticle(self.overhead_effect, PATTACH_OVERHEAD_FOLLOW, self:GetParent())
     self:AddParticle(particle, false, false, -1, false, false)
-    self:StartIntervalThink(0.1)
+
+    -- ОПТИМИЗАЦИЯ: Уменьшена частота проверки с 0.1 до 0.25 секунды
+    self:StartIntervalThink(0.25)
 end
 
 function modifier_high_five:StartProj(caster, target, vPoint)

@@ -465,7 +465,7 @@ function modifier_mount_passive:OnCreated( kv )
 			self:GetParent():StartGestureWithPlaybackRate(spawnGesture, playbackRate)
 		end
 
-		self:StartIntervalThink(0.25)
+		self:StartIntervalThink(0.5)
 	end
 end
 
@@ -559,7 +559,7 @@ function modifier_mount_passive:RestartModifier()
 			self:GetParent():StartGestureWithPlaybackRate(spawnGesture, playbackRate)
 		end
 
-		self:StartIntervalThink(0.25)
+		self:StartIntervalThink(0.5)
 	end
 end
 
@@ -847,7 +847,7 @@ function modifier_mount_passive:AttachCloneToMount()
 		self.clonedHero = clone
 		clone:SetOwner(self.hPlayer)
 		self:GetParent().clonedHero = clone
-		
+
 		clone:SetModel(self.hPlayer:GetModelName())
 		clone:SetOriginalModel(self.hPlayer:GetModelName())
 
@@ -860,11 +860,15 @@ function modifier_mount_passive:AttachCloneToMount()
 		local mountChildCount = self:GetMountChildCount()
 		local childOnlyCount = self:GetChildOnlyCount()
 
+		-- ОПТИМИЗАЦИЯ: Копируем только необходимые косметические предметы (максимум 3)
 		if mountChildCount or childOnlyCount then
 			local cosmeticModel = self.hPlayer:FirstMoveChild()
 
 			local counter = 1
-			while cosmeticModel ~= nil do
+			local wearableCount = 0
+			local maxWearables = 3 -- Ограничиваем количество косметики для производительности
+
+			while cosmeticModel ~= nil and wearableCount < maxWearables do
 				if cosmeticModel:GetClassname() == "dota_item_wearable" and cosmeticModel:GetModelName() ~= "" then
 
 					--copy everything except mount or only selected item
@@ -877,12 +881,13 @@ function modifier_mount_passive:AttachCloneToMount()
 							hWearable:SetOwner(clone)
 							hWearable:SetParent(clone, nil)
 							hWearable:FollowEntity(clone, true)
+							wearableCount = wearableCount + 1
 						end
 					end
 
 					counter = counter + 1
 				end
-				
+
 				cosmeticModel = cosmeticModel:NextMovePeer()
 			end
 		end
@@ -960,11 +965,15 @@ function modifier_mount_passive:AttachHeroToMount()
 			local mountChildCount = self:GetMountChildCount()
 			local childOnlyCount = self:GetChildOnlyCount()
 
+			-- ОПТИМИЗАЦИЯ: Копируем только необходимые косметические предметы (максимум 3)
 			if mountChildCount or childOnlyCount then
 				local cosmeticModel = self.hPlayer:FirstMoveChild()
 
 				local counter = 1
-				while cosmeticModel ~= nil do
+				local wearableCount = 0
+				local maxWearables = 3 -- Ограничиваем количество косметики для производительности
+
+				while cosmeticModel ~= nil and wearableCount < maxWearables do
 					if cosmeticModel:GetClassname() == "dota_item_wearable" and cosmeticModel:GetModelName() ~= "" then
 
 						--copy everything except mount or only selected item
@@ -977,12 +986,13 @@ function modifier_mount_passive:AttachHeroToMount()
 								hWearable:SetOwner(clone)
 								hWearable:SetParent(clone, nil)
 								hWearable:FollowEntity(clone, true)
+								wearableCount = wearableCount + 1
 							end
 						end
 
 						counter = counter + 1
 					end
-					
+
 					cosmeticModel = cosmeticModel:NextMovePeer()
 				end
 			end

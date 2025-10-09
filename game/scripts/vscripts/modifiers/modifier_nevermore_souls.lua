@@ -33,9 +33,19 @@ function modifier_nevermore_souls:OnIntervalThink()
 	if hBuff then
 		local hAbility = hBuff:GetAbility()
 		if hAbility then
-			local nSPS = hAbility:GetSpecialValueFor('souls_per_sec')
+			local nMax = hAbility:GetSpecialValueFor("necromastery_max_souls")
+
+			-- Определяем скорость получения душ в зависимости от карты
+			local nSPS = 0
+			if GetMapName() == "dash" then
+				-- На карте dash души даются за 60 секунд
+				nSPS = nMax / 60
+			else
+				-- На остальных картах души даются за 20 секунд
+				nSPS = nMax / 20
+			end
+
 			if nSPS > 0 then
-				nMax = hAbility:GetSpecialValueFor("necromastery_max_souls")
 				local nInterval = 1 / nSPS
 				if hBuff:GetStackCount() < nMax and self:GetParent():IsAlive() then
 					local nInc = math.floor(self.nTimePassed / nInterval)

@@ -103,6 +103,31 @@ function table.random_with_condition(t, func)
     return t[key], key
 end
 
+-- 随机选择多个元素，带条件的
+function table.random_some_with_condition(t, count, func)
+    local filtered = {}
+    for k, v in pairs(t) do
+        if func(t, k, v) then
+            table.insert(filtered, v)
+        end
+    end
+
+    if #filtered == 0 then
+        return {}
+    end
+
+    if #filtered <= count then
+        return filtered
+    end
+
+    filtered = table.shuffle(filtered)
+    local result = {}
+    for i = 1, count do
+        table.insert(result, filtered[i])
+    end
+    return result
+end
+
 -- 带权重的选择某个元素
 -- 权重表达的几种方式，获取顺序也是这个顺序
 -- 1. GetWeight函数
@@ -149,6 +174,15 @@ function table.make_key_table(t)
     local r = {}
     for k, _ in pairs(t) do
         table.insert(r, k)
+    end
+    return r
+end
+
+-- 将所有value作为一个table返回
+function table.make_value_table(t)
+    local r = {}
+    for _, v in pairs(t) do
+        table.insert(r, v)
     end
     return r
 end
@@ -287,4 +321,22 @@ function table.pop_back_item(tbl,item)
        end
     end
     return tbl
+end
+
+-- extend table with another table
+function table.extend(t1, t2)
+    for _, v in pairs(t2) do
+        table.insert(t1, v)
+    end
+    return t1
+end
+
+-- find element in table with condition function
+function table.find_element(t, func)
+    for k, v in pairs(t) do
+        if func(t, k, v) then
+            return k, v
+        end
+    end
+    return nil, nil
 end

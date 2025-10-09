@@ -63,6 +63,7 @@ function modifier_lina_fire_bomb:DestroyOnExpire()
 	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf", PATTACH_ABSORIGIN, caster)
 	ParticleManager:SetParticleControl(particle, 0, parent:GetOrigin())
 	ParticleManager:SetParticleControl(particle, 1, Vector(radius, radius, radius))
+	ParticleManager:ReleaseParticleIndex(particle) -- ФИКС УТЕЧКИ: Очистка частицы
 
 	for _,enemy in ipairs(enemies) do
 		damageTable.victim = enemy

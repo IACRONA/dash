@@ -94,7 +94,8 @@ const english_language_button = {
 var init_settings = false;
 var abilities_settings = playerInfo.getKeybindsPlayer();
 
-var abilities_list = ["cast_ability_8", "cast_jump"];
+// ОПТИМИЗАЦИЯ: Убран прыжок для улучшения FPS
+var abilities_list = ["cast_ability_8"];
 var saves_buttons_name = {};
 
 function GetGameKeybind(command) {
@@ -279,7 +280,8 @@ function SetKeyBindButton(ability_name, button_keypad) {
 }
 
 function GetAbilityList() {
-  let abilities_list = ["none", "none", "ui_custom_ability_jump"];
+  // ОПТИМИЗАЦИЯ: Убран прыжок для улучшения FPS
+  let abilities_list = ["none", "none"];
   let abilities = CustomNetTables.GetTableValue("abilities_list", String(Players.GetLocalPlayer()));
   if (abilities) {
     if (abilities.basic != null) {
@@ -293,34 +295,28 @@ function GetAbilityList() {
 }
 
 function UseAbility(ability_name) {
+  // ОПТИМИЗАЦИЯ: Убран прыжок для улучшения FPS
   let find_ability = {
     cast_ability_7: 0,
     cast_ability_8: 1,
-    cast_jump: 2,
   };
   let ability_name_in_skill = GetAbilityList()[find_ability[ability_name]];
-  let bheroCanJump = !HEROES_DONT_JUMP.includes(Entities.GetUnitName(Players.GetLocalPlayerPortraitUnit()));
-  if (ability_name_in_skill != "none" && (ability_name != "cast_jump" || bheroCanJump)) {
+  if (ability_name_in_skill != "none") {
     Abilities.ExecuteAbility(
       Entities.GetAbilityByName(Players.GetLocalPlayerPortraitUnit(), ability_name_in_skill),
       Players.GetLocalPlayerPortraitUnit(),
       true
     );
-  } else if (ability_name == "cast_jump" && !bheroCanJump) {
-    GameEvents.SendEventClientSide("dota_hud_error_message", {
-      reason: 80,
-      message: "Ваш герой пока, что не может прыгать",
-    });
   }
 }
 
 function UpdateSkillBar() {
   let keybind_list = [];
   let abilities_list = GetAbilityList();
+  // ОПТИМИЗАЦИЯ: Убран прыжок для улучшения FPS
   let find_ability = {
     cast_ability_7: 0,
     cast_ability_8: 1,
-    cast_jump: 2,
   };
 
   for (ability_keypad_name in find_ability) {

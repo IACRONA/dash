@@ -273,6 +273,11 @@
     "DOTA_Tooltip_modifier_warsong_fate_immortal_buff"					                            "Immortal"
     "DOTA_Tooltip_modifier_warsong_fate_immortal_buff_description"					                "Вы защищены от магии"
 
+    "DOTA_Tooltip_modifier_warsong_fate_immortal_bkb"					                            "Бессмертие"
+    "DOTA_Tooltip_modifier_warsong_fate_immortal_bkb_description"					                "Вы невосприимчивы к магии"
+
+    "DOTA_Tooltip_modifier_warsong_fate_immortal_bkb_cooldown"					                    "Перезарядка Бессмертия"
+    "DOTA_Tooltip_modifier_warsong_fate_immortal_bkb_cooldown_description"					        "Временно не можете активировать защиту Бессмертия"
 
     "DOTA_Tooltip_modifier_warsong_fate_murder"					                                "Murder"
     "DOTA_Tooltip_modifier_warsong_fate_murder_description"					                    "Вы превращайтесь в настоящего убийцу героев, теперь это ваша судьба. Ваша концентрация на максимуме и вы получайте шанс критического урона заклинаний и урона с руки.<br><br>Шанс нанести х2 урона: 10%/20%/30%<br>Шанс нанести х3 урона: 8%/12%/16%<br>Шанс нанести х4 урона: 5%/8%/11%<br>Шанс перезарядить последнюю способность после убийства 10%/15%/18%"

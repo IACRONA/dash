@@ -15,13 +15,13 @@ function modifier_teleport_scroll_fast:DeclareFunctions()
 end
 
 function modifier_teleport_scroll_fast:GetModifierOverrideAbilitySpecial(data)
-    if data.ability:GetAbilityName() == "item_tp_scroll_custom" and data.ability_special_value == "AbilityCooldown" then
-        return 1
-    end
+    -- if data.ability:GetAbilityName() == "item_tp_scroll_custom" and data.ability_special_value == "AbilityCooldown" then
+    --     return 1
+    -- end
 end
 
 function modifier_teleport_scroll_fast:GetModifierOverrideAbilitySpecialValue(data)
-    if data.ability:GetAbilityName() == "item_tp_scroll_custom" and data.ability_special_value == "AbilityCooldown" then
-        return TELEPORT_COOLDOWN
-    end
+    -- if data.ability:GetAbilityName() == "item_tp_scroll_custom" and data.ability_special_value == "AbilityCooldown" then
+    --     return TELEPORT_COOLDOWN
+    -- end
 end

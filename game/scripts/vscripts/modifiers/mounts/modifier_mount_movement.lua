@@ -60,7 +60,7 @@ function modifier_mount_movement:OnCreated( kv )
 	self.killMountDelay = 0.5
 
 	self:GetCaster():AddActivityModifier("run")
-	self:StartIntervalThink( 0.1 )
+	self:StartIntervalThink( 0.2 )
 end
 
 function modifier_mount_movement:RestartModifier()
@@ -78,11 +78,12 @@ function modifier_mount_movement:RestartModifier()
 
 		if self.nMaxSpeedFx then
 			ParticleManager:DestroyParticle(self.nMaxSpeedFx, false)
-			
+			ParticleManager:ReleaseParticleIndex(self.nMaxSpeedFx) -- ФИКС УТЕЧКИ: Освобождение индекса частицы
+
 			self.nMaxSpeedFx = nil
 		end
-		
-		self:StartIntervalThink( 0.1 )
+
+		self:StartIntervalThink( 0.2 )
 	end
 end
 
@@ -141,11 +142,15 @@ function modifier_mount_movement:OnUnitMoved(params)
 			step = 0.33
 		end
 
-		if self.lastSoundEmit and GameRules:GetGameTime() < self.lastSoundEmit + step then
+		if not self.lastSoundEmit then
+			self.lastSoundEmit = 0
+		end
+
+		if GameRules:GetGameTime() < self.lastSoundEmit + step then
 			return
 		end
 
-		self:GetCaster():EmitSoundParams(movementSound, 0, 5, 0)
+		self:GetCaster():EmitSoundParams(movementSound, 0, 3, 0)
 
 		self.lastSoundEmit = GameRules:GetGameTime()
 	end
@@ -311,6 +316,7 @@ function modifier_mount_movement:OnDestroy()
 
 	if self.nMaxSpeedFx then
 		ParticleManager:DestroyParticle(self.nMaxSpeedFx, false)
+		ParticleManager:ReleaseParticleIndex(self.nMaxSpeedFx) -- ФИКС УТЕЧКИ: Освобождение индекса частицы
 
 		self.nMaxSpeedFx = nil
 	end
@@ -345,27 +351,35 @@ function modifier_mount_movement:UpdateHorizontalMotion( me, dt )
 	-- Move
 	local vNewPos = self:GetParent():GetOrigin() + self:GetParent():GetForwardVector() * ( dt * self.flCurrentSpeed )
 
-	--check if free mount can trigger not activated checkpoits
-	local buildings = Entities:FindAllByNameWithin("*checkpoint*", vNewPos, 1000)
+	--check if free mount can trigger not activated checkpoits (оптимизировано: проверка раз в 0.5 сек)
+	if not self.lastCheckpointCheck then
+		self.lastCheckpointCheck = 0
+	end
 
-	for _, hBuilding in pairs(buildings) do
-		if hBuilding:GetTeamNumber() ~= DOTA_TEAM_GOODGUYS and GameRules.Dungeon:IsCheckpoint(hBuilding) then
-			local canMountActivateCheckpoint = false
+	if GameRules:GetGameTime() > self.lastCheckpointCheck + 0.5 then
+		local buildings = Entities:FindAllByNameWithin("*checkpoint*", vNewPos, 1000)
 
-			if self:GetHero(false) then
-				local heroPos = self:GetHero(false):GetAbsOrigin()
-				local checkpointDistance = GridNav:FindPathLength(heroPos, GetClearSpaceForUnit(self:GetHero(false), hBuilding:GetAbsOrigin()))
-	
-				if checkpointDistance >= 0 and checkpointDistance < 1700 then
-					canMountActivateCheckpoint = true
+		for _, hBuilding in pairs(buildings) do
+			if hBuilding:GetTeamNumber() ~= DOTA_TEAM_GOODGUYS and GameRules.Dungeon:IsCheckpoint(hBuilding) then
+				local canMountActivateCheckpoint = false
+
+				if self:GetHero(false) then
+					local heroPos = self:GetHero(false):GetAbsOrigin()
+					local checkpointDistance = GridNav:FindPathLength(heroPos, GetClearSpaceForUnit(self:GetHero(false), hBuilding:GetAbsOrigin()))
+
+					if checkpointDistance >= 0 and checkpointDistance < 1700 then
+						canMountActivateCheckpoint = true
+					end
+				end
+
+				if not canMountActivateCheckpoint then
+					self:Destroy()
+					return
 				end
 			end
-	
-			if not canMountActivateCheckpoint then
-				self:Destroy()
-				return
-			end
-		end	
+		end
+
+		self.lastCheckpointCheck = GameRules:GetGameTime()
 	end
 
 	me:SetOrigin( vNewPos )

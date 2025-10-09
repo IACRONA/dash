@@ -18,7 +18,9 @@ function modifier_donate_pet:OnCreated()
 	self.movespeed_multiplier = 1.2
 
 	if not IsServer() then return end
-	self:StartIntervalThink(0.1)
+
+	-- ОПТИМИЗАЦИЯ: Уменьшена частота обновления с 0.1 до 0.2 секунды
+	self:StartIntervalThink(0.2)
 end
 
 

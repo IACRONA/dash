@@ -105,5 +105,6 @@ function Morphling_AI_think()
         end
     end
 
-    return FrameTime()
+    -- ОПТИМИЗАЦИЯ: Увеличен интервал с FrameTime() (~0.03s) до 0.2s
+    return 0.2
 end

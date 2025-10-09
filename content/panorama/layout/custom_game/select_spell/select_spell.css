@@ -113,28 +113,35 @@
 .hoverParticle
 {
   align: center center;
-  width: 480px; 
+  width: 480px;
   height: 180px;
   z-index: 99;
   transform: rotateZ(180deg);
   brightness: 1;
   opacity: 0;
+  transition-property: opacity, brightness;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in-out;
 }
 .fate_block:hover .hoverParticle
 {
   opacity: 1;
+  brightness: 1.3;
 }
 .sphere_block:hover .hoverParticle
 {
   opacity: 1;
+  brightness: 1.3;
 }
 .spell_block:hover .hoverParticle
 {
   opacity: 1;
+  brightness: 1.3;
 }
 .talent_block:hover .hoverParticle
 {
   opacity: 1;
+  brightness: 1.3;
 }
 .fate_block_bg {
   width: 100%;
@@ -212,7 +219,7 @@
 }
 
 .spell_block_text.IsSphere {
-  width: 50%;
+  width: 210px;
   text-align: center;
   height: fit-children;
   text-transform: none;
@@ -386,39 +393,47 @@
 }
 
 .talent_title {
-  width: 180px;
-  height: 20px;
+  width: 250px;
+  height: fit-children;
   z-index: 3;
   color: white;
   font-weight: semi-bold;
   text-transform: uppercase;
-  font-size: 21px;
+  font-size: 20px;
   text-shadow: 0px 0px 2px 3 #000000;
   font-family: titleFont;
   horizontal-align: center;
-  vertical-align: center;
-  margin-bottom: 90px;  
-  margin-right: 110px;
+  vertical-align: top;
+  margin-top: 12px;
+  margin-bottom: 5px;
+  margin-right: 75px;
+  text-align: center;
 }
 
 .talent_description {
-  width: 50%;
+  width: 240px;
+  height: fit-children;
   z-index: 3;
-  margin-left: 60px;
-  padding-right: 14px;
+  margin-left: 45px;
+  margin-right: 45px;
+  padding-left: 10px;
+  padding-right: 10px;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   text-shadow: 0px 0px 2px 3 #000000;
   font-family: titleFont;
-  vertical-align: center;
-  margin-top: 10px;
+  vertical-align: top;
+  horizontal-align: center;
+  text-align: center;
+  margin-top: 35px;
 }
 .talent_levels {
   width: 100%;
-  margin-top: 120px;
+  height: fit-children;
+  margin-top: 130px;
   z-index: 3;
   color: white;
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
   text-shadow: 0px 0px 2px 3 #000000;
   margin-right: 80px;

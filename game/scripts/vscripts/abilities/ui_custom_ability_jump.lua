@@ -28,7 +28,10 @@ function modifier_ui_custom_ability_jump:OnCreated( kv )
     self.direction = direction:Normalized()
     self.parent = self:GetParent()
     self.origin = self.parent:GetOrigin()
-    self:StartIntervalThink(0.01)
+
+    -- ОПТИМИЗАЦИЯ: Изменён интервал с 0.01 на 0.03 для снижения нагрузки
+    self.tickRate = 0.03
+    self:StartIntervalThink(self.tickRate)
     self:SetDuration(5, true)
 end
 
@@ -45,8 +48,8 @@ end
 function modifier_ui_custom_ability_jump:OnIntervalThink()
     if not IsServer() then return end
 
-    -- Horizontal
-    local horizontal_speed = (self.speed * 0.01)
+    -- Horizontal (использует tickRate для плавности)
+    local horizontal_speed = (self.speed * self.tickRate)
     self.distance = self.distance - horizontal_speed
     local new_position = self:GetParent():GetAbsOrigin() + self.direction * horizontal_speed
     local is_low_ground_next = false
@@ -69,8 +72,8 @@ function modifier_ui_custom_ability_jump:OnIntervalThink()
         new_position = self:GetCaster():GetAbsOrigin()
     end
 
-    -- Vertical
-    local vertical_speed = (self.height * 0.01) * 3
+    -- Vertical (использует tickRate для плавности)
+    local vertical_speed = (self.height * self.tickRate) * 3
     local new_height = new_position.z + vertical_speed
     if self.distance <= self.max_distance / 2 then
         new_height = new_position.z - vertical_speed
