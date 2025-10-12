@@ -75,7 +75,7 @@
 			"operator" "OP_ADD"
 		}
 	}
-	"sniper_assassinate_lua"
+	"sniper_assassinate"
 	{
 		"cooldown_and_manacost"
 		{

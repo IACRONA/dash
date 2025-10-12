@@ -69,7 +69,7 @@
 			}
 			"linked_abilities"
 			{
-				"spectre_haunt_lua"
+				"spectre_haunt"
 				{
 					"illusion_damage_outgoing" "12"
 					"tooltip_outgoing" "12"
@@ -98,7 +98,7 @@
 
 			"linked_abilities"
 			{
-				"spectre_haunt_lua"
+				"spectre_haunt"
 				{
 					"illusion_damage_incoming"
 					{

@@ -94,7 +94,7 @@
 				{
 					"damage_per_second" "20"
 				}
-				"broodmother_buff_spiderling_lua"
+				"broodmother_buff_spiderling"
 				{
 					"buff_damage" "0.5"
 				}
@@ -115,7 +115,7 @@
 				{
 					"width" "40"
 				}
-				"broodmother_buff_spiderling_lua"
+				"broodmother_buff_spiderling"
 				{
 					"buff_hp" "40"
 				}

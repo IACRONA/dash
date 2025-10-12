@@ -34,7 +34,7 @@
 			"max_count" "5"
 		}
 	}
-	"shadow_shaman_shackles_lua"
+	"shadow_shaman_shackles"
 	{
 		"cooldown_and_manacost"
 		{
@@ -47,7 +47,7 @@
 			"operator" "OP_ADD"
 		}
 	}
-	"shadow_shaman_mass_serpent_ward_lua"
+	"shadow_shaman_mass_serpent_ward"
 	{
 		"cooldown_and_manacost"
 		{

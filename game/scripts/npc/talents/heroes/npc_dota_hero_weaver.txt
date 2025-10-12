@@ -83,7 +83,7 @@
 			"RequiresFacetID" "1"
 		}
 	}
-	"weaver_geminate_attack_lua"
+	"weaver_geminate_attack"
 	{
 		"cooldown_and_manacost"
 		{

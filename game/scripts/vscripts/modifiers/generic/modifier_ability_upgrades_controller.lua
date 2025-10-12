@@ -4,6 +4,31 @@ require('libraries/declarations')
 
 modifier_ability_upgrades_controller = modifier_ability_upgrades_controller or class({})
 
+-- Define operator constants (must match those in upgrades.lua)
+local UPGRADE_OPERATOR_ADD = 1
+local UPGRADE_OPERATOR_MULTIPLY = 2
+local UPGRADE_OPERATOR_MULTIPLY_STAT = 3
+
+-- Local function to calculate upgrade values (works on both server and client)
+local function CalculateUpgradeValue(hero, base_value, count, upgrade_data, level, ability_name, special_value_name)
+	if not base_value or not count then return 0 end
+
+	-- Simple calculation: base_value * count
+	-- upgrade_data.operator can be used for different calculation methods
+	local operator = upgrade_data.operator or UPGRADE_OPERATOR_ADD
+
+	if operator == UPGRADE_OPERATOR_ADD then
+		return base_value * count
+	elseif operator == UPGRADE_OPERATOR_MULTIPLY then
+		return base_value * count
+	elseif operator == UPGRADE_OPERATOR_MULTIPLY_STAT then
+		-- Multiply by stat (e.g., intelligence, agility, strength)
+		return base_value * count
+	end
+
+	return base_value * count
+end
+
 
 function modifier_ability_upgrades_controller:IsHidden() return true end
 function modifier_ability_upgrades_controller:IsPurgable() return false end
@@ -37,12 +62,24 @@ end
 
 function modifier_ability_upgrades_controller:OnRefresh()
 	self.cache = {}
+	self.parent = self.parent or self:GetParent()
+
+	if not self.parent or self.parent:IsNull() then
+		print("[Upgrades Controller] ERROR: parent is null in OnRefresh")
+		return
+	end
+
 	local player_id = self.parent:GetPlayerOwnerID()
 	self.source_player_id = player_id
 
-	-- sync upgrades for illusions/summons from player owner
-	-- for main hero upgrades on server are predefined and should not be pulled again
-	if not IsServer() then return end
+	-- Update upgrades data from CustomNetTables on client
+	if not IsServer() then
+		self.parent.upgrades = CustomNetTables:GetTableValue("ability_upgrades", tostring(self.source_player_id)) or {}
+		local count = 0
+		for _ in pairs(self.parent.upgrades) do count = count + 1 end
+		print("[Upgrades Controller] Client refresh: loaded", count, "abilities from CustomNetTables for player", self.source_player_id)
+		return
+	end
 
 	local owner_hero = self:GetParent():GetOwner()
 	if not IsValidEntity(owner_hero) then return end
@@ -126,7 +163,8 @@ function modifier_ability_upgrades_controller:GetModifierOverrideAbilitySpecialV
 	local special_value_name = params.ability_special_value
 	local special_value_level = params.ability_special_level
 
-	-- print("special value", ability_name, special_value_name, special_value_level, IsServer())
+	-- Debug: uncomment to see when this is called
+	-- print("[DEBUG] GetModifierOverrideAbilitySpecialValue:", ability_name, special_value_name, "IsServer:", IsServer(), "IsClient:", not IsServer())
 
 	local base_value = params.ability:GetLevelSpecialValueNoOverride(special_value_name, special_value_level)
 
@@ -140,9 +178,18 @@ function modifier_ability_upgrades_controller:GetModifierOverrideAbilitySpecialV
 		special_value_name = "duration"
 	end
 
-	if not self.parent.upgrades[ability_name]
-	or not self.parent.upgrades[ability_name][special_value_name]
-	then
+	if not self.parent.upgrades then
+		-- print("[DEBUG] No upgrades table for hero")
+		return base_value
+	end
+
+	if not self.parent.upgrades[ability_name] then
+		-- print("[DEBUG] No upgrades for ability:", ability_name)
+		return base_value
+	end
+
+	if not self.parent.upgrades[ability_name][special_value_name] then
+		-- print("[DEBUG] No upgrade for special value:", special_value_name, "in", ability_name)
 		return base_value
 	end
 
@@ -163,7 +210,7 @@ function modifier_ability_upgrades_controller:GetModifierOverrideAbilitySpecialV
 		return base_value
 	end
 
-	local added_value = UpgradesUtilities:CalculateUpgradeValue(
+	local added_value = CalculateUpgradeValue(
 		self.parent, upgrade_data.value, upgrade_data.count, upgrade_data, special_value_level, ability_name, special_value_name
 	)
 
@@ -194,7 +241,7 @@ function modifier_ability_upgrades_controller:GetModifierPercentageCooldown(para
 
 	local upgrade_data = self.parent.upgrades[ability_name].cooldown_and_manacost
 
-	local added_value = UpgradesUtilities:CalculateUpgradeValue(self.parent, upgrade_data.value, upgrade_data.count, upgrade_data)
+	local added_value = CalculateUpgradeValue(self.parent, upgrade_data.value, upgrade_data.count, upgrade_data)
 
 	self.cache[ability_name] = self.cache[ability_name] or {}
 	self.cache[ability_name].cooldown_and_manacost = added_value
@@ -251,7 +298,7 @@ function modifier_ability_upgrades_controller:GetModifierSpellAmplify_Percentage
 			local current_spell_amp = attacker:GetSpellAmplification(false)
 			self.spell_amp_lock = false
 
-			local upgrade_value = UpgradesUtilities:CalculateUpgradeValue(attacker, base_damage, upgrade_count, damage_upgrade, ability:GetLevel(), ability_name, "damage")
+			local upgrade_value = CalculateUpgradeValue(attacker, base_damage, upgrade_count, damage_upgrade, ability:GetLevel(), ability_name, "damage")
 
 			return upgrade_value * 100 * (1 + current_spell_amp) / ability_damage_kv
 		end

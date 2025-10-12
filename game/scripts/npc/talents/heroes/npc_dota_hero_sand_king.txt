@@ -16,7 +16,7 @@
 		}
 		"damage"
 		{
-			"value" "65"
+			"value" "280"
 			"operator" "OP_ADD"
 		}
 	}

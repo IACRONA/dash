@@ -113,7 +113,7 @@
 						"multiplicative_base_value"		"200"
 					}
 				}
-				"warlock_golem_permanent_immolation_lua"
+				"warlock_golem_permanent_immolation"
 				{
 					"aura_radius"
 					{
@@ -140,7 +140,7 @@
 				{
 					"damage" "15"
 				}
-				"warlock_golem_permanent_immolation_lua"
+				"warlock_golem_permanent_immolation"
 				{
 					"aura_damage" "15"
 				}

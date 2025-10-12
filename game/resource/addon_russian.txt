@@ -1257,6 +1257,10 @@
     "talent_description_dec"    "уменьшено на" 
     "linked_abilities"    "Также влияет на:"
     "cooldown_and_manacost_talent"    "%Перезарядки и Расхода маны"
+    "damage_talent"    "УРОН"
+    "targets_talent"    "ЦЕЛЕЙ"
+    "total_damage_talent"    "ОБЩИЙ УРОН"
+    "ward_damage_talent"    "УРОН ТОТЕМА"
 
 
 

@@ -1,43 +1,49 @@
 "npc_dota_hero_mirana"
 {
+	"mirana_fire_arrow"
+	{
+		"damage"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+		}
+		"damage_fire"
+		{
+			"value" "20"
+			"operator" "OP_ADD"
+		}
+	}
 	"mirana_starfall"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "9"
+			"value" "11"
 			"operator" "OP_MULTIPLY"
 		}
 		"starfall_radius"
 		{
-			"value" "30"
+			"value" "35"
 			"operator" "OP_ADD"
 			"max_count" "10"
 			"linked_special_values"
 			{
-				"starfall_secondary_radius" "30"
+				"starfall_secondary_radius" "35"
 			}
 			"linked_abilities"
 			{
 				"mirana_arrow"
 				{
-					"scepter_radius" "30"
+					"scepter_radius" "35"
 				}
 			}
 		}
 		"damage"
 		{
-			"value" "40"
+			"value" "45"
 			"operator" "OP_ADD"
-		}
-		"secondary_starfall_damage_percent"
-		{
-			"value" "15"
-			"operator" "OP_ADD"
-			"max_count" "10"
-			"RequiresFacetID" "3"
 			"linked_special_values"
 			{
-				"starstruck_blind_pct" "4"
+				"secondary_starfall_damage_percent" "5"
 			}
 		}
 	}
@@ -51,12 +57,18 @@
 		}
 		"arrow_bonus_damage"
 		{
-			"value" "70"
+			"value" "75"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
 				"scepter_starstorm_target_pct" "5"
 			}
+		}
+		"arrow_max_stunrange"
+		{
+			"value" "-375"
+			"operator" "OP_ADD"
+			"max_count" "4"
 		}
 	}
 	"mirana_leap"
@@ -70,46 +82,55 @@
 		{
 			"value" "1"
 			"operator" "OP_ADD"
-			"max_count" "5"
+			"max_count" "4"
 			"linked_special_values"
 			{
-				"leap_speedbonus" "6"
+				"shard_radius" "100"
+				"shard_radius_end" "100"
 			}
 		}
 		"leap_speedbonus_as"
 		{
-			"value" "30"
+			"value" "40"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"crit_damage_pct" "5"
+				"leap_speedbonus" "8"
+				"shard_damage" "85"
 			}
-		}
-		"root_radius"
-		{
-			"value" "30"
-			"operator" "OP_ADD"
-			"max_count" "10"
-			"RequiresFacetID" "4"
 		}
 	}
 	"mirana_invis"
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "7"
+			"value" "8"
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
+			"RequiresFacetID" "1"
 		}
 		"bonus_movement_speed"
 		{
-			"value" "5"
+			"value" "10"
 			"operator" "OP_ADD"
 			"max_count" "10"
-			"linked_special_values"
-			{
-				"bonus_outgoing_damage_pct" "5"
-			}
+			"RequiresFacetID" "1"
+		}
+	}
+	"mirana_solar_flare"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+			"RequiresFacetID" "2"
+		}
+		"max_total_increase"
+		{
+			"value" "25"
+			"operator" "OP_ADD"
+			"RequiresFacetID" "2"
 		}
 	}
 }

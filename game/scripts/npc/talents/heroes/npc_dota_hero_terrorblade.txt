@@ -9,7 +9,7 @@
 			"max_count" "6"
 		}
 	}
-	"terrorblade_reflection_lua"
+	"terrorblade_reflection"
 	{
 		"cooldown_and_manacost"
 		{

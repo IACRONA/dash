@@ -87,7 +87,7 @@
 			}
 		}
 	}
-	"dark_seer_wall_of_replica_lua"
+	"dark_seer_wall_of_replica"
 	{
 		"cooldown_and_manacost"
 		{

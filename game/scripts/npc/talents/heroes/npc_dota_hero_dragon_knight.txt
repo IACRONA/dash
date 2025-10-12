@@ -1,6 +1,6 @@
 "npc_dota_hero_dragon_knight"
 {
-	"dragon_knight_inherited_vigor_lua"
+	"dragon_knight_inherited_vigor"
 	{
 		"base_health_regen"
 		{

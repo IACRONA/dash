@@ -24,7 +24,21 @@
       "Bash(ls:*)",
       "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/panorama/layout/custom_game/keybinds/**)",
       "Bash(find:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(move:*)",
+      "Bash(python3:*)",
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/materials/**)",
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/panorama/images/**)",
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/panorama/images/custom_game/**)",
+      "Bash(python:*)",
+      "Bash(for:*)",
+      "Bash(do echo \"=== $file ===\")",
+      "Bash(done)",
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/game/dota/resource/**)",
+      "Bash(wc:*)",
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/particles/**)",
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/particles/rebuild/ui/books/**)",
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/particles/rebuild/ui/books/default/**)"
     ],
     "deny": [],
     "ask": []

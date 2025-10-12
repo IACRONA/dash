@@ -590,21 +590,22 @@ function CreateTalent(upgradeInfo, data) {
     class: "talent_levels",
     text: `с ${current_count}  уровень до ${max_upgrades_count} уровень`,
   });
+  // Частица в зависимости от редкости книги (с фоллбэком на COMMON если undefined)
+  let particleName = ParticleForRarity[selection_rarity] || ParticleForRarity[RARITY.COMMON];
+
   let spell_block_particle = $.CreatePanel("DOTAParticleScenePanel", spell_block, "",{
     id: "hoverParticle",
-    particleName: ParticleForRarity[upgrade_rarity],
+    particleName: particleName,
     lookAt: "0 0 0",
     cameraOrigin: "0 0 60",
     fov: 90,
     hittest: false});
   spell_block_particle.AddClass("hoverParticle");
 
-  // Принудительно запускаем партикл и добавляем задержку для стабильности
-  $.Schedule(0.01, function() {
-    if (spell_block_particle && spell_block_particle.IsValid()) {
-      spell_block_particle.StartParticles();
-    }
-  });
+  // Запускаем партикл сразу
+  if (spell_block_particle && spell_block_particle.IsValid()) {
+    spell_block_particle.StartParticles();
+  }
   let loc_upgrade = "";
   let b_check_hidden = true;
   let multiply_value;

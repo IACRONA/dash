@@ -26,6 +26,88 @@ UPGRADE_OPERATOR = UPGRADE_OPERATOR or {
 -- UpgradesUtilities helper class
 UpgradesUtilities = UpgradesUtilities or {}
 
+function UpgradesUtilities:ParseUpgrade(upgrade_data, upgrade_name, upgrade_type, ability_name)
+	if not upgrade_data then return end
+
+	-- Convert string operators to numeric constants
+	if type(upgrade_data.operator) == "string" then
+		if upgrade_data.operator == "OP_ADD" then
+			upgrade_data.operator = UPGRADE_OPERATOR.ADD
+		elseif upgrade_data.operator == "OP_MULTIPLY" then
+			upgrade_data.operator = UPGRADE_OPERATOR.MULTIPLY
+		elseif upgrade_data.operator == "OP_MULTIPLY_STAT" then
+			upgrade_data.operator = UPGRADE_OPERATOR.MULTIPLY_STAT
+		end
+	end
+
+	-- Convert numeric strings to actual numbers
+	if upgrade_data.value and type(upgrade_data.value) == "string" then
+		upgrade_data.value = tonumber(upgrade_data.value) or upgrade_data.value
+	end
+
+	if upgrade_data.max_count and type(upgrade_data.max_count) == "string" then
+		upgrade_data.max_count = tonumber(upgrade_data.max_count) or upgrade_data.max_count
+	end
+
+	if upgrade_data.min_rarity and type(upgrade_data.min_rarity) == "string" then
+		local rarity_map = {
+			common = UPGRADE_RARITY_COMMON,
+			rare = UPGRADE_RARITY_RARE,
+			epic = UPGRADE_RARITY_EPIC
+		}
+		upgrade_data.min_rarity = rarity_map[upgrade_data.min_rarity] or tonumber(upgrade_data.min_rarity) or upgrade_data.min_rarity
+	end
+
+	if upgrade_data.rarity and type(upgrade_data.rarity) == "string" then
+		local rarity_map = {
+			common = UPGRADE_RARITY_COMMON,
+			rare = UPGRADE_RARITY_RARE,
+			epic = UPGRADE_RARITY_EPIC
+		}
+		upgrade_data.rarity = rarity_map[upgrade_data.rarity] or tonumber(upgrade_data.rarity) or upgrade_data.rarity
+	end
+
+	if upgrade_data.RequiresFacetID and type(upgrade_data.RequiresFacetID) == "string" then
+		upgrade_data.RequiresFacetID = tonumber(upgrade_data.RequiresFacetID) or upgrade_data.RequiresFacetID
+	end
+
+	if upgrade_data.DisabledWithFacetID and type(upgrade_data.DisabledWithFacetID) == "string" then
+		upgrade_data.DisabledWithFacetID = tonumber(upgrade_data.DisabledWithFacetID) or upgrade_data.DisabledWithFacetID
+	end
+
+	-- Recursively parse linked special values
+	if upgrade_data.linked_special_values then
+		for linked_name, linked_data in pairs(upgrade_data.linked_special_values) do
+			if type(linked_data) == "table" then
+				UpgradesUtilities:ParseUpgrade(linked_data, linked_name, upgrade_type, ability_name)
+			elseif type(linked_data) == "string" then
+				-- Convert string values to numbers where applicable
+				local num_value = tonumber(linked_data)
+				if num_value then
+					upgrade_data.linked_special_values[linked_name] = num_value
+				end
+			end
+		end
+	end
+
+	-- Recursively parse linked abilities
+	if upgrade_data.linked_abilities then
+		for linked_ability_name, linked_upgrades in pairs(upgrade_data.linked_abilities) do
+			for linked_upgrade_name, linked_upgrade_data in pairs(linked_upgrades) do
+				if type(linked_upgrade_data) == "table" then
+					UpgradesUtilities:ParseUpgrade(linked_upgrade_data, linked_upgrade_name, upgrade_type, linked_ability_name)
+				elseif type(linked_upgrade_data) == "string" then
+					-- Convert string values to numbers where applicable
+					local num_value = tonumber(linked_upgrade_data)
+					if num_value then
+						upgrade_data.linked_abilities[linked_ability_name][linked_upgrade_name] = num_value
+					end
+				end
+			end
+		end
+	end
+end
+
 function UpgradesUtilities:CalculateUpgradeValue(hero, base_value, count, upgrade_data, level, ability_name, special_value_name)
 	if not base_value or not count then return 0 end
 
@@ -375,10 +457,17 @@ function Upgrades:LoadUpgradesData(hero_name)
 		print("[Upgrades] Loaded", count, "abilities with talents for", hero_name)
 	end
 
-	for ability_name, upgrades in pairs(self.upgrades_kv[hero_name] or {}) do
-		for upgrade_name, upgrade_data in pairs(self.upgrades_kv[hero_name][ability_name]) do
-			-- UpgradesUtilities:ParseUpgrade(upgrade_data, upgrade_name, UPGRADE_TYPE.ABILITY, ability_name)
-			-- Закомментировано: UpgradesUtilities не существует
+	-- Parse upgrades data (convert string operators to numbers, etc.)
+	if self.upgrades_kv[hero_name] then
+		for ability_name, upgrades in pairs(self.upgrades_kv[hero_name]) do
+			for upgrade_name, upgrade_data in pairs(upgrades) do
+				local success, err = pcall(function()
+					UpgradesUtilities:ParseUpgrade(upgrade_data, upgrade_name, UPGRADE_TYPE.ABILITY, ability_name)
+				end)
+				if not success then
+					print("[Upgrades] ERROR parsing upgrade", upgrade_name, "for", ability_name, ":", err)
+				end
+			end
 		end
 	end
 
@@ -525,6 +614,10 @@ function Upgrades:AddAbilityUpgrade(hero, ability_name, special_value_name, rari
 
 	Upgrades:ApplyLinkedUpgrades(hero, hero_name, ability_name, special_value_name, rarity)
 
+	-- Update CustomNetTables FIRST before refreshing modifier
+	-- This ensures client gets fresh data when HandleCustomTransmitterData is called
+	CustomNetTables:SetTableValue("ability_upgrades", tostring(player_id), hero.upgrades)
+
 	local controller_modifier = hero:FindModifierByName("modifier_ability_upgrades_controller")
 
 	if not controller_modifier then
@@ -533,9 +626,18 @@ function Upgrades:AddAbilityUpgrade(hero, ability_name, special_value_name, rari
 
 	controller_modifier:ForceRefresh()
 
-	CustomNetTables:SetTableValue("ability_upgrades", tostring(player_id), hero.upgrades)
-
 	Upgrades:RefreshIntrinsicModifierByName(hero, ability_name)
+
+	-- Force refresh ALL abilities to update tooltips
+	for i = 0, hero:GetAbilityCount() - 1 do
+		local ability = hero:GetAbilityByIndex(i)
+		if ability and not ability:IsNull() then
+			-- Force ability to recalculate special values
+			if ability:GetLevel() > 0 then
+				ability:SetLevel(ability:GetLevel())
+			end
+		end
+	end
 
 	Upgrades:ProcessClones(hero, true)
 
