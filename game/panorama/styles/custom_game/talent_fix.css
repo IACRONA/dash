@@ -1,0 +1,32 @@
+/* Исправление выравнивания названий и описаний талантов */
+
+/* Название таланта - центрирование и обрезка с троеточием */
+.talent-name,
+.spell-name,
+.ability-name {
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    width: 100% !important;
+    horizontal-align: center !important;
+}
+
+/* Описание таланта - центрирование и отступ вниз */
+.talent-description,
+.spell-description,
+.ability-description {
+    text-align: center !important;
+    margin-top: 15px !important; /* ~1.5 см отступ */
+    horizontal-align: center !important;
+    width: 100% !important;
+}
+
+/* Контейнер таланта */
+.talent-container,
+.spell-container,
+.ability-container {
+    horizontal-align: center !important;
+    align: center center !important;
+}
+

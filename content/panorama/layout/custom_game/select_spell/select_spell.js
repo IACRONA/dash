@@ -554,7 +554,7 @@ function UppercaseConvert(line) {
   return line;
 }
 function CreateTalent(upgradeInfo, data) {
-  let { upgrade_name, ability_name, value, operator, rarity, count } = data;
+  let { upgrade_name, ability_name, value, operator, rarity, count, max_count } = data;
   let { upgrade_rarity } = upgradeInfo;
   let spell_block = $.CreatePanel("Panel", $("#TalentsSelectedMain"), "");
   spell_block.AddClass("talent_block");
@@ -563,10 +563,24 @@ function CreateTalent(upgradeInfo, data) {
   const min_rarity = data.min_rarity || rarity || RARITY.COMMON;
   const current_count = (count || 0) / min_rarity;
   const hero_idx = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
-  const max_upgrades_count = current_count + selection_rarity;
+  let max_upgrades_count = current_count + selection_rarity;
+  
+  // Проверка: если max_count задан и max_upgrades_count превышает его - ограничиваем
+  if (max_count && max_upgrades_count > max_count) {
+    max_upgrades_count = max_count;
+  }
+  
+  // Если талант уже на максимуме - делаем его неактивным
+  const is_maxed_out = max_count && current_count >= max_count;
   let spell_block_bg = $.CreatePanel("Panel", spell_block, "");
   spell_block_bg.AddClass("talent_block_bg");
   spell_block_bg.AddClass(rarityClass[selection_rarity]);
+  
+  // Визуально отключаем если талант на максимуме
+  if (is_maxed_out) {
+    spell_block.AddClass("talent_maxed_out");
+    spell_block_bg.style.opacity = "0.3";
+  }
 
   let spell_block_wrapper = $.CreatePanel("Panel", spell_block, "");
   spell_block_wrapper.AddClass("talent_block_icon");
@@ -657,6 +671,15 @@ function CreateTalent(upgradeInfo, data) {
   spell_fate_levels.AddClass("spell_fate_levels");
 
   spell_block.SetPanelEvent("onactivate", function () {
+    $.Msg("[TALENT CLICK] ability:", ability_name, "upgrade:", upgrade_name, "is_maxed:", is_maxed_out, "current:", current_count, "max:", max_count);
+    
+    // Блокируем выбор если талант на максимуме
+    if (is_maxed_out) {
+      $.Msg("⚠️ Талант достиг максимального уровня!");
+      return;
+    }
+    
+    $.Msg("[TALENT CLICK] Отправка на сервер...");
     GameEvents.SendCustomGameEventToServer("player_talent_selected", { upgrade_name, ability_name });
     $("#TalentsSelectedMain").style.opacity = "0";
     $("#TalentsSelectedMain").SetHasClass("SpawnPanelSelected", true);

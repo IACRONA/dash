@@ -243,7 +243,7 @@ function Upgrades:Reroll(event)
     local reroll = PlayerInfo:GetRollPlayer(player_id)
 
     if reroll > 0 then 
-        PlayerInfo:UpdateRollTable(player_id, -1, 1)
+        PlayerInfo:UpdateRollTable(player_id, -1, 0)
 		Upgrades:ShowSelection(hero, pending.upgrade_rarity, player_id, true, pending.is_lucky_trinket_proc)
 	end
 end
@@ -362,7 +362,7 @@ function Upgrades:RollUpgradesOfType(upgrade_type, player_id, rarity, previous_c
 		-- in case max count is less than 4 for non-generic upgrades
 		if tonumber(upgrade_data.max_count) and not upgrade_data.rarity then
 			local max_count = tonumber(upgrade_data.max_count)
-			if max_count and max_count < rarity then return end
+			if max_count and max_count < rarity then return false end
 		end
 
 		if tonumber(upgrade_data.max_count) and ability_upgrades[upgrade_data.upgrade_name] then
@@ -404,23 +404,42 @@ end
 
 function Upgrades:UpgradeSelected(event)
 	local player_id = event.PlayerID
-	if not player_id then return end
+	if not player_id then 
+		print("[Upgrades] UpgradeSelected: NO PLAYER_ID")
+		return 
+	end
 
 	local player = PlayerResource:GetPlayer(player_id)
-	if not IsValidEntity(player) then return end
+	if not IsValidEntity(player) then 
+		print("[Upgrades] UpgradeSelected: PLAYER NOT VALID", player_id)
+		return 
+	end
 
 	local pending_selection = Upgrades.pending_selection[player_id]
-	if not pending_selection then print("no pending upgrades") return end
+	if not pending_selection then 
+		print("[Upgrades] UpgradeSelected: NO PENDING UPGRADES for player", player_id)
+		return 
+	end
 
 	local hero = PlayerResource:GetSelectedHeroEntity(player_id)
 
 	local rarity = pending_selection.upgrade_rarity
  
+	print("[Upgrades] UpgradeSelected: player", player_id, "upgrade_name:", event.upgrade_name, "ability_name:", event.ability_name)
+	
 	local index, upgrade_data = table.find_element(pending_selection.choices, function(t, k, v)
 		return v.upgrade_name == event.upgrade_name and v.ability_name == event.ability_name
 	end)
 
-	if not index or not upgrade_data then print("failed to find selected upgrade") return end
+	if not index or not upgrade_data then 
+		print("[Upgrades] UpgradeSelected: FAILED TO FIND UPGRADE in choices!")
+		print("[Upgrades] Looking for:", event.upgrade_name, event.ability_name)
+		print("[Upgrades] Available choices:")
+		for k, v in pairs(pending_selection.choices) do
+			print("  ", k, ":", v.upgrade_name, v.ability_name)
+		end
+		return 
+	end
  
 	Upgrades:AddAbilityUpgrade(
 		hero,

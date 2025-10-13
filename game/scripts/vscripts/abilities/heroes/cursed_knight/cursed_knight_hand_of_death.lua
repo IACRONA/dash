@@ -9,6 +9,9 @@ function cursed_knight_hand_of_death:OnSpellStart()
 	self.vStartPosition = self:GetCaster():GetOrigin()
 	self.vProjectileLocation = self.vStartPosition
 	if not target:TriggerSpellAbsorb( self ) then 
+		-- Звук обычной атаки при использовании способности
+		EmitSoundOn("Hero_SkeletonKing.Attack", caster)
+		
 		ProjectileManager:CreateTrackingProjectile({
 			EffectName = "particles/units/heroes/hero_zuus/red_zuus_arc_lightning.vpcf",
 			Ability = self,
@@ -133,6 +136,11 @@ function modifier_cursed_knight_hand_of_death:UpdateHorizontalMotion( me, dt )
 		local step = math.min(hook_speed * dt, distance)
 
 		local new_position = victim_position + direction * step
+		
+		-- Проверяем высоту, чтобы не провалиться через текстуры
+		local ground_height = GetGroundHeight(new_position, victim)
+		new_position.z = ground_height + victim:GetBoundingMaxs().z
+		
 		victim:SetAbsOrigin(new_position)
 		if distance <= 128 then
 			FindClearSpaceForUnit(victim, caster_position, true)

@@ -22,7 +22,11 @@ function cursed_knight_summon_deadman_generic_modifier2:OnTakeDamage(keys)
             local unitname = "npc_dota_cursed_big_skeleton"
             local point = caster:GetOrigin() 
             local team = caster:GetTeam()
+            
+            -- Проверка: если скелет жив или на КД, не создаем нового
             if self.skeleton and self.skeleton:IsAlive() then return end
+            if self.summon_cooldown and GameRules:GetGameTime() < self.summon_cooldown then return end
+            
             self.skeleton = CreateUnitByName(unitname, point, true, caster, caster, team)
             local nfx = ParticleManager:CreateParticle("particles/items2_fx/ward_spawn_generic.vpcf", PATTACH_POINT, caster)
             ParticleManager:SetParticleControl(nfx, 0, self.skeleton:GetOrigin())
@@ -32,7 +36,10 @@ function cursed_knight_summon_deadman_generic_modifier2:OnTakeDamage(keys)
             self.skeleton:StartGesture( ACT_DOTA_SPAWN )
             self.skeleton:AddNewModifier(caster, self, "cursed_knight_summon_deadman_generic_modifier", {duration = -1})
             self.skeleton.owner = caster
-            self.skeleton:SetControllableByPlayer(caster:GetPlayerOwnerID(), false) -- TODO: СДЕЛАТЬ ЧТОБЫ ХОДИТЬ НЕЛЬЗЯ БЫЛО, А ИСПОЛЬЗОВАТЬ АБИЛКИ МОЖНО
+            self.skeleton:SetControllableByPlayer(caster:GetPlayerOwnerID(), false)
+            
+            -- Устанавливаем КД 15 секунд
+            self.summon_cooldown = GameRules:GetGameTime() + 15
         end
     end
 end
@@ -56,8 +63,22 @@ function cursed_knight_summon_deadman_generic_modifier:OnCreated()
     self.follow_distance = 200 -- Дистанция, на которой скелет будет следовать за создателем
     self:StartIntervalThink(0.5)
 end
+function cursed_knight_summon_deadman_generic_modifier:OnDestroy()
+    if not IsServer() then return end
+    -- Сбрасываем КД при смерти скелета
+    local caster_modifier = self.caster:FindModifierByName("cursed_knight_summon_deadman_generic_modifier2")
+    if caster_modifier then
+        caster_modifier.skeleton = nil
+    end
+end
 function cursed_knight_summon_deadman_generic_modifier:OnIntervalThink()
     if not IsServer() then return end
+
+    -- Проверяем валидность кастера
+    if not self.caster or self.caster:IsNull() or not self.caster:IsAlive() then
+        self.parent:ForceKill(false)
+        return
+    end
 
     local distance = (self.parent:GetAbsOrigin() - self.caster:GetAbsOrigin()):Length2D()
     if distance > self.follow_distance then

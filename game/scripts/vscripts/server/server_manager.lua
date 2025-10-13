@@ -9,9 +9,18 @@ function ServerManager:Init()
 		local steamId = PlayerResource:GetSteamAccountID(playerId)
 		ServerManager.playersId[tostring(steamId)] = playerId
 
-		HTTP("POST", "/player/".. steamId, nil, {success = function(data)
-			PlayerInfo:InitPlayer(playerId, data)
-		end})
+		-- ОТКЛЮЧЕН HTTP - теперь всегда выдаем 5 роллов
+		-- Работает на выделенном сервере Dota 2 и локально
+		PlayerInfo:InitPlayer(playerId, {roll = 5})
+		
+		-- Старый код с HTTP закомментирован:
+		-- if IsDedicatedServer() then
+		-- 	HTTP("POST", "/player/".. steamId, nil, {
+		-- 		success = function(data)
+		-- 			PlayerInfo:InitPlayer(playerId, data)
+		-- 		end
+		-- 	})
+		-- end
 	end)
 
   	Timers:CreateTimer(2, function()
@@ -43,19 +52,22 @@ function ServerManager:BuyItem(data)
 end
 
 function ServerManager:SendServerPlayerRoll(playerId)
-	local steamId = PlayerResource:GetSteamAccountID(playerId)
-	local rollUsed = PlayerInfo:GetRollUsedPlayer(playerId)
-	local playerInfo = CustomNetTables:GetTableValue("player_info", tostring(playerId))
-
-	if not playerInfo then return end
-
-	local newRoll = (playerInfo.roll or 0) - rollUsed
-	HTTP("POST", "/player", {id = steamId, roll = newRoll, keybinds = playerInfo.keybinds}, {
-		success = function(data)
-			PlayerInfo:UpdateRollTable(playerId, 0, -rollUsed)
-			PlayerInfo:UpdatePlayerTable(playerId, data)
-		end,
-	})
+	-- ОТКЛЮЧЕНА отправка роллов на внешний сервер
+	-- Теперь роллы работают локально без HTTP
+	return
+	
+	-- Старый код закомментирован:
+	-- local steamId = PlayerResource:GetSteamAccountID(playerId)
+	-- local rollUsed = PlayerInfo:GetRollUsedPlayer(playerId)
+	-- local playerInfo = CustomNetTables:GetTableValue("player_info", tostring(playerId))
+	-- if not playerInfo then return end
+	-- local newRoll = (playerInfo.roll or 0) - rollUsed
+	-- HTTP("POST", "/player", {id = steamId, roll = newRoll, keybinds = playerInfo.keybinds}, {
+	-- 	success = function(data)
+	-- 		PlayerInfo:UpdateRollTable(playerId, 0, -rollUsed)
+	-- 		PlayerInfo:UpdatePlayerTable(playerId, data)
+	-- 	end,
+	-- })
 end
 
 function ServerManager:OnEndGame(callback)

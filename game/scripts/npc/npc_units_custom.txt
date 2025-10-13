@@ -1,5 +1,6 @@
 #base "units/npc_bosses.kv"
 #base "units/npc_summones.kv"
+#base "npc_units_override.txt"
 
 "DOTAUnits"
 {
@@ -18,7 +19,7 @@
 		// Abilities
 		//----------------------------------------------------------------
 		
-		"Ability1"					"backdoor_protection_in_base"			// Ability 1.
+		"Ability1"					""			// Ability 1 - Backdoor отключен.
 		"Ability2"					"creep_siege"			// Ability 2.
 		"Ability3"					"invisible_fort_passive"			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -29,7 +30,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"23"		// Physical protection.
+		"ArmorPhysical"				"43"		// Physical protection (+20 брони).
 		"MagicalResistance"				"0"			// Magical protection.
 
 		// Attack
@@ -104,7 +105,7 @@
 		// Abilities
 		//----------------------------------------------------------------
 		
-		"Ability1"					"backdoor_protection_in_base"			// Ability 1.
+		"Ability1"					""			// Ability 1 - Backdoor отключен.
 		"Ability2"					"creep_siege"			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -115,7 +116,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"23"		// Physical protection.
+		"ArmorPhysical"				"43"		// Physical protection (+20 брони).
 		"MagicalResistance"				"0"			// Magical protection.
 
 		// Attack
@@ -192,7 +193,7 @@
 		// Abilities
 		//----------------------------------------------------------------
 		
-		"Ability1"					"backdoor_protection_in_base"			// Ability 1.
+		"Ability1"					""			// Ability 1 - Backdoor отключен.
 		"Ability2"					"creep_siege"			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -203,7 +204,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"23"		// Physical protection.
+		"ArmorPhysical"				"43"		// Physical protection (+20 брони).
 		"MagicalResistance"				"0"			// Magical protection.
 
 		// Attack

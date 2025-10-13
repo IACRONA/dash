@@ -270,17 +270,20 @@ function cursed_knight_deadman_field_modifier_cursed:OnTakeDamage(keys)
             parent:SetHealth(parent:GetHealth() + reduced_damage)
         end
     elseif attacker == parent then
-        if _oriability and _oriability.reflect_spell_damage_percentage and parent:FindAbilityByName("special_bonus_unique_skeleton_king_deadman_field_amp_reflect_spell_damage"):GetLevel() > 0 then
-            local reflect_percentage = _oriability.reflect_spell_damage_percentage / 100
-            local reflected_damage = _oridamage * reflect_percentage - _oridamage
-            _oriability.reflect_spell_damage_percentage = nil
-            ApplyDamage({
-                victim = target,
-                attacker = parent,  
-                damage = reflected_damage,
-                damage_type = keys.damage_type,
-                ability = _oriability,
-            })
+        if _oriability and _oriability.reflect_spell_damage_percentage then
+            local talent = parent:FindAbilityByName("special_bonus_unique_skeleton_king_deadman_field_amp_reflect_spell_damage")
+            if talent and talent:GetLevel() > 0 then
+                local reflect_percentage = _oriability.reflect_spell_damage_percentage / 100
+                local reflected_damage = _oridamage * reflect_percentage - _oridamage
+                _oriability.reflect_spell_damage_percentage = nil
+                ApplyDamage({
+                    victim = target,
+                    attacker = parent,  
+                    damage = reflected_damage,
+                    damage_type = keys.damage_type,
+                    ability = _oriability,
+                })
+            end
         end
     end
 end

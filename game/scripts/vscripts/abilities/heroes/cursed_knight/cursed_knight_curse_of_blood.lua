@@ -19,20 +19,15 @@ function cursed_knight_curse_of_blood:OnSpellStart()
         if target:HasModifier("modifier_cursed_knight_curse_of_blood") and target:FindModifierByName("modifier_cursed_knight_curse_of_blood"):GetStackCount() >= 3 and not caster:HasModifier("modifier_cursed_knight_curse_of_blood_cooldown") then
             modifier_generic.target = target
             modifier_generic.crit = true
-            Timers:CreateTimer(caster:GetAttackSpeed(true)*0.7, function()
-                modifier_generic.crit = false
-            end)
         end
         modifier_generic.IsAbilityModifier = true
-        Timers:CreateTimer(caster:GetAttackSpeed(true)*0.7, function()
-            modifier_generic.IsAbilityModifier = false
-        end)
     end
-    -- Выполнение атаки
+    -- Атака с анимацией
     if not target:TriggerSpellAbsorb(self) then 
         caster:MoveToTargetToAttack(target)
+    else
+        self:EndCooldown()
     end
-    self:EndCooldown()
 end
 
 modifier_cursed_knight_curse_of_blood_generic = modifier_cursed_knight_curse_of_blood_generic or {}
@@ -52,18 +47,17 @@ function modifier_cursed_knight_curse_of_blood_generic:GetModifierPreAttack_Crit
 		local target = keys.target
 		if attacker == self:GetParent() then
             local ability = self:GetAbility()
+            if not ability then return 0 end
+            
             local damage_krit_after = ability:GetSpecialValueFor("damage_krit_after")
-            if not crit or self.target ~= target then
-				return
+            if not crit or not self.target or self.target ~= target then
+				return 0
 			end
             if crit then  
-                Timers:CreateTimer(attacker:GetAttackSpeed(true), function()                    
-					self.crit = false
-				end)  
-                -- if target:HasModifier("modifier_cursed_knight_curse_of_blood") or target:HasModifier("modifier_cursed_knight_curse_of_blood_ally_curse") then
+                -- Сбрасываем крит после применения
+                self.crit = false
+                self.target = nil
                 return attacker:GetAttackDamage()*damage_krit_after
-                -- end
-                -- return 100
             end
 		end
 	end
@@ -79,7 +73,7 @@ function modifier_cursed_knight_curse_of_blood_generic:OnAttackLanded(keys)
         local duration = ability:GetSpecialValueFor("duration_before")
         local dmg = ability:GetSpecialValueFor("pure_damage")
 		if attacker == ability:GetCaster() then   
-            if self.IsAbilityModifier   then
+            if self.IsAbilityModifier then
                 if self.crit and self.target == target then
                     EmitSoundOn("Hero_SkeletonKing.CriticalStrike", attacker)
                     self.target = nil
@@ -89,6 +83,9 @@ function modifier_cursed_knight_curse_of_blood_generic:OnAttackLanded(keys)
                 target:AddNewModifier(attacker, ability, "modifier_cursed_knight_curse_of_blood", {duration = duration})
                 EmitSoundOn("curse_of_blood", attacker)
                 ability:StartCooldown(ability:GetCooldown(ability:GetLevel()))
+                
+                -- Сбрасываем флаг после применения
+                self.IsAbilityModifier = false
             end
 		end
 	end

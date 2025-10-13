@@ -1234,26 +1234,31 @@
     // ТАЛАНТЫ ДЛЯ ГЕРОЯ CURSED KNIGHT
     ///////////////////////////////////
     // ПРАВЫЙ ТАЛАНТ НА 10 УРОВНЕ:
-    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_perid_damage"  "+10 к периодическому урону от ПРОКЛЯТИЯ ПЛЕТИ"
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_perid_damage"  "+10 к периодическому урону от Проклятия плети"
     // ЛЕВЫЙ ТАЛАНТ НА 10 УРОВНЕ:
-    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_hand_of_death_cooldown"  "-5 сек. перезарядки РУКА СМЕРТИ"
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_hand_of_death_cooldown"  "-5 сек. перезарядки Рука смерти"
     // ПРАВЫЙ ТАЛАНТ НА 15 УРОВНЕ:
-    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_cold_amp_slow_pct"  "+10% к замедлению от ПРОКЛЯТИЯ ХОЛОДА"
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_cold_amp_slow_pct"  "+10% к замедлению от Проклятия холода"
     // ЛЕВЫЙ ТАЛАНТ НА 15 УРОВНЕ:
-    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_pure_damage"  "+50 к первичному урону от ПРОКЛЯТИЯ ПЛЕТИ"
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_pure_damage"  "+50 к первичному урону от Проклятия плети"
     // ПРАВЫЙ ТАЛАНТ НА 20 УРОВНЕ:
-    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_cursed_blast_chance_blast"  "+3% ВЫПАДЕНИЯ ПРОКЛЯТОГО ВЗРЫВА"
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_cursed_blast_chance_blast"  "+3% выпадения Проклятого взрыва"
     // ЛЕВЫЙ ТАЛАНТ НА 20 УРОВНЕ:
-    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_perid_damage_count2"  "+40 к периодическому урону от ПРОКЛЯТИЯ ПЛЕТИ"
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_curse_of_blood_amp_perid_damage_count2"  "+40 к периодическому урону от Проклятия плети"
     // ПРАВЫЙ ТАЛАНТ НА 25 УРОВНЕ:
-    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_deadman_field_amp_damage_in_field"  "+100 к урону, когда герой находится внутри БАРЬЕР МЕРТВЕЦА"
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_deadman_field_amp_damage_in_field"  "+100 к урону, когда герой находится внутри Барьер мертвеца"
     // ЛЕВЫЙ ТАЛАНТ НА 25 УРОВНЕ:
-    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_deadman_field_amp_reflect_spell_damage"  "+150% к урону от отраженный заклинаний под дейтсивем БАРЬЕР МЕРТВЕЦА"
+    "DOTA_Tooltip_ability_special_bonus_unique_skeleton_king_deadman_field_amp_reflect_spell_damage"  "+150% к урону от отраженных заклинаний под действием Барьер мертвеца"
 
 
 
 
     "talent_description_inc"    "увеличено на"
+
+    // Локализация для тронов
+    "npc_dota_goodguys_fort_custom"     "Трон Сил света"
+    "npc_dota_badguys_fort_custom"      "Трон Сил тьмы"
+    "npc_dota_invisible_fort"           "Трон"
     "talent_description_dec"    "уменьшено на" 
     "linked_abilities"    "Также влияет на:"
     "cooldown_and_manacost_talent"    "%Перезарядки и Расхода маны"
@@ -1417,6 +1422,10 @@
     "Custom_Talent_ability_kunkka_tidal_wave_damage" "УРОН"
     "Custom_Talent_ability_ancient_apparition_ice_blast_damage"  "УРОН"
     "Custom_Talent_ability_pudge_rot_attack_damage_per_second_tooltip"  "%К УРОНУ ОТ АТАК В СЕК."
+    
+    // Фурион (Nature's Prophet) - кастомная способность
+    "DOTA_Tooltip_ability_furion_force_of_nature_custom"    "Сила природы"
+    "DOTA_Tooltip_ability_furion_force_of_nature_custom_Description"    "Превращает деревья в воинов-энтов, которые сражаются на вашей стороне."
     "Custom_Talent_ability_sniper_assassinate_damage"    "УРОН"
     "Custom_Talent_ability_marci_unleash_time_between_flurries"  "ДЛИТЕЛЬНОСТЬ ОБЕЗОРУЖИВАНИЯ"
     "Custom_Talent_ability_shadow_shaman_ether_shock_end_radius" "РАДИУС"
@@ -1539,6 +1548,7 @@
     "Custom_Talent_ability_dawnbreaker_luminosity_allied_healing_pct"    "ЛЕЧЕНИЕ СОЮЗНИКОВ"
     "Custom_Talent_ability_invoker_deafening_blast_radius_start"    "РАДИУС"
     "Custom_Talent_ability_mirana_starfall_secondary_starfall_damage_percent"    "УРОН ОТ ВТОРОГО УДАРА"
+    "Custom_Talent_ability_storm_spirit_electric_vortex_electric_vortex_pull_distance"    "ДАЛЬНОСТЬ ПРИТЯГИВАНИЯ"
     "Custom_Talent_ability_queenofpain_blink_shard_damage"    "УРОН ОТ ОСКОЛКА"
     "Custom_Talent_ability_queenofpain_blink_shard_duration"    "ДЛИТЕЛЬНОСТЬ ОСКОЛКА"
     "Custom_Talent_ability_queenofpain_blink_shard_aoe"    "РАДИУС ОСКОЛКА"

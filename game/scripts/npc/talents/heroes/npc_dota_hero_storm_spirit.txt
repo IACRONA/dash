@@ -36,23 +36,15 @@
 	}
 	"storm_spirit_electric_vortex"
 	{
+		"electric_vortex_pull_distance"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
 		"cooldown_and_manacost"
 		{
 			"value" "8"
 			"operator" "OP_MULTIPLY"
-			"max_count" "5"
-		}
-		"enemy_overload_duration"
-		{
-			"value" "1"
-			"operator" "OP_ADD"
-			"max_count" "5"
-			"RequiresFacetID" "1"
-			"linked_special_values"
-			{
-				"electric_vortex_pull_distance" "20"
-				"radius_scepter" "20"
-			}
 		}
 	}
 	"storm_spirit_overload"

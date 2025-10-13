@@ -75,8 +75,8 @@ if GetMapName() == "warsong" then
     NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 270
     MAX_COUNT_ULTI_ABILITIES = 3 
-    REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
-    REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
+    REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 5 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
+    REROLL_ABILITIES_MAX_COUNT_ULTI = 5 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка шаров
     NEW_PASSIVE_SPELLS_COOLDOWN = 289 -- 420s / 7m
@@ -211,8 +211,8 @@ if GetMapName() == "dash" then
     NEW_ABILITY_COOLDOWN = 54000
     NEW_ULTIMATE_COOLDOWN = 340 -- 5 мин
     MAX_COUNT_ULTI_ABILITIES = 3
-    REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
-    REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
+    REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 5 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
+    REROLL_ABILITIES_MAX_COUNT_ULTI = 5 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка судеб
     NEW_PASSIVE_SPELLS_COOLDOWN = 300 -- 420s / 7m
@@ -495,8 +495,8 @@ if GetMapName() == "portal_trio" then
     NEW_ABILITY_COOLDOWN = 5400
     NEW_ULTIMATE_COOLDOWN = 270
     MAX_COUNT_ULTI_ABILITIES = 3
-    REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
-    REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
+    REROLL_ABILITIES_MAX_COUNT_NOT_ULTI = 5 -- РЕРОЛЛОВ ДЛЯ ОБЫЧНЫХ СПОСОБНОСТЕЙ 
+    REROLL_ABILITIES_MAX_COUNT_ULTI = 5 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка шаров
     NEW_PASSIVE_SPELLS_COOLDOWN = 289 --420 -- 420s / 7m

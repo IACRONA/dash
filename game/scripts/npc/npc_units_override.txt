@@ -1,0 +1,97 @@
+// Переопределение моделей стандартных lane крипов
+// Модели заменены на версии из событий (Fallen Crown и др.)
+
+"DOTAUnits"
+{
+	// ========================================
+	// РАДИАНТ КРИПЫ (Силы света) - TI11 (2021) Fallen Crown
+	// ========================================
+	
+	// Мили крипы Радианта - Bird версия (птички)
+	"npc_dota_creep_goodguys_melee"
+	{
+		"Model" "models/creeps/lane_creeps/creep_bird_radiant/creep_bird_radiant_melee.vmdl"
+	}
+	
+	// Флагоносец Радианта - Bird версия
+	"npc_dota_creep_goodguys_melee_upgraded"
+	{
+		"Model" "models/creeps/lane_creeps/creep_bird_radiant/creep_bird_radiant_melee.vmdl"
+	}
+	
+	// Дальние крипы Радианта - Bird версия
+	"npc_dota_creep_goodguys_ranged"
+	{
+		"Model" "models/creeps/lane_creeps/creep_bird_radiant/creep_bird_radiant_ranged.vmdl"
+	}
+	
+	// Катапульта Радианта - Bird версия
+	"npc_dota_creep_goodguys_siege"
+	{
+		"Model" "models/creeps/lane_creeps/creep_bird_radiant/creep_bird_radiant_siege.vmdl"
+	}
+	
+	// ========================================
+	// ДАЙР КРИПЫ (Силы тьмы) - TI11 (2021) Fallen Crown
+	// ========================================
+	
+	// Мили крипы Дайра - Bird версия (птички)
+	"npc_dota_creep_badguys_melee"
+	{
+		"Model" "models/creeps/lane_creeps/creep_bird_dire/creep_bird_dire_melee.vmdl"
+	}
+	
+	// Флагоносец Дайра - Bird версия
+	"npc_dota_creep_badguys_melee_upgraded"
+	{
+		"Model" "models/creeps/lane_creeps/creep_bird_dire/creep_bird_dire_melee.vmdl"
+	}
+	
+	// Дальние крипы Дайра - Bird версия
+	"npc_dota_creep_badguys_ranged"
+	{
+		"Model" "models/creeps/lane_creeps/creep_bird_dire/creep_bird_dire_ranged.vmdl"
+	}
+	
+	// Катапульта Дайра - Bird версия
+	"npc_dota_creep_badguys_siege"
+	{
+		"Model" "models/creeps/lane_creeps/creep_bird_dire/creep_bird_dire_siege.vmdl"
+	}
+	
+	// ========================================
+	// МЕГА КРИПЫ (после уничтожения бараков)
+	// ========================================
+	
+	// Мега крип Радианта (ближний)
+	"npc_dota_creep_goodguys_melee_upgraded_mega"
+	{
+		"Model" "models/creeps/lane_creeps/creep_radiant_melee_mega/radiant_melee_mega.vmdl"
+	}
+	
+	// Мега крип Дайра (ближний)
+	"npc_dota_creep_badguys_melee_upgraded_mega"
+	{
+		"Model" "models/creeps/lane_creeps/creep_dire_melee_mega/dire_melee_mega.vmdl"
+	}
+	
+	// Мега крип Радианта (дальний)
+	"npc_dota_creep_goodguys_ranged_upgraded_mega"
+	{
+		"Model" "models/creeps/lane_creeps/creep_radiant_ranged_mega/radiant_ranged_mega.vmdl"
+	}
+	
+	// Мега крип Дайра (дальний)
+	"npc_dota_creep_badguys_ranged_upgraded_mega"
+	{
+		"Model" "models/creeps/lane_creeps/creep_dire_ranged_mega/dire_ranged_mega.vmdl"
+	}
+	
+	// ========================================
+	// ПРИМЕЧАНИЕ: Башни и троны
+	// Переопределение моделей башен и тронов не работает через npc_units_override.txt
+	// Эти объекты создаются на карте в Hammer Editor
+	// Для изменения их моделей нужно редактировать карту напрямую
+	// ========================================
+}
+

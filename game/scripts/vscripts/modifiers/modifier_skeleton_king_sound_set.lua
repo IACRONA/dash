@@ -21,7 +21,19 @@ function modifier_skeleton_king_sound_set:OnIntervalThink()
     self.cd = self.cd - 1
 end
 function modifier_skeleton_king_sound_set:DeclareFunctions()
-    return { MODIFIER_EVENT_ON_DEATH }
+    return { 
+        MODIFIER_EVENT_ON_DEATH,
+        MODIFIER_EVENT_ON_ATTACK_LANDED
+    }
+end
+
+function modifier_skeleton_king_sound_set:OnAttackLanded(keys)
+    if IsClient() then return end
+    local attacker = keys.attacker
+    if attacker == self:GetParent() then
+        -- Звук обычной атаки
+        EmitSoundOn("Hero_SkeletonKing.Attack", attacker)
+    end
 end
 
 function modifier_skeleton_king_sound_set:OnDeath(keys)

@@ -45,7 +45,7 @@ function CAddonWarsong:HeroAddNewAbility(entity, is_ultimate, player_id, is_rero
         is_ultimate = is_ultimate == 1
     end
     if is_reroll then
-        PlayerInfo:UpdateRollTable(player_id, -1, 1)
+        PlayerInfo:UpdateRollTable(player_id, -1, 0)
     end
 
     if CAddonWarsong.player_abilities_info[entity:GetPlayerOwnerID()] == nil then
@@ -56,16 +56,24 @@ function CAddonWarsong:HeroAddNewAbility(entity, is_ultimate, player_id, is_rero
 
     if is_ultimate then
         if self.PlayersUltimateAbilities[entity:GetPlayerOwnerID()] ~= nil then
-            self:RemoveModifierFromAbility(self.PlayersUltimateAbilities[entity:GetPlayerOwnerID()])
-            entity:RemoveAbilityByHandle(self.PlayersUltimateAbilities[entity:GetPlayerOwnerID()])
+            local ability_to_remove = self.PlayersUltimateAbilities[entity:GetPlayerOwnerID()]
+            -- Проверяем, что способность не является базовой способностью героя
+            if ability_to_remove and IsValidEntity(ability_to_remove) then
+                self:RemoveModifierFromAbility(ability_to_remove)
+                entity:RemoveAbilityByHandle(ability_to_remove)
+            end
             self.PlayersUltimateAbilities[entity:GetPlayerOwnerID()] = nil
             CAddonWarsong.player_abilities_info[entity:GetPlayerOwnerID()].ultimate = nil
         end
         abilities_list = RANDOM_ULTIMATES_WG
     else
         if self.PlayersDefaultAbilities[entity:GetPlayerOwnerID()] ~= nil then
-            self:RemoveModifierFromAbility(self.PlayersDefaultAbilities[entity:GetPlayerOwnerID()])
-            entity:RemoveAbilityByHandle(self.PlayersDefaultAbilities[entity:GetPlayerOwnerID()])
+            local ability_to_remove = self.PlayersDefaultAbilities[entity:GetPlayerOwnerID()]
+            -- Проверяем, что способность не является базовой способностью героя
+            if ability_to_remove and IsValidEntity(ability_to_remove) then
+                self:RemoveModifierFromAbility(ability_to_remove)
+                entity:RemoveAbilityByHandle(ability_to_remove)
+            end
             self.PlayersDefaultAbilities[entity:GetPlayerOwnerID()] = nil
             CAddonWarsong.player_abilities_info[entity:GetPlayerOwnerID()].basic = nil
         end

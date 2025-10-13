@@ -90,7 +90,7 @@ function CAddonWarsong:RerollPlayerSphere(event)
     if PlayerResource:IsValidPlayerID(playerID) then
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if hero then
-            PlayerInfo:UpdateRollTable(playerID, -1, 1)
+            PlayerInfo:UpdateRollTable(playerID, -1, 0)
             local player = PlayerResource:GetPlayer(playerID)
             if IsValidEntity(player) then
                 CustomGameEventManager:Send_ServerToPlayer(player, "open_sphere_choose_players", {
