@@ -59,6 +59,10 @@ function CAddonWarsong:HeroAddNewAbility(entity, is_ultimate, player_id, is_rero
             local ability_to_remove = self.PlayersUltimateAbilities[entity:GetPlayerOwnerID()]
             -- Проверяем, что способность не является базовой способностью героя
             if ability_to_remove and IsValidEntity(ability_to_remove) then
+                -- ОПТИМИЗАЦИЯ FPS: Принудительно останавливаем все частицы способности
+                if ability_to_remove.thinker then
+                    UTIL_Remove(ability_to_remove.thinker)
+                end
                 self:RemoveModifierFromAbility(ability_to_remove)
                 entity:RemoveAbilityByHandle(ability_to_remove)
             end
@@ -71,6 +75,10 @@ function CAddonWarsong:HeroAddNewAbility(entity, is_ultimate, player_id, is_rero
             local ability_to_remove = self.PlayersDefaultAbilities[entity:GetPlayerOwnerID()]
             -- Проверяем, что способность не является базовой способностью героя
             if ability_to_remove and IsValidEntity(ability_to_remove) then
+                -- ОПТИМИЗАЦИЯ FPS: Принудительно останавливаем все частицы способности
+                if ability_to_remove.thinker then
+                    UTIL_Remove(ability_to_remove.thinker)
+                end
                 self:RemoveModifierFromAbility(ability_to_remove)
                 entity:RemoveAbilityByHandle(ability_to_remove)
             end
@@ -170,22 +178,28 @@ function CAddonWarsong:GetNewAbilityPlayer(hero, list)
 end
 
 function CAddonWarsong:RemoveModifierFromAbility(ability)
-    for _, hero in pairs(HeroList:GetAllHeroes()) do
-        if IsValidEntity(hero) then
-            local modifiers = hero:FindAllModifiers()
-            for _, modifier in pairs(modifiers) do
-                if modifier and modifier:GetAbility() == ability then
-                    modifier:Destroy()
-                end
+    -- ОПТИМИЗАЦИЯ FPS: Удаляем модификаторы только у владельца способности, а не у всех героев
+    local caster = ability:GetCaster()
+    if IsValidEntity(caster) then
+        local modifiers = caster:FindAllModifiers()
+        for _, modifier in pairs(modifiers) do
+            if modifier and modifier:GetAbility() == ability then
+                modifier:Destroy()
             end
         end
     end
-    for _, thinker in pairs(Entities:FindAllByClassname("npc_dota_thinker")) do
-        if IsValidEntity(thinker) then
-            local modifiers = thinker:FindAllModifiers()
-            for _, modifier in pairs(modifiers) do
-                if modifier and modifier:GetAbility() == ability then
-                    thinker:Destroy()
+    
+    -- Удаляем thinker'ы связанные с этой способностью (но только те, что созданы владельцем)
+    if IsValidEntity(caster) then
+        local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
+        for _, thinker in pairs(thinkers) do
+            if IsValidEntity(thinker) and thinker:GetOwner() == caster then
+                local modifiers = thinker:FindAllModifiers()
+                for _, modifier in pairs(modifiers) do
+                    if modifier and modifier:GetAbility() == ability then
+                        thinker:Destroy()
+                        break -- Выходим после уничтожения thinker'а
+                    end
                 end
             end
         end

@@ -147,28 +147,29 @@ function CAddonWarsong:DifferenceFlags()
 	self.teamBalanceTier[leader] = dataLeader
 
 
-	DoWithAllPlayers(function(player, hero)
-		if not hero then return end
-		if not hero.balanceModifier then return end
-		local team = hero:GetTeamNumber()
+	-- ОПТИМИЗАЦИЯ FPS: Отключены все проверки modifier_balance
+	-- DoWithAllPlayers(function(player, hero)
+	-- 	if not hero then return end
+	-- 	if not hero.balanceModifier then return end
+	-- 	local team = hero:GetTeamNumber()
 
-		local tier = self.teamBalanceTier[team].tier
-		local place = self.teamBalanceTier[team].place
+	-- 	local tier = self.teamBalanceTier[team].tier
+	-- 	local place = self.teamBalanceTier[team].place
 
-		if place == "last" and LAST_MODIFIER_BALANCE[tier]then
-			local incomingDamage = LAST_MODIFIER_BALANCE[tier].incoming
-			local outgoingDamage = LAST_MODIFIER_BALANCE[tier].outgoing
-			if incomingDamage or outgoingDamage then
-				hero.balanceModifier:SetStackCount(1) 
-				hero.balanceModifier.incomingDamage = incomingDamage or 0
-				hero.balanceModifier.outgoingDamage = outgoingDamage or 0
-			end
- 		else
- 			hero.balanceModifier:SetStackCount(0) 
-			hero.balanceModifier.incomingDamage = 0	
-			hero.balanceModifier.outgoingDamage = 0
-		end
-	end)
+	-- 	if place == "last" and LAST_MODIFIER_BALANCE[tier]then
+	-- 		local incomingDamage = LAST_MODIFIER_BALANCE[tier].incoming
+	-- 		local outgoingDamage = LAST_MODIFIER_BALANCE[tier].outgoing
+	-- 		if incomingDamage or outgoingDamage then
+	-- 			hero.balanceModifier:SetStackCount(1) 
+	-- 			hero.balanceModifier.incomingDamage = incomingDamage or 0
+	-- 			hero.balanceModifier.outgoingDamage = outgoingDamage or 0
+	-- 		end
+ 	-- 	else
+ 	-- 		hero.balanceModifier:SetStackCount(0) 
+	-- 		hero.balanceModifier.incomingDamage = 0	
+	-- 		hero.balanceModifier.outgoingDamage = 0
+	-- 	end
+	-- end)
 end
 
  

@@ -7,6 +7,13 @@ function modifier_warsong_soldier_upgrade:IsHidden() return true end
 
 function modifier_warsong_soldier_upgrade:OnCreated(data)
 	if not IsServer() then return end
+	
+	-- ОПТИМИЗАЦИЯ FPS: Солдаты используются только на карте warsong
+	if GetMapName() ~= "warsong" then
+		self:Destroy()
+		return
+	end
+	
 	self.dmg_upgrade = data.dmg_upgrade
 	self.hp_upgrade = data.hp_upgrade
 	self.armor_upgrade = data.armor_upgrade

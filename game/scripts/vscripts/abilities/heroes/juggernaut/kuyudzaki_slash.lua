@@ -81,14 +81,16 @@ function modifier_kuyudzaki_dash:OnCreated(kv)
     -- Добавляем звук рывка
     EmitSoundOn("Hero_Juggernaut.OmniSlash", self:GetParent())
     
-    self:StartIntervalThink(FrameTime())
+    -- ОПТИМИЗАЦИЯ FPS: Фиксированный интервал
+    self.update_interval = 0.03
+    self:StartIntervalThink(self.update_interval)
 end
 
 function modifier_kuyudzaki_dash:OnIntervalThink()
     if not IsServer() then return end
     
     local parent = self:GetParent()
-    self.elapsed_time = self.elapsed_time + FrameTime()
+    self.elapsed_time = self.elapsed_time + self.update_interval
     
     -- Используем синусоидальную интерполяцию для более плавного движения
     local progress = math.min(self.elapsed_time / self.duration, 1.0)

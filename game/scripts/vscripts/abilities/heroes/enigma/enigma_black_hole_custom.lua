@@ -366,7 +366,9 @@ function modifier_enigma_black_hole_custom_pull:OnCreated( kv )
 
 	end
 
-	self:StartIntervalThink(FrameTime())
+	-- ОПТИМИЗАЦИЯ FPS: Фиксированный интервал
+	self.update_interval = 0.03
+	self:StartIntervalThink(self.update_interval)
 end
 
  
@@ -378,11 +380,11 @@ function modifier_enigma_black_hole_custom_pull:OnIntervalThink()
 	local target = parentPos-self.center
 	target.z = 0
 
-	local targetL = target:Length2D()-self.pull_speed*FrameTime()
+	local targetL = target:Length2D()-self.pull_speed*self.update_interval
 
 	local targetN = target:Normalized()
 	local deg = math.atan2( targetN.y, targetN.x )
-	local targetN = Vector( math.cos(deg+self.rotate_speed*FrameTime()), math.sin(deg+self.rotate_speed*FrameTime()), 0 );
+	local targetN = Vector( math.cos(deg+self.rotate_speed*self.update_interval), math.sin(deg+self.rotate_speed*self.update_interval), 0 );
 	local newPos = self.center + targetN * targetL
 	newPos.z = parentPos.z
 	self:GetParent():SetOrigin( newPos )

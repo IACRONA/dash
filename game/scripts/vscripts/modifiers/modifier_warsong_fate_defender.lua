@@ -15,7 +15,8 @@ function modifier_warsong_fate_defender:OnCreated(params)
     if not IsServer() then return end
     self:SetStackCount(1)
     self:GetParent().tOldSpells = {}
-    self:StartIntervalThink(FrameTime())
+    -- ОПТИМИЗАЦИЯ FPS: Увеличен интервал с FrameTime() (~0.03s) до 1s для очистки старых заклинаний
+    self:StartIntervalThink(1.0)
 end
 
 function modifier_warsong_fate_defender:OnRefresh(params)

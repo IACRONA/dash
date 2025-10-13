@@ -349,6 +349,12 @@ modifier_item_flag_carrier = class({
     OnCreated = function(self, keys)
 		if IsClient() then return end
 
+		-- ОПТИМИЗАЦИЯ FPS: Флаги используются только на карте warsong
+		if GetMapName() ~= "warsong" then
+			self:Destroy()
+			return
+		end
+
 		local hAbility = self:GetAbility()
 		if not hAbility then
 			return
@@ -368,7 +374,8 @@ modifier_item_flag_carrier = class({
 		self.hIcon = GameRules.AddonTemplate.flagIconUnits[self.nOwnerTeam]
 		SetIconVisibe(GameRules.AddonTemplate.flagIconpointUnits[self.nOwnerTeam], true)
 
-		self:StartIntervalThink(FrameTime())
+		-- ОПТИМИЗАЦИЯ FPS: Увеличен интервал с FrameTime() (~0.03s) до 0.1s
+		self:StartIntervalThink(0.1)
 
 		self.vTargetPlace = GameRules.AddonTemplate.flagPositions[DOTA_TEAM_GOODGUYS]
 		if self.carrier:GetTeam() == DOTA_TEAM_BADGUYS then
@@ -476,7 +483,7 @@ modifier_item_flag_carrier = class({
 			return
 		end
 
-        self.time_return_flag = self.time_return_flag - FrameTime()
+        self.time_return_flag = self.time_return_flag - 0.1
         if self.time_return_flag <= 0 then
             self:Destroy()
             return

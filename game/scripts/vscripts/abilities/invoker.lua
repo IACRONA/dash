@@ -821,7 +821,9 @@ function modifier_invoker_tornado_custom:OnCreated(kv)
     self.angle = self:GetParent():GetAngles()
     self.abs = self:GetParent():GetAbsOrigin()
     self.cyc_pos = self:GetParent():GetAbsOrigin()
-    self:StartIntervalThink(FrameTime())
+    -- ОПТИМИЗАЦИЯ FPS: Фиксированный интервал вместо FrameTime()
+    self.update_interval = 0.03
+    self:StartIntervalThink(self.update_interval)
 end
 
 function modifier_invoker_tornado_custom:OnIntervalThink()
@@ -829,7 +831,7 @@ function modifier_invoker_tornado_custom:OnIntervalThink()
         self:Destroy()
         return
     end
-    self:HorizontalMotion(self:GetParent(), FrameTime())
+    self:HorizontalMotion(self:GetParent(), self.update_interval)
 end
 
 function modifier_invoker_tornado_custom:OnDestroy()
@@ -881,7 +883,7 @@ function modifier_invoker_tornado_custom:HorizontalMotion(unit, time)
         self.cyc_pos.z = self.cyc_pos.z + 50
         self:GetParent():SetAbsOrigin(self.cyc_pos)
     elseif self:GetDuration() - self:GetElapsedTime() < 0.3 then
-        self.step = self.step or (self.cyc_pos.z - self.abs.z) / ((self:GetDuration() - self:GetElapsedTime()) / FrameTime())
+        self.step = self.step or (self.cyc_pos.z - self.abs.z) / ((self:GetDuration() - self:GetElapsedTime()) / self.update_interval)
         self.cyc_pos.z = self.cyc_pos.z - self.step
         self:GetParent():SetAbsOrigin(self.cyc_pos)
     else

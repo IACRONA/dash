@@ -557,7 +557,9 @@ function modifier_nevermore_requiem_custom_pull:OnCreated( kv )
 	self.pull_speed = self:GetAbility():GetSpecialValueFor( "pull_drag_speed" )
 	self.center = self:GetCaster():GetAbsOrigin()
  
-	self:StartIntervalThink(FrameTime())
+	-- ОПТИМИЗАЦИЯ FPS: Фиксированный интервал
+	self.update_interval = 0.03
+	self:StartIntervalThink(self.update_interval)
 end
 
  
@@ -567,7 +569,7 @@ function modifier_nevermore_requiem_custom_pull:OnIntervalThink()
 	local direction = self.center - self:GetParent():GetOrigin()
 	direction.z = 0
 	direction = direction:Normalized()
-	local point = self:GetParent():GetOrigin() + direction * self.pull_speed * FrameTime()
+	local point = self:GetParent():GetOrigin() + direction * self.pull_speed * self.update_interval
 
  	self:GetParent():SetOrigin(point)
 end

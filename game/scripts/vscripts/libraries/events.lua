@@ -266,48 +266,49 @@ function CAddonWarsong:OnTeamKillChange()
 		end
     end
 
-	DoWithAllPlayers(function(player, hero)
-		if not hero then return end
-		if not hero.balanceModifier then return end
-		local team = hero:GetTeamNumber()
+	-- ОПТИМИЗАЦИЯ FPS: Отключены все проверки modifier_balance
+	-- DoWithAllPlayers(function(player, hero)
+	-- 	if not hero then return end
+	-- 	if not hero.balanceModifier then return end
+	-- 	local team = hero:GetTeamNumber()
 
-		local tier = self.teamBalanceTier[team].tier
-		local place = self.teamBalanceTier[team].place
+	-- 	local tier = self.teamBalanceTier[team].tier
+	-- 	local place = self.teamBalanceTier[team].place
 
-		if place == "last" and LAST_MODIFIER_BALANCE[tier] then
-			local incomingDamage = LAST_MODIFIER_BALANCE[tier].incoming
-			local outgoingDamage = LAST_MODIFIER_BALANCE[tier].outgoing
-			if incomingDamage or outgoingDamage then
-				hero.balanceModifier:SetStackCount(1) 
-				hero.balanceModifier.incomingDamage = incomingDamage or 0
-				hero.balanceModifier.outgoingDamage = outgoingDamage or 0
-			end
-		elseif place == "prelast" and PRE_LAST_MODIFIER_BALANCE[tier] then
-			local stackCount = PRE_LAST_MODIFIER_BALANCE[tier]
-			local incomingDamage = PRE_LAST_MODIFIER_BALANCE[tier].incoming
-			local outgoingDamage = PRE_LAST_MODIFIER_BALANCE[tier].outgoing
-			if incomingDamage or outgoingDamage then
-				hero.balanceModifier:SetStackCount(1) 
-				hero.balanceModifier.incomingDamage = incomingDamage or 0
-				hero.balanceModifier.outgoingDamage = outgoingDamage or 0
-			end
- 		elseif place == "first" and tier > 0 and FIRST_MODIFIER_CURSED_LEADER[tier] then
-			local incomingDamage = FIRST_MODIFIER_CURSED_LEADER[tier].incoming
-			local outgoingDamage = FIRST_MODIFIER_CURSED_LEADER[tier].outgoing
-			if incomingDamage or outgoingDamage then
-				hero.cursedLeaderModifier:SetStackCount(1) 
-				hero.cursedLeaderModifier.incomingDamage = incomingDamage
-				hero.cursedLeaderModifier.outgoingDamage = outgoingDamage
-			end
-		else
-			hero.cursedLeaderModifier:SetStackCount(0)
-			hero.cursedLeaderModifier.incomingDamage = 0
-			hero.cursedLeaderModifier.outgoingDamage = 0
-			hero.balanceModifier:SetStackCount(0) 
-			hero.balanceModifier.incomingDamage = 0
-			hero.balanceModifier.outgoingDamage = 0
-		end
-	end)
+	-- 	if place == "last" and LAST_MODIFIER_BALANCE[tier] then
+	-- 		local incomingDamage = LAST_MODIFIER_BALANCE[tier].incoming
+	-- 		local outgoingDamage = LAST_MODIFIER_BALANCE[tier].outgoing
+	-- 		if incomingDamage or outgoingDamage then
+	-- 			hero.balanceModifier:SetStackCount(1) 
+	-- 			hero.balanceModifier.incomingDamage = incomingDamage or 0
+	-- 			hero.balanceModifier.outgoingDamage = outgoingDamage or 0
+	-- 		end
+	-- 	elseif place == "prelast" and PRE_LAST_MODIFIER_BALANCE[tier] then
+	-- 		local stackCount = PRE_LAST_MODIFIER_BALANCE[tier]
+	-- 		local incomingDamage = PRE_LAST_MODIFIER_BALANCE[tier].incoming
+	-- 		local outgoingDamage = PRE_LAST_MODIFIER_BALANCE[tier].outgoing
+	-- 		if incomingDamage or outgoingDamage then
+	-- 			hero.balanceModifier:SetStackCount(1) 
+	-- 			hero.balanceModifier.incomingDamage = incomingDamage or 0
+	-- 			hero.balanceModifier.outgoingDamage = outgoingDamage or 0
+	-- 		end
+ 	-- 	elseif place == "first" and tier > 0 and FIRST_MODIFIER_CURSED_LEADER[tier] then
+	-- 		local incomingDamage = FIRST_MODIFIER_CURSED_LEADER[tier].incoming
+	-- 		local outgoingDamage = FIRST_MODIFIER_CURSED_LEADER[tier].outgoing
+	-- 		if incomingDamage or outgoingDamage then
+	-- 			hero.cursedLeaderModifier:SetStackCount(1) 
+	-- 			hero.cursedLeaderModifier.incomingDamage = incomingDamage
+	-- 			hero.cursedLeaderModifier.outgoingDamage = outgoingDamage
+	-- 		end
+	-- 	else
+	-- 		hero.cursedLeaderModifier:SetStackCount(0)
+	-- 		hero.cursedLeaderModifier.incomingDamage = 0
+	-- 		hero.cursedLeaderModifier.outgoingDamage = 0
+	-- 		hero.balanceModifier:SetStackCount(0) 
+	-- 		hero.balanceModifier.incomingDamage = 0
+	-- 		hero.balanceModifier.outgoingDamage = 0
+	-- 	end
+	-- end)
  end
 
 

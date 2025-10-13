@@ -87,6 +87,10 @@ for i=2,#expTable + 1 do
 end
 
 function CAddonWarsong:InitGameMode()
+	-- ОПТИМИЗАЦИЯ FPS: Кешируем имя карты чтобы не вызывать GetMapName() многократно
+	local mapName = GetMapName()
+	self.mapName = mapName
+	
 	GameRules:SetPreGameTime(3)
 	GameRules:SetStrategyTime(5)
 	GameRules:SetShowcaseTime(0)
@@ -101,25 +105,25 @@ function CAddonWarsong:InitGameMode()
 	GameRules:GetGameModeEntity():SetUseCustomHeroLevels( true ) 
 	GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel( HeroExpTable )
 
-	if GetMapName() == "warsong" then
+	if mapName == "warsong" then
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 5 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 5 )
 		GameRules:GetGameModeEntity():SetPauseEnabled(IsInToolsMode())
 		GameRules:GetGameModeEntity():SetCameraDistanceOverride(1200)
 		SendToServerConsole( "r_farz 8000" )
-	elseif GetMapName() == "portal_duo" then
+	elseif mapName == "portal_duo" then
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 2 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 2 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_1, 2 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_2, 2 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_3, 2 )
 		GameRules:GetGameModeEntity():SetPauseEnabled(IsInToolsMode())
-	elseif GetMapName() == "portal_trio" then 
+	elseif mapName == "portal_trio" then 
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 3 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 3 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_1, 3 )
 	 	GameRules:GetGameModeEntity():SetPauseEnabled(IsInToolsMode())	
-	elseif GetMapName() == "dash" then
+	elseif mapName == "dash" then
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 5 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 5 )
 	end
@@ -136,7 +140,7 @@ function CAddonWarsong:InitGameMode()
     self.player_flags_count = {}
 	self.nCapturedFlagsCount = {}
 
-	if GetMapName() == "warsong" then
+	if mapName == "warsong" then
 		self.nCapturedFlagsCount = {
 			[DOTA_TEAM_GOODGUYS] = 0,
 			[DOTA_TEAM_BADGUYS] = 0,
@@ -171,7 +175,7 @@ function CAddonWarsong:InitGameMode()
  
     Timers:CreateTimer(0, function()
     	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-            if GetMapName() ~= "dota" and GetMapName() ~="dash" then
+            if mapName ~= "dota" and mapName ~="dash" then
                 self:GameTimeClock()
             end
         end
@@ -183,7 +187,7 @@ function CAddonWarsong:InitGameMode()
 	hGME:SetUseTurboCouriers(true)
 	hGME:SetDraftingBanningTimeOverride(BAN_TIME)
 
-	if GetMapName() == "dash" then
+	if mapName == "dash" then
 		hGME:SetBountyRuneSpawnInterval(99999)
 		hGME:SetPowerRuneSpawnInterval(RUNE_INTERVAL)
 		GameRules:SetNextRuneSpawnTime(RUNE_INTERVAL)
@@ -301,17 +305,18 @@ end
 -- Игровой think 0.5 sec and 1 sec start
 function CAddonWarsong:OnThink()
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-		if GetMapName() ~= "dash" then
+		if self.mapName ~= "dash" then
 			self:GetWinPlayers()
 		end
 	end
-	return 2
+	-- ОПТИМИЗАЦИЯ FPS: Увеличен интервал с 2s до 5s (проверка победы)
+	return 5
 end
 
 function CAddonWarsong:OnStartGame()
 	self:InitNeutralItems()
 
-	if GetMapName() == "portal_duo" or GetMapName() == "portal_trio" then
+	if self.mapName == "portal_duo" or self.mapName == "portal_trio" then
 		Timers:CreateTimer(1, function()
 			self:UpdateLeaderPortalDuo()
 			return 1
@@ -337,8 +342,8 @@ function CAddonWarsong:OnGameRulesStateChange()
                 return
             end
             self:HeroSelectionUpdater()
-            -- ОПТИМИЗАЦИЯ: Увеличен интервал с 0.5s до 1.0s
-            return 1.0
+            -- ОПТИМИЗАЦИЯ FPS: Увеличен интервал с 1.0s до 2.0s (проверка запрета одинаковых героев)
+            return 2.0
         end)
 		self.flagPositions = {}
 		self.flagItemNames = {}
@@ -346,7 +351,7 @@ function CAddonWarsong:OnGameRulesStateChange()
 		self.flagIconpointUnits = {}
 		self.FlagPositionBoth = {}
 		self:ChangeKills()
-		if GetMapName() == "dash" then
+		if self.mapName == "dash" then
 			self.item_flag_both_position = Entities:FindByName(nil, 'flag_both')
 			if self.item_flag_both_position == nil then
 				print('cant find both flag')
@@ -416,6 +421,7 @@ function CAddonWarsong:OnGameRulesStateChange()
 		end
 	elseif nNewState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then 
 		-- PlayerResource:SetCustomTeamAssignment(0, DOTA_TEAM_CUSTOM_1)
+		local mapName = self.mapName
 		-- function addBot(team)
 		-- 	local used_hero_name = "npc_dota_hero_luna"
 		-- 	local maxPlayers = 4
@@ -429,7 +435,7 @@ function CAddonWarsong:OnGameRulesStateChange()
 		-- addBot(DOTA_TEAM_BADGUYS)
 		-- addBot(DOTA_TEAM_GOODGUYS)
 		ServerManager:Init()
-		if GetMapName() == "warsong" or GetMapName() == "dash" then
+		if mapName == "warsong" or mapName == "dash" then
 			if PlayerResource:GetPlayerCount() ~= 10 then  
 				local team = 2
 				for i=0, _G.MAX_PLAYER_COUNT do 
@@ -451,6 +457,7 @@ function CAddonWarsong:OnGameRulesStateChange()
 			end
 		end
 	elseif nNewState == DOTA_GAMERULES_STATE_PRE_GAME then
+		local mapName = self.mapName
 		DonateManager:Init()
 		CustomGameEventManager:Send_ServerToAllClients('update_flags_count', {
 			radiant = self.nWinConditionGoal,
@@ -459,13 +466,13 @@ function CAddonWarsong:OnGameRulesStateChange()
 		CustomGameEventManager:Send_ServerToAllClients('update_kills_duo', {
 			kills = self.nWinConditionGoal
 		})
-		if GetMapName() == "portal_duo" then
+		if mapName == "portal_duo" then
 			local teams = {DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS, DOTA_TEAM_CUSTOM_1, DOTA_TEAM_CUSTOM_2, DOTA_TEAM_CUSTOM_3, DOTA_TEAM_CUSTOM_4}
 			for _,team in ipairs(teams) do
 				local sentry = CreateUnitByName("npc_dummy_unit", Entities:FindByName(nil, "point_sentry"):GetAbsOrigin(), true, nil, nil, team)
 				sentry:AddNewModifier(sentry, nil, "modifier_true_sight_portal_aura", {})
 			end
-		elseif GetMapName() == "portal_trio" then
+		elseif mapName == "portal_trio" then
 			local teams = {DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS, DOTA_TEAM_CUSTOM_1, DOTA_TEAM_CUSTOM_2}
 			for _,team in ipairs(teams) do
 				local sentry = CreateUnitByName("npc_dummy_unit", Entities:FindByName(nil, "point_sentry"):GetAbsOrigin(), true, nil, nil, team)
@@ -473,20 +480,21 @@ function CAddonWarsong:OnGameRulesStateChange()
 			end
         end
 	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		local mapName = self.mapName
 		self:OnStartGame()
 
 		self:DayNightCycle()
 
-        if GetMapName() == "warsong" then
+        if mapName == "warsong" then
             CreateHints("warsong_hints_start_game")
             Timers:CreateTimer(45, function()
                 CreateHints("warsong_hints_capture_flag")
             end)
-        elseif GetMapName() == "portal_duo" then
+        elseif mapName == "portal_duo" then
             CreateHints("warsong_hints_start_game")
-        elseif GetMapName() == "portal_trio" then
+        elseif mapName == "portal_trio" then
             CreateHints("warsong_hints_start_game")
-        elseif GetMapName() == "dash" then
+        elseif mapName == "dash" then
             CreateHints("warsong_hints_dash_start")
             Timers:CreateTimer(120, function()
                 CreateHints("warsong_hints_dash_gameplay")
@@ -502,7 +510,7 @@ function CAddonWarsong:OnGameRulesStateChange()
 		CustomGameEventManager:Send_ServerToAllClients('update_kills_duo', {
 			kills = self.nWinConditionGoal
 		})
-        if GetMapName() == "portal_duo" or GetMapName() == "portal_trio" then
+        if mapName == "portal_duo" or mapName == "portal_trio" then
             CustomGameEventManager:Send_ServerToAllClients('select_kill_on_start_game', {})
         end
 		Timers:CreateTimer(NEW_ABILITY_COOLDOWN, function()
@@ -523,54 +531,48 @@ function CAddonWarsong:OnGameRulesStateChange()
 			self:ChangeNewAbilities(true)
 			return NEW_ULTIMATE_COOLDOWN
 		end)
-		if GetMapName() == "dash" then
+		if mapName == "dash" then
 			Timers:CreateTimer(TIME_FOR_AMP_TOWERS_AND_CREEPS, function()
-				if GetMapName() ~= "dash" then return end
+				if self.mapName ~= "dash" then return end
 				self:AMP_TOWERS_AND_CREEPS()
 				return TIME_FOR_AMP_TOWERS_AND_CREEPS
 			end)
 		end
 		self:GiveBooks()
-		if GetMapName() ~= "dota" then
-			Timers:CreateTimer(GRANT_INTERVAL / 2, function()
+		if mapName ~= "dota" then
+			-- ОПТИМИЗАЦИЯ FPS: Объединил циклы золота и опыта в один, интервал 5s вместо отдельных
+			Timers:CreateTimer(5, function()
 				for i = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
 					local hHero = PlayerResource:GetSelectedHeroEntity(i)
 
 					if hHero then
+						-- Начисление золота (умножено на 5, т.к. было GRANT_INTERVAL/2 ~= 10s, теперь 5s)
 						local team = hHero:GetTeamNumber()
 						local bonusGold = 0
 						if self.teamBalanceTier[team] and self.teamBalanceTier[team].tier ~= 0 then
 							local place = self.teamBalanceTier[team].place
-							if self.teamBalanceTier[team].place == "last" then
+							if place == "last" then
 								bonusGold = LAST_COMMAND_GOLD_TICK[self.teamBalanceTier[team].tier]
-							elseif self.teamBalanceTier[team].place == "prelast" then
+							elseif place == "prelast" then
 								bonusGold = PRE_LAST_COMMAND_GOLD_TICK[self.teamBalanceTier[team].tier]
 							end
 						end
+						hHero:ModifyGold((GRANT_GOLD + bonusGold) / 2 * 5 / (GRANT_INTERVAL / 2), true, DOTA_ModifyGold_Unspecified)
 
-						hHero:ModifyGold((GRANT_GOLD + bonusGold) / 2  , true, DOTA_ModifyGold_Unspecified)
-					end
-				end
-				return GRANT_INTERVAL / 2
-			end)
-
-            Timers:CreateTimer(1, function()
-				for i = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
-					local hHero = PlayerResource:GetSelectedHeroEntity(i)
-
-					if hHero and not hHero:HasModifier("modifier_freeze_time_start") then
-						local expForNextLevel = expTable[hHero:GetLevel()]
-						if expForNextLevel then
-							-- ОПТИМИЗАЦИЯ: Увеличен интервал с 1s до 5s, опыт начисляется пропорционально больше
-							local exp = PERCENT_OF_LEVEL_MINUTE / 60 * 5
-							hHero:AddExperience(math.ceil(expForNextLevel * (exp / 100)), 0, false, true)
+						-- Начисление опыта
+						if not hHero:HasModifier("modifier_freeze_time_start") then
+							local expForNextLevel = expTable[hHero:GetLevel()]
+							if expForNextLevel then
+								local exp = PERCENT_OF_LEVEL_MINUTE / 60 * 5
+								hHero:AddExperience(math.ceil(expForNextLevel * (exp / 100)), 0, false, true)
+							end
 						end
 					end
 				end
 				return 5
 			end)
 
-			if GetMapName() == "dash" then
+			if mapName == "dash" then
 				self:GiveTowersModifiersUNVUIL()
 				Timers:CreateTimer(3, function()
 					local goldTeam = {
@@ -610,28 +612,29 @@ function CAddonWarsong:OnGameRulesStateChange()
 					self.teamBalanceTier[loser] = dataLoser
 					self.teamBalanceTier[leader] = dataLeader
 
-					DoWithAllPlayers(function(player, hero)
-						if not hero then return end
-						if not hero.balanceModifier then return end
-						local team = hero:GetTeamNumber()
+					-- ОПТИМИЗАЦИЯ FPS: Отключены все проверки modifier_balance
+					-- DoWithAllPlayers(function(player, hero)
+					-- 	if not hero then return end
+					-- 	if not hero.balanceModifier then return end
+					-- 	local team = hero:GetTeamNumber()
 
-						local tier = self.teamBalanceTier[team].tier
-						local place = self.teamBalanceTier[team].place
+					-- 	local tier = self.teamBalanceTier[team].tier
+					-- 	local place = self.teamBalanceTier[team].place
 
-						if place == "last" and LAST_MODIFIER_BALANCE[tier] then
-							local incomingDamage = LAST_MODIFIER_BALANCE[tier].incoming
-							local outgoingDamage = LAST_MODIFIER_BALANCE[tier].outgoing
-							if incomingDamage or outgoingDamage then
-								hero.balanceModifier:SetStackCount(1)
-								hero.balanceModifier.incomingDamage = incomingDamage or 0
-								hero.balanceModifier.outgoingDamage = outgoingDamage or 0
-							end
-						 else
-							 hero.balanceModifier:SetStackCount(0)
-							hero.balanceModifier.incomingDamage = 0
-							hero.balanceModifier.outgoingDamage = 0
-						end
-					end)
+					-- 	if place == "last" and LAST_MODIFIER_BALANCE[tier] then
+					-- 		local incomingDamage = LAST_MODIFIER_BALANCE[tier].incoming
+					-- 		local outgoingDamage = LAST_MODIFIER_BALANCE[tier].outgoing
+					-- 		if incomingDamage or outgoingDamage then
+					-- 			hero.balanceModifier:SetStackCount(1)
+					-- 			hero.balanceModifier.incomingDamage = incomingDamage or 0
+					-- 			hero.balanceModifier.outgoingDamage = outgoingDamage or 0
+					-- 		end
+					-- 	 else
+					-- 		 hero.balanceModifier:SetStackCount(0)
+					-- 		hero.balanceModifier.incomingDamage = 0
+					-- 		hero.balanceModifier.outgoingDamage = 0
+					-- 	end
+					-- end)
 
 					-- ОПТИМИЗАЦИЯ: Увеличен интервал с 3s до 5s
 					return 5
@@ -665,15 +668,16 @@ function CAddonWarsong:GiveBooks()
 	DoWithAllPlayers(function(player, hero, playerId)
         initPlayerBooks(playerId)
     end)
-	print("[GiveBooks] Initialized! Starting timer...")
+	-- ОПТИМИЗАЦИЯ FPS: Отключены дебаг-принты
+	-- print("[GiveBooks] Initialized! Starting timer...")
 	Timers:CreateTimer(2, function()
 		DoWithAllPlayers(function(player, hero, playerId)
 			if not hero then
-				print("[GiveBooks] Hero is nil for player", playerId)
+				-- print("[GiveBooks] Hero is nil for player", playerId)
 				return
 			end
 			if self.bookTicks.common[playerId] == nil then
-				print("[GiveBooks] Reinitializing books for player", playerId)
+				-- print("[GiveBooks] Reinitializing books for player", playerId)
 				initPlayerBooks(playerId)
 				return
 			end
@@ -683,7 +687,8 @@ function CAddonWarsong:GiveBooks()
 			self.bookTicks.rare[playerId].tick = self.bookTicks.rare[playerId].tick + 5
 			self.bookTicks.epic[playerId].tick = self.bookTicks.epic[playerId].tick + 5
 
-			print("[GiveBooks] Tick update for player", playerId, "- common tick:", self.bookTicks.common[playerId].tick)
+			-- ОПТИМИЗАЦИЯ FPS: Отключен дебаг-принт для снижения нагрузки на консоль
+			-- print("[GiveBooks] Tick update for player", playerId, "- common tick:", self.bookTicks.common[playerId].tick)
 
 			local team = hero:GetTeamNumber()
 			local commonTime = BOOK_COMMON_COOLDOWN
@@ -719,7 +724,8 @@ function CAddonWarsong:GiveBooks()
                     self.bookReserve[playerId].common = self.bookReserve[playerId].common + 1
                 else
                     self.bookTicks.common[playerId].count = self.bookTicks.common[playerId].count + 1
-                    print("[GiveBooks] Giving COMMON book to player", playerId, "count:", self.bookTicks.common[playerId].count)
+                    -- ОПТИМИЗАЦИЯ FPS: Отключен дебаг-принт
+                    -- print("[GiveBooks] Giving COMMON book to player", playerId, "count:", self.bookTicks.common[playerId].count)
                     Upgrades:QueueSelection(hero, UPGRADE_RARITY_COMMON)
                     EmitSoundClient("sphere_choice", player)
                 end
@@ -733,7 +739,8 @@ function CAddonWarsong:GiveBooks()
                     self.bookReserve[playerId].rare = self.bookReserve[playerId].rare + 1
                 else
                     self.bookTicks.rare[playerId].count = self.bookTicks.rare[playerId].count + 1
-                    print("[GiveBooks] Giving RARE book to player", playerId, "count:", self.bookTicks.rare[playerId].count)
+                    -- ОПТИМИЗАЦИЯ FPS: Отключен дебаг-принт
+                    -- print("[GiveBooks] Giving RARE book to player", playerId, "count:", self.bookTicks.rare[playerId].count)
                     Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
                     EmitSoundClient("sphere_choice", player)
                 end
@@ -745,7 +752,8 @@ function CAddonWarsong:GiveBooks()
                     self.bookReserve[playerId].epic = self.bookReserve[playerId].epic + 1
                 else
                     self.bookTicks.epic[playerId].count = self.bookTicks.epic[playerId].count + 1
-                    print("[GiveBooks] Giving EPIC book to player", playerId, "count:", self.bookTicks.epic[playerId].count)
+                    -- ОПТИМИЗАЦИЯ FPS: Отключен дебаг-принт
+                    -- print("[GiveBooks] Giving EPIC book to player", playerId, "count:", self.bookTicks.epic[playerId].count)
                     Upgrades:QueueSelection(hero, UPGRADE_RARITY_EPIC)
                     EmitSoundClient("sphere_choice", player)
                 end
@@ -771,12 +779,24 @@ end
 function CAddonWarsong:OnNPCSpawned(event)
 	local hUnit = EntIndexToHScript(event.entindex)
 	if hUnit == nil then return end
+	
+	-- ОПТИМИЗАЦИЯ FPS: Ранний выход для ненужных юнитов (здания, вышки и т.д.)
+	local isHero = hUnit:IsRealHero()
+	local isCreep = hUnit:IsCreep()
+	local isIllusion = hUnit:IsIllusion()
+	local hasSummonUpgrades = hUnit:GetOwner() and not hUnit:GetOwner():IsNull()
+	
+	-- Обрабатываем только героев, крипов, иллюзий и саммонов
+	if not isHero and not isCreep and not isIllusion and not hasSummonUpgrades then
+		return
+	end
+	
     if hUnit and hUnit.items_activated == nil then
         hUnit.items_activated = true
         CAddonWarsong:SetEquipItemPlayer(hUnit)
     end
 
-	if hUnit:IsRealHero() then
+	if isHero then
 		Timers:CreateTimer(0.03, function()
 			if  not hUnit:IsClone()
 				and not hUnit:IsTempestDouble()
@@ -806,7 +826,7 @@ function CAddonWarsong:OnNPCSpawned(event)
 				end
 				-- local particleLeader = ParticleManager:CreateParticle("particles/overhead_particle/leader_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, hUnit )
 				-- ParticleManager:SetParticleControlEnt( particleLeader, PATTACH_OVERHEAD_FOLLOW, hUnit, PATTACH_OVERHEAD_FOLLOW, "follow_overhead", hUnit:GetAbsOrigin(), true )
-				if GetMapName() ~= "dota" then
+				if self.mapName ~= "dota" then
 					for i=1,HERO_STARTING_LEVEL-1 do
 						hUnit:HeroLevelUp(false)
 					end
@@ -814,14 +834,16 @@ function CAddonWarsong:OnNPCSpawned(event)
 
 					Upgrades:LoadUpgradesData(hUnit:GetUnitName())
 
-					hUnit:AddNewModifier(hUnit, nil, 'modifier_warsong_movespeed_bonus', nil)
-					hUnit:AddNewModifier(hUnit, nil, 'modifier_balance', nil)
+					-- ОПТИМИЗАЦИЯ FPS: Отключены модификаторы для повышения производительности
+					-- hUnit:AddNewModifier(hUnit, nil, 'modifier_warsong_movespeed_bonus', nil)
+					-- hUnit:AddNewModifier(hUnit, nil, 'modifier_balance', nil)
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_cursed_leader', nil)
-					if GetMapName() == "dash" then
+					if self.mapName == "dash" then
 						hUnit:AddNewModifier(hUnit, nil, "modifier_head_boss", {})
 					end
 
-					hUnit:AddNewModifier(hUnit, nil, 'modifier_teleport_scroll_fast', nil)
+					-- ОПТИМИЗАЦИЯ FPS: Отключен бесполезный модификатор
+					-- hUnit:AddNewModifier(hUnit, nil, 'modifier_teleport_scroll_fast', nil)
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_ability_upgrades_controller', nil)
 
 					hUnit:AddNewModifier(hUnit, nil, 'modifier_warsong_movespeed_bonus_resistance_bonus', {phys = PHYSICAL_RESISTANCE_PERCENTAGE, magical = MAGICAL_RESISTANCE_PERCENTAGE, time = RESISTANCE_TIME_ACTIVATED})
@@ -837,7 +859,7 @@ function CAddonWarsong:OnNPCSpawned(event)
 
 					-- hUnit:AddItemByName("item_tp_scroll_custom")
 
-					if GetMapName() ~= "dash" then
+					if self.mapName ~= "dash" then
 						if hUnit:GetUnitName() ~= 'npc_dota_base_mount' then
 							hUnit:AddNewModifier(hUnit, nil, "modifier_freeze_time_start", {duration = START_GAME_FREEZE_TIME})
 						end
@@ -849,7 +871,7 @@ function CAddonWarsong:OnNPCSpawned(event)
 	end
  
 	-- Применяем AMP модификатор к крипам при спавне (оптимизация вместо таймера)
-	if GetMapName() == "dash" and self.AMP_Init and hUnit:IsCreep() then
+	if self.mapName == "dash" and self.AMP_Init and isCreep then
 		hUnit:AddNewModifier(hUnit, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level, type = "creep"})
 	end
 

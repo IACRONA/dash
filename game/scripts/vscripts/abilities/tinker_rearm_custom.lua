@@ -8,6 +8,14 @@ function tinker_rearm_custom:IsStealable()
     return false
 end
 
+-- Rearm можно качать только с 6 уровня и выше
+function tinker_rearm_custom:CanAbilityBeUpgraded()
+    if self:GetCaster():GetLevel() < 6 then
+        return false
+    end
+    return true
+end
+
 function tinker_rearm_custom:OnSpellStart()
     if not IsServer() then return end
     self:GetCaster():EmitSound("Hero_Tinker.Rearm")
@@ -22,6 +30,11 @@ function tinker_rearm_custom:OnChannelFinish( bInterrupted )
     	self:GetCaster():RemoveGesture(ACT_DOTA_TINKER_REARM2)
     	self:GetCaster():RemoveGesture(ACT_DOTA_TINKER_REARM3)
     	return 
+    end
+
+    -- Rearm работает только на 6 уровне способности
+    if self:GetLevel() < 6 then
+        return
     end
 
     for i=0, 6 do

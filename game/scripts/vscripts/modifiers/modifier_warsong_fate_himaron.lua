@@ -60,7 +60,7 @@ function modifier_warsong_fate_himaron_buff:OnCreated(params)
     self.cooldown_reduction = HIMARON_SETTINGS_COOLDOWN_REDUCTION
     self.spell_amp = HIMARON_SETTINGS_SPELL_AMPLIFY
     self.increase_damage_self = DEMON_SETTINGS_INCREASE_DAMAGE_SELF
-    print(self.damage)
+    -- ОПТИМИЗАЦИЯ FPS: Удалён дебаг-принт
     self:SetHasCustomTransmitterData(true)
     self:SendBuffRefreshToClients()
 end

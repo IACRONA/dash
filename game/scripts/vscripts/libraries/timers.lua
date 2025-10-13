@@ -59,7 +59,8 @@ TIMERS_VERSION = "1.01"
 
 
 
-TIMERS_THINK = 0.01
+-- ОПТИМИЗАЦИЯ FPS: Увеличен интервал с 0.01s (100 Hz) до 0.03s (33 Hz) для снижения нагрузки
+TIMERS_THINK = 0.03
 
 if Timers == nil then
   print ( '[Timers] creating Timers' )

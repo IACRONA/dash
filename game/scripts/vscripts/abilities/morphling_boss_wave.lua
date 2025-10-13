@@ -82,8 +82,9 @@ function modifier_morphling_boss_waveform_buff:OnCreated(params)
         self.direction = (position - caster:GetAbsOrigin()):Normalized()
         self.distance_traveled = 0
         self.distance = distance
-        self.frametime = FrameTime()
-        self:StartIntervalThink(FrameTime())
+        -- ОПТИМИЗАЦИЯ FPS: Фиксированный интервал
+        self.frametime = 0.03
+        self:StartIntervalThink(self.frametime)
     end
 end
 
