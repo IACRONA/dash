@@ -23,8 +23,12 @@ function cursed_knight_summon_deadman_generic_modifier2:OnTakeDamage(keys)
             local point = caster:GetOrigin() 
             local team = caster:GetTeam()
             
-            -- Проверка: если скелет жив или на КД, не создаем нового
-            if self.skeleton and self.skeleton:IsAlive() then return end
+            -- Проверка: если скелет жив, убиваем старого
+            if self.skeleton and not self.skeleton:IsNull() and self.skeleton:IsAlive() then 
+                self.skeleton:ForceKill(false)
+            end
+            
+            -- КД на призыв - не чаще 1 раза в 15 секунд
             if self.summon_cooldown and GameRules:GetGameTime() < self.summon_cooldown then return end
             
             self.skeleton = CreateUnitByName(unitname, point, true, caster, caster, team)

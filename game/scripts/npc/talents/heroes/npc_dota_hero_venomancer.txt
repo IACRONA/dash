@@ -47,7 +47,7 @@
 			"max_count" "5"
 		}
 	}
-	"venomancer_plague_ward_custom"
+	"venomancer_plague_ward"
 	{
 		"cooldown_and_manacost"
 		{

@@ -568,4 +568,42 @@
             "dismount_from_damage"  "1"
         }
     }
+
+    //=================================================================================================================
+    // ВРОЖДЁННЫЕ СПОСОБНОСТИ (INNATE ABILITIES) - определения для системы талантов
+    //=================================================================================================================
+
+    "skywrath_mage_ruin_and_restoration"
+    {
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "MaxLevel"              "1"
+        "AbilityValues"
+        {
+            "spell_lifesteal"   "0"
+        }
+    }
+
+    "dragon_knight_inherited_vigor"
+    {
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "MaxLevel"              "1"
+        "AbilityValues"
+        {
+            "base_health_regen" "0"
+            "base_armor"        "0"
+        }
+    }
+
+    "venomancer_sepsis"
+    {
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "MaxLevel"              "1"
+        "AbilityValues"
+        {
+            "bonus_dmg_per_debuff_pct" "0"
+        }
+    }
 }

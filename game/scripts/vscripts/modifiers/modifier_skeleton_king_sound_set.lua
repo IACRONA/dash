@@ -30,20 +30,34 @@ end
 function modifier_skeleton_king_sound_set:OnAttackLanded(keys)
     if IsClient() then return end
     local attacker = keys.attacker
-    if attacker == self:GetParent() then
-        -- Звук обычной атаки
+    local target = keys.target
+    
+    if attacker == self:GetParent() and not attacker:IsIllusion() then
+        -- Звук обычной атаки (только для реального героя)
         EmitSoundOn("Hero_SkeletonKing.Attack", attacker)
+        
+        -- Звук удара по башням
+        if target and target:IsTower() then
+            EmitSoundOn("Hero_SkeletonKing.Attack", attacker)
+        end
     end
 end
 
 function modifier_skeleton_king_sound_set:OnDeath(keys)
     if IsClient() then return end
     local unit = keys.unit
-    if unit:GetUnitName() == "npc_dota_hero_skeleton_king" then
+    
+    if unit == self:GetParent() then
         StopSoundOn("cursed_knight_random1", unit)
         StopSoundOn("cursed_knight_random2", unit)
         StopSoundOn("cursed_knight_random3", unit)
         StopSoundOn("cursed_knight_random4", unit)
-        EmitSoundOn("cursed_knight_dead", unit)
+        
+        -- Разные звуки для иллюзий и реального героя
+        if unit:IsIllusion() then
+            EmitSoundOn("Hero_SkeletonKing.Illusion.Death", unit)
+        else
+            EmitSoundOn("cursed_knight_dead", unit)
+        end
     end
 end

@@ -826,47 +826,62 @@ function CAddonWarsong:OnNPCSpawned(event)
 				end
 				-- local particleLeader = ParticleManager:CreateParticle("particles/overhead_particle/leader_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, hUnit )
 				-- ParticleManager:SetParticleControlEnt( particleLeader, PATTACH_OVERHEAD_FOLLOW, hUnit, PATTACH_OVERHEAD_FOLLOW, "follow_overhead", hUnit:GetAbsOrigin(), true )
-				if self.mapName ~= "dota" then
-					for i=1,HERO_STARTING_LEVEL-1 do
-						hUnit:HeroLevelUp(false)
-					end
-					hUnit.upgrades = {}
+			if self.mapName ~= "dota" then
+				for i=1,HERO_STARTING_LEVEL-1 do
+					hUnit:HeroLevelUp(false)
+				end
+			hUnit.upgrades = {}
 
-					Upgrades:LoadUpgradesData(hUnit:GetUnitName())
-
-					-- ОПТИМИЗАЦИЯ FPS: Отключены модификаторы для повышения производительности
-					-- hUnit:AddNewModifier(hUnit, nil, 'modifier_warsong_movespeed_bonus', nil)
-					-- hUnit:AddNewModifier(hUnit, nil, 'modifier_balance', nil)
-					hUnit:AddNewModifier(hUnit, nil, 'modifier_cursed_leader', nil)
-					if self.mapName == "dash" then
-						hUnit:AddNewModifier(hUnit, nil, "modifier_head_boss", {})
-					end
-
-					-- ОПТИМИЗАЦИЯ FPS: Отключен бесполезный модификатор
-					-- hUnit:AddNewModifier(hUnit, nil, 'modifier_teleport_scroll_fast', nil)
-					hUnit:AddNewModifier(hUnit, nil, 'modifier_ability_upgrades_controller', nil)
-
-					hUnit:AddNewModifier(hUnit, nil, 'modifier_warsong_movespeed_bonus_resistance_bonus', {phys = PHYSICAL_RESISTANCE_PERCENTAGE, magical = MAGICAL_RESISTANCE_PERCENTAGE, time = RESISTANCE_TIME_ACTIVATED})
-					if hUnit:HasAbility('nevermore_necromastery') then
-						hUnit:AddNewModifier(hUnit, nil, 'modifier_nevermore_souls', {})
-					end
-
-					-- ОПТИМИЗАЦИЯ: Отключена способность прыжка для улучшения FPS
-					-- local ui_custom_ability_jump = hUnit:AddAbility('ui_custom_ability_jump')
-					-- if ui_custom_ability_jump then
-					-- 	ui_custom_ability_jump:SetLevel(1)
-					-- end
-
-					-- hUnit:AddItemByName("item_tp_scroll_custom")
-
-					if self.mapName ~= "dash" then
-						if hUnit:GetUnitName() ~= 'npc_dota_base_mount' then
-							hUnit:AddNewModifier(hUnit, nil, "modifier_freeze_time_start", {duration = START_GAME_FREEZE_TIME})
-						end
-					end
-					DonateManager:InitHero(hUnit)
+			Upgrades:LoadUpgradesData(hUnit:GetUnitName())
+			
+			-- Добавляем врождённые способности (innate) для героев которые их не имеют
+			local innate_abilities = {
+				["npc_dota_hero_skywrath_mage"] = "skywrath_mage_ruin_and_restoration",
+				-- Добавьте других героев по мере необходимости
+			}
+			
+			local hero_name = hUnit:GetUnitName()
+			if innate_abilities[hero_name] and not hUnit:HasAbility(innate_abilities[hero_name]) then
+				local innate = hUnit:AddAbility(innate_abilities[hero_name])
+				if innate then
+					innate:SetLevel(1)
+					innate:SetHidden(true)
 				end
 			end
+
+				-- ОПТИМИЗАЦИЯ FPS: Отключены модификаторы для повышения производительности
+				-- hUnit:AddNewModifier(hUnit, nil, 'modifier_warsong_movespeed_bonus', nil)
+				-- hUnit:AddNewModifier(hUnit, nil, 'modifier_balance', nil)
+				hUnit:AddNewModifier(hUnit, nil, 'modifier_cursed_leader', nil)
+				if self.mapName == "dash" then
+					hUnit:AddNewModifier(hUnit, nil, "modifier_head_boss", {})
+				end
+
+				-- ОПТИМИЗАЦИЯ FPS: Отключен бесполезный модификатор
+				-- hUnit:AddNewModifier(hUnit, nil, 'modifier_teleport_scroll_fast', nil)
+				hUnit:AddNewModifier(hUnit, nil, 'modifier_ability_upgrades_controller', nil)
+
+				hUnit:AddNewModifier(hUnit, nil, 'modifier_warsong_movespeed_bonus_resistance_bonus', {phys = PHYSICAL_RESISTANCE_PERCENTAGE, magical = MAGICAL_RESISTANCE_PERCENTAGE, time = RESISTANCE_TIME_ACTIVATED})
+				if hUnit:HasAbility('nevermore_necromastery') then
+					hUnit:AddNewModifier(hUnit, nil, 'modifier_nevermore_souls', {})
+				end
+
+				-- ОПТИМИЗАЦИЯ: Отключена способность прыжка для улучшения FPS
+				-- local ui_custom_ability_jump = hUnit:AddAbility('ui_custom_ability_jump')
+				-- if ui_custom_ability_jump then
+				-- 	ui_custom_ability_jump:SetLevel(1)
+				-- end
+
+				-- hUnit:AddItemByName("item_tp_scroll_custom")
+
+				if self.mapName ~= "dash" then
+					if hUnit:GetUnitName() ~= 'npc_dota_base_mount' then
+						hUnit:AddNewModifier(hUnit, nil, "modifier_freeze_time_start", {duration = START_GAME_FREEZE_TIME})
+					end
+				end
+				DonateManager:InitHero(hUnit)
+			end
+		end
 		end)
 	end
  

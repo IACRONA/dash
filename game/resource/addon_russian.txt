@@ -1657,6 +1657,10 @@
     "DOTA_Tooltip_ability_summon_mount"       "ПРИЗВАТЬ КОНЯ"
     "DOTA_Tooltip_ability_summon_mount_Description"       "Призывает коня прямо на поле битвы. Сидя на коне, нельзя бить, пассивные заклинания отключены."
     "DOTA_Tooltip_ability_summon_mount_Note0" "При нанесении/получении урона или использовании способностей конь убежит."
+
+    // Venomancer
+    "DOTA_Tooltip_ability_venomancer_sepsis"              "Сепсис"
+    "DOTA_Tooltip_ability_venomancer_sepsis_Description"  "Увеличивает урон за каждый дебафф на враге."
     }
 }
  
