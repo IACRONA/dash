@@ -12,7 +12,7 @@
 }
 
 .HintPanel {
-  width: 550px;
+  width: 700px;
   margin: 10px;
   transition-property: opacity, position;
   transition-duration: 0.5s;
@@ -20,22 +20,25 @@
 }
 
 #HintBackground {
-  background-color: gradient(linear, 100% 0%, 0% 0%, from(rgba(100, 97, 250, 0.15)), to(rgba(175, 126, 253, 0.15)));
-  border-brush: gradient(radial, 0% 0%, 2% 10%, 100% 100%, from(rgb(153, 151, 254)), to(rgba(153, 151, 254, 0.02)));
-  border: 1px solid white;
+  background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(18, 20, 26, 0.95)), to(rgba(30, 35, 45, 0.95)));
+  border: 2px solid #3a4152;
+  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
   opacity: 4;
   width: 100%;
   height: 100%;
-  padding: 10px;
+  padding: 15px 20px;
 }
 
 .HintLabel {
-  color: white;
+  color: #e8e8e8;
   font-weight: semi-bold;
-  font-size: 22px;
-  text-shadow: 0px 0px 6px 2 black;
-  margin-right: 20px;
-  padding: 10px;
+  font-size: 20px;
+  text-shadow: 1px 1px 3px black;
+  line-height: 28px;
+  margin-right: 30px;
+  padding: 5px 10px;
+  text-align: left;
 }
 
 .Close {

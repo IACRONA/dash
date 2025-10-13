@@ -671,15 +671,11 @@ function CreateTalent(upgradeInfo, data) {
   spell_fate_levels.AddClass("spell_fate_levels");
 
   spell_block.SetPanelEvent("onactivate", function () {
-    $.Msg("[TALENT CLICK] ability:", ability_name, "upgrade:", upgrade_name, "is_maxed:", is_maxed_out, "current:", current_count, "max:", max_count);
-    
     // Блокируем выбор если талант на максимуме
     if (is_maxed_out) {
-      $.Msg("⚠️ Талант достиг максимального уровня!");
       return;
     }
     
-    $.Msg("[TALENT CLICK] Отправка на сервер...");
     GameEvents.SendCustomGameEventToServer("player_talent_selected", { upgrade_name, ability_name });
     $("#TalentsSelectedMain").style.opacity = "0";
     $("#TalentsSelectedMain").SetHasClass("SpawnPanelSelected", true);
