@@ -4486,7 +4486,7 @@
 		"ItemResult"					"item_shemelis"
 		"ItemRequirements"
 		{
-			"01"						"item_bracer;item_wraith_band;item_null_talisman"
+			"01"						"item_bracer;item_wraith_band;item_null_talisman;item_soul_ring"
 		}
 	}
 
@@ -4508,12 +4508,12 @@
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"35.0"
+		"AbilityCooldown"				"50.0"
 		"AbilityManaCost"				"0"
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2300"
+		"ItemCost"						"3070"
 		"ItemShopTags"					"int;damage;armor;hard_to_tag"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"shemelis"

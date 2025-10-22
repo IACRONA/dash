@@ -41,10 +41,13 @@ function modifier_item_shemelis:OnCreated(kv)
 		local parent = self:GetParent()
 		
 		if parent then
+			-- Кольцевой буфер для оптимизации (как у Weaver)
 			self.history_max_frames = 20
+			self.current_frame = 1  -- Текущий индекс в кольцевом буфере
 			self.position_history = {}
 			self.health_history = {}
 			
+			-- Инициализируем буфер
 			for i = 1, self.history_max_frames do
 				self.position_history[i] = parent:GetAbsOrigin()
 				self.health_history[i] = parent:GetHealth()
@@ -66,21 +69,22 @@ function modifier_item_shemelis:OnIntervalThink()
 	if not IsServer() then return end
 	
 	local parent = self:GetParent()
-	if not parent or not parent:IsAlive() then
-		self:StartIntervalThink(-1)
+	if not parent then
 		return
 	end
 	
 	if not self.position_history or not self.health_history then return end
-	if not self.history_max_frames then return end
+	if not self.history_max_frames or not self.current_frame then return end
 	
-	for i = self.history_max_frames, 2, -1 do
-		self.position_history[i] = self.position_history[i-1]
-		self.health_history[i] = self.health_history[i-1]
+	-- Кольцевой буфер: просто перезаписываем текущую позицию, без копирования!
+	-- Это намного быстрее и не грузит FPS
+	self.current_frame = self.current_frame + 1
+	if self.current_frame > self.history_max_frames then
+		self.current_frame = 1
 	end
 	
-	self.position_history[1] = parent:GetAbsOrigin()
-	self.health_history[1] = parent:GetHealth()
+	self.position_history[self.current_frame] = parent:GetAbsOrigin()
+	self.health_history[self.current_frame] = parent:GetHealth()
 end
 
 function modifier_item_shemelis:DeclareFunctions()
@@ -233,8 +237,14 @@ function modifier_item_shemelis:TimeRewind()
 	if not parent or not parent:IsAlive() then return end
 	
 	if not self.position_history or not self.health_history then return end
+	if not self.current_frame or not self.history_max_frames then return end
 	
-	local rewind_index = self.history_max_frames
+	-- Вычисляем индекс "2 секунды назад" в кольцевом буфере
+	-- current_frame - текущая позиция, нам нужна позиция на 19 фреймов назад
+	local rewind_index = self.current_frame + 1  -- Следующая позиция = самая старая в кольцевом буфере
+	if rewind_index > self.history_max_frames then
+		rewind_index = 1
+	end
 	
 	if self.position_history[rewind_index] then
 		parent:StartGesture(ACT_DOTA_CAST_ABILITY_4)
