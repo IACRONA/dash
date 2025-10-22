@@ -36,6 +36,8 @@ end
 
 function DonateManager:AddHeroAura(hero, auraInfo)
     local heroAura = hero.donate.aura
+    
+    if not auraInfo then return end
 
     for itemName, itemData in pairs(auraInfo) do
         if itemData.isActive and DONATE_ITEMS.aura[itemName] then

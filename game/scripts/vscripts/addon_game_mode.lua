@@ -91,6 +91,23 @@ function CAddonWarsong:InitGameMode()
 	local mapName = GetMapName()
 	self.mapName = mapName
 	
+	-- Устанавливаем GAME_TIME_CLOCK для карт
+	print("[INIT] mapName =", mapName)
+	print("[INIT] GAME_TIME_CLOCK before =", GAME_TIME_CLOCK)
+	
+	if mapName == "warsong" then
+		GAME_TIME_CLOCK = 1000
+		print("[INIT] Set GAME_TIME_CLOCK = 1000 for warsong")
+	elseif mapName == "portal_duo" then
+		GAME_TIME_CLOCK = 1200
+		print("[INIT] Set GAME_TIME_CLOCK = 1200 for portal_duo")
+	elseif mapName == "portal_trio" then
+		GAME_TIME_CLOCK = 1200
+		print("[INIT] Set GAME_TIME_CLOCK = 1200 for portal_trio")
+	end
+	
+	print("[INIT] GAME_TIME_CLOCK after =", GAME_TIME_CLOCK)
+	
 	GameRules:SetPreGameTime(3)
 	GameRules:SetStrategyTime(5)
 	GameRules:SetShowcaseTime(0)
@@ -155,8 +172,19 @@ function CAddonWarsong:InitGameMode()
 	self.nMorphKillsCount[DOTA_TEAM_CUSTOM_3] = 0
 	self.nMorphKillsCount[DOTA_TEAM_CUSTOM_4] = 0
 
-	self.soldiers_units = {}
+    self.soldiers_units = {}
+	
+	-- ВАЖНО: Повторно устанавливаем GAME_TIME_CLOCK здесь, т.к. game_settings.lua может перезаписать значение
+	if mapName == "warsong" then
+		GAME_TIME_CLOCK = 1000
+	elseif mapName == "portal_duo" then
+		GAME_TIME_CLOCK = 1200
+	elseif mapName == "portal_trio" then
+		GAME_TIME_CLOCK = 1200
+	end
+	
 	self.game_timer = GAME_TIME_CLOCK
+	print("[TIMER INIT] Final GAME_TIME_CLOCK for " .. mapName .. " = " .. GAME_TIME_CLOCK)
 
 	self.killLeaderRewardTimer = {}
 	self.killStreak = {}
@@ -174,9 +202,31 @@ function CAddonWarsong:InitGameMode()
     self:RunAbilitySoundPrecache()
  
     Timers:CreateTimer(0, function()
-    	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+    	local gameState = GameRules:State_Get()
+    	
+    	-- DEBUG: Выводим состояние каждый тик для диагностики
+    	if not self._timer_debug_count then
+        self._timer_debug_count = 0
+    	end
+    	self._timer_debug_count = self._timer_debug_count + 1
+    	
+    	if self._timer_debug_count % 100 == 0 then
+        print("[TIMER LOOP] Timer loop active. Tick count: " .. self._timer_debug_count .. " Game state: " .. gameState)
+    	end
+    	
+    	if gameState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
             if mapName ~= "dota" and mapName ~="dash" then
                 self:GameTimeClock()
+            else
+                -- DEBUG: Таймер не запускается
+                print("[TIMER DEBUG] Timer condition failed. mapName =", mapName)
+            end
+        else
+            -- DEBUG: Игра еще не началась
+            if not self._timer_state_logged then
+                print("[TIMER DEBUG] Waiting for game to start. Current state:", gameState)
+                print("[TIMER DEBUG] DOTA_GAMERULES_STATE_GAME_IN_PROGRESS =", DOTA_GAMERULES_STATE_GAME_IN_PROGRESS)
+                self._timer_state_logged = true
             end
         end
         -- Таймер обновляется каждую секунду для плавного отображения
@@ -481,6 +531,17 @@ function CAddonWarsong:OnGameRulesStateChange()
         end
 	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		local mapName = self.mapName
+		
+		-- Устанавливаем game_timer перед началом игры
+		if mapName == "warsong" then
+			self.game_timer = 1000
+		elseif mapName == "portal_duo" then
+			self.game_timer = 1200
+		elseif mapName == "portal_trio" then
+			self.game_timer = 1200
+		end
+		print("[GAME START] Set game_timer = " .. self.game_timer .. " for " .. mapName)
+		
 		self:OnStartGame()
 
 		self:DayNightCycle()
@@ -574,7 +635,8 @@ function CAddonWarsong:OnGameRulesStateChange()
 
 			if mapName == "dash" then
 				self:GiveTowersModifiersUNVUIL()
-				Timers:CreateTimer(3, function()
+				-- ОПТИМИЗАЦИЯ FPS: Увеличен интервал с 3s до 8s для баланса команд
+				Timers:CreateTimer(8, function()
 					local goldTeam = {
 						[DOTA_TEAM_GOODGUYS] = 0,
 						[DOTA_TEAM_BADGUYS] = 0,
@@ -589,17 +651,24 @@ function CAddonWarsong:OnGameRulesStateChange()
 					local dataLeader = {place = "first", tier = 0}
 
 					local differenceKill = (self.nCapturedFlagsCount[leader] or 0) - (self.nCapturedFlagsCount[loser] or 0)
-					DoWithAllPlayers(function(player, hero, playerId)
-						if not hero then return end
-						local goldHero = PlayerResource:GetNetWorth(playerId)
-						if hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
-							goldTeam[DOTA_TEAM_GOODGUYS] = goldTeam[DOTA_TEAM_GOODGUYS] + goldHero
-						else
-							goldTeam[DOTA_TEAM_BADGUYS] = goldTeam[DOTA_TEAM_BADGUYS] + goldHero
+					
+					-- ОПТИМИЗАЦИЯ FPS: Прямой цикл вместо DoWithAllPlayers
+					for playerId = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
+						if PlayerResource:IsValidPlayerID(playerId) then
+							local hero = PlayerResource:GetSelectedHeroEntity(playerId)
+							if hero then
+								local goldHero = PlayerResource:GetNetWorth(playerId)
+								local team = hero:GetTeamNumber()
+								if team == DOTA_TEAM_GOODGUYS then
+									goldTeam[DOTA_TEAM_GOODGUYS] = goldTeam[DOTA_TEAM_GOODGUYS] + goldHero
+								elseif team == DOTA_TEAM_BADGUYS then
+									goldTeam[DOTA_TEAM_BADGUYS] = goldTeam[DOTA_TEAM_BADGUYS] + goldHero
+								end
+							end
 						end
-					end)
+					end
 
-					local differenceGold = ((goldTeam[leader] - goldTeam[loser]) / goldTeam[loser]) * 100
+					local differenceGold = goldTeam[loser] > 0 and ((goldTeam[leader] - goldTeam[loser]) / goldTeam[loser]) * 100 or 0
 
 					if differenceKill >= KILLS_DIFFERENCE_TIER_1 and differenceGold >= GOLD_DIFFERENCE_TIER_1 then
 						dataLoser.tier = 1
@@ -636,8 +705,8 @@ function CAddonWarsong:OnGameRulesStateChange()
 					-- 	end
 					-- end)
 
-					-- ОПТИМИЗАЦИЯ: Увеличен интервал с 3s до 5s
-					return 5
+					-- ОПТИМИЗАЦИЯ FPS: Увеличен интервал с 3s до 8s для баланса команд
+					return 8
 				end)
 			end
 		end
@@ -659,27 +728,35 @@ function CAddonWarsong:GiveBooks()
 		epic = {},
 	}
 	self.bookReserve = {}
+	self.activeBookPlayers = {} -- ОПТИМИЗАЦИЯ: Кеш активных игроков
+	
 	local initPlayerBooks = function(playerId)
         self.bookTicks.common[playerId] = {tick = 0, count = 0}
         self.bookTicks.rare[playerId] = {tick = 0, count = 0}
         self.bookTicks.epic[playerId] = {tick = 0, count = 0}
-        self.bookReserve[playerId] = {common = 0, rare = 0, epic = 0} -- Инициализация резерва
+        self.bookReserve[playerId] = {common = 0, rare = 0, epic = 0}
     end
+	
 	DoWithAllPlayers(function(player, hero, playerId)
         initPlayerBooks(playerId)
+        self.activeBookPlayers[playerId] = true -- Добавляем в кеш
     end)
-	-- ОПТИМИЗАЦИЯ FPS: Отключены дебаг-принты
-	-- print("[GiveBooks] Initialized! Starting timer...")
+	
 	Timers:CreateTimer(2, function()
-		DoWithAllPlayers(function(player, hero, playerId)
-			if not hero then
-				-- print("[GiveBooks] Hero is nil for player", playerId)
-				return
+		-- ОПТИМИЗАЦИЯ FPS: Кешированный список активных игроков вместо проверки всех 24 слотов
+		for playerId, _ in pairs(self.activeBookPlayers) do
+			local hero = PlayerResource:GetSelectedHeroEntity(playerId)
+			local player = PlayerResource:GetPlayer(playerId)
+			
+			-- Проверяем валидность (игрок мог выйти)
+			if not hero or not player or not PlayerResource:IsValidPlayerID(playerId) then 
+				self.activeBookPlayers[playerId] = nil -- Удаляем из кеша
+				goto continue 
 			end
+			
 			if self.bookTicks.common[playerId] == nil then
-				-- print("[GiveBooks] Reinitializing books for player", playerId)
 				initPlayerBooks(playerId)
-				return
+				goto continue
 			end
 
 			-- ОПТИМИЗАЦИЯ: Увеличен интервал с 2s до 5s
@@ -690,31 +767,23 @@ function CAddonWarsong:GiveBooks()
 			-- ОПТИМИЗАЦИЯ FPS: Отключен дебаг-принт для снижения нагрузки на консоль
 			-- print("[GiveBooks] Tick update for player", playerId, "- common tick:", self.bookTicks.common[playerId].tick)
 
+			-- ОПТИМИЗАЦИЯ FPS: Кеш времён книг для команды
 			local team = hero:GetTeamNumber()
 			local commonTime = BOOK_COMMON_COOLDOWN
 			local rareTime = BOOK_RARE_COOLDOWN
 			local epicTime = BOOK_EPIC_COOLDOWN
 
-			if self.teamBalanceTier[team] and self.teamBalanceTier[team].tier ~= 0 then
-				local place = self.teamBalanceTier[team].place
-				local tier = self.teamBalanceTier[team].tier
-				local replaceBookTime = function(tableTiers)
-					if tableTiers[tier] then
-						if tableTiers[tier].common ~= nil then 
-							commonTime = tableTiers[tier].common
-						end
-						if tableTiers[tier].rare ~= nil then 
-							rareTime = tableTiers[tier].rare
-						end
-						if tableTiers[tier].epic ~= nil then 
-							epicTime = tableTiers[tier].epic
-						end
-					end
-				end
-				if place == "last" then 
-					replaceBookTime(LAST_BOOK_COOLDOWN)
-				elseif place == "prelast" then
-					replaceBookTime(PRE_LAST_BOOK_COOLDOWN)
+			-- Проверка баланса (простое чтение из таблицы, быстро)
+			local teamBalance = self.teamBalanceTier[team]
+			if teamBalance and teamBalance.tier ~= 0 then
+				local tier = teamBalance.tier
+				local bookTimes = teamBalance.place == "last" and LAST_BOOK_COOLDOWN 
+					or teamBalance.place == "prelast" and PRE_LAST_BOOK_COOLDOWN
+				
+				if bookTimes and bookTimes[tier] then
+					commonTime = bookTimes[tier].common or commonTime
+					rareTime = bookTimes[tier].rare or rareTime
+					epicTime = bookTimes[tier].epic or epicTime
 				end
 			end
 
@@ -758,7 +827,9 @@ function CAddonWarsong:GiveBooks()
                     EmitSoundClient("sphere_choice", player)
                 end
             end
-		end)
+			
+			::continue::
+		end
 
 		-- ОПТИМИЗАЦИЯ: Увеличен интервал с 2s до 5s
 		return 5
@@ -833,21 +904,6 @@ function CAddonWarsong:OnNPCSpawned(event)
 			hUnit.upgrades = {}
 
 			Upgrades:LoadUpgradesData(hUnit:GetUnitName())
-			
-			-- Добавляем врождённые способности (innate) для героев которые их не имеют
-			local innate_abilities = {
-				["npc_dota_hero_skywrath_mage"] = "skywrath_mage_ruin_and_restoration",
-				-- Добавьте других героев по мере необходимости
-			}
-			
-			local hero_name = hUnit:GetUnitName()
-			if innate_abilities[hero_name] and not hUnit:HasAbility(innate_abilities[hero_name]) then
-				local innate = hUnit:AddAbility(innate_abilities[hero_name])
-				if innate then
-					innate:SetLevel(1)
-					innate:SetHidden(true)
-				end
-			end
 
 				-- ОПТИМИЗАЦИЯ FPS: Отключены модификаторы для повышения производительности
 				-- hUnit:AddNewModifier(hUnit, nil, 'modifier_warsong_movespeed_bonus', nil)

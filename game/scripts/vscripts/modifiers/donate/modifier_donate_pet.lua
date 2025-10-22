@@ -19,8 +19,8 @@ function modifier_donate_pet:OnCreated()
 
 	if not IsServer() then return end
 
-	-- ОПТИМИЗАЦИЯ: Уменьшена частота обновления с 0.1 до 0.2 секунды
-	self:StartIntervalThink(0.2)
+	-- ОПТИМИЗАЦИЯ FPS: Уменьшена частота обновления с 0.1 до 0.5 секунды
+	self:StartIntervalThink(0.5)
 end
 
 

@@ -81,6 +81,10 @@ function modifier_warsong_fate_murder:OnTakeDamage(params)
         return 
     end
     if parent.proc_murder then return end
+    
+    -- ОПТИМИЗАЦИЯ FPS: Минимальный урон для срабатывания и кулдаун между проками
+    if params.damage <= 80 then return end
+    if parent.murder_last_proc and (GameRules:GetGameTime() - parent.murder_last_proc) < 0.1 then return end
 
     local stackCount = self:GetStackCount()
     local one_chance = MURDER_SETTINGS_CRITICAL_CHANCE_DOUBLE[stackCount]
@@ -98,8 +102,10 @@ function modifier_warsong_fate_murder:OnTakeDamage(params)
         end
     end
 
-    if damage_mult > 0 and params.damage > 80 then
+    if damage_mult > 0 then
         parent.proc_murder = true
+        parent.murder_last_proc = GameRules:GetGameTime()
+        
         ApplyDamage({
             victim = params.unit,
             attacker = parent,

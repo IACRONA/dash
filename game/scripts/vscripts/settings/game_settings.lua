@@ -575,6 +575,9 @@ if GetMapName() == "portal_trio" then
     MAX_SPHERE_LEVEL = 4
     COUNT_SPHERE_CHOICE = 2
     MAX_SPHERE_COUNT = 14
+    
+    -- Время игры в секундах (~ 20 минут)
+    GAME_TIME_CLOCK = 1200
 end
 
 -- Фонтан эффект скорости

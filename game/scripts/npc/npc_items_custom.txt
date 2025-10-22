@@ -4459,4 +4459,76 @@
             "vision_radius"             "200"
         }
     }
+
+	//=================================================================================================================
+	// Shemelis - Time Rewind Item
+	//=================================================================================================================
+	"item_shemelis"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_shemelis"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"shemelis"
+		"FightRecapLevel"				"1"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"35"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		"ItemCost"						"2300"
+		"ItemShopTags"					"int;damage;armor;hard_to_tag"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"shemelis"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ShouldBeSuggested"				"1"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_shemelis"
+		"ItemRequirements"
+		{
+			"01"						"item_bracer;item_wraith_band;item_null_talisman"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"bonus_damage"				"20"
+			"bonus_armor"				"8"
+			"bonus_intellect"			"10"
+			"bonus_agility"				"8"
+			"bonus_strength"			"5"
+			"evasion"					"10"
+			"spell_amplify"				"8"
+			"crit_chance"				"15"
+			"vampirism"					"5"
+			"spell_reflect_chance"		"5"
+			"heal_boost"				"10"
+			"mana_regen_boost"			"10"
+			"time_rewind_duration"		"2"
+			"time_rewind_cooldown"		"35"
+		}
+	}
+
+	"item_recipe_shemelis"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1101"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ItemCost"						"0"
+		"ItemShopTags"					"recipe"
+		"ItemQuality"					"common"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_shemelis"
+		"ItemRequirements"
+		{
+			"01"						"item_bracer;item_wraith_band;item_null_talisman"
+		}
+	}
 }

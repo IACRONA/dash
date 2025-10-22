@@ -3,15 +3,22 @@ function Wearing(hero, items,materialGroup)
 		hero.wearItems = {}
 
 		for _,name in ipairs(items) do
+			print("[WearManager] Trying to load model:", name)
 		    local item = SpawnEntityFromTableSynchronous("prop_dynamic", {
 		      model = name,
-		    })	
-		    if materialGroup then item:SetMaterialGroup(materialGroup) end
-	    	item:FollowEntity(hero, true);
-	    	table.insert(hero.wearItems, item)
+		    })
+		    if item then
+		    	print("[WearManager] Model loaded successfully:", name)
+			    if materialGroup then item:SetMaterialGroup(materialGroup) end
+		    	item:FollowEntity(hero, true);
+		    	table.insert(hero.wearItems, item)
+		    else
+		    	print("[WearManager] ERROR: Failed to load model:", name)
+		    end
 		end
 		hero.baseModel = hero:GetModelName()
 		hero:AddNewModifier(hero, nil,"modifier_custom_wear", {})
+		print("[WearManager] Wearing complete for", hero:GetUnitName(), "- loaded", #hero.wearItems, "items")
 	end)
 end
 
@@ -30,9 +37,11 @@ function WearParticle(hero, particles)
 end
 
 function CAddonWarsong:WearHero(hero)
-	local heroName = hero:GetUnitName() 
+	local heroName = hero:GetUnitName()
+	print("[WearHero] Called for hero:", heroName)
 
 	if heroName == "npc_dota_hero_crystal_maiden" then
+		print("[WearHero] Loading Crystal Maiden items...")
 		local items = {
 			"models/items/crystal_maiden/lady_whitewind_shoulder/lady_whitewind_shoulder.vmdl",
 			"models/items/crystal_maiden/lady_whitewind_head/lady_whitewind_head.vmdl",

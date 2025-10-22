@@ -65,7 +65,7 @@
 	}
 	"npc_dota_hero_chen"
 	{
-		"Ability2" "chen_soul_persuasion"
+		// Chen использует стандартные способности из Dota 2
 	}
 	"npc_dota_hero_enigma"
 	{ 
@@ -283,4 +283,11 @@
 	// {
 	// 	"Ability2" "earthshaker_totem_custom"
 	// }
+	
+	"npc_dota_hero_riki"
+	{
+		// Кастомные скилы отключены
+		// Добавляем способность управления невидимостью как скрытую
+		// "Ability15"		"riki_invisibility_manager"
+	}
 }

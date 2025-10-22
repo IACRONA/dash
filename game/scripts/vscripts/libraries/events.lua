@@ -157,18 +157,38 @@ end
 
 -- Обновление времени до конца игры
 function CAddonWarsong:GameTimeClock()
-	if GAME_TIME_CLOCK > 0 then
-		GAME_TIME_CLOCK = GAME_TIME_CLOCK - 1
+	local mapName = GetMapName()
+	
+	-- Используем self.game_timer вместо глобального GAME_TIME_CLOCK, т.к. он может быть перезаписан
+	if not self.game_timer then
+		self.game_timer = GAME_TIME_CLOCK
 	end
+	
+	-- DEBUG: Проверка первого вызова функции
+	if not self._debug_timer_called then
+		print("[GAME_TIMER] GameTimeClock called for map:", mapName)
+		print("[GAME_TIMER] Initial game_timer =", self.game_timer)
+		self._debug_timer_called = true
+	end
+	
+	if self.game_timer > 0 then
+		self.game_timer = self.game_timer - 1
+	end
+	
+	-- DEBUG: Вывод для отладки каждые 10 секунд для всех карт с таймером
+	if (mapName == "warsong" or mapName == "portal_duo" or mapName == "portal_trio") and self.game_timer % 10 == 0 then
+		print("[GAME_TIMER] " .. mapName .. " - Remaining time: " .. self.game_timer .. " seconds")
+	end
+	
     if GetMapName() == "portal_duo" then
-        if GAME_TIME_CLOCK == SPAWN_MORPHLING_TIME then
+        if self.game_timer == SPAWN_MORPHLING_TIME then
             self:SpawnMorphling()
-        elseif GAME_TIME_CLOCK == SPAWN_MORPHLING_TIME_DOUBLE then
+        elseif self.game_timer == SPAWN_MORPHLING_TIME_DOUBLE then
             self:SpawnMorphling()
         end
     end
 
-	local t =  math.floor(GAME_TIME_CLOCK)
+	local t =  math.floor(self.game_timer)
     local minutes = math.floor(t / 60)
     local seconds = t - (minutes * 60)
     local m10 = math.floor(minutes / 10)
@@ -182,9 +202,14 @@ function CAddonWarsong:GameTimeClock()
         timer_second_10 = s10,
         timer_second_01 = s01,
     }
-    CustomGameEventManager:Send_ServerToAllClients( "GameTimer", broadcast_gametimer )
+    -- ОПТИМИЗАЦИЯ FPS: Убрана дублирующая отправка таймера (было 2 события, теперь 1)
     CustomGameEventManager:Send_ServerToAllClients( "GameTimer_2", broadcast_gametimer )
-    if GAME_TIME_CLOCK <= 0 then
+    
+    -- DEBUG: Проверка отправки события каждые 30 сек
+    if self.game_timer % 30 == 0 then
+        print("[TIMER EVENT] Sent GameTimer event: m10=" .. m10 .. " m01=" .. m01 .. " s10=" .. s10 .. " s01=" .. s01)
+    end
+    if self.game_timer <= 0 then
     	local sortedTeams = {}
 
 		for team, kills in pairs( self.nCapturedFlagsCount ) do

@@ -36,8 +36,8 @@ function modifier_custom_morph_boss_ai:OnCreated()
     self.target_kill = {}
     self.cast_interval = 0
 
-    -- ОПТИМИЗАЦИЯ: Увеличен интервал с 0.1 до 0.2 секунды
-    self:StartIntervalThink(0.2)
+    -- ОПТИМИЗАЦИЯ FPS: Увеличен интервал с 0.1 до 0.5 секунды
+    self:StartIntervalThink(0.5)
 end
 
 function modifier_custom_morph_boss_ai:OnDestroy()
@@ -59,12 +59,11 @@ end
 function modifier_custom_morph_boss_ai:OnIntervalThink()
     if not IsServer() then return end
 
-    -- ОПТИМИЗАЦИЯ: FOW viewer добавляется на 0.3 секунды вместо 0.1
-    for i=0, 14 do
-        AddFOWViewer(i, self:GetParent():GetAbsOrigin(), 500, 0.3, false)
-    end
+    -- ОПТИМИЗАЦИЯ FPS: FOW только для 2 команд вместо 15, длительность 0.6s вместо 0.3s
+    AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 500, 0.6, false)
+    AddFOWViewer(DOTA_TEAM_BADGUYS, self:GetParent():GetAbsOrigin(), 500, 0.6, false)
 
-    self.cast_interval = self.cast_interval + 0.2
+    self.cast_interval = self.cast_interval + 0.5
 
     if self.cast_interval >= 0.6 then
         self.cast_interval = 0

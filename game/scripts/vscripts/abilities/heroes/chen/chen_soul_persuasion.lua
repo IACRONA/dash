@@ -1,3 +1,7 @@
+require("settings/game_settings")
+require("libraries/utility_functions")
+require("libraries/table")
+
 chen_soul_persuasion = chen_soul_persuasion or class({})
 
 LinkLuaModifier("chen_soul_persuasion_passive", "abilities/heroes/chen/chen_soul_persuasion", LUA_MODIFIER_MOTION_NONE)
@@ -10,6 +14,7 @@ function chen_soul_persuasion:Spawn()
     if IsServer() then
         self.summon_list = {}
         self.martyrdom_cooldown_end = 0
+        self:MakeCreepsTables()
     end
 end
 
@@ -73,6 +78,11 @@ function chen_soul_persuasion:OnSpellStart()
     self:ValidateCurrentSummons()
 
     if not self.summon_list then self.summon_list = {} end
+    
+    -- Ensure ability_data is initialized
+    if not self.ability_data then
+        self:MakeCreepsTables()
+    end
 
     if #self.summon_list >= summon_max then
         local unit = table.remove(self.summon_list, 1)
@@ -80,9 +90,17 @@ function chen_soul_persuasion:OnSpellStart()
     end
 
     local current_data = self.ability_data[summon_souls]
+    
+    -- Safety check
+    if not current_data then
+        self:EndCooldown()
+        return
+    end
 
     local modifier = parent:FindModifierByName(souls_modifier_name)
-    modifier:SpendSouls(summon_souls)
+    if modifier then
+        modifier:SpendSouls(summon_souls)
+    end
 
     local creep_count = math.min(self:GetSpecialValueFor("summon_count"), summon_max - #self.summon_list)
 

@@ -465,7 +465,8 @@ function modifier_mount_passive:OnCreated( kv )
 			self:GetParent():StartGestureWithPlaybackRate(spawnGesture, playbackRate)
 		end
 
-		self:StartIntervalThink(0.5)
+		-- ОПТИМИЗАЦИЯ FPS: Увеличен интервал с 0.5s до 1.0s
+		self:StartIntervalThink(1.0)
 	end
 end
 

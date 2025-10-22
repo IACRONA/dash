@@ -47,12 +47,17 @@ function modifier_warsong_fate_defender:DeclareFunctions()
 end
 
 function modifier_warsong_fate_defender:GetModifierEvasion_Constant()
-    return DEFENDER_SETTINGS_EVASION_CHANCE[self:GetStackCount()]
+    if DEFENDER_SETTINGS_EVASION_CHANCE then
+        return DEFENDER_SETTINGS_EVASION_CHANCE[self:GetStackCount()]
+    end
+    return 0
 end
 
 function modifier_warsong_fate_defender:OnTakeDamage(params)
     if not IsServer() then return end
     if params.unit ~= self:GetParent() then return end
+    if not DEFENDER_SETTINGS_SHIELD_CHANCE then return end
+    
     if RollPercentage(DEFENDER_SETTINGS_SHIELD_CHANCE[self:GetStackCount()]) and not self:GetParent():HasModifier("modifier_warsong_fate_defender_shield_cooldown") then
         self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_warsong_fate_defender_shield_cooldown", {duration = DEFENDER_SETTINGS_COOLDOWN})
         self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_warsong_fate_defender_shield", {duration = DEFENDER_SETTINGS_SHIELD_DURATION[self:GetStackCount()]})
@@ -117,7 +122,7 @@ local function SpellReflect(parent, params)
 end
 
 function modifier_warsong_fate_defender:GetReflectSpell( params )
-    if RollPercentage(DEFENDER_SETTINGS_REFLECT_CHANCE[self:GetStackCount()]) then
+    if DEFENDER_SETTINGS_REFLECT_CHANCE and RollPercentage(DEFENDER_SETTINGS_REFLECT_CHANCE[self:GetStackCount()]) then
         return SpellReflect(self:GetParent(), params)
     end
 end
@@ -141,9 +146,9 @@ function modifier_warsong_fate_defender_shield_buff:GetTexture() return "fate_de
 function modifier_warsong_fate_defender_shield_buff:IsPurgable() return false end
 function modifier_warsong_fate_defender_shield_buff:OnCreated(params)
     if not IsServer() then return end
-    self.armor = DEFENDER_SETTINGS_ARMOR
-    self.magical_resistance = DEFENDER_SETTINGS_MAGICAL_RESISTANCE
-    self.heal_amp = DEFENDER_SETTINGS_INCREASE_hEAL
+    self.armor = DEFENDER_SETTINGS_ARMOR or 0
+    self.magical_resistance = DEFENDER_SETTINGS_MAGICAL_RESISTANCE or 0
+    self.heal_amp = DEFENDER_SETTINGS_INCREASE_hEAL or 0
     self:SetHasCustomTransmitterData(true)
     self:SendBuffRefreshToClients()
 end
@@ -200,6 +205,8 @@ end
 
 function modifier_warsong_fate_defender_shield:OnDestroy()
     if not IsServer() then return end
+    if not DEFENDER_SETTINGS_ROOTED_RADIUS then return end
+    
     self:GetParent():EmitSound("Hero_Abaddon.AphoticShield.Destroy")
     
 	local particle = ParticleManager:CreateParticle("particles/econ/items/abaddon/abaddon_alliance/abaddon_aphotic_shield_alliance_explosion.vpcf", PATTACH_ABSORIGIN, self:GetParent())
@@ -222,7 +229,7 @@ end
 function modifier_warsong_fate_defender_shield:GetModifierTotal_ConstantBlock(params)
     if params.damage > 0 and bit.band(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) ~= DOTA_DAMAGE_FLAG_HPLOSS then
         self:Destroy()
-        return params.damage / 100 * DEFENDER_SETTINGS_BLOCK_DAMAGE
+        return params.damage / 100 * (DEFENDER_SETTINGS_BLOCK_DAMAGE or 0)
     end
 end
 

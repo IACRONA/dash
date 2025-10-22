@@ -237,6 +237,7 @@
 		"item"	"item_wind_waker"
 		"item"	"item_bloodstone"
 		"item"	"item_vecna"
+		"item"	"item_shemelis"
 		
 		}
 		

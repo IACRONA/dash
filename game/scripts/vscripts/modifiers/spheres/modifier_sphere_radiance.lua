@@ -9,7 +9,8 @@ modifier_sphere_radiance = class({
 })
 
 function modifier_sphere_radiance:OnCreated()
-	self:StartIntervalThink(1)
+	-- ОПТИМИЗАЦИЯ FPS: Увеличен интервал с 1s до 2s
+	self:StartIntervalThink(2)
 end
 
 function modifier_sphere_radiance:OnIntervalThink()

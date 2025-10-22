@@ -745,6 +745,10 @@ function Upgrades:ProcessClone(clone, hero)
 	if not IsValidEntity(hero) then hero = clone:GetCloneSource() end
 	if not IsValidEntity(hero) then return end
  
+	-- ИСПРАВЛЕНИЕ: Защита от бесконечного создания клонов Meepo
+	if clone.is_being_processed then return end
+	clone.is_being_processed = true
+ 
 	local controller_modifier = clone:FindModifierByName("modifier_ability_upgrades_controller")
 
 	if not controller_modifier then
@@ -756,10 +760,23 @@ function Upgrades:ProcessClone(clone, hero)
 	end
 
 	controller_modifier:ForceRefresh()
+	
+	-- Снимаем флаг обработки через небольшую задержку
+	Timers:CreateTimer(0.1, function()
+		clone.is_being_processed = false
+	end)
 end
 
 
 function Upgrades:ProcessClones(hero, skip_generics)
+	-- ИСПРАВЛЕНИЕ: Защита от слишком частого вызова для Meepo
+	if hero:GetUnitName() == "npc_dota_hero_meepo" then
+		if hero.last_clone_process_time and (GameRules:GetGameTime() - hero.last_clone_process_time) < 0.5 then
+			return -- Не обрабатываем клонов чаще раза в 0.5 секунды
+		end
+		hero.last_clone_process_time = GameRules:GetGameTime()
+	end
+	
 	local clones = hero:GetClones()
 
 	for _, clone in pairs(clones) do

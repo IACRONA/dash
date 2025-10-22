@@ -282,6 +282,60 @@ local models = {
 "models/creeps/neutral_creeps/n_creep_satyr_spawn_a/n_creep_satyr_spawn_a.vmdl",
 "models/creeps/neutral_creeps/n_creep_satyr_spawn_a/n_creep_satyr_spawn_b.vmdl",
 
+    -- ========== CHEN SOUL PERSUASION CREEPS ==========
+    -- Level 1-2 Small Creeps
+    "models/creeps/neutral_creeps/n_creep_wildkin_a/n_creep_wildkin_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_wildkin_b/n_creep_wildkin_b.vmdl",
+    "models/creeps/neutral_creeps/n_creep_kobold_a/n_creep_kobold_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_kobold_b/n_creep_kobold_b.vmdl",
+    "models/creeps/neutral_creeps/n_creep_kobold_c/n_creep_kobold_c.vmdl",
+    "models/creeps/neutral_creeps/n_creep_satyr_a/n_creep_satyr_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_centaur_a/n_creep_centaur_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_beast/n_creep_beast.vmdl",
+    "models/creeps/neutral_creeps/n_creep_troll_a/n_creep_troll_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_gnoll/n_creep_gnoll.vmdl",
+    "models/creeps/neutral_creeps/n_creep_kobold_a/n_creep_kobold_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_forest_trolls/n_creep_forest_troll_berserker.vmdl",
+    "models/creeps/neutral_creeps/n_creep_ogre_a/n_creep_ogre_a.vmdl",
+    
+    -- Level 3-4 Medium Creeps
+    "models/creeps/neutral_creeps/n_creep_ghost_a/n_creep_ghost_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_ghost_b/n_creep_ghost_b.vmdl",
+    "models/creeps/neutral_creeps/n_creep_wolf_a/n_creep_wolf_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_wolf_b/n_creep_wolf_b.vmdl",
+    "models/creeps/neutral_creeps/n_creep_troll_a/n_creep_troll_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_troll_b/n_creep_troll_b.vmdl",
+    "models/creeps/neutral_creeps/n_creep_ogre_magi_a/n_creep_ogre_magi_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_ogre_magi_b/n_creep_ogre_magi_b.vmdl",
+    "models/creeps/neutral_creeps/n_creep_polarbear_a/n_creep_polarbear_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_polarbear_b/n_creep_polarbear_b.vmdl",
+    "models/creeps/neutral_creeps/n_creep_satyr_a/n_creep_satyr_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_golem_a/n_creep_golem_a.vmdl",
+    
+    -- Level 5-6 Large Creeps
+    "models/creeps/neutral_creeps/n_creep_centaur_a/n_creep_centaur_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_centaur_b/n_creep_centaur_b.vmdl",
+    "models/creeps/neutral_creeps/n_creep_centaur_chief/n_creep_centaur_chief.vmdl",
+    "models/creeps/neutral_creeps/n_creep_furbolg_a/n_creep_furbolg_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_furbolg_b/n_creep_furbolg_b.vmdl",
+    "models/creeps/neutral_creeps/n_creep_wolf_large/n_creep_wolf_large.vmdl",
+    "models/creeps/neutral_creeps/n_creep_alpha_wolf/n_creep_alpha_wolf.vmdl",
+    "models/creeps/neutral_creeps/n_creep_satyr_a/n_creep_satyr_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_satyr_c/n_creep_satyr_c.vmdl",
+    "models/creeps/neutral_creeps/n_creep_troll_a/n_creep_troll_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_troll_b/n_creep_troll_b.vmdl",
+    
+    -- Ancient Level Creeps
+    "models/creeps/neutral_creeps/n_creep_black_drake/n_creep_black_drake.vmdl",
+    "models/creeps/neutral_creeps/n_creep_rock_golem/n_creep_rock_golem.vmdl",
+    "models/creeps/neutral_creeps/n_creep_frostbitten_golem_a/n_creep_frostbitten_golem_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_frostbitten_golem_b/n_creep_frostbitten_golem_b.vmdl",
+    "models/creeps/neutral_creeps/n_creep_thunder_lizard_a/n_creep_thunder_lizard_a.vmdl",
+    "models/creeps/neutral_creeps/n_creep_thunder_lizard_b/n_creep_thunder_lizard_b.vmdl",
+    "models/creeps/neutral_creeps/n_creep_granite_golem/n_creep_granite_golem.vmdl",
+    "models/creeps/neutral_creeps/n_creep_black_dragon/n_creep_black_dragon.vmdl",
+    "models/creeps/neutral_creeps/n_creep_ice_shaman/n_creep_ice_shaman.vmdl",
+
 
 
 
