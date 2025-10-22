@@ -374,6 +374,14 @@
     "DOTA_Tooltip_ability_item_vecna_spell_lifesteal"					"%+$spell_lifesteal"
     "DOTA_Tooltip_ability_item_vecna_bonus_all_stats"					"+$all"
     "DOTA_Tooltip_ability_item_vecna_bonus_mana_regen"					"+$mana_regen"
+    "DOTA_Tooltip_ability_item_shemelis"								"Шемелис"
+    "DOTA_Tooltip_ability_item_shemelis_Description"					"<h1>Активная способность: Отмотка времени</h1>Телепортирует вас на 2 секунды назад, восстанавливая позицию и здоровье.<br><br><font color='#70EA72'>Перезарядка:</font> 35 секунд | <font color='#70EA72'>Мана:</font> 0<br><br><h1>Пассивные бонусы</h1>• +20 к урону<br>• +10% к уклонению<br>• +8% к усилению заклинаний<br>• 15% шанс критического удара (200% урона)<br>• 5% вампиризм от физического и магического урона<br>• 5% шанс отразить направленное заклинание<br>• +10% к восстановлению здоровья<br>• +10% к регенерации маны"
+    "DOTA_Tooltip_ability_item_shemelis_Lore"							"Древний артефакт, способный искривлять ткань времени. Говорят, что его создатель мог видеть будущее и изменять прошлое."
+    "DOTA_Tooltip_ability_item_shemelis_Note0"						"Отмотка времени не восстанавливает кулдауны способностей и состояние предметов."
+    "DOTA_Tooltip_ability_item_shemelis_bonus_damage"					"+20 Урона"
+    "DOTA_Tooltip_ability_item_shemelis_evasion"						"+10% Уклона"
+    "DOTA_Tooltip_ability_item_shemelis_spell_amplify"					"+8% Усиления заклинаний"
+    "DOTA_Tooltip_ability_item_shemelis_crit_chance"					"+15% Шанса крита"
     "DOTA_Tooltip_ability_item_hum_hammer"								"Hithlum"
     "DOTA_Tooltip_ability_item_hum_hammer_Lore"							"A hammer made by Eglath master."
     "DOTA_Tooltip_ability_item_hum_hammer_bonus_damage"					"+$damage"
@@ -1661,6 +1669,128 @@
     // Venomancer
     "DOTA_Tooltip_ability_venomancer_sepsis"              "Сепсис"
     "DOTA_Tooltip_ability_venomancer_sepsis_Description"  "Увеличивает урон за каждый дебафф на враге."
+
+    // Кастомные предметы - русская локализация
+    "DOTA_Tooltip_ability_item_manta_custom"								"Manta Custom"
+    "DOTA_Tooltip_ability_item_manta_custom_Description"					"<h1>Активная способность</h1>Создает две иллюзии которые служат %duration% секунд."
+    "DOTA_Tooltip_ability_item_manta_custom_Lore"							"Легендарная манта стиля"
+    
+    "DOTA_Tooltip_ability_item_monkey_king_bar_max"							"MKB Max"
+    "DOTA_Tooltip_ability_item_monkey_king_bar_max_Description"				"<h1>Пассивная способность</h1>Атаки обходят уклонение и наносят дополнительный урон"
+    "DOTA_Tooltip_ability_item_monkey_king_bar_max_Lore"					"Магическая палица с огромной силой"
+    
+    "DOTA_Tooltip_ability_item_byakko_lance"								"Byakko Lance"
+    "DOTA_Tooltip_ability_item_byakko_lance_Description"					"<h1>Пассивная способность</h1>Атаки замораживают врагов. Дает бонус к скорости атаки."
+    "DOTA_Tooltip_ability_item_byakko_lance_Lore"							"Легендарное копье древнего воина"
+    
+    "DOTA_Tooltip_ability_item_ultimate_scepter"							"Ultimate Scepter"
+    "DOTA_Tooltip_ability_item_ultimate_scepter_Description"				"<h1>Пассивная способность</h1>Усиливает улты героев. Дает все атрибуты."
+    "DOTA_Tooltip_ability_item_ultimate_scepter_Lore"						"Усиленный Агханим с темной магией"
+    
+    "DOTA_Tooltip_ability_item_radical_sword"								"Radical Sword"
+    "DOTA_Tooltip_ability_item_radical_sword_Description"					"<h1>Пассивная способность</h1>Атаки имеют шанс на крит. Снижают броню врага и наносят урон площадью."
+    "DOTA_Tooltip_ability_item_radical_sword_Lore"							"Меч одержимый адской энергией"
+    
+    "DOTA_Tooltip_ability_item_ruby_gem"									"Ruby Gem"
+    "DOTA_Tooltip_ability_item_ruby_gem_Description"						"<h1>Пассивная способность</h1>Дает физическую броню и жизнь"
+    "DOTA_Tooltip_ability_item_ruby_gem_Lore"								"Сверкающий красный камень"
+    
+    "DOTA_Tooltip_ability_item_sapphire_gem"								"Sapphire Gem"
+    "DOTA_Tooltip_ability_item_sapphire_gem_Description"					"<h1>Пассивная способность</h1>Дает интеллект и регенерацию маны"
+    "DOTA_Tooltip_ability_item_sapphire_gem_Lore"							"Синий самоцвет холодной магии"
+    
+    "DOTA_Tooltip_ability_item_jade_gem"									"Jade Gem"
+    "DOTA_Tooltip_ability_item_jade_gem_Description"						"<h1>Пассивная способность</h1>Дает ловкость и скорость атаки"
+    "DOTA_Tooltip_ability_item_jade_gem_Lore"								"Зелёный самоцвет природы"
+    
+    "DOTA_Tooltip_ability_item_magi_booster"								"Magi Booster"
+    "DOTA_Tooltip_ability_item_magi_booster_Description"					"<h1>Активная способность</h1>Телепортирует героя на расстояние.<br><br><h1>Пассивная способность</h1>Дает урон и броню"
+    "DOTA_Tooltip_ability_item_magi_booster_Lore"							"Артефакт архимага"
+    
+    "DOTA_Tooltip_ability_item_echo_sabre_immortal_strike_str"				"Immortal Strike STR"
+    "DOTA_Tooltip_ability_item_echo_sabre_immortal_strike_str_Description"	"<h1>Пассивная способность</h1>Дает силу и урон"
+    "DOTA_Tooltip_ability_item_echo_sabre_immortal_strike_str_Lore"			"Боевой клич героя силы"
+    
+    "DOTA_Tooltip_ability_item_echo_sabre_immortal_strike_agi"				"Immortal Strike AGI"
+    "DOTA_Tooltip_ability_item_echo_sabre_immortal_strike_agi_Description"	"<h1>Пассивная способность</h1>Дает ловкость и скорость атаки"
+    "DOTA_Tooltip_ability_item_echo_sabre_immortal_strike_agi_Lore"			"Боевой клич героя ловкости"
+    
+    "DOTA_Tooltip_ability_item_echo_sabre_immortal_strike_int"				"Immortal Strike INT"
+    "DOTA_Tooltip_ability_item_echo_sabre_immortal_strike_int_Description"	"<h1>Пассивная способность</h1>Дает интеллект и усиление заклинаний"
+    "DOTA_Tooltip_ability_item_echo_sabre_immortal_strike_int_Lore"			"Боевой клич героя магии"
+    
+    "DOTA_Tooltip_ability_item_bfury_sec"									"BFury Sec"
+    "DOTA_Tooltip_ability_item_bfury_sec_Description"						"<h1>Пассивная способность</h1>Атаки наносят урон площадью вокруг цели"
+    "DOTA_Tooltip_ability_item_bfury_sec_Lore"								"Артефакт боевого духа"
+    
+    "DOTA_Tooltip_ability_item_assault_mega"								"Assault Mega"
+    "DOTA_Tooltip_ability_item_assault_mega_Description"					"<h1>Пассивная способность: Боевая Аура</h1>Дает броню и урон союзникам поблизости. Личный бонус к урону."
+    "DOTA_Tooltip_ability_item_assault_mega_Lore"							"Могучий боевой доспех"
+    
+    "DOTA_Tooltip_ability_item_peppermint"								"Peppermint"
+    "DOTA_Tooltip_ability_item_peppermint_Description"						"<h1>Активная способность</h1>Дает временный бонус к регенерации и защите.<br><br><h1>Пассивная способность</h1>Постоянный бонус к магической защите"
+    "DOTA_Tooltip_ability_item_peppermint_Lore"							"Ледяная мята с магической силой"
+    
+    "DOTA_Tooltip_ability_item_sword_of_gizi"								"Sword of Gizi"
+    "DOTA_Tooltip_ability_item_sword_of_gizi_Description"					"<h1>Пассивная способность</h1>Дает урон и интеллект. Атаки имеют дополнительный эффект."
+    "DOTA_Tooltip_ability_item_sword_of_gizi_Lore"							"Легендарный меч древнего героя"
+    
+    "DOTA_Tooltip_ability_item_naga_pearl_1"								"Small Pearl"
+    "DOTA_Tooltip_ability_item_naga_pearl_1_Description"					"<h1>Активная способность: Иммунитет к магии</h1>Длительность иммунитета уменьшается с каждым использованием. Дает магическую защиту.<br><br><h1>Пассивная способность</h1>Бонус к силе и урону"
+    "DOTA_Tooltip_ability_item_naga_pearl_1_Lore"							"Маленькая жемчужина пения русалок"
+    
+    "DOTA_Tooltip_ability_item_naga_pearl_2"								"Precious Pearl"
+    "DOTA_Tooltip_ability_item_naga_pearl_2_Description"					"<h1>Активная способность: Ночное пение</h1>Длительность иммунитета уменьшается с каждым использованием. Дает магическую защиту.<br><br><h1>Пассивная способность</h1>Бонус к силе и урону"
+    "DOTA_Tooltip_ability_item_naga_pearl_2_Lore"							"Драгоценная жемчужина пения русалок"
+    
+    "DOTA_Tooltip_ability_item_naga_pearl_3"								"Grand Pearl"
+    "DOTA_Tooltip_ability_item_naga_pearl_3_Description"					"<h1>Активная способность: Согласие</h1>Длительность иммунитета уменьшается с каждым использованием. Дает магическую защиту.<br><br><h1>Пассивная способность</h1>Бонус к силе и урону"
+    "DOTA_Tooltip_ability_item_naga_pearl_3_Lore"							"Великолепная жемчужина пения русалок"
+    
+    "DOTA_Tooltip_ability_item_tome_of_knowledge_custom"					"Tome of Knowledge"
+    "DOTA_Tooltip_ability_item_tome_of_knowledge_custom_Description"		"<h1>Активная способность</h1>Дает опыт герою.<br><br><h1>Пассивная способность</h1>Небольшой бонус к опыту"
+    "DOTA_Tooltip_ability_item_tome_of_knowledge_custom_Lore"				"Древняя книга знаний"
+    
+    "DOTA_Tooltip_ability_item_book_of_intelligence"						"Book of Intelligence"
+    "DOTA_Tooltip_ability_item_book_of_intelligence_Description"			"<h1>Пассивная способность</h1>Дает интеллект и регенерацию маны"
+    "DOTA_Tooltip_ability_item_book_of_intelligence_Lore"					"Книга магических знаний"
+    
+    "DOTA_Tooltip_ability_item_book_of_agility"							"Book of Agility"
+    "DOTA_Tooltip_ability_item_book_of_agility_Description"				"<h1>Пассивная способность</h1>Дает ловкость и скорость атаки"
+    "DOTA_Tooltip_ability_item_book_of_agility_Lore"						"Книга ловкости и грации"
+    
+    "DOTA_Tooltip_ability_item_book_of_strength"							"Book of Strength"
+    "DOTA_Tooltip_ability_item_book_of_strength_Description"				"<h1>Пассивная способность</h1>Дает силу и здоровье"
+    "DOTA_Tooltip_ability_item_book_of_strength_Lore"						"Книга силы и мужества"
+    
+    "DOTA_Tooltip_ability_item_book_of_greater_intelligence"				"Book of Greater Intelligence"
+    "DOTA_Tooltip_ability_item_book_of_greater_intelligence_Description"	"<h1>Пассивная способность</h1>Дает больше интеллекта и регенерацию маны"
+    "DOTA_Tooltip_ability_item_book_of_greater_intelligence_Lore"			"Великая книга магии"
+    
+    "DOTA_Tooltip_ability_item_book_of_greater_agility"					"Book of Greater Agility"
+    "DOTA_Tooltip_ability_item_book_of_greater_agility_Description"		"<h1>Пассивная способность</h1>Дает больше ловкости и скорость атаки"
+    "DOTA_Tooltip_ability_item_book_of_greater_agility_Lore"				"Великая книга ловкости"
+    
+    "DOTA_Tooltip_ability_item_book_of_greater_strength"					"Book of Greater Strength"
+    "DOTA_Tooltip_ability_item_book_of_greater_strength_Description"		"<h1>Пассивная способность</h1>Дает больше силы и здоровья"
+    "DOTA_Tooltip_ability_item_book_of_greater_strength_Lore"				"Великая книга силы"
+    
+    "DOTA_Tooltip_ability_item_circlet_multiple"							"Circlet Multiple"
+    "DOTA_Tooltip_ability_item_circlet_multiple_Description"				"<h1>Пассивная способность</h1>Дает все атрибуты"
+    "DOTA_Tooltip_ability_item_circlet_multiple_Lore"						"Обычная корона с магией"
+    
+    "DOTA_Tooltip_ability_item_gauntlet_multiple"							"Gauntlet Multiple"
+    "DOTA_Tooltip_ability_item_gauntlet_multiple_Description"				"<h1>Пассивная способность</h1>Дает силу и здоровье в большом количестве"
+    "DOTA_Tooltip_ability_item_gauntlet_multiple_Lore"						"Мощные наручи героя"
+    
+    "DOTA_Tooltip_ability_item_megabracer"								"Megabracer"
+    "DOTA_Tooltip_ability_item_megabracer_Description"						"<h1>Пассивная способность</h1>Дает много силы и здоровья"
+    "DOTA_Tooltip_ability_item_megabracer_Lore"							"Огромные наручи с магией"
+    
+    "DOTA_Tooltip_ability_item_poombang"									"Hood of Asclepius"
+    "DOTA_Tooltip_ability_item_poombang_Description"						"<h1>Активная способность: Волшебное исцеление</h1>Исцеляет всех героев вокруг, восстанавливая процент недостающего здоровья.<br><br><h1>Пассивная способность: Боевая Аура</h1>Дает лайфстил, урон, регенерацию маны и броню союзникам поблизости"
+    "DOTA_Tooltip_ability_item_poombang_Lore"								"Легендарный плащ древнего целителя"
+    "DOTA_Tooltip_ability_item_poombang_Note0"							"Не исцеляет иллюзии"
     }
 }
  
