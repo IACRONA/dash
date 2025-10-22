@@ -166,8 +166,8 @@ function CAddonWarsong:GameTimeClock()
 	
 	-- DEBUG: Проверка первого вызова функции
 	if not self._debug_timer_called then
-		print("[GAME_TIMER] GameTimeClock called for map:", mapName)
-		print("[GAME_TIMER] Initial game_timer =", self.game_timer)
+		-- print("[GAME_TIMER] GameTimeClock called for map:", mapName)
+		-- print("[GAME_TIMER] Initial game_timer =", self.game_timer)
 		self._debug_timer_called = true
 	end
 	
@@ -177,7 +177,7 @@ function CAddonWarsong:GameTimeClock()
 	
 	-- DEBUG: Вывод для отладки каждые 10 секунд для всех карт с таймером
 	if (mapName == "warsong" or mapName == "portal_duo" or mapName == "portal_trio") and self.game_timer % 10 == 0 then
-		print("[GAME_TIMER] " .. mapName .. " - Remaining time: " .. self.game_timer .. " seconds")
+		-- print("[GAME_TIMER] " .. mapName .. " - Remaining time: " .. self.game_timer .. " seconds")
 	end
 	
     if GetMapName() == "portal_duo" then
@@ -207,7 +207,7 @@ function CAddonWarsong:GameTimeClock()
     
     -- DEBUG: Проверка отправки события каждые 30 сек
     if self.game_timer % 30 == 0 then
-        print("[TIMER EVENT] Sent GameTimer event: m10=" .. m10 .. " m01=" .. m01 .. " s10=" .. s10 .. " s01=" .. s01)
+        -- print("[TIMER EVENT] Sent GameTimer event: m10=" .. m10 .. " m01=" .. m01 .. " s10=" .. s10 .. " s01=" .. s01)
     end
     if self.game_timer <= 0 then
     	local sortedTeams = {}

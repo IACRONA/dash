@@ -92,21 +92,21 @@ function CAddonWarsong:InitGameMode()
 	self.mapName = mapName
 	
 	-- Устанавливаем GAME_TIME_CLOCK для карт
-	print("[INIT] mapName =", mapName)
-	print("[INIT] GAME_TIME_CLOCK before =", GAME_TIME_CLOCK)
+	-- print("[INIT] mapName =", mapName)
+	-- print("[INIT] GAME_TIME_CLOCK before =", GAME_TIME_CLOCK)
 	
 	if mapName == "warsong" then
 		GAME_TIME_CLOCK = 1000
-		print("[INIT] Set GAME_TIME_CLOCK = 1000 for warsong")
+		-- print("[INIT] Set GAME_TIME_CLOCK = 1000 for warsong")
 	elseif mapName == "portal_duo" then
 		GAME_TIME_CLOCK = 1200
-		print("[INIT] Set GAME_TIME_CLOCK = 1200 for portal_duo")
+		-- print("[INIT] Set GAME_TIME_CLOCK = 1200 for portal_duo")
 	elseif mapName == "portal_trio" then
 		GAME_TIME_CLOCK = 1200
-		print("[INIT] Set GAME_TIME_CLOCK = 1200 for portal_trio")
+		-- print("[INIT] Set GAME_TIME_CLOCK = 1200 for portal_trio")
 	end
 	
-	print("[INIT] GAME_TIME_CLOCK after =", GAME_TIME_CLOCK)
+	-- print("[INIT] GAME_TIME_CLOCK after =", GAME_TIME_CLOCK)
 	
 	GameRules:SetPreGameTime(3)
 	GameRules:SetStrategyTime(5)
@@ -184,7 +184,7 @@ function CAddonWarsong:InitGameMode()
 	end
 	
 	self.game_timer = GAME_TIME_CLOCK
-	print("[TIMER INIT] Final GAME_TIME_CLOCK for " .. mapName .. " = " .. GAME_TIME_CLOCK)
+	-- print("[TIMER INIT] Final GAME_TIME_CLOCK for " .. mapName .. " = " .. GAME_TIME_CLOCK)
 
 	self.killLeaderRewardTimer = {}
 	self.killStreak = {}
@@ -211,7 +211,7 @@ function CAddonWarsong:InitGameMode()
     	self._timer_debug_count = self._timer_debug_count + 1
     	
     	if self._timer_debug_count % 100 == 0 then
-        print("[TIMER LOOP] Timer loop active. Tick count: " .. self._timer_debug_count .. " Game state: " .. gameState)
+        -- print("[TIMER LOOP] Timer loop active. Tick count: " .. self._timer_debug_count .. " Game state: " .. gameState)
     	end
     	
     	if gameState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -219,13 +219,13 @@ function CAddonWarsong:InitGameMode()
                 self:GameTimeClock()
             else
                 -- DEBUG: Таймер не запускается
-                print("[TIMER DEBUG] Timer condition failed. mapName =", mapName)
+                -- print("[TIMER DEBUG] Timer condition failed. mapName =", mapName)
             end
         else
             -- DEBUG: Игра еще не началась
             if not self._timer_state_logged then
-                print("[TIMER DEBUG] Waiting for game to start. Current state:", gameState)
-                print("[TIMER DEBUG] DOTA_GAMERULES_STATE_GAME_IN_PROGRESS =", DOTA_GAMERULES_STATE_GAME_IN_PROGRESS)
+                -- print("[TIMER DEBUG] Waiting for game to start. Current state:", gameState)
+                -- print("[TIMER DEBUG] DOTA_GAMERULES_STATE_GAME_IN_PROGRESS =", DOTA_GAMERULES_STATE_GAME_IN_PROGRESS)
                 self._timer_state_logged = true
             end
         end
@@ -404,17 +404,17 @@ function CAddonWarsong:OnGameRulesStateChange()
 		if self.mapName == "dash" then
 			self.item_flag_both_position = Entities:FindByName(nil, 'flag_both')
 			if self.item_flag_both_position == nil then
-				print('cant find both flag')
+				-- print('cant find both flag')
 				return
 			end
 			self.item_flag_both_radiant_position = Entities:FindByName(nil, 'flag_both_radiant')
 			if self.item_flag_both_radiant_position == nil then
-				print('cant find both radiant flag')
+				-- print('cant find both radiant flag')
 				return
 			end
 			self.item_flag_both_dire_position = Entities:FindByName(nil, 'flag_both_dire')
 			if self.item_flag_both_dire_position == nil then
-				print('cant find both dire flag')
+				-- print('cant find both dire flag')
 				return
 			end
 			self.FlagPositionBoth = self.item_flag_both_position:GetAbsOrigin()
@@ -424,12 +424,12 @@ function CAddonWarsong:OnGameRulesStateChange()
 		else
 			self.radiant_flag_position = Entities:FindByName(nil, 'flag_radiant')
 			if self.radiant_flag_position == nil then
-				print('cant find radiant flag')
+				-- print('cant find radiant flag')
 				return
 			end
 			self.dire_flag_position = Entities:FindByName(nil, 'flag_dire')
 			if self.dire_flag_position == nil then
-				print('cant find radiant flag')
+				-- print('cant find radiant flag')
 				return
 			end
 			self.all_vision_point = Entities:FindByName(nil, 'middle_vision_point')
@@ -540,7 +540,7 @@ function CAddonWarsong:OnGameRulesStateChange()
 		elseif mapName == "portal_trio" then
 			self.game_timer = 1200
 		end
-		print("[GAME START] Set game_timer = " .. self.game_timer .. " for " .. mapName)
+		-- print("[GAME START] Set game_timer = " .. self.game_timer .. " for " .. mapName)
 		
 		self:OnStartGame()
 

@@ -168,7 +168,7 @@ function Upgrades:QueueSelection(hero, rarity)
 		return
 	end
 
-	print("[Upgrades] QueueSelection called for player", player_id, "rarity", rarity)
+	-- print("[Upgrades] QueueSelection called for player", player_id, "rarity", rarity)
 
 	Upgrades.queued_selection[player_id] = Upgrades.queued_selection[player_id] or {}
 
@@ -268,7 +268,7 @@ function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_tri
 		count_per_selection
 	)
 
-	print("[Upgrades] ShowSelection called for player", player_id, "rarity", rarity, "rolled", #rolled_upgrades, "upgrades")
+	-- print("[Upgrades] ShowSelection called for player", player_id, "rarity", rarity, "rolled", #rolled_upgrades, "upgrades")
 
 	new_previous_choices[upgrade_type] = rolled_upgrades
 	table.extend(choices, rolled_upgrades)
@@ -316,7 +316,7 @@ function Upgrades:RollUpgradesOfType(upgrade_type, player_id, rarity, previous_c
 	end
 
 	local hero_name = hero:GetUnitName()
-	print("[Upgrades] RollUpgradesOfType: hero_name =", hero_name, "rarity =", rarity, "count =", count)
+	-- print("[Upgrades] RollUpgradesOfType: hero_name =", hero_name, "rarity =", rarity, "count =", count)
 
 	if not Upgrades.upgrades_kv[hero_name] then
 		print("[Upgrades] ERROR: No upgrades loaded for", hero_name)
@@ -445,7 +445,7 @@ function Upgrades:LoadUpgradesData(hero_name)
 		print("[Upgrades] LoadUpgradesData: talents already loaded for", hero_name)
 		return
 	end
-	print("[Upgrades] LoadUpgradesData: loading talents for", hero_name)
+	-- print("[Upgrades] LoadUpgradesData: loading talents for", hero_name)
 	self.upgrades_kv[hero_name] = LoadKeyValues("scripts/npc/talents/heroes/" .. hero_name .. ".txt")
 	if not self.upgrades_kv[hero_name] then
 		print("[Upgrades] ERROR: Файл талантов не найден или ошибка парсинга для героя:", hero_name)
@@ -454,7 +454,7 @@ function Upgrades:LoadUpgradesData(hero_name)
 		for ability_name, upgrades in pairs(self.upgrades_kv[hero_name] or {}) do
 			count = count + 1
 		end
-		print("[Upgrades] Loaded", count, "abilities with talents for", hero_name)
+		-- print("[Upgrades] Loaded", count, "abilities with talents for", hero_name)
 	end
 
 	-- Parse upgrades data (convert string operators to numbers, etc.)
@@ -472,7 +472,7 @@ function Upgrades:LoadUpgradesData(hero_name)
 	end
 
 	CustomNetTables:SetTableValue("ability_upgrades", hero_name, self.upgrades_kv[hero_name] or {})
-	print("[Upgrades] Set CustomNetTables for", hero_name)
+	-- print("[Upgrades] Set CustomNetTables for", hero_name)
 end
 
 function Upgrades:GetUpgradeValue(hero_name, ability_name, special_value_name)
