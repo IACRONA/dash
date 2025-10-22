@@ -1,63 +1,32 @@
 modifier_item_shemelis = class({})
 
-print("[MOD_SHEMELIS] ============================================")
-print("[MOD_SHEMELIS] modifier_item_shemelis.lua START LOADING")
-print("[MOD_SHEMELIS] ============================================")
-
-print("[MOD_SHEMELIS] Defining GetTexture...")
 function modifier_item_shemelis:GetTexture()
-	print("[MOD_SHEMELIS] GetTexture() CALLED")
 	return "shemelis"
 end
-print("[MOD_SHEMELIS] GetTexture DEFINED")
 
-print("[MOD_SHEMELIS] Defining IsHidden...")
 function modifier_item_shemelis:IsHidden()
-	print("[MOD_SHEMELIS] IsHidden() CALLED")
 	return true
 end
-print("[MOD_SHEMELIS] IsHidden DEFINED")
 
-print("[MOD_SHEMELIS] Defining IsPurgable...")
 function modifier_item_shemelis:IsPurgable()
-	print("[MOD_SHEMELIS] IsPurgable() CALLED")
 	return false
 end
-print("[MOD_SHEMELIS] IsPurgable DEFINED")
 
-print("[MOD_SHEMELIS] Defining RemoveOnDeath...")
 function modifier_item_shemelis:RemoveOnDeath()
-	print("[MOD_SHEMELIS] RemoveOnDeath() CALLED")
 	return false
 end
-print("[MOD_SHEMELIS] RemoveOnDeath DEFINED")
 
-print("[MOD_SHEMELIS] Defining GetAttributes...")
 function modifier_item_shemelis:GetAttributes()
-	print("[MOD_SHEMELIS] GetAttributes() CALLED")
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
-print("[MOD_SHEMELIS] GetAttributes DEFINED")
-
-print("[MOD_SHEMELIS] ============================================")
-print("[MOD_SHEMELIS] Defining OnCreated...")
 
 function modifier_item_shemelis:OnCreated(kv)
-	print("[MOD_SHEMELIS] ============================================")
-	print("[MOD_SHEMELIS] OnCreated() CALLED START")
-	print("[MOD_SHEMELIS] ============================================")
-	
-	print("[MOD_SHEMELIS] Getting ability...")
 	local ability = self:GetAbility()
-	print("[MOD_SHEMELIS] Ability result: " .. tostring(ability))
 	
 	if not ability then
-		print("[MOD_SHEMELIS] ERROR: Ability is nil - RETURNING")
 		return
 	end
-	print("[MOD_SHEMELIS] Ability is valid!")
 	
-	print("[MOD_SHEMELIS] Caching special values (both client and server)...")
 	self.bonus_damage = ability:GetSpecialValueFor("bonus_damage") or 0
 	self.bonus_armor = ability:GetSpecialValueFor("bonus_armor") or 0
 	self.evasion = ability:GetSpecialValueFor("evasion") or 0
@@ -68,58 +37,30 @@ function modifier_item_shemelis:OnCreated(kv)
 	self.heal_boost = ability:GetSpecialValueFor("heal_boost") or 0
 	self.mana_regen_boost = ability:GetSpecialValueFor("mana_regen_boost") or 0
 	
-	print("[MOD_SHEMELIS] Values cached: spell_amplify=" .. tostring(self.spell_amplify))
-	
 	if IsServer() then
-		print("[MOD_SHEMELIS] Server side - initializing history...")
 		local parent = self:GetParent()
-		print("[MOD_SHEMELIS] Parent result: " .. tostring(parent))
 		
 		if parent then
-			print("[MOD_SHEMELIS] Parent is valid - initializing history")
 			self.history_max_frames = 20
 			self.position_history = {}
 			self.health_history = {}
 			
-			print("[MOD_SHEMELIS] Filling history arrays...")
 			for i = 1, self.history_max_frames do
 				self.position_history[i] = parent:GetAbsOrigin()
 				self.health_history[i] = parent:GetHealth()
 			end
-			print("[MOD_SHEMELIS] History arrays filled successfully!")
 			
-			print("[MOD_SHEMELIS] Starting interval think...")
 			self:StartIntervalThink(0.1)
-			print("[MOD_SHEMELIS] Interval think started!")
-		else
-			print("[MOD_SHEMELIS] WARNING: Parent is nil - skipping history")
 		end
 	end
-	
-	print("[MOD_SHEMELIS] ============================================")
-	print("[MOD_SHEMELIS] OnCreated() COMPLETED SUCCESSFULLY")
-	print("[MOD_SHEMELIS] ============================================")
 end
-
-print("[MOD_SHEMELIS] OnCreated DEFINED")
-
-print("[MOD_SHEMELIS] ============================================")
-print("[MOD_SHEMELIS] Defining OnDestroy...")
 
 function modifier_item_shemelis:OnDestroy()
-	print("[MOD_SHEMELIS] OnDestroy() CALLED")
 	if IsServer() then
-		print("[MOD_SHEMELIS] Clearing history...")
 		self.position_history = nil
 		self.health_history = nil
-		print("[MOD_SHEMELIS] History cleared")
 	end
 end
-
-print("[MOD_SHEMELIS] OnDestroy DEFINED")
-
-print("[MOD_SHEMELIS] ============================================")
-print("[MOD_SHEMELIS] Defining OnIntervalThink...")
 
 function modifier_item_shemelis:OnIntervalThink()
 	if not IsServer() then return end
@@ -142,13 +83,7 @@ function modifier_item_shemelis:OnIntervalThink()
 	self.health_history[1] = parent:GetHealth()
 end
 
-print("[MOD_SHEMELIS] OnIntervalThink DEFINED")
-
-print("[MOD_SHEMELIS] ============================================")
-print("[MOD_SHEMELIS] Defining DeclareFunctions...")
-
 function modifier_item_shemelis:DeclareFunctions()
-	print("[MOD_SHEMELIS] DeclareFunctions() CALLED")
 	local funcs = {
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
@@ -161,14 +96,8 @@ function modifier_item_shemelis:DeclareFunctions()
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
 	}
-	print("[MOD_SHEMELIS] DeclareFunctions returning " .. tostring(#funcs) .. " functions")
 	return funcs
 end
-
-print("[MOD_SHEMELIS] DeclareFunctions DEFINED")
-
-print("[MOD_SHEMELIS] ============================================")
-print("[MOD_SHEMELIS] Defining property getters...")
 
 function modifier_item_shemelis:GetModifierPreAttack_BonusDamage()
 	if self.bonus_damage then return self.bonus_damage end
@@ -196,7 +125,6 @@ function modifier_item_shemelis:GetModifierSpellAmplify_Percentage()
 		return self.spell_amplify
 	end
 	
-	-- Fallback если не инициализировано
 	local ability = self:GetAbility()
 	if ability then
 		return ability:GetSpecialValueFor("spell_amplify") or 8
@@ -222,18 +150,12 @@ end
 function modifier_item_shemelis:GetModifierReflectSpell()
 	if not IsServer() then return 0 end
 	
-	-- 5% шанс отразить заклинание
 	if RollPseudoRandomPercentage(self.spell_reflect_chance or 5, DOTA_PSEUDO_RANDOM_CUSTOM_GAME_2, self:GetParent()) then
 		return 1
 	end
 	
 	return 0
 end
-
-print("[MOD_SHEMELIS] Property getters DEFINED")
-
-print("[MOD_SHEMELIS] ============================================")
-print("[MOD_SHEMELIS] Defining GetModifierPreAttack_CriticalStrike...")
 
 function modifier_item_shemelis:GetModifierPreAttack_CriticalStrike(params)
 	if not IsServer() then return 0 end
@@ -254,11 +176,6 @@ function modifier_item_shemelis:GetModifierPreAttack_CriticalStrike(params)
 	
 	return 0
 end
-
-print("[MOD_SHEMELIS] GetModifierPreAttack_CriticalStrike DEFINED")
-
-print("[MOD_SHEMELIS] ============================================")
-print("[MOD_SHEMELIS] Defining OnAttackLanded...")
 
 function modifier_item_shemelis:OnAttackLanded(params)
 	if IsServer() then
@@ -284,11 +201,6 @@ function modifier_item_shemelis:OnAttackLanded(params)
 	
 	return 0
 end
-
-print("[MOD_SHEMELIS] OnAttackLanded DEFINED")
-
-print("[MOD_SHEMELIS] ============================================")
-print("[MOD_SHEMELIS] Defining OnTakeDamage...")
 
 function modifier_item_shemelis:OnTakeDamage(params)
 	if IsServer() then
@@ -316,11 +228,6 @@ function modifier_item_shemelis:OnTakeDamage(params)
 	return 0
 end
 
-print("[MOD_SHEMELIS] OnTakeDamage DEFINED")
-
-print("[MOD_SHEMELIS] ============================================")
-print("[MOD_SHEMELIS] Defining TimeRewind...")
-
 function modifier_item_shemelis:TimeRewind()
 	local parent = self:GetParent()
 	if not parent or not parent:IsAlive() then return end
@@ -330,13 +237,10 @@ function modifier_item_shemelis:TimeRewind()
 	local rewind_index = self.history_max_frames
 	
 	if self.position_history[rewind_index] then
-		-- Проиграть анимацию Time Lapse
 		parent:StartGesture(ACT_DOTA_CAST_ABILITY_4)
 		
-		-- Телепортация
 		FindClearSpaceForUnit(parent, self.position_history[rewind_index], true)
 		
-		-- Восстановление здоровья
 		if self.health_history[rewind_index] and self.health_history[rewind_index] > 0 then
 			local current_health = parent:GetHealth()
 			local old_health = self.health_history[rewind_index]
@@ -347,19 +251,11 @@ function modifier_item_shemelis:TimeRewind()
 			end
 		end
 		
-		-- Эффект Time Lapse
 		local effect = ParticleManager:CreateParticle("particles/units/heroes/hero_weaver/weaver_timelapse.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
 		ParticleManager:SetParticleControl(effect, 0, parent:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(effect)
 		
-		-- Звук Time Lapse (уже есть в item_shemelis.lua, но добавим для надежности)
 		EmitSoundOn("Hero_Weaver.TimeLapse", parent)
 	end
 end
-
-print("[MOD_SHEMELIS] TimeRewind DEFINED")
-
-print("[MOD_SHEMELIS] ============================================")
-print("[MOD_SHEMELIS] modifier_item_shemelis.lua LOADING COMPLETE")
-print("[MOD_SHEMELIS] ============================================")
 
