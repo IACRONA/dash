@@ -191,6 +191,9 @@ function modifier_item_shemelis:OnAttackLanded(params)
 		if not hTarget or not hAttacker or not self:GetAbility() then return 0 end
 		if hAttacker:IsIllusion() then return 0 end
 		
+		-- Вампиризм НЕ работает от зданий и башен
+		if hTarget:IsBuilding() or hTarget:IsTower() then return 0 end
+		
 		local damage = params.damage
 		if damage and damage > 0 then
 			local heal_amount = damage * (self.vampirism or 0) / 100
@@ -216,6 +219,9 @@ function modifier_item_shemelis:OnTakeDamage(params)
 		
 		if bit.band(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then return 0 end
 		if bit.band(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) == DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL then return 0 end
+		
+		-- Вампиризм НЕ работает от зданий и башен (как физический, так и spell lifesteal)
+		if Target:IsBuilding() or Target:IsTower() then return 0 end
 		
 		local flDamage = params.damage
 		if flDamage and flDamage > 0 then

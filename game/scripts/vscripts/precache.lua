@@ -115,6 +115,18 @@ local particles =
     "particles/base_attacks/ranged_goodguy.vpcf",
     "particles/base_attacks/ranged_siege_bad.vpcf",
     "particles/base_attacks/ranged_siege_good.vpcf",
+    
+    -- Lycan ult (Shapeshift)
+    "particles/units/heroes/hero_lycan/lycan_shapeshift_buff.vpcf",
+    "particles/units/heroes/hero_lycan/lycan_shapeshift_transform.vpcf",
+    "particles/units/heroes/hero_lycan/lycan_shapeshift_start.vpcf",
+    "particles/units/heroes/hero_lycan/lycan_shapeshift_end.vpcf",
+    
+    -- Undying Tombstone
+    "particles/units/heroes/hero_undying/undying_tombstone.vpcf",
+    "particles/units/heroes/hero_undying/undying_tombstone_model.vpcf",
+    "particles/units/heroes/hero_undying/undying_tombstone_zombie_spawn.vpcf",
+    "particles/units/heroes/hero_undying/undying_zombie_ambient.vpcf",
 
 
     "particles/overhead_particle/leaders/leader_overhead_artifact.vpcf",
@@ -139,6 +151,10 @@ local sounds =
     "soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts",
     "soundevents/game_sounds_custom_announcer.vsndevts",
     "soundevents/voscripts/game_sounds_vo_warlock_golem.vsndevts",
+    "soundevents/game_sounds_creeps.vsndevts",
+    "soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts",
+    "soundevents/game_sounds_heroes/game_sounds_undying.vsndevts",
+    "soundevents/game_sounds.vsndevts",  -- Для General.TeleportLoop и других общих звуков
     
 }
 
@@ -282,6 +298,12 @@ local models = {
 "models/creeps/neutral_creeps/n_creep_satyr_spawn_a/n_creep_satyr_spawn_a.vmdl",
 "models/creeps/neutral_creeps/n_creep_satyr_spawn_a/n_creep_satyr_spawn_b.vmdl",
 
+    -- Undying models
+    "models/heroes/undying/undying.vmdl",
+    "models/heroes/undying/undying_minion.vmdl",
+    "models/props_structures/tombstone001.vmdl",
+    "models/props_structures/tombstone004_destruction.vmdl",
+    
     -- ========== CHEN SOUL PERSUASION CREEPS ==========
     -- Level 1-2 Small Creeps
     "models/creeps/neutral_creeps/n_creep_wildkin_a/n_creep_wildkin_a.vmdl",

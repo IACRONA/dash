@@ -96,7 +96,8 @@ function modifier_kuyudzaki_dash:OnIntervalThink()
     local progress = math.min(self.elapsed_time / self.duration, 1.0)
     local smooth_progress = (1 - math.cos(progress * math.pi)) / 2
     
-    local new_position = LerpVectors(self.start_position, self.end_position, smooth_progress)
+    -- Линейная интерполяция между двумя векторами
+    local new_position = self.start_position + (self.end_position - self.start_position) * smooth_progress
     new_position.z = GetGroundHeight(new_position, parent)
     
     parent:SetAbsOrigin(new_position)

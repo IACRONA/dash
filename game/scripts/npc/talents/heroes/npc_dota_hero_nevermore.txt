@@ -124,7 +124,7 @@
 			"operator" "OP_ADD"
 		}
 	}
-	"nevermore_requiem"
+	"nevermore_requiem_custom"
 	{
 		"cooldown_and_manacost"
 		{

@@ -112,7 +112,7 @@ function CAddonWarsong:InitGameMode()
 	GameRules:SetStrategyTime(5)
 	GameRules:SetShowcaseTime(0)
 	GameRules:GetGameModeEntity():SetDaynightCycleDisabled(DAY_NIGHT_CYCL)
-	GameRules:GetGameModeEntity():SetTPScrollSlotItemOverride("item_tp_scroll_custom")
+	GameRules:GetGameModeEntity():SetTPScrollSlotItemOverride("item_tpscroll")
 	GameRules:GetGameModeEntity():SetGiveFreeTPOnDeath(false)
 	 
     GameRules:GetGameModeEntity():SetPlayerHeroAvailabilityFiltered(true)
@@ -928,7 +928,7 @@ function CAddonWarsong:OnNPCSpawned(event)
 				-- 	ui_custom_ability_jump:SetLevel(1)
 				-- end
 
-				-- hUnit:AddItemByName("item_tp_scroll_custom")
+				-- hUnit:AddItemByName("item_tpscroll")
 
 				if self.mapName ~= "dash" then
 					if hUnit:GetUnitName() ~= 'npc_dota_base_mount' then
