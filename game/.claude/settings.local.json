@@ -38,7 +38,11 @@
       "Bash(wc:*)",
       "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/particles/**)",
       "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/particles/rebuild/ui/books/**)",
-      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/particles/rebuild/ui/books/default/**)"
+      "Read(//c/Program Files (x86)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/particles/rebuild/ui/books/default/**)",
+      "WebSearch",
+      "WebFetch(domain:liquipedia.net)",
+      "WebFetch(domain:dota2.fandom.com)",
+      "WebFetch(domain:dotesports.com)"
     ],
     "deny": [],
     "ask": []

@@ -297,13 +297,27 @@ if GetMapName() == "dash" then
         ["npc_dota_badguys_tower3_top"] = 1,
         ["npc_dota_badguys_tower3_bot"] = 1, 
     }
-    -- таверы которые нужно снести чтобы можно было сломать центральную башню для даер 
+    -- таверы которые нужно снести чтобы можно было сломать центральную башню для даер
     tower_to_kills_for_dire = {
         ["npc_dota_goodguys_tower2_top"] = 2,
         ["npc_dota_goodguys_tower2_bot"] = 2,
         ["npc_dota_goodguys_tower3_bot"] = 1,
         ["npc_dota_goodguys_tower3_top"] = 1
     }
+
+    -- Босс на линии (Host Pirate / Kraken).
+    -- См. libraries/boss_system.lua + modifiers/modifier_lane_boss_debuff.lua.
+
+    -- На сколько % дебафф ослабляет босса, возрождённого на боковой линии:
+    -- уменьшает максимум HP, физ. броню, скорость атаки и весь исходящий
+    -- урон (включая урон от способностей).
+    -- 0 = босс без штрафа, 100 = ваншот с одного удара.
+    BOSS_LANE_DEBUFF_PERCENT = 15
+
+    -- Через сколько секунд после смерти босс возрождается на боковой линии.
+    -- Реальная задержка дополнительно округляется вверх до ближайшего тика
+    -- волны крипов (= 30 сек), чтобы он спавнился вместе с волной.
+    BOSS_LANE_RESPAWN_DELAY = 60
 
 end
 

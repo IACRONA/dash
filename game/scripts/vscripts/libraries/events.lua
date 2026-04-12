@@ -7,6 +7,11 @@ function CAddonWarsong:OnEntityKilled( params )
 	if params.entindex_attacker then
 		hero = EntIndexToHScript( params.entindex_attacker )
 	end
+
+	-- Линейный респавн боссов (Host Pirate / Kraken).
+	if BossSystem then
+		BossSystem:OnEntityKilled(killedUnit, hero)
+	end
 	if killedUnit:IsRealHero() then
         if killedUnit:IsReincarnating() == true then
             if killedUnit:HasModifier("modifier_warsong_fate_immortal") then

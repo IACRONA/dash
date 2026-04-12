@@ -102,7 +102,13 @@ function modifier_ability_boss:OnDeath(event)
 	end	
 	EmitGlobalSound("Roshan.Death")
 	EmitGlobalSound("boss_killed")
-	if countDead < deathTimes  then 
+	-- Если этим боссом управляет BossSystem (линейный респавн), не создаём
+	-- дубликат на домашней точке — BossSystem сам заспавнит нового на линии.
+	if BossSystem and BossSystem.boss_names and BossSystem.boss_names[unitName] then
+		return
+	end
+
+	if countDead < deathTimes  then
 		Timers:CreateTimer(respawnTime, function()
 			local newUnit = CreateUnitByName(unitName, respawnPoint, true, nil, nil, teamNumber)
 			newUnit.counter = countDead

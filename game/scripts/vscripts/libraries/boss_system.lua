@@ -1,131 +1,532 @@
+-- ============================================================================
+-- Система «линейного» респавна боссов.
+--
+-- Когда Host Pirate (npc_boss_kunkka) или Kraken (npc_boss_tidehunter) умирают,
+-- через 60 секунд (+ выравнивание на ближайший тик волны крипов = 30 сек) они
+-- возрождаются на случайной боковой линии (top/bot) на точке спавна крипов
+-- команды убийцы. Возрождённый босс идёт атак-мувом к вражескому трону вместе
+-- с ближайшей волной крипов, атакует башни, казармы и трон как обычный крип.
+--
+-- При респавне на линии на босса вешается modifier_lane_boss_debuff, который
+-- снижает на 15% HP, броню, скорость атаки и весь исходящий урон (включая
+-- урон абилок). Смерть «линейного» босса снова запускает цикл.
+-- ============================================================================
+
+require("settings/game_settings")
+
 if BossSystem == nil then
-    _G.BossSystem = class({})
+	_G.BossSystem = class({})
 end
 
 BossSystem.boss_names = {
-    ["npc_boss_kunkka"] = true,
-    ["npc_boss_tidehunter"] = true,
-    -- ["npc_custom_boss_morphling"] = true -- Морфлинг имеет свой AI, его пока не трогаем, пользователь просил конкретно двух
+	["npc_boss_kunkka"]     = true, -- Host Pirate
+	["npc_boss_tidehunter"] = true, -- Kraken
 }
 
-function BossSystem:OnEntityKilled(killedUnit, killerEntity)
-    if not killedUnit or not killerEntity then return end
+-- Цикл появления крипов по линиям (в секундах). Стандартное значение Dota 2.
+BossSystem.creep_wave_interval = 30
 
-    -- Работает только на карте Dash
-    if GetMapName() ~= "dash" then return end
-    
-    local unitName = killedUnit:GetUnitName()
-    
-    -- Проверяем, является ли убитый юнит боссом из списка и нейтралом
-    if self.boss_names[unitName] and killedUnit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
-        -- Определяем команду убийцы
-        local killerTeam = killerEntity:GetTeamNumber()
-        
-        -- Если убийца - крип или башня, ищем владельца (героя)
-        if killerEntity:GetOwner() then
-            killerTeam = killerEntity:GetOwner():GetTeamNumber()
-        end
+-- Дефолтная задержка респавна после смерти, если карта не задала свою.
+-- На картах, у которых выставлен глобал BOSS_LANE_RESPAWN_DELAY (см.
+-- settings/game_settings.lua, блок Dash), используется именно он.
+BossSystem.respawn_delay = 60
 
-        -- Игнорируем убийства нейтралами или другими боссами
-        if killerTeam == DOTA_TEAM_NEUTRALS then return end
-
-        -- Запускаем таймер возрождения на линии
-        -- Используем Timers из addon_game_mode
-        Say(nil, "BossSystem: " .. unitName .. " killed! Respawn in 60s for team " .. killerTeam, false)
-        
-        Timers:CreateTimer(60, function()
-            self:SpawnLaneBoss(unitName, killerTeam)
-        end)
-        
-        -- Отправляем оповещение
-        local gameEvent = {}
-        gameEvent["player_id"] = killerEntity:GetPlayerOwnerID()
-        gameEvent["teamnumber"] = -1
-        gameEvent["message"] = "#Warsong_Boss_Captured" 
-        FireGameEvent("dota_combat_event_message", gameEvent)
-    end
+local function get_respawn_delay()
+	return tonumber(BOSS_LANE_RESPAWN_DELAY) or BossSystem.respawn_delay
 end
 
+-- ---------------------------------------------------------------------------
+-- Вход: вызывается из CAddonWarsong:OnEntityKilled в libraries/events.lua
+-- ---------------------------------------------------------------------------
+function BossSystem:OnEntityKilled(killedUnit, killerEntity)
+	if not killedUnit or killedUnit:IsNull() then return end
+	local unitName = killedUnit:GetUnitName()
+	if not BossSystem.boss_names[unitName] then return end
+
+	local deadTeam = killedUnit:GetTeamNumber()
+	local respawnTeam = nil
+
+	if deadTeam == DOTA_TEAM_NEUTRALS then
+		-- Убили оригинального «домашнего» босса — определяем команду убийцы.
+		if not killerEntity or killerEntity:IsNull() then return end
+
+		local killerTeam = killerEntity:GetTeamNumber()
+		if killerEntity.GetOwner and killerEntity:GetOwner() and not killerEntity:GetOwner():IsNull() then
+			killerTeam = killerEntity:GetOwner():GetTeamNumber()
+		end
+
+		if killerTeam ~= DOTA_TEAM_GOODGUYS and killerTeam ~= DOTA_TEAM_BADGUYS then
+			return
+		end
+		respawnTeam = killerTeam
+	elseif deadTeam == DOTA_TEAM_GOODGUYS or deadTeam == DOTA_TEAM_BADGUYS then
+		-- Умер уже «линейный» босс — та же команда получает нового через цикл.
+		respawnTeam = deadTeam
+	else
+		return
+	end
+
+	-- Уведомление вражеской команде: «Босс повержен и присоединится к врагам!»
+	local enemyTeam = (respawnTeam == DOTA_TEAM_GOODGUYS) and DOTA_TEAM_BADGUYS or DOTA_TEAM_GOODGUYS
+	BossSystem:SendLaneNotification(unitName, enemyTeam)
+
+	BossSystem:ScheduleLaneRespawn(unitName, respawnTeam)
+end
+
+-- ---------------------------------------------------------------------------
+-- Отправляем уведомление игрокам указанной команды о том, что босс был
+-- повержен и присоединится к врагам.
+-- ---------------------------------------------------------------------------
+function BossSystem:SendLaneNotification(unitName, enemyTeam)
+	for i = 0, PlayerResource:GetPlayerCount() - 1 do
+		if PlayerResource:IsValidPlayerID(i) then
+			local team = PlayerResource:GetTeam(i)
+			local player = PlayerResource:GetPlayer(i)
+			if player and team == enemyTeam then
+				CustomGameEventManager:Send_ServerToPlayer(player, "boss_lane_notification", {
+					boss_name = unitName,
+				})
+			end
+		end
+	end
+end
+
+-- ---------------------------------------------------------------------------
+-- Планирование респавна — выравниваем на ближайшую волну крипов.
+-- ---------------------------------------------------------------------------
+function BossSystem:ScheduleLaneRespawn(unitName, team)
+	local now = GameRules:GetDOTATime(false, false)
+	local respawnDelay = get_respawn_delay()
+	local earliest = now + respawnDelay
+	local cycle = BossSystem.creep_wave_interval
+
+	-- Ближайший момент ≥ earliest, кратный cycle от 0-й отметки игрового времени.
+	-- Если earliest уже попал ровно на тик, оставляем этот тик.
+	local laneTick = math.ceil(earliest / cycle) * cycle
+	local delay = laneTick - now
+	if delay < respawnDelay then
+		delay = delay + cycle
+	end
+
+	print(string.format("[BossSystem] %s will respawn for team %d in %.1f s (aligned to next creep wave).",
+		unitName, team, delay))
+
+	Timers:CreateTimer(delay, function()
+		BossSystem:SpawnLaneBoss(unitName, team)
+	end)
+end
+
+-- ---------------------------------------------------------------------------
+-- Жёстко заданные пути по линиям. Координаты получены через `setpos` из игры
+-- (см. переписку — пользователь дал точки лично, чтобы не зависеть от того,
+-- как именно названы спавнеры/path-corner'ы в каждой кастомной карте).
+--
+-- Для каждой команды есть набор «линий» (right/left), у каждой:
+--   spawn      — точка появления босса.
+--   waypoints  — упорядоченная цепочка точек по линии, последняя — у врат
+--                вражеского ancient'а.
+--
+-- Босс получает очередь ATTACK_MOVE по всем waypoints (Queue=true), что
+-- заставляет движок вести его строго по линии и автоматически возобновлять
+-- движение после боя со следующего waypoint.
+-- ---------------------------------------------------------------------------
+-- Конвенция: смотрим на карту сверху (как на миникарте), Dire вверху,
+-- Radiant внизу. "left" = визуально левая половина карты = отрицательный X
+-- (западная сторона). "right" = положительный X (восточная сторона).
+-- Маркировка одинаковая для обеих команд.
+local LANE_PATHS = {
+	-- Dire (badguys) пушит к Radiant ancient (-1048, -5997).
+	[DOTA_TEAM_BADGUYS] = {
+		left = {
+			spawn = Vector(-1499.30, 3466.46, 1353.98),
+			waypoints = {
+				Vector(-1532.56,  3645.72, 1366.32),
+				Vector(-7450.31,   102.38, 1543.21),
+				Vector(-6150.94, -4865.51, 1315.92),
+				Vector(-1590.55, -4565.92, 1387.78),
+				Vector(-1048.35, -5997.47, 1495.65),
+			},
+		},
+		right = {
+			spawn = Vector(2124.19, 3466.46, 1412.93),
+			waypoints = {
+				Vector( 2473.98,  3523.72, 1371.17),
+				Vector( 7374.77,    20.31, 1502.25),
+				Vector( 4893.54, -5838.15, 1369.59),
+				Vector( 1171.69, -5015.30, 1421.05),
+				Vector(-1048.35, -5997.47, 1495.65),
+			},
+		},
+	},
+	-- Radiant (goodguys) пушит к Dire ancient (908, 4427).
+	[DOTA_TEAM_GOODGUYS] = {
+		left = {
+			spawn = Vector(-896.00, -4502.57, 1413.36),
+			waypoints = {
+				Vector(-1590.55, -4565.92, 1387.78),
+				Vector(-6150.94, -4865.51, 1315.92),
+				Vector(-7450.31,   102.38, 1543.21),
+				Vector(-1532.56,  3645.72, 1366.32),
+				Vector(  908.47,  4427.03, 1502.92),
+			},
+		},
+		right = {
+			spawn = Vector(796.71, -5152.75, 1439.31),
+			waypoints = {
+				Vector( 1171.69, -5015.30, 1421.05),
+				Vector( 4893.54, -5838.15, 1369.59),
+				Vector( 7374.77,    20.31, 1502.25),
+				Vector( 2473.98,  3523.72, 1371.17),
+				Vector(  908.47,  4427.03, 1502.92),
+			},
+		},
+	},
+}
+
+-- ---------------------------------------------------------------------------
+-- Сканер path_corner'ов в карте.
+--
+-- Стандартная Dota-конвенция: лайновые крипы ходят по entity класса
+-- "path_corner" с именами вроде "lane_top_pathcorner_goodguys_1",
+-- "lane_top_pathcorner_goodguys_2" и т.д. Мы выгребаем ВСЕ path_corner,
+-- группируем по команде (по подстроке goodguys/badguys в имени) и линии
+-- (по подстроке top/bot/mid), сортируем по числу в конце имени и получаем
+-- готовые цепочки waypoints — те самые, по которым ходят крипы.
+--
+-- Результат кешируется на сессию.
+-- ---------------------------------------------------------------------------
+function BossSystem:ScanPathCorners()
+	if BossSystem._cached_lane_paths ~= nil then
+		return BossSystem._cached_lane_paths
+	end
+
+	local result = {
+		[DOTA_TEAM_GOODGUYS] = {},
+		[DOTA_TEAM_BADGUYS]  = {},
+	}
+	local groups = {} -- key = "team|lane" -> list of {idx, pos, name}
+
+	local all = Entities:FindAllByClassname("path_corner") or {}
+	for _, e in pairs(all) do
+		if e and not e:IsNull() then
+			local name = e:GetName() or ""
+			if name ~= "" then
+				local team = nil
+				if name:find("goodguys") then team = DOTA_TEAM_GOODGUYS
+				elseif name:find("badguys") then team = DOTA_TEAM_BADGUYS end
+
+				local lane = "unknown"
+				if name:find("top") then lane = "top"
+				elseif name:find("bot") then lane = "bot"
+				elseif name:find("mid") then lane = "mid" end
+
+				if team then
+					local idx = tonumber(name:match("(%d+)$")) or 0
+					local key = tostring(team) .. "|" .. lane
+					groups[key] = groups[key] or {}
+					table.insert(groups[key], { idx = idx, pos = e:GetAbsOrigin(), name = name })
+				end
+			end
+		end
+	end
+
+	for key, list in pairs(groups) do
+		table.sort(list, function(a, b) return a.idx < b.idx end)
+		local positions = {}
+		for _, item in ipairs(list) do
+			table.insert(positions, item.pos)
+		end
+		local team_str, lane_str = key:match("(%-?%d+)|(.+)")
+		local team = tonumber(team_str)
+		if team and result[team] then
+			result[team][lane_str] = positions
+		end
+	end
+
+	-- Debug print: один раз за игру. Выводим ВСЕ найденные path_corner с именами.
+	print("[BossSystem] === ScanPathCorners: ALL path_corners found ===")
+	for key, list in pairs(groups) do
+		print(string.format("  group: %s", key))
+		for _, item in ipairs(list) do
+			print(string.format("    #%d  name=%-45s  pos=(%.0f, %.0f, %.0f)",
+				item.idx, item.name, item.pos.x, item.pos.y, item.pos.z))
+		end
+	end
+	print("[BossSystem] === Grouped result (only top/bot used) ===")
+	for team, lanes in pairs(result) do
+		for lane, pts in pairs(lanes) do
+			print(string.format("  team=%d lane=%s points=%d", team, lane, #pts))
+		end
+	end
+
+	BossSystem._cached_lane_paths = result
+	return result
+end
+
+-- ---------------------------------------------------------------------------
+-- Интерполяция: если между двумя соседними waypoints расстояние больше
+-- max_gap, вставляем промежуточные точки по прямой так, чтобы шаг ≤ max_gap.
+-- Это не даёт движку «срезать» через мид: каждый ATTACK_MOVE-хоп ≤ 800 unit.
+-- ---------------------------------------------------------------------------
+local INTERPOLATION_MAX_GAP = 800
+
+local function interpolate_waypoints(waypoints)
+	if #waypoints < 2 then return waypoints end
+	local result = {}
+	for i = 1, #waypoints do
+		table.insert(result, waypoints[i])
+		if i < #waypoints then
+			local a = waypoints[i]
+			local b = waypoints[i + 1]
+			local dist = (b - a):Length2D()
+			if dist > INTERPOLATION_MAX_GAP then
+				local steps = math.ceil(dist / INTERPOLATION_MAX_GAP)
+				for s = 1, steps - 1 do
+					local t = s / steps
+					local mid = Vector(
+						a.x + (b.x - a.x) * t,
+						a.y + (b.y - a.y) * t,
+						a.z + (b.z - a.z) * t
+					)
+					table.insert(result, mid)
+				end
+			end
+		end
+	end
+	return result
+end
+
+-- ---------------------------------------------------------------------------
+-- Возвращает { spawn, waypoints, name, source } для случайной БОКОВОЙ линии
+-- команды. Используем хардкод LANE_PATHS + интерполяцию между точками.
+-- ---------------------------------------------------------------------------
+function BossSystem:GetSpawnPath(team)
+	local teamPaths = LANE_PATHS[team]
+	if not teamPaths then return nil end
+	local laneNames = {}
+	for k, _ in pairs(teamPaths) do table.insert(laneNames, k) end
+	if #laneNames == 0 then return nil end
+	local lane = laneNames[RandomInt(1, #laneNames)]
+	local lanePath = teamPaths[lane]
+
+	-- Строим полный маршрут: spawn → waypoints, с интерполяцией.
+	local raw = { lanePath.spawn }
+	for _, w in ipairs(lanePath.waypoints) do table.insert(raw, w) end
+	local dense = interpolate_waypoints(raw)
+
+	return {
+		spawn = lanePath.spawn,
+		waypoints = dense,
+		name = lane,
+		source = "hardcoded+interpolated",
+	}
+end
+
+-- Расстояние, на котором waypoint считается «пройденным».
+local WAYPOINT_REACH_RADIUS = 700
+-- Если за это число тиков (по 1 сек) босс не сдвинулся и не атакует — пере-выдаём очередь.
+local STUCK_TICKS_BEFORE_REISSUE = 2
+-- Сколько unit за тик считается «движется».
+local STUCK_MOVEMENT_THRESHOLD = 80
+
+-- ---------------------------------------------------------------------------
+-- Каст способностей в бою. Повторяет логику из ai_boss.lua, но без
+-- RetreatHome и без спама ордеров на невалидные цели.
+-- ---------------------------------------------------------------------------
+function BossSystem:TryCastAbilities(boss, target)
+	if not target or target:IsNull() or not target:IsAlive() then return end
+	for i = 0, boss:GetAbilityCount() - 1 do
+		local ability = boss:GetAbilityByIndex(i)
+		if ability and not ability:IsNull() and not ability:IsPassive() and ability:IsFullyCastable() then
+			local behavior = ability:GetBehavior()
+			local orderTable = { UnitIndex = boss:entindex() }
+
+			if bit.band(behavior, DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) ~= 0 then
+				-- Проверяем, может ли способность целиться в этот тип юнита.
+				local targetType = ability:GetAbilityTargetType()
+				if targetType ~= 0 and bit.band(targetType, DOTA_UNIT_TARGET_HERO) == 0 and bit.band(targetType, DOTA_UNIT_TARGET_BASIC) == 0 then
+					goto continue
+				end
+				orderTable.OrderType = DOTA_UNIT_ORDER_CAST_TARGET
+				orderTable.TargetIndex = target:entindex()
+			elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_NO_TARGET) ~= 0 then
+				orderTable.OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET
+			elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_POINT) ~= 0 then
+				orderTable.OrderType = DOTA_UNIT_ORDER_CAST_POSITION
+				orderTable.Position = target:GetAbsOrigin()
+			end
+
+			if orderTable.OrderType then
+				orderTable.AbilityIndex = ability:entindex()
+				ExecuteOrderFromTable(orderTable)
+				return -- одна способность за тик
+			end
+			::continue::
+		end
+	end
+end
+
+-- ---------------------------------------------------------------------------
+-- Выдать очередь ATTACK_MOVE на все ещё не пройденные waypoints.
+-- Первый ордер идёт без Queue (сбрасывает зависший order), остальные — с Queue=true.
+-- ---------------------------------------------------------------------------
+function BossSystem:IssueLaneQueue(boss)
+	local wps = boss.lane_waypoints
+	local idx = boss.lane_waypoint_index or 1
+	if not wps or idx > #wps then return end
+
+	print(string.format("[BossSystem][ORDER] IssueLaneQueue: from idx=%d to %d (%d orders)",
+		idx, #wps, #wps - idx + 1))
+
+	local first = true
+	for i = idx, #wps do
+		ExecuteOrderFromTable({
+			UnitIndex = boss:entindex(),
+			OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE,
+			Position  = wps[i],
+			Queue     = not first,
+		})
+		if first then
+			print(string.format("[BossSystem][ORDER]   FIRST attack-move -> (%.0f, %.0f) Queue=false",
+				wps[i].x, wps[i].y))
+		end
+		first = false
+	end
+	print(string.format("[BossSystem][ORDER]   LAST  attack-move -> (%.0f, %.0f) Queue=true",
+		wps[#wps].x, wps[#wps].y))
+end
+
+-- ---------------------------------------------------------------------------
+-- Каждую секунду: продвигаем индекс waypoint'а, проверяем застревание.
+-- Логируем позицию, текущий waypoint-индекс и состояние босса.
+-- ---------------------------------------------------------------------------
+function BossSystem:UpdateLaneProgress(boss)
+	local wps = boss.lane_waypoints
+	local idx = boss.lane_waypoint_index or 1
+	if not wps or idx > #wps then return end
+
+	local pos = boss:GetAbsOrigin()
+	local targetWp = wps[idx]
+	local distToWp = (targetWp - pos):Length2D()
+	local attackTarget = boss:GetAttackTarget()
+	local orderType = boss:GetCurrentActiveAbility() -- может быть nil
+
+	-- Логируем каждые 3 секунды, чтобы не флудить
+	boss._lane_log_counter = (boss._lane_log_counter or 0) + 1
+	if boss._lane_log_counter % 3 == 1 then
+		print(string.format(
+			"[BossSystem][TICK] pos=(%.0f,%.0f) wp_idx=%d/%d wp_target=(%.0f,%.0f) dist=%.0f attacking=%s stuck=%d",
+			pos.x, pos.y,
+			idx, #wps,
+			targetWp.x, targetWp.y,
+			distToWp,
+			attackTarget and tostring(attackTarget:GetUnitName()) or "nil",
+			boss._lane_stuck_ticks or 0
+		))
+	end
+
+	-- Авто-продвижение: пропускаем waypoint'ы, которые уже рядом / позади.
+	local oldIdx = idx
+	while idx <= #wps and (wps[idx] - pos):Length2D() < WAYPOINT_REACH_RADIUS do
+		idx = idx + 1
+	end
+	if idx ~= oldIdx then
+		print(string.format("[BossSystem][ADVANCE] wp_idx: %d -> %d (reached waypoints)", oldIdx, idx))
+	end
+	boss.lane_waypoint_index = idx
+	if idx > #wps then
+		print("[BossSystem][DONE] Boss reached last waypoint!")
+		return
+	end
+
+	-- Если босс реально дерётся — кастуем способности и не трогаем движение.
+	if attackTarget ~= nil then
+		boss._lane_last_pos = pos
+		boss._lane_stuck_ticks = 0
+		BossSystem:TryCastAbilities(boss, attackTarget)
+		return
+	end
+
+	-- Детект «застрял».
+	local lastPos = boss._lane_last_pos
+	boss._lane_last_pos = pos
+	if lastPos and (pos - lastPos):Length2D() < STUCK_MOVEMENT_THRESHOLD then
+		boss._lane_stuck_ticks = (boss._lane_stuck_ticks or 0) + 1
+	else
+		boss._lane_stuck_ticks = 0
+	end
+
+	if (boss._lane_stuck_ticks or 0) >= STUCK_TICKS_BEFORE_REISSUE then
+		print(string.format("[BossSystem][STUCK] Boss stuck at (%.0f,%.0f), re-issuing queue from idx=%d",
+			pos.x, pos.y, idx))
+		BossSystem:IssueLaneQueue(boss)
+		boss._lane_stuck_ticks = 0
+	end
+end
+
+-- ---------------------------------------------------------------------------
+-- Непосредственный спавн линейного босса.
+-- ---------------------------------------------------------------------------
 function BossSystem:SpawnLaneBoss(unitName, team)
-    Say(nil, "BossSystem: Spawning " .. unitName .. " for team " .. team, false)
-    -- Выбираем случайную линию: TOP (1) или BOT (2)
-    -- На карте warsong (если она симметрична) спавнеры обычно называются стандартно
-    -- Если нет, используем позиции флагов как запасной вариант
+	local lanePath = BossSystem:GetSpawnPath(team)
+	if not lanePath then
+		print(string.format("[BossSystem] Error: no lane path for team %d.", team))
+		return
+	end
 
-    local lane = RandomInt(1, 2) == 1 and "top" or "bot"
-    local spawnerName = ""
-    
-    if team == DOTA_TEAM_GOODGUYS then
-        spawnerName = "npc_dota_spawner_good_" .. lane
-    else
-        spawnerName = "npc_dota_spawner_bad_" .. lane
-    end
-    
-    local spawner = Entities:FindByName(nil, spawnerName)
-    local spawnPos = Vector(0,0,0)
-    
-    if spawner then
-        spawnPos = spawner:GetAbsOrigin()
-    else
-        -- Фоллбэк на базу/флаг/фонтан/точку старта
-        if team == DOTA_TEAM_GOODGUYS then
-            local flag = Entities:FindByName(nil, "flag_radiant") or Entities:FindByName(nil, "flag_both_radiant") or Entities:FindByClassname(nil, "ent_dota_fountain_good") or Entities:FindByClassname(nil, "info_player_start_goodguys")
-            if flag then spawnPos = flag:GetAbsOrigin() end
-        else
-            local flag = Entities:FindByName(nil, "flag_dire") or Entities:FindByName(nil, "flag_both_dire") or Entities:FindByClassname(nil, "ent_dota_fountain_bad") or Entities:FindByClassname(nil, "info_player_start_badguys")
-            if flag then spawnPos = flag:GetAbsOrigin() end
-        end
-    end
-    
-    if spawnPos == Vector(0,0,0) then
-        print("[BossSystem] Error: Could not find spawn position for boss!")
-        return
-    end
-    
-    -- Создаем босса
-    local boss = CreateUnitByName(unitName, spawnPos, true, nil, nil, team)
-    
-    if boss then
-        -- boss:SetControllableByPlayer(-1, true) -- Убрано: босс должен быть автономным, как в Mobile Legends
-        boss:SetUnitCanRespawn(false) -- Босс не должен респавниться после смерти на линии
-        
-        -- Добавляем модификатор, чтобы пометить что это "лейн босс"
-        boss:AddNewModifier(boss, nil, "modifier_kill", {duration = -1})
-        
-        -- Устанавливаем цель (путь к трону) - это сделает AI скрипт, но мы можем задать начальный AttackMove
-        local enemyBase = nil
-        if team == DOTA_TEAM_GOODGUYS then
-            enemyBase = Entities:FindByName(nil, "npc_dota_badguys_fort") or Entities:FindByName(nil, "npc_dota_badguys_fort_custom")
-        else
-            enemyBase = Entities:FindByName(nil, "npc_dota_goodguys_fort") or Entities:FindByName(nil, "npc_dota_goodguys_fort_custom")
-        end
+	-- Нормализуем спавн по высоте земли.
+	local spawnPos = GetGroundPosition(Vector(lanePath.spawn.x, lanePath.spawn.y, 0), nil)
 
-        
-        if enemyBase then
-            -- Используем ExecuteOrder, чтобы задать приказ "Атаковать в движение"
-            -- AI скрипт должен будет подхватить это или не мешать
-             ExecuteOrderFromTable({
-                UnitIndex = boss:entindex(),
-                OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE,
-                Position = enemyBase:GetAbsOrigin(),
-                Queue = false,
-            })
-            
-            -- Сохраняем цель в handle юнита, чтобы AI мог ее использовать
-            boss.lanePushTarget = enemyBase
-        end
-        
-        -- Пытаемся найти вейпоинты для более точного пути (если есть)
-        local pathCornerName = ""
-        if team == DOTA_TEAM_GOODGUYS then
-             pathCornerName = "lane_" .. lane .. "_pathcorner_goodguys_1"
-        else
-             pathCornerName = "lane_" .. lane .. "_pathcorner_badguys_1"
-        end
-        local pathCorner = Entities:FindByName(nil, pathCornerName)
-        
-        if pathCorner then
-            boss:SetInitialGoalEntity(pathCorner)
-        end
-    end
+	local boss = CreateUnitByName(unitName, spawnPos, true, nil, nil, team)
+	if not boss or boss:IsNull() then
+		print("[BossSystem] Error: CreateUnitByName returned nil for " .. tostring(unitName))
+		return
+	end
+
+	-- Это линейный босс: не нейтрал, после смерти не авто-респавнится
+	-- (цикл управляется нашим OnEntityKilled).
+	boss:SetUnitCanRespawn(false)
+	boss.is_lane_boss = true
+	-- Блокируем стандартный респавн в modifier_ability_boss:OnDeath.
+	-- OnDeath проверяет countDead < deathTimes (=4). Ставим counter >= 4,
+	-- чтобы проверка не прошла и дубликат не появился.
+	boss.counter = 99
+
+	-- ВАЖНО: отключаем стандартный AI босса (ai_boss.lua / BossThink).
+	-- Он каждые 0.25 сек выдаёт RetreatHome() → ордер на respoint (0,0),
+	-- что перебивает нашу ATTACK_MOVE очередь и гонит босса в центр карты.
+	-- Делаем это дважды: сразу и через 0.1 сек — на случай если Spawn() в
+	-- ai_boss.lua зарегистрирует BossThink ПОСЛЕ нашего вызова.
+	boss:SetContextThink("BossThink", nil, -1)
+	Timers:CreateTimer(0.1, function()
+		if boss and not boss:IsNull() then
+			boss:SetContextThink("BossThink", nil, -1)
+		end
+	end)
+	boss.lane_waypoints = lanePath.waypoints
+	boss.lane_waypoint_index = 1
+	boss._lane_last_pos = spawnPos
+	boss._lane_stuck_ticks = 0
+
+	-- Дебафф (% берётся из BOSS_LANE_DEBUFF_PERCENT в game_settings.lua).
+	boss:AddNewModifier(boss, nil, "modifier_lane_boss_debuff", { duration = -1 })
+	boss:SetHealth(boss:GetMaxHealth())
+
+	-- Логируем ВСЕ waypoints при спавне.
+	print(string.format("[BossSystem] Spawned %s for team %d on %s lane (source=%s) at (%.0f, %.0f) — %d waypoints:",
+		unitName, team, lanePath.name, lanePath.source, spawnPos.x, spawnPos.y, #lanePath.waypoints))
+	for i, wp in ipairs(lanePath.waypoints) do
+		print(string.format("[BossSystem]   wp[%02d] = (%.0f, %.0f)", i, wp.x, wp.y))
+	end
+
+	-- Сразу выдаём очередь по всем waypoints.
+	BossSystem:IssueLaneQueue(boss)
+
+	-- Periodic think: каждую секунду продвигаем индекс / чиним застревания.
+	boss:SetContextThink("BossSystem_LanePushThink", function()
+		if not boss or boss:IsNull() or not boss:IsAlive() then return nil end
+		if GameRules:IsGamePaused() then return 1 end
+		BossSystem:UpdateLaneProgress(boss)
+		return 1
+	end, 1)
 end
