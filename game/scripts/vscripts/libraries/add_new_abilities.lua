@@ -153,7 +153,6 @@ function CAddonWarsong:RunAbilitySoundPrecache()
             table.remove(self.pendingPrecache, #self.pendingPrecache)
         end
         if not sHeroName then return 5 end
-        print("npc_precache_"..sHeroName)
         PrecacheUnitByNameAsync("npc_precache_"..sHeroName, function()
             self.precached[sHeroName] = true
             self:RunAbilitySoundPrecache()

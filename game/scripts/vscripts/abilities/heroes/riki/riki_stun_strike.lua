@@ -72,13 +72,6 @@ function riki_stun_strike:OnProjectileHit(target, location)
     -- Применяем стан с учётом сопротивления эффектам
     local actual_duration = stun_duration * (1 - target:GetStatusResistance())
     
-    -- Отладочный вывод
-    print("[RIKI STUN] Applying stun:")
-    print("  - Target:", target:GetUnitName())
-    print("  - Base Duration:", stun_duration)
-    print("  - Actual Duration:", actual_duration)
-    print("  - Damage:", damage)
-    
     target:AddNewModifier(
         caster,
         self,

@@ -1,5 +1,4 @@
 function CAddonWarsong:RespawnFlagForTeam(nTeam, vPos, options, soldier)
-	print('Respawning flag for team #' .. nTeam)
 	local vSpawnPos = self.flagPositions[nTeam]
 
 	if GetMapName() == "warsong" and soldier ~= nil then
@@ -103,7 +102,6 @@ function CAddonWarsong:RemindClients_FlagsRemaining()
 		radiant = self.nWinConditionGoal - self.nCapturedFlagsCount[DOTA_TEAM_GOODGUYS],
 		dire = self.nWinConditionGoal - self.nCapturedFlagsCount[DOTA_TEAM_BADGUYS]
 	})
-	print('another shot fired')
 end
 
 

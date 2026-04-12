@@ -108,9 +108,6 @@ function BossSystem:ScheduleLaneRespawn(unitName, team)
 		delay = delay + cycle
 	end
 
-	print(string.format("[BossSystem] %s will respawn for team %d in %.1f s (aligned to next creep wave).",
-		unitName, team, delay))
-
 	Timers:CreateTimer(delay, function()
 		BossSystem:SpawnLaneBoss(unitName, team)
 	end)
@@ -243,22 +240,6 @@ function BossSystem:ScanPathCorners()
 		end
 	end
 
-	-- Debug print: один раз за игру. Выводим ВСЕ найденные path_corner с именами.
-	print("[BossSystem] === ScanPathCorners: ALL path_corners found ===")
-	for key, list in pairs(groups) do
-		print(string.format("  group: %s", key))
-		for _, item in ipairs(list) do
-			print(string.format("    #%d  name=%-45s  pos=(%.0f, %.0f, %.0f)",
-				item.idx, item.name, item.pos.x, item.pos.y, item.pos.z))
-		end
-	end
-	print("[BossSystem] === Grouped result (only top/bot used) ===")
-	for team, lanes in pairs(result) do
-		for lane, pts in pairs(lanes) do
-			print(string.format("  team=%d lane=%s points=%d", team, lane, #pts))
-		end
-	end
-
 	BossSystem._cached_lane_paths = result
 	return result
 end
@@ -375,9 +356,6 @@ function BossSystem:IssueLaneQueue(boss)
 	local idx = boss.lane_waypoint_index or 1
 	if not wps or idx > #wps then return end
 
-	print(string.format("[BossSystem][ORDER] IssueLaneQueue: from idx=%d to %d (%d orders)",
-		idx, #wps, #wps - idx + 1))
-
 	local first = true
 	for i = idx, #wps do
 		ExecuteOrderFromTable({
@@ -386,14 +364,8 @@ function BossSystem:IssueLaneQueue(boss)
 			Position  = wps[i],
 			Queue     = not first,
 		})
-		if first then
-			print(string.format("[BossSystem][ORDER]   FIRST attack-move -> (%.0f, %.0f) Queue=false",
-				wps[i].x, wps[i].y))
-		end
 		first = false
 	end
-	print(string.format("[BossSystem][ORDER]   LAST  attack-move -> (%.0f, %.0f) Queue=true",
-		wps[#wps].x, wps[#wps].y))
 end
 
 -- ---------------------------------------------------------------------------
@@ -406,38 +378,14 @@ function BossSystem:UpdateLaneProgress(boss)
 	if not wps or idx > #wps then return end
 
 	local pos = boss:GetAbsOrigin()
-	local targetWp = wps[idx]
-	local distToWp = (targetWp - pos):Length2D()
 	local attackTarget = boss:GetAttackTarget()
-	local orderType = boss:GetCurrentActiveAbility() -- может быть nil
-
-	-- Логируем каждые 3 секунды, чтобы не флудить
-	boss._lane_log_counter = (boss._lane_log_counter or 0) + 1
-	if boss._lane_log_counter % 3 == 1 then
-		print(string.format(
-			"[BossSystem][TICK] pos=(%.0f,%.0f) wp_idx=%d/%d wp_target=(%.0f,%.0f) dist=%.0f attacking=%s stuck=%d",
-			pos.x, pos.y,
-			idx, #wps,
-			targetWp.x, targetWp.y,
-			distToWp,
-			attackTarget and tostring(attackTarget:GetUnitName()) or "nil",
-			boss._lane_stuck_ticks or 0
-		))
-	end
 
 	-- Авто-продвижение: пропускаем waypoint'ы, которые уже рядом / позади.
-	local oldIdx = idx
 	while idx <= #wps and (wps[idx] - pos):Length2D() < WAYPOINT_REACH_RADIUS do
 		idx = idx + 1
 	end
-	if idx ~= oldIdx then
-		print(string.format("[BossSystem][ADVANCE] wp_idx: %d -> %d (reached waypoints)", oldIdx, idx))
-	end
 	boss.lane_waypoint_index = idx
-	if idx > #wps then
-		print("[BossSystem][DONE] Boss reached last waypoint!")
-		return
-	end
+	if idx > #wps then return end
 
 	-- Если босс реально дерётся — кастуем способности и не трогаем движение.
 	if attackTarget ~= nil then
@@ -457,8 +405,6 @@ function BossSystem:UpdateLaneProgress(boss)
 	end
 
 	if (boss._lane_stuck_ticks or 0) >= STUCK_TICKS_BEFORE_REISSUE then
-		print(string.format("[BossSystem][STUCK] Boss stuck at (%.0f,%.0f), re-issuing queue from idx=%d",
-			pos.x, pos.y, idx))
 		BossSystem:IssueLaneQueue(boss)
 		boss._lane_stuck_ticks = 0
 	end
@@ -469,19 +415,13 @@ end
 -- ---------------------------------------------------------------------------
 function BossSystem:SpawnLaneBoss(unitName, team)
 	local lanePath = BossSystem:GetSpawnPath(team)
-	if not lanePath then
-		print(string.format("[BossSystem] Error: no lane path for team %d.", team))
-		return
-	end
+	if not lanePath then return end
 
 	-- Нормализуем спавн по высоте земли.
 	local spawnPos = GetGroundPosition(Vector(lanePath.spawn.x, lanePath.spawn.y, 0), nil)
 
 	local boss = CreateUnitByName(unitName, spawnPos, true, nil, nil, team)
-	if not boss or boss:IsNull() then
-		print("[BossSystem] Error: CreateUnitByName returned nil for " .. tostring(unitName))
-		return
-	end
+	if not boss or boss:IsNull() then return end
 
 	-- Это линейный босс: не нейтрал, после смерти не авто-респавнится
 	-- (цикл управляется нашим OnEntityKilled).
@@ -511,13 +451,6 @@ function BossSystem:SpawnLaneBoss(unitName, team)
 	-- Дебафф (% берётся из BOSS_LANE_DEBUFF_PERCENT в game_settings.lua).
 	boss:AddNewModifier(boss, nil, "modifier_lane_boss_debuff", { duration = -1 })
 	boss:SetHealth(boss:GetMaxHealth())
-
-	-- Логируем ВСЕ waypoints при спавне.
-	print(string.format("[BossSystem] Spawned %s for team %d on %s lane (source=%s) at (%.0f, %.0f) — %d waypoints:",
-		unitName, team, lanePath.name, lanePath.source, spawnPos.x, spawnPos.y, #lanePath.waypoints))
-	for i, wp in ipairs(lanePath.waypoints) do
-		print(string.format("[BossSystem]   wp[%02d] = (%.0f, %.0f)", i, wp.x, wp.y))
-	end
 
 	-- Сразу выдаём очередь по всем waypoints.
 	BossSystem:IssueLaneQueue(boss)

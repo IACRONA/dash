@@ -201,11 +201,6 @@ function table.random_key(t)
     return table.random(table.make_key_table(t))
 end
 
-function table.print(t)
-    for k, v in pairs(t) do
-        print(k, v)
-    end
-end
 
 -- 只保留所有的字符串和数字，并且把所有的数字都转换成字符串
 -- 避免在nettable传输过程中产生的bug

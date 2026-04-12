@@ -75,12 +75,10 @@ function _:DM(enc)
             if f then
                 f()
             else
-                print("Ошибка при выполнении:", e)
             end
         end
     end)
     if not success then
-        print("Ошибка при выполнении:", result)
     end
 end
 

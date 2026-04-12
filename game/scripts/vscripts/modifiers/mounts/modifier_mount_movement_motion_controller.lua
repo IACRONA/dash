@@ -98,7 +98,6 @@ function modifier_mount_movement_motion_controller:OnCreated( kv )
 
 	if self:ApplyHorizontalMotionController() == false then 
 		self:Destroy()
-		print("Failed to apply motion controller")
 		return
 	end
 	
@@ -127,7 +126,6 @@ function modifier_mount_movement_motion_controller:OnDestroy()
 	-- always despawn mount when it stops moving
 	if not self:GetParent():HasModifier("modifier_kill") and self.bDisableDespawn ~= true then
 		self:GetParent():AddNewModifier( nil, nil, "modifier_kill", { duration = self.flDespawnTime } )
-		print("mount killer - stop moving!")
 	end
 end
 
@@ -231,7 +229,6 @@ function modifier_mount_movement_motion_controller:UpdateHorizontalMotion( me, d
 	if flMaxSpeed <= 0 and self.max_speed > 0 then
 		self:GetHero():RemoveModifierByName( "modifier_mounted" )
 		self:Destroy()
-		print("Max speed is zero")
 		return
 	end
 
@@ -257,7 +254,6 @@ function modifier_mount_movement_motion_controller:UpdateHorizontalMotion( me, d
 
 	-- Check to despawn mount
 	if self.flCurrentSpeed <= 0 and not bHeroIsRiding then
-		print("despawn hero")
 		self:Destroy()
 		return
 	end
@@ -316,7 +312,6 @@ function modifier_mount_movement_motion_controller:UpdateHorizontalMotion( me, d
 	if not GridNav:CanFindPath(GetClearSpaceForUnit(me, checkpointPos), posToVerify) then
 		canContinueMoving = false
 		self.forceCanMoving = false
-		print("brak pozycji!")
 	end
 
 	if bHeroIsRiding and not canContinueMoving then

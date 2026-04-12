@@ -61,7 +61,6 @@ end
 
 function TableFindKey( table, val )
 	if table == nil then
-		print( "nil" )
 		return nil
 	end
 
@@ -106,7 +105,6 @@ function CountdownTimer()
 end
 
 function SetTimer( cmdName, time )
-    print( "Set the timer to: " .. time )
     nCOUNTDOWNTIMER = time
 end
 

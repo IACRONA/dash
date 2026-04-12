@@ -278,7 +278,6 @@ function modifier_mount_movement:MakeDismountRun()
 
 		if self:ApplyHorizontalMotionController() == false then 
 			self:Destroy()
-			print("Failed to apply motion controller")
 			return
 		end
 	

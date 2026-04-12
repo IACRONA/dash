@@ -508,8 +508,6 @@ modifier_item_flag_carrier = class({
 		if self:GetParent() == event.unit then
 			local hAbility = event.ability
 
-			print('dropped by '..hAbility:GetAbilityName())
-
 			if in_array(hAbility:GetAbilityName(), EXCEPTION_ABILITIES) then
 				self:Destroy()
 			end

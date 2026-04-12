@@ -45,3 +45,10 @@
   vertical-align: center;
   margin-bottom: 25px;
 }
+
+.BossLaneEnemy .BossIcon {
+  width: 90px;
+  height: 90px;
+  overflow: clip;
+  border-radius: 8px;
+}

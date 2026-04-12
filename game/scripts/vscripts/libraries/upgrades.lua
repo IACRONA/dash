@@ -158,13 +158,11 @@ end
 
 function Upgrades:QueueSelection(hero, rarity)
 	if not IsValidEntity(hero) then
-		print("[Upgrades] QueueSelection: hero is not valid")
 		return
 	end
 
 	local player_id = hero:GetPlayerOwnerID()
 	if not  PlayerResource:IsValidPlayerID(player_id) then
-		print("[Upgrades] QueueSelection: player_id is not valid:", player_id)
 		return
 	end
 
@@ -285,11 +283,9 @@ function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_tri
 
 	local player = PlayerResource:GetPlayer(player_id)
 	if not IsValidEntity(player) then
-		print("[Upgrades] ERROR: Player is not valid for player_id", player_id)
 		return
 	end
 
-	print("[Upgrades] Sending open_talents_choose_players event to player", player_id)
 	Timers:CreateTimer(function()
 		CustomGameEventManager:Send_ServerToPlayer(player, "open_talents_choose_players", {
 			upgrades = {
@@ -311,7 +307,6 @@ function Upgrades:RollUpgradesOfType(upgrade_type, player_id, rarity, previous_c
 
 	local hero = PlayerResource:GetSelectedHeroEntity(player_id)
 	if not IsValidEntity(hero) then
-		print("[Upgrades] RollUpgradesOfType: hero not valid for player", player_id)
 		return {}
 	end
 
@@ -319,7 +314,6 @@ function Upgrades:RollUpgradesOfType(upgrade_type, player_id, rarity, previous_c
 	-- print("[Upgrades] RollUpgradesOfType: hero_name =", hero_name, "rarity =", rarity, "count =", count)
 
 	if not Upgrades.upgrades_kv[hero_name] then
-		print("[Upgrades] ERROR: No upgrades loaded for", hero_name)
 		return {}
 	end
 
@@ -332,7 +326,6 @@ function Upgrades:RollUpgradesOfType(upgrade_type, player_id, rarity, previous_c
 			table.insert(pool, upgrade_entry)
 		end
 	end
-	print("[Upgrades] Pool size:", #pool)
 
 	-- transform previous choices into lookup table for filtering
 	local excluded_by_name = {}
@@ -391,7 +384,6 @@ function Upgrades:RollUpgradesOfType(upgrade_type, player_id, rarity, previous_c
 	-- (otherwise means critical error due to insufficient overall upgrades count)
 	-- which means we can just roll extra from them
 	if #upgrades < count and previous_choices then
-		print("[Upgrades] POOL WAS EXHAUSED FOR", player_id, upgrade_type, count - #upgrades)
 		local extra_upgrades = table.random_some(previous_choices, count - #upgrades)
 
 		table.extend(upgrades, extra_upgrades)
@@ -442,13 +434,11 @@ end
 
 function Upgrades:LoadUpgradesData(hero_name)
 	if self.upgrades_kv[hero_name] then
-		print("[Upgrades] LoadUpgradesData: talents already loaded for", hero_name)
 		return
 	end
 	-- print("[Upgrades] LoadUpgradesData: loading talents for", hero_name)
 	self.upgrades_kv[hero_name] = LoadKeyValues("scripts/npc/talents/heroes/" .. hero_name .. ".txt")
 	if not self.upgrades_kv[hero_name] then
-		print("[Upgrades] ERROR: Файл талантов не найден или ошибка парсинга для героя:", hero_name)
 	else
 		local count = 0
 		for ability_name, upgrades in pairs(self.upgrades_kv[hero_name] or {}) do
@@ -465,7 +455,6 @@ function Upgrades:LoadUpgradesData(hero_name)
 					UpgradesUtilities:ParseUpgrade(upgrade_data, upgrade_name, UPGRADE_TYPE.ABILITY, ability_name)
 				end)
 				if not success then
-					print("[Upgrades] ERROR parsing upgrade", upgrade_name, "for", ability_name, ":", err)
 				end
 			end
 		end
@@ -733,7 +722,6 @@ function Upgrades:AddGenericUpgrade(hero, upgrade_name, count)
 
 	if applied_upgrade.max_count and applied_upgrade.count >= applied_upgrade.max_count then
 		Upgrades:DisableUpgrade(player_id, "generic", upgrade_name)
-		print("Disabled", upgrade_name, "from rolling - max count reached", applied_upgrade.count, applied_upgrade.max_count)
 	end
 
 	Upgrades:AddGenericToSummons(hero, upgrade_name, new_count)

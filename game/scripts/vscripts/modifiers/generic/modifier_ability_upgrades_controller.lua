@@ -65,7 +65,6 @@ function modifier_ability_upgrades_controller:OnRefresh()
 	self.parent = self.parent or self:GetParent()
 
 	if not self.parent or self.parent:IsNull() then
-		print("[Upgrades Controller] ERROR: parent is null in OnRefresh")
 		return
 	end
 
@@ -75,9 +74,6 @@ function modifier_ability_upgrades_controller:OnRefresh()
 	-- Update upgrades data from CustomNetTables on client
 	if not IsServer() then
 		self.parent.upgrades = CustomNetTables:GetTableValue("ability_upgrades", tostring(self.source_player_id)) or {}
-		local count = 0
-		for _ in pairs(self.parent.upgrades) do count = count + 1 end
-		print("[Upgrades Controller] Client refresh: loaded", count, "abilities from CustomNetTables for player", self.source_player_id)
 		return
 	end
 
