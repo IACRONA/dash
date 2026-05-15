@@ -45,6 +45,9 @@ function modifier_crystal_maiden_ice_elemental:OnAbilityFullyCast(event)
 	end)
 	local modifierDeath = parent.elemental:AddNewModifier(parent.elemental, nil, "modifier_on_death", {})
 	modifierDeath.CallbackOnDeath = function()
+		if parent.elemental and parent.elemental.timer then
+			Timers:RemoveTimer(parent.elemental.timer)
+		end
 		parent.elemental = nil
 	end
 

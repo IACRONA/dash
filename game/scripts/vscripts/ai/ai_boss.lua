@@ -6,10 +6,41 @@ function Spawn( entityKeyValues )
 	if thisEntity == nil then
 		return
 	end
- 
- 	agroRadius = 800
- 	
- 	thisEntity:SetContextThink( "BossThink", BossThink, 1 )
+
+	agroRadius = 800
+
+	thisEntity:SetContextThink( "BossThink", BossThink, 1 )
+
+	local REGEN_MULTIPLIER = 10
+	local REGEN_INTERVAL   = 1.0
+	thisEntity:SetContextThink("BossRegenThink", function()
+		if not thisEntity or thisEntity:IsNull() or not thisEntity:IsAlive() then return nil end
+		if GameRules:IsGamePaused() then return REGEN_INTERVAL end
+
+		local inCombat = thisEntity:GetAttackTarget() ~= nil
+		if not inCombat then
+			local enemies = FindUnitsInRadius(
+				thisEntity:GetTeamNumber(),
+				thisEntity:GetAbsOrigin(),
+				nil,
+				agroRadius,
+				DOTA_UNIT_TARGET_TEAM_ENEMY,
+				DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+				DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
+				FIND_CLOSEST,
+				false
+			)
+			inCombat = #enemies > 0
+		end
+
+		local extraRegen = inCombat and 0 or (thisEntity:GetBaseHealthRegen() * (REGEN_MULTIPLIER - 1))
+		if extraRegen > 0 then
+			local newHp = math.min(thisEntity:GetHealth() + extraRegen * REGEN_INTERVAL, thisEntity:GetMaxHealth())
+			thisEntity:SetHealth(newHp)
+		end
+
+		return REGEN_INTERVAL
+	end, REGEN_INTERVAL)
 end
 
 function BossThink()

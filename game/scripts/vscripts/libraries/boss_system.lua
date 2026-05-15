@@ -59,9 +59,18 @@ function BossSystem:OnEntityKilled(killedUnit, killerEntity)
 			return
 		end
 		respawnTeam = killerTeam
+
+		-- Запоминаем домашнюю точку и вектор поворота оригинального босса,
+		-- чтобы после смерти линейного босса OnDeath мог возродить его дома.
+		BossSystem.home_positions = BossSystem.home_positions or {}
+		BossSystem.home_positions[unitName] = {
+			pos = killedUnit.respoint,
+			fw  = killedUnit.fw,
+		}
 	elseif deadTeam == DOTA_TEAM_GOODGUYS or deadTeam == DOTA_TEAM_BADGUYS then
-		-- Умер уже «линейный» босс — та же команда получает нового через цикл.
-		respawnTeam = deadTeam
+		-- Умер линейный босс — стандартный OnDeath возродит его дома.
+		-- Цикл линейного пуша НЕ повторяется.
+		return
 	else
 		return
 	end
@@ -411,6 +420,45 @@ function BossSystem:UpdateLaneProgress(boss)
 end
 
 -- ---------------------------------------------------------------------------
+-- Реген вне боя: если никого нет в радиусе агро — реген x10, иначе обычный.
+-- ---------------------------------------------------------------------------
+local BOSS_REGEN_INTERVAL   = 1.0
+local BOSS_REGEN_MULTIPLIER = 10
+local BOSS_AGRO_RADIUS      = 800
+
+function BossSystem:StartRegenThink(boss)
+	boss:SetContextThink("BossSystem_RegenThink", function()
+		if not boss or boss:IsNull() or not boss:IsAlive() then return nil end
+		if GameRules:IsGamePaused() then return BOSS_REGEN_INTERVAL end
+
+		local inCombat = boss:GetAttackTarget() ~= nil
+		if not inCombat then
+			local enemies = FindUnitsInRadius(
+				boss:GetTeamNumber(),
+				boss:GetAbsOrigin(),
+				nil,
+				BOSS_AGRO_RADIUS,
+				DOTA_UNIT_TARGET_TEAM_ENEMY,
+				DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+				DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
+				FIND_CLOSEST,
+				false
+			)
+			inCombat = #enemies > 0
+		end
+
+		local baseRegen = boss:GetBaseHealthRegen()
+		local extraRegen = inCombat and 0 or (baseRegen * (BOSS_REGEN_MULTIPLIER - 1))
+		if extraRegen > 0 then
+			local newHp = math.min(boss:GetHealth() + extraRegen * BOSS_REGEN_INTERVAL, boss:GetMaxHealth())
+			boss:SetHealth(newHp)
+		end
+
+		return BOSS_REGEN_INTERVAL
+	end, BOSS_REGEN_INTERVAL)
+end
+
+-- ---------------------------------------------------------------------------
 -- Непосредственный спавн линейного босса.
 -- ---------------------------------------------------------------------------
 function BossSystem:SpawnLaneBoss(unitName, team)
@@ -423,14 +471,17 @@ function BossSystem:SpawnLaneBoss(unitName, team)
 	local boss = CreateUnitByName(unitName, spawnPos, true, nil, nil, team)
 	if not boss or boss:IsNull() then return end
 
-	-- Это линейный босс: не нейтрал, после смерти не авто-респавнится
-	-- (цикл управляется нашим OnEntityKilled).
+	-- Это линейный босс: после смерти OnDeath возродит его дома штатно.
 	boss:SetUnitCanRespawn(false)
 	boss.is_lane_boss = true
-	-- Блокируем стандартный респавн в modifier_ability_boss:OnDeath.
-	-- OnDeath проверяет countDead < deathTimes (=4). Ставим counter >= 4,
-	-- чтобы проверка не прошла и дубликат не появился.
-	boss.counter = 99
+
+	-- Подставляем домашнюю точку и вектор, чтобы OnDeath (ability_boss)
+	-- возродил босса именно дома, а не на точке лейна.
+	local home = BossSystem.home_positions and BossSystem.home_positions[unitName]
+	if home then
+		boss.respoint = home.pos
+		boss.fw = home.fw
+	end
 
 	-- ВАЖНО: отключаем стандартный AI босса (ai_boss.lua / BossThink).
 	-- Он каждые 0.25 сек выдаёт RetreatHome() → ордер на respoint (0,0),
@@ -454,6 +505,9 @@ function BossSystem:SpawnLaneBoss(unitName, team)
 
 	-- Сразу выдаём очередь по всем waypoints.
 	BossSystem:IssueLaneQueue(boss)
+
+	-- Реген вне боя.
+	BossSystem:StartRegenThink(boss)
 
 	-- Periodic think: каждую секунду продвигаем индекс / чиним застревания.
 	boss:SetContextThink("BossSystem_LanePushThink", function()

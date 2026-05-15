@@ -1,5 +1,14 @@
 <!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
 {
+	Soldier.Scream = {
+		type = "dota_update_default"
+		volume = 1.000000
+		pitch = 1.000000
+		soundlevel = 90.0
+		vsnd_files = [
+			"sounds/spells/scream solidier.vsnd",
+		]
+	}
 	Flag.Stolen.Good = {
 		type = "dota_update_vo_switch"
 		volume = 1.000000
@@ -22,7 +31,7 @@
 	}
     Flag.NewAbility = {
 		type = "dota_update_vo_switch"
-		volume = 3.000000
+		volume = 1.000000
 		pitch = 1.000000
 		vsnd_files = [
 			"sounds/announcer/ws_new_ability.vsnd",
@@ -80,7 +89,7 @@
 	}
 	Flag.Return.Bad = {
 		type = "dota_update_vo_switch"
-		volume = 0.8
+		volume = 1.000000
 		pitch = 1.000000
 		vsnd_duration = 7.0
 		limiter_on = 0
@@ -90,7 +99,7 @@
 	}
 	Flag.Drop.Self = {
 		type = "dota_update_vo_switch"
-		volume = 2.5
+		volume = 1.5
 		pitch = 1.000000
 		vsnd_duration = 7.0
 		limiter_on = 0
@@ -110,7 +119,7 @@
 	}
 	Flag.Drop.Bad = {
 		type = "dota_update_vo_switch"
-		volume = 2.000000
+		volume = 1.000000
 		pitch = 1.000000
 		vsnd_duration = 7.0
 		limiter_on = 0
@@ -131,10 +140,10 @@
 		block_distance = 600.0
 		vsnd_files = "sounds/weapons/hero/vengeful_spirit/wave_of_terror.vsnd"
 	}
-	"BucketSoldier.Fear" = 
+	"BucketSoldier.Fear" =
 	{
 		type = "dota_update_default"
-		volume = 1.0
+		volume = 1.5
 		pitch = 1.0
 		soundlevel = 84.0
 		mixgroup = "Weapons"
@@ -151,7 +160,7 @@
 	"Creature.StartCast" = 
 	{
 		type = "dota_update_default"
-		volume = 0.0
+		volume = 1
 		pitch_rand_min = -0.05
 		pitch_rand_max = 0.05
 		pitch = 0.7
@@ -1070,7 +1079,87 @@
         event_type = "1.000000"
         vsnd_duration = 1.368000
     }
- 
+
+	Riki.StunStrike.Cast =
+	{
+        type = "dota_src1_3d"
+        vsnd_files =
+        [
+            "sounds/heroes/riki/stun.vsnd",
+        ]
+        volume = "2.250000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "95.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+	}
+
+	Riki.SecondLife.Cast =
+	{
+        type = "dota_src1_3d"
+        vsnd_files =
+        [
+            "sounds/heroes/riki/plash.vsnd",
+        ]
+        volume = "2.250000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "95.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+	}
+
+	Riki.VenousStrike.Cast =
+	{
+        type = "dota_src1_3d"
+        vsnd_files =
+        [
+            "sounds/heroes/riki/garrota.vsnd",
+        ]
+        volume = "2.250000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "95.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+	}
+
+	Riki.SleepingDart.Throw =
+	{
+        type = "dota_src1_3d"
+        vsnd_files =
+        [
+            "sounds/heroes/riki/dart_throw.vsnd",
+        ]
+        volume = "2.250000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "95.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+	}
+
+	Riki.SecondLife.Save =
+	{
+        type = "dota_src1_3d"
+        vsnd_files =
+        [
+            "sounds/heroes/riki/second_life_save.vsnd",
+        ]
+        volume = "2.250000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "95.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+	}
+
 }
- 
+
  

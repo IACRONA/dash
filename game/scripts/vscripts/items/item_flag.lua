@@ -93,8 +93,8 @@ local FlagReturnCountdown = class{
 		self.nSpawnTime = GameRules:GetGameTime()
 		self.nLastThink = self.nSpawnTime
 
-		self.nViewer1 = AddFOWViewer(DOTA_TEAM_GOODGUYS, self.vPos, self.nRadius + 32, 99999, false)
-		self.nViewer2 = AddFOWViewer(DOTA_TEAM_BADGUYS, self.vPos, self.nRadius + 32, 99999, false)
+		self.nViewer1 = AddFOWViewer(self.nTeam, self.vPos, self.nRadius + 32, 99999, false)
+		self.nViewer2 = nil
 
 		self:CreateTimerParticle()
 
@@ -113,8 +113,10 @@ local FlagReturnCountdown = class{
 	
 	Destroy = function(self)
 		if not self.bNull then
-			RemoveFOWViewer(DOTA_TEAM_GOODGUYS, self.nViewer1)
-			RemoveFOWViewer(DOTA_TEAM_BADGUYS, self.nViewer2)
+			RemoveFOWViewer(self.nTeam, self.nViewer1)
+			if self.nViewer2 then
+				RemoveFOWViewer(GetOppositeTeam(self.nTeam), self.nViewer2)
+			end
 			self:DestroyTimerParticle()
 			-- ОПТИМИЗАЦИЯ: Очищаем таймер для предотвращения утечки памяти
 			if self.timerID then
@@ -349,8 +351,7 @@ modifier_item_flag_carrier = class({
     OnCreated = function(self, keys)
 		if IsClient() then return end
 
-		-- ОПТИМИЗАЦИЯ FPS: Флаги используются только на карте warsong
-		if GetMapName() ~= "warsong" then
+		if GetMapName() ~= "warsong" and GetMapName() ~= "dash" then
 			self:Destroy()
 			return
 		end
@@ -441,26 +442,38 @@ modifier_item_flag_carrier = class({
 
 		if self.bDelivered then
 			local nTeam = self.carrier:GetTeam()
-            
-			DoWithAllPlayers(function(player, hero)
-				if not hero then return end
-				if hero:GetTeamNumber() == nTeam then
-					Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
-				end
-			end)
-			GameRules.AddonTemplate:IncrementFlags(nTeam)
-			GameRules.AddonTemplate:RespawnFlagForTeam(self.nOwnerTeam, nil, nil, true)
-			GameRules.AddonTemplate:IncrementCurrencyPlayer(self.carrier:GetPlayerOwner())
 
-            if GameRules.AddonTemplate.player_flags_count[self.carrier:GetPlayerOwnerID()] == nil then
-                GameRules.AddonTemplate.player_flags_count[self.carrier:GetPlayerOwnerID()] = 1
-            else
-                GameRules.AddonTemplate.player_flags_count[self.carrier:GetPlayerOwnerID()] = GameRules.AddonTemplate.player_flags_count[self.carrier:GetPlayerOwnerID()] + 1
-            end
+			if GetMapName() == "dash" then
+				DoWithAllPlayers(function(player, hero)
+					if not hero then return end
+					if hero:GetTeamNumber() == nTeam then
+						Upgrades:QueueSelection(hero, UPGRADE_RARITY_EPIC)
+					end
+				end)
+			else
+				DoWithAllPlayers(function(player, hero)
+					if not hero then return end
+					if hero:GetTeamNumber() == nTeam then
+						Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
+					end
+				end)
+				GameRules.AddonTemplate:IncrementFlags(nTeam)
+				GameRules.AddonTemplate:IncrementCurrencyPlayer(self.carrier:GetPlayerOwner())
+
+				if GameRules.AddonTemplate.player_flags_count[self.carrier:GetPlayerOwnerID()] == nil then
+					GameRules.AddonTemplate.player_flags_count[self.carrier:GetPlayerOwnerID()] = 1
+				else
+					GameRules.AddonTemplate.player_flags_count[self.carrier:GetPlayerOwnerID()] = GameRules.AddonTemplate.player_flags_count[self.carrier:GetPlayerOwnerID()] + 1
+				end
+			end
+
+			if GetMapName() ~= "dash" then
+				GameRules.AddonTemplate:RespawnFlagForTeam(self.nOwnerTeam, nil, nil, true)
+			end
 
 			local vfx = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_commander_duel_victory.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.carrier)
 			ParticleManager:DestroyParticle(vfx, false)
-			ParticleManager:ReleaseParticleIndex(vfx) -- ФИКС УТЕЧКИ: Освобождение индекса частицы
+			ParticleManager:ReleaseParticleIndex(vfx)
 
 			GameRules.AddonTemplate:PlaySoundForTeam('Flag.Deliver.Bad', self.nOwnerTeam)
 			GameRules.AddonTemplate:PlaySoundForTeam('Flag.Deliver.Good', nTeam)

@@ -1,4 +1,4 @@
-"lang"
+﻿"lang"
 {
     "Language"		"Russian"
     "Tokens"
@@ -242,6 +242,56 @@
     "modifier_sphere_shield_all_description"                                               "Универсальный щит на 550 "
 
     // Описание судеб
+    "DOTA_Tooltip_ability_fate_defender"             "Defender"
+    "DOTA_Tooltip_ability_fate_defender_Description" "При получении урона вы получаете шанс обрести силу светового щита бога Азалии."
+    "DOTA_Tooltip_ability_fate_defender_reflect_chance"        "ШАНС ОТРАЗИТЬ СПОСОБНОСТЬ:"
+    "DOTA_Tooltip_ability_fate_defender_defense_chance"        "ШАНС ЭФФЕКТА ЗАЩИТЫ:"
+    "DOTA_Tooltip_ability_fate_defender_magic_resist"          "МАГИЧЕСКОЕ СОПРОТИВЛЕНИЕ:"
+    "DOTA_Tooltip_ability_fate_defender_bonus_armor"           "ДОПОЛНИТЕЛЬНАЯ БРОНЯ:"
+    "DOTA_Tooltip_ability_fate_defender_hp_regen_increase"     "УВЕЛИЧЕНИЕ ВОССТАНОВЛЕНИЯ ЗДОРОВЬЯ:"
+    "DOTA_Tooltip_ability_fate_defender_defense_duration"      "ДЛИТЕЛЬНОСТЬ ЭФФЕКТА ЗАЩИТЫ:"
+    "DOTA_Tooltip_ability_fate_defender_shield_chance"         "ШАНС ПОЛУЧИТЬ СВЕТОВОЙ ЩИТ:"
+    "DOTA_Tooltip_ability_fate_defender_damage_block"          "БЛОКИРОВАНИЕ УРОНА:"
+    "DOTA_Tooltip_ability_fate_defender_shield_explode_radius" "РАДИУС ВЗРЫВА ЩИТА:"
+    "DOTA_Tooltip_ability_fate_defender_stun_duration"         "ДЛИТЕЛЬНОСТЬ ОБЕЗДВИЖИВАНИЯ:"
+    "DOTA_Tooltip_ability_fate_defender_shield_duration"       "ДЛИТЕЛЬНОСТЬ ЩИТА:"
+
+    "DOTA_Tooltip_ability_fate_immortal"             "Immortal"
+    "DOTA_Tooltip_ability_fate_immortal_Description" "Аид ваш старый друг и он прощает вам смерть, поэтому вы получаете шанс вернуться к жизни, но только если принесёте другие души вместо своей. Также он дарует способность взорваться после смерти и попытаться забрать убившие вас души."
+    "DOTA_Tooltip_ability_fate_immortal_rebirth_chance"       "ШАНС ПЕРЕРОЖДЕНИЯ:"
+    "DOTA_Tooltip_ability_fate_immortal_bkb_explosion_chance" "ШАНС БКБ И ВЗРЫВА ПОСЛЕ СМЕРТИ:"
+    "DOTA_Tooltip_ability_fate_immortal_bkb_duration"         "ДЛИТЕЛЬНОСТЬ БКБ:"
+    "DOTA_Tooltip_ability_fate_immortal_explosion_damage"     "УРОН ВЗРЫВА:"
+
+    "DOTA_Tooltip_ability_fate_murder"               "Murder"
+    "DOTA_Tooltip_ability_fate_murder_Description"   "Вы превращаетесь в настоящего убийцу героев, теперь это ваша судьба. Ваша концентрация на максимуме — вы получаете шанс критического урона заклинаний и урона с руки."
+    "DOTA_Tooltip_ability_fate_murder_crit_x2_chance" "ШАНС X2 УРОНА:"
+    "DOTA_Tooltip_ability_fate_murder_crit_x3_chance" "ШАНС X3 УРОНА:"
+    "DOTA_Tooltip_ability_fate_murder_crit_x4_chance" "ШАНС X4 УРОНА:"
+    "DOTA_Tooltip_ability_fate_murder_refresh_chance" "ШАНС ПЕРЕЗАРЯДИТЬ СПОСОБНОСТЬ:"
+
+    "DOTA_Tooltip_ability_fate_one_punchman"             "One Punchman"
+    "DOTA_Tooltip_ability_fate_one_punchman_Description" "Один удар и смерть — это ваш девиз по жизни. Вы получаете шанс убить любое существо одним ударом и шанс высосать жизненную энергию врага, преобразуя её в скорость атаки и вампиризм."
+    "DOTA_Tooltip_ability_fate_one_punchman_instakill_chance"   "ШАНС МОМЕНТАЛЬНОГО УБИЙСТВА:"
+    "DOTA_Tooltip_ability_fate_one_punchman_drain_chance"       "ШАНС ВЫСОСАТЬ ЭНЕРГИЮ:"
+    "DOTA_Tooltip_ability_fate_one_punchman_lifesteal"          "ВАМПИРИЗМ:"
+    "DOTA_Tooltip_ability_fate_one_punchman_bonus_attack_speed" "ДОП. СКОРОСТЬ АТАКИ:"
+    "DOTA_Tooltip_ability_fate_one_punchman_buff_duration"      "ДЛИТЕЛЬНОСТЬ БАФФА:"
+
+    "DOTA_Tooltip_ability_fate_himaron"             "Demon"
+    "DOTA_Tooltip_ability_fate_himaron_Description" "У вас есть шанс превратиться в девятьсотлетнего демона Химарона, который подарит вам свои силы и возможность пронзать врагов демоническим мечом. Плата за это — дополнительный урон по себе."
+    "DOTA_Tooltip_ability_fate_himaron_transform_chance"      "ШАНС ПОЛУЧИТЬ ХИМАРОН:"
+    "DOTA_Tooltip_ability_fate_himaron_bonus_damage"          "ДОП. УРОН:"
+    "DOTA_Tooltip_ability_fate_himaron_bonus_move_speed"      "ДОП. СКОРОСТЬ ПЕРЕДВИЖЕНИЯ:"
+    "DOTA_Tooltip_ability_fate_himaron_cooldown_reduction"    "УМЕНЬШЕНИЕ ПЕРЕЗАРЯДКИ:"
+    "DOTA_Tooltip_ability_fate_himaron_spell_amp"             "УРОН СПОСОБНОСТЕЙ:"
+    "DOTA_Tooltip_ability_fate_himaron_pure_damage_amp"       "УСИЛЕНИЕ ЧИСТОГО УРОНА:"
+    "DOTA_Tooltip_ability_fate_himaron_transform_duration"    "ДЛИТЕЛЬНОСТЬ ХИМАРОН:"
+    "DOTA_Tooltip_ability_fate_himaron_incoming_damage_amp"   "УСИЛЕНИЕ ВХОДЯЩЕГО УРОНА:"
+    "DOTA_Tooltip_ability_fate_himaron_sword_chance"          "ШАНС ВЫПУСТИТЬ МЕЧ:"
+    "DOTA_Tooltip_ability_fate_himaron_sword_damage_min"      "МИНИМАЛЬНЫЙ УРОН МЕЧА:"
+    "DOTA_Tooltip_ability_fate_himaron_sword_damage_max"      "МАКСИМАЛЬНЫЙ УРОН МЕЧА:"
+
     "fate_defender"                     "Defender"
     "fate_defender_description"                     "При получении урона, вы получайте шанс обрести силу светового щита бога Азалии"
     "fate_defender_tooltip"         "Defender<br><br>При получении урона, вы получайте шанс обрести силу светового щита бога Азалии.<br><br>Шанс отразить способность: 8%/11%/18%<br>Шанс получить эффект защиты: 8%/11%/18%<br>Магическое сопротивление: 25%<br>Дополнительная броня: 55<br>Увеличение восстановления здоровья: 30%<br>Длительность эффекта защиты: 20 секунд<br>Шанс получить световой щит: 15%/18%/23%<br>Блокирование урона: 25%<br>Радиус взрыва щита: 500<br>Длительность обездвижевания: 2 сек.<br>Длительность щита: 3/4/6 сек."
@@ -305,6 +355,7 @@
     "warsong_hints_capture_flag"    "Захватите флаг и принести к своему, с флагом нельзя телепортироваться, блинкатся или совершать любые мувы на большую дистанцию."
     "warsong_hints_random_spells"   "Рандомные способности и ультимейты для героя, не забывайте сохранить ваши настройки в Keybinds."
     "warsong_hints_random_fates"    "Выберите одну из пяти уникальных судеб для вашего героя, но учтите у вас есть всего три уровня прокачки."
+    "warsong_hints_boss_join"        "Если вы убьёте босса, то он примкнёт на вашу сторону."
     "warsong_hints_dash_gameplay"   "В Dash есть три классических линий, для того что бы снести трон для начала нужно сломать боковые линии."
     "warsong_hints_dash_start"      "Каждые 5 минут вы будете получите на выбор дополнительные ультимейты, каждые 7 выбор судьбы и каждые 12 доп скил."
 
@@ -1701,7 +1752,52 @@
     "DOTA_Tooltip_ability_item_ice_frog_Lore"								"Этот юнит имеет бонус скорости движения."
     "DOTA_Tooltip_ability_item_peppermint_Lore"							"See no evil. Feel no evil."
     "DOTA_Tooltip_ability_item_peppermint_Note0"								"Speak softly love."
+    // Рики — скрытый бар способностей
+    "DOTA_Tooltip_ability_riki_sleeping_dart"                       "Усыпляющий Дротик"
+    "DOTA_Tooltip_ability_riki_sleeping_dart_Description"           "Рики бросает отравленный дротик из тени. Цель погружается в глубокий сон — она не может двигаться или действовать. Урона не наносит.\n \nКаждое повторное усыпление одной и той же цели длится на 50%% меньше. Эффект уменьшения сбрасывается через 40 секунд после последнего попадания.\n \nЛюбой урон от другого источника прерывает сон.\nНе снимается диспелом."
+    "DOTA_Tooltip_ability_riki_sleeping_dart_Lore"                  "Яд, собранный в непроглядных джунглях, действует тихо и неотвратимо."
+    "DOTA_Tooltip_ability_riki_sleeping_dart_sleep_duration"        "ДЛИТЕЛЬНОСТЬ СНА:"
+
+    "DOTA_Tooltip_ability_riki_stun_strike"                         "Смертельный Удар"
+    "DOTA_Tooltip_ability_riki_stun_strike_Description"             "Рики обрушивается на врага в ближнем бою смертоносным ударом, оглушая цель. В момент удара он бьёт с руки, нанося критический физический урон в процентах от своей атаки.\n \nСнимается сильным диспелом."
+    "DOTA_Tooltip_ability_riki_stun_strike_Lore"                    "Удар наносится раньше, чем враг успевает заметить движение."
+    "DOTA_Tooltip_ability_riki_stun_strike_stun_duration"           "ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ:"
+    "DOTA_Tooltip_ability_riki_stun_strike_bonus_attack_damage_pct" "ДОП. УРОН С РУКИ (% ОТ АТАКИ):"
+
+    "DOTA_Tooltip_ability_riki_venous_strike"                       "Смертельный Порез"
+    "DOTA_Tooltip_ability_riki_venous_strike_Description"           "Рики наносит глубокий порез в ближнем бою. Рана лишает врага способности колдовать и вызывает кровотечение, постепенно иссушающее его жизненные силы.\n \nСнимается диспелом."
+    "DOTA_Tooltip_ability_riki_venous_strike_Lore"                  "Один точный порез — и враг уже не хозяин своей магии."
+    "DOTA_Tooltip_ability_riki_venous_strike_silence_duration"      "ДЛИТЕЛЬНОСТЬ НЕМОТЫ:"
+    "DOTA_Tooltip_ability_riki_venous_strike_bleed_dps"             "КРОВОТЕЧЕНИЕ (урон/сек):"
+    "DOTA_Tooltip_ability_riki_venous_strike_bleed_duration"        "ДЛИТЕЛЬНОСТЬ КРОВОТЕЧЕНИЯ:"
+
+    "DOTA_Tooltip_ability_special_bonus_unique_riki_second_life_unlock"   "Вторая Жизнь: Защита от Смерти"
+    "DOTA_Tooltip_ability_special_bonus_unique_riki_second_life_unlock_Description"  "Активирует пассивный эффект во Второй Жизни: при получении смертельного урона Рики не умирает — остаётся с 1 ОЗ. Перезарядка пассивного спаса 60 секунд."
+
+    "DOTA_Tooltip_ability_riki_second_life"                         "Вторая Жизнь"
+    "DOTA_Tooltip_ability_riki_second_life_Description"             "Рики мгновенно сбрасывает все яды, замедления, горение и проклятия. На время становится почти неуязвим к магии и ускользает от каждого второго удара.\n \nПерезарядка: 60 секунд.\n \nПри взятом таланте 25 уровня — также получает пассивный спас: при смертельном уроне восстаёт с 50 ОЗ и получает кратковременную неуязвимость."
+    "DOTA_Tooltip_ability_riki_second_life_Lore"                    "Тьма — его броня. Тень — его спасение."
+    "DOTA_Tooltip_ability_riki_second_life_duration"                "ДЛИТЕЛЬНОСТЬ:"
+    "DOTA_Tooltip_ability_riki_second_life_magic_resist_bonus"      "СОПРОТИВЛЕНИЕ МАГИИ:"
+    "DOTA_Tooltip_ability_riki_second_life_miss_chance"             "ШАНС ПРОМАХА ПО РИКИ:"
+
+    "DOTA_Tooltip_modifier_riki_sleeping_dart"                      "Сон"
+    "DOTA_Tooltip_modifier_riki_sleeping_dart_description"          "Цель спит и не может действовать. Любой урон прерывает сон."
+    "DOTA_Tooltip_modifier_riki_venous_silence"                     "Немота"
+    "DOTA_Tooltip_modifier_riki_venous_silence_description"         "Не может использовать способности."
+    "DOTA_Tooltip_modifier_riki_venous_bleed"                       "Кровотечение"
+    "DOTA_Tooltip_modifier_riki_venous_bleed_description"           "Теряет здоровье каждую секунду."
+    "DOTA_Tooltip_modifier_riki_second_life"                        "Вторая Жизнь"
+    "DOTA_Tooltip_modifier_riki_second_life_description"            "Сопротивление магии +90%. Шанс промаха по герою 50%."
+
+    "DOTA_Tooltip_modifier_riki_second_life_passive"                "Защита от Смерти"
+    "DOTA_Tooltip_modifier_riki_second_life_passive_description"    "Пассивная защита: при смертельном уроне Рики восстаёт с 50 ОЗ и получает кратковременную неуязвимость. Перезарядка 60 секунд."
+
+    "DOTA_Tooltip_modifier_riki_second_life_invuln"                 "Восстание из Тени"
+    "DOTA_Tooltip_modifier_riki_second_life_invuln_description"     "Неуязвимость после Второй Жизни."
+
     "DOTA_Tooltip_modifier_ice_frog_combined_Effect"			"Невозмутимость"
     }
 }
  
+

@@ -1,0 +1,6 @@
+<!-- DOTA Sound Events Manifest -->
+"dota_sound_events_manifest"
+{
+	"precache_file"		"soundevents/game_sounds_custom_announcer.vsndevts"
+	"precache_file"		"soundevents/game_sounds_riki.vsndevts"
+}

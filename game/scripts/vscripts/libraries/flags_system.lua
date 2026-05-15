@@ -48,6 +48,7 @@ function CAddonWarsong:RespawnFlagForTeam(nTeam, vPos, options, soldier)
 end
 
 function CAddonWarsong:RespawnFlagBoth(vPos, options)
+
 	local vSpawnPos = self.FlagPositionBoth
 
 	if vPos ~= nil then
@@ -71,21 +72,15 @@ function CAddonWarsong:RespawnFlagBoth(vPos, options)
 		hDrop = CreateItemOnPositionSync(vDestination, hItem)
 	end
 	hDrop:SetForwardVector(Vector(0,-1,0))
-	hDrop:SetModelScale(GetFlagScale(nTeam))
 
 	local hIcon = self.flagIconUnits[DOTA_TEAM_BADGUYS]
 	if hIcon then
 		hIcon:SetAbsOrigin(vDestination)
 	end
 
-	local hIcon = self.flagIconUnits[DOTA_TEAM_GOODGUYS]
-	if hIcon then
-		hIcon:SetAbsOrigin(vDestination)
-	end
-
-	hIcon = self.flagIconpointUnits[nTeam]
-	if hIcon then
-		SetIconVisibe(hIcon, vPos)
+	local hIcon2 = self.flagIconUnits[DOTA_TEAM_GOODGUYS]
+	if hIcon2 then
+		hIcon2:SetAbsOrigin(vDestination)
 	end
 
 	return hItem
@@ -99,24 +94,24 @@ end
 
 function CAddonWarsong:RemindClients_FlagsRemaining()
 	CustomGameEventManager:Send_ServerToAllClients('update_flags_count', {
-		radiant = self.nWinConditionGoal - self.nCapturedFlagsCount[DOTA_TEAM_GOODGUYS],
-		dire = self.nWinConditionGoal - self.nCapturedFlagsCount[DOTA_TEAM_BADGUYS]
+		radiant = self.nWinConditionGoal - (self.nCapturedFlagsCount[DOTA_TEAM_GOODGUYS] or 0),
+		dire = self.nWinConditionGoal - (self.nCapturedFlagsCount[DOTA_TEAM_BADGUYS] or 0)
 	})
 end
 
 
 function CAddonWarsong:DifferenceFlags()
-	local flagRadiant = self.nCapturedFlagsCount[DOTA_TEAM_GOODGUYS]
-	local flagDire = self.nCapturedFlagsCount[DOTA_TEAM_BADGUYS]
-	
+	local flagRadiant = self.nCapturedFlagsCount[DOTA_TEAM_GOODGUYS] or 0
+	local flagDire = self.nCapturedFlagsCount[DOTA_TEAM_BADGUYS] or 0
+
 	local leader = flagRadiant > flagDire and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS
 	local loser = leader == DOTA_TEAM_GOODGUYS and DOTA_TEAM_BADGUYS or DOTA_TEAM_GOODGUYS
 
-	local difference = self.nCapturedFlagsCount[leader] - self.nCapturedFlagsCount[loser]
+	local difference = (self.nCapturedFlagsCount[leader] or 0) - (self.nCapturedFlagsCount[loser] or 0)
 	local dataLoser = {place = "last"}
 	local dataLeader = {place = "first", tier = 0}
 
-	if difference >= FLAGS_DIFFERENCE_TIER_1 then 
+	if difference >= FLAGS_DIFFERENCE_TIER_1 then
 		if not self.wasRewardFlagsTier1 or not self.wasRewardFlagsTier1[loser] then
 			self.wasRewardFlagsTier1 = {
 				[leader] = false,
@@ -158,19 +153,19 @@ function CAddonWarsong:DifferenceFlags()
 	-- 		local incomingDamage = LAST_MODIFIER_BALANCE[tier].incoming
 	-- 		local outgoingDamage = LAST_MODIFIER_BALANCE[tier].outgoing
 	-- 		if incomingDamage or outgoingDamage then
-	-- 			hero.balanceModifier:SetStackCount(1) 
+	-- 			hero.balanceModifier:SetStackCount(1)
 	-- 			hero.balanceModifier.incomingDamage = incomingDamage or 0
 	-- 			hero.balanceModifier.outgoingDamage = outgoingDamage or 0
 	-- 		end
  	-- 	else
- 	-- 		hero.balanceModifier:SetStackCount(0) 
-	-- 		hero.balanceModifier.incomingDamage = 0	
+ 	-- 		hero.balanceModifier:SetStackCount(0)
+	-- 		hero.balanceModifier.incomingDamage = 0
 	-- 		hero.balanceModifier.outgoingDamage = 0
 	-- 	end
 	-- end)
 end
 
- 
+
 function CAddonWarsong:PlaySoundForTeam(sSound, nTeam)
 	EmitAnnouncerSoundForTeam(sSound, nTeam)
 end
@@ -187,4 +182,3 @@ end
 function _G.HasFlag(hUnit)
 	return hUnit:HasModifier('modifier_item_flag_carrier') or hUnit:HasModifier('modifier_item_flag_carrier_both')
 end
- 

@@ -291,8 +291,20 @@
 	
 	"npc_dota_hero_riki"
 	{
-		// Кастомные скилы отключены
-		// Добавляем способность управления невидимостью как скрытую
-		// "Ability15"		"riki_invisibility_manager"
+		// Слоты 1-4 (Q/W/E/R) — нормальные способности по умолчанию
+		"Ability1"		"riki_smoke_screen"
+		"Ability2"		"riki_blink_strike"
+		"Ability3"		"riki_tricks_of_the_trade"
+		"Ability4"		"riki_backstab"
+
+		// Слоты 5-8 — стелс способности (менеджер переставляет их в 1-4 при инвизе)
+		"Ability5"		"riki_sleeping_dart"
+		"Ability6"		"riki_stun_strike"
+		"Ability7"		"riki_venous_strike"
+		"Ability8"		"riki_second_life"
+
+		"Ability16"     "special_bonus_unique_riki_second_life_unlock"
+
+		"Ability18"		"riki_invisibility_manager"
 	}
 }

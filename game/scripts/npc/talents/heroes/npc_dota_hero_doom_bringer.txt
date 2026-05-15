@@ -1,25 +1,5 @@
 "npc_dota_hero_doom_bringer"
 {
-	"doom_devour_custom"
-	{
-		"cooldown_and_manacost"
-		{
-			"value" "6"
-			"operator" "OP_MULTIPLY"
-			"max_count" "10"
-		}
-		"devour_bonus_gold"
-		{
-			"value" "67"
-			"operator" "OP_ADD"
-			"max_count" "10"
-			"linked_special_values"
-			{
-				"cast_bonus_exp" "30"
-				"cast_bonus_gold" "20"
-			}
-		}
-	}
 	"doom_bringer_scorched_earth"
 	{
 		"cooldown_and_manacost"
@@ -86,6 +66,20 @@
 		"damage"
 		{
 			"value" "14"
+			"operator" "OP_ADD"
+		}
+	}
+	"doom_bringer_devour"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"bonus_gold"
+		{
+			"value" "10"
 			"operator" "OP_ADD"
 		}
 	}

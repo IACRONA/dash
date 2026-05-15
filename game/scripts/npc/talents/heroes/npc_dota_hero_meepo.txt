@@ -57,42 +57,6 @@
 			}
 		}
 	}
-	"meepo_petrify"
-	{
-		"cooldown_and_manacost"
-		{
-			"value" "10"
-			"operator" "OP_MULTIPLY"
-			"max_count" "4"
-		}
-		"hp_restore"
-		{
-			"value" "15"
-			"operator" "OP_ADD"
-			"max_count" "5"
-		}
-	}
-	"meepo_megameepo"
-	{
-		"cooldown_and_manacost"
-		{
-			"value" "10"
-			"operator" "OP_MULTIPLY"
-			"max_count" "6"
-			
-			"linked_abilities"
-			{
-				"meepo_megameepo_fling"
-				{
-					"cooldown_and_manacost"
-					{
-						"value" "10"
-						"operator" "OP_MULTIPLY"
-					}
-				}
-			}
-		}
-	}
 	"meepo_divided_we_stand"
 	{
 		"magic_resist"

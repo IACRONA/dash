@@ -54,7 +54,9 @@ function enigma_house_bolt:OnProjectileHit_ExtraData(target, _,data)
 		end		 
 	end
 
-	if self.target:TriggerSpellAbsorb(self) or self.target:TriggerSpellReflect(self) then return end
+	local absorb = self.target:TriggerSpellAbsorb(self) or self.target:TriggerSpellReflect(self)
+	self.target = nil
+	if absorb then return end
 
 	local damage = self:GetSpecialValueFor("damage") * crtiMultiple
 

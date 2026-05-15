@@ -45,8 +45,10 @@ cursed_knight_belial_pack_modifier_main = cursed_knight_belial_pack_modifier_mai
             if unit:HasModifier("modifier_cursed_knight_curse_of_blood") and unit:HasModifier("modifier_cursed_knight_curse_of_blood_ally_curse") and unit:HasModifier("modifier_cursed_knight_curse_of_cold") then
                 local reflect_damage = keys.damage*self.pct
                 self.cd = 1
-                Timers:CreateTimer(1, function()
+                if self.cd_timer then Timers:RemoveTimer(self.cd_timer) end
+                self.cd_timer = Timers:CreateTimer(1, function()
                     self.cd = 0
+                    self.cd_timer = nil
                 end)
                 ApplyDamage({
                     victim = unit,

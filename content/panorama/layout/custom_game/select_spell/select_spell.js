@@ -207,7 +207,7 @@ function CreateFate(fate_name) {
   let spell_block_icon = $.CreatePanel("Panel", spell_block, "");
   spell_block_icon.AddClass("spell_block_icon_fate");
   spell_block_icon.style.backgroundImage = 'url("file://{images}/custom_game/' + fate_name + '.png")';
-  spell_block_icon.style.backgroundSize = "100%";
+  spell_block_icon.style.backgroundSize = "contain";
  
   let spell_block_text = $.CreatePanel("Label", spell_block, "");
   spell_block_text.AddClass("fate_block_text");
@@ -266,10 +266,11 @@ function CreateFate(fate_name) {
   }
 
   spell_block.SetPanelEvent("onmouseover", function () {
-    $.DispatchEvent("DOTAShowTextTooltip", spell_block, $.Localize("#" + fate_name + "_tooltip"));
+    let lvl = Math.max(1, fate_level);
+    $.DispatchEvent("DOTAShowAbilityTooltipForLevel", spell_block, fate_name, lvl);
   });
   spell_block.SetPanelEvent("onmouseout", function () {
-    $.DispatchEvent("DOTAHideTextTooltip", spell_block);
+    $.DispatchEvent("DOTAHideAbilityTooltip", spell_block);
   });
 }
 

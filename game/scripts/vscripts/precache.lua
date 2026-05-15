@@ -1,5 +1,9 @@
-local particles = 
+local particles =
 {
+    "particles/bane_nightmare.vpcf",
+    "particles/units/heroes/hero_skeletonking/wraith_king_curse_overhead_skull.vpcf",
+    "particles/generic_gameplay/generic_hit_blood.vpcf",
+    "particles/units/heroes/hero_viper/viper_poison_attack.vpcf",
     "particles/overhead_particle/leader_overhead.vpcf",
     "particles/econ/items/tinker/boots_of_travel/teleport_start_bots_ground_flash.vpcf",
     "particles/econ/events/fall_major_2015/teleport_end_fallmjr_2015_ground_flash.vpcf",
@@ -438,6 +442,8 @@ end
 
 return function(context)
     PrecacheEverythingFromKV(context)
+    PrecacheUnitByNameAsync( "npc_dota_radiant_bucket_soldier", function() end )
+    PrecacheUnitByNameAsync( "npc_dota_dire_bucket_soldier", function() end )
     PrecacheEverythingFromTable( context, models )
     for _, p in pairs(particles) do
         PrecacheResource("particle", p, context)

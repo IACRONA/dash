@@ -37,49 +37,6 @@
 			}
 		}
 	}
-	"enchantress_enchant_custom"
-	{
-		"cooldown_and_manacost"
-		{
-			"value" "8"
-			"operator" "OP_MULTIPLY"
-			"linked_abilities"
-			{
-				"enchantress_little_friends"
-				{
-					"cooldown_and_manacost"
-					{
-						"value" "8"
-						"operator" "OP_MULTIPLY"
-					}
-				}
-			}
-		}
-		"enchant_health"
-		{
-			"value" "1000"
-			"operator" "OP_ADD"
-		}
-		"enchant_damage"
-		{
-			"value" "50"
-			"operator" "OP_ADD"
-			"linked_abilities"
-			{
-				"enchantress_little_friends"
-				{
-					"bonus_attack_speed" "50"
-				}
-			}
-		}
-		"bonus_creep_level"
-		{
-			"value"			"0.5"
-
-			"min_rarity"	"rare"
-			"max_count"		"2"
-		}
-	}
 	"enchantress_natures_attendants"
 	{
 		"cooldown_and_manacost"
@@ -112,6 +69,26 @@
 		{
 			"value" "-15"
 			"operator" "OP_ADD"
+		}
+	}
+	"enchantress_enchant"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+			"max_count" "10"
+		}
+		"movement_slow"
+		{
+			"value" "3"
+			"operator" "OP_ADD"
+		}
+		"slow_duration"
+		{
+			"value" "0.3"
+			"operator" "OP_ADD"
+			"max_count" "5"
 		}
 	}
 }

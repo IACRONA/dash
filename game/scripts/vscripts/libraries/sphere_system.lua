@@ -8,7 +8,6 @@ local spheres = {
     "modifier_sphere_magic_resistance",
     "modifier_sphere_miss",
     "modifier_sphere_movespeed",
-    "modifier_sphere_radiance",
     "modifier_sphere_shield_physic",
     "modifier_sphere_shield_magic",
     "modifier_sphere_shield_all",

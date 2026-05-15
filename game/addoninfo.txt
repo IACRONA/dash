@@ -1,12 +1,13 @@
 <!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
 {
+	version = "1.0.1"
 	HideInTools = false
 	IsPlayable = true
 	IsTemplate = false
 	maps = 
 	[
 		"dash",
-		"warsong",
+		"testplayer",
         "portal_duo",
         "portal_trio",
 	]
@@ -29,7 +30,8 @@
 			MaxPlayers = 10
 		},
 		{
-			map = "warsong"
+			map = "testplayer"
+			MaxPlayers = 24
 		},
 		{
 			map = "portal_trio"

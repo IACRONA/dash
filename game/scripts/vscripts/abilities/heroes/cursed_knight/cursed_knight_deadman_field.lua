@@ -28,8 +28,10 @@ function cursed_knight_deadman_field_thinker:OnCreated(event)
     ParticleManager:SetParticleControl(self.particle, 1, Vector(self.radius, self.radius, self.radius))
 end
 function cursed_knight_deadman_field_thinker:OnDestroy()
-    ParticleManager:DestroyParticle(self.particle, false)
-    ParticleManager:ReleaseParticleIndex(self.particle)
+    if self.particle then
+        ParticleManager:DestroyParticle(self.particle, false)
+        ParticleManager:ReleaseParticleIndex(self.particle)
+    end
 end
 function cursed_knight_deadman_field_thinker:IsAura()
 	return true

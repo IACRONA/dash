@@ -29,7 +29,7 @@ function modifier_warsong_fate_defender:OnIntervalThink()
         local caster = self:GetParent()
         for i=#caster.tOldSpells,1,-1 do
             local hSpell = caster.tOldSpells[i]
-            if hSpell:NumModifiersUsingAbility() <= -1 and not hSpell:IsChanneling() then
+            if hSpell:NumModifiersUsingAbility() <= 0 and not hSpell:IsChanneling() then
                 hSpell:RemoveSelf()
                 table.remove(caster.tOldSpells,i)
             end

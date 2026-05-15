@@ -1,0 +1,3 @@
+﻿shops\portal_trio_shops.txt
+shops\warsong_shops.txt
+vscripts\abilities\heroes\riki\README_RIKI_ABILITIES.txt

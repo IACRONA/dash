@@ -45,13 +45,17 @@ function modifier_crystal_maiden_frozen_shield:OnCreated()
 end
 
 function modifier_crystal_maiden_frozen_shield:OnDestroy()
-	ParticleManager:DestroyParticle(self.nfx, false)
+	if self.nfx then
+		ParticleManager:DestroyParticle(self.nfx, false)
+		ParticleManager:ReleaseParticleIndex(self.nfx)
+	end
 
 	if IsClient() then return end
 	local parent = self:GetParent()
 	local ability = self:GetAbility()
 	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_abaddon/abaddon_aphotic_shield_explosion.vpcf", PATTACH_CUSTOMORIGIN, parent)
 	ParticleManager:SetParticleControl(particle, 0, parent:GetAbsOrigin())
+	ParticleManager:ReleaseParticleIndex(particle)
 	EmitSoundOn("ice_barier_absorb", parent)
 	local enemies = FindUnitsInRadius(
 		parent:GetTeamNumber(),

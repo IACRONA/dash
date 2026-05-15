@@ -26,10 +26,10 @@ function modifier_axe_shelter_of_killer:GetModifierOverrideAbilitySpecial( param
  end
 
 function modifier_axe_shelter_of_killer:GetModifierOverrideAbilitySpecialValue( params )
-	local ability = params.ability
+	local paramAbility = params.ability
 	local specialValue = params.ability_special_value
 	local specialLevel = params.ability_special_level
-	local baseValue = ability:GetLevelSpecialValueNoOverride( specialValue, specialLevel )
+	local baseValue = paramAbility:GetLevelSpecialValueNoOverride( specialValue, specialLevel )
 	local ability = self:GetAbility()
 
 	if specialValue == "damage" then 

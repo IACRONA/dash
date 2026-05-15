@@ -1,0 +1,62 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	Riki.SleepingDart.Cast = {
+		type = "dota_update_default"
+		volume = 1.000000
+		pitch = 1.000000
+		soundlevel = 80.0
+		vsnd_files = [
+			"sounds/vo/riki/riki_ability_smokebomb_01.vsnd",
+			"sounds/vo/riki/riki_ability_smokebomb_02.vsnd",
+			"sounds/vo/riki/riki_ability_smokebomb_03.vsnd",
+		]
+	}
+	Riki.SleepingDart.Projectile = {
+		type = "dota_update_default"
+		volume = 0.800000
+		pitch = 1.100000
+		soundlevel = 75.0
+		vsnd_files = [
+			"sounds/spells/riki_blink_strike_throw.vsnd",
+		]
+	}
+	Riki.SleepingDart.Impact = {
+		type = "dota_update_default"
+		volume = 1.000000
+		pitch = 0.900000
+		soundlevel = 80.0
+		vsnd_files = [
+			"sounds/spells/riki_shard_impact.vsnd",
+		]
+	}
+
+	Riki.StunStrike.Cast = {
+		type = "dota_update_default"
+		volume = 1.000000
+		pitch = 1.000000
+		soundlevel = 80.0
+		vsnd_files = [
+			"sounds/heroes/riki/stun.vsnd",
+		]
+	}
+
+	Riki.SecondLife.Cast = {
+		type = "dota_update_default"
+		volume = 1.000000
+		pitch = 1.000000
+		soundlevel = 80.0
+		vsnd_files = [
+			"sounds/heroes/riki/plash.vsnd",
+		]
+	}
+
+	Riki.VenousStrike.Cast = {
+		type = "dota_update_default"
+		volume = 1.000000
+		pitch = 1.000000
+		soundlevel = 80.0
+		vsnd_files = [
+			"sounds/heroes/riki/garrota.vsnd",
+		]
+	}
+}

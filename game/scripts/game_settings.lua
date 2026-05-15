@@ -591,6 +591,9 @@ UPGRADE_DAMAGE = 55
 UPGRADE_HEALTH = 280
 UPGRADE_ARMOR = 1
 
+-- Броня кастомного трона (применяется при старте игры ко всем тронам)
+THRONE_ARMOR = 30
+
 -- Время игры в секундах
 GAME_TIME_CLOCK = 1000
 

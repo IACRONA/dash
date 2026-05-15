@@ -620,7 +620,34 @@
         "ScriptFile"                    "abilities/heroes/riki/riki_invisibility_manager"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
         "MaxLevel"                      "1"
-        "InnateAbility"                 "1"
+    }
+
+    //=================================================================================================================
+    // Riki: Sleeping Dart (Дротик сна — скрытый бар)
+    //=================================================================================================================
+    "riki_sleeping_dart"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/heroes/riki/riki_sleeping_dart"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "riki/riki_sleeping_dart"
+        "AbilityHotkey"                 "Q"
+
+        "AbilityCastPoint"              "0.2"
+        "AbilityCastRange"              "800"
+        "AbilityCooldown"               "20 16 12 10"
+        "AbilityManaCost"               "0"
+
+        "AbilityValues"
+        {
+            "sleep_duration"            "4.0 6.0 7.0 8.0"
+            "damage"                    "50 80 110 140"
+        }
     }
 
     //=================================================================================================================
@@ -638,20 +665,17 @@
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
         "SpellDispellableType"          "SPELL_DISPELLABLE_YES_STRONG"
         "FightRecapLevel"               "1"
-        "AbilityTextureName"            "bounty_hunter_shuriken_toss"
-        
-        // Casting
-        //-------------------------------------------------------------------------------------------------------------
+        "AbilityTextureName"            "riki/riki_stun_strike"
+        "AbilityHotkey"                 "W"
+
         "AbilityCastPoint"              "0.3"
-        "AbilityCastRange"              "600"
+        "AbilityCastRange"              "150"
         
         // Time
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCooldown"               "15 10 10 8"
         
-        // Cost
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "100 150 150 150"
+        "AbilityManaCost"               "0"
         
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -662,10 +686,205 @@
                 "value"                 "1.0 2.0 3.0 3.0"
                 "LinkedSpecialBonus"    "special_bonus_unique_riki_stun_strike_duration"
             }
-            "damage"
+            "bonus_attack_damage_pct"
             {
-                "value"                 "75 125 175 225"
+                "value"                 "50 100 150 200"
             }
         }
     }
+
+    //=================================================================================================================
+    // Riki: Venous Strike — Смертельный Порез (удар + немота + кровотечение)
+    //=================================================================================================================
+    "riki_venous_strike"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/heroes/riki/riki_venous_strike"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES_STRONG"
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "riki/riki_venous_strike"
+        "AbilityHotkey"                 "E"
+
+        "AbilityCastPoint"              "0.2"
+        "AbilityCastRange"              "150"
+        "AbilityCooldown"               "14 12 10 8"
+        "AbilityManaCost"               "0"
+
+        "AbilityValues"
+        {
+            "silence_duration"          "2.0 2.0 3.0 3.5"
+            "bleed_dps"                 "30 40 50 70"
+            "bleed_duration"            "4.0 4.0 4.0 4.0"
+        }
+    }
+
+    //=================================================================================================================
+    // Riki: Second Life — Вторая Жизнь (очищение + резист + уклонение)
+    //=================================================================================================================
+    "riki_second_life"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/heroes/riki/riki_second_life"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ALLIES_YES"
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "riki/riki_second_life"
+        "AbilityHotkey"                 "R"
+
+        "AbilityCastPoint"              "0.0"
+        "AbilityCooldown"               "60"
+        "AbilityManaCost"               "0"
+
+        "AbilityValues"
+        {
+            "duration"                  "3.0 3.0 4.0 5.0"
+            "magic_resist_bonus"        "90"
+            "miss_chance"               "50"
+            "passive_save_cooldown"     "60"
+        }
+    }
+
+    "special_bonus_unique_riki_second_life_unlock"
+    {
+        "BaseClass"                     "special_bonus_undefined"
+        "AbilityType"                   "ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "riki/riki_second_life"
+    }
+
+	"bucket_soldier_fear"
+	{
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"abilities/creatures/bucket_soldier_fear"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"				"1"
+
+		"AbilityValues"
+		{
+			"debuff_duration"					"2.0"
+			"cooldown_reduction_per_buff_level"	"0.5"
+			"movement_speed_slow"				"-30"
+			"attack_speed_slow"					"-50"
+		}
+	}
+
+	"diretide_bucket_soldier_scream"
+	{
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"abilities/creatures/diretide_bucket_soldier_scream"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastRange"		"800"
+		"AbilityCastPoint"		"0.3"
+		"AbilityCooldown"		"12.0"
+		"AbilityManaCost"		"0"
+		"MaxLevel"				"1"
+
+		"AbilityValues"
+		{
+			"attack_speed"						"1200"
+			"attack_width_initial"				"150"
+			"attack_width_end"					"250"
+			"attack_distance"					"800"
+			"attack_damage"						"120"
+			"debuff_duration"					"2.0"
+			"cooldown_random_reduction_percent"	"50"
+			"damage_per_buff_level"				"10"
+		}
+	}
+
+	//=================================================================================================================
+	// Fake-абилки для тултипов судеб (только для отображения в DOTAShowAbilityTooltip)
+	//=================================================================================================================
+	"fate_defender"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"	"custom/fate_defender"
+		"MaxLevel"				"3"
+		"AbilityValues"
+		{
+			"reflect_chance"      "8 11 18"
+			"defense_chance"      "8 11 18"
+			"magic_resist"        "25"
+			"bonus_armor"         "55"
+			"hp_regen_increase"   "30"
+			"defense_duration"    "20"
+			"shield_chance"       "15 18 23"
+			"damage_block"        "25"
+			"shield_explode_radius" "500"
+			"stun_duration"       "2"
+			"shield_duration"     "3 4 6"
+		}
+	}
+	"fate_immortal"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"	"custom/fate_immortal"
+		"MaxLevel"				"3"
+		"AbilityValues"
+		{
+			"rebirth_chance"      "8 16 24"
+			"bkb_explosion_chance" "17 23 28"
+			"bkb_duration"        "2 3 4"
+			"explosion_damage"    "480 720 1400"
+		}
+	}
+	"fate_murder"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"	"custom/fate_murder"
+		"MaxLevel"				"3"
+		"AbilityValues"
+		{
+			"crit_x2_chance"  "10 20 30"
+			"crit_x3_chance"  "8 12 16"
+			"crit_x4_chance"  "5 8 11"
+			"refresh_chance"  "8 11 17"
+		}
+	}
+	"fate_one_punchman"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"	"custom/fate_one_punchman"
+		"MaxLevel"				"3"
+		"AbilityValues"
+		{
+			"instakill_chance"    "1 2 8"
+			"drain_chance"        "8 10 20"
+			"lifesteal"           "10 12 22"
+			"bonus_attack_speed"  "60 80 150"
+			"buff_duration"       "20"
+		}
+	}
+	"fate_himaron"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"	"custom/fate_himaron"
+		"MaxLevel"				"3"
+		"AbilityValues"
+		{
+			"transform_chance"        "15 25 35"
+			"bonus_damage"            "80"
+			"bonus_move_speed"        "80"
+			"cooldown_reduction"      "30"
+			"spell_amp"               "15"
+			"pure_damage_amp"         "15 18 35"
+			"transform_duration"      "20"
+			"incoming_damage_amp"     "10"
+			"sword_chance"            "10 16 25"
+			"sword_damage_min"        "360 380 420"
+			"sword_damage_max"        "500 780 1200"
+		}
+	}
+
 }

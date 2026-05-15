@@ -1,0 +1,19 @@
+<!-- Sound Event -->
+"VSoundEventScript_t"
+{
+	"m_operator_stacks"
+	[
+		{
+			"m_stack_name" = "update"
+			"m_operators"
+			[
+				{
+					"m_operator" = "sos_operator_file_decoder"
+					"m_operator_output_name" = "output"
+					"m_op_sys_type" = "file"
+					"vsnd_file" = "sounds/spells/SCREAM SOLIDIER.mp3"
+				}
+			]
+		}
+	]
+}

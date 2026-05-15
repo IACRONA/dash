@@ -40,18 +40,18 @@ function CAddonWarsong:OnEntityKilled( params )
 				EmitSoundOn("cursed_knight_dead", killedUnit)
 			end
 
-			if not killedUnit:IsClone() and not killedUnit:IsTempestDouble() and hero then 
+			if not killedUnit:IsClone() and not killedUnit:IsTempestDouble() and hero then
 				local mapName = GetMapName()
-				if mapName == "warsong_duo" or mapName == "portal_duo" or mapName == "portal_trio" or mapName == "dash" then 
+				if mapName == "warsong_duo" or mapName == "portal_duo" or mapName == "portal_trio" then
 					local teamNumber  = hero:GetTeamNumber()
 					local isOverthrow = mapName == "portal_duo" or mapName == "portal_trio"
 
 					self.nCapturedFlagsCount[teamNumber] = GetTeamHeroKills(teamNumber)
-				
+
 					if isOverthrow then
 						self:RewardKillLeader(hero:GetPlayerOwnerID(), killedUnit:GetPlayerOwnerID())
 					end
-			
+
 					self:OnTeamKillChange()
 					if GetMapName() == "portal_duo" or GetMapName() == "portal_trio" then
 						self:UpdateLeaderPortalDuo()

@@ -279,6 +279,9 @@ if GetMapName() == "warsong" then
 end
 
 if GetMapName() == "dash" then
+    FLAGS_DIFFERENCE_TIER_1 = 4
+    FLAGS_DIFFERENCE_TIER_2 = 2
+
     KILLS_DIFFERENCE_TIER_1 = 2
     KILLS_DIFFERENCE_TIER_2 = 1
 

@@ -23,8 +23,16 @@ function dazzle_grace:OnSpellStart()
 	if target:GetTeam() ~= caster:GetTeam() then 
 		if target:TriggerSpellAbsorb(self) or target:TriggerSpellReflect(self) then return end
 	end
-  	Timers:CreateTimer(function()
-  		if currentTimes >= 3 then return end
+	local graceTimer
+	graceTimer = Timers:CreateTimer(function()
+		if currentTimes >= times then
+			graceTimer = nil
+			return
+		end
+		if not target or target:IsNull() or not target:IsAlive() then
+			graceTimer = nil
+			return
+		end
 		ProjectileManager:CreateTrackingProjectile({
 			EffectName = "particles/econ/items/wisp/calavera/io_calavera_attack.vpcf",
 			Ability = self,
@@ -34,7 +42,7 @@ function dazzle_grace:OnSpellStart()
 		})
 		currentTimes = currentTimes + 1
 		return delay
-  	end)
+	end)
 end
 
 

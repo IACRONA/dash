@@ -41,14 +41,12 @@ function modifier_lina_fiery_soul_custom:OnAbilityExecuted(event)
 	if IsClient() then return end 
 
 	local unit = event.unit
-    local parent = self:GetParent()
-
-    if unit ~= parent then return end
-
-    if event.ability:IsItem() then return  end
- 
-	local ability = self:GetAbility()
 	local parent = self:GetParent()
+
+	if unit ~= parent then return end
+	if event.ability:IsItem() then return end
+
+	local ability = self:GetAbility()
 	local maxStack = ability:GetSpecialValueFor("max_stack")
 	local modifier = parent:AddNewModifier(parent, ability, "modifier_lina_fiery_soul_custom_buff", {duration = ability:GetSpecialValueFor("duration")})
 

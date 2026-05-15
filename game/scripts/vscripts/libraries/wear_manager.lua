@@ -1,5 +1,13 @@
 function Wearing(hero, items,materialGroup)
 	Timers:CreateTimer(0.5, function()
+		-- Удаляем старые wear-модели, если они были
+		if hero.wearItems then
+			for _, oldItem in ipairs(hero.wearItems) do
+				if oldItem and not oldItem:IsNull() then
+					oldItem:RemoveSelf()
+				end
+			end
+		end
 		hero.wearItems = {}
 
 		for _,name in ipairs(items) do
@@ -20,6 +28,14 @@ end
 
 function WearParticle(hero, particles)
 	Timers:CreateTimer(0.5, function()
+		-- Удаляем старые wear-партиклы, если они были
+		if hero.wearParticles then
+			for _, oldEffect in ipairs(hero.wearParticles) do
+				ParticleManager:DestroyParticle(oldEffect, false)
+				ParticleManager:ReleaseParticleIndex(oldEffect)
+			end
+		end
+		hero.wearParticles = {}
 
 		for _,particle in ipairs(particles) do
 			local effect = ParticleManager:CreateParticle(particle.name, PATTACH_ABSORIGIN_FOLLOW, hero )
@@ -27,6 +43,7 @@ function WearParticle(hero, particles)
 			for _,attachment in ipairs(particle.attachment) do
 ParticleManager:SetParticleControlEnt(effect, attachment.point, hero, PATTACH_POINT_FOLLOW, attachment.attach, hero:GetAbsOrigin(), true)
 			end
+			table.insert(hero.wearParticles, effect)
 		end
 	end)
 end

@@ -1,4 +1,3 @@
-LinkLuaModifier("modifier_warsong_fate_immortal_buff", "modifiers/modifier_warsong_fate_immortal", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_warsong_fate_immortal_bkb", "modifiers/modifier_warsong_fate_immortal", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_warsong_fate_immortal_bkb_cooldown", "modifiers/modifier_warsong_fate_immortal", LUA_MODIFIER_MOTION_NONE)
   
@@ -93,49 +92,6 @@ function modifier_warsong_fate_immortal:ReincarnateTime()
     end
 end
 
-modifier_warsong_fate_immortal_buff = class({})
-function modifier_warsong_fate_immortal_buff:IsHidden() return true end
-function modifier_warsong_fate_immortal_buff:IsPurgable() return false end
-function modifier_warsong_fate_immortal_buff:RemoveOnDeath() return false end
-
-function modifier_warsong_fate_immortal_buff:DeclareFunctions()
-    return
-    {
-        MODIFIER_PROPERTY_REINCARNATION,
-        MODIFIER_EVENT_ON_DEATH
-    }
-end
-
-function modifier_warsong_fate_immortal_buff:ReincarnationStart( params )
-    local unit = params.unit
-    local reincarnate = params.reincarnate
-    if reincarnate then
-        local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_skeletonking/wraith_king_reincarnate.vpcf", PATTACH_CUSTOMORIGIN, params.unit)
-        ParticleManager:SetParticleAlwaysSimulate(particle)
-        ParticleManager:SetParticleControl(particle, 0, params.unit:GetAbsOrigin())
-        ParticleManager:SetParticleControl(particle, 1, Vector(1, 0, 0))
-        ParticleManager:SetParticleControl(particle, 11, Vector(200, 0, 0))
-        ParticleManager:ReleaseParticleIndex(particle)
-        self:GetParent():EmitSound("fate_immortal_cast")
-        params.unit:EmitSound("Hero_SkeletonKing.Reincarnate")
-    end
-end
-
-function modifier_warsong_fate_immortal_buff:ReincarnateTime()
-    if IsServer() then
-        return 1
-    end
-end
-
-function modifier_warsong_fate_immortal_buff:OnDeath(params)
-    if not IsServer() then return end
-    local unit = params.unit
-    local reincarnate = params.reincarnate
-    if self:GetParent() ~= unit then return end
-    self:ReincarnationStart( params )
-end
-
- 
 modifier_warsong_fate_immortal_bkb = class({
     IsHidden                 = function(self) return false end,
     IsPurgable                 = function(self) return false end,

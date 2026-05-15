@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(for \\($i = 0; $i -le 19; $i++\\) { Get-Content \"_chunk${i}_files.txt\" | Measure-Object -Line | Select-Object -ExpandProperty Lines | ForEach-Object { Write-Host \"Chunk $i`: $_ files\" } })",
+      "Bash(Get-Content \"C:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota\\\\console.log\")",
+      "Bash(Select-Object -Last 100)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota_addons\\\\dotawarsongs\" -Directory)",
+      "Bash(Select-Object -ExpandProperty Name)",
+      "Bash(ls -la \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota_addons\\\\dotawarsongs\")",
+      "Read(//c/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/game/dota_addons/dotawarsongs/**)",
+      "Bash(cd \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\" && find . -name \"*ability*panel*\" -o -name \"*skill*panel*\" 2>/dev/null | head -20)",
+      "Read(//c/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/**)",
+      "PowerShell(Get-ChildItem \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota_addons\\\\dotawarsongs\\\\scripts\\\\npc\\\\heroes\" -ErrorAction SilentlyContinue | Where-Object { $_.Name -match \"riki\" } | Select-Object FullName)",
+      "PowerShell(Get-ChildItem \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota\\\\soundevents\" | Where-Object {$_.Name -match \"riki\"} | Select-Object Name)",
+      "PowerShell($src = \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota_addons\\\\dotawarsongs\\\\resource\\\\flash3\\\\images\\\\spellicons\\\\enigma\\\\enigma_portal.png\"; $dst = \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota_addons\\\\dotawarsongs\\\\resource\\\\flash3\\\\images\\\\spellicons\\\\riki\"; New-Item -ItemType Directory -Force $dst; Write-Output \"size: $\\(\\(Get-Item $src\\).Length\\) bytes\")",
+      "Bash(Get-ChildItem -Path \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota_addons\\\\dotawarsongs\\\\scripts\\\\npc\\\\\" -Recurse -Filter \"*.txt\" | Select-Object FullName)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota\\\\scripts\\\\npc\" -Filter \"*.txt\")",
+      "Bash(Select-Object Name)",
+      "Bash(./resourcecompiler.exe -i \"c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/sounds/heroes/riki/garrota.mp3\" \"c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/sounds/heroes/riki/plash.mp3\" \"c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/sounds/heroes/riki/stun.mp3\" -game \"c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/game/dota\")",
+      "PowerShell(head)",
+      "PowerShell(& \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\bin\\\\win64\\\\resourcecompiler.exe\" -game dota_addons/dotawarsongs -i \"sounds/heroes/riki/stun.mp3\" -i \"sounds/heroes/riki/plash.mp3\" -i \"sounds/heroes/riki/garrota.mp3\" 2>&1)",
+      "PowerShell(& \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\bin\\\\win64\\\\resourcecompiler.exe\" -game dota -i \"sounds/heroes/riki/stun.mp3\" -i \"sounds/heroes/riki/plash.mp3\" -i \"sounds/heroes/riki/garrota.mp3\" 2>&1)",
+      "PowerShell(& \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\bin\\\\win64\\\\resourcecompiler.exe\" -game dota -i \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\content\\\\dota_addons\\\\dotawarsongs\\\\sounds\\\\heroes\\\\riki\\\\stun.mp3\" -i \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\content\\\\dota_addons\\\\dotawarsongs\\\\sounds\\\\heroes\\\\riki\\\\plash.mp3\" -i \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\content\\\\dota_addons\\\\dotawarsongs\\\\sounds\\\\heroes\\\\riki\\\\garrota.mp3\" 2>&1)",
+      "WebFetch(domain:developer.valvesoftware.com)",
+      "WebFetch(domain:moddota.com)",
+      "WebFetch(domain:steamcommunity.com)",
+      "PowerShell(Test-Path \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\bin\\\\win64\\\\\"; \\(Get-ChildItem \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\bin\\\\win64\\\\\"\\).Count)",
+      "Bash(Test-Path \"C:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota\\\\particles\\\\econ\\\\events\\\\ti10\\\\portal\\\\portal_open_good_ring.vpcf\")",
+      "Bash(ls \"C:/Users/ACRONA/Desktop/Герой/\" 2>/dev/null)",
+      "Read(//c/Users/ACRONA/Desktop/Герой/**)",
+      "Bash(cp \"C:/Users/ACRONA/Desktop/Герой/drevko-v-bronyu--udar-i-drojanie.mp3\" \"c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/sounds/heroes/riki/dart_throw.mp3\" && ls \"c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/sounds/heroes/riki/\")",
+      "Bash(cp \"C:/Users/ACRONA/Desktop/Герой/Second liferss.mp3\" \"c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/sounds/heroes/riki/second_life_save.mp3\" && ls \"c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/sounds/heroes/riki/\")",
+      "Bash(xargs grep -l \"Roshan\\\\|Tormentor\\\\|MinimapStatusContainer\\\\|MinimapStatus\")",
+      "Bash(cat >> *)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\ACRONA\\Desktop\\Герой",
+      "c:\\Program Files (x86)\\Steam\\steamapps\\common\\dota 2 beta\\content\\dota_addons\\dotawarsongs\\sounds\\heroes\\riki",
+      "c:\\Program Files (x86)\\Steam\\steamapps\\common\\dota 2 beta\\content\\dota_addons\\dotawarsongs\\panorama\\styles\\custom_game"
+    ]
+  }
+}

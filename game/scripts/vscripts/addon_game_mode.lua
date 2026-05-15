@@ -96,9 +96,8 @@ function CAddonWarsong:InitGameMode()
 	-- print("[INIT] mapName =", mapName)
 	-- print("[INIT] GAME_TIME_CLOCK before =", GAME_TIME_CLOCK)
 	
-	if mapName == "warsong" then
+	if mapName == "warsong" or mapName == "dash" then
 		GAME_TIME_CLOCK = 1000
-		-- print("[INIT] Set GAME_TIME_CLOCK = 1000 for warsong")
 	elseif mapName == "portal_duo" then
 		GAME_TIME_CLOCK = 1200
 		-- print("[INIT] Set GAME_TIME_CLOCK = 1200 for portal_duo")
@@ -158,7 +157,7 @@ function CAddonWarsong:InitGameMode()
     self.player_flags_count = {}
 	self.nCapturedFlagsCount = {}
 
-	if mapName == "warsong" then
+	if mapName == "warsong" or mapName == "dash" then
 		self.nCapturedFlagsCount = {
 			[DOTA_TEAM_GOODGUYS] = 0,
 			[DOTA_TEAM_BADGUYS] = 0,
@@ -176,7 +175,7 @@ function CAddonWarsong:InitGameMode()
     self.soldiers_units = {}
 	
 	-- ВАЖНО: Повторно устанавливаем GAME_TIME_CLOCK здесь, т.к. game_settings.lua может перезаписать значение
-	if mapName == "warsong" then
+	if mapName == "warsong" or mapName == "dash" then
 		GAME_TIME_CLOCK = 1000
 	elseif mapName == "portal_duo" then
 		GAME_TIME_CLOCK = 1200
@@ -402,35 +401,12 @@ function CAddonWarsong:OnGameRulesStateChange()
 		self.flagIconpointUnits = {}
 		self.FlagPositionBoth = {}
 		self:ChangeKills()
-		if self.mapName == "dash" then
-			self.item_flag_both_position = Entities:FindByName(nil, 'flag_both')
-			if self.item_flag_both_position == nil then
-				-- print('cant find both flag')
-				return
-			end
-			self.item_flag_both_radiant_position = Entities:FindByName(nil, 'flag_both_radiant')
-			if self.item_flag_both_radiant_position == nil then
-				-- print('cant find both radiant flag')
-				return
-			end
-			self.item_flag_both_dire_position = Entities:FindByName(nil, 'flag_both_dire')
-			if self.item_flag_both_dire_position == nil then
-				-- print('cant find both dire flag')
-				return
-			end
-			self.FlagPositionBoth = self.item_flag_both_position:GetAbsOrigin()
-			self.flagPositions[DOTA_TEAM_GOODGUYS] = self.item_flag_both_radiant_position:GetAbsOrigin()
-			self.flagPositions[DOTA_TEAM_BADGUYS] = self.item_flag_both_dire_position:GetAbsOrigin()
-			self:RespawnFlagBoth()
-		else
-			self.radiant_flag_position = Entities:FindByName(nil, 'flag_radiant')
+		self.radiant_flag_position = Entities:FindByName(nil, 'flag_radiant')
 			if self.radiant_flag_position == nil then
-				-- print('cant find radiant flag')
 				return
 			end
 			self.dire_flag_position = Entities:FindByName(nil, 'flag_dire')
 			if self.dire_flag_position == nil then
-				-- print('cant find radiant flag')
 				return
 			end
 			self.all_vision_point = Entities:FindByName(nil, 'middle_vision_point')
@@ -444,8 +420,6 @@ function CAddonWarsong:OnGameRulesStateChange()
 			self.flagItemNames[DOTA_TEAM_BADGUYS] = 'item_flag_dire'
 			self.flagPositions[DOTA_TEAM_BADGUYS] = self.dire_flag_position:GetAbsOrigin()
 			AddFOWViewer(DOTA_TEAM_GOODGUYS, self.flagPositions[DOTA_TEAM_GOODGUYS], 1000, 9999.0, true)
-			AddFOWViewer(DOTA_TEAM_GOODGUYS, self.flagPositions[DOTA_TEAM_BADGUYS], 1000, 9999.0, true)
-			AddFOWViewer(DOTA_TEAM_BADGUYS, self.flagPositions[DOTA_TEAM_GOODGUYS], 1000, 9999.0, true)
 			AddFOWViewer(DOTA_TEAM_BADGUYS, self.flagPositions[DOTA_TEAM_BADGUYS], 1000, 9999.0, true)
 			self.flagIconpointUnits[DOTA_TEAM_GOODGUYS] = CreateMinimapIcon(
 				'npc_dota_warsong_minimap_flagpoint',
@@ -469,7 +443,10 @@ function CAddonWarsong:OnGameRulesStateChange()
 			)
 			self:RespawnFlagForTeam(DOTA_TEAM_GOODGUYS, nil, nil, true)
 			self:RespawnFlagForTeam(DOTA_TEAM_BADGUYS, nil, nil, true)
-		end
+			if GetMapName() == "dash" then
+				self:SpawnSoldierRadiant()
+				self:SpawnSoldierDire()
+			end
 	elseif nNewState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then 
 		-- PlayerResource:SetCustomTeamAssignment(0, DOTA_TEAM_CUSTOM_1)
 		local mapName = self.mapName
@@ -532,7 +509,16 @@ function CAddonWarsong:OnGameRulesStateChange()
         end
 	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		local mapName = self.mapName
-		
+
+		-- Применяем THRONE_ARMOR к кастомным тронам
+		if THRONE_ARMOR then
+			for _, fortName in ipairs({"npc_dota_goodguys_fort_custom", "npc_dota_badguys_fort_custom", "npc_dota_invisible_fort"}) do
+				for _, fort in ipairs(Entities:FindAllByName(fortName)) do
+					fort:SetPhysicalArmorBaseValue(THRONE_ARMOR)
+				end
+			end
+		end
+
 		-- Устанавливаем game_timer перед началом игры
 		if mapName == "warsong" then
 			self.game_timer = 1000
@@ -551,6 +537,9 @@ function CAddonWarsong:OnGameRulesStateChange()
             CreateHints("warsong_hints_start_game")
             Timers:CreateTimer(45, function()
                 CreateHints("warsong_hints_capture_flag")
+            end)
+            Timers:CreateTimer(90, function()
+                CreateHints("warsong_hints_boss_join")
             end)
         elseif mapName == "portal_duo" then
             CreateHints("warsong_hints_start_game")

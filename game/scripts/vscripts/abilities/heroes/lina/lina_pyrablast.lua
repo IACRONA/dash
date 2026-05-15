@@ -35,12 +35,13 @@ function lina_pyrablast:OnSpellStart()
 		end)  
 	end
 
-	if self:GetChannelTime() ~= 0 then 
+	if self:GetChannelTime() ~= 0 then
 		self.soundName = "lina_pyrablast"
+		if self.animationTimer then Timers:RemoveTimer(self.animationTimer) end
 		self.animationTimer = Timers:CreateTimer(self:GetChannelTime()-0.3, function()
 			caster:StartGesture(ACT_DOTA_CAST_ABILITY_1)
 		end)
-	else 
+	else
 		self.soundName = "lina_pyrablast_fast_cast"
 		 
 	end
@@ -98,7 +99,9 @@ function lina_pyrablast:OnProjectileHit_ExtraData(target, _, data)
 	if crtiMultiple > 1 then 
 		self:ProcPyromanic()
 	end
-	if self.target:TriggerSpellAbsorb(self) or self.target:TriggerSpellReflect(self) then return end
+	local absorb = self.target:TriggerSpellAbsorb(self) or self.target:TriggerSpellReflect(self)
+	self.target = nil
+	if absorb then return end
 	ApplyDamage({
 		victim = target,
 		attacker = caster,

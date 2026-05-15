@@ -60,17 +60,21 @@ function modifier_dazzle_life_shield:OnCreated(data)
 	self.damageReturn = ability:GetSpecialValueFor("damage_return")/100
 	self.hpRegenAmp = ability:GetSpecialValueFor("heal_amp")
 
+	self.pfx = ParticleManager:CreateParticle("particles/immunity_sphere_buff.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+	ParticleManager:SetParticleControlEnt(self.pfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+
 	if not IsServer() then return end
 	local shieldHealth = ability:GetSpecialValueFor("shield_health")
 	if data.isLightVersion then shieldHealth = shieldHealth/2 end
-    self.pfx = ParticleManager:CreateParticle("particles/immunity_sphere_buff.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
-	ParticleManager:SetParticleControlEnt(self.pfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
 	self:SetStackCount(shieldHealth)
 end
 
 function modifier_dazzle_life_shield:OnDestroy()
+	if self.pfx then
+		ParticleManager:DestroyParticle(self.pfx, false)
+		ParticleManager:ReleaseParticleIndex(self.pfx)
+	end
 	if not IsServer() then return end
-	ParticleManager:DestroyParticle(self.pfx, false)
 end
 
 function modifier_dazzle_life_shield:GetModifierIncomingDamageConstant(event)

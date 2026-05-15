@@ -1,49 +1,46 @@
 modifier_warsong_soldier_upgrade = class({})
 
-function modifier_warsong_soldier_upgrade:RemoveOnDeath() return false end
+function modifier_warsong_soldier_upgrade:RemoveOnDeath() return true end
 function modifier_warsong_soldier_upgrade:IsPurgable() return false end
 function modifier_warsong_soldier_upgrade:IsPurgeException() return false end
 function modifier_warsong_soldier_upgrade:IsHidden() return true end
 
 function modifier_warsong_soldier_upgrade:OnCreated(data)
 	if not IsServer() then return end
-	
-	-- ОПТИМИЗАЦИЯ FPS: Солдаты используются только на карте warsong
-	if GetMapName() ~= "warsong" then
-		self:Destroy()
-		return
-	end
-	
 	self.dmg_upgrade = data.dmg_upgrade
 	self.hp_upgrade = data.hp_upgrade
 	self.armor_upgrade = data.armor_upgrade
 	self.time = data.time
 	self.base = self:GetParent():GetBaseMaxHealth()
-	if (math.floor(GameRules:GetDOTATime(false, false) / 60)) >= self.time then
-		self:SetStackCount(math.floor((math.floor(GameRules:GetDOTATime(false, false) / 60)) / self.time))
-		self:GetParent():SetBaseMaxHealth(self.base + self:GetStackCount() * self.hp_upgrade)
-		self:GetParent():SetMaxHealth(self.base + self:GetStackCount() * self.hp_upgrade)
-		self:GetParent():SetHealth(self.base + self:GetStackCount() * self.hp_upgrade)
-	end
+	self.lastStack = -1
 	self:SetHasCustomTransmitterData(true)
-	self:StartIntervalThink(1.0)  -- Увеличено с 0.1 до 1.0 для оптимизации
+	self:_ApplyUpgrade()
+	self:StartIntervalThink(30.0)
+end
+
+function modifier_warsong_soldier_upgrade:_ApplyUpgrade()
+	if not self.time or not self.hp_upgrade then return end
+	local nMinute = math.floor(GameRules:GetDOTATime(false, false) / 60)
+	if nMinute < self.time then return end
+	local nStacks = math.floor(nMinute / self.time)
+	if nStacks == self.lastStack then return end
+	self.lastStack = nStacks
+	self:SetStackCount(nStacks)
+	local nHP = self.base + nStacks * self.hp_upgrade
+	self:GetParent():SetBaseMaxHealth(nHP)
+	self:GetParent():SetMaxHealth(nHP)
+	self:GetParent():SetHealth(nHP)
+	self:SendBuffRefreshToClients()
 end
 
 function modifier_warsong_soldier_upgrade:OnIntervalThink()
 	if not IsServer() then return end
-	if (math.floor(GameRules:GetDOTATime(false, false) / 60)) >= self.time then
-		self:SetStackCount(math.floor((math.floor(GameRules:GetDOTATime(false, false) / 60)) / self.time))
-		self:GetParent():SetBaseMaxHealth(self.base + self:GetStackCount() * self.hp_upgrade)
-		self:GetParent():SetMaxHealth(self.base + self:GetStackCount() * self.hp_upgrade)
-	end
-	self:SendBuffRefreshToClients()
+	self:_ApplyUpgrade()
 end
 
 function modifier_warsong_soldier_upgrade:DeclareFunctions()
-	return 
+	return
 	{
-		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
-		MODIFIER_PROPERTY_HEALTH_BONUS,
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
 	}
@@ -67,11 +64,11 @@ function modifier_warsong_soldier_upgrade:HandleCustomTransmitterData( data )
 end
 
 function modifier_warsong_soldier_upgrade:GetModifierPreAttack_BonusDamage()
-	return self:GetStackCount() * self.dmg_upgrade
+	return self:GetStackCount() * (self.dmg_upgrade or 0)
 end
 
 function modifier_warsong_soldier_upgrade:GetModifierPhysicalArmorBonus()
-	return self:GetStackCount() * self.armor_upgrade
+	return self:GetStackCount() * (self.armor_upgrade or 0)
 end
 
 function modifier_warsong_soldier_upgrade:IsAura()
@@ -99,7 +96,7 @@ function modifier_warsong_soldier_upgrade:GetAuraSearchFlags()
 end
 
 function modifier_warsong_soldier_upgrade:GetAuraSearchType()
-    return DOTA_UNIT_TARGET_ALL
+    return DOTA_UNIT_TARGET_HERO
 end
 
 function modifier_warsong_soldier_upgrade:GetAuraDuration()

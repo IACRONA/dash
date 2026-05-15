@@ -144,8 +144,12 @@ function modifier_warsong_fate_one_punchman_buff:OnTakeDamage(params)
     if params.attacker ~= self:GetParent() then return end
     local heal = params.original_damage / 100 * ONE_PUNCHMAN_SETTINGS_LIFESTEAL[self:GetStackCount()]
     self:GetParent():Heal(heal, nil)
-    local effect_cast = ParticleManager:CreateParticle( "particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.attacker )
-    ParticleManager:ReleaseParticleIndex( effect_cast )
+    local gameTime = GameRules:GetGameTime()
+    if not self.last_lifesteal_particle or (gameTime - self.last_lifesteal_particle) >= 0.3 then
+        self.last_lifesteal_particle = gameTime
+        local effect_cast = ParticleManager:CreateParticle( "particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.attacker )
+        ParticleManager:ReleaseParticleIndex( effect_cast )
+    end
 end
 
 modifier_warsong_fate_one_punchman_cooldown_kill = class({})

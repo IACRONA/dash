@@ -81,7 +81,7 @@ function CAddonWarsong:RegisterPortals()
 					self.tNext.tPasses[hUnit] = nTime
 
 					for hUnit, nPassTime in pairs(self.tPasses) do
-						if not self:HasCooldown(hUnit) then
+						if not self:HasCooldown(hUnit) or hUnit:IsNull() then
 							self.tPasses[hUnit] = nil
 						end
 					end

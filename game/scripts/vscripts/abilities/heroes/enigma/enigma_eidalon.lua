@@ -17,10 +17,12 @@ end
 function enigma_eidalon:OnChannelFinish(interrupted)
 	local caster = self:GetCaster()
 
-	if self.animationTimer then  
+	if self.animationTimer then
 		if interrupted then caster:FadeGesture(ACT_DOTA_CAST_ABILITY_2) end
-		Timers:RemoveTimer(self.animationTimer) 
-	end 
+		Timers:RemoveTimer(self.animationTimer)
+		self.animationTimer = nil
+	end
+	self.target = nil
 	if interrupted then return StopSoundOn(self.soundName, caster) end
 
 	if caster.eidalon and IsValidEntity(caster.eidalon) and caster.eidalon:IsAlive() then caster.eidalon:Kill(self, nil) end
@@ -28,15 +30,19 @@ function enigma_eidalon:OnChannelFinish(interrupted)
 	caster.eidalon:SetOwner(caster)
 	caster.eidalon:SetControllableByPlayer(caster:GetPlayerID(), true)
 
- 	caster.eidalon:SetBaseDamageMin(self:GetSpecialValueFor("min_damage"))	
-	caster.eidalon:SetBaseDamageMax(self:GetSpecialValueFor("max_damage"))	
+	caster.eidalon:SetBaseDamageMin(self:GetSpecialValueFor("min_damage"))
+	caster.eidalon:SetBaseDamageMax(self:GetSpecialValueFor("max_damage"))
 
-	Timers:CreateTimer(0.1, function()
-		ExecuteOrderFromTable({
-			UnitIndex = caster.eidalon:entindex(),
-			OrderType = DOTA_UNIT_ORDER_MOVE_TO_TARGET ,
-			TargetIndex = caster:entindex()
-		})
+	if caster.eidalon_move_timer then Timers:RemoveTimer(caster.eidalon_move_timer) end
+	caster.eidalon_move_timer = Timers:CreateTimer(0.1, function()
+		if caster.eidalon and IsValidEntity(caster.eidalon) then
+			ExecuteOrderFromTable({
+				UnitIndex = caster.eidalon:entindex(),
+				OrderType = DOTA_UNIT_ORDER_MOVE_TO_TARGET,
+				TargetIndex = caster:entindex()
+			})
+		end
+		caster.eidalon_move_timer = nil
 	end)
  
 	local modifierDeath = caster.eidalon:AddNewModifier(caster.eidalon, nil, "modifier_on_death", {})

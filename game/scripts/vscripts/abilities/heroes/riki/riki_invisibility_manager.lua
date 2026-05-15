@@ -1,15 +1,16 @@
---------------------------------------------------------------------------------
--- Riki Invisibility Manager
--- Управляет сменой способностей при входе/выходе из невидимости
---------------------------------------------------------------------------------
-
 riki_invisibility_manager = class({})
 LinkLuaModifier("modifier_riki_invisibility_manager", "abilities/heroes/riki/riki_invisibility_manager", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_riki_hidden_abilities", "abilities/heroes/riki/riki_invisibility_manager", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_riki_break_invis",          "abilities/heroes/riki/riki_invisibility_manager", LUA_MODIFIER_MOTION_NONE)
 
---------------------------------------------------------------------------------
--- Инициализация
---------------------------------------------------------------------------------
+-- Пары: нормальная в слотах 1-4, стелс в 5-8
+-- При инвизе свапаем — стелс уходит в 1-4 (Q/W/E/R), нормальная прячется в 5-8
+local SWAP_PAIRS = {
+    { normal = "riki_smoke_screen",        stealth = "riki_sleeping_dart" },
+    { normal = "riki_blink_strike",        stealth = "riki_stun_strike"   },
+    { normal = "riki_tricks_of_the_trade", stealth = "riki_venous_strike" },
+    { normal = "riki_backstab",            stealth = "riki_second_life"   },
+}
+
 function riki_invisibility_manager:GetIntrinsicModifierName()
     return "modifier_riki_invisibility_manager"
 end
@@ -20,162 +21,118 @@ function riki_invisibility_manager:Spawn()
 end
 
 --------------------------------------------------------------------------------
--- Модификатор управления невидимостью
---------------------------------------------------------------------------------
+
 modifier_riki_invisibility_manager = class({})
 
-function modifier_riki_invisibility_manager:IsHidden()
-    return true
-end
-
-function modifier_riki_invisibility_manager:IsPurgable()
-    return false
-end
-
-function modifier_riki_invisibility_manager:RemoveOnDeath()
-    return false
-end
+function modifier_riki_invisibility_manager:IsHidden() return true end
+function modifier_riki_invisibility_manager:IsPurgable() return false end
+function modifier_riki_invisibility_manager:RemoveOnDeath() return false end
 
 function modifier_riki_invisibility_manager:OnCreated()
     if not IsServer() then return end
-    
-    self.hero = self:GetParent()
-    self.ability = self:GetAbility()
-    
-    -- Создаём скрытые способности заранее
-    self:CreateHiddenAbilities()
-    
-    -- Флаг состояния
+
     self.is_in_stealth = false
-    
-    self:StartIntervalThink(0.1)
+
+    Timers:CreateTimer(0.1, function()
+        if not IsValidEntity(self:GetParent()) then return end
+        local hero = self:GetParent()
+        for _, pair in ipairs(SWAP_PAIRS) do
+            local stealth = hero:FindAbilityByName(pair.stealth)
+            if stealth then stealth:SetHidden(true) end
+            local normal = hero:FindAbilityByName(pair.normal)
+            if normal then normal:SetHidden(false) end
+        end
+        self:SyncAbilityLevels(hero)
+        self:StartIntervalThink(0.1)
+    end)
+
+    self.learn_listener = ListenToGameEvent("dota_player_learned_ability", function(event)
+        if not IsValidEntity(self:GetParent()) then return end
+        local hero = self:GetParent()
+        if hero:GetPlayerOwnerID() ~= event.PlayerID then return end
+        self:SyncAbilityLevels(hero)
+    end, nil)
 end
 
-function modifier_riki_invisibility_manager:CreateHiddenAbilities()
-    -- Добавляем все скрытые способности и сразу прячем их
-    local hidden_abilities = {
-        "riki_stun_strike",
-        -- Здесь можно добавить остальные 3 способности для скрытого бара
-    }
-    
-    for _, ability_name in ipairs(hidden_abilities) do
-        local ability = self.hero:FindAbilityByName(ability_name)
-        if not ability then
-            ability = self.hero:AddAbility(ability_name)
-            if ability then
-                ability:SetHidden(true)
-                ability:SetLevel(0)
-            end
-        end
+function modifier_riki_invisibility_manager:OnDestroy()
+    if not IsServer() then return end
+    if self.learn_listener then
+        StopListeningToGameEvent(self.learn_listener)
+        self.learn_listener = nil
     end
 end
 
 function modifier_riki_invisibility_manager:OnIntervalThink()
     if not IsServer() then return end
-    
+
     local hero = self:GetParent()
-    
-    -- Проверяем, невидим ли герой
     local is_invisible = hero:IsInvisible()
-    
-    -- Если состояние изменилось
-    if self.is_in_stealth ~= is_invisible then
-        self.is_in_stealth = is_invisible
-        
-        if is_invisible then
-            -- Входим в невидимость - меняем способности
-            self:SwapToStealthAbilities()
-            hero:AddNewModifier(hero, self:GetAbility(), "modifier_riki_hidden_abilities", {})
-        else
-            -- Выходим из невидимости - возвращаем обычные способности
-            self:SwapToNormalAbilities()
-            hero:RemoveModifierByName("modifier_riki_hidden_abilities")
+
+    if self.is_in_stealth == is_invisible then return end
+    self.is_in_stealth = is_invisible
+
+    if is_invisible then
+        self:SwapToStealth(hero)
+    else
+        self:SwapToNormal(hero)
+    end
+end
+
+function modifier_riki_invisibility_manager:SyncAbilityLevels(hero)
+    for _, pair in ipairs(SWAP_PAIRS) do
+        local normal = hero:FindAbilityByName(pair.normal)
+        local stealth = hero:FindAbilityByName(pair.stealth)
+        if normal and stealth then
+            local nlvl = normal:GetLevel()
+            local slvl = stealth:GetLevel()
+            if nlvl > slvl then
+                stealth:SetLevel(nlvl)
+            elseif slvl > nlvl then
+                normal:SetLevel(slvl)
+            end
         end
     end
 end
 
-function modifier_riki_invisibility_manager:SwapToStealthAbilities()
-    local hero = self:GetParent()
-    
-    -- Получаем текущую первую способность (Smoke Screen)
-    local smoke_ability = hero:FindAbilityByName("riki_smoke_screen")
-    local stun_ability = hero:FindAbilityByName("riki_stun_strike")
-    
-    if smoke_ability and stun_ability then
-        -- Синхронизируем уровень
-        local current_level = smoke_ability:GetLevel()
-        stun_ability:SetLevel(current_level)
-        
-        -- Меняем способности местами в UI
-        hero:SwapAbilities(smoke_ability:GetAbilityName(), stun_ability:GetAbilityName(), false, true)
+function modifier_riki_invisibility_manager:SwapToStealth(hero)
+    -- normal сейчас в 1-4 (Q/W/E/R), stealth в 5-8
+    -- SwapAbilities(name1, name2, show1, show2) — name1 прячется, name2 показывается и переходит в слот name1
+    for _, pair in ipairs(SWAP_PAIRS) do
+        hero:SwapAbilities(pair.normal, pair.stealth, false, true)
     end
 end
 
-function modifier_riki_invisibility_manager:SwapToNormalAbilities()
-    local hero = self:GetParent()
-    
-    -- Возвращаем обычные способности
-    local stun_ability = hero:FindAbilityByName("riki_stun_strike")
-    local smoke_ability = hero:FindAbilityByName("riki_smoke_screen")
-    
-    if stun_ability and smoke_ability then
-        -- Синхронизируем уровень обратно
-        local current_level = stun_ability:GetLevel()
-        smoke_ability:SetLevel(current_level)
-        
-        -- Меняем способности обратно
-        hero:SwapAbilities(stun_ability:GetAbilityName(), smoke_ability:GetAbilityName(), false, true)
-    end
-end
-
---------------------------------------------------------------------------------
--- Модификатор для визуального отображения скрытых способностей
---------------------------------------------------------------------------------
-modifier_riki_hidden_abilities = class({})
-
-function modifier_riki_hidden_abilities:IsHidden()
-    return false
-end
-
-function modifier_riki_hidden_abilities:IsPurgable()
-    return false
-end
-
-function modifier_riki_hidden_abilities:GetTexture()
-    return "riki_permanent_invisibility"
-end
-
-function modifier_riki_hidden_abilities:DeclareFunctions()
-    return {
-        MODIFIER_PROPERTY_TOOLTIP
-    }
-end
-
-function modifier_riki_hidden_abilities:OnTooltip()
-    return 1
-end
-
--- Обработка прокачки способностей
-function modifier_riki_invisibility_manager:OnHeroLevelUp()
-    if not IsServer() then return end
-    
-    -- Автоматическая синхронизация уровней при прокачке
-    local hero = self:GetParent()
-    local smoke_ability = hero:FindAbilityByName("riki_smoke_screen")
-    local stun_ability = hero:FindAbilityByName("riki_stun_strike")
-    
-    if smoke_ability and stun_ability then
-        -- Если прокачали smoke screen, синхронизируем со stun strike
-        if smoke_ability:GetLevel() > stun_ability:GetLevel() then
-            stun_ability:SetLevel(smoke_ability:GetLevel())
-        end
+function modifier_riki_invisibility_manager:SwapToNormal(hero)
+    -- stealth сейчас в 1-4 (Q/W/E/R), normal в 5-8
+    for _, pair in ipairs(SWAP_PAIRS) do
+        hero:SwapAbilities(pair.stealth, pair.normal, false, true)
     end
 end
 
 function modifier_riki_invisibility_manager:DeclareFunctions()
+    return {}
+end
+
+--------------------------------------------------------------------------------
+-- Break invis: форсирует выход из инвиза на N секунд (используется для 2/3 скиллов)
+--------------------------------------------------------------------------------
+
+modifier_riki_break_invis = class({})
+
+function modifier_riki_break_invis:IsHidden() return true end
+function modifier_riki_break_invis:IsPurgable() return false end
+function modifier_riki_break_invis:RemoveOnDeath() return true end
+
+function modifier_riki_break_invis:CheckState()
     return {
-        MODIFIER_EVENT_ON_HERO_LEVEL_UP
+        [MODIFIER_STATE_INVISIBLE] = false,
     }
 end
+
+function modifier_riki_break_invis:GetPriority()
+    return MODIFIER_PRIORITY_SUPER_ULTRA
+end
+
+function modifier_riki_break_invis:DeclareFunctions() return {} end
 
 return riki_invisibility_manager

@@ -42,7 +42,9 @@
       "WebSearch",
       "WebFetch(domain:liquipedia.net)",
       "WebFetch(domain:dota2.fandom.com)",
-      "WebFetch(domain:dotesports.com)"
+      "WebFetch(domain:dotesports.com)",
+      "Bash(xargs -I {} basename {})",
+      "Bash(xargs grep *)"
     ],
     "deny": [],
     "ask": []

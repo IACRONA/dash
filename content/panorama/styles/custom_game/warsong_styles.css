@@ -77,3 +77,10 @@
     height: 90px;
     transform: translateY( -5px );
 }
+/* Скрываем стандартные дотовские иконки Рошана и Терзателя у миникарты */
+#MinimapStatus, #RoshanStatusContainer, #TormentorStatusContainer,
+#RoshanContainer, #TormentorContainer,
+.MinimapStatusContainer
+{
+    visibility: collapse;
+}

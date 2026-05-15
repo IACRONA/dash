@@ -1,4 +1,4 @@
-local BUCKET_SOLDIER_STATE_IDLE				= 0
+﻿local BUCKET_SOLDIER_STATE_IDLE				= 0
 local BUCKET_SOLDIER_STATE_ATTACKING		= 1
 local BUCKET_SOLDIER_STATE_LEASHED			= 2
 local BUCKET_SOLDIER_STATE_SCREAM_ATTACK	= 3
@@ -26,16 +26,33 @@ if CBucketSoldier == nil then
 end
 
 function Spawn( entityKeyValues )
-	if not IsServer() then
-		return
-	end
+	if not IsServer() then return end
+	if thisEntity == nil then return end
 
-	if thisEntity == nil then
-		return
-	end
-
-	thisEntity:SetContextThink( "BucketSoldierThink", BucketSoldierThink, 0.3 )
 	thisEntity.AI = CBucketSoldier( thisEntity )
+	local ent = thisEntity
+	Timers:CreateTimer(0.3, function()
+		if ent == nil or ent:IsNull() then return end
+		local fThinkTime = ent.AI:BotThink()
+		if fThinkTime and fThinkTime > 0 then
+			return fThinkTime
+		end
+		return 0.3
+	end)
+
+	Timers:CreateTimer( FrameTime(), function()
+		if thisEntity == nil or thisEntity:IsNull() then return end
+		thisEntity:AddAbility( "bucket_soldier_fear" )
+		local hFear = thisEntity:FindAbilityByName( "bucket_soldier_fear" )
+		if hFear then
+			hFear:SetLevel( 1 )
+			thisEntity:AddNewModifier( thisEntity, hFear, "modifier_bucket_soldier_attack", {} )
+		end
+		thisEntity:AddAbility( "diretide_bucket_soldier_scream" )
+		local hScream = thisEntity:FindAbilityByName( "diretide_bucket_soldier_scream" )
+		if hScream then hScream:SetLevel( 1 ) end
+		thisEntity.AI.hAbilityScream = hScream
+	end )
 end
 
 function BucketSoldierThink()
@@ -48,7 +65,7 @@ function BucketSoldierThink()
 		return fThinkTime
 	end
 
-	return 0.3  -- Увеличено с 0.1 до 0.3 для оптимизации
+	return 0.3  -- Ð£Ð²ÐµÐ»Ð¸Ñ‡ÐµÐ½Ð¾ Ñ 0.1 Ð´Ð¾ 0.3 Ð´Ð»Ñ Ð¾Ð¿Ñ‚Ð¸Ð¼Ð¸Ð·Ð°Ñ†Ð¸Ð¸
 end
 
 function CBucketSoldier:constructor( me )
@@ -56,7 +73,7 @@ function CBucketSoldier:constructor( me )
 	self.flNextPatrolTime = GameRules:GetGameTime() + 2.0
 	self.flMaxLeashTime = nil
 	self.nState = BUCKET_SOLDIER_STATE_IDLE
-	self.hAbilityScream = self.me:FindAbilityByName( "diretide_bucket_soldier_scream" )
+	self.hAbilityScream = nil
 	self.hAttackTarget = nil
 end
 
@@ -97,14 +114,12 @@ function CBucketSoldier:BotThink()
 			self:ChangeBotState( BUCKET_SOLDIER_STATE_LEASHED )
 			return 0.3
 		end
-
 		local hTarget = self:FindBestTarget()
 		if hTarget ~= nil then
 			self.hAttackTarget = hTarget
 			self:ChangeBotState( BUCKET_SOLDIER_STATE_ATTACKING )
 			return 0.3
 		end
-
 		if GameRules:GetGameTime() > self.flNextPatrolTime then
 			local flWaitTime = self:PatrolBucket()
 			self.flNextPatrolTime = GameRules:GetGameTime() + flWaitTime
@@ -125,9 +140,7 @@ function CBucketSoldier:BotThink()
 		end
 
 		self:AttackTarget( self.hAttackTarget )
-		if self.hAbilityScream and self.hAbilityScream:IsFullyCastable() then
-			self:ChangeBotState( BUCKET_SOLDIER_STATE_SCREAM_ATTACK )
-		end
+		self:TryScream( self.hAttackTarget )
 	elseif self.nState == BUCKET_SOLDIER_STATE_LEASHED then
 		if GameRules:GetGameTime() > self.flMaxLeashTime then
 			self:ChangeBotState( BUCKET_SOLDIER_STATE_IDLE )
@@ -153,29 +166,9 @@ function CBucketSoldier:BotThink()
 			Position = self.vLeashDestination,
 			Queue = false,
 		})
-	elseif self.nState == BUCKET_SOLDIER_STATE_SCREAM_ATTACK then
-		if self:ShouldLeash() == true then
-			self:ChangeBotState( BUCKET_SOLDIER_STATE_LEASHED )
-			return 0.3
-		end
-		if self.hAttackTarget == nil or self.hAttackTarget:IsNull() == true or self.hAttackTarget:IsAlive() == false then
-			self:ChangeBotState( BUCKET_SOLDIER_STATE_IDLE )
-		end
-		if self.hAbilityScream == nil then
-			self:ChangeBotState( BUCKET_SOLDIER_STATE_IDLE )
-		end
-		ExecuteOrderFromTable( {
-			UnitIndex = self.me:entindex(),
-			OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-			AbilityIndex = self.hAbilityScream:entindex(),
-			Position = self.hAttackTarget:GetAbsOrigin(),
-		} )
-		if not self.hAbilityScream:IsFullyCastable() then
-			self:ChangeBotState( BUCKET_SOLDIER_STATE_ATTACKING )
-		end
 	end
 
-	return 0.3  -- Увеличено с 0.1 до 0.3 для оптимизации
+	return 0.3  -- Ð£Ð²ÐµÐ»Ð¸Ñ‡ÐµÐ½Ð¾ Ñ 0.1 Ð´Ð¾ 0.3 Ð´Ð»Ñ Ð¾Ð¿Ñ‚Ð¸Ð¼Ð¸Ð·Ð°Ñ†Ð¸Ð¸
 end
 
 function CBucketSoldier:LeashToBucket()
@@ -228,6 +221,57 @@ function CBucketSoldier:FindBestTarget()
 	end
 
 	return hBestNonHero
+end
+
+-----------------------------------------------------------------------------------------
+
+local SCREAM_COOLDOWN = 12.0
+local SCREAM_RANGE = 800
+local SCREAM_DAMAGE = 120
+local SCREAM_FEAR_DURATION = 2.0
+
+function CBucketSoldier:TryScream( hTarget )
+	if not hTarget or hTarget:IsNull() or not hTarget:IsAlive() then return end
+	local flNow = GameRules:GetGameTime()
+	if self.flNextScreamTime and flNow < self.flNextScreamTime then return end
+	local flDist = ( hTarget:GetAbsOrigin() - self.me:GetAbsOrigin() ):Length2D()
+	if flDist > SCREAM_RANGE then return end
+
+	self.flNextScreamTime = flNow + SCREAM_COOLDOWN
+	EmitSoundOn( "Soldier.Scream", self.me )
+
+	local vOrigin = self.me:GetAbsOrigin()
+	local vDir = hTarget:GetAbsOrigin() - vOrigin
+	vDir.z = 0
+	local flLen = vDir:Length2D()
+	if flLen < 1 then return end
+	vDir = vDir / flLen
+
+	local info = {
+		EffectName      = "particles/hw_fx/golem_terror.vpcf",
+		vSpawnOrigin    = vOrigin,
+		fStartRadius    = 150,
+		fEndRadius      = 250,
+		vVelocity       = vDir * 1200,
+		fDistance       = 800,
+		Source          = self.me,
+		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+	}
+	local nProjectile = ProjectileManager:CreateLinearProjectile( info )
+
+	local hMe = self.me
+	Timers:CreateTimer( 0.8, function()
+		local hHit = FindUnitsInRadius( hMe:GetTeamNumber(), hTarget:GetAbsOrigin(), nil, 200,
+			DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )
+		for _, u in ipairs( hHit ) do
+			if u and not u:IsNull() and u:IsAlive() and not u:IsMagicImmune() then
+				ApplyDamage({ victim = u, attacker = hMe, damage = SCREAM_DAMAGE, damage_type = DAMAGE_TYPE_MAGICAL })
+				u:AddNewModifier( hMe, nil, "modifier_bucket_soldier_attack_fear", { duration = SCREAM_FEAR_DURATION } )
+			end
+		end
+	end)
 end
 
 -----------------------------------------------------------------------------------------

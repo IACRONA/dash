@@ -45,7 +45,10 @@ function modifier_lina_fire_shield:OnCreated(event)
 end
 
 function modifier_lina_fire_shield:OnDestroy()
-	ParticleManager:DestroyParticle(self.nfx, false)
+	if self.nfx then
+		ParticleManager:DestroyParticle(self.nfx, false)
+		ParticleManager:ReleaseParticleIndex(self.nfx)
+	end
 
 	if IsClient() then return end
 	local parent = self:GetParent()

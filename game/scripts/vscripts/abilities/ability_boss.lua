@@ -85,32 +85,49 @@ function modifier_ability_boss:OnDeath(event)
  	local teamNumber = unit:GetTeamNumber()
  	local forwadVector = unit.fw
 
-	local allies = FindUnitsInRadius( 
-		unit:GetTeamNumber(),	 
-		unit:GetAbsOrigin(),		 
-		nil,	 
-		radiusReward,	 
-		DOTA_UNIT_TARGET_TEAM_ENEMY,	 
-		DOTA_UNIT_TARGET_HERO, 
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,	 
-		FIND_CLOSEST,	 
-		false
-	) 
-
-	for _,ally in ipairs(allies) do
-		if ally:IsRealHero() then GameRules.AddonTemplate:IncrementCurrencyPlayer(ally:GetPlayerOwner()) end
-	end	
+	if unit.is_lane_boss then
+		-- Линейный босс: вся команда убийцы получает Rare книгу.
+		local killerTeam = attacker and attacker:GetTeamNumber() or nil
+		if killerTeam then
+			DoWithAllPlayers(function(player, hero)
+				if not hero then return end
+				if hero:GetTeamNumber() == killerTeam then
+					Upgrades:QueueSelection(hero, UPGRADE_RARITY_RARE)
+				end
+			end)
+		end
+	else
+		-- Домашний босс: голову получают герои рядом (как было).
+		local allies = FindUnitsInRadius(
+			unit:GetTeamNumber(),
+			unit:GetAbsOrigin(),
+			nil,
+			radiusReward,
+			DOTA_UNIT_TARGET_TEAM_ENEMY,
+			DOTA_UNIT_TARGET_HERO,
+			DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+			FIND_CLOSEST,
+			false
+		)
+		for _,ally in ipairs(allies) do
+			if ally:IsRealHero() then GameRules.AddonTemplate:IncrementCurrencyPlayer(ally:GetPlayerOwner()) end
+		end
+	end
 	EmitGlobalSound("Roshan.Death")
 	EmitGlobalSound("boss_killed")
-	-- Если этим боссом управляет BossSystem (линейный респавн), не создаём
-	-- дубликат на домашней точке — BossSystem сам заспавнит нового на линии.
-	if BossSystem and BossSystem.boss_names and BossSystem.boss_names[unitName] then
+	-- Если убит оригинальный (нейтральный) босс, которым управляет BossSystem,
+	-- не создаём домашний респавн — BossSystem заспавнит его на линии.
+	-- Линейный босс (is_lane_boss) наоборот должен возродиться дома штатно.
+	if BossSystem and BossSystem.boss_names and BossSystem.boss_names[unitName]
+		and not unit.is_lane_boss then
 		return
 	end
 
 	if countDead < deathTimes  then
+		-- Линейный босс возрождается дома как нейтрал, чтобы его можно было убить снова.
+		local spawnTeam = unit.is_lane_boss and DOTA_TEAM_NEUTRALS or teamNumber
 		Timers:CreateTimer(respawnTime, function()
-			local newUnit = CreateUnitByName(unitName, respawnPoint, true, nil, nil, teamNumber)
+			local newUnit = CreateUnitByName(unitName, respawnPoint, true, nil, nil, spawnTeam)
 			newUnit.counter = countDead
 	        newUnit:SetForwardVector(forwadVector)
 			newUnit.respoint = respawnPoint

@@ -37,7 +37,7 @@ function crystal_maiden_ice_spike:OnChannelFinish(interrupted)
  	})
 end
 
-function crystal_maiden_ice_spike:OnProjectileHit_ExtraData(target, _,data)
+function crystal_maiden_ice_spike:OnProjectileHit_ExtraData(target, _, data)
 	if not target then return end
 	local caster = self:GetCaster()
  	local targetIsFrozen = target:HasModifier("modifier_crystal_maiden_frostbite") or target:HasModifier("modifier_crystal_maiden_frozen_shield_frozen") or target:HasModifier("modifier_water_elemental_frozen") 
@@ -58,7 +58,9 @@ function crystal_maiden_ice_spike:OnProjectileHit_ExtraData(target, _,data)
 	EmitSoundOn("ice_spike_target", target)
 	target:AddNewModifier(caster, self, "modifier_crystal_maiden_ice_spike_debuff", {duration = self:GetSpecialValueFor("duration")})
 
-	if caster:HasScepter() and not isShard then 
+	self.target = nil
+
+	if caster:HasScepter() and not isShard then
 		local enemies = FindUnitsInRadius(
 			caster:GetTeamNumber(),
 			target:GetAbsOrigin(),

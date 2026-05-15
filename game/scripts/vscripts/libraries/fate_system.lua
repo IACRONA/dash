@@ -45,8 +45,15 @@ function CAddonWarsong:SelectPlayerFate(player_id, fate_name)
         current_fate_table = TableCopy(current_fate)
     end
     current_fate_table[fate_name] = (current_fate_table[fate_name] or 0) + 1
+    local max_wait = 30
+    local elapsed = 0
     Timers:CreateTimer(0.1, function()
         if hero:IsAlive() then
+            hero:AddNewModifier(hero, nil, "modifier_warsong_" .. fate_name, {})
+            return
+        end
+        elapsed = elapsed + 0.1
+        if elapsed >= max_wait then
             hero:AddNewModifier(hero, nil, "modifier_warsong_" .. fate_name, {})
             return
         end

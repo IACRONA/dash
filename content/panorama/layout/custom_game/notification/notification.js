@@ -45,3 +45,31 @@ const showBossLaneNotification = function (data) {
 };
 
 GameEvents.Subscribe("boss_lane_notification", showBossLaneNotification);
+
+const showFlagStolenNotification = function (data) {
+  var carrierName = data.carrier_name || "Игрок";
+  var carrierTeam = data.carrier_team;
+  var localTeam = Players.GetLocalPlayerTeam();
+
+  var root = $.CreatePanel("Panel", $.GetContextPanel(), "FlagStolen");
+  root.BLoadLayoutSnippet("FlagStolen");
+
+  var title = root.FindChildTraverse("FlagStolenTitle");
+  if (title) {
+    if (carrierTeam === localTeam) {
+      title.text = "<font color='#00ff7f'>" + carrierName + "</font> <font color='#ffffff'>захватил вражеский флаг!</font>";
+    } else {
+      title.text = "<font color='#ff4444'>" + carrierName + "</font> <font color='#ffffff'>украл ваш флаг!</font>";
+    }
+  }
+
+  root.AddClass("IsActive");
+  Game.EmitSound("General.CoinDrop");
+
+  $.Schedule(6, function () {
+    root.RemoveClass("IsActive");
+    root.DeleteAsync(0.4);
+  });
+};
+
+GameEvents.Subscribe("flag_stolen_notification", showFlagStolenNotification);

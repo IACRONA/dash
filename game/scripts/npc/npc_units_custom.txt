@@ -30,7 +30,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"43"		// Physical protection (+20 брони).
+		"ArmorPhysical"				"30"		// Physical protection — переопределяется THRONE_ARMOR в game_settings.lua
 		"MagicalResistance"				"0"			// Magical protection.
 
 		// Attack
@@ -116,7 +116,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"43"		// Physical protection (+20 брони).
+		"ArmorPhysical"				"30"		// Physical protection — переопределяется THRONE_ARMOR в game_settings.lua
 		"MagicalResistance"				"0"			// Magical protection.
 
 		// Attack
@@ -204,7 +204,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"43"		// Physical protection (+20 брони).
+		"ArmorPhysical"				"30"		// Physical protection — переопределяется THRONE_ARMOR в game_settings.lua
 		"MagicalResistance"				"0"			// Magical protection.
 
 		// Attack
@@ -366,14 +366,14 @@
 		"BaseClass"					"npc_dota_ward_base"
 		"Model"					"models/development/invisiblebox.vmdl"
 		"MinimapIcon"				"warsong_flag"
-		"MinimapIconSize"				"1000"
+		"MinimapIconSize"				"500"
 	}
 
 	"npc_dota_warsong_minimap_flag_radiant" {
 		"BaseClass"					"npc_dota_ward_base"
 		"Model"					"models/development/invisiblebox.vmdl"
 		"MinimapIcon"				"warsong_flag_radiant"
-		"MinimapIconSize"				"1000"
+		"MinimapIconSize"				"500"
 		"MinimapDisableTint" "1"
 	}
 
@@ -381,7 +381,7 @@
 		"BaseClass"					"npc_dota_ward_base"
 		"Model"					"models/development/invisiblebox.vmdl"
 		"MinimapIcon"				"warsong_flag_dire"
-		"MinimapIconSize"				"1000"
+		"MinimapIconSize"				"500"
 		"MinimapDisableTint" "1"
 	}
 	"npc_dota_warsong_minimap_flagpoint" {
@@ -390,12 +390,12 @@
 		"MinimapIcon"				"minimap_shield"
 		"MinimapIconSize"				"450"
 	}
-	"npc_dota_warsong_minimap_flag_both" 
+	"npc_dota_warsong_minimap_flag_both"
 	{
 		"BaseClass"					"npc_dota_ward_base"
 		"Model"						"models/development/invisiblebox.vmdl"
 		"MinimapIcon"				"warsong_flag"
-		"MinimapIconSize"			"1000"
+		"MinimapIconSize"			"500"
 		"MinimapDisableTint" 		"1"
 	}
 
@@ -448,8 +448,8 @@
 
 		"vscripts"					"ai/bucket_soldier.lua"
 
-		"Ability1"					"bucket_soldier_fear"
-		"Ability2"					"diretide_bucket_soldier_scream"
+		"Ability1"					""
+		"Ability2"					""
 		"Ability3"					""
 
 		// Armor
@@ -529,9 +529,10 @@
 	{
 		"include_keys_from"			"npc_dota_radiant_bucket_soldier"
 		"Model"						"models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"
-		"SoundSet"					"Hero_WarlockGolem"			// Name of sound set.
+		"SoundSet"					"Hero_WarlockGolem"
 		"IdleSoundLoop"				"Hero_WarlockGolem.Spawn_Loop"
-		"MinimapIconSize"				"0.00001"
+		"MinimapIconSize"			"0.00001"
+		"TeamName"					"DOTA_TEAM_BADGUYS"
 
 	}
 

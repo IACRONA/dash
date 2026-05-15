@@ -20,8 +20,8 @@ function cursed_knight_hand_of_death:OnSpellStart()
 			iMoveSpeed = hook_speed*2.7, 
 		})
 		self.bRetracting = false
-		Randomint = RandomInt(1, 3)
-		EmitSoundOn( "hand_of_dead_" .. Randomint, self:GetCaster() )
+		local randomInt = RandomInt(1, 3)
+		EmitSoundOn( "hand_of_dead_" .. randomInt, self:GetCaster() )
 	else 
         self:EndCooldown()
         self:RefundManaCost()
@@ -33,16 +33,12 @@ function cursed_knight_hand_of_death:OnProjectileHit( hTarget, vLocation )
 		return false
 	end
 
-    if self.bRetracting == false then
-		local bTargetPulled = false
-        if not hTarget then return end
-        
-        local hook_speed = self:GetSpecialValueFor( "hook_speed" )
-        local distance = (hTarget:GetAbsOrigin() - self:GetCaster():GetAbsOrigin()):Length2D()
-        local duration = distance / hook_speed
-        
-        hTarget:AddNewModifier( self:GetCaster(), self, "modifier_cursed_knight_hand_of_death", { duration = duration } )
+	if self.bRetracting == false then
 		self.bRetracting = true
+		if not hTarget then return end
+		if hTarget:HasModifier("modifier_cursed_knight_hand_of_death") then return true end
+
+		hTarget:AddNewModifier( self:GetCaster(), self, "modifier_cursed_knight_hand_of_death", { duration = 10 } )
 	end
 	return true
 end
@@ -142,8 +138,7 @@ function modifier_cursed_knight_hand_of_death:UpdateHorizontalMotion( me, dt )
 		new_position.z = ground_height + victim:GetBoundingMaxs().z
 		
 		victim:SetAbsOrigin(new_position)
-		if distance <= 128 then
-			FindClearSpaceForUnit(victim, caster_position, true)
+		if distance <= 100 then
 			self:Destroy()
 		end
 	end
@@ -152,9 +147,7 @@ end
 --------------------------------------------------------------------------------
 function modifier_cursed_knight_hand_of_death:OnHorizontalMotionInterrupted()
 	if IsServer() then
-		if self:GetAbility().hVictim ~= nil and self:GetAbility().vHookOffset ~= nil then
-			self:Destroy()
-		end
+		self:Destroy()
 	end
 end
 

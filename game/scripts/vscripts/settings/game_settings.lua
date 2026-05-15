@@ -286,9 +286,9 @@ if GetMapName() == "dash" then
     }
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 250000
+    NEW_SPHERES = 180
     MAX_SPHERE_LEVEL = 3
-    COUNT_SPHERE_CHOICE = 2 
+    COUNT_SPHERE_CHOICE = 3
     MAX_SPHERE_COUNT = 4
     -- таверы которые нужно снести чтобы можно было сломать центральную башню для радиант 
     tower_to_kills_for_radiant = {
@@ -304,6 +304,9 @@ if GetMapName() == "dash" then
         ["npc_dota_goodguys_tower3_bot"] = 1,
         ["npc_dota_goodguys_tower3_top"] = 1
     }
+
+    -- Солдат у флага
+    SOLDIER_RESPAWN_DELAY = 240 -- секунд до респавна солдата после смерти
 
     -- Босс на линии (Host Pirate / Kraken).
     -- См. libraries/boss_system.lua + modifiers/modifier_lane_boss_debuff.lua.
@@ -584,11 +587,11 @@ if GetMapName() == "portal_trio" then
         {30, 9},
     }
 
-    REROLL_SPHERES = 1
-    NEW_SPHERES = 22000
+    REROLL_SPHERES = 5
+    NEW_SPHERES = 180
     MAX_SPHERE_LEVEL = 4
-    COUNT_SPHERE_CHOICE = 2
-    MAX_SPHERE_COUNT = 14
+    COUNT_SPHERE_CHOICE = 3
+    MAX_SPHERE_COUNT = 5
 end
 
 -- Фонтан эффект скорости

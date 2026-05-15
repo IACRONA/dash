@@ -80,6 +80,7 @@ local EXCEPTION_ABILITIES = {
     'naga_siren_song_of_the_siren',
 	"riki_tricks_of_the_trade",
 	"dawnbreaker_celestial_hammer",
+	"rattletrap_hookshot",
 }
 
 local FlagReturnCountdown = class{
@@ -97,7 +98,7 @@ local FlagReturnCountdown = class{
 		self.nViewer1 = AddFOWViewer(DOTA_TEAM_GOODGUYS, self.vPos, self.nRadius + 32, 99999, false)
 		self.nViewer2 = AddFOWViewer(DOTA_TEAM_BADGUYS, self.vPos, self.nRadius + 32, 99999, false)
 
-		--self:CreateTimerParticle()
+		self:CreateTimerParticle()
 
 		-- ОПТИМИЗАЦИЯ: Сохраняем ID таймера для очистки, увеличен интервал с FrameTime() до 0.1s
 		self.timerID = Timers:CreateTimer(function()
@@ -187,7 +188,7 @@ local FlagReturnCountdown = class{
 			end
 		elseif self.nRingStartTime then
 			self.nRingStartTime = nil
-			--self:CreateTimerParticle()
+			self:CreateTimerParticle()
 		end
 
 		self.nLastThink = nTime
@@ -256,31 +257,46 @@ item_flag_both = class({
 			return
 		end
 
-		self.bUsed = true
-
-		self.caster = self:GetCaster()
-
 		local caster = self:GetCaster()
-		local nTeam = self:GetCaster():GetTeamNumber()
-		local nOpponentTeam = DOTA_TEAM_BADGUYS
+		local nTeam = caster:GetTeamNumber()
 
-		if nTeam == DOTA_TEAM_BADGUYS then
-			nTeam = DOTA_TEAM_BADGUYS
-			nOpponentTeam = DOTA_TEAM_GOODGUYS
-		else
-			nTeam = DOTA_TEAM_GOODGUYS
-			nOpponentTeam = DOTA_TEAM_BADGUYS
-		end
-
+		-- запрещаем подбирать свой же флаг (флаг лежит на базе своей команды)
 		local vFlagOrigin = self:GetOrigin()
-
 		if self:GetContainer() then
 			vFlagOrigin = self:GetContainer():GetOrigin()
 		end
 
+		local radiantPos = GameRules.AddonTemplate.flagPositions[DOTA_TEAM_GOODGUYS]
+		local direPos = GameRules.AddonTemplate.flagPositions[DOTA_TEAM_BADGUYS]
+		if radiantPos and direPos then
+			local distToOwn = (radiantPos - vFlagOrigin):Length2D()
+			if nTeam == DOTA_TEAM_BADGUYS then
+				distToOwn = (direPos - vFlagOrigin):Length2D()
+			end
+			-- если флаг лежит на своей базе — это свой флаг, нельзя брать
+			if distToOwn < 300 then
+				return
+			end
+		end
+
+		self.bUsed = true
+		self.caster = caster
+
+		local nOpponentTeam = nTeam == DOTA_TEAM_BADGUYS and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS
+
 		caster:AddNewModifier(caster, self, 'modifier_item_flag_carrier_both', {})
 		GameRules.AddonTemplate:PlaySoundForTeam('Flag.Stolen.Bad', nOpponentTeam)
 		GameRules.AddonTemplate:PlaySoundForTeam('Flag.Stolen.Good', nTeam)
+
+		local carrierName = caster:GetUnitName()
+		local playerID = caster:GetPlayerOwnerID()
+		if playerID >= 0 then
+			carrierName = PlayerResource:GetPlayerName(playerID)
+		end
+		CustomGameEventManager:Send_ServerToAllClients('flag_stolen_notification', {
+			carrier_name = carrierName,
+			carrier_team = nTeam,
+		})
 
 		if self.hReturnCountdown then
 			self.hReturnCountdown:Destroy()
@@ -321,8 +337,7 @@ modifier_item_flag_carrier_both = class({
     OnCreated = function(self, keys)
 		if IsClient() then return end
 
-		-- ОПТИМИЗАЦИЯ FPS: Флаги используются только на карте warsong
-		if GetMapName() ~= "warsong" then
+		if GetMapName() ~= "warsong" and GetMapName() ~= "dash" then
 			self:Destroy()
 			return
 		end
@@ -348,7 +363,8 @@ modifier_item_flag_carrier_both = class({
 		self.hIcon2 = GameRules.AddonTemplate.flagIconUnits[self.nOpponentTeam]
 		SetIconVisibe(GameRules.AddonTemplate.flagIconpointUnits[self.nOwnerTeam], true)
 
-		
+		self.caster_absorigin = self.carrier:GetAbsOrigin()
+		self.time_return_flag = FLAG_RETURN_DURATION * 60
 
 		-- ОПТИМИЗАЦИЯ FPS: Увеличен интервал с FrameTime() (~0.03s) до 0.1s
 		self:StartIntervalThink(0.1)
@@ -365,6 +381,7 @@ modifier_item_flag_carrier_both = class({
 		ParticleManager:SetParticleControlEnt(self.nParticle, 0, self.carrier, PATTACH_POINT_FOLLOW, 'attach_hitloc', vAttachOrigin, false)
 		ParticleManager:SetParticleControl(self.nParticle, 1, Vector(FLAG_PICKUP_SCALE * GetFlagScale(self.nOwnerTeam), math.pi, 0))
 		ParticleManager:SetParticleControl(self.nParticle, 2, vAttachOrigin)
+		ParticleManager:SetParticleControl(self.nParticle, 7, Vector(tonumber(GetMaterial(hAbility) or 0), 0, 0))
 
 		local FxSparkEntry = ParticleManager:CreateParticle("particles/units/heroes/hero_arc_warden/arc_warden_tempest_cast.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.carrier)
 		ParticleManager:SetParticleControlEnt(FxSparkEntry, 0, self.carrier, PATTACH_POINT_FOLLOW, 'attach_hitloc', vAttachOrigin, false)
@@ -412,8 +429,9 @@ modifier_item_flag_carrier_both = class({
 			local nTeam = self.carrier:GetTeam()
 
 			GameRules.AddonTemplate:IncrementFlags(nTeam)
-			GameRules.AddonTemplate:RespawnFlagBoth()
 			GameRules.AddonTemplate:IncrementCurrencyPlayer(self.carrier:GetPlayerOwner())
+
+			Upgrades:QueueSelection(self.carrier, UPGRADE_RARITY_EPIC)
 
             if GameRules.AddonTemplate.player_flags_count[self.carrier:GetPlayerOwnerID()] == nil then
                 GameRules.AddonTemplate.player_flags_count[self.carrier:GetPlayerOwnerID()] = 1

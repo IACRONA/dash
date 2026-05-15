@@ -68,8 +68,10 @@ function modifier_axe_charge:OnDestroy()
 
     ResolveNPCPositions(parent:GetAbsOrigin(), 128)
 
-    if not parent:IsChanneling() then 
-         parent:MoveToTargetToAttack(self.target)
+    local target = self.target
+    self.target = nil
+    if not parent:IsChanneling() and target and not target:IsNull() and target:IsAlive() then
+        parent:MoveToTargetToAttack(target)
     end
 end
 
@@ -142,8 +144,8 @@ function modifier_axe_charge_debuff:GetModifierMoveSpeedBonus_Percentage()
 end
  
 function modifier_axe_charge_debuff:OnIntervalThink()
-	self.tick = self.tick + 1
 	if IsClient() then return end
+	self.tick = self.tick + 1
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
 	local parent = self:GetParent()
@@ -182,7 +184,6 @@ function modifier_axe_charge_shield:GetAbsorbSpell( params )
 	end
 end
 
-modifier_axe_charge_shield.reflected_spell = nil
 function modifier_axe_charge_shield:GetReflectSpell( params )
 	if IsServer() then
 
@@ -192,7 +193,7 @@ function modifier_axe_charge_shield:GetReflectSpell( params )
 
 		self.reflect = true
 
-		if self.reflected_spell~=nil then
+		if self.reflected_spell ~= nil and not self.reflected_spell:IsNull() then
 			self:GetParent():RemoveAbility( self.reflected_spell:GetAbilityName() )
 		end
 

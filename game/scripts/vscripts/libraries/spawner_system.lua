@@ -1,7 +1,19 @@
+local function StartSoldierRespawnTimer(fnSpawn, nTeam)
+	if GetMapName() ~= "dash" then return end
+	Timers:CreateTimer(SOLDIER_RESPAWN_DELAY, function()
+		local addon = GameRules.AddonTemplate
+		local hSoldier = addon.soldiers_units[nTeam]
+		if hSoldier and not hSoldier:IsNull() and hSoldier:IsAlive() then
+			return
+		end
+		fnSpawn(addon)
+	end)
+end
+
 -- Cпавн защитников
 function CAddonWarsong:SpawnSoldierRadiant()
 	local radiant_spawn = Entities:FindByName(nil, 'flag_radiant')
-	local dire_spawn = Entities:FindByName(nil, 'flag_dire')
+	if radiant_spawn == nil then return end
 
 	if self.soldiers_units[DOTA_TEAM_GOODGUYS] and self.soldiers_units[DOTA_TEAM_GOODGUYS] ~= nil then
 		if not self.soldiers_units[DOTA_TEAM_GOODGUYS]:IsNull() and self.soldiers_units[DOTA_TEAM_GOODGUYS]:IsAlive() then
@@ -12,17 +24,20 @@ function CAddonWarsong:SpawnSoldierRadiant()
     local vSpawnPos = radiant_spawn:GetAbsOrigin() + RandomVector( 200 )
     local hSoldier = CreateUnitByName( "npc_dota_radiant_bucket_soldier", vSpawnPos, true, nil, nil, DOTA_TEAM_GOODGUYS )
     if hSoldier then
-        if hSoldier.AI ~= nil then
-            hSoldier.AI.hBucket = radiant_spawn
-        end
         hSoldier:AddNewModifier(hSoldier, nil, "modifier_warsong_soldier_upgrade", {dmg_upgrade = UPGRADE_DAMAGE, hp_upgrade = UPGRADE_HEALTH, armor_upgrade = UPGRADE_ARMOR, time = UPGRADE_TIME_CHECK})
         self.soldiers_units[DOTA_TEAM_GOODGUYS] = hSoldier
+        Timers:CreateTimer(FrameTime(), function()
+            if hSoldier and not hSoldier:IsNull() and hSoldier.AI ~= nil then
+                hSoldier.AI.hBucket = radiant_spawn
+            end
+        end)
     end
+    StartSoldierRespawnTimer(CAddonWarsong.SpawnSoldierRadiant, DOTA_TEAM_GOODGUYS)
 end
 
 function CAddonWarsong:SpawnSoldierDire()
-	local radiant_spawn = Entities:FindByName(nil, 'flag_radiant')
 	local dire_spawn = Entities:FindByName(nil, 'flag_dire')
+	if dire_spawn == nil then return end
 
 	if self.soldiers_units[DOTA_TEAM_BADGUYS] and self.soldiers_units[DOTA_TEAM_BADGUYS] ~= nil then
 		if not self.soldiers_units[DOTA_TEAM_BADGUYS]:IsNull() and self.soldiers_units[DOTA_TEAM_BADGUYS]:IsAlive() then
@@ -33,12 +48,15 @@ function CAddonWarsong:SpawnSoldierDire()
     local vSpawnPos = dire_spawn:GetAbsOrigin() + RandomVector( 200 )
     local hSoldier = CreateUnitByName( "npc_dota_dire_bucket_soldier", vSpawnPos, true, nil, nil, DOTA_TEAM_BADGUYS )
     if hSoldier then
-        if hSoldier.AI ~= nil then
-            hSoldier.AI.hBucket = dire_spawn
-        end
         hSoldier:AddNewModifier(hSoldier, nil, "modifier_warsong_soldier_upgrade", {dmg_upgrade = UPGRADE_DAMAGE, hp_upgrade = UPGRADE_HEALTH, armor_upgrade = UPGRADE_ARMOR, time = UPGRADE_TIME_CHECK})
         self.soldiers_units[DOTA_TEAM_BADGUYS] = hSoldier
+        Timers:CreateTimer(FrameTime(), function()
+            if hSoldier and not hSoldier:IsNull() and hSoldier.AI ~= nil then
+                hSoldier.AI.hBucket = dire_spawn
+            end
+        end)
     end
+    StartSoldierRespawnTimer(CAddonWarsong.SpawnSoldierDire, DOTA_TEAM_BADGUYS)
 end
 
 function CAddonWarsong:SpawnMorphling()

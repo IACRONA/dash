@@ -1,0 +1,4 @@
+"forcedirty"
+{
+	"recompile"		"soundevents/soundevents_manifest.vsndevts"
+}

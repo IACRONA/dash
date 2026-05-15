@@ -26,7 +26,8 @@ function crystal_maiden_crystal_blink:OnSpellStart()
  	if difference:Length2D() > range then
 		point = casterPos + difference_norm_vector *  range   
 	end
-    ParticleManager:CreateParticle("particles/econ/events/winter_major_2016/blink_dagger_start_winter_major_2016.vpcf", PATTACH_ABSORIGIN, caster)
+    local fx = ParticleManager:CreateParticle("particles/econ/events/winter_major_2016/blink_dagger_start_winter_major_2016.vpcf", PATTACH_ABSORIGIN, caster)
+	ParticleManager:ReleaseParticleIndex(fx)
 	caster:EmitSound("DOTA_Item.BlinkDagger.Activate")
 
 	FindClearSpaceForUnit(caster, point, true)

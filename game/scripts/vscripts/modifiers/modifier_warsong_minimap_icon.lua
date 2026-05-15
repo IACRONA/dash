@@ -13,17 +13,5 @@ function modifier_warsong_minimap_icon:CheckState()
 		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
 		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 		[MODIFIER_STATE_NOT_ON_MINIMAP] = self:GetStackCount() ~= 0,
-		[MODIFIER_STATE_PROVIDES_VISION] = true,
 	}
-end
-
-function modifier_warsong_minimap_icon:DeclareFunctions()
-    local decFuncs = {
-        MODIFIER_PROPERTY_PROVIDES_FOW_POSITION,
-    }
-    return decFuncs
-end
-
-function modifier_warsong_minimap_icon:GetModifierProvidesFOWVision()
-  	return 1
 end

@@ -16,6 +16,15 @@
                 </Panel>
             </Panel>
         </snippet>
+        <snippet name="FlagStolen">
+            <Panel class="BossHead FlagStolen">
+                <Image class="BossIcon FlagStolenIcon" src="s2r://panorama/images/spellicons/item_clarity_png.vtex_c" />
+                <Panel class="BossBody">
+                    <Label id="FlagStolenTitle" class="BossTitle" html="true"/>
+                    <Label class="BossDescription" text="Отнесите украденный флаг к своему!" html="true"/>
+                </Panel>
+            </Panel>
+        </snippet>
         <snippet name="BossLaneEnemy">
             <Panel class="BossHead BossLaneEnemy">
                 <DOTAHeroImage id="BossLaneHeroIcon" class="BossIcon" heroimagestyle="icon" />
