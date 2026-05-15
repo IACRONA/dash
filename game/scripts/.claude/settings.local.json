@@ -31,7 +31,15 @@
       "Bash(cp \"C:/Users/ACRONA/Desktop/Герой/drevko-v-bronyu--udar-i-drojanie.mp3\" \"c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/sounds/heroes/riki/dart_throw.mp3\" && ls \"c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/sounds/heroes/riki/\")",
       "Bash(cp \"C:/Users/ACRONA/Desktop/Герой/Second liferss.mp3\" \"c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/sounds/heroes/riki/second_life_save.mp3\" && ls \"c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/sounds/heroes/riki/\")",
       "Bash(xargs grep -l \"Roshan\\\\|Tormentor\\\\|MinimapStatusContainer\\\\|MinimapStatus\")",
-      "Bash(cat >> *)"
+      "Bash(cat >> *)",
+      "PowerShell(\\(Get-ChildItem \"C:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota\\\\models\\\\items\\\\\"\\).Count)",
+      "PowerShell(cmd /c \"dir `\"C:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota\\\\`\" /b\")",
+      "PowerShell(cmd /c \"dir `\"C:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\bin\\\\`\" /b\")",
+      "PowerShell(cmd /c \"dir `\"C:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\workshop\\\\`\" /b 2>nul\")",
+      "PowerShell(& \"C:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\bin\\\\win64\\\\resourceinfo.exe\" -i \"models/items/riki/riki_2022_fox_head/riki_2022_fox_head.vmdl_c\" 2>&1)",
+      "Bash(find \"/c/Program Files\" \"/c/Program Files \\(x86\\)\" -maxdepth 4 -iname \"GCFScape*\" -type f 2>/dev/null | head -5)",
+      "Read(//c/Program Files/**)",
+      "PowerShell($gcf = \"C:\\\\Users\\\\ACRONA\\\\Downloads\\\\gcfscape\\\\x64\\\\GCFScape.exe\"; & $gcf /? 2>&1 | Select-Object -First 30)"
     ],
     "additionalDirectories": [
       "C:\\Users\\ACRONA\\Desktop\\Герой",

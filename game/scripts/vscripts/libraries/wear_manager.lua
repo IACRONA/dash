@@ -98,6 +98,17 @@ function CAddonWarsong:WearHero(hero)
 		hero:SetMaterialGroup("1")
 		WearParticle(hero, particles)
 		Wearing(hero, items)
+	elseif heroName == "npc_dota_hero_riki" then
+		local items = {
+			"models/items/rikimaru/riki_scarlet_fox_head/riki_scarlet_fox_head.vmdl",
+			"models/items/rikimaru/riki_scarlet_fox_arms/riki_scarlet_fox_arms.vmdl",
+			"models/items/rikimaru/riki_scarlet_fox_shoulder/riki_scarlet_fox_shoulder.vmdl",
+			"models/items/rikimaru/riki_scarlet_fox_tail/riki_scarlet_fox_tail.vmdl",
+			"models/items/rikimaru/riki_scarlet_fox_weapon/riki_scarlet_fox_weapon.vmdl",
+			"models/items/rikimaru/riki_scarlet_fox_offhand_weapon/riki_scarlet_fox_offhand_weapon.vmdl",
+		}
+
+		Wearing(hero, items)
 	elseif heroName == "npc_dota_hero_skeleton_king" then
 		local items = {
 			"models/items/wraith_king/destruction_lord_weapon/destruction_lord_weapon.vmdl",

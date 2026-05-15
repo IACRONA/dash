@@ -191,7 +191,7 @@
   vertical-align: center;
   horizontal-align: right;
   border-radius: 40px;
-  margin-right: 35px;
+  margin-right: 71px;
 }
 
 .spell_block_text {
@@ -207,11 +207,13 @@
   font-family: titleFont;
   margin-bottom: 5px;
   horizontal-align: left;
-  margin-right: 120px;
+  margin-right: 105px;
 }
 
+
 .spell_block.IsSpell .spell_block_text {
-  horizontal-align: center;
+  horizontal-align: left;
+  margin-left: 60px;
 }
 
 .spell_block.IsSpell {
@@ -268,6 +270,7 @@
   font-size: 24px;
   horizontal-align: center;
   margin-left: 0px;
+  margin-right: 51px;
   text-shadow: 0px 0px 4px 2 #000000;
   text-align: center;
   vertical-align: center;
@@ -275,8 +278,8 @@
 }
 
 .reroll_block_image {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   background-image: url("file://{images}/custom_game/dice.png");
   background-size: 100%;
   margin-left: 5px;
