@@ -109,12 +109,6 @@
 				"bonus_move_speed" "3"
 			}
 		}
-		"soul_cost"
-		{
-			"value" "-1"
-			"operator" "OP_ADD"
-			"max_count" "5"
-		}
 	}
 	"nevermore_dark_lord"
 	{

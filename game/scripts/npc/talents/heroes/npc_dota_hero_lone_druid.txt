@@ -40,17 +40,6 @@
 				"lifesteal_percent" "15"
 			}
 		}
-		"bonus_attack_speed"
-		{
-			"value" "30"
-			"operator" "OP_ADD"
-		}
-		"armor_sharing"
-		{
-			"value" "15"
-			"operator" "OP_ADD"
-			"max_count" "5"
-		}
 	}
 	"lone_druid_savage_roar"
 	{

@@ -21,12 +21,6 @@
 			"operator" "OP_MULTIPLY"
 			"max_count" "4"
 		}
-		"frost_stacks"
-		{
-			"value" "1.5"
-			"operator" "OP_ADD"
-			"min_rarity" "rare"
-		}
 		"break_distance"
 		{
 			"value" "60"
@@ -51,12 +45,6 @@
 				"vision_aoe" "30"
 			}
 		}
-		"frost_stacks"
-		{
-			"value" "0.5"
-			"operator" "OP_ADD"
-			"min_rarity" "rare"
-		}
 	}
 	"ancient_apparition_chilling_touch"
 	{
@@ -77,17 +65,6 @@
 			"value" "9"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
-		}
-		"frost_stacks"
-		{
-			"value" "0.5"
-			"operator" "OP_ADD"
-			"min_rarity" "rare"
-		}
-		"damage"
-		{
-			"value" "50"
-			"operator" "OP_ADD"
 		}
 	}
 }

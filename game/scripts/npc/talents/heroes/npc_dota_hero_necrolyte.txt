@@ -2,15 +2,6 @@
 {
 	"necrolyte_sadist"
 	{
-		"health_regen"
-		{
-			"value" "1"
-			"operator" "OP_ADD"
-			"linked_special_values"
-			{
-				"mana_regen" "1"
-			}
-		}
 	}
 	"necrolyte_death_pulse"
 	{
@@ -113,6 +104,24 @@
 			{
 				"mana_per_kill" "1"
 			}
+		}
+	}
+	"necrolyte_death_seeker"
+	{
+		"cast_range"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
+		}
+		"cooldown_and_manacost"
+		{
+			"value" "5"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "50"
+			"operator" "OP_ADD"
 		}
 	}
 }

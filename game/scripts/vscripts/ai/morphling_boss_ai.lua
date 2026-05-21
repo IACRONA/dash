@@ -48,20 +48,32 @@ function Morphling_AI_think()
 
     -- Поиск портала
     if current_target == nil or not GridNav:CanFindPath(thisEntity:GetAbsOrigin(), current_target:GetAbsOrigin()) then
-        current_portal = GameRules.AddonTemplate.aPortals[1]
+        local aPortals = GameRules.AddonTemplate.aPortals
+        if aPortals and #aPortals > 0 then
+            current_portal = aPortals[1]
 
-        if current_portal and thisEntity.portal_cooldown[current_portal.index] ~= nil and thisEntity.portal_cooldown_full[current_portal.index] ~= nil then
-            current_portal = GameRules.AddonTemplate.aPortals[2]
-        end
+            if current_portal and thisEntity.portal_cooldown[current_portal.index] ~= nil and thisEntity.portal_cooldown_full[current_portal.index] ~= nil then
+                current_portal = aPortals[2]
+            end
 
-        local distance = (current_portal.vPos - thisEntity:GetAbsOrigin()):Length2D()
-        for _, tPortal in ipairs(GameRules.AddonTemplate.aPortals) do
-            if tPortal.nTeam == 0 and (tPortal ~= current_portal) and ( (tPortal.vPos - thisEntity:GetAbsOrigin()):Length2D() < distance ) and not thisEntity.portal_cooldown[tPortal.index] and not thisEntity.portal_cooldown_full[tPortal.index] then
-                current_portal = tPortal
-                distance = (current_portal.vPos - thisEntity:GetAbsOrigin()):Length2D()
+            if current_portal then
+                local vBossPos = thisEntity:GetAbsOrigin()
+                local function distSqr(vp)
+                    local dx = vp.x - vBossPos.x
+                    local dy = vp.y - vBossPos.y
+                    return dx * dx + dy * dy
+                end
+                local distanceSqr = distSqr(current_portal.vPos)
+                for _, tPortal in ipairs(aPortals) do
+                    local dSqr = distSqr(tPortal.vPos)
+                    if tPortal.nTeam == 0 and (tPortal ~= current_portal) and dSqr < distanceSqr and not thisEntity.portal_cooldown[tPortal.index] and not thisEntity.portal_cooldown_full[tPortal.index] then
+                        current_portal = tPortal
+                        distanceSqr = dSqr
+                    end
+                end
+                if current_portal.nTeam ~= 0 then current_portal = nil end
             end
         end
-        if current_portal.nTeam ~= 0 then current_portal = nil end
     end
 
     if not current_portal and not current_target then
@@ -89,12 +101,12 @@ function Morphling_AI_think()
 			ParticleManager:SetParticleControl(nParticle2, 0, thisEntity:GetOrigin())
             EmitSoundOnLocationWithCaster(thisEntity:GetOrigin(), 'Hero_Underlord.Portal.Out', thisEntity)
 
-            thisEntity:SetThink(function()
+            Timers:CreateTimer(0.6, function()
                 ParticleManager:DestroyParticle(nParticle1, false)
                 ParticleManager:DestroyParticle(nParticle2, false)
                 ParticleManager:ReleaseParticleIndex(nParticle1)
                 ParticleManager:ReleaseParticleIndex(nParticle2)
-            end, 0.6)
+            end)
         end
     end
 

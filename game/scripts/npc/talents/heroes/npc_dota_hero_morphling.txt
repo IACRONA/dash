@@ -8,17 +8,6 @@
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 		}
-		"pct_damage"
-		{
-			"value" "22"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "1"
-		}
-		"damage"
-		{
-			"value" "50"
-			"operator" "OP_ADD"
-		}
 		"width"
 		{
 			"value" "50"
@@ -73,33 +62,6 @@
 	}
 	"morphling_morph_agi"
 	{
-		"morph_cooldown"
-		{
-			"value" "-0.005"
-			"operator" "OP_MULTIPLY"
-
-			"multiplicative_target"			"0.006"
-			"multiplicative_base_value"		"0.06"
-			"linked_special_values"
-			{
-				"morph_rate_tooltip" "2"
-			}
-			"linked_abilities"
-			{
-				"morphling_morph_str"
-				{
-					"morph_cooldown"
-					{
-						"value" "-0.005"
-						"operator" "OP_MULTIPLY"
-
-						"multiplicative_target"			"0.006"
-						"multiplicative_base_value"		"0.06"
-					}
-					"morph_rate_tooltip" "2"
-				}
-			}
-		}
 	}
 	"morphling_replicate"
 	{

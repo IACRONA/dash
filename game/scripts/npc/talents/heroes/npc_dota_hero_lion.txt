@@ -14,9 +14,6 @@
 			"operator" "OP_ADD"
 		}
 	}
-	"lion_voodoo"
-	{
-	}
 	"lion_mana_drain"
 	{
 		"cooldown_and_manacost"

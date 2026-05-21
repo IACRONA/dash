@@ -106,15 +106,5 @@
 				"min_damage" "9"
 			}
 		}
-		"hero_spirit_min_damage"
-		{
-			"value" "20"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "2"
-			"linked_special_values"
-			{
-				"hero_spirit_max_damage" "20"
-			}
-		}
 	}
 }

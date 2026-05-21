@@ -19,18 +19,6 @@
 			"operator" "OP_ADD"
 			"DisabledWithFacetID" "2"
 		}
-		"damage_per_wolf"
-		{
-			"value" "6"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "2"
-		}
-		"health_per_wolf"
-		{
-			"value" "60"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "2"
-		}
 	}
 	"lycan_howl"
 	{

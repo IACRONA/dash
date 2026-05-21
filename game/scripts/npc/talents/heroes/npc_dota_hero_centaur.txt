@@ -4,7 +4,7 @@
 	{
 		"health_per_upgrade"
 		{
-			"value" "15"
+			"value" "100"
 			"operator" "OP_ADD"
 		}
 	}
@@ -24,7 +24,7 @@
 		}
 		"stomp_damage"
 		{
-			"value" "50"
+			"value" "100"
 			"operator" "OP_ADD"
 		}
 	}
@@ -37,11 +37,11 @@
 		}
 		"edge_damage"
 		{
-			"value" "45"
+			"value" "110"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"strength_damage" "25"
+				"strength_damage" "40"
 			}
 		}
 		"radius"
@@ -55,12 +55,12 @@
 	{
 		"return_damage"
 		{
-			"value" "15"
+			"value" "60"
 			"operator" "OP_ADD"
 		}
 		"return_damage_str"
 		{
-			"value" "6"
+			"value" "25"
 			"operator" "OP_ADD"
 		}
 	}
@@ -93,12 +93,12 @@
 		}
 		"duration"
 		{
-			"value" "0.7"
+			"value" "1.5"
 			"operator" "OP_ADD"
 		}
 		"strength_damage"
 		{
-			"value" "0.5"
+			"value" "2.0"
 			"operator" "OP_ADD"
 		}
 	}

@@ -59,32 +59,5 @@
 	}
 	"meepo_divided_we_stand"
 	{
-		"magic_resist"
-		{
-			"value" "6"
-			"operator" "OP_MULTIPLY"
-
-			"multiplicative_target"			"100"
-			"multiplicative_base_value"		"20"
-			"linked_special_values"
-			{
-				"tooltip_magic_resist"
-				{
-					"value" "6"
-					"operator" "OP_MULTIPLY"
-
-					"multiplicative_target"			"100"
-					"multiplicative_base_value"		"20"
-				}
-				"tooltip_magic_resist_multiplicity"
-				{
-					"value" "6"
-					"operator" "OP_MULTIPLY"
-
-					"multiplicative_target"			"100"
-					"multiplicative_base_value"		"20"
-				}
-			}
-		}
 	}
 }

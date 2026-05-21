@@ -587,6 +587,12 @@ function CreateTalent(upgradeInfo, data) {
   spell_block_wrapper.AddClass("talent_block_icon");
   spell_block_wrapper.style.backgroundColor = "#010329";
   spell_block_wrapper.style.borderRadius = "2px";
+  // Fallback icon — vanilla Dota innate icon, shows through if DOTAAbilityImage has no icon
+  // (e.g. innate / passive abilities like skywrath_mage_ruin_and_restoration that lack a spell icon).
+  spell_block_wrapper.style.backgroundImage = 'url("file://{images}/hud/facets/innate_icon_large_png.png")';
+  spell_block_wrapper.style.backgroundSize = "contain";
+  spell_block_wrapper.style.backgroundPosition = "center center";
+  spell_block_wrapper.style.backgroundRepeat = "no-repeat";
   let spell_block_icon = $.CreatePanel("DOTAAbilityImage", spell_block_wrapper, "", {
     abilityname: ability_name,
   });
@@ -655,9 +661,9 @@ function CreateTalent(upgradeInfo, data) {
 
   localize_upgrade(ability_name, upgrade_name);
 
-  if (loc_upgrade == "") localize_upgrade(ability_name, upgrade_name);
-  if (!b_check_hidden && loc_upgrade == "") loc_upgrade = upgrade_name;
-  if (loc_upgrade == "") return;
+  // Fallback: if no localization key found, show the raw upgrade_name so the talent
+  // is at least clickable and displays SOMETHING instead of being silently broken.
+  if (loc_upgrade == "") loc_upgrade = upgrade_name.replace(/_/g, " ");
 
   const is_pct = loc_upgrade.charAt(0) == "%";
 

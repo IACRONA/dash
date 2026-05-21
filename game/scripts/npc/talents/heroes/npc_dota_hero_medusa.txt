@@ -87,9 +87,6 @@
 			"multiplicative_base_value"		"6"
 		}
 	}
-	"medusa_mana_shield"
-	{
-	}
 	"medusa_gorgon_grasp"
 	{
 		"cooldown_and_manacost"

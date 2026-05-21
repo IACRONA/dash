@@ -52,7 +52,6 @@ function modifier_ability_upgrades_controller:OnCreated()
 	self.parent = self:GetParent()
 
 	if IsServer() then
-		-- OnStackCountChanged is not invoked on client when changed on server, so syncing with transmitter
 		self:SetHasCustomTransmitterData(true)
 	end
 
@@ -71,7 +70,6 @@ function modifier_ability_upgrades_controller:OnRefresh()
 	local player_id = self.parent:GetPlayerOwnerID()
 	self.source_player_id = player_id
 
-	-- Update upgrades data from CustomNetTables on client
 	if not IsServer() then
 		self.parent.upgrades = CustomNetTables:GetTableValue("ability_upgrades", tostring(self.source_player_id)) or {}
 		return
@@ -175,17 +173,14 @@ function modifier_ability_upgrades_controller:GetModifierOverrideAbilitySpecialV
 	end
 
 	if not self.parent.upgrades then
-		-- print("[DEBUG] No upgrades table for hero")
 		return base_value
 	end
 
 	if not self.parent.upgrades[ability_name] then
-		-- print("[DEBUG] No upgrades for ability:", ability_name)
 		return base_value
 	end
 
 	if not self.parent.upgrades[ability_name][special_value_name] then
-		-- print("[DEBUG] No upgrade for special value:", special_value_name, "in", ability_name)
 		return base_value
 	end
 
@@ -241,7 +236,6 @@ function modifier_ability_upgrades_controller:GetModifierPercentageCooldown(para
 
 	self.cache[ability_name] = self.cache[ability_name] or {}
 	self.cache[ability_name].cooldown_and_manacost = added_value
-	-- print("calculated cooldown stacking as: ", final_cooldown_reduction, "from", upgrades_data.count)
 
 	return added_value
 end

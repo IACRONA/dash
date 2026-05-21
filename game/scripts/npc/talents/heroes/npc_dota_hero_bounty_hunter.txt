@@ -86,11 +86,5 @@
 				"bonus_gold" "30"
 			}
 		}
-		"bonus_move_speed_pct"
-		{
-			"value" "10"
-			"operator" "OP_ADD"
-			"max_count" "8"
-		}
 	}
 }

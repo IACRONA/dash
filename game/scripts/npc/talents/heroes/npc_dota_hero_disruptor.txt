@@ -19,7 +19,7 @@
 		}
 		"strike_damage"
 		{
-			"value" "20"
+			"value" "45"
 			"operator" "OP_ADD"
 			
 			"linked_special_values"
@@ -55,11 +55,11 @@
 		}
 		"damage_to_distance_pct"
 		{
-			"value" "5"
+			"value" "10"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"max_damage" "140"
+				"max_damage" "280"
 			}
 		}
 	}
@@ -107,7 +107,7 @@
 		}
 		"damage_max"
 		{
-			"value" "70"
+			"value" "100"
 			"operator" "OP_ADD"
 		}
 		"pulses"

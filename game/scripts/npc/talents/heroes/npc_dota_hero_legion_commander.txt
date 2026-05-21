@@ -79,11 +79,5 @@
 			"value" "10"
 			"operator" "OP_ADD"
 		}
-		"assist_reward_damage"
-		{
-			"value" "5"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "2"
-		}
 	}
 }

@@ -1185,15 +1185,19 @@ function modifier_invoker_ice_wall_custom:OnIntervalThink()
     end
 end
 
-function modifier_invoker_ice_wall_custom:OnRemoved() 
+function modifier_invoker_ice_wall_custom:OnRemoved()
     if self.ice_wall_particle_effect ~= nil then
         for effect in string.gmatch(self.ice_wall_particle_effect, "([^ ]+)") do
-            ParticleManager:DestroyParticle(tonumber(effect), false)                
+            local idx = tonumber(effect)
+            ParticleManager:DestroyParticle(idx, false)
+            ParticleManager:ReleaseParticleIndex(idx)
         end
     end
     if self.ice_wall_particle_effect_spikes ~= nil then
         for effect in string.gmatch(self.ice_wall_particle_effect_spikes, "([^ ]+)") do
-            ParticleManager:DestroyParticle(tonumber(effect), false)
+            local idx = tonumber(effect)
+            ParticleManager:DestroyParticle(idx, false)
+            ParticleManager:ReleaseParticleIndex(idx)
         end
     end
 end

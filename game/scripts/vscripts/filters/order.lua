@@ -4,34 +4,29 @@ return function(t, hAddon)
 	if t.order_type == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
 		local vTarget = Vector(t.position_x, t.position_y, t.position_z)
 		if hMainUnit then
-			for _, tPortal in ipairs(hAddon.aPortals or {}) do
-				if tPortal:IsTouching(vTarget) then
-					if tPortal:CanPass(hMainUnit) then
-						local bQueue = t.queue ~= 0
-						local nRadius = math.max(16, tPortal.nRadius - 32)
-						for _, nUnit in pairs(t.units) do
-							local hUnit = EntIndexToHScript(nUnit)
-							if hUnit then
-								Use(hUnit, tPortal.vPos, nRadius, bQueue, function()
-									tPortal:Teleport(hUnit)
-								end)
-							end
+			local tPortal = hAddon:GetPortalAt(vTarget)
+			if tPortal then
+				if tPortal:CanPass(hMainUnit) then
+					local bQueue = t.queue ~= 0
+					local nRadius = math.max(16, tPortal.nRadius - 32)
+					for _, nUnit in pairs(t.units) do
+						local hUnit = EntIndexToHScript(nUnit)
+						if hUnit then
+							Use(hUnit, tPortal.vPos, nRadius, bQueue, function()
+								tPortal:Teleport(hUnit)
+							end)
 						end
-						return true
-					else
+					end
+					return true
+				else
+					local player = PlayerResource:GetPlayer(hMainUnit:GetPlayerOwnerID())
+					if player then
 						if HasFlag(hMainUnit) then
-							local player = PlayerResource:GetPlayer(hMainUnit:GetPlayerOwnerID())
-			        		if player then
-			            		CustomGameEventManager:Send_ServerToPlayer(player, "CreateIngameErrorMessage", {message="#error_cant_portal_with_flag"})
-			        		end
-                        end
-			        	if tPortal:IsEnemyPortal(hMainUnit) then
-                            local player = PlayerResource:GetPlayer(hMainUnit:GetPlayerOwnerID())
-			        		if player then
-			            		CustomGameEventManager:Send_ServerToPlayer(player, "CreateIngameErrorMessage", {message="#error_cant_portal_enemy"})
-			        		end
-                        end
-						break
+							CustomGameEventManager:Send_ServerToPlayer(player, "CreateIngameErrorMessage", {message="#error_cant_portal_with_flag"})
+						end
+						if tPortal:IsEnemyPortal(hMainUnit) then
+							CustomGameEventManager:Send_ServerToPlayer(player, "CreateIngameErrorMessage", {message="#error_cant_portal_enemy"})
+						end
 					end
 				end
 			end

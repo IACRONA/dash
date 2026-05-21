@@ -31,20 +31,24 @@ function modifier_bucket_soldier_attack:OnCreated( kv )
 	if self.debuff_duration == 0 then self.debuff_duration = 2.0 end
 
 	self:GetCaster():AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_bucket_soldier_attack_ready", { duration = -1 } )
-	self:StartIntervalThink( 0.25 )
 end
 
 function modifier_bucket_soldier_attack:OnIntervalThink()
-	if not IsServer() then return end
-	local hAbility = self:GetAbility()
-	if not hAbility then return end
-	if hAbility:IsCooldownReady() and not self:GetCaster():HasModifier( "modifier_bucket_soldier_attack_ready" ) then
-		self:GetCaster():AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_bucket_soldier_attack_ready", { duration = -1 } )
-	end
 end
 
 function modifier_bucket_soldier_attack:DeclareFunctions()
-	return { MODIFIER_EVENT_ON_ATTACK_LANDED }
+	return {
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_EVENT_ON_ABILITY_END_COOLDOWN,
+	}
+end
+
+function modifier_bucket_soldier_attack:OnAbilityEndCooldown( params )
+	if not IsServer() then return end
+	if params.ability ~= self:GetAbility() then return end
+	if not self:GetCaster():HasModifier( "modifier_bucket_soldier_attack_ready" ) then
+		self:GetCaster():AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_bucket_soldier_attack_ready", { duration = -1 } )
+	end
 end
 
 function modifier_bucket_soldier_attack:OnAttackLanded( params )
@@ -108,7 +112,7 @@ function modifier_bucket_soldier_attack_fear:OnCreated( kv )
 		self.vTargetDir = Vector( 1, 0, 0 )
 	end
 
-	self:StartIntervalThink( 0.1 )
+	self:StartIntervalThink( 0.25 )
 end
 
 function modifier_bucket_soldier_attack_fear:OnIntervalThink()

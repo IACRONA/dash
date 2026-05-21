@@ -9,27 +9,7 @@ modifier_sphere_radiance = class({
 })
 
 function modifier_sphere_radiance:OnCreated()
-	-- ОПТИМИЗАЦИЯ FPS: Увеличен интервал с 1s до 2s
-	self:StartIntervalThink(2)
 end
 
 function modifier_sphere_radiance:OnIntervalThink()
-	if IsClient() then return end
-	local parent = self:GetParent()
-	local enemies = FindUnitsInRadius(
-		parent:GetTeamNumber(),
-		parent:GetAbsOrigin(),
-		nil, SPHERE_RADIANCE_RADIUS,
-		DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		0, FIND_ANY_ORDER, false
-	)
-
-	for _,enemy in ipairs(enemies) do
-		ApplyDamage({
-			victim = enemy,
-			attacker = parent,
-			damage = SPHERE_RADIANCE_DAMAGE * self:GetStackCount(),
-			damage_type = DAMAGE_TYPE_MAGICAL,
-		})
-	end
 end

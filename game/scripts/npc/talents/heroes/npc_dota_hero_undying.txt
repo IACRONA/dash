@@ -78,10 +78,5 @@
 			"value" "40"
 			"operator" "OP_ADD"
 		}
-		"zombie_damage"
-		{
-			"value" "5"
-			"operator" "OP_ADD"
-		}
 	}
 }

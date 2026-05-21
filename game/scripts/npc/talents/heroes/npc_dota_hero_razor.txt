@@ -2,11 +2,6 @@
 {
 	"razor_unstable_current"
 	{
-		"movespeed_per_level_pct"
-		{
-			"value" "0.4"
-			"operator" "OP_ADD"
-		}
 	}
 	"razor_dynamo"
 	{

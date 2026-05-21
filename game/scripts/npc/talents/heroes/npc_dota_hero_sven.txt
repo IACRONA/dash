@@ -35,22 +35,6 @@
 				"vision_radius" "30"
 			}
 		}
-		"damage"
-		{
-			"value" "50"
-			"operator" "OP_ADD"
-			"linked_special_values"
-			{
-				"bolt_speed"
-				{
-					"value" "100"
-					"operator" "OP_MULTIPLY"
-
-					"multiplicative_target"			"2000"
-					"multiplicative_base_value"		"1000"
-				}
-			}
-		}
 	}
 	"sven_great_cleave"
 	{

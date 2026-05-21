@@ -13,7 +13,7 @@ function modifier_true_sight_portal_aura:GetAuraRadius() return 800 end
 function modifier_true_sight_portal_aura:GetModifierAura() return "modifier_true_sight_portal_debuff" end
 function modifier_true_sight_portal_aura:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_ENEMY end
 function modifier_true_sight_portal_aura:GetAuraSearchFlags() return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE end
-function modifier_true_sight_portal_aura:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_OTHER end
+function modifier_true_sight_portal_aura:GetAuraSearchType() return DOTA_UNIT_TARGET_HERO end
 function modifier_true_sight_portal_aura:GetAuraDuration() return 0.5 end
 
 

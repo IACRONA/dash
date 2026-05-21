@@ -60,30 +60,6 @@
 	}
 	"brewmaster_drunken_brawler"
 	{
-		"armor"
-		{
-			"value" "0.4"
-			"operator" "OP_ADD"
-			"linked_special_values"
-			{
-				"magic_resist"
-				{
-					"value" "0.8"
-					"operator" "OP_MULTIPLY"
-
-					"multiplicative_target"			"100"
-					"multiplicative_base_value"		"20"
-				}
-			}
-			"linked_abilities"
-			{
-				"brewmaster_earth_hurl_boulder"
-				{
-					"damage" "80"
-					"speed" "80"
-				}
-			}
-		}
 		"crit_chance"
 		{
 			"value" "4"
@@ -135,49 +111,6 @@
 				{
 					"bonus_damage" "130"
 					"bonus_movement_speeed" "30"
-				}
-			}
-		}
-		"bonus_status_resist"
-		{
-			"value" "8"
-			"operator" "OP_MULTIPLY"
-
-			"multiplicative_target"			"100"
-			"multiplicative_base_value"		"20"
-
-			"linked_special_values"
-			{
-				"movespeed"
-				{
-					"value" "5"
-					"operator" "OP_MULTIPLY"
-
-					"multiplicative_target"			"100"
-					"multiplicative_base_value"		"25"
-				}
-			}
-			"linked_abilities"
-			{
-				"brewmaster_void_astral_pull"
-				{
-					"damage" "125"
-					"AbilityCastRange"
-					{
-						"value" "45"
-						"operator" "OP_MULTIPLY"
-
-						"multiplicative_target"			"650"
-						"multiplicative_base_value"		"150"
-					}
-					"pull_distance"
-					{
-						"value" "45"
-						"operator" "OP_MULTIPLY"
-
-						"multiplicative_target"			"1100"
-						"multiplicative_base_value"		"700"
-					}
 				}
 			}
 		}
@@ -249,11 +182,6 @@
 					}
 				}
 			}
-		}
-		"brewling_added_health"
-		{
-			"value"	"400"
-			"operator" "OP_ADD"
 		}
 	}
 }

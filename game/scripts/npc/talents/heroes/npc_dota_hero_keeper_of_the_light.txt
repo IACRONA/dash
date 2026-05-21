@@ -8,11 +8,6 @@
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
-		"damage_per_second"
-		{
-			"value" "25"
-			"operator" "OP_ADD"
-		}
 		"radius"
 		{
 			"value" "25"
@@ -57,6 +52,22 @@
 			{
 				"mana_restore" "100"
 			}
+		}
+	}
+	"keeper_of_the_light_radiant_bind"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+	}
+	"keeper_of_the_light_recall"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
 		}
 	}
 	"keeper_of_the_light_spirit_form"

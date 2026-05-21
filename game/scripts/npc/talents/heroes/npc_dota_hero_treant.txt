@@ -93,11 +93,6 @@
 			"value" "8"
 			"operator" "OP_ADD"
 		}
-		"bonus_armor"
-		{
-			"value" "4"
-			"operator" "OP_ADD"
-		}
 	}
 	"treant_overgrowth"
 	{

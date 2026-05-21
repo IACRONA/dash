@@ -147,12 +147,17 @@ function ServerManager:OnEndGame(callback)
 		local newRoll = (playerInfo.roll or 0) - rollUsed
 		LogPanorama("sendRequest to ".. steamId)
 
-		HTTP("POST", "/player", {id = steamId, roll = newRoll, isEndGame = true, keybinds = playerInfo.keybinds}, {
-			finnaly = function()
-				playersReady[playerId] = true
-				checkPlayers()
- 			end,
-		})
+		if GameRules:IsCheatMode() or not IsDedicatedServer() then
+			playersReady[playerId] = true
+			checkPlayers()
+		else
+			HTTP("POST", "/player", {id = steamId, roll = newRoll, isEndGame = true, keybinds = playerInfo.keybinds}, {
+				finnaly = function()
+					playersReady[playerId] = true
+					checkPlayers()
+				end,
+			})
+		end
 
 		if not PlayerResource:IsFakeClient(playerId) then
 			local place = teamPlaces[PlayerResource:GetTeam(playerId)]
@@ -177,7 +182,7 @@ function ServerManager:OnEndGame(callback)
 		checkPlayers()
 	end
 
-	Timers:CreateTimer(10, function()
+	Timers:CreateTimer(1, function()
 		callback()
 	end)
 end

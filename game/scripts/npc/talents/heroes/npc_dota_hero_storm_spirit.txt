@@ -86,10 +86,5 @@
 				"ball_lightning_vision_radius" "30"
 			}
 		}
-		"damage"
-		{
-			"value" "4"
-			"operator" "OP_ADD"
-		}
 	}
 }

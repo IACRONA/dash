@@ -21,7 +21,7 @@
 			"RequiresFacetID" "4"
 		}
 	}
-	"windrunner_powershot"
+	"windranger_powershot_custom"
 	{
 		"cooldown_and_manacost"
 		{
@@ -42,26 +42,6 @@
 			"linked_special_values"
 			{
 				"vision_radius" "40"
-			}
-		}
-		"min_execute_threshold"
-		{
-			"value" "0.5"
-			"operator" "OP_MULTIPLY"
-			"RequiresFacetID" "5"
-
-			"multiplicative_target"			"10"
-			"multiplicative_base_value"		"5"
-			"linked_special_values"
-			{
-				"max_execute_threshold"
-				{
-					"value" "1.2"
-					"operator" "OP_MULTIPLY"
-
-					"multiplicative_target"			"24"
-					"multiplicative_base_value"		"12"
-				}
 			}
 		}
 	}
@@ -94,19 +74,6 @@
 				"windrunner_gale_force"
 				{
 					"wind_strength" "20"
-				}
-			}
-		}
-		"physical_damage_pct"
-		{
-			"value" "-3"
-			"operator" "OP_ADD"
-			"max_count" "10"
-			"linked_abilities"
-			{
-				"windrunner_gale_force"
-				{
-					"radius" "30"
 				}
 			}
 		}

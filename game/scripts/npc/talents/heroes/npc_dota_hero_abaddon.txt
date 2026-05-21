@@ -21,15 +21,6 @@
 			"max_count" "7"
 			"RequiresFacetID" "3"
 		}
-		"target_damage"
-		{
-			"value" "40"
-			"operator" "OP_ADD"
-			"linked_special_values"
-			{
-				"heal_amount" "40"
-			}
-		}
 		"missile_speed"
 		{
 			"value" "130"

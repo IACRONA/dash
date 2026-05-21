@@ -1,9 +1,8 @@
 riki_invisibility_manager = class({})
 LinkLuaModifier("modifier_riki_invisibility_manager", "abilities/heroes/riki/riki_invisibility_manager", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_riki_break_invis",          "abilities/heroes/riki/riki_invisibility_manager", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_riki_invis_particle",       "abilities/heroes/riki/riki_invisibility_manager", LUA_MODIFIER_MOTION_NONE)
 
--- Пары: нормальная в слотах 1-4, стелс в 5-8
--- При инвизе свапаем — стелс уходит в 1-4 (Q/W/E/R), нормальная прячется в 5-8
 local SWAP_PAIRS = {
     { normal = "riki_smoke_screen",        stealth = "riki_sleeping_dart" },
     { normal = "riki_blink_strike",        stealth = "riki_stun_strike"   },
@@ -43,7 +42,7 @@ function modifier_riki_invisibility_manager:OnCreated()
             if normal then normal:SetHidden(false) end
         end
         self:SyncAbilityLevels(hero)
-        self:StartIntervalThink(0.1)
+        self:StartIntervalThink(0.2)
     end)
 
     self.learn_listener = ListenToGameEvent("dota_player_learned_ability", function(event)
@@ -78,6 +77,10 @@ function modifier_riki_invisibility_manager:OnIntervalThink()
     end
 end
 
+function modifier_riki_invisibility_manager:DeclareFunctions()
+    return {}
+end
+
 function modifier_riki_invisibility_manager:SyncAbilityLevels(hero)
     for _, pair in ipairs(SWAP_PAIRS) do
         local normal = hero:FindAbilityByName(pair.normal)
@@ -95,23 +98,64 @@ function modifier_riki_invisibility_manager:SyncAbilityLevels(hero)
 end
 
 function modifier_riki_invisibility_manager:SwapToStealth(hero)
-    -- normal сейчас в 1-4 (Q/W/E/R), stealth в 5-8
-    -- SwapAbilities(name1, name2, show1, show2) — name1 прячется, name2 показывается и переходит в слот name1
     for _, pair in ipairs(SWAP_PAIRS) do
         hero:SwapAbilities(pair.normal, pair.stealth, false, true)
+    end
+    hero:AddNewModifier(hero, self:GetAbility(), "modifier_riki_invis_particle", {})
+    if hero.wearItems then
+        for _, item in ipairs(hero.wearItems) do
+            if item and not item:IsNull() then
+                item:AddEffects(EF_NODRAW)
+            end
+        end
     end
 end
 
 function modifier_riki_invisibility_manager:SwapToNormal(hero)
-    -- stealth сейчас в 1-4 (Q/W/E/R), normal в 5-8
     for _, pair in ipairs(SWAP_PAIRS) do
         hero:SwapAbilities(pair.stealth, pair.normal, false, true)
     end
+    hero:RemoveModifierByName("modifier_riki_invis_particle")
+    if hero.wearItems then
+        for _, item in ipairs(hero.wearItems) do
+            if item and not item:IsNull() then
+                item:RemoveEffects(EF_NODRAW)
+            end
+        end
+    end
 end
 
-function modifier_riki_invisibility_manager:DeclareFunctions()
-    return {}
+--------------------------------------------------------------------------------
+-- Invis particle: висит пока Рики в инвизе
+--------------------------------------------------------------------------------
+
+modifier_riki_invis_particle = class({})
+
+function modifier_riki_invis_particle:IsHidden() return true end
+function modifier_riki_invis_particle:IsPurgable() return false end
+function modifier_riki_invis_particle:RemoveOnDeath() return true end
+
+function modifier_riki_invis_particle:OnCreated()
+    if not IsClient() then return end
+    local parent = self:GetParent()
+    self.fx = ParticleManager:CreateParticle(
+        "particles/units/heroes/hero_riki/riki_ambient_invis.vpcf",
+        PATTACH_ABSORIGIN_FOLLOW,
+        parent
+    )
+    ParticleManager:SetParticleControlEnt(self.fx, 0, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_origin", parent:GetAbsOrigin(), true)
 end
+
+function modifier_riki_invis_particle:OnDestroy()
+    if not IsClient() then return end
+    if self.fx then
+        ParticleManager:DestroyParticle(self.fx, false)
+        ParticleManager:ReleaseParticleIndex(self.fx)
+        self.fx = nil
+    end
+end
+
+function modifier_riki_invis_particle:DeclareFunctions() return {} end
 
 --------------------------------------------------------------------------------
 -- Break invis: форсирует выход из инвиза на N секунд (используется для 2/3 скиллов)

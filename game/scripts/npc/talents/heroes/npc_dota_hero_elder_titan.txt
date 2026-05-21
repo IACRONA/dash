@@ -53,16 +53,6 @@
 	}
 	"elder_titan_natural_order"
 	{
-		"armor_per_tick"
-		{
-			"value" "0.2"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "1"
-			"linked_special_values"
-			{
-				"magic_resistance_per_tick" "0.2"
-			}
-		}
 		"radius"
 		{
 			"value" "30"

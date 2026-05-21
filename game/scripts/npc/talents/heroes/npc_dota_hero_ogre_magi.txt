@@ -67,12 +67,6 @@
 	}
 	"ogre_magi_multicast"
 	{
-		"strength_mult"
-		{
-			"value" "0.01"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "1"
-		}
 		"multicast_2_times"
 		{
 			"value" "2"

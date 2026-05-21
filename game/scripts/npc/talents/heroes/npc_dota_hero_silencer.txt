@@ -2,13 +2,6 @@
 {
 	"silencer_oppressive_silence"
 	{
-		"damage_pct"
-		{
-			"value" "3"
-			"operator" "OP_ADD"
-			"max_count" "10"
-			"RequiresFacetID" "4"
-		}
 	}
 	"silencer_curse_of_the_silent"
 	{

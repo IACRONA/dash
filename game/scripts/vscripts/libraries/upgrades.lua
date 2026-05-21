@@ -174,17 +174,16 @@ function Upgrades:QueueSelection(hero, rarity)
 		rarity = rarity,
 		is_lucky_trinket_proc = Upgrades.lucky_trinket_proc[player_id]
 	})
-	-- print("QueueSelection LVL 1")
-	-- if not Upgrades.pending_selection[player_id] then
+	if not Upgrades.pending_selection[player_id] then
 		Upgrades:ShowSelection(hero, rarity, player_id)
-	-- else
-	-- 	local player = PlayerResource:GetPlayer(player_id)
-	-- 	if IsValidEntity(player) then
-	-- 		CustomGameEventManager:Send_ServerToPlayer(player, "Upgrades:update_pending_count", {
-	-- 			upgrades_count = #Upgrades.queued_selection[player_id];
-	-- 		})
-	-- 	end
-	-- end
+	else
+		local player = PlayerResource:GetPlayer(player_id)
+		if IsValidEntity(player) then
+			CustomGameEventManager:Send_ServerToPlayer(player, "Upgrades:update_pending_count", {
+				upgrades_count = #Upgrades.queued_selection[player_id];
+			})
+		end
+	end
 
 	-- local hero = PlayerResource:GetSelectedHeroEntity(player_id)
 	-- local upgrades_count = Upgrades:GetPendingUpgradesCount(player_id)
@@ -230,6 +229,40 @@ function Upgrades:QueueSelectionForTeam(team, rarity)
 end
 
 
+-- Re-sync pending/queued selection to client after reconnect or hero rebind
+function Upgrades:ResyncSelectionsForPlayer(player_id)
+	local player = PlayerResource:GetPlayer(player_id)
+	if not IsValidEntity(player) then return end
+
+	local pending = Upgrades.pending_selection[player_id]
+	if pending then
+		-- Re-send the existing pending selection (same choices, same selection_id) to client
+		CustomGameEventManager:Send_ServerToPlayer(player, "open_talents_choose_players", {
+			upgrades = {
+				upgrade_rarity = pending.upgrade_rarity,
+				choices = pending.choices,
+				reroll = false,
+				selection_id = pending.selection_id,
+				is_lucky_trinket_proc = pending.is_lucky_trinket_proc,
+			},
+			upgrades_count = Upgrades:GetPendingUpgradesCount(player_id),
+			favorites_upgrades = Upgrades.favorites_upgrades[player_id] or {}
+		})
+		return
+	end
+
+	-- No pending but maybe queue has items (accumulated during disconnect)
+	local queue = Upgrades.queued_selection[player_id]
+	if queue and #queue > 0 then
+		local hero = PlayerResource:GetSelectedHeroEntity(player_id)
+		if hero then
+			local selection_data = queue[1]
+			Upgrades:ShowSelection(hero, selection_data.rarity, player_id, false, selection_data.is_lucky_trinket_proc or false)
+		end
+	end
+end
+
+
 function Upgrades:Reroll(event)
 	local player_id = event.PlayerID
 	local hero = PlayerResource:GetSelectedHeroEntity(player_id)
@@ -262,7 +295,7 @@ function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_tri
 		upgrade_type,
 		player_id,
 		rarity,
-		{},
+		previous_choices[upgrade_type] or {},
 		count_per_selection
 	)
 
@@ -270,6 +303,25 @@ function Upgrades:ShowSelection(hero, rarity, player_id, is_reroll, is_lucky_tri
 
 	new_previous_choices[upgrade_type] = rolled_upgrades
 	table.extend(choices, rolled_upgrades)
+
+	-- Enrich choices with current stack count from hero.upgrades so the panel can show "from X to Y".
+	-- We build NEW choice tables (don't mutate pool entries) to avoid polluting the cached pool.
+	local hero_for_count = PlayerResource:GetSelectedHeroEntity(player_id)
+	if hero_for_count then
+		local hero_upgrades = hero_for_count.upgrades or {}
+		for idx, choice in pairs(choices) do
+			local copy = {}
+			for k, v in pairs(choice) do copy[k] = v end
+			local ab = copy.ability_name
+			local up = copy.upgrade_name
+			if ab and up and hero_upgrades[ab] and hero_upgrades[ab][up] then
+				copy.count = hero_upgrades[ab][up].count or 0
+			else
+				copy.count = 0
+			end
+			choices[idx] = copy
+		end
+	end
 
 	local selection_id = DoUniqueString("selection_id")
 
@@ -303,28 +355,23 @@ end
 
 
 function Upgrades:RollUpgradesOfType(upgrade_type, player_id, rarity, previous_choices, count)
-	local pool = {}
-
 	local hero = PlayerResource:GetSelectedHeroEntity(player_id)
 	if not IsValidEntity(hero) then
 		return {}
 	end
 
 	local hero_name = hero:GetUnitName()
-	-- print("[Upgrades] RollUpgradesOfType: hero_name =", hero_name, "rarity =", rarity, "count =", count)
 
 	if not Upgrades.upgrades_kv[hero_name] then
 		return {}
 	end
 
-	-- Build pool with ability_name and upgrade_name attached to each upgrade
-	for ability_name, upgrades_table in pairs(Upgrades.upgrades_kv[hero_name]) do
-		for upgrade_name, upgrade_data in pairs(upgrades_table) do
-			local upgrade_entry = table.shallowcopy(upgrade_data)
-			upgrade_entry.ability_name = ability_name
-			upgrade_entry.upgrade_name = upgrade_name
-			table.insert(pool, upgrade_entry)
-		end
+	-- ОПТИМИЗАЦИЯ FPS: используем закешированный pool вместо пересоздания каждый раз
+	local pool = Upgrades.upgrades_pool and Upgrades.upgrades_pool[hero_name]
+	if not pool then
+		-- fallback: горячая перезагрузка скриптов — построим кеш через LoadUpgradesData (один раз)
+		Upgrades:LoadUpgradesData(hero_name)
+		pool = Upgrades.upgrades_pool and Upgrades.upgrades_pool[hero_name] or {}
 	end
 
 	-- transform previous choices into lookup table for filtering
@@ -348,7 +395,7 @@ function Upgrades:RollUpgradesOfType(upgrade_type, player_id, rarity, previous_c
 		if upgrade_data.rarity and upgrade_data.rarity ~= rarity then return false end
 		if upgrade_data.disabled and upgrade_data.disabled == 1 then return false end
 
-		if disabled_upgrades[upgrade_name] then return false end
+		if disabled_upgrades[upgrade_data.ability_name] and disabled_upgrades[upgrade_data.ability_name][upgrade_name] then return false end
 
 		local ability_upgrades = hero.upgrades[upgrade_data.ability_name] or {}
 
@@ -402,18 +449,17 @@ function Upgrades:UpgradeSelected(event)
 	if not IsValidEntity(player) then return end
 
 	local pending_selection = Upgrades.pending_selection[player_id]
-	if not pending_selection then print("no pending upgrades") return end
+	if not pending_selection then return end
 
 	local hero = PlayerResource:GetSelectedHeroEntity(player_id)
-
 	local rarity = pending_selection.upgrade_rarity
- 
+
 	local index, upgrade_data = table.find_element(pending_selection.choices, function(t, k, v)
 		return v.upgrade_name == event.upgrade_name and v.ability_name == event.ability_name
 	end)
 
-	if not index or not upgrade_data then print("failed to find selected upgrade") return end
- 
+	if not index or not upgrade_data then return end
+
 	Upgrades:AddAbilityUpgrade(
 		hero,
 		upgrade_data.ability_name,
@@ -424,10 +470,9 @@ function Upgrades:UpgradeSelected(event)
 
 	Upgrades.pending_selection[player_id] = nil
 
-	table.remove(Upgrades.queued_selection[player_id], #Upgrades.queued_selection[player_id])
-	local length = #Upgrades.queued_selection[player_id]
-	if length > 0 then
-		local selection_data = Upgrades.queued_selection[player_id][length]
+	table.remove(Upgrades.queued_selection[player_id], 1)
+	if #Upgrades.queued_selection[player_id] > 0 then
+		local selection_data = Upgrades.queued_selection[player_id][1]
 		Upgrades:ShowSelection(hero, selection_data.rarity, player_id, false, selection_data.is_lucky_trinket_proc or false)
 	end
 end
@@ -436,16 +481,7 @@ function Upgrades:LoadUpgradesData(hero_name)
 	if self.upgrades_kv[hero_name] then
 		return
 	end
-	-- print("[Upgrades] LoadUpgradesData: loading talents for", hero_name)
 	self.upgrades_kv[hero_name] = LoadKeyValues("scripts/npc/talents/heroes/" .. hero_name .. ".txt")
-	if not self.upgrades_kv[hero_name] then
-	else
-		local count = 0
-		for ability_name, upgrades in pairs(self.upgrades_kv[hero_name] or {}) do
-			count = count + 1
-		end
-		-- print("[Upgrades] Loaded", count, "abilities with talents for", hero_name)
-	end
 
 	-- Parse upgrades data (convert string operators to numbers, etc.)
 	if self.upgrades_kv[hero_name] then
@@ -455,17 +491,38 @@ function Upgrades:LoadUpgradesData(hero_name)
 					UpgradesUtilities:ParseUpgrade(upgrade_data, upgrade_name, UPGRADE_TYPE.ABILITY, ability_name)
 				end)
 				if not success then
+					print("[Upgrades] ParseUpgrade error for " .. hero_name .. "/" .. ability_name .. "/" .. upgrade_name .. ": " .. tostring(err))
 				end
 			end
 		end
 	end
 
+	-- ОПТИМИЗАЦИЯ FPS: строим pool апгрейдов один раз и кешируем (раньше пересоздавался при каждом RollUpgradesOfType)
+	self.upgrades_pool = self.upgrades_pool or {}
+	local pool = {}
+	if self.upgrades_kv[hero_name] then
+		for ability_name, upgrades_table in pairs(self.upgrades_kv[hero_name]) do
+			for upgrade_name, upgrade_data in pairs(upgrades_table) do
+				local upgrade_entry = table.shallowcopy(upgrade_data)
+				upgrade_entry.ability_name = ability_name
+				upgrade_entry.upgrade_name = upgrade_name
+				table.insert(pool, upgrade_entry)
+			end
+		end
+	end
+	self.upgrades_pool[hero_name] = pool
+
 	CustomNetTables:SetTableValue("ability_upgrades", hero_name, self.upgrades_kv[hero_name] or {})
-	-- print("[Upgrades] Set CustomNetTables for", hero_name)
 end
 
 function Upgrades:GetUpgradeValue(hero_name, ability_name, special_value_name)
-	return self.upgrades_kv[hero_name][ability_name][special_value_name].value
+	local hero_kv = self.upgrades_kv[hero_name]
+	if not hero_kv then return nil end
+	local ability_kv = hero_kv[ability_name]
+	if not ability_kv then return nil end
+	local upgrade = ability_kv[special_value_name]
+	if not upgrade then return nil end
+	return upgrade.value
 end
 
 
@@ -503,8 +560,7 @@ function Upgrades:AddOrIncrementUpgrade(hero, ability_name, upgrade_name, value,
 		upgrade_data.count = upgrade_data.count + rarity
 	end
 
-	Upgrades:RefreshIntrinsicModifierByName(hero, ability_name)
-
+	-- Refresh выполняется в AddAbilityUpgrade один раз для всех затронутых способностей
 	return upgrade_data
 end
 
@@ -523,14 +579,18 @@ function Upgrades:AddUpgradeFromTable(hero, ability_name, upgrade_name, new_upgr
 		upgrade_data.count = rarity
 	end
 
-	Upgrades:RefreshIntrinsicModifierByName(hero, ability_name)
-
+	-- Refresh выполняется в AddAbilityUpgrade один раз для всех затронутых способностей
 	return upgrade_data
 end
 
 
 function Upgrades:ApplyLinkedUpgrades(hero, hero_name, ability_name, special_value_name, rarity)
-	local upgrade_config = self.upgrades_kv[hero_name][ability_name][special_value_name]
+	local hero_kv = self.upgrades_kv[hero_name]
+	if not hero_kv then return end
+	local ability_kv = hero_kv[ability_name]
+	if not ability_kv then return end
+	local upgrade_config = ability_kv[special_value_name]
+	if not upgrade_config then return end
 	local linked_special_values = upgrade_config.linked_special_values or {}
 
 	-- applying upgrades from in-ability links
@@ -581,7 +641,6 @@ function Upgrades:AddAbilityUpgrade(hero, ability_name, special_value_name, rari
 	if not hero.upgrades then hero.upgrades = {} end
 
 	local hero_name = hero:GetUnitName()
-	-- print("[Upgrades] adding ability upgrade for", hero_name, ability_name, special_value_name, rarity)
 
 	local base_value = Upgrades:GetUpgradeValue(hero_name, ability_name, special_value_name)
 
@@ -603,27 +662,33 @@ function Upgrades:AddAbilityUpgrade(hero, ability_name, special_value_name, rari
 
 	Upgrades:ApplyLinkedUpgrades(hero, hero_name, ability_name, special_value_name, rarity)
 
-	-- Update CustomNetTables FIRST before refreshing modifier
-	-- This ensures client gets fresh data when HandleCustomTransmitterData is called
 	CustomNetTables:SetTableValue("ability_upgrades", tostring(player_id), hero.upgrades)
 
 	local controller_modifier = hero:FindModifierByName("modifier_ability_upgrades_controller")
-
 	if not controller_modifier then
 		controller_modifier = hero:AddNewModifier(hero, nil, "modifier_ability_upgrades_controller", {})
 	end
 
 	controller_modifier:ForceRefresh()
 
-	Upgrades:RefreshIntrinsicModifierByName(hero, ability_name)
+	-- Рефрешим только затронутые способности: основную + linked_abilities
+	local abilities_to_refresh = { [ability_name] = true }
+	local hero_kv = self.upgrades_kv[hero_name]
+	if hero_kv and hero_kv[ability_name] and hero_kv[ability_name][special_value_name] then
+		local linked_abilities = hero_kv[ability_name][special_value_name].linked_abilities
+		if linked_abilities then
+			for linked_ability_name, _ in pairs(linked_abilities) do
+				abilities_to_refresh[linked_ability_name] = true
+			end
+		end
+	end
 
-	-- Force refresh ALL abilities to update tooltips
-	for i = 0, hero:GetAbilityCount() - 1 do
-		local ability = hero:GetAbilityByIndex(i)
-		if ability and not ability:IsNull() then
-			-- Force ability to recalculate special values
-			if ability:GetLevel() > 0 then
-				ability:SetLevel(ability:GetLevel())
+	for ab_name, _ in pairs(abilities_to_refresh) do
+		local ab = hero:FindAbilityByName(ab_name)
+		if ab and not ab:IsNull() and ab:GetLevel() > 0 then
+			ab:RefreshIntrinsicModifier()
+			if self.abilities_requires_level_reset[ab_name] then
+				ab:SetLevel(ab:GetLevel())
 			end
 		end
 	end
@@ -774,9 +839,14 @@ end
 
 
 function Upgrades:IterateSummonList(hero, callback)
-	for summon_entity_index, summon in pairs(self.summon_list[hero:GetPlayerOwnerID()] or {}) do
+	local player_id = hero:GetPlayerOwnerID()
+	local player_summons = self.summon_list[player_id]
+	if not player_summons then return end
+
+	for summon_entity_index, summon in pairs(player_summons) do
 		if not IsValidEntity(summon) then
-			self.summon_list[summon_entity_index] = nil
+			-- Чистим в правильной подтаблице, не на верхнем уровне
+			player_summons[summon_entity_index] = nil
 		else
 			local summon_name = summon:GetUnitName()
 			local summon_params = SUMMON_TO_ABILITY_MAP[summon_name]

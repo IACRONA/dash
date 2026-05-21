@@ -101,11 +101,6 @@
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
-		"damage"
-		{
-			"value" "150"
-			"operator" "OP_ADD"
-		}
 		"ghostship_width"
 		{
 			"value" "35"

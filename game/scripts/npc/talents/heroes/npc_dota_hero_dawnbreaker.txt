@@ -67,12 +67,6 @@
 				"hammer_aoe_radius" "30"
 			}
 		}
-		"fire_trail_health_regen"
-		{
-			"value" "6"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "4"
-		}
 	}
 	"dawnbreaker_luminosity"
 	{

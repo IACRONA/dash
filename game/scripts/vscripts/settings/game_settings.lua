@@ -155,7 +155,7 @@ if GetMapName() == "dash" then
     HERO_STARTING_LEVEL = 1
     GRANT_INTERVAL = 30
     GRANT_LEVELS = 0
-    GRANT_GOLD = 220
+    GRANT_GOLD = 175
 
     CONDITION_FLAG_COUNT_WIN = 7
 
@@ -215,7 +215,7 @@ if GetMapName() == "dash" then
     REROLL_ABILITIES_MAX_COUNT_ULTI = 5 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка судеб
-    NEW_PASSIVE_SPELLS_COOLDOWN = 300 -- 420s / 7m
+    NEW_PASSIVE_SPELLS_COOLDOWN = 360 -- 420s / 7m
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
     
     -- One Punchman
@@ -273,7 +273,7 @@ if GetMapName() == "dash" then
     HIMARON_SWORD_COOLDOWN = 14
 
     -- Время за сколько в сумме будет 30 лвл  в минутах
-    PERCENT_OF_LEVEL_MINUTE = 90
+    PERCENT_OF_LEVEL_MINUTE = 75
 
     -- Время возрождения для dash
     -- уровень, время респавна
@@ -286,7 +286,7 @@ if GetMapName() == "dash" then
     }
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 180
+    NEW_SPHERES = 240
     MAX_SPHERE_LEVEL = 3
     COUNT_SPHERE_CHOICE = 3
     MAX_SPHERE_COUNT = 4

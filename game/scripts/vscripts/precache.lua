@@ -1,5 +1,6 @@
 local particles =
 {
+    "particles/units/heroes/hero_riki/riki_ambient_invis.vpcf",
     "particles/bane_nightmare.vpcf",
     "particles/units/heroes/hero_skeletonking/wraith_king_curse_overhead_skull.vpcf",
     "particles/generic_gameplay/generic_hit_blood.vpcf",

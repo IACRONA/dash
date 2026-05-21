@@ -53,12 +53,6 @@
 			"operator" "OP_ADD"
 			"max_count" "6"
 		}
-		"radius"
-		{
-			"value" "35"
-			"operator" "OP_ADD"
-			"max_count" "10"
-		}
 	}
 	"tidehunter_ravage"
 	{
@@ -76,18 +70,6 @@
 						"value" "8"
 						"operator" "OP_MULTIPLY"
 					}
-				}
-			}
-		}
-		"damage"
-		{
-			"value" "125"
-			"operator" "OP_ADD"
-			"linked_abilities"
-			{
-				"tidehunter_dead_in_the_water"
-				{
-					"damage" "75"
 				}
 			}
 		}

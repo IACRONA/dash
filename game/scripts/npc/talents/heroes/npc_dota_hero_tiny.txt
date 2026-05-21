@@ -9,20 +9,6 @@
 			"max_count" "6"
 		}
 	}
-	"tiny_insurmountable"
-	{
-		//"str_to_slow_resist_pct"
-		//{
-		//	"value" "4"
-		//	"operator" "OP_ADD"
-		//	"max_count" "10"
-		//	"RequiresFacetID" "2"
-		//	"linked_special_values"
-		//	{
-		//		"str_to_status_resist_pct" "2"
-		//	}
-		//}
-	}
 	"tiny_avalanche"
 	{
 		"radius"

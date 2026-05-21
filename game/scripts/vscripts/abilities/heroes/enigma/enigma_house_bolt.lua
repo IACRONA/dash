@@ -150,7 +150,7 @@ function modifier_enigma_house_bolt_fear:OnCreated(data)
 	if IsClient() then return end
 	self.direction = Vector(data.xDirection, data.yDirection, 0)
 	self:OnIntervalThink()
-	self:StartIntervalThink(0.3)
+	self:StartIntervalThink(0.5)
 end
 
 function modifier_enigma_house_bolt_fear:OnIntervalThink(data)

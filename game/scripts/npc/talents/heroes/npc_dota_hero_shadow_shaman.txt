@@ -55,10 +55,5 @@
 			"operator" "OP_MULTIPLY"
 			"max_count" "6"
 		}
-		"ward_damage"
-		{
-			"value" "8"
-			"operator" "OP_ADD"
-		}
 	}
 }

@@ -104,12 +104,6 @@
 			"operator" "OP_MULTIPLY"
 			"max_count" "3"
 		}
-		"damage"
-		{
-			"value" "30"
-			"operator" "OP_ADD"
-			"max_count" "5"
-		}
 		"sleep_duration"
 		{
 			"value" "0.5"
@@ -133,9 +127,9 @@
 		}
 		"bonus_attack_damage_pct"
 		{
-			"value" "15"
+			"value" "50"
 			"operator" "OP_ADD"
-			"max_count" "10"
+			"max_count" "15"
 		}
 	}
 	"riki_venous_strike"

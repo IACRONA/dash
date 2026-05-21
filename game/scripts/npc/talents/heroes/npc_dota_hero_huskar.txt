@@ -26,13 +26,6 @@
 	}
 	"huskar_burning_spear"
 	{
-		"health_cost"
-		{
-			"value" "-0.75"
-			"operator" "OP_ADD"
-			"max_count" "4"
-			"DisabledWithFacetID" "4"
-		}
 		"max_health_cost"
 		{
 			"value" "-0.3"

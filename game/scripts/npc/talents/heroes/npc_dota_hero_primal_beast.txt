@@ -110,12 +110,5 @@
 				}
 			}
 		}
-		"bonus_aoe_pct_per_hit"
-		{
-			"value" "5"
-			"operator" "OP_ADD"
-			"max_count" "3"
-			"RequiresFacetID" "3"
-		}
 	}
 }

@@ -2,11 +2,6 @@
 {
 	"rubick_might_and_magus"
 	{
-		"bonus_damage_pct"
-		{
-			"value" "25"
-			"operator" "OP_ADD"
-		}
 	}
 	"rubick_telekinesis"
 	{
@@ -52,12 +47,6 @@
 			"operator" "OP_ADD"
 			"max_count" "1"
 		}
-		"attack_damage_reduction"
-		{
-			"value" "11"
-			"operator" "OP_ADD"
-			"max_count" "4"
-		}
 		"radius"
 		{
 			"value" "30"
@@ -78,13 +67,6 @@
 			"value" "8"
 			"operator" "OP_ADD"
 			"max_count" "10"
-		}
-		"aoe_bonus"
-		{
-			"value" "5"
-			"operator" "OP_ADD"
-			"max_count" "2"
-			"RequiresFacetID" "2"
 		}
 	}
 	"rubick_spell_steal"

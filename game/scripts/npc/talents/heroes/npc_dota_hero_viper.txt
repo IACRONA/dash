@@ -2,15 +2,6 @@
 {
 	"viper_predator"
 	{
-		"damage_base"
-		{
-			"value" "0.15"
-			"operator" "OP_ADD"
-			"linked_special_values"
-			{
-				"damage_per_level" "0.02"
-			}
-		}
 	}
 	"viper_poison_attack"
 	{

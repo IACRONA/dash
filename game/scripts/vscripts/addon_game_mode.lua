@@ -971,8 +971,8 @@ function CAddonWarsong:OnPlayerDisconnect(event)
 	ServerManager:SendServerPlayerRoll(playerId)
 end
 
-function CAddonWarsong:OnPlayerConnect(event) 
-	Timers:CreateTimer(1.5, function() 
+function CAddonWarsong:OnPlayerConnect(event)
+	Timers:CreateTimer(1.5, function()
 		local playerId = event.PlayerID
 		if self.bookTicks and self.bookTicks.common[playerId] then
 			self.bookTicks.common[playerId].disconnected = false
@@ -993,6 +993,8 @@ function CAddonWarsong:OnPlayerConnect(event)
 				 self.bookReserve[playerId] = {common = 0, rare = 0, epic = 0} -- Очищаем резерв
 			end
 		end
+		-- Re-sync pending/queued talent selections that existed before disconnect
+		Upgrades:ResyncSelectionsForPlayer(playerId)
 	end)
 end
 

@@ -44,12 +44,6 @@
 				"shard_damage" "45"
 			}
 		}
-		"stun_radius"
-		{
-			"value" "30"
-			"operator" "OP_ADD"
-			"max_count" "10"
-		}
 	}
 	"techies_suicide"
 	{

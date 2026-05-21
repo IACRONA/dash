@@ -80,17 +80,6 @@
 			"value" "70"
 			"operator" "OP_ADD"
 		}
-		"allied_bonus_movespeed"
-		{
-			"value" "5"
-			"operator" "OP_ADD"
-			"max_count" "10"
-			"RequiresFacetID" "3"
-			"linked_special_values"
-			{
-				"allied_bonus_movespeed_duration" "0.6"
-			}
-		}
 	}
 	"earth_spirit_geomagnetic_grip"
 	{
@@ -120,6 +109,32 @@
 		"rock_damage"
 		{
 			"value" "100"
+			"operator" "OP_ADD"
+		}
+	}
+	"earth_spirit_petrify"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "70"
+			"operator" "OP_ADD"
+		}
+	}
+	"earth_spirit_stone_caller"
+	{
+		"cooldown_and_manacost"
+		{
+			"value" "8"
+			"operator" "OP_MULTIPLY"
+		}
+		"damage"
+		{
+			"value" "70"
 			"operator" "OP_ADD"
 		}
 	}

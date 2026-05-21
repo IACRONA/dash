@@ -12,21 +12,17 @@ function modifier_warsong_movespeed_bonus_resistance_bonus:OnCreated(data)
 	self.time = data.time
 	self:SetHasCustomTransmitterData(true)
 	self:SetStackCount(1)
+	self:SendBuffRefreshToClients()
 
-	-- ОПТИМИЗАЦИЯ: Проверка времени раз в 2 секунды вместо 0.1
-	self:StartIntervalThink(2.0)
+	local expireTime = self.time * 60
+	Timers:CreateTimer(expireTime - GameRules:GetDOTATime(false, false), function()
+		if not self or self:IsNull() then return end
+		self:SetStackCount(0)
+		self:SendBuffRefreshToClients()
+	end)
 end
 
 function modifier_warsong_movespeed_bonus_resistance_bonus:OnIntervalThink()
-	if not IsServer() then return end
-	if (math.floor(GameRules:GetDOTATime(false, false) / 60)) >= self.time then
-		self:SetStackCount(0)
-		-- Остановить дальнейшие проверки, так как время истекло
-		self:StartIntervalThink(-1)
-	else
-		self:SetStackCount(1)
-	end
-	self:SendBuffRefreshToClients()
 end
 
 function modifier_warsong_movespeed_bonus_resistance_bonus:DeclareFunctions()

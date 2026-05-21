@@ -58,24 +58,6 @@
 			"multiplicative_target"			"100"
 			"multiplicative_base_value"		"40"
 		}
-		"mana_drain_percent"
-		{
-			"value" "60"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "1"
-			"linked_special_values"
-			{
-				"max_damage_from_mana_drain" "80"
-			}
-			"linked_abilities"
-			{
-				"antimage_counterspell_ally"
-				{
-					"mana_drain_percent" "60"
-					"max_damage_from_mana_drain" "80"
-				}
-			}
-		}
 		// shard ability - antimage_counterspell_ally
 	}
 	"antimage_mana_void"

@@ -2,11 +2,6 @@
 {
 	"luna_lunar_blessing"
 	{
-		"self_bonus_damage_per_level"
-		{
-			"value" "1"
-			"operator" "OP_ADD"
-		}
 	}
 	"luna_lucent_beam"
 	{

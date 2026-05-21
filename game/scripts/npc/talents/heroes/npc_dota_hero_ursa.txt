@@ -28,11 +28,6 @@
 			"operator" "OP_ADD"
 			"max_count" "10"
 		}
-		"damage"
-		{
-			"value" "70"
-			"operator" "OP_ADD"
-		}
 	}
 	"ursa_overpower"
 	{

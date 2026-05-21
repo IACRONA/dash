@@ -2,12 +2,6 @@
 {
 	"weaver_rewoven"
 	{
-		"attack_range_increase_per_stack"
-		{
-			"value" "15"
-			"operator" "OP_ADD"
-			"max_count" "10"
-		}
 	}
 	"weaver_the_swarm"
 	{
@@ -45,13 +39,6 @@
 				"spawn_radius" "20"
 			}
 		}
-		"experience_gain"
-		{
-			"value" "2"
-			"operator" "OP_ADD"
-			"max_count" "5"
-			"RequiresFacetID" "2"
-		}
 	}
 	"weaver_shukuchi"
 	{
@@ -74,13 +61,6 @@
 			{
 				"shukuchi_attack_mark_radius" "40"
 			}
-		}
-		"slow_duration"
-		{
-			"value" "0.15"
-			"operator" "OP_ADD"
-			"max_count" "5"
-			"RequiresFacetID" "1"
 		}
 	}
 	"weaver_geminate_attack"

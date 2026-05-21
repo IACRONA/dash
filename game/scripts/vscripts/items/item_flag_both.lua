@@ -139,31 +139,28 @@ local FlagReturnCountdown = class{
 			return
 		end
 
-		local heroesAround = FindUnitsInRadius(
+		-- Один поиск по обеим командам, делим на свои/чужие в цикле (раньше было 2 поиска)
+		local allHeroes = FindUnitsInRadius(
 			self.nTeam,
-			self.vPos, 
+			self.vPos,
 			nil,
 			self.nRadius,
-			DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+			DOTA_UNIT_TARGET_TEAM_BOTH,
 			DOTA_UNIT_TARGET_HERO,
-			DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
+			DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 			FIND_ANY_ORDER,
 			false
 		)
+		local nFriendly, nEnemiesArouns = 0, 0
+		for _, hUnit in ipairs(allHeroes) do
+			if hUnit:GetTeamNumber() == self.nTeam then
+				nFriendly = nFriendly + 1
+			else
+				nEnemiesArouns = nEnemiesArouns + 1
+			end
+		end
 
-		if #heroesAround > 0 then
-			local nEnemiesArouns = #FindUnitsInRadius(
-				self.nTeam,
-				self.vPos,
-				nil,
-				self.nRadius,
-				DOTA_UNIT_TARGET_TEAM_ENEMY,
-				DOTA_UNIT_TARGET_HERO,
-				DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-				FIND_ANY_ORDER,
-				false
-			)
-
+		if nFriendly > 0 then
 			if self.nRingStartTime == nil then
 				self.nRingStartTime = nTime
 			end

@@ -32,11 +32,6 @@
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
-		"damage"
-		{
-			"value" "90"
-			"operator" "OP_ADD"
-		}
 	}
 	"void_spirit_resonant_pulse"
 	{

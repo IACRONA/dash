@@ -96,12 +96,6 @@
 			"max_count" "10"
 			"RequiresFacetID" "2"
 		}
-		"attackdamage_bonus"
-		{
-			"value" "25"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "2"
-		}
 		"movespeed_bonus"
 		{
 			"value" "10"

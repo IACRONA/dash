@@ -19,12 +19,22 @@ function enigma_portal:OnSpellStart()
 
 	caster:SwapAbilities("enigma_portal_teleport", "enigma_portal", true, false)
 
-	self.timer = Timers:CreateTimer(self:GetSpecialValueFor("duration"), function() 
-		ParticleManager:DestroyParticle(self.particle, false)
-		ParticleManager:ReleaseParticleIndex(self.particle)
-		RemoveFOWViewer(caster:GetTeamNumber(), self.vision)
-		caster:SwapAbilities("enigma_portal", "enigma_portal_teleport", true, false)
-		EmitSoundOn("portal_teleport_cast", caster)
+	self.timer = Timers:CreateTimer(self:GetSpecialValueFor("duration"), function()
+		if self.particle then
+			ParticleManager:DestroyParticle(self.particle, false)
+			ParticleManager:ReleaseParticleIndex(self.particle)
+			self.particle = nil
+		end
+		if self.vision then
+			RemoveFOWViewer(caster:GetTeamNumber(), self.vision)
+			self.vision = nil
+		end
+		self.portal = nil
+		self.timer = nil
+		if not caster:IsNull() then
+			caster:SwapAbilities("enigma_portal", "enigma_portal_teleport", true, false)
+			EmitSoundOn("portal_teleport_cast", caster)
+		end
 	end)
 end
 
@@ -33,21 +43,32 @@ enigma_portal_teleport = class({})
 function enigma_portal_teleport:OnSpellStart()
 	local caster = self:GetCaster()
 	local ability = caster:FindAbilityByName("enigma_portal")
-	local difference = (caster:GetAbsOrigin() - ability.portal)
-	local distance = difference:Length()
+	if not ability or not ability.portal then return end
 
-	if distance <= ability:GetSpecialValueFor("distance") then 
-		Timers:RemoveTimer(ability.timer)
+	local distance = (caster:GetAbsOrigin() - ability.portal):Length2D()
+
+	if distance <= ability:GetSpecialValueFor("distance") then
+		if ability.timer then
+			Timers:RemoveTimer(ability.timer)
+			ability.timer = nil
+		end
 		local particle = ParticleManager:CreateParticle("particles/econ/events/fall_major_2016/blink_dagger_start_fm06.vpcf", PATTACH_ABSORIGIN, caster)
 		ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(particle)
 		FindClearSpaceForUnit(caster, ability.portal, true)
-		ParticleManager:DestroyParticle(ability.particle, false)
-		ParticleManager:ReleaseParticleIndex(ability.particle)
-		RemoveFOWViewer(caster:GetTeamNumber(), ability.vision)
+		if ability.particle then
+			ParticleManager:DestroyParticle(ability.particle, false)
+			ParticleManager:ReleaseParticleIndex(ability.particle)
+			ability.particle = nil
+		end
+		if ability.vision then
+			RemoveFOWViewer(caster:GetTeamNumber(), ability.vision)
+			ability.vision = nil
+		end
+		ability.portal = nil
 		caster:SwapAbilities("enigma_portal", "enigma_portal_teleport", true, false)
 		EmitSoundOn("portal_teleport_cast", caster)
-	else 
+	else
 		CustomGameEventManager:Send_ServerToPlayer(caster:GetPlayerOwner(), "CreateIngameErrorMessage", {message="#dota_enigma_error_distance"})
 	end
 end

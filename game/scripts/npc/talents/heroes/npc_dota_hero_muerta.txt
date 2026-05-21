@@ -64,10 +64,5 @@
 			"operator" "OP_MULTIPLY"
 			"max_count" "10"
 		}
-		"bonus_damage"
-		{
-			"value" "15"
-			"operator" "OP_ADD"
-		}
 	}
 }

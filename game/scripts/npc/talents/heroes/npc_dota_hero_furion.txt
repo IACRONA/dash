@@ -31,17 +31,6 @@
 				}
 			}
 		}
-		"sprout_heal_per_second"
-		{
-			"value" "35"
-			"operator" "OP_ADD"
-			"RequiresFacetID" "1"
-
-			"talents"
-			{
-				"special_bonus_unique_furion_8"	"x1.3"
-			}
-		}
 		"sprout_damage_radius"
 		{
 			"value" "80"
@@ -110,11 +99,6 @@
 		"treant_damage"
 		{
 			"value" "8"
-			"operator" "OP_ADD"
-		}
-		"treant_hp_tooltip"
-		{
-			"value" "50"
 			"operator" "OP_ADD"
 		}
 	}

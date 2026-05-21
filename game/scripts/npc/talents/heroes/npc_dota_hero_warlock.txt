@@ -51,7 +51,7 @@
 		}
 		"damage"
 		{
-			"value" "15"
+			"value" "35"
 			"operator" "OP_ADD"
 		}
 		"spell_aoe"
@@ -76,11 +76,11 @@
 		}
 		"damage_per_second"
 		{
-			"value" "4"
+			"value" "10"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
-				"max_damage" "60"
+				"max_damage" "150"
 			}
 		}
 	}
@@ -128,7 +128,7 @@
 		}
 		"golem_dmg"
 		{
-			"value" "50"
+			"value" "80"
 			"operator" "OP_ADD"
 			"linked_special_values"
 			{
