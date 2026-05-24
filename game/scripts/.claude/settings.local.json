@@ -64,7 +64,9 @@
       "Bash(export PYTHONIOENCODING=utf-8)",
       "Bash(python -X utf8 -c ' *)",
       "Bash(xargs grep -l \"fate\\\\|talent\\\\|choose\")",
-      "Bash(Get-ChildItem \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota_addons\\\\dotawarsongs\\\\scripts\\\\npc\\\\talents\\\\heroes\\\\\" -Filter \"*.txt\" | Select-Object -ExpandProperty Name)"
+      "Bash(Get-ChildItem \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota_addons\\\\dotawarsongs\\\\scripts\\\\npc\\\\talents\\\\heroes\\\\\" -Filter \"*.txt\" | Select-Object -ExpandProperty Name)",
+      "Bash(python3 -c ' *)",
+      "PowerShell($path = \"c:\\\\Program Files \\(x86\\)\\\\Steam\\\\steamapps\\\\common\\\\dota 2 beta\\\\game\\\\dota_addons\\\\dotawarsongs\\\\resource\\\\addon_english.txt\"; $content = Get-Content -Path $path -Raw -Encoding Unicode; $old = '\"keybinds_notification\"                         \"Keybinds saved\"'; $new = '\"keybinds_notification\"                         \"Keybinds saved\"' + \"`r`n\" + '    \"keybinds_error_busy\"                           \"Error! Key is busy: \"'; $count = \\([regex]::Matches\\($content, [regex]::Escape\\($old\\)\\)\\).Count; Write-Output \"Matches: $count\"; $content = $content.Replace\\($old, $new\\); [System.IO.File]::WriteAllText\\($path, $content, [System.Text.Encoding]::Unicode\\))"
     ],
     "additionalDirectories": [
       "C:\\Users\\ACRONA\\Desktop\\Герой",

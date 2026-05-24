@@ -1,6 +1,7 @@
 CAddonWarsong.player_abilities_info = {}
 CAddonWarsong.abilityHeroMap = {}
 CAddonWarsong.InitHintsAbilities = false
+CAddonWarsong.PendingAbilityChoices = {}
 
 local npc_heroes_list_kv = LoadKeyValues("scripts/npc/npc_heroes.txt")
 for hero_name, data in pairs(npc_heroes_list_kv) do
@@ -16,9 +17,16 @@ for hero_name, data in pairs(npc_heroes_list_kv) do
 end
 
 function CAddonWarsong:ChangeNewAbilities(is_ultimate)
-    self.count_ulti_abilities = (self.count_ulti_abilities or 0) + 1
-    if self.count_ulti_abilities > MAX_COUNT_ULTI_ABILITIES then
-        return
+    if is_ultimate then
+        self.count_ulti_abilities = (self.count_ulti_abilities or 0) + 1
+        if self.count_ulti_abilities > MAX_COUNT_ULTI_ABILITIES then
+            return
+        end
+    else
+        self.count_spell_abilities = (self.count_spell_abilities or 0) + 1
+        if self.count_spell_abilities > MAX_COUNT_ULTI_ABILITIES then
+            return
+        end
     end
     if not CAddonWarsong.InitHintsAbilities then
         CreateHints("warsong_hints_random_spells")
@@ -32,18 +40,22 @@ function CAddonWarsong:ChangeNewAbilities(is_ultimate)
 end
 
 function CAddonWarsong:HeroAddNewAbility(entity, is_ultimate, player_id, is_reroll)
-    if entity ~= nil and HEROES_SELECT_SPELL_DISABLED[entity:GetUnitName()] and not is_ultimate then
-        return
-    end
-
-    if entity ~= nil and HEROES_SELECT_ULTIMATE_DISABLED[entity:GetUnitName()] and is_ultimate then
-        return
-    end
-
+    -- Для реролла: сначала получаем entity, потом проверяем ограничения
     if entity == nil then
         entity = PlayerResource:GetSelectedHeroEntity(player_id)
         is_ultimate = is_ultimate == 1
     end
+
+    if entity == nil or not IsValidEntity(entity) then return end
+
+    if HEROES_SELECT_SPELL_DISABLED[entity:GetUnitName()] and not is_ultimate then
+        return
+    end
+
+    if HEROES_SELECT_ULTIMATE_DISABLED[entity:GetUnitName()] and is_ultimate then
+        return
+    end
+
     if is_reroll then
         PlayerInfo:UpdateRollTable(player_id, -1, 0)
     end
@@ -89,7 +101,13 @@ function CAddonWarsong:HeroAddNewAbility(entity, is_ultimate, player_id, is_rero
     CustomNetTables:SetTableValue("abilities_list", tostring(entity:GetPlayerOwnerID()), CAddonWarsong.player_abilities_info[entity:GetPlayerOwnerID()])
     local random_abilities = self:GetNewAbilityPlayer(entity, abilities_list)
 
-    CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(entity:GetPlayerOwnerID()), "spell_select_open_panel", {spell_list = random_abilities, is_ultimate = is_ultimate, is_reroll = not (not is_reroll)})
+    if #random_abilities == 0 then return end
+
+    -- Сохраняем предложенные варианты для валидации выбора на сервере
+    local pid = entity:GetPlayerOwnerID()
+    CAddonWarsong.PendingAbilityChoices[pid] = { abilities = random_abilities, is_ultimate = is_ultimate }
+
+    CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid), "spell_select_open_panel", {spell_list = random_abilities, is_ultimate = is_ultimate, is_reroll = not (not is_reroll)})
 end
 function CAddonWarsong:PrecacheHero(ability_name)
     local hero_name = CAddonWarsong.abilityHeroMap[ability_name]
@@ -103,58 +121,75 @@ function CAddonWarsong:PrecacheHero(ability_name)
 end
 function CAddonWarsong:SelectAbilityToHero(player_id, ability_name, is_ultimate)
     local entity = PlayerResource:GetSelectedHeroEntity(player_id)
-    local random_ability = ability_name
-    if random_ability then
-        local sHeroOwnerName = CAddonWarsong.abilityHeroMap[ability_name]
-        if sHeroOwnerName and not table.contains(self.pendingPrecache, sHeroOwnerName) and not self.precached[sHeroOwnerName] then
-            table.insert(self.pendingPrecache, sHeroOwnerName)   
-        end
-        local new_ability = entity:AddAbility(random_ability)
-        if CAddonWarsong.player_abilities_info[player_id] == nil then
-            CAddonWarsong.player_abilities_info[player_id] = {}
-        end
-        if is_ultimate then
-            CAddonWarsong.player_abilities_info[player_id].ultimate = ability_name
-        else
-            CAddonWarsong.player_abilities_info[player_id].basic = ability_name
-        end
-        CustomNetTables:SetTableValue("abilities_list", tostring(entity:GetPlayerOwnerID()), CAddonWarsong.player_abilities_info[entity:GetPlayerOwnerID()])
-        if new_ability then
-            self:PrecacheHero(new_ability)
-            if string.find(random_ability, "invoker") then
-                if entity:GetLevel() >= 30 then
-                    new_ability:SetLevel(3)
-                elseif entity:GetLevel() >= 15 then
-                    new_ability:SetLevel(2)
-                else
-                    new_ability:SetLevel(1)
-                end
+    if entity == nil or not IsValidEntity(entity) then return end
+    if not ability_name then return end
+
+    -- Валидация: способность должна быть среди предложенных этому игроку
+    local pending = CAddonWarsong.PendingAbilityChoices[player_id]
+    if not pending then return end
+    if not table.contains(pending.abilities, ability_name) then return end
+    -- is_ultimate приходит с клиента как 0/1/true/false — приводим к boolean для сравнения
+    local is_ult_bool = is_ultimate == true or is_ultimate == 1
+    if pending.is_ultimate ~= is_ult_bool then return end
+    CAddonWarsong.PendingAbilityChoices[player_id] = nil
+
+    local sHeroOwnerName = CAddonWarsong.abilityHeroMap[ability_name]
+    if sHeroOwnerName and not table.contains(self.pendingPrecache, sHeroOwnerName) and not self.precached[sHeroOwnerName] then
+        table.insert(self.pendingPrecache, sHeroOwnerName)
+    end
+
+    local new_ability = entity:AddAbility(ability_name)
+
+    if CAddonWarsong.player_abilities_info[player_id] == nil then
+        CAddonWarsong.player_abilities_info[player_id] = {}
+    end
+    if is_ult_bool then
+        CAddonWarsong.player_abilities_info[player_id].ultimate = ability_name
+    else
+        CAddonWarsong.player_abilities_info[player_id].basic = ability_name
+    end
+    CustomNetTables:SetTableValue("abilities_list", tostring(entity:GetPlayerOwnerID()), CAddonWarsong.player_abilities_info[entity:GetPlayerOwnerID()])
+
+    if new_ability then
+        self:PrecacheHero(new_ability)
+        if string.find(ability_name, "invoker") then
+            if entity:GetLevel() >= 30 then
+                new_ability:SetLevel(3)
+            elseif entity:GetLevel() >= 15 then
+                new_ability:SetLevel(2)
             else
-                new_ability:SetLevel(new_ability:GetMaxLevel())
+                new_ability:SetLevel(1)
             end
-            new_ability:EndCooldown()
-            if is_ultimate == 1 then
-                self.PlayersUltimateAbilities[entity:GetPlayerOwnerID()] = new_ability
-            else
-                self.PlayersDefaultAbilities[entity:GetPlayerOwnerID()] = new_ability
-            end
-            --EmitAnnouncerSoundForPlayer("Flag.NewAbility", entity:GetPlayerOwnerID())
         else
-            GameRules:SendCustomMessage("Напишите админу, Способность сломана - "..random_ability, 0, 0)
+            new_ability:SetLevel(new_ability:GetMaxLevel())
         end
+        new_ability:EndCooldown()
+        if is_ult_bool then
+            self.PlayersUltimateAbilities[entity:GetPlayerOwnerID()] = new_ability
+        else
+            self.PlayersDefaultAbilities[entity:GetPlayerOwnerID()] = new_ability
+        end
+    else
+        GameRules:SendCustomMessage("Напишите админу, Способность сломана - "..ability_name, 0, 0)
     end
 end
 
 function CAddonWarsong:RunAbilitySoundPrecache()
     Timers:CreateTimer(1, function()
-        local sHeroName
-        if self.pendingPrecache and #self.pendingPrecache > 0 then
-            sHeroName = self.pendingPrecache[#self.pendingPrecache]
-            table.remove(self.pendingPrecache, #self.pendingPrecache)
-        end
-        if not sHeroName then return 5 end
+        if not (self.pendingPrecache and #self.pendingPrecache > 0) then return 5 end
+        local sHeroName = self.pendingPrecache[#self.pendingPrecache]
+        table.remove(self.pendingPrecache, #self.pendingPrecache)
+        local done = false
         PrecacheUnitByNameAsync("npc_precache_"..sHeroName, function()
+            if done then return end
+            done = true
             self.precached[sHeroName] = true
+            self:RunAbilitySoundPrecache()
+        end)
+        -- Если прекэш не ответил за 10 сек — продолжаем очередь без него
+        Timers:CreateTimer(10, function()
+            if done then return end
+            done = true
             self:RunAbilitySoundPrecache()
         end)
     end)
@@ -177,30 +212,12 @@ function CAddonWarsong:GetNewAbilityPlayer(hero, list)
 end
 
 function CAddonWarsong:RemoveModifierFromAbility(ability)
-    -- ОПТИМИЗАЦИЯ FPS: Удаляем модификаторы только у владельца способности, а не у всех героев
     local caster = ability:GetCaster()
-    if IsValidEntity(caster) then
-        local modifiers = caster:FindAllModifiers()
-        for _, modifier in pairs(modifiers) do
-            if modifier and modifier:GetAbility() == ability then
-                modifier:Destroy()
-            end
-        end
-    end
-    
-    -- Удаляем thinker'ы связанные с этой способностью (но только те, что созданы владельцем)
-    if IsValidEntity(caster) then
-        local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
-        for _, thinker in pairs(thinkers) do
-            if IsValidEntity(thinker) and thinker:GetOwner() == caster then
-                local modifiers = thinker:FindAllModifiers()
-                for _, modifier in pairs(modifiers) do
-                    if modifier and modifier:GetAbility() == ability then
-                        thinker:Destroy()
-                        break -- Выходим после уничтожения thinker'а
-                    end
-                end
-            end
+    if not IsValidEntity(caster) then return end
+    local modifiers = caster:FindAllModifiers()
+    for _, modifier in pairs(modifiers) do
+        if modifier and modifier:GetAbility() == ability then
+            modifier:Destroy()
         end
     end
 end

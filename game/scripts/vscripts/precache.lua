@@ -451,6 +451,7 @@ return function(context)
     PrecacheEverythingFromKV(context)
     PrecacheUnitByNameAsync( "npc_dota_radiant_bucket_soldier", function() end )
     PrecacheUnitByNameAsync( "npc_dota_dire_bucket_soldier", function() end )
+    PrecacheUnitByNameAsync( "npc_dota_neutral_ice_shaman", function() end )
     PrecacheEverythingFromTable( context, models )
     for _, p in pairs(particles) do
         PrecacheResource("particle", p, context)

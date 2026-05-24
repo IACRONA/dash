@@ -279,7 +279,14 @@ function CAddonWarsong:InitGameMode()
 		ListenToGameEvent("player_chat", Dynamic_Wrap( self, 'OnPlayerChat' ), self )
 	end
 
+    self.killVoters = self.killVoters or {}
     CustomGameEventManager:RegisterListener('select_kills_event', function(_, event)
+        if not event or not event.PlayerID then return end
+        if not PlayerResource:IsValidPlayerID(event.PlayerID) then return end
+        if self.killVoters[event.PlayerID] then return end
+        local state = GameRules:State_Get()
+        if state ~= DOTA_GAMERULES_STATE_PRE_GAME and state ~= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then return end
+        self.killVoters[event.PlayerID] = true
         self.nWinConditionGoal = self.nWinConditionGoal + HOW_MUCH_KILLS_ADD
         CustomGameEventManager:Send_ServerToAllClients('update_kills_duo', {
             kills = self.nWinConditionGoal
@@ -292,31 +299,35 @@ function CAddonWarsong:InitGameMode()
 		self:SummonMount(event)
 	end)
     CustomGameEventManager:RegisterListener('ability_select_to_hero', function(_, event)
+        if not event or not PlayerResource:IsValidPlayerID(event.PlayerID) then return end
         self:SelectAbilityToHero(event.PlayerID, event.spell_name, event.is_ultimate)
 	end)
 
     CustomGameEventManager:RegisterListener('player_fate_selected', function(_, event)
+        if not event or not PlayerResource:IsValidPlayerID(event.PlayerID) then return end
         self:SelectPlayerFate(event.PlayerID, event.fate_name)
 	end)
- 
+
     CustomGameEventManager:RegisterListener('player_sphere_selected', function(_, event)
+        if not event or not PlayerResource:IsValidPlayerID(event.PlayerID) then return end
         self:SelectPlayerSphere(event.PlayerID, event.sphere_name)
 	end)
 
     CustomGameEventManager:RegisterListener('swap_abilities_to_select', function(_, event)
+        if not event or not PlayerResource:IsValidPlayerID(event.PlayerID) then return end
         self:HeroAddNewAbility(nil, event.is_ultimate, event.PlayerID, true)
 	end)
 
     CustomGameEventManager:RegisterListener('reroll_spheres', function(_, event)
+        if not event or not PlayerResource:IsValidPlayerID(event.PlayerID) then return end
         self:RerollPlayerSphere(event)
 	end)
 
- 
-
-	 
-
 	CustomGameEventManager:RegisterListener('Request_RemainingFlags', function(_, event)
-		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(event.PlayerID), 'update_flags_count', {
+		if not event or not PlayerResource:IsValidPlayerID(event.PlayerID) then return end
+		local player = PlayerResource:GetPlayer(event.PlayerID)
+		if not player then return end
+		CustomGameEventManager:Send_ServerToPlayer(player, 'update_flags_count', {
 			radiant = self.nWinConditionGoal - (self.nCapturedFlagsCount[DOTA_TEAM_GOODGUYS] or 0),
 			dire = self.nWinConditionGoal - (self.nCapturedFlagsCount[DOTA_TEAM_BADGUYS] or 0)
 		})
@@ -337,17 +348,6 @@ end
  
 
 function CAddonWarsong:ModifyGoldFilter(data)
-	if data.reason_const == DOTA_ModifyGold_HeroKill then
-		local hero = PlayerResource:GetSelectedHeroEntity(data.player_id_const)
-		if hero then
-			local teamTable = self.teamBalanceTier[hero:GetTeamNumber()]
-
-			if teamTable.place == "first" and teamTable.tier ~= 0 then
-				data.gold = data.gold / 2 
-			end
-		end
-	end
-
 	return true
 end
  
@@ -564,10 +564,11 @@ function CAddonWarsong:OnGameRulesStateChange()
         if mapName == "portal_duo" or mapName == "portal_trio" then
             CustomGameEventManager:Send_ServerToAllClients('select_kill_on_start_game', {})
         end
-		Timers:CreateTimer(NEW_ABILITY_COOLDOWN, function()
-			self:ChangeNewAbilities()
-			return NEW_ABILITY_COOLDOWN
-		end)
+		-- Раздача доп. обычных скиллов отключена (остались только ультимейты)
+		-- Timers:CreateTimer(NEW_ABILITY_COOLDOWN, function()
+		-- 	self:ChangeNewAbilities()
+		-- 	return NEW_ABILITY_COOLDOWN
+		-- end)
         Timers:CreateTimer(NEW_PASSIVE_SPELLS_COOLDOWN, function()
             if CAddonWarsong.fate_count_number >= MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME then return end
 			self:GivePlayersFate()
@@ -582,123 +583,47 @@ function CAddonWarsong:OnGameRulesStateChange()
 			self:ChangeNewAbilities(true)
 			return NEW_ULTIMATE_COOLDOWN
 		end)
-		if mapName == "dash" then
-			Timers:CreateTimer(TIME_FOR_AMP_TOWERS_AND_CREEPS, function()
-				if self.mapName ~= "dash" then return end
-				self:AMP_TOWERS_AND_CREEPS()
-				return TIME_FOR_AMP_TOWERS_AND_CREEPS
-			end)
-		end
+		-- if mapName == "dash" then
+		-- 	Timers:CreateTimer(TIME_FOR_AMP_TOWERS_AND_CREEPS, function()
+		-- 		if self.mapName ~= "dash" then return end
+		-- 		self:AMP_TOWERS_AND_CREEPS()
+		-- 		return TIME_FOR_AMP_TOWERS_AND_CREEPS
+		-- 	end)
+		-- end
 		self:GiveBooks()
 		if mapName ~= "dota" then
 			-- ОПТИМИЗАЦИЯ FPS: Объединил циклы золота и опыта в один, интервал 5s вместо отдельных
-			Timers:CreateTimer(5, function()
+			local TICK_INTERVAL = 5
+			Timers:CreateTimer(TICK_INTERVAL, function()
 				for i = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
 					local hHero = PlayerResource:GetSelectedHeroEntity(i)
 
-					if hHero then
-						-- Начисление золота (умножено на 5, т.к. было GRANT_INTERVAL/2 ~= 10s, теперь 5s)
+					if hHero and not hHero:HasModifier("modifier_freeze_time_start") then
 						local team = hHero:GetTeamNumber()
-						local bonusGold = 0
-						if self.teamBalanceTier[team] and self.teamBalanceTier[team].tier ~= 0 then
-							local place = self.teamBalanceTier[team].place
-							if place == "last" then
-								bonusGold = LAST_COMMAND_GOLD_TICK[self.teamBalanceTier[team].tier]
-							elseif place == "prelast" then
-								bonusGold = PRE_LAST_COMMAND_GOLD_TICK[self.teamBalanceTier[team].tier]
-							end
+						-- Балансировщик отключён (бонусное золото отстающим убрано)
+						local goldAmount = math.floor(GRANT_GOLD * TICK_INTERVAL / GRANT_INTERVAL)
+						if goldAmount > 0 then
+							hHero:ModifyGold(goldAmount, true, DOTA_ModifyGold_Unspecified)
 						end
-						hHero:ModifyGold((GRANT_GOLD + bonusGold) / 2 * 5 / (GRANT_INTERVAL / 2), true, DOTA_ModifyGold_Unspecified)
 
-						-- Начисление опыта
-						if not hHero:HasModifier("modifier_freeze_time_start") then
-							local expForNextLevel = expTable[hHero:GetLevel()]
-							if expForNextLevel then
-								local exp = PERCENT_OF_LEVEL_MINUTE / 60 * 5
-								hHero:AddExperience(math.ceil(expForNextLevel * (exp / 100)), 0, false, true)
-							end
+						local expForNextLevel = expTable[hHero:GetLevel()]
+						if expForNextLevel then
+							local expPercent = PERCENT_OF_LEVEL_MINUTE / 60 * TICK_INTERVAL
+							hHero:AddExperience(math.floor(expForNextLevel * expPercent / 100), 0, false, true)
 						end
 					end
 				end
-				return 5
+				return TICK_INTERVAL
 			end)
 
-			if mapName == "dash" then
-				self:GiveTowersModifiersUNVUIL()
-				-- ОПТИМИЗАЦИЯ FPS: Увеличен интервал с 3s до 8s для баланса команд
-				Timers:CreateTimer(8, function()
-					local goldTeam = {
-						[DOTA_TEAM_GOODGUYS] = 0,
-						[DOTA_TEAM_BADGUYS] = 0,
-					}
-
-					local radiantScore = self.nCapturedFlagsCount[DOTA_TEAM_GOODGUYS] or 0
-					local direScore = self.nCapturedFlagsCount[DOTA_TEAM_BADGUYS] or 0
-
-					local leader = radiantScore > direScore and DOTA_TEAM_GOODGUYS or DOTA_TEAM_BADGUYS
-					local loser = leader == DOTA_TEAM_GOODGUYS and DOTA_TEAM_BADGUYS or DOTA_TEAM_GOODGUYS
-					local dataLoser = {place = "last"}
-					local dataLeader = {place = "first", tier = 0}
-
-					local differenceKill = (self.nCapturedFlagsCount[leader] or 0) - (self.nCapturedFlagsCount[loser] or 0)
-					
-					-- ОПТИМИЗАЦИЯ FPS: Прямой цикл вместо DoWithAllPlayers
-					for playerId = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
-						if PlayerResource:IsValidPlayerID(playerId) then
-							local hero = PlayerResource:GetSelectedHeroEntity(playerId)
-							if hero then
-								local goldHero = PlayerResource:GetNetWorth(playerId)
-								local team = hero:GetTeamNumber()
-								if team == DOTA_TEAM_GOODGUYS then
-									goldTeam[DOTA_TEAM_GOODGUYS] = goldTeam[DOTA_TEAM_GOODGUYS] + goldHero
-								elseif team == DOTA_TEAM_BADGUYS then
-									goldTeam[DOTA_TEAM_BADGUYS] = goldTeam[DOTA_TEAM_BADGUYS] + goldHero
-								end
-							end
-						end
-					end
-
-					local differenceGold = goldTeam[loser] > 0 and ((goldTeam[leader] - goldTeam[loser]) / goldTeam[loser]) * 100 or 0
-
-					if differenceKill >= KILLS_DIFFERENCE_TIER_1 and differenceGold >= GOLD_DIFFERENCE_TIER_1 then
-						dataLoser.tier = 1
-					elseif differenceKill >= KILLS_DIFFERENCE_TIER_2 and differenceGold >= GOLD_DIFFERENCE_TIER_2 then
-						dataLoser.tier = 2
- 					else
-						dataLoser.tier = 0
-					end
-
-					self.teamBalanceTier[loser] = dataLoser
-					self.teamBalanceTier[leader] = dataLeader
-
-					-- ОПТИМИЗАЦИЯ FPS: Отключены все проверки modifier_balance
-					-- DoWithAllPlayers(function(player, hero)
-					-- 	if not hero then return end
-					-- 	if not hero.balanceModifier then return end
-					-- 	local team = hero:GetTeamNumber()
-
-					-- 	local tier = self.teamBalanceTier[team].tier
-					-- 	local place = self.teamBalanceTier[team].place
-
-					-- 	if place == "last" and LAST_MODIFIER_BALANCE[tier] then
-					-- 		local incomingDamage = LAST_MODIFIER_BALANCE[tier].incoming
-					-- 		local outgoingDamage = LAST_MODIFIER_BALANCE[tier].outgoing
-					-- 		if incomingDamage or outgoingDamage then
-					-- 			hero.balanceModifier:SetStackCount(1)
-					-- 			hero.balanceModifier.incomingDamage = incomingDamage or 0
-					-- 			hero.balanceModifier.outgoingDamage = outgoingDamage or 0
-					-- 		end
-					-- 	 else
-					-- 		 hero.balanceModifier:SetStackCount(0)
-					-- 		hero.balanceModifier.incomingDamage = 0
-					-- 		hero.balanceModifier.outgoingDamage = 0
-					-- 	end
-					-- end)
-
-					-- ОПТИМИЗАЦИЯ FPS: Увеличен интервал с 3s до 8s для баланса команд
-					return 8
-				end)
-			end
+			-- if mapName == "dash" then
+			-- 	self:GiveTowersModifiersUNVUIL()
+			-- 	-- Балансировщик команд отключён
+			-- 	Timers:CreateTimer(8, function()
+			-- 		...
+			-- 		return 8
+			-- 	end)
+			-- end
 		end
 	end
 end
@@ -931,10 +856,10 @@ function CAddonWarsong:OnNPCSpawned(event)
 		end)
 	end
  
-	-- Применяем AMP модификатор к крипам при спавне (оптимизация вместо таймера)
-	if self.mapName == "dash" and self.AMP_Init and isCreep then
-		hUnit:AddNewModifier(hUnit, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level, type = "creep"})
-	end
+	-- Усиление крипов отключено
+	-- if self.mapName == "dash" and self.AMP_Init and isCreep then
+	-- 	hUnit:AddNewModifier(hUnit, nil, "modifier_dash_amp", {lvl = self.amp_bonus_level, type = "creep"})
+	-- end
 
 	local owner = hUnit:GetOwner()
 
@@ -1060,46 +985,44 @@ end
 -- УДАЛЕН таймер UpdateCreepsAMP - теперь модификаторы применяются при спавне крипа в OnNPCSpawned
 -- Дай пять механика
 function CAddonWarsong:HighFive(params)
-    if params.PlayerID == nil then return end
-    local player = PlayerResource:GetPlayer(params.PlayerID)
+    if not params or params.PlayerID == nil then return end
+    if not PlayerResource:IsValidPlayerID(params.PlayerID) then return end
     local hero = PlayerResource:GetSelectedHeroEntity(params.PlayerID)
-    local selected_index = params.selected_index
-	local hero_selected = EntIndexToHScript(selected_index)
-	if hero_selected ~= hero then
-		hero_selected:AddNewModifier(hero_selected, nil, "modifier_high_five", {duration = 10})
-		return 
-	end
-    if hero then
-        hero:AddNewModifier(hero, nil, "modifier_high_five", {duration = 10})
+    if not hero or hero:IsNull() then return end
+    if not params.selected_index then return end
+
+    local hero_selected = EntIndexToHScript(params.selected_index)
+    if not hero_selected or hero_selected:IsNull() then return end
+    if not hero_selected.IsRealHero or not hero_selected:IsRealHero() then return end
+    if hero_selected:GetTeamNumber() ~= hero:GetTeamNumber() then return end
+
+    local distance = (hero_selected:GetAbsOrigin() - hero:GetAbsOrigin()):Length2D()
+    if distance > 1500 then return end
+
+    hero:AddNewModifier(hero, nil, "modifier_high_five", {duration = 10})
+    if hero_selected ~= hero then
+        hero_selected:AddNewModifier(hero_selected, nil, "modifier_high_five", {duration = 10})
     end
 end
 function CAddonWarsong:SummonMount(params)
-	if params.PlayerID == nil then return end
-	local player = PlayerResource:GetPlayer(params.PlayerID)
+    if not params or params.PlayerID == nil then return end
+    if not PlayerResource:IsValidPlayerID(params.PlayerID) then return end
     local hero = PlayerResource:GetSelectedHeroEntity(params.PlayerID)
-	local selected_index = params.selected_index
-	local hero_selected = EntIndexToHScript(selected_index)
-	local SummonMountAbility
-	if hero_selected ~= hero then
-		SummonMountAbility = hero_selected:FindAbilityByName('summon_mount')
-		if SummonMountAbility then
-			ExecuteOrderFromTable({
-				UnitIndex = hero_selected:GetEntityIndex(),
-				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-				AbilityIndex = SummonMountAbility:GetEntityIndex()
-			})
-		end
-		return 
-	end
-	if hero then
-        SummonMountAbility = hero:FindAbilityByName('summon_mount')
-		if SummonMountAbility then
-			ExecuteOrderFromTable({
-				UnitIndex = hero:GetEntityIndex(),
-				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-				AbilityIndex = SummonMountAbility:GetEntityIndex()
-			})
-		end
+    if not hero or hero:IsNull() then return end
+    if not params.selected_index then return end
+
+    local hero_selected = EntIndexToHScript(params.selected_index)
+    if not hero_selected or hero_selected:IsNull() then return end
+    if not hero_selected.IsRealHero or not hero_selected:IsRealHero() then return end
+    if hero_selected:GetPlayerOwnerID() ~= params.PlayerID and hero_selected ~= hero then return end
+
+    local SummonMountAbility = hero_selected:FindAbilityByName('summon_mount')
+    if SummonMountAbility then
+        ExecuteOrderFromTable({
+            UnitIndex = hero_selected:GetEntityIndex(),
+            OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+            AbilityIndex = SummonMountAbility:GetEntityIndex()
+        })
     end
 end
 

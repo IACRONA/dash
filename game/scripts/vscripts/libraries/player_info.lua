@@ -59,16 +59,44 @@ function PlayerInfo:GetRollUsedPlayer(playerId)
 	return table and table.roll_used or 0
 end
 
+-- Белый список ключей, которые клиент имеет право прислать в keybinds.
+local ALLOWED_KEYBIND_KEYS = {
+	cast_ability_7 = true,
+	cast_ability_8 = true,
+}
+local KEYBIND_MAX_VALUE_LEN = 16
+local KEYBIND_CHANGE_COOLDOWN = 1.0
+
+PlayerInfo._last_keybind_change = PlayerInfo._last_keybind_change or {}
+
 function PlayerInfo:OnPlayerChangeKeybinds(data)
 	local playerId = data.PlayerID
 
 	if not PlayerResource:IsValidPlayer(playerId) then return end
 
-	local playerInfo = CustomNetTables:GetTableValue("player_info", tostring(playerId)) 
+	-- Rate-limit: не чаще одного изменения в секунду на игрока.
+	local now = GameRules:GetGameTime()
+	local last = self._last_keybind_change[playerId] or 0
+	if now - last < KEYBIND_CHANGE_COOLDOWN then return end
+	self._last_keybind_change[playerId] = now
 
-	playerInfo.keybinds = data.keybinds
+	local raw = data.keybinds
+	if type(raw) ~= "table" then return end
 
-	CustomNetTables:SetTableValue("player_info", tostring(playerId), playerInfo) 	
+	-- Фильтруем по белому списку ключей и валидируем значения.
+	local clean = {}
+	for k, v in pairs(raw) do
+		if ALLOWED_KEYBIND_KEYS[k] and type(v) == "string" and #v > 0 and #v <= KEYBIND_MAX_VALUE_LEN then
+			clean[k] = v
+		end
+	end
+
+	local playerInfo = CustomNetTables:GetTableValue("player_info", tostring(playerId))
+	if not playerInfo then return end
+
+	playerInfo.keybinds = clean
+
+	CustomNetTables:SetTableValue("player_info", tostring(playerId), playerInfo)
 end
 
  

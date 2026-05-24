@@ -188,6 +188,17 @@
   opacity: 0;
 }
 
+.CustomKeybindConflict {
+  width: 100%;
+  text-align: center;
+  margin-top: 3px;
+  color: #ff6b6b;
+  font-size: 17px;
+  font-weight: semi-bold;
+  text-overflow: ellipsis;
+  text-shadow: 0px 0px 4px 4 #000000;
+}
+
 .SaveBinds {
   width: 140px;
   height: 30px;
@@ -220,6 +231,16 @@
 
 .SaveBinds:hover {
   brightness: 2;
+}
+
+.SaveBinds.Disabled {
+  background-color: rgb(50, 50, 50);
+  opacity: 0.4;
+  brightness: 1;
+}
+
+.SaveBinds.Disabled:hover {
+  brightness: 1;
 }
 
 .ResetBinds {

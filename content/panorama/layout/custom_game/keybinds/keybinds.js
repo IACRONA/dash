@@ -1,4 +1,4 @@
-HEROES_DONT_JUMP = ["npc_dota_hero_earthshaker"];
+// #8: HEROES_DONT_JUMP удалён как мёртвый код (система прыжка убрана).
 
 const humanFriendlyToActualKeyMap = {
   TAB: "tab",
@@ -34,69 +34,46 @@ const humanFriendlyToActualKeyMap = {
 };
 
 const russian_language_button = {
-  й: "q",
-  ц: "w",
-  у: "e",
-  к: "r",
-  е: "t",
-  н: "y",
-  г: "u",
-  ш: "i",
-  щ: "o",
-  з: "p",
-  ф: "a",
-  ы: "s",
-  в: "d",
-  а: "f",
-  п: "g",
-  р: "h",
-  о: "j",
-  л: "k",
-  д: "l",
-  я: "z",
-  ч: "x",
-  с: "c",
-  м: "v",
-  и: "b",
-  т: "n",
-  ь: "m",
+  й: "q", ц: "w", у: "e", к: "r", е: "t", н: "y", г: "u", ш: "i", щ: "o", з: "p",
+  ф: "a", ы: "s", в: "d", а: "f", п: "g", р: "h", о: "j", л: "k", д: "l",
+  я: "z", ч: "x", с: "c", м: "v", и: "b", т: "n", ь: "m",
 };
 
 const english_language_button = {
-  q: "й",
-  w: "ц",
-  e: "у",
-  r: "к",
-  t: "е",
-  y: "н",
-  u: "г",
-  i: "ш",
-  o: "щ",
-  p: "з",
-  a: "ф",
-  s: "ы",
-  d: "в",
-  f: "а",
-  g: "п",
-  h: "р",
-  j: "о",
-  k: "л",
-  l: "д",
-  z: "я",
-  x: "ч",
-  c: "с",
-  v: "м",
-  b: "и",
-  n: "т",
-  m: "ь",
+  q: "й", w: "ц", e: "у", r: "к", t: "е", y: "н", u: "г", i: "ш", o: "щ", p: "з",
+  a: "ф", s: "ы", d: "в", f: "а", g: "п", h: "р", j: "о", k: "л", l: "д",
+  z: "я", x: "ч", c: "с", v: "м", b: "и", n: "т", m: "ь",
 };
+
+// #3: единый источник правды по доп-способностям.
+// Если в будущем понадобится cast_ability_7 — просто добавить запись сюда,
+// и она автоматически появится в UI настроек, в Save/Reset и в UpdateSkillBar.
+const CUSTOM_ABILITIES = [
+  { key: "cast_ability_8", net_field: "ultimate" },
+];
 
 var init_settings = false;
 var abilities_settings = playerInfo.getKeybindsPlayer();
 
-// ОПТИМИЗАЦИЯ: Убран прыжок для улучшения FPS
-var abilities_list = ["cast_ability_8"];
 var saves_buttons_name = {};
+// #1+#9: храним для каждой ability список фактически привязанных клавиш (RU+EN),
+// чтобы корректно снять их при reset/смене.
+var active_custom_binds = {}; // ability_name -> [keypad, ...]
+var active_mouse_capture_panel = null;
+
+const MOUSE_SIDE_BUTTONS = { 3: "mouse4", 4: "mouse5" };
+
+function ClearMouseCapture() {
+  if (active_mouse_capture_panel) {
+    active_mouse_capture_panel.ClearPanelEvent("onmousebutton");
+    active_mouse_capture_panel = null;
+  }
+}
+
+var update_skill_bar_running = false;
+// #2: запомнённый последний снапшот для UpdateSkillBar, чтобы избежать лишних
+// перерисовок при идентичных входных данных.
+var last_skillbar_signature = "";
 
 function GetGameKeybind(command) {
   if (command == null || command == undefined) {
@@ -152,15 +129,17 @@ function FindDotaHudElement(sId) {
 
 function InitButtons() {
   $("#SettingsKeybindsList").RemoveAndDeleteChildren();
-  for (ability_number in abilities_list) {
-    let ability_name = abilities_list[ability_number];
-    CreateBindButton(ability_name);
+  // #3: итерируем по единому источнику правды.
+  for (var idx = 0; idx < CUSTOM_ABILITIES.length; idx++) {
+    CreateBindButton(CUSTOM_ABILITIES[idx].key);
   }
 
   let SaveBinds = $("#SaveBinds");
-
   SaveBinds.SetPanelEvent("onmouseover", function () {
-    $.DispatchEvent("DOTAShowTextTooltip", SaveBinds, $.Localize("#keybinds_notification"));
+    let text = SaveBinds.BHasClass("Disabled")
+      ? $.Localize("#keybinds_error_busy_short")
+      : $.Localize("#keybinds_notification");
+    $.DispatchEvent("DOTAShowTextTooltip", SaveBinds, text);
   });
   SaveBinds.SetPanelEvent("onmouseout", function () {
     $.DispatchEvent("DOTAHideTextTooltip", SaveBinds);
@@ -183,15 +162,27 @@ function CreateBindButton(ability_name) {
   button_name.AddClass("CustomKeybindTitle");
   button_name.text = $.Localize("#keybind_" + ability_name);
 
-  let entry_panel = $.CreatePanel("TextEntry", $.GetContextPanel(), "CustomKeybindEntry", { maxchars: 1 });
+  // #1: ярлычок для предупреждения о конфликте с системным биндом.
+  let conflict_label = $.CreatePanel("Label", button_container, "conflict_label");
+  conflict_label.AddClass("CustomKeybindConflict");
+  conflict_label.text = "";
+  conflict_label.style.visibility = "collapse";
+
+  // #7: entry_panel создаём внутри button_container, чтобы он удалялся вместе
+  // со списком при пересоздании InitButtons (а не утекал в context panel).
+  let entry_panel = $.CreatePanel("TextEntry", button_container, "CustomKeybindEntry", { maxchars: 1 });
   entry_panel.AddClass("CustomKeybindEntry");
 
   button_panel.SetPanelEvent("onactivate", function () {
-    SetPreActivateBind(button_panel, entry_panel, ability_name, bind_name);
+    Game.EmitSound("Flag.RollChoose");
+    SetPreActivateBind(button_panel, entry_panel, ability_name, bind_name, conflict_label);
   });
+
+  // Сразу показать конфликт для уже сохранённой клавиши (если есть).
+  UpdateConflictLabel(conflict_label, abilities_settings[ability_name]);
 }
 
-function SetPreActivateBind(button_panel, entry_panel, ability_name, bind_name) {
+function SetPreActivateBind(button_panel, entry_panel, ability_name, bind_name, conflict_label) {
   entry_panel.text = "";
   entry_panel.SetFocus();
   button_panel.SetHasClass("ActiveBind", true);
@@ -203,13 +194,26 @@ function SetPreActivateBind(button_panel, entry_panel, ability_name, bind_name) 
       CheckFocusPanel(entry_panel, button_panel);
     });
   }
-  // CheckFocusPanel(entry_panel, button_panel)
   entry_panel.SetPanelEvent("ontextentrychange", function () {
-    OnSubmitted(bind_name, entry_panel, button_panel, ability_name);
+    OnSubmitted(bind_name, entry_panel, button_panel, ability_name, conflict_label);
+  });
+
+  ClearMouseCapture();
+  active_mouse_capture_panel = $.GetContextPanel();
+  active_mouse_capture_panel.SetPanelEvent("onmousebutton", function (nButton) {
+    var mouse_key = MOUSE_SIDE_BUTTONS[nButton];
+    if (!mouse_key) return;
+    ClearMouseCapture();
+    abilities_settings[ability_name] = mouse_key;
+    bind_name.text = mouse_key.toUpperCase();
+    button_panel.SetHasClass("ActiveBind", false);
+    button_panel.SetHasClass("HoverEffect", true);
+    $.DispatchEvent("DropInputFocus");
+    if (conflict_label) UpdateConflictLabel(conflict_label, mouse_key);
   });
 }
 
-function OnSubmitted(bind_name, entry_panel, button_panel, ability_name) {
+function OnSubmitted(bind_name, entry_panel, button_panel, ability_name, conflict_label) {
   let get_key_bind_name = entry_panel.text;
 
   if (russian_language_button[get_key_bind_name]) {
@@ -225,35 +229,91 @@ function OnSubmitted(bind_name, entry_panel, button_panel, ability_name) {
   bind_name.text = get_key_bind_name.toUpperCase();
   button_panel.SetHasClass("ActiveBind", false);
   button_panel.SetHasClass("HoverEffect", true);
+  ClearMouseCapture();
   $.DispatchEvent("DropInputFocus");
+
+  // #1: обновляем предупреждение о конфликте сразу после выбора клавиши.
+  if (conflict_label) UpdateConflictLabel(conflict_label, get_key_bind_name);
+}
+
+const CONFLICT_CHECKS = [
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY1,            label: "#keybind_conflict_ability_1" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY2,            label: "#keybind_conflict_ability_2" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY3,            label: "#keybind_conflict_ability_3" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY1,          label: "#keybind_conflict_ability_4" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY2,          label: "#keybind_conflict_ability_5" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_ULTIMATE,            label: "#keybind_conflict_ability_ult" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY1,                  label: "#keybind_conflict_inventory_1" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY2,                  label: "#keybind_conflict_inventory_2" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY3,                  label: "#keybind_conflict_inventory_3" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY4,                  label: "#keybind_conflict_inventory_4" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY5,                  label: "#keybind_conflict_inventory_5" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY6,                  label: "#keybind_conflict_inventory_6" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_TELEPORT,                    label: "#keybind_conflict_teleport" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_TELEPORT_QUICKCAST,          label: "#keybind_conflict_teleport" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY_NEUTRAL,           label: "#keybind_conflict_neutral" },
+  { cmd: DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY_NEUTRAL_QUICKCAST, label: "#keybind_conflict_neutral" },
+];
+
+function GetSystemBindConflict(keypad) {
+  if (!keypad) return null;
+  let normalized = russian_language_button[keypad] || keypad;
+
+  for (var i = 0; i < CONFLICT_CHECKS.length; i++) {
+    let bind = GetGameKeybind(Number(CONFLICT_CHECKS[i].cmd));
+    let bind_norm = russian_language_button[bind] || bind;
+    if (bind_norm && bind_norm == normalized) return CONFLICT_CHECKS[i].label;
+  }
+  return null;
+}
+
+function UpdateConflictLabel(conflict_label, keypad) {
+  if (!conflict_label) return;
+  let conflict = GetSystemBindConflict(keypad);
+  if (conflict) {
+    conflict_label.text = $.Localize(conflict);
+    conflict_label.style.visibility = "visible";
+  } else {
+    conflict_label.text = "";
+    conflict_label.style.visibility = "collapse";
+  }
+  UpdateSaveButton();
+}
+
+function UpdateSaveButton() {
+  let has_conflict = false;
+  for (var ability_name in abilities_settings) {
+    if (GetSystemBindConflict(abilities_settings[ability_name])) {
+      has_conflict = true;
+      break;
+    }
+  }
+  let SaveBinds = $("#SaveBinds");
+  if (SaveBinds) {
+    SaveBinds.SetHasClass("Disabled", has_conflict);
+  }
 }
 
 function CheckFocusPanel(panel, button_panel) {
   panel.ClearPanelEvent("onfocus");
+  ClearMouseCapture();
   button_panel.SetHasClass("ActiveBind", false);
   button_panel.SetHasClass("HoverEffect", true);
 }
-// function CheckFocusPanel(panel, button_panel)
-// {
-//     if (panel.BHasKeyFocus())
-//     {
-//         $.Schedule( 1/144, () =>
-//         {
-//             CheckFocusPanel(panel, button_panel)
-//         })
-//         return
-//     }
-//     button_panel.SetHasClass("ActiveBind", false)
-//     button_panel.SetHasClass("HoverEffect", true)
-// }
 
 function SaveKeyBinds(isInit) {
   if (!isInit) {
+    let SaveBinds = $("#SaveBinds");
+    if (SaveBinds && SaveBinds.BHasClass("Disabled")) {
+      Game.EmitSound("General.NoGold");
+      return;
+    }
     ResetBindsOnSend();
     OnSettingsOpen();
+    Game.EmitSound("Flag.RollChoose");
   }
 
-  for (ability_name in abilities_settings) {
+  for (var ability_name in abilities_settings) {
     let button_keypad = abilities_settings[ability_name];
     SetKeyBindButton(ability_name, button_keypad);
     if (button_keypad != "space" && english_language_button[button_keypad]) {
@@ -263,44 +323,68 @@ function SaveKeyBinds(isInit) {
   }
 
   if (!isInit) GameEvents.SendCustomGameEventToServer("player_change_keybinds", { keybinds: abilities_settings });
+
+  // #2: после сохранения принудительно обновляем скил-бар.
+  RefreshSkillBar();
+}
+
+// Уникальный ID сессии — гарантирует, что имя команды каждый раз новое,
+// даже если движок сохранил имена прошлых сессий между матчами.
+const KB_SESSION_ID = Math.floor(Math.random() * 99999999);
+
+function AbilityCommandName(ability_name) {
+  return "KeyBind_Custom_Ability_" + ability_name + "_s" + KB_SESSION_ID;
+}
+
+function EnsureAbilityCommand(ability_name) {
+  let cmd_name = AbilityCommandName(ability_name);
+  Game.AddCommand(cmd_name, function () {
+    UseAbility(ability_name);
+  }, "", 0);
 }
 
 function SetKeyBindButton(ability_name, button_keypad) {
-  const name_bind = "KeyBind_Custom_" + Math.floor(Math.random() * 99999999);
+  if (!button_keypad) return;
 
-  Game.AddCommand(
-    name_bind,
-    () => {
-      UseAbility(ability_name);
-    },
-    "",
-    0
-  );
-  Game.CreateCustomKeyBind(button_keypad, name_bind);
+  if (!active_custom_binds[ability_name]) active_custom_binds[ability_name] = [];
+  let arr = active_custom_binds[ability_name];
+  if (arr.indexOf(button_keypad) === -1) arr.push(button_keypad);
+
+  EnsureAbilityCommand(ability_name);
+  let cmd = AbilityCommandName(ability_name);
+  Game.CreateCustomKeyBind(button_keypad, cmd);
+}
+
+// #9: снимает все клавиши, которые ranее были привязаны для данной ability.
+function ClearAbilityBinds(ability_name) {
+  let arr = active_custom_binds[ability_name];
+  if (!arr) return;
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i]) Game.CreateCustomKeyBind(arr[i], "");
+  }
+  active_custom_binds[ability_name] = [];
 }
 
 function GetAbilityList() {
-  // ОПТИМИЗАЦИЯ: Убран прыжок для улучшения FPS
-  let abilities_list = ["none", "none"];
-  let abilities = CustomNetTables.GetTableValue("abilities_list", String(Players.GetLocalPlayer()));
-  if (abilities) {
-    if (abilities.basic != null) {
-      abilities_list[0] = abilities.basic;
-    }
-    if (abilities.ultimate != null) {
-      abilities_list[1] = abilities.ultimate;
-    }
+  // #3: возвращаем массив, индексы которого соответствуют CUSTOM_ABILITIES[i].
+  let result = [];
+  let net_value = CustomNetTables.GetTableValue("abilities_list", String(Players.GetLocalPlayer()));
+  for (var i = 0; i < CUSTOM_ABILITIES.length; i++) {
+    let field = CUSTOM_ABILITIES[i].net_field;
+    let val = (net_value && net_value[field] != null) ? net_value[field] : "none";
+    result.push(val);
   }
-  return abilities_list;
+  return result;
 }
 
 function UseAbility(ability_name) {
-  // ОПТИМИЗАЦИЯ: Убран прыжок для улучшения FPS
-  let find_ability = {
-    cast_ability_7: 0,
-    cast_ability_8: 1,
-  };
-  let ability_name_in_skill = GetAbilityList()[find_ability[ability_name]];
+  let target_idx = -1;
+  for (var i = 0; i < CUSTOM_ABILITIES.length; i++) {
+    if (CUSTOM_ABILITIES[i].key === ability_name) { target_idx = i; break; }
+  }
+  if (target_idx === -1) return;
+
+  let ability_name_in_skill = GetAbilityList()[target_idx];
   if (ability_name_in_skill != "none") {
     Abilities.ExecuteAbility(
       Entities.GetAbilityByName(Players.GetLocalPlayerPortraitUnit(), ability_name_in_skill),
@@ -310,204 +394,98 @@ function UseAbility(ability_name) {
   }
 }
 
-function UpdateSkillBar() {
-  let keybind_list = [];
-  let abilities_list = GetAbilityList();
-  // ОПТИМИЗАЦИЯ: Убран прыжок для улучшения FPS
-  let find_ability = {
-    cast_ability_7: 0,
-    cast_ability_8: 1,
-  };
+// #2+#5: единая функция обновления скил-бара (event-driven, без polling).
+function RefreshSkillBar() {
+  let current_abilities = GetAbilityList();
 
-  for (ability_keypad_name in find_ability) {
-    if (saves_buttons_name[ability_keypad_name]) {
-      keybind_list.push(saves_buttons_name[ability_keypad_name]);
-    } else {
-      keybind_list.push(" ");
-    }
+  // Собираем подпись текущего состояния для дедупликации.
+  let keys_snapshot = [];
+  for (var i = 0; i < CUSTOM_ABILITIES.length; i++) {
+    keys_snapshot.push(saves_buttons_name[CUSTOM_ABILITIES[i].key] || " ");
   }
+  let signature = current_abilities.join("|") + "::" + keys_snapshot.join("|");
+  if (signature === last_skillbar_signature) return;
+  last_skillbar_signature = signature;
 
   let abilities = FindDotaHudElement("abilities");
-  if (abilities) {
-    for (var i = 0; i < abilities.GetChildCount(); i++) {
-      let ability_panel = abilities.GetChild(i);
-      if (ability_panel) {
-        let Hotkey = ability_panel.FindChildTraverse("Hotkey");
+  if (!abilities) return;
+
+  for (var ci = 0; ci < abilities.GetChildCount(); ci++) {
+    let ability_panel = abilities.GetChild(ci);
+    if (!ability_panel) continue;
+    let ability_image = ability_panel.FindChildTraverse("AbilityImage");
+    let ability_name = ability_image ? ability_image.abilityname : null;
+    if (!ability_name) continue;
+
+    for (var k = 0; k < current_abilities.length; k++) {
+      if (ability_name == current_abilities[k]) {
         let HotkeyText = ability_panel.FindChildTraverse("HotkeyText");
-        let ability_name = ability_panel.FindChildTraverse("AbilityImage").abilityname;
-        if (ability_name && ability_name == abilities_list[0]) {
-          if (HotkeyText) {
-            HotkeyText.text = String(keybind_list[0]).toUpperCase();
-          }
-          if (Hotkey) {
-            Hotkey.style.visibility = "visible";
-          }
-        }
-        if (ability_name && ability_name == abilities_list[1]) {
-          if (HotkeyText) {
-            HotkeyText.text = String(keybind_list[1]).toUpperCase();
-          }
-          if (Hotkey) {
-            Hotkey.style.visibility = "visible";
-          }
-        }
-        if (ability_name && ability_name == abilities_list[2]) {
-          if (HotkeyText) {
-            HotkeyText.text = String(keybind_list[2]).toUpperCase();
-          }
-          if (Hotkey) {
-            Hotkey.style.visibility = "visible";
-          }
-        }
+        let Hotkey = ability_panel.FindChildTraverse("Hotkey");
+        if (HotkeyText) HotkeyText.text = String(keys_snapshot[k]).toUpperCase();
+        if (Hotkey) Hotkey.style.visibility = "visible";
       }
     }
   }
-  $.Schedule(1, UpdateSkillBar);
+}
+
+// #2: подписки заменяют $.Schedule(1, UpdateSkillBar).
+function InitSkillBarSubscriptions() {
+  if (update_skill_bar_running) return;
+  update_skill_bar_running = true;
+
+  CustomNetTables.SubscribeNetTableListener("abilities_list", function (_, key, _value) {
+    if (key === String(Players.GetLocalPlayer())) RefreshSkillBar();
+  });
+  // Скил-бар может пересоздаваться (смена героя, ресспаун), а DOM-элементы #abilities —
+  // тоже. Поэтому держим лёгкий редкий перепрогон раз в 2 секунды, который ничего не делает,
+  // если signature не изменилась. Это в 2 раза реже прежнего polling и без обходов по умолчанию.
+  function HeartbeatTick() {
+    RefreshSkillBar();
+    $.Schedule(2, HeartbeatTick);
+  }
+  HeartbeatTick();
 }
 
 function ResetBinds() {
+  Game.EmitSound("Flag.RollChoose");
   let SettingsKeybindsList = $("#SettingsKeybindsList");
   for (var i = 0; i < SettingsKeybindsList.GetChildCount(); i++) {
     let button_bind = SettingsKeybindsList.GetChild(i);
     if (button_bind) {
       let bind_name_label = button_bind.FindChildTraverse("bind_name_label");
-      if (bind_name_label) {
-        bind_name_label.text = "";
+      if (bind_name_label) bind_name_label.text = "";
+      let conflict_label = button_bind.FindChildTraverse("conflict_label");
+      if (conflict_label) {
+        conflict_label.text = "";
+        conflict_label.style.visibility = "collapse";
       }
     }
   }
 
-  for (ability_name in abilities_settings) {
-    let button_keypad = abilities_settings[ability_name];
-    ResetKeyBindName(button_keypad);
+  // Снимаем все привязанные клавиши (RU+EN) для каждой ability.
+  for (var ab_name in active_custom_binds) {
+    ClearAbilityBinds(ab_name);
   }
+  active_custom_binds = {};
 
   abilities_settings = {};
   saves_buttons_name = {};
+
+  // #6: сообщаем серверу, что пользователь сбросил биндинги.
+  GameEvents.SendCustomGameEventToServer("player_change_keybinds", { keybinds: {} });
+
+  // #2: обновим UI скил-бара (хоткеи пропадут).
+  last_skillbar_signature = "";
+  RefreshSkillBar();
 }
 
 function ResetBindsOnSend() {
-  for (ability_name in saves_buttons_name) {
-    let button_keypad = saves_buttons_name[ability_name];
-    ResetKeyBindName(button_keypad);
+  // Снимаем все наши кастомные привязки, чтобы перед повторным SaveKeyBinds
+  // не оставалось «фантомных» биндингов на старые клавиши.
+  for (var ab_name in active_custom_binds) {
+    ClearAbilityBinds(ab_name);
   }
 }
 
-function ResetKeyBindName(button_keypad) {
-  if (russian_language_button[button_keypad]) {
-    button_keypad = russian_language_button[button_keypad];
-  }
-
-  let abilities_list = {
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY1]: 0,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY2]: 1,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY3]: 2,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY1]: 3,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY2]: 4,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_ULTIMATE]: 5,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY1_QUICKCAST]: 0,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY2_QUICKCAST]: 1,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY3_QUICKCAST]: 2,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY1_QUICKCAST]: 3,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY2_QUICKCAST]: 4,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_ULTIMATE_QUICKCAST]: 5,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY1_EXPLICIT_AUTOCAST]: 0,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY2_EXPLICIT_AUTOCAST]: 1,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY3_EXPLICIT_AUTOCAST]: 2,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY1_EXPLICIT_AUTOCAST]: 3,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY2_EXPLICIT_AUTOCAST]: 4,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_ULTIMATE_EXPLICIT_AUTOCAST]: 5,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY1_QUICKCAST_AUTOCAST]: 0,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY2_QUICKCAST_AUTOCAST]: 1,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY3_QUICKCAST_AUTOCAST]: 2,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY1_QUICKCAST_AUTOCAST]: 3,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY2_QUICKCAST_AUTOCAST]: 4,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_ULTIMATE_QUICKCAST_AUTOCAST]: 5,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY1_AUTOMATIC_AUTOCAST]: 0,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY2_AUTOMATIC_AUTOCAST]: 1,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY3_AUTOMATIC_AUTOCAST]: 2,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY1_AUTOMATIC_AUTOCAST]: 3,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY2_AUTOMATIC_AUTOCAST]: 4,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_ULTIMATE_AUTOMATIC_AUTOCAST]: 5,
-  };
-  let items_list = {
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY1]: 0,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY2]: 1,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY3]: 2,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY4]: 3,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY5]: 4,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY6]: 5,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY1_QUICKCAST]: 0,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY2_QUICKCAST]: 1,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY3_QUICKCAST]: 2,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY4_QUICKCAST]: 3,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY5_QUICKCAST]: 4,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY6_QUICKCAST]: 5,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY1_AUTOCAST]: 0,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY2_AUTOCAST]: 1,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY3_AUTOCAST]: 2,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY4_AUTOCAST]: 3,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY5_AUTOCAST]: 4,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY6_AUTOCAST]: 5,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY1_QUICKAUTOCAST]: 0,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY2_QUICKAUTOCAST]: 1,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY3_QUICKAUTOCAST]: 2,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY4_QUICKAUTOCAST]: 3,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY5_QUICKAUTOCAST]: 4,
-    [DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY6_QUICKAUTOCAST]: 5,
-  };
-
-  let has_key_bind_reset = false;
-
-  for (bind_filter in abilities_list) {
-    let slot_num = abilities_list[bind_filter];
-    let bind_orig_button = GetGameKeybind(Number(bind_filter));
-    if (russian_language_button[bind_orig_button]) {
-      bind_orig_button = russian_language_button[bind_orig_button];
-    }
-    if (bind_orig_button == button_keypad) {
-      SetResetKeyBind(button_keypad, false, slot_num);
-      SetResetKeyBind(english_language_button[button_keypad], false, slot_num);
-      has_key_bind_reset = true;
-    }
-  }
-
-  for (bind_filter in items_list) {
-    let slot_num = items_list[bind_filter];
-    let bind_orig_button = GetGameKeybind(Number(bind_filter));
-    if (russian_language_button[bind_orig_button]) {
-      bind_orig_button = russian_language_button[bind_orig_button];
-    }
-    if (bind_orig_button == button_keypad) {
-      SetResetKeyBind(button_keypad, true, slot_num);
-      SetResetKeyBind(english_language_button[button_keypad], true, slot_num);
-      has_key_bind_reset = true;
-    }
-  }
-
-  if (!has_key_bind_reset) {
-    SetResetKeyBind(button_keypad, null, null, true);
-    SetResetKeyBind(english_language_button[button_keypad], null, null, true);
-  }
-}
-
-function SetResetKeyBind(button_keypad, is_item, slot, lose) {
-  const name_bind = "KeyBind_Custom_" + Math.floor(Math.random() * 99999999);
-  Game.AddCommand(
-    name_bind,
-    () => {
-      if (is_item) {
-        Abilities.ExecuteAbility(Entities.GetItemInSlot(Players.GetLocalPlayerPortraitUnit(), slot), Players.GetLocalPlayerPortraitUnit(), true);
-      } else if (lose == null) {
-        Abilities.ExecuteAbility(Entities.GetAbility(Players.GetLocalPlayerPortraitUnit(), slot), Players.GetLocalPlayerPortraitUnit(), true);
-      } else {
-      }
-    },
-    "",
-    0
-  );
-  Game.CreateCustomKeyBind(button_keypad, name_bind);
-}
-
-UpdateSkillBar();
+InitSkillBarSubscriptions();
 SaveKeyBinds(true);

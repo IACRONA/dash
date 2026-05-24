@@ -53,39 +53,42 @@ end
 
 function modifier_high_five:OnIntervalThink()
     if not IsServer() then return end
-    local target = nil
-    
+    local parent = self:GetParent()
+    if not parent or parent:IsNull() then self:Destroy() return end
+
     local units = FindUnitsInRadius(
-        self:GetParent():GetTeamNumber(),
-        self:GetParent():GetOrigin(),
+        parent:GetTeamNumber(),
+        parent:GetOrigin(),
         nil,
         600,
-        DOTA_UNIT_TARGET_TEAM_BOTH,
+        DOTA_UNIT_TARGET_TEAM_FRIENDLY,
         DOTA_UNIT_TARGET_HERO,
         DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
         FIND_CLOSEST,
         false
     )
-    
-    for k, hero in pairs(units) do
-        if hero ~= self:GetParent() and hero:HasModifier("modifier_high_five") then
+
+    local target = nil
+    for _, hero in pairs(units) do
+        if hero ~= parent and not hero:IsNull() and hero:HasModifier("modifier_high_five") then
             target = hero
             break
         end
     end
 
     if target == nil then return end
-    
-    local vPoint = (target:GetOrigin() + self:GetParent():GetOrigin()) / 2
-    self:StartProj(self:GetParent(), target, vPoint)
-    CreateModifierThinker(self:GetParent(), nil, "modifier_high_five_thinker", {duration = (vPoint - target:GetOrigin()):Length2D()/700}, vPoint, self:GetParent():GetTeamNumber(), false)
-    
-    -- Отправляем сообщение в чат
-    -- GameRules:SendCustomMessage("<font color='#00FF00'>" .. self:GetParent():GetUnitName() .. "</font> дал пять <font color='#00FF00'>" .. target:GetUnitName() .. "</font>!", 0, 0)
+
     self.high_five_done = true
     local targetModifier = target:FindModifierByName("modifier_high_five")
     if targetModifier then
         targetModifier.high_five_done = true
+    end
+
+    local vPoint = (target:GetOrigin() + parent:GetOrigin()) / 2
+    self:StartProj(parent, target, vPoint)
+    CreateModifierThinker(parent, nil, "modifier_high_five_thinker", {duration = (vPoint - target:GetOrigin()):Length2D()/700}, vPoint, parent:GetTeamNumber(), false)
+
+    if targetModifier then
         targetModifier:Destroy()
     end
     self:Destroy()
@@ -93,37 +96,35 @@ end
 
 function modifier_high_five:OnDestroy()
     if not IsServer() then return end
-    
-    -- Проверяем, не было ли уже "Дай пять" с героем
     if self.high_five_done then return end
-    
-    local target = nil
+
+    local parent = self:GetParent()
+    if not parent or parent:IsNull() then return end
+
     local towers = FindUnitsInRadius(
-        self:GetParent():GetTeamNumber(),
-        self:GetParent():GetOrigin(),
+        parent:GetTeamNumber(),
+        parent:GetOrigin(),
         nil,
         600,
-        DOTA_UNIT_TARGET_TEAM_BOTH,
+        DOTA_UNIT_TARGET_TEAM_FRIENDLY,
         DOTA_UNIT_TARGET_BUILDING,
         DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
         FIND_CLOSEST,
         false
     )
-    
+
+    local target = nil
     for _, tower in pairs(towers) do
-        if tower:IsTower() then
+        if not tower:IsNull() and tower:IsTower() then
             target = tower
             break
         end
     end
 
     if target then
-        local vPoint = (target:GetOrigin() + self:GetParent():GetOrigin()) / 2
-        self:StartProj(self:GetParent(), target, vPoint)
-        CreateModifierThinker(self:GetParent(), nil, "modifier_high_five_thinker", {duration = (vPoint - target:GetOrigin()):Length2D()/700}, vPoint, self:GetParent():GetTeamNumber(), false)
-        
-        -- Отправляем сообщение в чат при взаимодействии с башней
-        -- GameRules:SendCustomMessage("<font color='#00FF00'>" .. self:GetParent():GetUnitName() .. "</font> дал пять башне!", 0, 0)
+        local vPoint = (target:GetOrigin() + parent:GetOrigin()) / 2
+        self:StartProj(parent, target, vPoint)
+        CreateModifierThinker(parent, nil, "modifier_high_five_thinker", {duration = (vPoint - target:GetOrigin()):Length2D()/700}, vPoint, parent:GetTeamNumber(), false)
     end
 end
 
@@ -131,5 +132,7 @@ modifier_high_five_thinker = class({})
 
 function modifier_high_five_thinker:OnDestroy()
     if not IsServer() then return end
-    self:GetParent():EmitSound('high_five.impact')
+    local parent = self:GetParent()
+    if not parent or parent:IsNull() then return end
+    parent:EmitSound('high_five.impact')
 end

@@ -269,8 +269,84 @@ function CheckFocusPanel(panel, button_panel)
 //     button_panel.SetHasClass("HoverEffect", true)
 // }
 
+function GetReservedDotaKeys()
+{
+    let reserved_enums = [
+        DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY1,
+        DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY2,
+        DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_PRIMARY3,
+        DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY1,
+        DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_SECONDARY2,
+        DOTAKeybindCommand_t.DOTA_KEYBIND_ABILITY_ULTIMATE,
+        DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY1,
+        DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY2,
+        DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY3,
+        DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY4,
+        DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY5,
+        DOTAKeybindCommand_t.DOTA_KEYBIND_INVENTORY6,
+    ];
+    let reserved = {};
+    for (let i = 0; i < reserved_enums.length; i++)
+    {
+        let key = GetGameKeybind(Number(reserved_enums[i]));
+        if (russian_language_button[key])
+        {
+            key = russian_language_button[key];
+        }
+        if (key && key != "")
+        {
+            reserved[key] = true;
+        }
+    }
+    return reserved;
+}
+
+function FindConflictKey()
+{
+    let reserved = GetReservedDotaKeys();
+    let seen = {};
+    for (ability_name in abilities_settings)
+    {
+        let key = abilities_settings[ability_name];
+        if (!key || key == "") continue;
+        let norm_key = russian_language_button[key] ? russian_language_button[key] : key;
+        if (reserved[norm_key])
+        {
+            return norm_key;
+        }
+        if (seen[norm_key])
+        {
+            return norm_key;
+        }
+        seen[norm_key] = true;
+    }
+    return null;
+}
+
+function ShowKeybindError(busy_key)
+{
+    let msg = $.Localize("#keybinds_error_busy") + String(busy_key).toUpperCase();
+    GameEvents.SendEventClientSide("dota_hud_error_message", {
+        splitscreenplayer: 0,
+        reason: 80,
+        message: msg,
+    });
+    Game.EmitSound("General.NoGold");
+}
+
 function SaveKeyBinds()
 {
+    let reserved = GetReservedDotaKeys();
+    $.Msg("DEBUG reserved keys: " + JSON.stringify(reserved));
+    $.Msg("DEBUG abilities_settings: " + JSON.stringify(abilities_settings));
+    let conflict = FindConflictKey();
+    $.Msg("DEBUG conflict: " + conflict);
+    if (conflict)
+    {
+        ShowKeybindError(conflict);
+        return;
+    }
+
     ResetBindsOnSend()
     OnSettingsOpen()
 
@@ -419,9 +495,9 @@ function ResetBinds()
         }
     }
 
-    for (ability_name in abilities_settings)
+    for (ability_name in saves_buttons_name)
     {
-        let button_keypad = abilities_settings[ability_name]
+        let button_keypad = saves_buttons_name[ability_name]
         ResetKeyBindName(button_keypad)
     }
 
@@ -510,7 +586,6 @@ function ResetKeyBindName(button_keypad)
 
     for (bind_filter in abilities_list)
     {
-        let slot_num = abilities_list[bind_filter]
         let bind_orig_button = GetGameKeybind(Number(bind_filter))
         if (russian_language_button[bind_orig_button])
         {
@@ -518,15 +593,14 @@ function ResetKeyBindName(button_keypad)
         }
         if (bind_orig_button == button_keypad)
         {
-            SetResetKeyBind(button_keypad, false, slot_num)
-            SetResetKeyBind(english_language_button[button_keypad], false, slot_num)
+            RestoreOriginalKeyBind(button_keypad, Number(bind_filter))
+            RestoreOriginalKeyBind(english_language_button[button_keypad], Number(bind_filter))
             has_key_bind_reset = true
         }
     }
 
     for (bind_filter in items_list)
     {
-        let slot_num = items_list[bind_filter]
         let bind_orig_button = GetGameKeybind(Number(bind_filter))
         if (russian_language_button[bind_orig_button])
         {
@@ -534,17 +608,29 @@ function ResetKeyBindName(button_keypad)
         }
         if (bind_orig_button == button_keypad)
         {
-            SetResetKeyBind(button_keypad, true, slot_num)
-            SetResetKeyBind(english_language_button[button_keypad], true, slot_num)
+            RestoreOriginalKeyBind(button_keypad, Number(bind_filter))
+            RestoreOriginalKeyBind(english_language_button[button_keypad], Number(bind_filter))
             has_key_bind_reset = true
         }
     }
 
     if (!has_key_bind_reset)
     {
-        SetResetKeyBind(button_keypad, null, null, true)
-        SetResetKeyBind(english_language_button[button_keypad], null, null, true)
+        UnbindCustomKey(button_keypad)
+        UnbindCustomKey(english_language_button[button_keypad])
     }
+}
+
+function RestoreOriginalKeyBind(button_keypad, dota_command_enum)
+{
+    if (!button_keypad) return;
+    Game.CreateCustomKeyBind(button_keypad, String(dota_command_enum));
+}
+
+function UnbindCustomKey(button_keypad)
+{
+    if (!button_keypad) return;
+    Game.CreateCustomKeyBind(button_keypad, "");
 }
 
 function SetResetKeyBind(button_keypad, is_item, slot, lose)

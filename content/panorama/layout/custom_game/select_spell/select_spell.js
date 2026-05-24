@@ -1,18 +1,34 @@
 let queue = {};
+let pendingTalents = [];
+let pendingSpells = [];
+let pendingFates = [];
+let pendingSpheres = [];
+
+function LOG(msg) { /* logging disabled */ }
 const OPERATOR = {
   ADD: 1,
   MULTIPLY: 2,
 };
 const reverse_increment = ["cooldown_and_manacost"];
-CustomNetTables.SubscribeNetTableListener("rolls_player", (_, eventKey, eventValue) => OnUpdateRoll(eventKey, eventValue));
+
+function SafeGetRerollCount() {
+  try {
+    if (typeof playerInfo !== "undefined" && playerInfo && typeof playerInfo.getRollPlayer === "function") {
+      const v = playerInfo.getRollPlayer();
+      return (typeof v === "number" && !isNaN(v)) ? v : 0;
+    }
+  } catch (e) { /* playerInfo not ready */ }
+  return 0;
+}
 
 const OnUpdateRoll = (playerId, data) => {
   if (playerId !== `${Game.GetLocalPlayerID()}`) return;
 
   const rerollPanels = $.GetContextPanel().FindChildrenWithClassTraverse("RerollBlock");
   const rerollTexts = $.GetContextPanel().FindChildrenWithClassTraverse("RerollText");
-  const rerollCount = playerInfo.getRollPlayer();
+  const rerollCount = SafeGetRerollCount();
   rerollPanels.forEach((panel) => {
+    if (!panel || !panel.IsValid()) return;
     if (rerollCount > 0) {
       if (!panel.BHasClass("IsActive")) panel.AddClass("IsActive");
     } else {
@@ -20,9 +36,12 @@ const OnUpdateRoll = (playerId, data) => {
     }
   });
   rerollTexts.forEach((panel) => {
+    if (!panel || !panel.IsValid()) return;
     panel.text = GetTextForRerollPanel(rerollCount);
   });
 };
+
+CustomNetTables.SubscribeNetTableListener("rolls_player", (_, eventKey, eventValue) => OnUpdateRoll(eventKey, eventValue));
 
 const GetTextForRerollPanel = (reroll_count) => {
   return $.Localize("#swap_abilities") + " x" + reroll_count;
@@ -31,53 +50,67 @@ GameEvents.Subscribe("spell_select_open_panel", spell_select_open_panel);
 
 function show_queue_panels() {
   const queuePanel = Object.keys(queue)[0];
-
-  if (queuePanel) {
-    if (queuePanel === "spell") {
-      $("#SpellSelectedMain").style.opacity = "1";
-    } else if (queuePanel === "fate") {
-      $("#FateSelectedMain").style.opacity = "1";
-    } else if (queuePanel === "sphere") {
-      $("#SphereSelectedMain").style.opacity = "1";
-    } else if (queuePanel === "sphere") {
-      $("#SphereSelectedMain").style.opacity = "1";
-    } else if (queuePanel === "talent") {
-      $("#TalentsSelectedMain").style.opacity = "1";
-    }
+  LOG("show_queue_panels -> " + (queuePanel || "EMPTY"));
+  if (!queuePanel) return;
+  const ids = {
+    spell: "#SpellSelectedMain",
+    fate: "#FateSelectedMain",
+    sphere: "#SphereSelectedMain",
+    talent: "#TalentsSelectedMain",
+  };
+  const panel = $(ids[queuePanel]);
+  if (panel && panel.IsValid()) {
+    panel.style.opacity = "1";
+    panel.SetHasClass("SpawnPanelSelected", false);
   }
 }
 // spell_select_open_panel({"spell_list":{"1":"earthshaker_echo_slam","2":"primal_beast_pulverize","3":"void_spirit_astral_step"},"is_ultimate":1,"is_reroll":0})
 
 function spell_select_open_panel(params) {
+  if (!params || !params.spell_list || typeof params.spell_list !== "object") {
+    LOG("spell_select_open_panel: invalid params, ignoring");
+    return;
+  }
+  LOG("spell_select_open_panel is_ultimate=" + params.is_ultimate + " is_reroll=" + params.is_reroll);
   const isReroll = params.is_reroll;
 
-  if (!isReroll) Game.EmitSound("Flag.NewAbility");
-  $("#SpellSelectedMain").RemoveAndDeleteChildren();
-  if (isReroll) {
-    $("#SpellSelectedMain").style.opacity = "1";
-  } else {
-    if (Object.values(queue).length > 0) {
-      if (!queue.spell) {
-        queue.spell = true;
-      }
+  if (queue.spell) {
+    if (isReroll) {
+      LOG("spell reroll -> replacing current/pending spell data");
+      pendingSpells = [];
     } else {
-      queue.spell = true;
-      $("#SpellSelectedMain").style.opacity = "1";
+      LOG("spell already in queue -> pendingSpells");
+      pendingSpells.push(params);
+      return;
     }
   }
+
+  if (!isReroll) Game.EmitSound("Flag.NewAbility");
+  try { StopPanelParticles($("#SpellSelectedMain")); }
+  catch(e) { LOG("SpellSelectedMain particle cleanup error: " + e); }
+  try { $("#SpellSelectedMain").RemoveAndDeleteChildren(); }
+  catch(e) { LOG("SpellSelectedMain remove children error: " + e); }
+
+  queue.spell = true;
+  const isActiveSlot = Object.keys(queue).length === 1 || isReroll;
+  if (isActiveSlot) {
+    $("#SpellSelectedMain").style.opacity = "1";
+    LOG("spell shown immediately");
+  } else {
+    LOG("spell added to queue, waiting for: " + Object.keys(queue).join(","));
+  }
+
   let actions_block = $.CreatePanel("Panel", $("#SpellSelectedMain"), "SpellActions");
 
-  // let Choose_Your_Spell = $.CreatePanel("Label", actions_block, "");
-  // Choose_Your_Spell.AddClass("Choose_Your_Spell");
-  // Choose_Your_Spell.AddClass(params.is_ultimate ? "IsUltimate" : "IsSpell");
-  // Choose_Your_Spell.text = $.Localize(params.is_ultimate ? "#Choose_Your_Spell_Ultimate" : "#Choose_Your_Spell");
-
   $.Schedule(0.1, function () {
-    $("#SpellSelectedMain").SetHasClass("SpawnPanelSelected", false);
+    const p = $("#SpellSelectedMain");
+    if (p && p.IsValid()) p.SetHasClass("SpawnPanelSelected", false);
   });
   CreateRerollPanel(params.is_ultimate);
-  for (let i = 1; i <= Object.keys(params.spell_list).length; i++) {
-    CreateSpellBlock(params.spell_list[i], params.is_ultimate);
+  const spellKeys = Object.keys(params.spell_list);
+  for (let i = 0; i < spellKeys.length; i++) {
+    const sp = params.spell_list[spellKeys[i]];
+    if (sp) CreateSpellBlock(sp, params.is_ultimate);
   }
 }
 
@@ -122,20 +155,49 @@ function CreateSpellBlock(spell_name, is_ultimate) {
   }); 
 }
 
+function StopPanelParticles(panel) {
+  if (!panel || !panel.IsValid()) return;
+  const particles = panel.FindChildrenWithClassTraverse("hoverParticle");
+  particles.forEach((p) => {
+    if (!p || !p.IsValid()) return;
+    try {
+      if (typeof p.StopParticlesFalloff === "function") p.StopParticlesFalloff(true);
+      else if (typeof p.StopParticles === "function") p.StopParticles(true);
+    } catch (e) { /* ignore - panel will be removed anyway */ }
+  });
+}
+
 function CancelChooseAbilities() {
+  LOG("CancelChooseAbilities");
   delete queue.spell;
-  for (let i = 0; i < $("#SpellSelectedMain").GetChildCount(); i++) {
-    $("#SpellSelectedMain")
-      .GetChild(i)
-      .SetPanelEvent("onactivate", function () {});
+  const spellPanel = $("#SpellSelectedMain");
+  StopPanelParticles(spellPanel);
+  if (spellPanel && spellPanel.IsValid()) {
+    for (let i = 0; i < spellPanel.GetChildCount(); i++) {
+      spellPanel.GetChild(i).SetPanelEvent("onactivate", function () {});
+    }
+  }
+
+  if (pendingSpells.length > 0) {
+    const next = pendingSpells.shift();
+    LOG("opening next pendingSpell");
+    $.Schedule(0.1, function () {
+      spell_select_open_panel(next);
+    });
+    return;
   }
 
   show_queue_panels();
 }
 
 function CreateRerollPanel(is_ultimate) {
-  const reroll_count = playerInfo.getRollPlayer();
-  let reroll_block = $.CreatePanel("Panel", $("#SpellSelectedMain").FindChildTraverse("SpellActions"), "", {
+  const reroll_count = SafeGetRerollCount();
+  const parent = $("#SpellSelectedMain").FindChildTraverse("SpellActions");
+  if (!parent || !parent.IsValid()) {
+    LOG("CreateRerollPanel: SpellActions parent missing");
+    return;
+  }
+  let reroll_block = $.CreatePanel("Panel", parent, "", {
     class: "RerollBlock",
   });
 
@@ -152,18 +214,41 @@ function CreateRerollPanel(is_ultimate) {
   let reroll_block_image = $.CreatePanel("Panel", reroll_block, "");
   reroll_block_image.AddClass("reroll_block_image");
 
+  let clicked = false;
   reroll_block.SetPanelEvent("onactivate", function () {
+    if (clicked) return;
     if (!reroll_block.BHasClass("IsActive")) return;
+    clicked = true;
     GameEvents.SendCustomGameEventToServer("swap_abilities_to_select", { is_ultimate: is_ultimate });
-    $("#SpellSelectedMain").style.opacity = "0";
     Game.EmitSound("Flag.RollChoose");
+    $.Schedule(0, function () {
+      if (reroll_block && reroll_block.IsValid()) reroll_block.RemoveClass("IsActive");
+    });
   });
 }
 
 GameEvents.Subscribe("open_fates_choose_players", open_fates_choose_players);
 // open_fates_choose_players()
 function open_fates_choose_players(params) {
-  $("#FateSelectedMain").RemoveAndDeleteChildren();
+  params = params || {};
+  LOG("open_fates_choose_players");
+  const isReroll = !!params.isReroll;
+
+  if (queue.fate) {
+    if (isReroll) {
+      LOG("fate reroll -> replacing");
+      pendingFates = [];
+    } else {
+      LOG("fate already in queue -> pendingFates");
+      pendingFates.push(params);
+      return;
+    }
+  }
+
+  try { StopPanelParticles($("#FateSelectedMain")); }
+  catch(e) { LOG("FateSelectedMain particle cleanup error: " + e); }
+  try { $("#FateSelectedMain").RemoveAndDeleteChildren(); }
+  catch(e) { LOG("FateSelectedMain remove children error: " + e); }
 
   let list = {
     1: "fate_defender",
@@ -183,16 +268,18 @@ function open_fates_choose_players(params) {
     CreateFate(list[i]);
   }
 
-  if (Object.values(queue).length > 0) {
-    if (!queue.fate) {
-      queue.fate = true;
-    }
-  } else {
-    queue.fate = true;
+  queue.fate = true;
+  const isActiveFate = Object.keys(queue).length === 1 || isReroll;
+  if (isActiveFate) {
     $("#FateSelectedMain").style.opacity = "1";
+    LOG("fate shown immediately");
+  } else {
+    LOG("fate added to queue, waiting for: " + Object.keys(queue).join(","));
   }
+
   $.Schedule(0.5, function () {
-    $("#FateSelectedMain").SetHasClass("SpawnPanelSelected", false);
+    const p = $("#FateSelectedMain");
+    if (p && p.IsValid()) p.SetHasClass("SpawnPanelSelected", false);
     Game.EmitSound("fate_chos");
   });
 }
@@ -260,7 +347,7 @@ function CreateFate(fate_name) {
       $("#FateSelectedMain").style.opacity = "0";
       $("#FateSelectedMain").SetHasClass("SpawnPanelSelected", true);
       Game.EmitSound("Flag.KillSelect");
-      Game.EmitSound(fate_name);
+      try { Game.EmitSound(fate_name); } catch(e) { LOG("EmitSound failed for fate: " + fate_name); }
       CancelChooseFates();
     });
   }
@@ -275,12 +362,23 @@ function CreateFate(fate_name) {
 }
 
 function CancelChooseFates() {
+  LOG("CancelChooseFates");
   delete queue.fate;
+  const fatePanel = $("#FateSelectedMain");
+  StopPanelParticles(fatePanel);
+  if (fatePanel && fatePanel.IsValid()) {
+    for (let i = 0; i < fatePanel.GetChildCount(); i++) {
+      fatePanel.GetChild(i).SetPanelEvent("onactivate", function () {});
+    }
+  }
 
-  for (let i = 0; i < $("#FateSelectedMain").GetChildCount(); i++) {
-    $("#FateSelectedMain")
-      .GetChild(i)
-      .SetPanelEvent("onactivate", function () {});
+  if (pendingFates.length > 0) {
+    const next = pendingFates.shift();
+    LOG("opening next pendingFate");
+    $.Schedule(0.1, function () {
+      open_fates_choose_players(next);
+    });
+    return;
   }
 
   show_queue_panels();
@@ -290,8 +388,30 @@ GameEvents.Subscribe("open_sphere_choose_players", open_sphere_choose_players);
 // open_sphere_choose_players({"sphereList":{"1":{"name":"modifier_sphere_shield_all","level":0},"2":{"name":"modifier_sphere_miss","level":0}}})
 // open_fates_choose_players()
 function open_sphere_choose_players(params) {
+  if (!params || !params.sphereList || typeof params.sphereList !== "object") {
+    LOG("open_sphere_choose_players: invalid params");
+    return;
+  }
+  LOG("open_sphere_choose_players");
+  const isReroll = !!params.isReroll;
+
+  if (queue.sphere) {
+    if (isReroll) {
+      LOG("sphere reroll -> replacing");
+      pendingSpheres = [];
+    } else {
+      LOG("sphere already in queue -> pendingSpheres");
+      pendingSpheres.push(params);
+      return;
+    }
+  }
+
   let body = $("#SphereSelectedMain");
-  body.RemoveAndDeleteChildren();
+  if (!body || !body.IsValid()) { LOG("SphereSelectedMain invalid"); return; }
+  try { StopPanelParticles(body); }
+  catch(e) { LOG("SphereSelectedMain particle cleanup error: " + e); }
+  try { body.RemoveAndDeleteChildren(); }
+  catch(e) { LOG("SphereSelectedMain remove children error: " + e); }
 
   let block_actions = $.CreatePanel("Panel", $("#SphereSelectedMain"), "SpellActions");
 
@@ -301,27 +421,31 @@ function open_sphere_choose_players(params) {
 
   // CreateSphereRerollPanel();
 
-  for (let i = 1; i <= Object.keys(params.sphereList).length; i++) {
-    CreateSphere(params.sphereList[i]);
+  const sphereKeys = Object.keys(params.sphereList);
+  for (let i = 0; i < sphereKeys.length; i++) {
+    const s = params.sphereList[sphereKeys[i]];
+    if (s) CreateSphere(s);
   }
 
-  if (Object.values(queue).length > 0) {
-    if (!queue.sphere) {
-      queue.sphere = true; 
-    }
-  } else {
-    queue.sphere = true;
+  queue.sphere = true;
+  const isActiveSphere = Object.keys(queue).length === 1 || isReroll;
+  if (isActiveSphere) {
     body.style.opacity = "1";
+    LOG("sphere shown immediately");
+  } else {
+    LOG("sphere added to queue, waiting for: " + Object.keys(queue).join(","));
   }
 
   $.Schedule(0.5, function () {
-    body.SetHasClass("SpawnPanelSelected", false);
-    if (!params.isReroll) Game.EmitSound("sphere_choice");
+    if (body && body.IsValid()) body.SetHasClass("SpawnPanelSelected", false);
+    if (!isReroll) Game.EmitSound("sphere_choice");
   });
 }
 
 function CreateSphere(data) {
+  if (!data || !data.name) return;
   let { name, level } = data;
+  level = level || 0;
   let spell_block = $.CreatePanel("Panel", $("#SphereSelectedMain"), "");
   spell_block.AddClass("sphere_block");
 
@@ -387,20 +511,33 @@ function CreateSphere(data) {
 }
 
 function CancelChooseSphere() {
+  LOG("CancelChooseSphere");
   delete queue.sphere;
+  const spherePanel = $("#SphereSelectedMain");
+  StopPanelParticles(spherePanel);
+  if (spherePanel && spherePanel.IsValid()) {
+    for (let i = 0; i < spherePanel.GetChildCount(); i++) {
+      spherePanel.GetChild(i).SetPanelEvent("onactivate", function () {});
+    }
+  }
 
-  for (let i = 0; i < $("#SphereSelectedMain").GetChildCount(); i++) {
-    $("#SphereSelectedMain")
-      .GetChild(i)
-      .SetPanelEvent("onactivate", function () {});
+  if (pendingSpheres.length > 0) {
+    const next = pendingSpheres.shift();
+    LOG("opening next pendingSphere");
+    $.Schedule(0.1, function () {
+      open_sphere_choose_players(next);
+    });
+    return;
   }
 
   show_queue_panels();
 }
 
 function CreateSphereRerollPanel() {
-  const reroll_count = playerInfo.getRollPlayer();
-  let reroll_block = $.CreatePanel("Panel", $("#SphereSelectedMain").FindChildTraverse("SpellActions"), "", {
+  const reroll_count = SafeGetRerollCount();
+  const parent = $("#SphereSelectedMain").FindChildTraverse("SpellActions");
+  if (!parent || !parent.IsValid()) return;
+  let reroll_block = $.CreatePanel("Panel", parent, "", {
     class: "RerollBlock",
   });
 
@@ -417,11 +554,16 @@ function CreateSphereRerollPanel() {
   let reroll_block_image = $.CreatePanel("Panel", reroll_block, "");
   reroll_block_image.AddClass("reroll_block_image");
 
+  let clicked = false;
   reroll_block.SetPanelEvent("onactivate", function () {
+    if (clicked) return;
     if (!reroll_block.BHasClass("IsActive")) return;
+    clicked = true;
     GameEvents.SendCustomGameEventToServer("reroll_spheres", { reroll: reroll_count });
-    $("#SpellSelectedMain").style.opacity = "0";
     Game.EmitSound("Flag.RollChoose");
+    $.Schedule(0, function () {
+      if (reroll_block && reroll_block.IsValid()) reroll_block.RemoveClass("IsActive");
+    });
   });
 }
 
@@ -476,9 +618,34 @@ const rarityClass = {
 // });
 
 function open_talents_choose_players(params) {
+  if (!params || !params.upgrades || !params.upgrades.choices || typeof params.upgrades.choices !== "object") {
+    LOG("open_talents_choose_players: invalid params");
+    return;
+  }
+  LOG("open_talents_choose_players rarity=" + params.upgrades.upgrade_rarity);
   let body = $("#TalentsSelectedMain");
-  body.RemoveAndDeleteChildren();
-  const isReroll = params.upgrades.reroll;
+  const isReroll = !!params.upgrades.reroll;
+
+  if (queue.talent) {
+    if (isReroll) {
+      LOG("talent reroll -> replacing");
+      pendingTalents = [];
+    } else {
+      LOG("talent already in queue -> pendingTalents");
+      pendingTalents.push(params);
+      return;
+    }
+  }
+
+  if (!body || !body.IsValid()) {
+    LOG("ERROR: TalentsSelectedMain invalid, retrying...");
+    $.Schedule(0.3, function() { open_talents_choose_players(params); });
+    return;
+  }
+  try { StopPanelParticles(body); }
+  catch(e) { LOG("TalentsSelectedMain particle cleanup error: " + e); }
+  try { body.RemoveAndDeleteChildren(); }
+  catch(e) { LOG("TalentsSelectedMain remove children error: " + e); }
   const selection_rarity = params.upgrades.upgrade_rarity || RARITY.COMMON;
   const imageBooks = {
     [RARITY.COMMON]: "item_usual_book",
@@ -501,30 +668,29 @@ function open_talents_choose_players(params) {
 
   CreateTalentRerollPanel(actions_block);
 
-  for (let i = 1; i <= Object.keys(params.upgrades.choices).length; i++) {
-    CreateTalent(params.upgrades, params.upgrades.choices[i]);
+  const choiceKeys = Object.keys(params.upgrades.choices);
+  for (let i = 0; i < choiceKeys.length; i++) {
+    const ch = params.upgrades.choices[choiceKeys[i]];
+    if (ch) CreateTalent(params.upgrades, ch);
   }
 
-  if (isReroll) {
-    $("#TalentsSelectedMain").style.opacity = "1";
+  queue.talent = true;
+  const isActiveTalent = Object.keys(queue).length === 1 || isReroll;
+  if (isActiveTalent) {
+    body.style.opacity = "1";
+    LOG("talent shown immediately");
   } else {
-    if (Object.values(queue).length > 0) {
-      if (!queue.talent) {
-        queue.talent = true;
-      }
-    } else {
-      queue.talent = true;
-      body.style.opacity = "1";
-    }
+    LOG("talent added to queue, waiting for: " + Object.keys(queue).join(","));
   }
 
   $.Schedule(0.5, function () {
-    body.SetHasClass("SpawnPanelSelected", false);
+    if (body && body.IsValid()) body.SetHasClass("SpawnPanelSelected", false);
   });
 }
 
 function CreateTalentRerollPanel(body) {
-  const reroll_count = playerInfo.getRollPlayer();
+  if (!body || !body.IsValid()) return;
+  const reroll_count = SafeGetRerollCount();
   let reroll_block = $.CreatePanel("Panel", body, "", {
     class: "RerollBlock",
   });
@@ -542,11 +708,16 @@ function CreateTalentRerollPanel(body) {
   let reroll_block_image = $.CreatePanel("Panel", reroll_block, "");
   reroll_block_image.AddClass("reroll_talent_block_image");
 
+  let clicked = false;
   reroll_block.SetPanelEvent("onactivate", function () {
+    if (clicked) return;
     if (!reroll_block.BHasClass("IsActive")) return;
+    clicked = true;
     GameEvents.SendCustomGameEventToServer("reroll_talents", {});
-    $("#TalentsSelectedMain").style.opacity = "0";
     Game.EmitSound("Flag.RollChoose");
+    $.Schedule(0, function () {
+      if (reroll_block && reroll_block.IsValid()) reroll_block.RemoveClass("IsActive");
+    });
   });
 }
 function UppercaseConvert(line) {
@@ -555,6 +726,7 @@ function UppercaseConvert(line) {
   return line;
 }
 function CreateTalent(upgradeInfo, data) {
+  if (!data || !data.ability_name || !data.upgrade_name) return;
   let { upgrade_name, ability_name, value, operator, rarity, count, max_count } = data;
   let { upgrade_rarity } = upgradeInfo;
   let spell_block = $.CreatePanel("Panel", $("#TalentsSelectedMain"), "");
@@ -692,12 +864,23 @@ function CreateTalent(upgradeInfo, data) {
 }
 
 function CancelChooseTalents() {
+  LOG("CancelChooseTalents");
   delete queue.talent;
+  const talentPanel = $("#TalentsSelectedMain");
+  StopPanelParticles(talentPanel);
+  if (talentPanel && talentPanel.IsValid()) {
+    for (let i = 0; i < talentPanel.GetChildCount(); i++) {
+      talentPanel.GetChild(i).SetPanelEvent("onactivate", function () {});
+    }
+  }
 
-  for (let i = 0; i < $("#TalentsSelectedMain").GetChildCount(); i++) {
-    $("#TalentsSelectedMain")
-      .GetChild(i)
-      .SetPanelEvent("onactivate", function () {});
+  if (pendingTalents.length > 0) {
+    const next = pendingTalents.shift();
+    LOG("opening next pendingTalent");
+    $.Schedule(0.1, function () {
+      open_talents_choose_players(next);
+    });
+    return;
   }
 
   show_queue_panels();

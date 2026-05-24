@@ -439,10 +439,12 @@ end
 
 function CAddonWarsong:RewardKillLeader(killer_userid, victim_userid)
 	local hero = PlayerResource:GetSelectedHeroEntity(killer_userid)
- 
+
 	if not hero then return end
+	local victimHero = PlayerResource:GetSelectedHeroEntity(victim_userid)
+	if not victimHero then return end
 	local teamKiller = hero:GetTeamNumber()
-	local teamVictim = PlayerResource:GetSelectedHeroEntity(victim_userid):GetTeamNumber()
+	local teamVictim = victimHero:GetTeamNumber()
 	if not self.teamBalanceTier[teamKiller] or not self.teamBalanceTier[teamVictim] then return end
 	local placeKiller = self.teamBalanceTier[teamKiller].place
 	local placeVictim = self.teamBalanceTier[teamVictim].place
@@ -504,6 +506,7 @@ function CAddonWarsong:BuyBook(data)
 
     if not book or not hero then return end
     local player = PlayerResource:GetPlayer(data.playerId)
+    if not player then return end
 
     local type = data.type
     local mapName = GetMapName()
@@ -651,8 +654,12 @@ function CAddonWarsong:IncrementCurrencyPlayer(nPlayer)
 
 	if GetMapName() == "dash" then
 		local hero = PlayerResource:GetSelectedHeroEntity(nPlayer:GetPlayerID())
-		local modifier = hero:FindModifierByName("modifier_head_boss")
-		modifier:IncrementStackCount()
+		if hero then
+			local modifier = hero:FindModifierByName("modifier_head_boss")
+			if modifier then
+				modifier:IncrementStackCount()
+			end
+		end
 		CustomGameEventManager:Send_ServerToPlayer(nPlayer, "boss_head_notification", {})
 	end
 
@@ -672,8 +679,12 @@ function CAddonWarsong:SpendCurrencyPlayer(nPlayer, value)
 
 	if GetMapName() == "dash" then
 		local hero = PlayerResource:GetSelectedHeroEntity(nPlayer:GetPlayerID())
-		local modifier = hero:FindModifierByName("modifier_head_boss")
-		modifier:DecrementStackCount()
+		if hero then
+			local modifier = hero:FindModifierByName("modifier_head_boss")
+			if modifier then
+				modifier:DecrementStackCount()
+			end
+		end
 	end
 
 	CustomNetTables:SetTableValue("custom_currency", playerId, {counter = math.max(currentCurrency - value, 0)})

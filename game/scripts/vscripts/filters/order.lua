@@ -1,5 +1,6 @@
 return function(t, hAddon)
 	local hMainUnit = EntIndexToHScript(t.units['0'] or -1)
+	if not hMainUnit then return true end
 
 	if t.order_type == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
 		local vTarget = Vector(t.position_x, t.position_y, t.position_z)
