@@ -92,6 +92,7 @@ function spell_select_open_panel(params) {
   catch(e) { LOG("SpellSelectedMain remove children error: " + e); }
 
   queue.spell = true;
+  $("#SpellSelectedMain").SetHasClass("SpawnPanelSelected", false);
   const isActiveSlot = Object.keys(queue).length === 1 || isReroll;
   if (isActiveSlot) {
     $("#SpellSelectedMain").style.opacity = "1";
@@ -110,14 +111,20 @@ function spell_select_open_panel(params) {
   const spellKeys = Object.keys(params.spell_list);
   for (let i = 0; i < spellKeys.length; i++) {
     const sp = params.spell_list[spellKeys[i]];
-    if (sp) CreateSpellBlock(sp, params.is_ultimate);
+    if (sp) CreateSpellBlock(sp, params.is_ultimate, i);
   }
 }
 
-function CreateSpellBlock(spell_name, is_ultimate) {
+function CreateSpellBlock(spell_name, is_ultimate, index) {
   let spell_block = $.CreatePanel("Panel", $("#SpellSelectedMain"), "");
   spell_block.AddClass("spell_block");
   spell_block.AddClass("IsSpell");
+  spell_block.AddClass("spell_block_slide_init");
+  $.Schedule(0.05 + (index || 0) * 0.15, function () {
+    if (spell_block && spell_block.IsValid()) {
+      spell_block.RemoveClass("spell_block_slide_init");
+    }
+  });
 
   let spell_block_bg = $.CreatePanel("Panel", spell_block, "");
   spell_block_bg.AddClass("spell_block_bg");
@@ -265,10 +272,11 @@ function open_fates_choose_players(params) {
   // let rerollPanel = $.CreatePanel("Panel", actions_block, "SpellReroll");
 
   for (let i = 1; i <= Object.keys(list).length; i++) {
-    CreateFate(list[i]);
+    CreateFate(list[i], i - 1);
   }
 
   queue.fate = true;
+  $("#FateSelectedMain").SetHasClass("SpawnPanelSelected", false);
   const isActiveFate = Object.keys(queue).length === 1 || isReroll;
   if (isActiveFate) {
     $("#FateSelectedMain").style.opacity = "1";
@@ -284,9 +292,15 @@ function open_fates_choose_players(params) {
   });
 }
 
-function CreateFate(fate_name) {
+function CreateFate(fate_name, index) {
   let spell_block = $.CreatePanel("Panel", $("#FateSelectedMain"), "");
   spell_block.AddClass("fate_block");
+  spell_block.AddClass("fate_block_flip_init");
+  $.Schedule(0.05, function () {
+    if (spell_block && spell_block.IsValid()) {
+      spell_block.RemoveClass("fate_block_flip_init");
+    }
+  });
 
   let spell_block_bg = $.CreatePanel("Panel", spell_block, "");
   spell_block_bg.AddClass("fate_block_bg"); 
@@ -299,11 +313,6 @@ function CreateFate(fate_name) {
   let spell_block_text = $.CreatePanel("Label", spell_block, "");
   spell_block_text.AddClass("fate_block_text");
   spell_block_text.text = $.Localize("#" + fate_name);
- 
-  let spell_block_description = $.CreatePanel("Label", spell_block, "", {
-    class: "fate_block_description",
-    text: $.Localize("#" + fate_name + "_description"), 
-  });
   let spell_block_particle = $.CreatePanel("DOTAParticleScenePanel", spell_block, "",{
     id: "hoverParticle",
     particleName: "particles/rebuild/ui/debris/debris_pitch_purple_fx.vpcf",
@@ -424,10 +433,11 @@ function open_sphere_choose_players(params) {
   const sphereKeys = Object.keys(params.sphereList);
   for (let i = 0; i < sphereKeys.length; i++) {
     const s = params.sphereList[sphereKeys[i]];
-    if (s) CreateSphere(s);
+    if (s) CreateSphere(s, i);
   }
 
   queue.sphere = true;
+  body.SetHasClass("SpawnPanelSelected", false);
   const isActiveSphere = Object.keys(queue).length === 1 || isReroll;
   if (isActiveSphere) {
     body.style.opacity = "1";
@@ -442,12 +452,18 @@ function open_sphere_choose_players(params) {
   });
 }
 
-function CreateSphere(data) {
+function CreateSphere(data, index) {
   if (!data || !data.name) return;
   let { name, level } = data;
   level = level || 0;
   let spell_block = $.CreatePanel("Panel", $("#SphereSelectedMain"), "");
   spell_block.AddClass("sphere_block");
+  spell_block.AddClass("sphere_block_slide_init");
+  $.Schedule(0.05 + (index || 0) * 0.15, function () {
+    if (spell_block && spell_block.IsValid()) {
+      spell_block.RemoveClass("sphere_block_slide_init");
+    }
+  });
 
   let spell_block_bg = $.CreatePanel("Panel", spell_block, "");
   spell_block_bg.AddClass("sphere_block_bg");
@@ -675,6 +691,7 @@ function open_talents_choose_players(params) {
   }
 
   queue.talent = true;
+  body.SetHasClass("SpawnPanelSelected", false);
   const isActiveTalent = Object.keys(queue).length === 1 || isReroll;
   if (isActiveTalent) {
     body.style.opacity = "1";

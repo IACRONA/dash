@@ -14,7 +14,7 @@ local spheres = {
 }
 
 function CAddonWarsong:GivePlayersSphere()
-    self.sphere_count_number = self.sphere_count_number + 1
+    CAddonWarsong.sphere_count_number = CAddonWarsong.sphere_count_number + 1
 
     for playerID = 0, 24 do
         if PlayerResource:IsValidPlayerID(playerID) then

@@ -580,6 +580,7 @@ function CAddonWarsong:OnGameRulesStateChange()
 			return NEW_SPHERES
 		end)
 		Timers:CreateTimer(NEW_ULTIMATE_COOLDOWN, function()
+			if self.count_ulti_abilities >= MAX_COUNT_ULTI_ABILITIES then return end
 			self:ChangeNewAbilities(true)
 			return NEW_ULTIMATE_COOLDOWN
 		end)

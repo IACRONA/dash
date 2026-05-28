@@ -287,8 +287,8 @@ if GetMapName() == "dash" then
 
     REROLL_SPHERES = 1
     NEW_SPHERES = 240
-    MAX_SPHERE_LEVEL = 3
-    COUNT_SPHERE_CHOICE = 3
+    MAX_SPHERE_LEVEL = 4
+    COUNT_SPHERE_CHOICE = 2
     MAX_SPHERE_COUNT = 4
     -- таверы которые нужно снести чтобы можно было сломать центральную башню для радиант 
     tower_to_kills_for_radiant = {
@@ -378,7 +378,7 @@ if GetMapName() == "portal_duo" then
     REROLL_ABILITIES_MAX_COUNT_ULTI = 1 -- РЕРОЛЛОВ ДЛЯ УЛЬТИМЕЙТОВ
 
     -- Настройка шаров
-    NEW_PASSIVE_SPELLS_COOLDOWN = 289 --420 -- 420s / 7m
+    NEW_PASSIVE_SPELLS_COOLDOWN = 380 --420 -- 420s / 7m
     MAX_COUNT_CHOOSE_PASSIVE_SPELL_IN_GAME = 3
 
     -- One Punchman
@@ -450,11 +450,10 @@ if GetMapName() == "portal_duo" then
     }
 
     REROLL_SPHERES = 1
-    NEW_SPHERES = 360
+    NEW_SPHERES = 240
     MAX_SPHERE_LEVEL = 4
     COUNT_SPHERE_CHOICE = 2
-    MAX_SPHERE_COUNT = 14
-
+    MAX_SPHERE_COUNT = 4
  
 
 end
@@ -604,7 +603,7 @@ START_GAME_FREEZE_TIME = 10
 
 -- Защитники флагов
 UPGRADE_TIME_CHECK = 1.1 -- каждые 1 минут
-UPGRADE_DAMAGE = 55
+UPGRADE_DAMAGE = 36
 UPGRADE_HEALTH = 280
 UPGRADE_ARMOR = 1
 

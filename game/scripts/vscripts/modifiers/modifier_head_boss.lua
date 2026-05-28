@@ -23,9 +23,15 @@ end
 function modifier_head_boss:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_TOOLTIP,
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
 	}
 end
 
+function modifier_head_boss:OnTakeDamage(params)
+	if params.unit == self:GetParent() and params.damage > 0 then
+		self:GetParent()._last_damage_time = GameRules:GetGameTime()
+	end
+end
 
 function modifier_head_boss:OnTooltip()
 	return self:GetStackCount()

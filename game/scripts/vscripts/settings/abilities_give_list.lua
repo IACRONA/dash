@@ -472,7 +472,7 @@ RANDOM_ULTIMATES_WG =
 	"oracle_false_promise",
 	"techies_land_mines",
 	"winter_wyvern_winters_curse",
-	"arc_warden_tempest_double",
+	-- "arc_warden_tempest_double", -- убран: создаёт полного клона героя, слишком тяжёлый
 	"abyssal_underlord_dark_portal",
 	"pangolier_gyroshell",
 	"dark_willow_terrorize",
