@@ -4,10 +4,11 @@
     {
         "BaseClass"             "ability_lua"
         "ScriptFile"            "abilities/heroes/templar_assassin/ta_lethal_surge"
-        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
         "AbilityType"           "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityTextureName"    "templar_assassin_psionic_trap"
         "AbilityCastRange"      "1000"
+        "AbilityCastPoint"      "0.0"
         "AbilityCooldown"       "15 15 15"
         "AbilityManaCost"       "100 125 150"
         "MaxLevel"              "3"
@@ -24,5 +25,18 @@
             "radius"                "100"
             "flight_speed"          "2000"
         }
+    }
+
+    "ta_lethal_surge_launch"
+    {
+        "BaseClass"             "ability_lua"
+        "ScriptFile"            "abilities/heroes/templar_assassin/ta_lethal_surge"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityType"           "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityTextureName"    "templar_assassin_psionic_trap"
+        "AbilityCastPoint"      "0.0"
+        "AbilityCooldown"       "0"
+        "AbilityManaCost"       "0"
+        "MaxLevel"              "3"
     }
 }

@@ -7,45 +7,101 @@ ta_lethal_surge = class({})
 function ta_lethal_surge:OnSpellStart()
     local caster = self:GetCaster()
 
-    -- Если уже в режиме прицеливания — вылетаем
-    if caster:HasModifier("modifier_ta_lethal_surge_aim") then
-        caster:RemoveModifierByName("modifier_ta_lethal_surge_aim")
-        self:Launch()
-        return
-    end
+    -- POINT: точка выбрана при первом касте
+    local target_pos = self:GetCursorPosition()
 
-    -- Первое нажатие — входим в режим прицеливания
-    caster:AddNewModifier(caster, self, "modifier_ta_lethal_surge_aim", {})
+    -- Активируем визуальный индикатор направления
+    caster:AddNewModifier(caster, self, "modifier_ta_lethal_surge_aim", {
+        target_x = target_pos.x,
+        target_y = target_pos.y,
+        target_z = target_pos.z,
+    })
+
+    -- Сбрасываем КД основного скилла
+    self:EndCooldown()
+
+    -- Подменяем кнопку на launch (NO_TARGET, мгновенный)
+    local launch_ab = caster:FindAbilityByName("ta_lethal_surge_launch")
+    if not launch_ab then
+        launch_ab = caster:AddAbility("ta_lethal_surge_launch")
+    end
+    launch_ab:SetLevel(self:GetLevel())
+    launch_ab.parent_ability = self
+    launch_ab.saved_target = target_pos
+
+    caster:SwapAbilities("ta_lethal_surge", "ta_lethal_surge_launch", false, true)
 end
 
-function ta_lethal_surge:Launch()
+-- Кнопка-триггер для запуска полёта (подменяется на месте основного ульта)
+ta_lethal_surge_launch = class({})
+
+function ta_lethal_surge_launch:OnSpellStart()
     local caster = self:GetCaster()
-    local cursor_pos = self:GetCursorPosition()
+    local main_ab = self.parent_ability or caster:FindAbilityByName("ta_lethal_surge")
+    local target = self.saved_target or caster:GetAbsOrigin()
+
+    -- Возвращаем основной скилл на слот ультимейта и запускаем КД
+    caster:SwapAbilities("ta_lethal_surge", "ta_lethal_surge_launch", true, false)
+    caster:RemoveModifierByName("modifier_ta_lethal_surge_aim")
+
+    if main_ab then
+        main_ab:StartCooldown(main_ab:GetCooldown(main_ab:GetLevel()))
+        main_ab:Launch(target)
+    end
+
+    -- Удаляем launch-абилку после использования
+    caster:RemoveAbility("ta_lethal_surge_launch")
+end
+
+function ta_lethal_surge:Launch(target_pos)
+    local caster = self:GetCaster()
     local caster_pos = caster:GetAbsOrigin()
 
-    local direction = (cursor_pos - caster_pos):Normalized()
+    local diff = target_pos - caster_pos
+    diff.z = 0
+    local dist_to_cursor = diff:Length2D()
+
+    -- Защита от каста на самого себя — используем forward, если курсор на герое
+    if dist_to_cursor < 50 then
+        dist_to_cursor = 300
+        local fwd = caster:GetForwardVector()
+        fwd.z = 0
+        diff = fwd * 300
+    end
+
+    local direction = diff:Normalized()
     direction.z = 0
 
-    local dist_to_cursor = (cursor_pos - caster_pos):Length2D()
     local max_dist = self:GetSpecialValueFor("max_distance")
     local flight_distance = math.min(dist_to_cursor, max_dist)
+    local final_pos = caster_pos + direction * flight_distance
+    final_pos.z = GetGroundHeight(final_pos, caster)
 
-    EmitSoundOn("Hero_StormSpirit.BallLightning", caster)
-
-    local particle = ParticleManager:CreateParticle(
-        "particles/units/heroes/hero_stormspirit/stormspirit_balllightning.vpcf",
-        PATTACH_ABSORIGIN_FOLLOW,
-        caster
+    -- Ставим Psionic Trap в конечной точке (визуал + звук как у Psionic Projection / Aghanim)
+    local trap_particle = ParticleManager:CreateParticle(
+        "particles/units/heroes/hero_templar_assassin/templar_assassin_trap.vpcf",
+        PATTACH_WORLDORIGIN,
+        nil
     )
-    ParticleManager:SetParticleControl(particle, 0, caster_pos)
-    ParticleManager:ReleaseParticleIndex(particle)
+    ParticleManager:SetParticleControl(trap_particle, 0, final_pos)
 
-    caster:AddNewModifier(caster, self, "modifier_ta_lethal_surge_fly", {
+    EmitSoundOnLocationWithCaster(final_pos, "Hero_TemplarAssassin.TrapTeleport", caster)
+
+    -- Звук рывка Kez (Kaze прицепляется к дереву и летит к нему)
+    EmitSoundOn("Hero_Kez.GrapplingClaw", caster)
+
+    local fly_mod = caster:AddNewModifier(caster, self, "modifier_ta_lethal_surge_fly", {
         duration = flight_distance / self:GetSpecialValueFor("flight_speed"),
         distance = flight_distance,
         direction_x = direction.x,
         direction_y = direction.y,
+        end_x = final_pos.x,
+        end_y = final_pos.y,
+        end_z = final_pos.z,
     })
+    if fly_mod then
+        fly_mod.trap_particle = trap_particle
+    end
 end
 
 -- Modifier: режим прицеливания (индикатор направления)
@@ -55,17 +111,58 @@ function modifier_ta_lethal_surge_aim:IsHidden() return false end
 function modifier_ta_lethal_surge_aim:IsBuff() return true end
 function modifier_ta_lethal_surge_aim:IsPurgable() return false end
 
-function modifier_ta_lethal_surge_aim:OnCreated()
+function modifier_ta_lethal_surge_aim:DeclareFunctions()
+    return { MODIFIER_EVENT_ON_ORDER }
+end
+
+function modifier_ta_lethal_surge_aim:OnOrder(event)
+    if not IsServer() then return end
+    if event.unit ~= self:GetParent() then return end
+
+    local order = event.order_type
+    if order == DOTA_UNIT_ORDER_STOP or order == DOTA_UNIT_ORDER_HOLD_POSITION then
+        local caster = self:GetParent()
+
+        -- Возвращаем основной скилл на слот (без КД — каст был отменён)
+        if caster:HasAbility("ta_lethal_surge_launch") then
+            caster:SwapAbilities("ta_lethal_surge", "ta_lethal_surge_launch", true, false)
+            caster:RemoveAbility("ta_lethal_surge_launch")
+        end
+
+        self:Destroy()
+    end
+end
+
+function modifier_ta_lethal_surge_aim:OnCreated(kv)
     if not IsServer() then return end
     local parent = self:GetParent()
+    local ability = self:GetAbility()
+    local max_dist = ability:GetSpecialValueFor("max_distance")
 
-    local particle = ParticleManager:CreateParticle(
-        "particles/units/heroes/hero_squirrel/squirrel_acorn_toss_aim.vpcf",
-        PATTACH_ABSORIGIN_FOLLOW,
-        parent
+    local target = Vector(kv.target_x or 0, kv.target_y or 0, kv.target_z or 0)
+    local origin = parent:GetAbsOrigin()
+    local dir = target - origin
+    dir.z = 0
+    local dist = dir:Length2D()
+    if dist > max_dist then
+        dir = dir:Normalized() * max_dist
+    end
+    local end_pos = origin + dir
+    end_pos.z = GetGroundHeight(end_pos, parent)
+
+    local dir_norm = dir:Normalized()
+
+    self.aim_particle = ParticleManager:CreateParticle(
+        "particles/units/heroes/hero_pangolier/pangolier_swashbuckle_aim.vpcf",
+        PATTACH_WORLDORIGIN,
+        nil
     )
-    ParticleManager:SetParticleControlEnt(particle, 0, parent, PATTACH_POINT_FOLLOW, "attach_origin", parent:GetAbsOrigin(), true)
-    self:AddParticle(particle, false, false, -1, false, false)
+    ParticleManager:SetParticleControl(self.aim_particle, 0, origin)
+    ParticleManager:SetParticleControl(self.aim_particle, 1, end_pos)
+    ParticleManager:SetParticleControl(self.aim_particle, 2, Vector(dist, 0, 0))
+    ParticleManager:SetParticleControlForward(self.aim_particle, 0, dir_norm)
+    ParticleManager:SetParticleControlForward(self.aim_particle, 1, dir_norm)
+    self:AddParticle(self.aim_particle, false, false, -1, false, false)
 end
 
 -- Modifier: полёт
@@ -82,18 +179,11 @@ function modifier_ta_lethal_surge_fly:OnCreated(kv)
     self.duration = self:GetDuration()
     self.elapsed = 0
     self.start_pos = self:GetParent():GetAbsOrigin()
-    self.end_pos = self.start_pos + self.direction * self.distance
+    self.end_pos = Vector(kv.end_x or 0, kv.end_y or 0, kv.end_z or 0)
     self.hit_units = {}
 
     self.update_interval = 0.03
     self:StartIntervalThink(self.update_interval)
-
-    local particle = ParticleManager:CreateParticle(
-        "particles/units/heroes/hero_stormspirit/stormspirit_balllightning.vpcf",
-        PATTACH_ABSORIGIN_FOLLOW,
-        self:GetParent()
-    )
-    self:AddParticle(particle, false, false, -1, false, false)
 
     if self:ApplyHorizontalMotionController() == false then
         self:Destroy()
@@ -180,8 +270,28 @@ end
 function modifier_ta_lethal_surge_fly:OnDestroy()
     if not IsServer() then return end
     local parent = self:GetParent()
-    StopSoundOn("Hero_StormSpirit.BallLightning", parent)
+    StopSoundOn("Hero_Kez.GrapplingClaw", parent)
     FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
+
+    -- Удаляем партикл трапа
+    if self.trap_particle then
+        ParticleManager:DestroyParticle(self.trap_particle, false)
+        ParticleManager:ReleaseParticleIndex(self.trap_particle)
+        self.trap_particle = nil
+    end
+
+    -- Взрыв трапа в точке прибытия
+    local explode_pos = self.end_pos or parent:GetAbsOrigin()
+    local explode_particle = ParticleManager:CreateParticle(
+        "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf",
+        PATTACH_WORLDORIGIN,
+        nil
+    )
+    ParticleManager:SetParticleControl(explode_particle, 0, explode_pos)
+    ParticleManager:ReleaseParticleIndex(explode_particle)
+
+    EmitSoundOnLocationWithCaster(explode_pos, "Hero_TemplarAssassin.Trap.Explode", parent)
+    StopSoundOn("Hero_TemplarAssassin.PsionicTrap", parent)
 end
 
 -- Modifier: замедление + слабость (сало = hamstring)

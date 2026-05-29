@@ -47,8 +47,9 @@ function modifier_true_sight_portal_debuff:OnDestroy()
 	end
 	if IsClient() then return end
 
- 
-	self.modifier:Destroy()
+	if self.modifier and not self.modifier:IsNull() then
+		self.modifier:Destroy()
+	end
 end
 
 function modifier_true_sight_portal_debuff:GetEffectName()

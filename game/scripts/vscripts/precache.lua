@@ -143,7 +143,13 @@ local particles =
     "particles/overhead_particle/leaders/leader_overhead_golden.vpcf",
     "particles/overhead_particle/leaders/leader_overhead_winged.vpcf",
 
-
+    -- ta_lethal_surge
+    "particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_windup.vpcf",
+    "particles/units/heroes/hero_pangolier/pangolier_swashbuckle_aim.vpcf",
+    "particles/units/heroes/hero_templar_assassin/templar_assassin_crit_impact.vpcf",
+    "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_slow.vpcf",
+    "particles/units/heroes/hero_templar_assassin/templar_assassin_trap.vpcf",
+    "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf",
 
 }
 
@@ -160,7 +166,9 @@ local sounds =
     "soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_undying.vsndevts",
     "soundevents/game_sounds.vsndevts",  -- Для General.TeleportLoop и других общих звуков
-    
+    "soundevents/game_sounds_heroes/game_sounds_kez.vsndevts",
+    "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts",
+
 }
 
 local models = {
