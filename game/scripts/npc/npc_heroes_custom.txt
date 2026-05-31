@@ -310,7 +310,10 @@
 
 	"npc_dota_hero_templar_assassin"
 	{
+		"Ability4"		"generic_hidden"
+		"Ability5"		"generic_hidden"
 		"Ability6"		"ta_lethal_surge"
+		"Ability7"		"generic_hidden"
 	}
 }
 

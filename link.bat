@@ -1,6 +1,7 @@
 @ECHO off
 
-set git_path=C:\dash\dash
+set git_path=%~dp0
+if "%git_path:~-1%"=="\" set git_path=%git_path:~0,-1%
 set dota_path_content=C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\content\dota_addons\dotawarsongs
 set dota_path_game=C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\game\dota_addons\dotawarsongs
 

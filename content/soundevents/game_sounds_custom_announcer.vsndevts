@@ -1160,6 +1160,22 @@
         event_type = "1.000000"
 	}
 
+	TemplarAssassin.LethalSurge.Jump =
+	{
+        type = "dota_src1_3d"
+        vsnd_files =
+        [
+            "sounds/heroes/templar_assassin/lethal_surge_jump.vsnd",
+        ]
+        volume = "2.250000"
+        pitch_rand_min = "0"
+        pitch_rand_max = "0"
+        pitch = "1.000000"
+        soundlevel = "95.000000"
+        distance_max = "1600.000000"
+        event_type = "1.000000"
+	}
+
 }
 
  

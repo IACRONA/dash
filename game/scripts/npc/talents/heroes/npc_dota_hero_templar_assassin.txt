@@ -57,39 +57,35 @@
 			}
 		}
 	}
-	"templar_assassin_psionic_trap"
+	"ta_lethal_surge"
 	{
 		"cooldown_and_manacost"
 		{
 			"value" "8"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
-			"linked_special_values"
-			{
-				"trap_max_charge_duration" "-0.5"
-			}
-			"linked_abilities"
-			{
-				"templar_assassin_trap_teleport"
-				{
-					"cooldown_and_manacost"
-					{
-						"value" "8"
-						"operator" "OP_MULTIPLY"
-					}
-				}
-			}
 		}
-		"trap_bonus_damage"
+		"explosion_damage"
 		{
-			"value" "85"
+			"value" "125"
 			"operator" "OP_ADD"
+			"max_count" "30"
 		}
-		"trap_radius"
+		"damage_multiplier"
 		{
-			"value" "30"
+			"value" "0.25"
+			"operator" "OP_ADD"
+			"max_count" "35"
+		}
+		"max_distance"
+		{
+			"value" "50"
 			"operator" "OP_ADD"
 			"max_count" "10"
+			"linked_special_values"
+			{
+				"AbilityCastRange" "50"
+			}
 		}
 	}
 }

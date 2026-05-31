@@ -20,11 +20,6 @@ function mirana_fire_arrow:OnSpellStart()
 	local projectile_end_radius = self:GetSpecialValueFor("arrow_width")
 	local projectile_vision = self:GetSpecialValueFor("arrow_vision")
 
-	local bonus_damage = self:GetSpecialValueFor( "arrow_bonus_damage" )
-	local min_stun = self:GetSpecialValueFor( "arrow_min_stun" )
-	local max_stun = self:GetSpecialValueFor( "arrow_max_stun" )
-	local max_distance = self:GetSpecialValueFor( "arrow_max_stunrange" )
-
 	local projectile_direction = (Vector( point.x-origin.x, point.y-origin.y, 0 )):Normalized()
 
 	-- logic
@@ -52,19 +47,6 @@ function mirana_fire_arrow:OnSpellStart()
 		bProvidesVision = true,
 		iVisionRadius = projectile_vision,
 		iVisionTeamNumber = caster:GetTeamNumber(),
-
-		ExtraData = {
-			originX = origin.x,
-			originY = origin.y,
-			originZ = origin.z,
-
-			max_distance = max_distance,
-			min_stun = min_stun,
-			max_stun = max_stun,
-
-			min_damage = min_damage,
-			bonus_damage = bonus_damage,
-		}
 	}
 	ProjectileManager:CreateLinearProjectile(info)
 
@@ -75,14 +57,16 @@ end
 
 --------------------------------------------------------------------------------
 -- Projectile
-function mirana_fire_arrow:OnProjectileHit_ExtraData( hTarget, vLocation, extraData )
+function mirana_fire_arrow:OnProjectileHit( hTarget, vLocation )
 	if hTarget==nil then return end
 
 	local damage = self:GetSpecialValueFor("damage")
 
-	if RollPercentage(self:GetSpecialValueFor("chance_crit_3x")) then 
+	-- один ролл: сначала шанс на x3, иначе шанс на x2
+	local roll = RandomInt(1, 100)
+	if roll <= self:GetSpecialValueFor("chance_crit_3x") then
 		damage = damage * 3
-	elseif RollPercentage(self:GetSpecialValueFor("chance_crit_2x")) then 
+	elseif roll <= self:GetSpecialValueFor("chance_crit_3x") + self:GetSpecialValueFor("chance_crit_2x") then
 		damage = damage * 2
 	end
 

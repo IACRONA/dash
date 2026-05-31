@@ -1,6 +1,8 @@
 local particles =
 {
     "particles/units/heroes/hero_riki/riki_ambient_invis.vpcf",
+    "particles/units/heroes/hero_mars/mars_spear.vpcf",
+    "particles/units/heroes/hero_huskar/huskar_burning_spear_debuff.vpcf",
     "particles/bane_nightmare.vpcf",
     "particles/units/heroes/hero_skeletonking/wraith_king_curse_overhead_skull.vpcf",
     "particles/generic_gameplay/generic_hit_blood.vpcf",
@@ -143,13 +145,18 @@ local particles =
     "particles/overhead_particle/leaders/leader_overhead_golden.vpcf",
     "particles/overhead_particle/leaders/leader_overhead_winged.vpcf",
 
-    -- ta_lethal_surge
-    "particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_windup.vpcf",
-    "particles/units/heroes/hero_pangolier/pangolier_swashbuckle_aim.vpcf",
-    "particles/units/heroes/hero_templar_assassin/templar_assassin_crit_impact.vpcf",
-    "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_slow.vpcf",
+    -- ta_lethal_surge (ульта Templar Assassin)
     "particles/units/heroes/hero_templar_assassin/templar_assassin_trap.vpcf",
     "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf",
+    "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_slow.vpcf",
+    "particles/units/heroes/hero_templar_assassin/templar_assassin_meld_hit.vpcf",
+    "particles/units/heroes/hero_spirit_breaker/spirit_breaker_charge.vpcf",
+    "particles/units/heroes/hero_spirit_breaker/spirit_breaker_charge_smoke.vpcf",
+    "particles/units/heroes/hero_spirit_breaker/spirit_breaker_charge_mist.vpcf",
+    "particles/units/heroes/hero_spirit_breaker/spirit_breaker_charge_glow.vpcf",
+    "particles/units/heroes/hero_spirit_breaker/spirit_breaker_charge_dust.vpcf",
+    "particles/units/heroes/hero_spirit_breaker/spirit_breaker_charge_foot_glow.vpcf",
+    "particles/units/heroes/hero_spirit_breaker/spirit_breaker_charge_model_b.vpcf",
 
 }
 

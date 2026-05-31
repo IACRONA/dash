@@ -119,6 +119,7 @@
   width: 420px;
   height: 140px;
   margin-bottom: 0px;
+  flow-children: none;
   transition-property: brightness, opacity;
   transition-duration: 2s, 2s;
   transition-timing-function: ease-out, ease-in-out;
@@ -348,7 +349,7 @@
   margin-top: 28px;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: contain;
+  background-size: 100% 100%;
 }
 .spell_block_icon {
   width: 74px;

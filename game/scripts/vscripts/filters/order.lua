@@ -2,6 +2,28 @@ return function(t, hAddon)
 	local hMainUnit = EntIndexToHScript(t.units['0'] or -1)
 	if not hMainUnit then return true end
 
+	-- Правый клик ПО ловушке Lethal Surge → влёт в неё
+	if t.order_type == DOTA_UNIT_ORDER_MOVE_TO_TARGET then
+		local hTarget = EntIndexToHScript(t.entindex_target or -1)
+		if hTarget and hTarget.ta_surge_ability and not hTarget.ta_surge_ability:IsNull() then
+			local abil = hTarget.ta_surge_ability
+			if abil:GetCaster() == hMainUnit and abil:TrySurgeOrder(hTarget) then
+				return false
+			end
+		end
+	end
+
+	-- Правый клик ПО ЗЕМЛЕ рядом с ловушкой (промах мимо юнита) → тоже влёт
+	if t.order_type == DOTA_UNIT_ORDER_MOVE_TO_POSITION and hMainUnit.ta_surge_ability then
+		local abil = hMainUnit.ta_surge_ability
+		if not abil:IsNull() and abil:GetCaster() == hMainUnit then
+			local vTarget = Vector(t.position_x, t.position_y, t.position_z)
+			if abil:TrySurgeAtPoint(vTarget) then
+				return false
+			end
+		end
+	end
+
 	if t.order_type == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
 		local vTarget = Vector(t.position_x, t.position_y, t.position_z)
 		if hMainUnit then

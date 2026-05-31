@@ -785,6 +785,33 @@
 		//----------------------------------------------------------------
 		"AttackDesire"				"1.5"		// How much bots want to attack them vs other non-hero things
 	}
+
+	"npc_ta_lethal_trap"
+	{
+		"BaseClass"					"npc_dota_ward_base"
+		"Model"						"models/development/invisiblebox.vmdl"
+		"ModelScale"				"1.0"
+		"Level"						"0"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"
+		"AttackDamageMax"			"0"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"				"0"
+		"StatusHealth"				"1"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0"
+		"ArmorPhysical"				"0"
+		"MagicalResistance"			"0"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+		"HealthBarOffset"			"-1"
+		"VisionDaytimeRange"		"400"
+		"VisionNighttimeRange"		"400"
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"vscripts"					""
+	}
+
 	"npc_dota_base_mount"
     {
         // General

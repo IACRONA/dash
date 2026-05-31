@@ -44,7 +44,18 @@
       "WebFetch(domain:dota2.fandom.com)",
       "WebFetch(domain:dotesports.com)",
       "Bash(xargs -I {} basename {})",
-      "Bash(xargs grep *)"
+      "Bash(xargs grep *)",
+      "Bash(echo \"=== слоты TA в npc_heroes_custom ===\")",
+      "Bash(grep -n -A6 npc_dota_hero_templar_assassin 'c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/game/dota_addons/dotawarsongs/scripts/npc/npc_heroes_custom.txt')",
+      "Bash(echo \"=== звук на десктопе ===\" *)",
+      "Read(//c/Users/acron/Desktop/Heros sounde//**)",
+      "Bash(mkdir -p 'c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/sounds/heroes/templar_assassin')",
+      "Bash(cp '/c/Users/acron/Desktop/Heros sounde/ta.wav' 'c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/content/dota_addons/dotawarsongs/sounds/heroes/templar_assassin/lethal_surge_jump.wav')",
+      "Bash(grep -c ta_lethal_surge __TRACKED_VAR__/resource/addon_english.txt)",
+      "Bash(grep -c ta_lethal_surge __TRACKED_VAR__/resource/addon_russian.txt)",
+      "Bash(grep AbilityTextureName __TRACKED_VAR__/scripts/npc/heroes/templar_assassin_abilities.kv)",
+      "Bash(iconv -f UTF-16LE -t UTF-8 'c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/game/dota_addons/dotawarsongs/resource/addon_english.txt')",
+      "Bash(grep -c '\"__TRACKED_VAR__\"' 'c:/Program Files \\(x86\\)/Steam/steamapps/common/dota 2 beta/game/dota_addons/dotawarsongs/scripts/npc/heroes/templar_assassin_abilities.kv')"
     ],
     "deny": [],
     "ask": []

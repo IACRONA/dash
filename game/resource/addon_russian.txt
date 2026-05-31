@@ -2095,6 +2095,21 @@
     "DOTA_Tooltip_modifier_riki_second_life_invuln_description"     "Неуязвимость после Второй Жизни."
 
     "DOTA_Tooltip_modifier_ice_frog_combined_Effect"			"Невозмутимость"
+
+    // ===== Lethal Surge (ульта Templar Assassin) =====
+    "DOTA_Tooltip_ability_ta_lethal_surge"								"Убийственная Ловушка"
+    "DOTA_Tooltip_ability_ta_lethal_surge_Description"					"Герой устанавливает психо-ловушку в указанной точке. Правый клик по ловушке — рывок в неё: рассекает всех врагов на пути на %damage_multiplier%-кратный урон от атаки и замедляет их. В точке прибытия ловушка детонирует, нанося %explosion_damage% магического урона и замедляя всех вокруг.\n\nНа поле только одна ловушка — новая убирает старую."
+    "DOTA_Tooltip_ability_ta_lethal_surge_explosion_damage"				"УРОН ОТ ВЗРЫВА:"
+    "DOTA_Tooltip_ability_ta_lethal_surge_slow_pct"						"%ЗАМЕДЛЕНИЕ:"
+    "DOTA_Tooltip_ability_ta_lethal_surge_slow_duration"				"ДЛИТЕЛЬНОСТЬ ЗАМЕДЛЕНИЯ:"
+    "DOTA_Tooltip_ability_ta_lethal_surge_explosion_radius"				"РАДИУС ВЗРЫВА:"
+    "DOTA_Tooltip_ability_ta_lethal_surge_max_distance"					"ДИСТАНЦИЯ РЫВКА:"
+    "DOTA_Tooltip_ability_ta_lethal_surge_trap_lifetime"				"ВРЕМЯ ЖИЗНИ ЛОВУШКИ:"
+    "DOTA_Tooltip_ability_ta_lethal_surge_scepter_description"			"Даёт второй заряд ловушки. Каждый заряд перезаряжается независимо — поставив одну ловушку, у второго заряда КД не идёт, его можно использовать сразу."
+    "DOTA_Tooltip_ability_ta_lethal_surge_Lore"							"Там, где разум встречает клинок, ловушка ждёт лишь мгновения, чтобы стать смертью."
+    // Таланты Lethal Surge (перепривязаны к нашей ульте)
+    "DOTA_Tooltip_ability_special_bonus_unique_templar_assassin_3"		"+10% к замедлению ловушки"
+    "DOTA_Tooltip_ability_special_bonus_unique_templar_assassin_6"		"+70 к дистанции рывка"
     }
 }
  
