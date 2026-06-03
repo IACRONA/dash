@@ -3,18 +3,22 @@ LinkLuaModifier("modifier_ta_lethal_surge_trap", "abilities/heroes/templar_assas
 LinkLuaModifier("modifier_ta_lethal_surge_slow", "abilities/heroes/templar_assassin/ta_lethal_surge", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ta_lethal_surge_hamstring", "abilities/heroes/templar_assassin/ta_lethal_surge", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ta_lethal_surge_charges", "abilities/heroes/templar_assassin/ta_lethal_surge", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ta_lethal_surge_recharge", "abilities/heroes/templar_assassin/ta_lethal_surge", LUA_MODIFIER_MOTION_NONE)
 
 ta_lethal_surge = class({})
 
--- Интринзик: без аганима ограничивает максимум до 1 заряда (с аганимом 2)
+-- Заряды считаем сами: каждый потраченный заряд восстанавливается НЕЗАВИСИМО
+-- за charge_cooldown секунд. Менеджер (intrinsic) держит число и значки сверху.
 function ta_lethal_surge:GetIntrinsicModifierName()
     return "modifier_ta_lethal_surge_charges"
 end
 
--- R: ставим ловушку (движок сам тратит заряд и стартует его откат).
--- Влёт — НЕ здесь, а по правому клику по ловушке (см. TrySurgeOrder).
+-- R: ставим ловушку. Заряд тратит движок (AbilityCharges); мы лишь фиксируем
+-- время его возврата в список независимых таймеров.
 function ta_lethal_surge:OnSpellStart()
     self:PlaceTrap(self:GetCursorPosition())
+    self.recharge_list = self.recharge_list or {}
+    table.insert(self.recharge_list, GameRules:GetGameTime() + self:GetSpecialValueFor("charge_cooldown"))
 end
 
 -- ===== Ловушки (на поле всегда максимум 1) =====
@@ -377,8 +381,11 @@ function modifier_ta_lethal_surge_hamstring:GetModifierAttackSpeedBonus_Constant
     return -60
 end
 
--- ===== Клампер зарядов: без аганима максимум 1, с аганимом 2 =====
--- KV даёт 2 заряда (для нативного кружка), тут режем до 1 пока нет скипетра.
+-- ===== Intrinsic: менеджер зарядов (без холостого таймера движка) =====
+-- В KV НЕТ AbilityChargeRestoreTime, поэтому движок сам ничего не крутит —
+-- круг стоит когда заряды полные. Восстановление считаем здесь: держим
+-- максимум (1 без аганима / 2 с аганимом) и при нехватке заряда крутим один
+-- таймер длиной charge_cooldown, по истечении +1 заряд.
 modifier_ta_lethal_surge_charges = class({})
 
 function modifier_ta_lethal_surge_charges:IsHidden() return true end
@@ -387,18 +394,121 @@ function modifier_ta_lethal_surge_charges:RemoveOnDeath() return false end
 
 function modifier_ta_lethal_surge_charges:OnCreated()
     if not IsServer() then return end
-    self:StartIntervalThink(0.5)
-    self:OnIntervalThink()
+    local ability = self:GetAbility()
+    if ability and not ability:IsNull() then
+        ability.recharge_list = ability.recharge_list or {}
+        ability:SetCurrentAbilityCharges(self:MaxCharges())
+    end
+    self:StartIntervalThink(0.25)
+end
+
+function modifier_ta_lethal_surge_charges:MaxCharges()
+    return self:GetParent():HasScepter() and 2 or 1
 end
 
 function modifier_ta_lethal_surge_charges:OnIntervalThink()
     if not IsServer() then return end
     local ability = self:GetAbility()
-    if not ability or ability:IsNull() or ability:GetLevel() < 1 then return end
+    if not ability or ability:IsNull() then return end
 
-    if not self:GetParent():HasScepter() then
-        if ability:GetCurrentAbilityCharges() > 1 then
-            ability:SetCurrentAbilityCharges(1)
+    local maxc = self:MaxCharges()
+    local list = ability.recharge_list or {}
+    ability.recharge_list = list
+    local now = GameRules:GetGameTime()
+
+    -- Убираем истёкшие таймеры (эти заряды уже вернулись).
+    for i = #list, 1, -1 do
+        if list[i] <= now then table.remove(list, i) end
+    end
+
+    -- Аганим сняли — лишние "в восстановлении" таймеры за пределами максимума не нужны.
+    while #list > maxc do table.remove(list, 1) end
+
+    -- Доступные заряды = максимум минус сколько ещё восстанавливается.
+    local available = maxc - #list
+    if available < 0 then available = 0 end
+
+    -- Выставляем число в кружок на иконке R.
+    if ability:GetCurrentAbilityCharges() ~= available then
+        ability:SetCurrentAbilityCharges(available)
+    end
+
+    -- КД-кольцо на иконке R — только когда зарядов 0 (иначе блокирует каст).
+    if available == 0 and #list > 0 then
+        local soonest = math.huge
+        for _, t in ipairs(list) do soonest = math.min(soonest, t - now) end
+        if soonest > 0 and math.abs((ability:GetCooldownTimeRemaining() or 0) - soonest) > 0.35 then
+            ability:StartCooldown(soonest)
+        end
+    elseif available > 0 and not ability:IsCooldownReady() then
+        ability:EndCooldown()
+    end
+
+    -- Значки сверху: по одному на каждый таймер в списке, с его секундами.
+    self:SyncRechargeIcons(ability, list, now)
+end
+
+-- Один видимый значок на каждый восстанавливающийся заряд. Каждый значок жёстко
+-- привязан к СВОЕМУ времени окончания (expire) — создаётся один раз с нужной
+-- длительностью и больше не трогается (иначе мигает). При исчезновении таймера
+-- удаляем только его значок, остальные не дёргаем.
+function modifier_ta_lethal_surge_charges:SyncRechargeIcons(ability, list, now)
+    local parent = self:GetParent()
+    self.icons = self.icons or {}  -- ключ: expire_time(строкой) -> modifier
+
+    -- Удаляем значки, чьих таймеров больше нет в списке.
+    local present = {}
+    for _, t in ipairs(list) do present[string.format("%.2f", t)] = true end
+    for key, m in pairs(self.icons) do
+        if not present[key] or not m or m:IsNull() then
+            if m and not m:IsNull() then m:Destroy() end
+            self.icons[key] = nil
         end
     end
+
+    -- Создаём значки для новых таймеров (один раз, с точной длительностью).
+    for _, t in ipairs(list) do
+        local key = string.format("%.2f", t)
+        if not self.icons[key] then
+            local remain = t - now
+            if remain > 0 then
+                self.icons[key] = parent:AddNewModifier(parent, ability,
+                    "modifier_ta_lethal_surge_recharge", {duration = remain})
+            end
+        end
+    end
+end
+
+-- ===== Modifier-значок: КД одного заряда (показывается в верхнем баре) =====
+-- Видимый бафф с иконкой ульты и обратным таймером. Один значок = один заряд,
+-- который сейчас восстанавливается.
+modifier_ta_lethal_surge_recharge = class({})
+
+function modifier_ta_lethal_surge_recharge:IsHidden() return false end
+function modifier_ta_lethal_surge_recharge:IsPurgable() return false end
+function modifier_ta_lethal_surge_recharge:RemoveOnDeath() return false end
+function modifier_ta_lethal_surge_recharge:DestroyOnExpire() return true end
+
+-- MULTIPLE — чтобы несколько значков не слипались в один стак, а висели рядом.
+function modifier_ta_lethal_surge_recharge:GetAttributes()
+    return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
+-- Иконка значка — текстура самой ульты.
+function modifier_ta_lethal_surge_recharge:GetTexture()
+    return "templar_assassin/lethal_surge"
+end
+
+-- Внутри значка показываем число оставшихся секунд (через стак-каунт).
+function modifier_ta_lethal_surge_recharge:OnCreated()
+    if not IsServer() then return end
+    self:StartIntervalThink(0.1)
+    self:OnIntervalThink()
+end
+
+function modifier_ta_lethal_surge_recharge:OnIntervalThink()
+    if not IsServer() then return end
+    local remain = math.ceil(self:GetRemainingTime())
+    if remain < 0 then remain = 0 end
+    self:SetStackCount(remain)
 end

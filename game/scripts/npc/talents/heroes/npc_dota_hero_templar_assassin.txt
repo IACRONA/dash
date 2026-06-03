@@ -61,7 +61,7 @@
 	{
 		"cooldown_and_manacost"
 		{
-			"value" "8"
+			"value" "4"
 			"operator" "OP_MULTIPLY"
 			"max_count" "5"
 		}

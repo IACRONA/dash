@@ -9,10 +9,12 @@
         "AbilityTextureName"    "templar_assassin/lethal_surge"
         "AbilityCastRange"      "1000 1100 1200"
         "AbilityCastPoint"      "0.0"
-        "AbilityCooldown"       "0"
-        "AbilityManaCost"       "100 125 150"
+        // AbilityCharges даёт слот зарядов (2 для аганима), но БЕЗ
+        // AbilityChargeRestoreTime — иначе движок крутит таймер восстановления
+        // вхолостую при полном заряде. Восстановление делаем сами в Lua.
+        "AbilityCooldown"       "0.0"
         "AbilityCharges"        "2"
-        "AbilityChargeRestoreTime" "15 15 15"
+        "AbilityManaCost"       "100 125 150"
         "MaxLevel"              "3"
         "RequiredLevel"         "6"
         "LevelsBetweenUpgrades" "6"
@@ -20,6 +22,7 @@
 
         "AbilityValues"
         {
+            "charge_cooldown"       "20"
             "damage_multiplier"     "1 2 3"
             "slow_pct"
             {
@@ -40,8 +43,6 @@
             "trap_lifetime"         "40"
             "launch_snap_radius"    "250"
             "trap_vision"           "400"
-            "base_charges"          "1"
-            "scepter_charges"       "2"
         }
     }
 }
